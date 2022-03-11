@@ -147,6 +147,16 @@ class KYCUploadViewController: UIViewController, KYCUploadDisplayLogic, UITableV
     
     func displaySaveImage(viewModel: KYCUpload.SaveImages.ViewModel) {
         LoadingView.hide()
+        
+        switch self.step {
+        case .idSelfie:
+            DispatchQueue.main.async {
+                self.router?.showKYCCompleteScene()
+            }
+            
+        default:
+            break
+        }
     }
     
     func displayError(viewModel: GenericModels.Error.ViewModel) {
@@ -230,10 +240,6 @@ class KYCUploadViewController: UIViewController, KYCUploadDisplayLogic, UITableV
                 
                 cell.stopCamera()
                 self.interactor?.saveImage(request: .init(type: .selfie, images: [image]))
-                
-                DispatchQueue.main.async {
-                    self.router?.showKYCCompleteScene()
-                }
                 
             }
             
