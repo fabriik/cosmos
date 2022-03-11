@@ -157,7 +157,7 @@ class BRDButton: UIControl {
         case .primary:
             let bgColor = isEnabled ? UIColor.primaryButton : UIColor.primaryButton.withAlphaComponent(0.5)
             container.backgroundColor = bgColor
-            label.textColor = isEnabled ? Theme.primaryText : Theme.secondaryText
+            label.textColor = isEnabled ? Theme.primaryButtonText : Theme.primaryButtonText.withAlphaComponent(0.5)
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0
             imageView?.tintColor = .white

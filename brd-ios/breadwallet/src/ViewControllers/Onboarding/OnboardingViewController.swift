@@ -902,7 +902,7 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
-        view.backgroundColor = Theme.primaryBackground
+        view.backgroundColor = Theme.blueBackground
                 
         setUpLogo()
         setUpPages()

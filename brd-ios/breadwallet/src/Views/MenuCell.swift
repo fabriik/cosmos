@@ -23,7 +23,7 @@ class MenuCell: SeparatorCell {
     func set(item: MenuItem) {
         textLabel?.text = item.title
         textLabel?.font = .customBody(size: 16.0)
-        textLabel?.textColor = .white
+        textLabel?.textColor = Theme.blueBackground
         
         imageView?.image = item.icon
         imageView?.tintColor = Theme.accent
