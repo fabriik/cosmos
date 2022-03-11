@@ -39,14 +39,20 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
                                              workerUrlModelData: workerUrlModelData)
         
         worker.execute(requestData: workerData) { [weak self] response, error in
-            guard let sessionKey = response?.data["sessionKey"]?.value as? String, error == nil else {
+            guard let sessionKey = response?.data["sessionKey"]?.value as? String,
+                  let isConfirmed = response?.data["is_confirmed"]?.value as? Bool,
+                    error == nil else {
                 self?.presenter?.presentError(response: .init(error: error))
                 return
             }
             
             UserDefaults.kycSessionKeyValue = sessionKey
             
-            self?.presenter?.presentSignIn(response: .init())
+            if isConfirmed == false {
+                self?.presenter?.presentConfirmEmail(response: .init())
+            } else {
+                self?.presenter?.presentSignIn(response: .init())
+            }
         }
     }
     

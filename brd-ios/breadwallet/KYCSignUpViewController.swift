@@ -14,7 +14,7 @@ protocol KYCSignUpDisplayLogic: class {
     func displayError(viewModel: GenericModels.Error.ViewModel)
 }
 
-class KYCSignUpViewController: UIViewController, KYCSignUpDisplayLogic, UITableViewDelegate, UITableViewDataSource {
+class KYCSignUpViewController: KYCViewController, KYCSignUpDisplayLogic, UITableViewDelegate, UITableViewDataSource {
     var interactor: KYCSignUpBusinessLogic?
     var router: (NSObjectProtocol & KYCSignUpRoutingLogic)?
     
@@ -58,33 +58,6 @@ class KYCSignUpViewController: UIViewController, KYCSignUpDisplayLogic, UITableV
         case fields
     }
     
-    private lazy var roundedView: RoundedView = {
-        let roundedView = RoundedView()
-        roundedView.translatesAutoresizingMaskIntoConstraints = false
-        roundedView.cornerRadius = 10
-        roundedView.backgroundColor = .kycCompletelyWhite
-        
-        return roundedView
-    }()
-    
-    private lazy var tableView: UITableView = {
-        var tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.setupDefault()
-        tableView.allowsSelection = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        return tableView
-    }()
-    
-    private lazy var footerView: KYCFooterView = {
-        let footerView = KYCFooterView()
-        footerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return footerView
-    }()
-    
     private let sections: [Section] = [
         .fields
     ]
@@ -94,26 +67,8 @@ class KYCSignUpViewController: UIViewController, KYCSignUpDisplayLogic, UITableV
         super.viewDidLoad()
         
         tableView.register(cell: KYCSignUpCell.self)
-        
-        view.addSubview(roundedView)
-        roundedView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
-        roundedView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        roundedView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        roundedView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20).isActive = true
-        
-        roundedView.addSubview(footerView)
-        footerView.leadingAnchor.constraint(equalTo: roundedView.leadingAnchor).isActive = true
-        footerView.trailingAnchor.constraint(equalTo: roundedView.trailingAnchor).isActive = true
-        footerView.bottomAnchor.constraint(equalTo: roundedView.bottomAnchor, constant: -40).isActive = true
-        footerView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        roundedView.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: roundedView.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: roundedView.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: roundedView.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: roundedView.bottomAnchor, constant: -20).isActive = true
-        
-        view.backgroundColor = .almostBlack
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     // MARK: View controller functions

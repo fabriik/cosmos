@@ -11,7 +11,7 @@ protocol KYCTutorialDisplayLogic: class {
     func displayNextTutorial(viewModel: KYCTutorial.HandleTutorialPaging.ViewModel)
 }
 
-class KYCTutorialViewController: UIViewController, KYCTutorialDisplayLogic, UICollectionViewDataSource,
+class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UICollectionViewDataSource,
                                  UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var interactor: KYCTutorialBusinessLogic?
     var router: (NSObjectProtocol & KYCTutorialRoutingLogic)?
