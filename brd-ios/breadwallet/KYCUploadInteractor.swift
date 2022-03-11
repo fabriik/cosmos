@@ -27,10 +27,12 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
         case .selfie:
             guard let image = request.images.first?.jpegData(compressionQuality: compressionQuality) else { return }
             uploadSelfie(image: image)
+            
         case .frontAndBack:
             guard let imageBack = request.images[1].jpegData(compressionQuality: compressionQuality),
                   let imageFront = request.images[0].jpegData(compressionQuality: compressionQuality) else { return }
             uploadFrontBack(images: [imageBack, imageFront])
+            
         }
     }
     
