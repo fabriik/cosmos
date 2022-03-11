@@ -99,6 +99,7 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
     
     private var step: Step = .idFront
     private var backAndFrontImages = [UIImage]()
+    private var shouldShowKYCCompleteScene = false
     
     // MARK: View lifecycle
     override func viewDidLoad() {
@@ -116,15 +117,8 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
     func displaySaveImage(viewModel: KYCUpload.SaveImages.ViewModel) {
         LoadingView.hide()
         
-        switch self.step {
-        case .idSelfie:
-            DispatchQueue.main.async {
-                self.router?.showKYCCompleteScene()
-            }
-            
-        default:
-            break
-        }
+        guard shouldShowKYCCompleteScene else { return }
+        router?.showKYCCompleteScene()
     }
     
     func displayError(viewModel: GenericModels.Error.ViewModel) {
@@ -207,6 +201,7 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
                 LoadingView.show()
                 
                 cell.stopCamera()
+                self.shouldShowKYCCompleteScene = true
                 self.interactor?.saveImage(request: .init(type: .selfie, images: [image]))
                 
             }
