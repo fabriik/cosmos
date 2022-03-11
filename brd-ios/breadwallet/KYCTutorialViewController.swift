@@ -89,6 +89,14 @@ class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UIC
         collectionView.register(cell: KYCTutorial1CollectionViewCell.self)
         collectionView.register(cell: KYCTutorial2CollectionViewCell.self)
         
+        interactor?.fetchTutorialPages(request: .init())
+    }
+    
+    override func setupUI() {
+        tableView.isHidden = true
+        roundedView.isHidden = true
+        footerView.isHidden = true
+        
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -99,10 +107,6 @@ class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UIC
         pageControl.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -72).isActive = true
         pageControl.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor).isActive = true
         pageControl.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor).isActive = true
-        
-        view.backgroundColor = .almostBlack
-        
-        interactor?.fetchTutorialPages(request: .init())
     }
     
     func collectionView(_ collectionView: UICollectionView,
