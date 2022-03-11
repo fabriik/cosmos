@@ -105,7 +105,9 @@ class KYCTutorialViewController: UIViewController, KYCTutorialDisplayLogic, UICo
         interactor?.fetchTutorialPages(request: .init())
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         nextPage = indexPath.row
         pageControl.currentPage = nextPage
     }
@@ -115,6 +117,18 @@ class KYCTutorialViewController: UIViewController, KYCTutorialDisplayLogic, UICo
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width,
                       height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

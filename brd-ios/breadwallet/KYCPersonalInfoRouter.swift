@@ -16,6 +16,7 @@ class KYCPersonalInfoRouter: NSObject, KYCPersonalInfoRoutingLogic {
     
     func showKYCUploadScene() {
         let kycUploadViewController = KYCUploadViewController()
+        kycUploadViewController.navigationItem.setHidesBackButton(true, animated: false)
         viewController?.navigationController?.pushViewController(kycUploadViewController, animated: true)
     }
 }

@@ -8,8 +8,8 @@ enum KYCEndpoints: String, URLType {
     static var baseURL: String = "https://" + E.apiUrl + "blocksatoshi/one/kyc/%@"
     
     case personalInformation = "pi?%@"
-    case uploadSelfieImage = "upload?type=SELFIE%@"
-    case uploadFrontBackImage = "upload?type=ID%@"
+    case uploadSelfieImage = "upload?type=SELFIE&%@"
+    case uploadFrontBackImage = "upload?type=ID&%@"
     case login = "auth/login%@"
     
     var url: String {

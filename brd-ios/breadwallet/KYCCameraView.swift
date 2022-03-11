@@ -119,13 +119,16 @@ public class KYCCameraView: UIView {
             }
             
             captureSession?.startRunning()
-            
         } else if requestPermissionIfNeeded {
             requestCapturePermission { [unowned self] permissionGranted in
                 guard permissionGranted else { return }
+                
+                if captureSession == nil {
+                    setupCaptureSession()
+                }
+                
                 self.captureSession?.startRunning()
             }
-            
         }
     }
     
