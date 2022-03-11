@@ -431,7 +431,13 @@ class ModalPresenter: Subscriber, Trackable {
     public func presentRegistrationAndKYC() {
         let vc = KYCSignInViewController()
         let navController = KYCNavigationController(rootViewController: vc)
-        navController.modalPresentationStyle = .overFullScreen
+        
+        if #available(iOS 14.0, *) {
+            navController.isModalInPresentation = true
+        } else {
+            navController.modalPresentationStyle = .overFullScreen
+        }
+        
         topViewController?.present(navController, animated: true, completion: nil)
     }
     

@@ -144,6 +144,7 @@
 		75A2A79B1DA5934300A983D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A79A1DA5934300A983D8 /* Assets.xcassets */; };
 		75A2A79E1DA5934300A983D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A79C1DA5934300A983D8 /* LaunchScreen.storyboard */; };
 		75A2A7B41DA5934300A983D8 /* breadwalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A7B31DA5934300A983D8 /* breadwalletUITests.swift */; };
+		7B1323D027DB628500A24DAB /* KYCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1323CF27DB628500A24DAB /* KYCViewController.swift */; };
 		7B2C9AFC27D9270B00D5135C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2C9AFB27D9270B00D5135C /* IQKeyboardManagerSwift */; };
 		7B2C9B0727DA1C5F00D5135C /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2C9B0627DA1C5F00D5135C /* AnyCodable */; };
 		7B2C9B1427DA4BAB00D5135C /* KYCSessionModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2C9B1127DA4BAB00D5135C /* KYCSessionModelMapper.swift */; };
@@ -976,6 +977,7 @@
 		75A2A8091DA5936F00A983D8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		75A2A87C1DA59E4E00A983D8 /* breadwallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = breadwallet.entitlements; sourceTree = "<group>"; };
 		75FEFD1B1DAED56E00203D3A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		7B1323CF27DB628500A24DAB /* KYCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCViewController.swift; sourceTree = "<group>"; };
 		7B2C9B1127DA4BAB00D5135C /* KYCSessionModelMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSessionModelMapper.swift; sourceTree = "<group>"; };
 		7B2C9B1227DA4BAB00D5135C /* KYCSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSessionModel.swift; sourceTree = "<group>"; };
 		7B2C9B1327DA4BAB00D5135C /* KYCSessionModelResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSessionModelResponse.swift; sourceTree = "<group>"; };
@@ -2126,6 +2128,7 @@
 				7B626F9B27D1413F0077BAE3 /* KYCCameraView.swift */,
 				7B626F9A27D1413E0077BAE3 /* KYCConstants.swift */,
 				7B626F9527D1413D0077BAE3 /* KYCNavigationController.swift */,
+				7B1323CF27DB628500A24DAB /* KYCViewController.swift */,
 				7B626F9027D1413D0077BAE3 /* LoadingView.swift */,
 				7B62702B27D631500077BAE3 /* KYCFooterView.swift */,
 				7B62702D27D65E9F0077BAE3 /* KYCTickBoxView.swift */,
@@ -4012,6 +4015,7 @@
 				71249913221F44FE00BEA491 /* Announcement.swift in Sources */,
 				71F829422321953F00B3C76E /* AlertPresenter.swift in Sources */,
 				CE8F0AE31EB91BB500AA7642 /* SearchHeaderView.swift in Sources */,
+				7B1323D027DB628500A24DAB /* KYCViewController.swift in Sources */,
 				22A9A9551DF61945000F0016 /* BRTar.swift in Sources */,
 				CEAA9E971DC18E1F0066731D /* PhraseView.swift in Sources */,
 				3A6A3C7E24DDC90300ACAC70 /* BackupSynchronizer.swift in Sources */,
