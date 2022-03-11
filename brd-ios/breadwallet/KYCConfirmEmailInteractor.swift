@@ -10,12 +10,14 @@ protocol KYCConfirmEmailBusinessLogic {
     func executeCheckFieldType(request: KYCConfirmEmail.CheckFieldText.Request)
     func executeSubmitData(request: KYCConfirmEmail.SubmitData.Request)
     func executeResendCode(request: KYCConfirmEmail.ResendCode.Request)
+    func executeShouldResendCode(request: KYCConfirmEmail.ShouldResendCode.Request)
 }
 
 protocol KYCConfirmEmailDataStore {
     // MARK: Data store
     
     var confirmationCode: String? { get set }
+    var shouldResendCode: Bool { get set }
 }
 
 class KYCConfirmEmailInteractor: KYCConfirmEmailBusinessLogic, KYCConfirmEmailDataStore {
@@ -24,6 +26,7 @@ class KYCConfirmEmailInteractor: KYCConfirmEmailBusinessLogic, KYCConfirmEmailDa
     // MARK: Interactor functions
     
     var confirmationCode: String?
+    var shouldResendCode = false
     
     func executeSubmitData(request: KYCConfirmEmail.SubmitData.Request) {
         let worker = KYCConfirmEmailWorker()
@@ -57,6 +60,11 @@ class KYCConfirmEmailInteractor: KYCConfirmEmailBusinessLogic, KYCConfirmEmailDa
             
             self?.presenter?.presentResendCode(response: .init())
         }
+    }
+    
+    func executeShouldResendCode(request: KYCConfirmEmail.ShouldResendCode.Request) {
+        guard shouldResendCode else { return }
+        executeResendCode(request: .init())
     }
     
     func executeCheckFieldType(request: KYCConfirmEmail.CheckFieldText.Request) {

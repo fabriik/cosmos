@@ -31,6 +31,11 @@ enum KYCSignIn {
         }
     }
     
+    enum ConfirmEmail {
+        struct Response {}
+        struct ViewModel {}
+    }
+    
     enum SubmitData {
         struct Request {}
         struct Response {}

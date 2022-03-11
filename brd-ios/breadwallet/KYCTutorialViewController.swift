@@ -11,7 +11,7 @@ protocol KYCTutorialDisplayLogic: class {
     func displayNextTutorial(viewModel: KYCTutorial.HandleTutorialPaging.ViewModel)
 }
 
-class KYCTutorialViewController: UIViewController, KYCTutorialDisplayLogic, UICollectionViewDataSource,
+class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UICollectionViewDataSource,
                                  UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var interactor: KYCTutorialBusinessLogic?
     var router: (NSObjectProtocol & KYCTutorialRoutingLogic)?
@@ -89,6 +89,14 @@ class KYCTutorialViewController: UIViewController, KYCTutorialDisplayLogic, UICo
         collectionView.register(cell: KYCTutorial1CollectionViewCell.self)
         collectionView.register(cell: KYCTutorial2CollectionViewCell.self)
         
+        interactor?.fetchTutorialPages(request: .init())
+    }
+    
+    override func setupUI() {
+        tableView.isHidden = true
+        roundedView.isHidden = true
+        footerView.isHidden = true
+        
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -99,13 +107,11 @@ class KYCTutorialViewController: UIViewController, KYCTutorialDisplayLogic, UICo
         pageControl.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -72).isActive = true
         pageControl.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor).isActive = true
         pageControl.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor).isActive = true
-        
-        view.backgroundColor = .almostBlack
-        
-        interactor?.fetchTutorialPages(request: .init())
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         nextPage = indexPath.row
         pageControl.currentPage = nextPage
     }
@@ -115,6 +121,18 @@ class KYCTutorialViewController: UIViewController, KYCTutorialDisplayLogic, UICo
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width,
                       height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

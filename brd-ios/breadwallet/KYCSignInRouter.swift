@@ -9,6 +9,7 @@ protocol KYCSignInRoutingLogic {
     
     func showKYCSignUpScene()
     func showKYCTutorialScene()
+    func showKYCConfirmEmailScene()
     func dismissFlow()
 }
 
@@ -23,7 +24,15 @@ class KYCSignInRouter: NSObject, KYCSignInRoutingLogic {
     
     func showKYCTutorialScene() {
         let kycTutorialViewController = KYCTutorialViewController()
+        kycTutorialViewController.navigationItem.setHidesBackButton(true, animated: true)
         viewController?.navigationController?.pushViewController(kycTutorialViewController, animated: true)
+    }
+    
+    func showKYCConfirmEmailScene() {
+        let kycSignUpViewController = KYCConfirmEmailViewController()
+        var dataStore = kycSignUpViewController.router?.dataStore
+        dataStore?.shouldResendCode = true
+        viewController?.navigationController?.pushViewController(kycSignUpViewController, animated: true)
     }
     
     func dismissFlow() {

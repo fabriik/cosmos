@@ -82,12 +82,10 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             textField.keyboardType = .emailAddress
             textField.autocapitalizationType = .none
             textField.autocorrectionType = .no
-            textField.inputView = UIView()
             
         case .password:
             rightButton.isUserInteractionEnabled = false
-//            textField.isSecureTextEntry = true
-            textField.inputView = UIView()
+            textField.isSecureTextEntry = true
             
         }
         

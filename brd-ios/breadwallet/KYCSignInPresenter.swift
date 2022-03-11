@@ -8,6 +8,7 @@ protocol KYCSignInPresentationLogic {
     // MARK: Presentation logic functions
     
     func presentSignIn(response: KYCSignIn.SubmitData.Response)
+    func presentConfirmEmail(response: KYCSignIn.ConfirmEmail.Response)
     func presentShouldEnableSubmit(response: KYCSignIn.ShouldEnableSubmit.Response)
     func presentValidateField(response: KYCSignIn.ValidateField.Response)
     func presentError(response: GenericModels.Error.Response)
@@ -20,6 +21,10 @@ class KYCSignInPresenter: KYCSignInPresentationLogic {
     
     func presentSignIn(response: KYCSignIn.SubmitData.Response) {
         viewController?.displaySignIn(viewModel: .init())
+    }
+    
+    func presentConfirmEmail(response: KYCSignIn.ConfirmEmail.Response) {
+        viewController?.displayConfirmEmail(viewModel: .init())
     }
     
     func presentShouldEnableSubmit(response: KYCSignIn.ShouldEnableSubmit.Response) {

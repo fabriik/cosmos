@@ -33,6 +33,10 @@ enum KYCConfirmEmail {
         struct ViewModel {}
     }
     
+    enum ShouldResendCode {
+        struct Request {}
+    }
+    
     enum ResendCode {
         struct Request {}
         struct Response {}

@@ -21,14 +21,18 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
     // MARK: Interactor functions
     
     func saveImage(request: KYCUpload.SaveImages.Request) {
+        let compressionQuality: CGFloat = 0.7
+        
         switch request.type {
         case .selfie:
-            guard let image = request.images.first?.jpegData(compressionQuality: 1.0) else { return }
+            guard let image = request.images.first?.jpegData(compressionQuality: compressionQuality) else { return }
             uploadSelfie(image: image)
+            
         case .frontAndBack:
-            guard let imageBack = request.images[1].jpegData(compressionQuality: 1.0),
-                  let imageFront = request.images[0].jpegData(compressionQuality: 1.0) else { return }
+            guard let imageBack = request.images[1].jpegData(compressionQuality: compressionQuality),
+                  let imageFront = request.images[0].jpegData(compressionQuality: compressionQuality) else { return }
             uploadFrontBack(images: [imageBack, imageFront])
+            
         }
     }
     
