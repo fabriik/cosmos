@@ -23,6 +23,7 @@ class KYCSignInRouter: NSObject, KYCSignInRoutingLogic {
     
     func showKYCTutorialScene() {
         let kycTutorialViewController = KYCTutorialViewController()
+        kycTutorialViewController.navigationItem.setHidesBackButton(true, animated: true)
         viewController?.navigationController?.pushViewController(kycTutorialViewController, animated: true)
     }
     

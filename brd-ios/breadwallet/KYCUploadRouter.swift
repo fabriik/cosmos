@@ -16,6 +16,7 @@ class KYCUploadRouter: NSObject, KYCUploadRoutingLogic {
     
     func showKYCCompleteScene() {
         let kycCompleteViewController = KYCCompleteViewController()
+        kycCompleteViewController.navigationItem.setHidesBackButton(true, animated: false)
         viewController?.navigationController?.pushViewController(kycCompleteViewController, animated: true)
     }
 }
