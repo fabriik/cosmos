@@ -125,7 +125,9 @@ class KYCTutorialViewController: UIViewController, KYCTutorialDisplayLogic, UICo
         return CGFloat.leastNormalMagnitude
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat.leastNormalMagnitude
     }
     
