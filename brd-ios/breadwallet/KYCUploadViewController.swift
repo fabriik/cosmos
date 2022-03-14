@@ -85,7 +85,7 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
                 return "Take a photo of the back of your driver’s lisence or government issued ID.\n\nMake sure to take a clear and readable photo to avoid delays or failed verification."
                 
             case .idSelfie:
-                return "Take a photo of the back of your driver’s lisence or government issued ID.\n\nMake sure to take a clear and readable photo to avoid delays or failed verification."
+                return "Take a quick face photo to confirm you are the person on your ID.\n\nMake sure your face is clear and well lit to avoid delays or failed verification."
                 
             }
         }
@@ -186,14 +186,14 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
             switch self.step {
             case .idFront:
                 self.step = .idBack
-                self.interactor?.setImage(request: .init(step: self.step, image: image))
+                self.interactor?.setImage(request: .init(step: .idFront, image: image))
                 
             case .idBack:
                 LoadingView.show()
                 
                 self.step = .idSelfie
                 cell.activateSelfieCamera()
-                self.interactor?.setImage(request: .init(step: self.step, image: image))
+                self.interactor?.setImage(request: .init(step: .idBack, image: image))
                 self.interactor?.saveImage(request: .init(step: .idBack))
                 
             case .idSelfie:
@@ -201,7 +201,7 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
                 
                 cell.stopCamera()
                 self.shouldShowKYCCompleteScene = true
-                self.interactor?.setImage(request: .init(step: self.step, image: image))
+                self.interactor?.setImage(request: .init(step: .idSelfie, image: image))
                 self.interactor?.saveImage(request: .init(step: .idSelfie))
                 
             }

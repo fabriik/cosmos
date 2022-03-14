@@ -138,12 +138,16 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
         }
         
         cell.didTapConfirmButton = { [weak self] in
+            self?.view.endEditing(true)
+            
             LoadingView.show()
             
             self?.interactor?.executeSubmitData(request: .init())
         }
         
         cell.didTapResendButton = { [weak self] in
+            self?.view.endEditing(true)
+            
             LoadingView.show()
             
             self?.interactor?.executeResendCode(request: .init())

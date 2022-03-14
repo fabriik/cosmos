@@ -26,11 +26,10 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
     
     func setImage(request: KYCUpload.SetImage.Request) {
         guard let image = request.image.jpegData(compressionQuality: 0.7) else { return }
-        images = [request.step: image]
+        images[request.step] = image
     }
     
     func saveImage(request: KYCUpload.SaveImages.Request) {
-        
         switch request.step {
         case .idSelfie:
             guard let selfieImage = images[.idSelfie] else { return }
