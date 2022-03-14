@@ -79,7 +79,7 @@ class Theme: BRDTheme {
         // case primaryBackground = "#141233"
         case secondaryBackground = "#211F3F"
         case tertiaryBackground = "#312F4C"
-        case blueBackground = "#297BFF"
+        case blueBackground = "#2C78FF"
         
         case text = "#000000"
        // case text = "#FFFFFF"
