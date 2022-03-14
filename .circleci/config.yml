@@ -3,6 +3,9 @@
 
 version: 2.1
 
+orbs: 
+  slack: circleci/slack@4.8.3
+
 jobs:
   build:
 
@@ -51,8 +54,6 @@ jobs:
           keys:
             - v1-dependencies
 
-
-
       # save cache
       - save_cache:
           paths:
@@ -72,7 +73,6 @@ jobs:
             base64 -d  ~/cert/base64p12 > ~/cert/ios_distribution.p12
             ls -la ~/cert
 
-
       - run:
           name: install  Key
           command: |
@@ -86,7 +86,6 @@ jobs:
             security find-certificate -a  ~/Library/Keychains/default.keychain
 
             security default-keychain -s ~/Library/Keychains/default.keychain
-
 
       - run:
           name: Install prerequisites
@@ -157,15 +156,11 @@ jobs:
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
             echo xcodebuild  build  -verbose   -workspace breadwallet.xcworkspace   -scheme breadwallet | xcpretty
 
-
-
       - run:
           name: after build check
           command: |
             ls -la build
             ls -la .
-
-
 
       # Collect XML test results data to show in the UI, and save the same XML
       # files under test-results folder in the Artifacts tab
