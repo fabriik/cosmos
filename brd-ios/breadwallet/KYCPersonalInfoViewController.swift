@@ -151,7 +151,8 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
             
             LoadingView.show()
             
-            (self?.navigationController?.children.dropLast().last as? KYCAddressViewController)?.didSubmitData = { [weak self] in
+            let kycAddressVC = self?.navigationController?.children.first(where: { $0 is KYCAddressViewController })
+            (kycAddressVC as? KYCAddressViewController)?.didSubmitData = { [weak self] in
                 LoadingView.hide()
                 
                 self?.router?.showKYCUploadScene()
