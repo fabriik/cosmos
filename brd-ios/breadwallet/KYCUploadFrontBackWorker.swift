@@ -13,11 +13,13 @@ struct KYCUploadFrontBackWorkerUrlModelData: UrlModelData {
 }
 
 struct KYCUploadFrontBackWorkerRequest: RequestModelData {
-    let imageData: [Data]
+    let imageData: [KYCUploadViewController.Step: Data]
     
     func getParameters() -> [String: Any] {
-        let value = [KYCUploadFrontBackWorker.backKey: imageData[1],
-                     KYCUploadFrontBackWorker.frontKey: imageData[0]]
+        guard let frontData = imageData[.idFront], let backData = imageData[.idBack] else { return [:] }
+        
+        let value = [KYCUploadFrontBackWorker.frontKey: frontData,
+                     KYCUploadFrontBackWorker.backKey: backData]
         
         return value
     }
@@ -41,9 +43,8 @@ class KYCUploadFrontBackWorker: KYCBasePlainResponseWorker {
     static let backKey: String = "auto_upload_file_back"
     
     override func execute() {
-        guard let getParameters = (requestData as? KYCUploadFrontBackWorkerData)?.getParameters() else { return }
-        
-        guard let frontValue = getParameters[KYCUploadFrontBackWorker.frontKey] as? Data,
+        guard let getParameters = (requestData as? KYCUploadFrontBackWorkerData)?.getParameters(),
+              let frontValue = getParameters[KYCUploadFrontBackWorker.frontKey] as? Data,
               let backValue = getParameters[KYCUploadFrontBackWorker.backKey] as? Data else { return }
         
         executeMultipartRequest(data: [MultipartMedia(with: frontValue,

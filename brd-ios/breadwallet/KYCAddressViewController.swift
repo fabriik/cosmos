@@ -178,6 +178,8 @@ class KYCAddressViewController: KYCViewController, KYCAddressDisplayLogic, UITab
         }
         
         cell.didTapNextButton = { [weak self] in
+            self?.view.endEditing(true)
+            
             self?.router?.showKYCPersonalInfoScene()
         }
         

@@ -148,12 +148,16 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
         }
         
         cell.didTapNextButton = { [weak self] in
+            self?.view.endEditing(true)
+            
             LoadingView.show()
             
             self?.interactor?.executeSignIn(request: .init())
         }
         
         cell.didTapSignUpButton = { [weak self] in
+            self?.view.endEditing(true)
+            
             self?.router?.showKYCSignUpScene()
         }
         

@@ -13,10 +13,12 @@ struct KYCUploadSelfieWorkerUrlModelData: UrlModelData {
 }
 
 struct KYCUploadSelfieWorkerRequest: RequestModelData {
-    let imageData: Data
+    let imageData: [KYCUploadViewController.Step: Data]
     
     func getParameters() -> [String: Any] {
-        let value = ["auto_upload_file": imageData]
+        guard let selfieData = imageData[.idSelfie] else { return [:] }
+        
+        let value = [KYCUploadFrontBackWorker.frontKey: selfieData]
         
         return value
     }
@@ -38,12 +40,11 @@ struct KYCUploadSelfieWorkerData: RequestModelData, UrlModelData {
 class KYCUploadSelfieWorker: KYCBasePlainResponseWorker {
     override func execute() {
         guard let getParameters = (requestData as? KYCUploadSelfieWorkerData)?.getParameters(),
-        let imageData = getParameters.values.first as? Data,
-        let key = getParameters.keys.first else { return }
+              let selfieValue = getParameters[KYCUploadFrontBackWorker.frontKey] as? Data else { return }
         
-        executeMultipartRequest(data: [MultipartMedia(with: imageData,
+        executeMultipartRequest(data: [MultipartMedia(with: selfieValue,
                                                       fileName: UUID().uuidString,
-                                                      forKey: key,
+                                                      forKey: KYCUploadFrontBackWorker.frontKey,
                                                       mimeType: .jpeg,
                                                       mimeFileFormat: .jpeg)])
     }

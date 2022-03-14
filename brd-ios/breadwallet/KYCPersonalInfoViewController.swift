@@ -142,17 +142,19 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
         }
         
         cell.didTapNextButton = { [weak self] in
-            guard let self = self, let dataStore = self.router?.dataStore else { return }
+            guard let dataStore = self?.router?.dataStore else { return }
+            
+            self?.view.endEditing(true)
             
             LoadingView.show()
             
-            (self.navigationController?.children.dropLast().last as? KYCAddressViewController)?.didSubmitData = { [weak self] in
+            (self?.navigationController?.children.dropLast().last as? KYCAddressViewController)?.didSubmitData = { [weak self] in
                 LoadingView.hide()
                 
                 self?.router?.showKYCUploadScene()
             }
             
-            self.didSetDateAndTaxId?(dataStore.date ?? "", dataStore.taxIdNumber ?? "")
+            self?.didSetDateAndTaxId?(dataStore.date ?? "", dataStore.taxIdNumber ?? "")
         }
         
         return cell
