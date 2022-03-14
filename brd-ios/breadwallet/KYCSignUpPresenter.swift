@@ -20,14 +20,14 @@ class KYCSignUpPresenter: KYCSignUpPresentationLogic {
     // MARK: Presenter functions
     
     func presentGetDataForPickerView(response: KYCSignUp.GetDataForPickerView.Response) {
-        let countryTitleValues = Constants.CountryCodes.names
-        let countryCodes = Constants.CountryCodes.codes
+        let areaTitleValues = KYCConstants.Area.names
+        let areaCodes = KYCConstants.Area.codes
         
         switch response.type {
         case .phonePrefix:
             viewController?.displayGetDataForPickerView(viewModel: .init(index: response.index,
-                                                                         pickerValues: countryTitleValues,
-                                                                         fieldValues: countryCodes,
+                                                                         pickerValues: areaTitleValues,
+                                                                         fieldValues: areaCodes,
                                                                          type: response.type))
             
         default:

@@ -19,11 +19,11 @@ class KYCAddressPresenter: KYCAddressPresentationLogic {
     // MARK: Presenter functions
     
     func presentGetDataForPickerView(response: KYCAddress.GetDataForPickerView.Response) {
-        let countryTitleValues = Constants.Countries.names
-        let countryCodes = Constants.Countries.codes
+        let countryTitleValues = KYCConstants.Countries.names
+        let countryCodes = KYCConstants.Countries.codes
         
-        let usaStatesTitleValues = Constants.USAStates.names
-        let usaStatesCodes = Constants.USAStates.codes
+        let usaStatesTitleValues = KYCConstants.USAStates.names
+        let usaStatesCodes = KYCConstants.USAStates.codes
         
         switch response.type {
         case .country:
