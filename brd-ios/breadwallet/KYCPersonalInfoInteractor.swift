@@ -7,6 +7,7 @@ import UIKit
 protocol KYCPersonalInfoBusinessLogic {
     // MARK: Business logic functions
     
+    func executeSetDateAndTaxID(request: KYCPersonalInfo.SetDateAndTaxID.Request)
     func executeGetDataForPickerView(request: KYCPersonalInfo.GetDataForPickerView.Request)
     func executeCheckFieldPickerIndex(request: KYCPersonalInfo.CheckFieldPickerIndex.Request)
     func executeCheckFieldType(request: KYCPersonalInfo.CheckFieldText.Request)
@@ -34,6 +35,11 @@ class KYCPersonalInfoInteractor: KYCPersonalInfoBusinessLogic, KYCPersonalInfoDa
     var selectedCurrentDate: Date?
     
     var fieldValidationIsAllowed = [KYCPersonalInfo.FieldType: Bool]()
+    
+    func executeSetDateAndTaxID(request: KYCPersonalInfo.SetDateAndTaxID.Request) {
+        presenter?.presentSetDateAndTaxID(response: .init(date: date ?? "",
+                                                          taxIdNumber: taxIdNumber ?? ""))
+    }
     
     func executeGetDataForPickerView(request: KYCPersonalInfo.GetDataForPickerView.Request) {
         switch request.type {
