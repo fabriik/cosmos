@@ -8,11 +8,13 @@ protocol KYCUploadBusinessLogic {
     // MARK: Business logic functions
     
     func saveImage(request: KYCUpload.SaveImages.Request)
+    func setImage(request: KYCUpload.SetImage.Request)
 }
 
 protocol KYCUploadDataStore {
     // MARK: Data store
     
+    var images: [KYCUploadViewController.Step: Data] { get set }
 }
 
 class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
@@ -20,23 +22,30 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
     
     // MARK: Interactor functions
     
+    var images = [KYCUploadViewController.Step: Data]()
+    
+    func setImage(request: KYCUpload.SetImage.Request) {
+        guard let image = request.image.jpegData(compressionQuality: 0.7) else { return }
+        images = [request.step: image]
+    }
+    
     func saveImage(request: KYCUpload.SaveImages.Request) {
-        let compressionQuality: CGFloat = 0.7
         
-        switch request.type {
-        case .selfie:
-            guard let image = request.images.first?.jpegData(compressionQuality: compressionQuality) else { return }
-            uploadSelfie(image: image)
+        switch request.step {
+        case .idSelfie:
+            guard let selfieImage = images[.idSelfie] else { return }
+            uploadSelfie(image: [.idSelfie: selfieImage])
             
-        case .frontAndBack:
-            guard let imageBack = request.images[1].jpegData(compressionQuality: compressionQuality),
-                  let imageFront = request.images[0].jpegData(compressionQuality: compressionQuality) else { return }
-            uploadFrontBack(images: [imageBack, imageFront])
+        case .idBack:
+            guard let frontImage = images[.idFront], let backImage = images[.idBack] else { return }
+            uploadFrontBack(images: [.idFront: frontImage, .idBack: backImage])
             
+        default:
+            break
         }
     }
     
-    private func uploadSelfie(image: Data) {
+    private func uploadSelfie(image: [KYCUploadViewController.Step: Data]) {
         let worker = KYCUploadSelfieWorker()
         let workerUrlModelData = KYCUploadSelfieWorkerUrlModelData()
         let workerRequest = KYCUploadSelfieWorkerRequest(imageData: image)
@@ -53,7 +62,7 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
         }
     }
     
-    private func uploadFrontBack(images: [Data]) {
+    private func uploadFrontBack(images: [KYCUploadViewController.Step: Data]) {
         let worker = KYCUploadFrontBackWorker()
         let workerUrlModelData = KYCUploadFrontBackWorkerUrlModelData()
         let workerRequest = KYCUploadFrontBackWorkerRequest(imageData: images)

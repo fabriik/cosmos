@@ -8,16 +8,17 @@ enum KYCUpload {
     // MARK: Model name declarations
     
     enum SaveImages {
-        enum AssetType {
-            case selfie
-            case frontAndBack
-        }
-        
         struct Request {
-            let type: AssetType
-            let images: [UIImage]
+            let step: KYCUploadViewController.Step
         }
         struct Response {}
         struct ViewModel {}
+    }
+    
+    enum SetImage {
+        struct Request {
+            let step: KYCUploadViewController.Step
+            let image: UIImage
+        }
     }
 }

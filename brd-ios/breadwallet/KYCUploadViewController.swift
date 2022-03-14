@@ -98,7 +98,6 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
     ]
     
     private var step: Step = .idFront
-    private var backAndFrontImages = [UIImage]()
     private var shouldShowKYCCompleteScene = false
     
     // MARK: View lifecycle
@@ -187,22 +186,23 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
             switch self.step {
             case .idFront:
                 self.step = .idBack
-                self.backAndFrontImages.append(image)
+                self.interactor?.setImage(request: .init(step: self.step, image: image))
                 
             case .idBack:
                 LoadingView.show()
                 
                 self.step = .idSelfie
                 cell.activateSelfieCamera()
-                self.backAndFrontImages.append(image)
-                self.interactor?.saveImage(request: .init(type: .frontAndBack, images: self.backAndFrontImages))
+                self.interactor?.setImage(request: .init(step: self.step, image: image))
+                self.interactor?.saveImage(request: .init(step: .idBack))
                 
             case .idSelfie:
                 LoadingView.show()
                 
                 cell.stopCamera()
                 self.shouldShowKYCCompleteScene = true
-                self.interactor?.saveImage(request: .init(type: .selfie, images: [image]))
+                self.interactor?.setImage(request: .init(step: self.step, image: image))
+                self.interactor?.saveImage(request: .init(step: .idSelfie))
                 
             }
             
