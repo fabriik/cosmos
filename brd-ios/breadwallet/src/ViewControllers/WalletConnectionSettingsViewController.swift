@@ -27,7 +27,7 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
     private let footerLabel = UILabel.wrapping(font: Theme.caption, color: Theme.secondaryText)
     private let toggleSwitch = UISwitch()
     private let footerLogo = UIImageView(image: UIImage(named: "BlocksetLogoWhite"))
-    private let mainBackground = UIView(color: Theme.secondaryBackground)
+    private let mainBackground = UIView(color: Theme.transparentBlue)
     private let footerBackground = UIView(color: Theme.secondaryBackground)
     
     // MARK: - Lifecycle
@@ -49,7 +49,7 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setWhiteStyle()
+        self.navigationController?.setDarkStyle()
     }
 
     private func setUpAppearance() {

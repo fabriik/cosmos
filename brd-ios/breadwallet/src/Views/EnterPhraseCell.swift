@@ -117,7 +117,7 @@ class EnterPhraseCell: UICollectionViewCell {
     }
 
     private func setData() {
-        textField.textColor = .white
+        textField.textColor = .black
         textField.inputAccessoryView = accessoryView
         textField.autocorrectionType = .no
         textField.textAlignment = .center

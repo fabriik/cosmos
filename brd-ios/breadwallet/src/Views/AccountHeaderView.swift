@@ -209,7 +209,7 @@ class AccountHeaderView: UIView, GradientDrawable, Subscriber, Trackable {
     }
 
     private func setInitialData() {
-        currencyName.textColor = .white
+        currencyName.textColor = .black
         currencyName.textAlignment = .center
         currencyName.text = currency.name
         

@@ -34,8 +34,8 @@ class ImportKeyViewController: UIViewController, Subscriber {
     private let wallet: Wallet
     private let header = RadialGradientView(backgroundColor: .blue, offset: 64.0)
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "ImportIllustration"))
-    private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .white)
-    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .white)
+    private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .almostBlack)
+    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .almostBlack)
     private let button = BRDButton(title: S.Import.scan, type: .primary)
     private let bullet = UIImageView(image: #imageLiteral(resourceName: "deletecircle"))
     private let leftCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .darkText)

@@ -228,7 +228,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     private func authenticationSucceded(forLoginWithAccount account: Account? = nil) {
         saveEvent("login.success")
         let label = UILabel(font: .customBody(size: 16.0))
-        label.textColor = .white
+        label.textColor = .black
         label.alpha = 0.0
         let lock = UIImageView(image: #imageLiteral(resourceName: "unlock"))
         lock.alpha = 0.0

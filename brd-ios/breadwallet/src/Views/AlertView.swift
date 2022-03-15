@@ -132,7 +132,7 @@ class AlertView: UIView, GradientDrawable {
         header.text = type.header
         header.textAlignment = .center
         header.font = UIFont.customBold(size: 14.0)
-        header.textColor = .white
+        header.textColor = .black
 
         icon.backgroundColor = .clear
         separator.backgroundColor = .transparentWhite
@@ -140,7 +140,7 @@ class AlertView: UIView, GradientDrawable {
         subheader.text = type.subheader
         subheader.textAlignment = .center
         subheader.font = UIFont.customBody(size: 14.0)
-        subheader.textColor = .white
+        subheader.textColor = .black
     }
 
     private func addConstraints() {

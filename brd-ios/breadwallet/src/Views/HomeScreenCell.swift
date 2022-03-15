@@ -55,7 +55,7 @@ class HomeScreenCell: UITableViewCell, Subscriber {
     private var isSyncIndicatorVisible: Bool = false {
         didSet {
             UIView.crossfade(tokenBalance, syncIndicator, toRight: isSyncIndicatorVisible, duration: isSyncIndicatorVisible == oldValue ? 0.0 : 0.3)
-            fiatBalance.textColor = (isSyncIndicatorVisible || !(container.currency?.isSupported ?? false)) ? .disabledWhiteText : .white
+            fiatBalance.textColor = (isSyncIndicatorVisible || !(container.currency?.isSupported ?? false)) ? .transparentBlack : .black
         }
     }
     
@@ -75,10 +75,10 @@ class HomeScreenCell: UITableViewCell, Subscriber {
         icon.tintColor = viewModel.currency.isSupported ? .white : .disabledBackground
         iconContainer.layer.cornerRadius = C.Sizes.homeCellCornerRadius
         currencyName.text = viewModel.currency.name
-        currencyName.textColor = viewModel.currency.isSupported ? .white : .disabledWhiteText
+        currencyName.textColor = viewModel.currency.isSupported ? .black : .transparentBlack
         price.text = viewModel.exchangeRate
         fiatBalance.text = viewModel.fiatBalance
-        fiatBalance.textColor = viewModel.currency.isSupported ? .white : .disabledWhiteText
+        fiatBalance.textColor = viewModel.currency.isSupported ? .black : .transparentBlack
         tokenBalance.text = viewModel.tokenBalance
         priceChangeView.isHidden = false
         priceChangeView.currency = viewModel.currency

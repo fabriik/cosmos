@@ -160,6 +160,10 @@ class Theme: BRDTheme {
         return color(.blueBackground)
     }
     
+    static var transparentBlue: UIColor {
+        return color(.blueBackground).withAlphaComponent(0.4)
+    }
+    
     static var secondaryBackground: UIColor {
         return color(.secondaryBackground)
     }
@@ -173,7 +177,7 @@ class Theme: BRDTheme {
     }
     
     static var primaryButtonText: UIColor {
-        return color(.blueBackground)
+        return color(.primaryBackground)
     }
     
     static var secondaryText: UIColor {

@@ -79,7 +79,7 @@ extension UIColor {
     }
     
     static var greenCheck: UIColor {
-        return UIColor.fromHex("06C441")
+        return UIColor.fromHex("00A86E")
     }
     
     static var disabledBackground: UIColor {
@@ -92,7 +92,7 @@ extension UIColor {
 //    }
     
     static var primaryButton: UIColor {
-        return UIColor.fromHex("ffffff")
+        return UIColor.fromHex("2C78FF")
     }
     
     static var orangeButton: UIColor {

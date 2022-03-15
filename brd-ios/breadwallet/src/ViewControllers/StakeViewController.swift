@@ -306,7 +306,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         let arrow = UIImageView()
         
         arrow.image = UIImage(named: "RightArrow")?.withRenderingMode(.alwaysTemplate)
-        arrow.tintColor = .white
+        arrow.tintColor = .almostBlack
         
         let feeText = baker?.feeString ?? ""
         bakerFee.text = "\(S.Staking.feeHeader) \(feeText)"
@@ -393,7 +393,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         currencyIcon.layer.masksToBounds = true
         currencyIcon.tintColor = .white
         let selectBakerLabel = UILabel(font: .customBold(size: 16.0))
-        selectBakerLabel.textColor = .white
+        selectBakerLabel.textColor = .black
         selectBakerLabel.text = S.Staking.selectBakerTitle
         let arrow = UIImageView()
         arrow.image = UIImage(named: "RightArrow")?.withRenderingMode(.alwaysTemplate)

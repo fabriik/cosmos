@@ -88,7 +88,7 @@ class ModalHeaderView: UIView {
     private func setColors() {
         switch style {
         case .light:
-            titleLabel.textColor = .white
+            titleLabel.textColor = .black
             close.tintColor = .white
             faq?.tintColor = .white
         case .dark:

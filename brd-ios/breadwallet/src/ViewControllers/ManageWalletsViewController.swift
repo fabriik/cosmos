@@ -80,8 +80,8 @@ class ManageWalletsViewController: UITableViewController {
         
         let addButton = UIButton()
         
-        addButton.tintColor = .disabledWhiteText
-        addButton.setTitleColor(Theme.tertiaryText, for: .normal)
+        addButton.tintColor = Theme.tertiaryBackground
+        addButton.setTitleColor(Theme.blueBackground, for: .normal)
         addButton.setTitleColor(.transparentWhite, for: .highlighted)
         addButton.titleLabel?.font = Theme.body1
         

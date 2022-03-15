@@ -83,7 +83,7 @@ class DefaultCurrencyViewController: UITableViewController, Subscriber, Trackabl
 
         cell.textLabel?.text = "\(currency.code) (\(Rate.symbolMap[code] ?? currency.code)) - \(currency.name)"
         cell.textLabel?.font = UIFont.customBody(size: 14.0)
-        cell.textLabel?.textColor = .white
+        cell.textLabel?.textColor = .black
 
         if currency.code == selectedCurrencyCode {
             let check = UIImageView(image: #imageLiteral(resourceName: "CircleCheck").withRenderingMode(.alwaysTemplate))
