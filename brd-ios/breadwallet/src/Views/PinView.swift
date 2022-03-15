@@ -40,8 +40,8 @@ class PinView: UIView {
         self.length = length
         switch style {
         case .create:
-            filled = (0...(length-1)).map { _ in Circle(color: .white, style: .filled) }
-            unFilled = (0...(length-1)).map { _ in Circle(color: .white, style: .unfilled) }
+            filled = (0...(length-1)).map { _ in Circle(color: Theme.blueBackground, style: .filled) }
+            unFilled = (0...(length-1)).map { _ in Circle(color: Theme.blueBackground, style: .unfilled) }
         case .login:
             filled = (0...(length-1)).map { _ in ClearCircle(style: .filled) }
             unFilled = (0...(length-1)).map { _ in ClearCircle(style: .unfilled) }

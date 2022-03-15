@@ -11,8 +11,8 @@ import SafariServices
 
 class AboutViewController: UIViewController {
 
-    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .white)
-    private let logo = UIImageView(image: #imageLiteral(resourceName: "LogoCutout").withRenderingMode(.alwaysTemplate))
+    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .almostBlack)
+    private let logo = UIImageView(image: #imageLiteral(resourceName: "LogoBlue"))
     private let logoBackground = MotionGradientView()
     private let walletID = WalletIDCell()
     private let blog = AboutCell(text: S.About.blog)
@@ -30,8 +30,7 @@ class AboutViewController: UIViewController {
 
     private func addSubviews() {
         view.addSubview(titleLabel)
-        view.addSubview(logoBackground)
-        logoBackground.addSubview(logo)
+        view.addSubview(logo)
         view.addSubview(walletID)
         view.addSubview(blog)
         view.addSubview(twitter)
@@ -44,17 +43,16 @@ class AboutViewController: UIViewController {
         titleLabel.constrain([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: C.padding[2]) ])
-        logoBackground.constrain([
-            logoBackground.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoBackground.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: C.padding[3]),
-            logoBackground.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-            logoBackground.heightAnchor.constraint(equalTo: logoBackground.widthAnchor, multiplier: logo.image!.size.height/logo.image!.size.width) ])
-        logo.constrain(toSuperviewEdges: nil)
+        logo.constrain([
+            logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logo.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: C.padding[3]),
+            logo.widthAnchor.constraint(equalToConstant: 50),
+            logo.heightAnchor.constraint(equalToConstant: 50)])
         
         let verticalMargin = (E.isIPhone6OrSmaller) ? C.padding[1] : C.padding[2]
         
         walletID.constrain([
-            walletID.topAnchor.constraint(equalTo: logoBackground.bottomAnchor, constant: verticalMargin),
+            walletID.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: verticalMargin),
             walletID.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             walletID.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
         blog.constrain([

@@ -28,7 +28,7 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
     private let toggleSwitch = UISwitch()
     private let footerLogo = UIImageView(image: UIImage(named: "BlocksetLogoWhite"))
     private let mainBackground = UIView(color: Theme.transparentBlue)
-    private let footerBackground = UIView(color: Theme.secondaryBackground)
+    private let footerBackground = UIView(color: .clear)
     
     // MARK: - Lifecycle
 
@@ -125,6 +125,7 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
         title = S.WalletConnectionSettings.viewTitle
         header.text = S.WalletConnectionSettings.header
         footerLabel.text = S.WalletConnectionSettings.footerTitle
+        footerLogo.tintColor = Theme.blueBackground
         
         let selectedMode = walletConnectionSettings.mode(for: currency)
         toggleSwitch.isOn = selectedMode == WalletConnectionMode.api_only

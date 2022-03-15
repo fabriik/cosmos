@@ -19,7 +19,7 @@ class AboutCell: UIView {
         setup()
     }
 
-    private let label = UILabel(font: .customBody(size: 16.0), color: .white)
+    private let label = UILabel(font: .customBody(size: 16.0), color: .almostBlack)
     private let separator = UIView(color: .secondaryShadow)
 
     private func setup() {
@@ -56,7 +56,7 @@ class WalletIDCell: UIView {
     }
     
     private let button: UIButton
-    private let label = UILabel(font: .customBody(size: 16.0), color: .white)
+    private let label = UILabel(font: .customBody(size: 16.0), color: .almostBlack)
     private let separator = UIView(color: .secondaryShadow)
     
     private func setup() {
