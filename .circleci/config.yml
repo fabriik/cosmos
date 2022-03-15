@@ -1,14 +1,18 @@
-# For a detailed guide to building and testing on iOS, read the docs:
-# https://circleci.com/docs/2.0/testing-ios/
-
 version: 2.1
 
 orbs: 
   slack: circleci/slack@4.8.3
 
-jobs:
-  build:
+workflows:
+  buildapp:
+    jobs:
+      - build-fabriik:
+          filters:
+            branches:
+              only: mit
 
+jobs:
+  build-fabriik:
     macos:
       xcode: 13.2.1 # Specify the Xcode version to use
 
@@ -17,34 +21,32 @@ jobs:
 
         # next four run commands to work around xcodebuild bug using private repos for swift pacakages
       - run:
-          name: Use Default SCM (To Work Around XCode 12 bug)
+          name: Use Default SCM (Work Around xCode bug)
           command : |
             sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
 
       - run:
-          name: Renove ssh Key (To Work Around XCode 12 bug)
+          name: Renove ssh Key (Work Around xCode bug)
           command : |
             rm ~/.ssh/id_rsa || true
 
       - run:
-          name: Set Known Host IPs for bitbucket (To Work Around XCode 12 bug)
+          name: Set Known Host IPs for bitbucket (Work Around xCode bug)
           command : |
             for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
 
       - run:
-          name: Set Known Host IPs for github (To Work Around XCode 12 bug)
+          name: Set Known Host IPs for github (Work Around xCode bug)
           command : |
             for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
 
-      #Configure github Repo
       - run:
           name: Pull Submodules
           command: |
             git submodule update --init --recursive
 
-      #Check init
       - run:
-          name: check init
+          name: Check Init
           command: |
             swift --version
             cat /etc/shells
@@ -54,7 +56,6 @@ jobs:
           keys:
             - v1-dependencies
 
-      # save cache
       - save_cache:
           paths:
             - ~/Library/Caches/Homebrew
@@ -62,7 +63,7 @@ jobs:
           key: v1-dependencies
 
       - run:
-          name: check  Key
+          name: Check Key
           command: |
             mkdir -p ~/cert
 
@@ -74,7 +75,7 @@ jobs:
             ls -la ~/cert
 
       - run:
-          name: install  Key
+          name: Install Key
           command: |
             security create-keychain -p test  ~/Library/Keychains/default.keychain
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
@@ -88,19 +89,19 @@ jobs:
             security default-keychain -s ~/Library/Keychains/default.keychain
 
       - run:
-          name: Install prerequisites
+          name: Install Prerequisites
           command: |
             sudo gem install xcpretty
             brew --cache
             brew install ghostscript SwiftLint
 
       - run:
-          name: check   Key
+          name: Check Key
           command: |
              security list-keychains -d user -s ~/Library/Keychains/default.keychain
 
       - run:
-          name: Rename provisioning profile
+          name: Provisioning Profile
           command: |
             cd brd-ios
             sed "s/PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;/PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;\                PROVISIONING_PROFILE_SPECIFIER = wallet-CNI-distribution2;\                CODE_SIGN_IDENTITY = \"iPhone Distribution\";\                CODE_SIGN_STYLE = Manual;/g"  breadwallet.xcodeproj/project.pbxproj  > breadwallet.xcodeproj/project.pbxproj.rnm
@@ -116,20 +117,20 @@ jobs:
             git status
 
       - run:
-          name: help and project list
+          name: Help and Project List
           command: |
             cd brd-ios
             xcodebuild --help
             xcodebuild -project breadwallet.xcodeproj -list
 
       - run:
-          name: xcodebuild clean
+          name: Build Clean
           command: |
             cd brd-ios
             xcodebuild clean -workspace breadwallet.xcworkspace -scheme breadwallet | xcpretty
 
       - run:
-          name: build submodules
+          name: Build Submodules
           command: |
             cd brd-ios
             security default-keychain
@@ -138,7 +139,7 @@ jobs:
             scripts/build_sub_modules.sh
 
       - run:
-          name: makebuild
+          name: Run Build
           command: |
             security default-keychain
             security set-keychain-settings -lut 9999
@@ -154,7 +155,7 @@ jobs:
             ./scripts/uploadbuild.sh ${CIRCLE_BRANCH}
 
       - run:
-          name: xcodebuild  build (disabled)
+          name: Build using xCode Config (disabled)
           command: |
             security default-keychain
             security set-keychain-settings -lut 9999
