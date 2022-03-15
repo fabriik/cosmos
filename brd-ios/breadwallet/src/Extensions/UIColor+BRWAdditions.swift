@@ -42,6 +42,10 @@ extension UIColor {
         return UIColor.white
     }
     
+    static var kycGreen: UIColor {
+        return UIColor.fromHex("#00A86E")
+    }
+    
     static var newGradientEnd: UIColor {
         return UIColor.fromHex("FAA03F")
     }

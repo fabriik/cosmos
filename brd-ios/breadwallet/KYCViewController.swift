@@ -5,8 +5,6 @@
 import UIKit
 
 class KYCViewController: UIViewController {
-    // MARK: - Base navigation
-     
     // MARK: - Variables
     
     lazy var tableView: UITableView = {

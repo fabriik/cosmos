@@ -34,6 +34,11 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
         textField.textColor = .kycGray1
+        textField.clipsToBounds = true
+        textField.layer.masksToBounds = true
+        textField.layer.cornerRadius = 4
+        textField.layer.borderColor = UIColor.kycGray1.cgColor
+        textField.layer.borderWidth = 1
         
         return textField
     }()
@@ -55,11 +60,12 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     func setup(as fieldType: FieldType, title: String, customPlaceholder: String? = nil) {
         self.fieldType = fieldType
         
-        textField.attributedPlaceholder = NSAttributedString(string: customPlaceholder ?? "",
-                                                             attributes: [.foregroundColor: UIColor.kycGray1,
-                                                                          .font: UIFont(name: "AvenirNext-Medium", size: 16)
-                                                                          ?? UIFont.systemFont(ofSize: 16)])
         textField.delegate = self
+        
+        let font = UIFont(name: "AvenirNext-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
+        textField.font = font
+        textField.attributedPlaceholder = NSAttributedString(string: customPlaceholder ?? "",
+                                                             attributes: [.foregroundColor: UIColor.kycGray1, .font: font])
         
         titleLabel.text = title
         
@@ -97,8 +103,18 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         case .picker:
             endEditing(true)
             resignFirstResponder()
+            
         default:
             break
+        }
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch fieldType {
+        case .picker:
+            return false
+        default:
+            return true
         }
     }
     
@@ -113,7 +129,6 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         default:
             return true
-            
         }
     }
     
@@ -133,12 +148,6 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         textField.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 4
-        textField.layer.borderColor = UIColor.kycGray1.cgColor
-        textField.layer.borderWidth = 1
-        textField.clipsToBounds = true
-        
         textField.addSubview(rightButton)
         rightButton.topAnchor.constraint(equalTo: textField.topAnchor).isActive = true
         rightButton.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
@@ -149,7 +158,8 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     
     func setCheckMark(isVisible: Bool) {
         rightButton.isHidden = !isVisible
-        rightButton.setImage(UIImage(named: "Field Check Mark"), for: .normal)
+        rightButton.setImage(isVisible ? UIImage(named: "Field Check Mark") : nil, for: .normal)
+        textField.layer.borderColor = isVisible ? UIColor.kycGreen.cgColor : UIColor.kycGray1.cgColor
     }
     
     func roundSpecifiedCorners(maskedCorners: CACornerMask) {
