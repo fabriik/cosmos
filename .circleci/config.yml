@@ -1,6 +1,6 @@
 version: 2.1
 
-orbs: 
+orbs:
   slack: circleci/slack@4.8.3
 
 workflows:
@@ -9,7 +9,7 @@ workflows:
       - build-fabriik:
           filters:
             branches:
-              only: gvh/ci 
+              only: gvh/ci
 
 jobs:
   build-fabriik:
@@ -130,6 +130,14 @@ jobs:
             xcodebuild clean -workspace breadwallet.xcworkspace -scheme breadwallet | xcpretty
 
       - run:
+          name: Build Walletkit Subproject
+          command: |
+            # security default-keychain
+            # security set-keychain-settings -lut 9999
+            # security unlock-keychain -p test ~/Library/Keychains/default.keychain
+            ./gradlew cosmos-bundled:createXCFramework
+
+      - run:
           name: Create .env and local.properties and fix build.gradle
           command: |
             cd brd-ios
@@ -144,14 +152,6 @@ jobs:
             cp ./local.properties external/walletKit/walletKitJava/local.properties
 
             sed -i '' '18i\'$'\n        ndkVersion \'21.1.6352462\'\n\n' external/walletkit/WalletKitJava/corenative-android/build.gradle
-
-      - run:
-          name: Build Walletkit Subproject
-          command: |
-            # security default-keychain
-            # security set-keychain-settings -lut 9999
-            # security unlock-keychain -p test ~/Library/Keychains/default.keychain
-            ./gradlew cosmos-bundled:createXCFramework
 
       - run:
           name: Run Build
