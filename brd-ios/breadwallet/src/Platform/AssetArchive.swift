@@ -65,30 +65,14 @@ open class AssetArchive {
             // we do not have the archive, download a fresh copy
             return downloadCompleteArchive(completionHandler: completionHandler)
         }
-        apiClient.getAssetVersions(name) { (versions, err) in
-            DispatchQueue.global(qos: .utility).async {
-                if let err = err {
-                    print("[AssetArchive] could not get asset versions. error: \(err)")
-                    return completionHandler(err)
-                }
-                guard let versions = versions, let version = self.version else {
-                    return completionHandler(BRAPIClientError.unknownError)
-                }
-                if versions.firstIndex(of: version) == versions.count - 1 {
-                    // have the most recent version
-                    print("[AssetArchive] already at most recent version of bundle \(self.name)")
-                    do {
-                        try self.extractArchive()
-                        return completionHandler(nil)
-                    } catch let e {
-                        print("[AssetArchive] error extracting bundle: \(e)")
-                        return completionHandler(BRAPIClientError.unknownError)
-                    }
-                } else {
-                    // need to update the version
-                    self.downloadAndPatchArchive(fromVersion: version, completionHandler: completionHandler)
-                }
-            }
+        
+        // TODO: - Code for version checking has been removed. If it is needed, you can check this pull request for the changes: https://github.com/atmcoin/brd-mobile/pull/30/files
+        do {
+            try extractArchive()
+            return completionHandler(nil)
+        } catch let e {
+            print("[AssetArchive] error extracting bundle: \(e)")
+            return completionHandler(BRAPIClientError.unknownError)
         }
     }
 

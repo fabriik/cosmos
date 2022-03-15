@@ -238,7 +238,7 @@ class ModalPresenter: Subscriber, Trackable {
             url = "/support?"
         }
         supportCenter.navigate(to: url)
-        topViewController?.present(supportCenter, animated: true, completion: {})
+        topViewController?.present(supportCenter, animated: true)
     }
 
     private func rootModalViewController(_ type: RootModal) -> UIViewController? {
