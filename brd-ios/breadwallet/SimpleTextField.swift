@@ -60,11 +60,12 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     func setup(as fieldType: FieldType, title: String, customPlaceholder: String? = nil) {
         self.fieldType = fieldType
         
-        textField.attributedPlaceholder = NSAttributedString(string: customPlaceholder ?? "",
-                                                             attributes: [.foregroundColor: UIColor.kycGray1,
-                                                                          .font: UIFont(name: "AvenirNext-Medium", size: 16)
-                                                                          ?? UIFont.systemFont(ofSize: 16)])
         textField.delegate = self
+        
+        let font = UIFont(name: "AvenirNext-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
+        textField.font = font
+        textField.attributedPlaceholder = NSAttributedString(string: customPlaceholder ?? "",
+                                                             attributes: [.foregroundColor: UIColor.kycGray1, .font: font])
         
         titleLabel.text = title
         
@@ -102,8 +103,18 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         case .picker:
             endEditing(true)
             resignFirstResponder()
+            
         default:
             break
+        }
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch fieldType {
+        case .picker:
+            return false
+        default:
+            return true
         }
     }
     
