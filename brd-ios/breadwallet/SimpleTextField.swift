@@ -129,7 +129,6 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         default:
             return true
-            
         }
     }
     
