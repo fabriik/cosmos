@@ -66,6 +66,7 @@ open class AssetArchive {
             return downloadCompleteArchive(completionHandler: completionHandler)
         }
         
+        // TODO: - Code for version checking has been removed. If it is needed, you can check this pull request for the changes: https://github.com/atmcoin/brd-mobile/pull/30/files
         do {
             try extractArchive()
             return completionHandler(nil)
