@@ -6,9 +6,7 @@ import UIKit
 
 class SpinnerView: UIView {
     override var layer: CAShapeLayer {
-        get {
-            return super.layer as? CAShapeLayer ?? CAShapeLayer()
-        }
+        return super.layer as? CAShapeLayer ?? CAShapeLayer()
     }
     
     override class var layerClass: AnyClass {
@@ -43,10 +41,8 @@ class SpinnerView: UIView {
     }
     
     class var poses: [Pose] {
-        get {
-            return [Pose(0.0, 0.000, 0.7), Pose(0.6, 0.500, 0.5), Pose(0.6, 1.000, 0.3), Pose(0.6, 1.500, 0.1),
-                    Pose(0.2, 1.875, 0.1), Pose(0.2, 2.250, 0.3), Pose(0.2, 2.625, 0.5), Pose(0.2, 3.000, 0.7)]
-        }
+        return [Pose(0.0, 0.000, 0.7), Pose(0.6, 0.500, 0.5), Pose(0.6, 1.000, 0.3), Pose(0.6, 1.500, 0.1),
+                Pose(0.2, 1.875, 0.1), Pose(0.2, 2.250, 0.3), Pose(0.2, 2.625, 0.5), Pose(0.2, 3.000, 0.7)]
     }
     
     func animate() {
@@ -90,7 +86,7 @@ class SpinnerView: UIView {
     
     func animateStrokeHueWithDuration() {
         let animation = CAKeyframeAnimation(keyPath: "strokeColor")
-        animation.values = [UIColor.blueGradientStart.cgColor ?? UIColor.blueGradientStart.cgColor]
+        animation.values = [UIColor.blueGradientStart.cgColor, UIColor.blueGradientEnd.cgColor]
         animation.calculationMode = .linear
         animation.repeatCount = .infinity
         layer.add(animation, forKey: animation.keyPath)
