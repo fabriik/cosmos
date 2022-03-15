@@ -34,6 +34,11 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
         textField.textColor = .kycGray1
+        textField.clipsToBounds = true
+        textField.layer.masksToBounds = true
+        textField.layer.cornerRadius = 4
+        textField.layer.borderColor = UIColor.kycGray1.cgColor
+        textField.layer.borderWidth = 1
         
         return textField
     }()
@@ -133,12 +138,6 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         textField.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 4
-        textField.layer.borderColor = UIColor.kycGray1.cgColor
-        textField.layer.borderWidth = 1
-        textField.clipsToBounds = true
-        
         textField.addSubview(rightButton)
         rightButton.topAnchor.constraint(equalTo: textField.topAnchor).isActive = true
         rightButton.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
@@ -149,7 +148,8 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     
     func setCheckMark(isVisible: Bool) {
         rightButton.isHidden = !isVisible
-        rightButton.setImage(UIImage(named: "Field Check Mark"), for: .normal)
+        rightButton.setImage(isVisible ? UIImage(named: "Field Check Mark") : nil, for: .normal)
+        textField.layer.borderColor = isVisible ? UIColor.kycGreen.cgColor : UIColor.kycGray1.cgColor
     }
     
     func roundSpecifiedCorners(maskedCorners: CACornerMask) {
