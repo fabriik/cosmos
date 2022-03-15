@@ -100,7 +100,7 @@ jobs:
              security list-keychains -d user -s ~/Library/Keychains/default.keychain
 
       - run:
-          name: Rename provision
+          name: Rename provisioning profile
           command: |
             cd brd-ios
             sed "s/PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;/PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;\                PROVISIONING_PROFILE_SPECIFIER = wallet-CNI-distribution2;\                CODE_SIGN_IDENTITY = \"iPhone Distribution\";\                CODE_SIGN_STYLE = Manual;/g"  breadwallet.xcodeproj/project.pbxproj  > breadwallet.xcodeproj/project.pbxproj.rnm
@@ -116,7 +116,7 @@ jobs:
             git status
 
       - run:
-          name: xcodebuild help
+          name: help and project list
           command: |
             cd brd-ios
             xcodebuild --help
@@ -129,13 +129,13 @@ jobs:
             xcodebuild clean -workspace breadwallet.xcworkspace -scheme breadwallet | xcpretty
 
       - run:
-          name: xcodebuild  build submodules (disabled)
+          name: build submodules
           command: |
             cd brd-ios
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
-            echo xcodebuild  build  -verbose   -workspace breadwallet.xcworkspace   -scheme submodules
+            scripts/build_sub_modules.sh
 
       - run:
           name: makebuild
