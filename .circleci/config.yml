@@ -135,7 +135,9 @@ jobs:
             # security default-keychain
             # security set-keychain-settings -lut 9999
             # security unlock-keychain -p test ~/Library/Keychains/default.keychain
+            ls  -la external/walletKit/WalletKitJava
             ./gradlew cosmos-bundled:createXCFramework
+            ls  -la external/walletKit/WalletKitJava
 
       - run:
           name: Create .env and local.properties and fix build.gradle
@@ -148,10 +150,13 @@ jobs:
             echo "DEBUG_TOKEN = $DEBUG_TOKEN" >> $BRD_ENV
             echo "DEBUG_URL = $DEBUG_URL" >> $BRD_ENV
 
+            ls  -la external/walletKit/WalletKitJava
             echo "sdk.dir=$HOME/Library/Android/Sdk" > ./local.properties
             cp ./local.properties external/walletKit/walletKitJava/local.properties
+            ls  -la external/walletKit/WalletKitJava
 
             sed -i '' '18i\'$'\n        ndkVersion \'21.1.6352462\'\n\n' external/walletkit/WalletKitJava/corenative-android/build.gradle
+            ls  -la external/walletKit/WalletKitJava
 
       - run:
           name: Run Build
