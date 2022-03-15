@@ -129,6 +129,20 @@ jobs:
             cd brd-ios
             xcodebuild clean -workspace breadwallet.xcworkspace -scheme breadwallet | xcpretty
 
+
+      - run:
+          name: Create .env and local.properties and fix build.gradle
+          command: |
+            ls  -la external/walletKit/WalletKitJava
+            BRD_ENV=.env
+            touch $BRD_ENV
+            echo "API_TOKEN = $API_TOKEN" >> $BRD_ENV
+            echo "API_URL = $API_URL" >> $BRD_ENV
+            echo "DEBUG_TOKEN = $DEBUG_TOKEN" >> $BRD_ENV
+            echo "DEBUG_URL = $DEBUG_URL" >> $BRD_ENV
+            echo "sdk.dir=$HOME/Library/Android/Sdk" > ./local.properties
+            ls  -la external/walletKit/WalletKitJava
+
       - run:
           name: Build Walletkit Subproject
           command: |
@@ -138,23 +152,8 @@ jobs:
             ls  -la external/walletKit/WalletKitJava
             ./gradlew cosmos-bundled:createXCFramework
             ls  -la external/walletKit/WalletKitJava
-
-      - run:
-          name: Create .env and local.properties and fix build.gradle
-          command: |
-            cd brd-ios
-            BRD_ENV=.env
-            touch $BRD_ENV
-            echo "API_TOKEN = $API_TOKEN" >> $BRD_ENV
-            echo "API_URL = $API_URL" >> $BRD_ENV
-            echo "DEBUG_TOKEN = $DEBUG_TOKEN" >> $BRD_ENV
-            echo "DEBUG_URL = $DEBUG_URL" >> $BRD_ENV
-
-            ls  -la external/walletKit/WalletKitJava
-            echo "sdk.dir=$HOME/Library/Android/Sdk" > ./local.properties
             cp ./local.properties external/walletKit/walletKitJava/local.properties
             ls  -la external/walletKit/WalletKitJava
-
             sed -i '' '18i\'$'\n        ndkVersion \'21.1.6352462\'\n\n' external/walletkit/WalletKitJava/corenative-android/build.gradle
             ls  -la external/walletKit/WalletKitJava
 
