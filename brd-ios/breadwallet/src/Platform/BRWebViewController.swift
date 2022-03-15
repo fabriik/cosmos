@@ -240,7 +240,7 @@ open class BRWebViewController: UIViewController, WKNavigationDelegate, BRWebSoc
 
     func navigate(to: String) {
         let js = "window.location = '\(to)';"
-        webView?.evaluateJavaScript(js, completionHandler: { abc, error in
+        webView?.evaluateJavaScript(js, completionHandler: { _, error in
             if let error = error {
                 print("WEBVIEW navigate to error: \(String(describing: error))")
             }
