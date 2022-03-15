@@ -240,12 +240,14 @@ class CoreSystem: Subscriber, Trackable {
         } else {
             addressScheme = network.defaultAddressScheme
         }
-
-        var mode = self.connectionMode(for: currency)
-        if !network.supportsMode(mode) {
-//            assertionFailure("invalid wallet manager mode \(mode) for \(network.currency.code)")
-            mode = network.defaultMode
+        
+        let mode = self.connectionMode(for: currency)
+        guard network.supportsMode(mode) else {
+            // TODO used to fatal fail.. is this ok?
+            // assertionFailure("invalid wallet manager mode \(mode) for \(network.currency.code)")
+            return
         }
+        
         var success = false
         
         if system.accountIsInitialized(system.account, onNetwork: network) {

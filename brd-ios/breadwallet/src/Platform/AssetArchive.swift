@@ -67,11 +67,11 @@ open class AssetArchive {
         }
         
         do {
-            try self.extractArchive()
-//            return completionHandler(nil)
+            try extractArchive()
+            return completionHandler(nil)
         } catch let e {
             print("[AssetArchive] error extracting bundle: \(e)")
-//            return completionHandler(BRAPIClientError.unknownError)
+            return completionHandler(BRAPIClientError.unknownError)
         }
         
 //        apiClient.getAssetVersions(name) { (versions, err) in
