@@ -52,9 +52,21 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ "$3" == "testnet" ]; then
 	scheme="BRD Testnet - TestFlight"
+elif [ "$3" == "ci" ]; then
+	scheme="breadwallet"
 else
 	scheme="BRD Internal - TestFlight"
 fi
+
+# restore build updated files
+git restore breadwallet/Resources/currencies.json
+git restore breadwallet/Resources/brd-web-3.tar
+git restore breadwallet/Resources/brd-web-3-staging.tar
+git restore breadwallet/Resources/brd-tokens.tar
+git restore breadwallet/Resources/brd-tokens-staging.tar
+git restore breadwallet/Info.plist
+git restore breadwalletWidget/Info.plist
+git restore breadwalletIntentHandler/Info.plist
 
 # make sure git is clean
 if output=$(git status --porcelain) && [ -z "$output" ]; then
@@ -66,7 +78,8 @@ if output=$(git status --porcelain) && [ -z "$output" ]; then
 	echo "Making $scheme version ${mainBundleShortVersionString} build ${mainBundleVersion} ..."
     echo
 	source ${script_dir}/archive.sh "${scheme}"
-	if [ "$3" != "testnet" ]; then
+    rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+	if [[ "$3" != "testnet" && "$3" != "ci" ]]; then
 		commit_changes
 	fi
 else
