@@ -130,13 +130,28 @@ jobs:
             xcodebuild clean -workspace breadwallet.xcworkspace -scheme breadwallet | xcpretty
 
       - run:
-          name: Build Submodules
+          name: Create .env and local.properties and fix build.gradle
           command: |
             cd brd-ios
-            security default-keychain
-            security set-keychain-settings -lut 9999
-            security unlock-keychain -p test ~/Library/Keychains/default.keychain
-            scripts/build_sub_modules.sh
+            BRD_ENV=.env
+            touch $BRD_ENV
+            echo "API_TOKEN = $API_TOKEN" >> $BRD_ENV
+            echo "API_URL = $API_URL" >> $BRD_ENV
+            echo "DEBUG_TOKEN = $DEBUG_TOKEN" >> $BRD_ENV
+            echo "DEBUG_URL = $DEBUG_URL" >> $BRD_ENV
+
+            echo "sdk.dir=$HOME/Library/Android/Sdk" > ./local.properties
+            cp ./local.properties external/walletKit/walletKitJava/local.properties
+
+            sed -i '' '18i\'$'\n        ndkVersion \'21.1.6352462\'\n\n' external/walletkit/WalletKitJava/corenative-android/build.gradle
+
+      - run:
+          name: Build Walletkit Subproject
+          command: |
+            # security default-keychain
+            # security set-keychain-settings -lut 9999
+            # security unlock-keychain -p test ~/Library/Keychains/default.keychain
+            ./gradlew cosmos-bundled:createXCFramework
 
       - run:
           name: Run Build
