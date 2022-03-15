@@ -9,7 +9,7 @@ workflows:
       - build-fabriik:
           filters:
             branches:
-              only: mit
+              only: gvh/ci 
 
 jobs:
   build-fabriik:
