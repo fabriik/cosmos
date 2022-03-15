@@ -42,6 +42,18 @@ enum KYCPersonalInfo {
         }
     }
     
+    enum SetDateAndTaxID {
+        struct Request {}
+        struct Response {
+            let date: String
+            let taxIdNumber: String
+        }
+        struct ViewModel {
+            let date: String
+            let taxIdNumber: String
+        }
+    }
+    
     enum CheckFieldText {
         struct Request {
             let text: String?

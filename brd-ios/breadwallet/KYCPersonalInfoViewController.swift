@@ -7,6 +7,7 @@ import UIKit
 protocol KYCPersonalInfoDisplayLogic: class {
     // MARK: Display logic functions
     
+    func displaySetDateAndTaxID(viewModel: KYCPersonalInfo.SetDateAndTaxID.ViewModel)
     func displayGetDataForPickerView(viewModel: KYCPersonalInfo.GetDataForPickerView.ViewModel)
     func displaySetPickerValue(viewModel: KYCPersonalInfo.SetPickerValue.ViewModel)
 }
@@ -97,6 +98,10 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
                                taxIdNumber: nil))
     }
     
+    func displaySetDateAndTaxID(viewModel: KYCPersonalInfo.SetDateAndTaxID.ViewModel) {
+        didSetDateAndTaxId?(viewModel.date, viewModel.taxIdNumber)
+    }
+    
     // MARK: - UITableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -142,17 +147,18 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
         }
         
         cell.didTapNextButton = { [weak self] in
-            guard let self = self, let dataStore = self.router?.dataStore else { return }
+            self?.view.endEditing(true)
             
             LoadingView.show()
             
-            (self.navigationController?.children.dropLast().last as? KYCAddressViewController)?.didSubmitData = { [weak self] in
+            let kycAddressVC = self?.navigationController?.children.first(where: { $0 is KYCAddressViewController })
+            (kycAddressVC as? KYCAddressViewController)?.didSubmitData = { [weak self] in
                 LoadingView.hide()
                 
                 self?.router?.showKYCUploadScene()
             }
             
-            self.didSetDateAndTaxId?(dataStore.date ?? "", dataStore.taxIdNumber ?? "")
+            self?.interactor?.executeSetDateAndTaxID(request: .init())
         }
         
         return cell
