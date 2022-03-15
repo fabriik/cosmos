@@ -107,6 +107,7 @@ jobs:
             cp breadwallet.xcodeproj/project.pbxproj.rnm breadwallet.xcodeproj/project.pbxproj
             mkdir test_output
             cp breadwallet.xcodeproj/project.pbxproj.rnm test_output
+            cd ..
             uuid=`grep UUID -A1 -a .circleci/mobileprovision/wallet-CNI-distribution2.mobileprovision | grep -io "[-A-F0-9]\{36\}"`
             mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
             cp .circleci/mobileprovision/wallet-CNI-distribution2.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
@@ -117,17 +118,20 @@ jobs:
       - run:
           name: xcodebuild help
           command: |
+            cd brd-ios
             xcodebuild --help
             xcodebuild -project breadwallet.xcodeproj -list
 
       - run:
           name: xcodebuild clean
           command: |
+            cd brd-ios
             xcodebuild clean -workspace breadwallet.xcworkspace -scheme breadwallet | xcpretty
 
       - run:
           name: xcodebuild  build submodules (disabled)
           command: |
+            cd brd-ios
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
@@ -143,8 +147,9 @@ jobs:
             git config --global user.email circleci@just.cash
             git add --all *
             git commit -m "circleci build"
-            mkdir build
-            cp .circleci/config/exportOptions.plist build
+            mkdir brd-ios/build
+            cp .circleci/config/exportOptions.plist brd-ios/build
+            cd brd-ios
             ./scripts/makebuild.sh 4.3.${CIRCLE_BUILD_NUM} ${CIRCLE_BUILD_NUM} ci
             ./scripts/uploadbuild.sh ${CIRCLE_BRANCH}
 
@@ -154,6 +159,7 @@ jobs:
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
+            cd brd-ios
             echo xcodebuild  build  -verbose   -workspace breadwallet.xcworkspace   -scheme breadwallet | xcpretty
 
       - run:
@@ -165,7 +171,7 @@ jobs:
       # Collect XML test results data to show in the UI, and save the same XML
       # files under test-results folder in the Artifacts tab
       - store_test_results:
-          path: test_output
+          path: brd-ios/test_output
       - store_artifacts:
-          path: test_output
+          path: brd-ios/test_output
           destination: scan-output
