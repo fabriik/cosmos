@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol KYCSignUpDisplayLogic: class {
+protocol KYCSignUpDisplayLogic: AnyObject {
     // MARK: Display logic functions
     
     func displayGetDataForPickerView(viewModel: KYCSignUp.GetDataForPickerView.ViewModel)
