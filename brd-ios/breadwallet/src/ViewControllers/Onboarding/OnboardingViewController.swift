@@ -289,7 +289,8 @@ class OnboardingViewController: UIViewController {
             return
         }
         
-        let iconCount = 20
+        // Used to be 20, and the app crashed
+        let iconCount = metaData.count
         let iconSize: CGFloat = 40
         let duration = 10.0
         let maxDelay = 15.0
