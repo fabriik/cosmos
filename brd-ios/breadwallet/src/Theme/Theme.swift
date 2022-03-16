@@ -75,14 +75,13 @@ class Theme: BRDTheme {
     }
     
     enum ColorHex: String {
-        case primaryBackground = "#FFFFFF"
-        // case primaryBackground = "#141233"
+        case primaryBackground = "#F9F9F9"
         case secondaryBackground = "#211F3F"
         case tertiaryBackground = "#312F4C"
         case blueBackground = "#2C78FF"
+        case onboardingBackground = "#141233"
         
         case text = "#000000"
-       // case text = "#FFFFFF"
         
         case accent = "#5B6DEE"
         case accentHighlighted = "#5667E0"
@@ -158,6 +157,10 @@ class Theme: BRDTheme {
     
     static var blueBackground: UIColor {
         return color(.blueBackground)
+    }
+    
+    static var onboardingBackground: UIColor {
+        return color(.onboardingBackground)
     }
     
     static var transparentBlue: UIColor {

@@ -163,7 +163,7 @@ class BRDButton: UIControl {
             imageView?.tintColor = .white
         case .secondary:
             container.backgroundColor = .secondaryButton
-            label.textColor = .darkText
+            label.textColor = Theme.blueBackground
             container.layer.borderColor = UIColor.secondaryBorder.cgColor
             container.layer.borderWidth = 1.0
             imageView?.tintColor = .darkText

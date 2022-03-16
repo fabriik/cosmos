@@ -157,7 +157,7 @@ class OnboardingViewController: UIViewController {
     // CTA's that appear at the bottom of the screen
     private let topButton = BRDButton(title: "", type: .primary)
     private let middleButton = BRDButton(title: "", type: .darkOpaque)
-    private let bottomButton = BRDButton(title: "", type: .darkOpaque)
+    private let bottomButton = BRDButton(title: "", type: .secondary)
     private let nextButton = BRDButton(title: S.OnboardingScreen.next, type: .primary)
     
     // Constraints used to show and hide the bottom buttons.
@@ -902,7 +902,7 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
-        view.backgroundColor = Theme.blueBackground
+        view.backgroundColor = Theme.onboardingBackground
                 
         setUpLogo()
         setUpPages()

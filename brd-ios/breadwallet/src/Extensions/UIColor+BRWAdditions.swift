@@ -91,10 +91,6 @@ extension UIColor {
     }
 
     // MARK: Buttons
-//    static var primaryButton: UIColor {
-//        return UIColor.fromHex("5B6DEE")
-//    }
-    
     static var primaryButton: UIColor {
         return UIColor.fromHex("2C78FF")
     }
