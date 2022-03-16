@@ -10,7 +10,7 @@ workflows:
           filters:
             branches:
               only: gvh/ci
- 
+
 jobs:
   build-fabriik:
     macos:
