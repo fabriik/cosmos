@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol KYCSignInDisplayLogic: class {
+protocol KYCSignInDisplayLogic: AnyObject {
     // MARK: Display logic functions
     
     func displayShouldEnableSubmit(viewModel: KYCSignIn.ShouldEnableSubmit.ViewModel)

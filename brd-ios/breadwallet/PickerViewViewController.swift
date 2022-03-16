@@ -47,7 +47,7 @@ final public class PickerViewViewController: UIViewController {
     
     public typealias Values = [[String]]
     public typealias Index = PickerIndex
-    public typealias Action = (_ vc: UIViewController, _ picker: UIPickerView, _ index: Index?, _ values: Values) -> Void
+    public typealias Action = (_ vc: UIViewController, _ pickerView: UIPickerView, _ index: Index?, _ values: Values) -> Void
     
     fileprivate var values: Values = [[]]
     fileprivate var selection = Index(column: 0, row: 0)
