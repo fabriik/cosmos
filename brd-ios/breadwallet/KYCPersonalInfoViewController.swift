@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol KYCPersonalInfoDisplayLogic: class {
+protocol KYCPersonalInfoDisplayLogic: AnyObject {
     // MARK: Display logic functions
     
     func displaySetDateAndTaxID(viewModel: KYCPersonalInfo.SetDateAndTaxID.ViewModel)

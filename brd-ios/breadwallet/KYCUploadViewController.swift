@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol KYCUploadDisplayLogic: class {
+protocol KYCUploadDisplayLogic: AnyObject {
     // MARK: Display logic functions
     
     func displaySaveImage(viewModel: KYCUpload.SaveImages.ViewModel)

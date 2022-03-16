@@ -14,6 +14,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     private lazy var rightButton: UIButton = {
         let rightButton = UIButton()
         rightButton.translatesAutoresizingMaskIntoConstraints = false
+        rightButton.isUserInteractionEnabled = false
         
         return rightButton
     }()
@@ -32,7 +33,6 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     lazy var textField: PaddedTextField = {
         var textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.delegate = self
         textField.textColor = .kycGray1
         textField.clipsToBounds = true
         textField.layer.masksToBounds = true
@@ -80,42 +80,18 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         case .picker:
             rightButton.setImage(UIImage(named: "KYC Dropdown Arrow"), for: .normal)
-            rightButton.isUserInteractionEnabled = false
-            textField.inputView = UIView()
             
         case .email:
-            rightButton.isUserInteractionEnabled = false
             textField.keyboardType = .emailAddress
             textField.autocapitalizationType = .none
             textField.autocorrectionType = .no
             
         case .password:
-            rightButton.isUserInteractionEnabled = false
             textField.isSecureTextEntry = true
             
         }
         
         setupElements()
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch fieldType {
-        case .picker:
-            endEditing(true)
-            resignFirstResponder()
-            
-        default:
-            break
-        }
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        switch fieldType {
-        case .picker:
-            return false
-        default:
-            return true
-        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -164,6 +140,26 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     
     func roundSpecifiedCorners(maskedCorners: CACornerMask) {
         textField.layer.maskedCorners = maskedCorners
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch fieldType {
+        case .picker:
+            endEditing(true)
+            resignFirstResponder()
+            
+        default:
+            break
+        }
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch fieldType {
+        case .picker:
+            return false
+        default:
+            return true
+        }
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {

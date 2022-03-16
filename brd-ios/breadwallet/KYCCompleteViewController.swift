@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol KYCCompleteDisplayLogic: class {
+protocol KYCCompleteDisplayLogic: AnyObject {
     // MARK: Display logic functions
 }
 
