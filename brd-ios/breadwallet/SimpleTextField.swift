@@ -80,6 +80,8 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         case .picker:
             rightButton.setImage(UIImage(named: "KYC Dropdown Arrow"), for: .normal)
+            textField.inputView = UIView()
+            textField.inputAccessoryView = UIView()
             
         case .email:
             textField.keyboardType = .emailAddress
@@ -157,6 +159,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         switch fieldType {
         case .picker:
             return false
+            
         default:
             return true
         }
