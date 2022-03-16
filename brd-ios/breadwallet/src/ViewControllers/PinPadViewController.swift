@@ -28,7 +28,7 @@ class PinPadViewController: UICollectionViewController {
         func image(forStyle: PinPadStyle) -> UIImage {
             switch self {
             case .delete:
-                return forStyle == .clear ? #imageLiteral(resourceName: "Delete") : #imageLiteral(resourceName: "Delete")
+                return forStyle == .clear ? #imageLiteral(resourceName: "CutoutDelete") : #imageLiteral(resourceName: "Delete")
             case .biometrics:
                 switch forStyle {
                 case .clear:
