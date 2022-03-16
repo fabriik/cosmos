@@ -94,8 +94,7 @@ jobs:
             sudo gem install xcpretty
             brew --cache
             brew install ghostscript SwiftLint
-            brew install android-sdk
-            export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
+            brew install android-platform-tools
             ls -la /usr/local/opt
             ls -la /usr/local/opt/android-sdk
 
