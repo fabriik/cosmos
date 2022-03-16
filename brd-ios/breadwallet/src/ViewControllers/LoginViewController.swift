@@ -56,18 +56,18 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         return PinView(style: .login, length: Store.state.pinLength)
     }()
     private let disabledView: WalletDisabledView
-    private var logo = UIImageView(image: #imageLiteral(resourceName: "LogoCutout").withRenderingMode(.alwaysTemplate))
+    private var logo = UIImageView(image: #imageLiteral(resourceName: "LogoBlue"))
     private var pinPadPottom: NSLayoutConstraint?
     private var topControlTop: NSLayoutConstraint?
     private var unlockTimer: Timer?
-    private let pinPadBackground = MotionGradientView()
+    private let pinPadBackground = UIView(color: .almostBlack)
     private let logoBackground = MotionGradientView()
     private var hasAttemptedToShowBiometrics = false
     private let lockedOverlay = UIVisualEffectView()
     private var isResetting = false
     private let context: Context
     private var notificationObservers = [String: NSObjectProtocol]()
-    private let debugLabel = UILabel.wrapping(font: Theme.body3, color: Theme.primaryText)
+    private let debugLabel = UILabel.wrapping(font: Theme.body3, color: .almostBlack)
     private let shouldDisableBiometrics: Bool
     
     var isBiometricsEnabledForUnlocking: Bool {
@@ -112,7 +112,6 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             guard let `self` = self else { return }
             self.wipeFromDisabledGesture()
         }
-        logo.tintColor = .darkBackground
         updateDebugLabel()
     }
 
@@ -164,8 +163,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     private func addSubviews() {
         view.addSubview(backgroundView)
         view.addSubview(pinViewContainer)
-        view.addSubview(logoBackground)
-        logoBackground.addSubview(logo)
+        view.addSubview(logo)
         view.addSubview(pinPadBackground)
         view.addSubview(debugLabel)
     }
@@ -178,14 +176,13 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             debugLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[3]),
             debugLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2])
         ])
-        topControlTop = logoBackground.topAnchor.constraint(equalTo: view.topAnchor,
+        topControlTop = logo.topAnchor.constraint(equalTo: view.topAnchor,
                                                             constant: C.Sizes.brdLogoHeight + C.Sizes.brdLogoTopMargin)
-        logoBackground.constrain([
+        logo.constrain([
             topControlTop,
-            logoBackground.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoBackground.heightAnchor.constraint(equalTo: logoBackground.widthAnchor, multiplier: logo.image!.size.height/logo.image!.size.width),
-            logoBackground.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45) ])
-        logo.constrain(toSuperviewEdges: nil)
+            logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logo.widthAnchor.constraint(equalToConstant: 50),
+            logo.heightAnchor.constraint(equalToConstant: 50)])
 
         pinPadPottom = pinPadBackground.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         pinPadBackground.constrain([
@@ -228,7 +225,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     private func authenticationSucceded(forLoginWithAccount account: Account? = nil) {
         saveEvent("login.success")
         let label = UILabel(font: .customBody(size: 16.0))
-        label.textColor = .white
+        label.textColor = .black
         label.alpha = 0.0
         let lock = UIImageView(image: #imageLiteral(resourceName: "unlock"))
         lock.alpha = 0.0

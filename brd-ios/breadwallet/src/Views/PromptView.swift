@@ -141,7 +141,7 @@ class PromptView: UIView {
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "ExclamationStandalone")
         
-        container.backgroundColor = Theme.secondaryBackground
+        container.backgroundColor = Theme.transparentBlue
         container.layer.cornerRadius = 2.0
     }
         

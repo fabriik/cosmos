@@ -32,11 +32,12 @@ class ManageWalletsViewController: UITableViewController {
         tableView.register(ManageCurrencyCell.self, forCellReuseIdentifier: ManageCurrencyCell.cellIdentifier)
         tableView.setEditing(true, animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushAddWallets))
+        navigationController?.navigationBar.backgroundColor = Theme.primaryBackground
         
         //If we are first in the nav controller stack, we need a close button
         if navigationController?.viewControllers.first == self {
             let button = UIButton.close
-            button.tintColor = .white
+            button.tintColor = .almostBlack
             button.tap = {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -79,8 +80,8 @@ class ManageWalletsViewController: UITableViewController {
         
         let addButton = UIButton()
         
-        addButton.tintColor = .disabledWhiteText
-        addButton.setTitleColor(Theme.tertiaryText, for: .normal)
+        addButton.tintColor = Theme.tertiaryBackground
+        addButton.setTitleColor(Theme.blueBackground, for: .normal)
         addButton.setTitleColor(.transparentWhite, for: .highlighted)
         addButton.titleLabel?.font = Theme.body1
         

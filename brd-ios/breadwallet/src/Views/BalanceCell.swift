@@ -223,7 +223,7 @@ class BalanceCell: UIView, Subscriber {
 private extension UILabel {
     func makePrimary() {
         font = UIFont.customBold(size: largeFontSize)
-        textColor = .white
+        textColor = .black
         reset()
     }
     

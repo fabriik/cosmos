@@ -14,8 +14,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let widgetDataShareService: WidgetDataShareService
     private let assetList = AssetListTableView()
     private let subHeaderView = UIView()
-    private let logo = UIImageView(image: UIImage(named: "LogoGradientSmall"))
-    private let total = UILabel(font: Theme.boldTitle.withSize(Theme.FontSize.h1Title.rawValue), color: Theme.primaryText)
+    private let logo = UIImageView(image: UIImage(named: "LogoBlue"))
+    private let total = UILabel(font: Theme.boldTitle.withSize(Theme.FontSize.h1Title.rawValue), color: Theme.tertiaryText)
     private let totalAssetsLabel = UILabel(font: Theme.caption, color: Theme.tertiaryText)
     private let debugLabel = UILabel(font: .customBody(size: 12.0), color: .transparentWhiteText) // debug info
     private let prompt = UIView()
@@ -145,6 +145,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         
         logo.constrain([
             logo.leadingAnchor.constraint(equalTo: subHeaderView.leadingAnchor, constant: C.padding[2]),
+            logo.heightAnchor.constraint(equalToConstant: 43),
+            logo.widthAnchor.constraint(equalToConstant: 43),
             logo.centerYAnchor.constraint(equalTo: total.centerYAnchor)])
 
         debugLabel.constrain([
@@ -174,8 +176,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
 
     private func setInitialData() {
-        view.backgroundColor = .darkBackground
-        subHeaderView.backgroundColor = .darkBackground
+        view.backgroundColor = .white
+        subHeaderView.backgroundColor = .white
         subHeaderView.clipsToBounds = false
         
         navigationItem.titleView = UIView()
@@ -264,7 +266,9 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         }
 
         toolbar.isTranslucent = false
-        toolbar.barTintColor = Theme.secondaryBackground
+        toolbar.layer.borderWidth = 1
+        toolbar.layer.borderColor = Theme.blueBackground.cgColor
+        toolbar.barTintColor = Theme.primaryBackground
     }
     
     private func setupSubscriptions() {

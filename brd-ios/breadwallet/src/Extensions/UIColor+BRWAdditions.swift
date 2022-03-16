@@ -83,7 +83,7 @@ extension UIColor {
     }
     
     static var greenCheck: UIColor {
-        return UIColor.fromHex("06C441")
+        return UIColor.fromHex("00A86E")
     }
     
     static var disabledBackground: UIColor {
@@ -92,7 +92,7 @@ extension UIColor {
 
     // MARK: Buttons
     static var primaryButton: UIColor {
-        return UIColor.fromHex("5B6DEE")
+        return UIColor.fromHex("2C78FF")
     }
     
     static var orangeButton: UIColor {
@@ -227,7 +227,8 @@ extension UIColor {
     }
 
     static var darkOpaqueButton: UIColor {
-        return UIColor(white: 1.0, alpha: 0.05)
+        return UIColor.fromHex("6496F8")
+//        return UIColor(white: 1.0, alpha: 0.05)
     }
     
     static var blueGradientStart: UIColor {
@@ -283,7 +284,8 @@ extension UIColor {
     }
     
     static var navigationTint: UIColor {
-        return .white
+//        return .white
+        return Theme.blueBackground
     }
     
     static var navigationBackground: UIColor {

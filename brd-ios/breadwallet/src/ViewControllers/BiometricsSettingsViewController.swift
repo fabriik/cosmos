@@ -57,7 +57,7 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setWhiteStyle()
+        self.navigationController?.setDarkStyle()
     }
     
     override func viewDidLoad() {
@@ -157,6 +157,7 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
 
     private func setData() {
         imageView.image = UIImage(named: imageName)
+        imageView.tintColor = Theme.blueBackground
         explanationLabel.text = explanatoryText
         unlockTitleLabel.text = unlockTitleText
         transactionsTitleLabel.text = transactionsTitleText

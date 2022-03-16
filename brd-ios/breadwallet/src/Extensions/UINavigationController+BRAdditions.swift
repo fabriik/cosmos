@@ -32,7 +32,7 @@ extension UINavigationController {
         navigationBar.barTintColor = .navigationBackground
         navigationBar.tintColor = .navigationTint
         navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.foregroundColor: UIColor.almostBlack ,
             NSAttributedString.Key.font: UIFont.header
         ]
     }

@@ -24,7 +24,7 @@ class BorderedTextInput: UIView {
     }
     
     func setValid() {
-        textField.textColor = .white
+        textField.textColor = .black
     }
     
     func clear() {
@@ -79,7 +79,7 @@ class BorderedTextInput: UIView {
         
         textField.keyboardType = keyboardType
         textField.font = Theme.body1
-        textField.textColor = .white
+        textField.textColor = .black
         textField.returnKeyType = .done
         textField.delegate = self
         placeholder.text = placeholderText

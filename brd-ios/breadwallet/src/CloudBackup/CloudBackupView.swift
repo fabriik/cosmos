@@ -84,7 +84,7 @@ struct CloudBackupView: View {
                     .lineLimit(nil)
                     .if(!E.isIPhone5, content: { $0.padding() })
                     .if(E.isIPhone5, content: { $0.padding(4.0) })
-                }.background(Color(Theme.secondaryBackground))
+                }.background(Color(Theme.transparentBlue))
                 .cornerRadius(4.0)
                 .padding()
                 if self.synchronizer.context == .onboarding {
@@ -195,7 +195,7 @@ struct CloudBackupViewBody: View {
             CloudBackupIcon(style: .up)
             Text(S.CloudBackup.mainTitle)
                 .font(Font(Theme.h1Title))
-                .foregroundColor(.white)
+                .foregroundColor(.black)
             Text(S.CloudBackup.mainBody)
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(nil)

@@ -36,7 +36,7 @@ class ConfirmPhraseView: UIView {
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.font = UIFont.customBody(size: 16.0)
-        textField.textColor = .white
+        textField.textColor = .black
         textField.delegate = self
 
         addSubview(label)
@@ -74,7 +74,7 @@ class ConfirmPhraseView: UIView {
     }
 
     @objc private func textFieldChanged() {
-        textField.textColor = .white
+        textField.textColor = .black
         guard textField.markedTextRange == nil else { return }
         if textField.text == word {
             circle.show()
@@ -96,7 +96,7 @@ extension ConfirmPhraseView: UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.textColor = .white
+        textField.textColor = .black
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

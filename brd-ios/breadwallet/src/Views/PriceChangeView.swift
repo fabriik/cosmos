@@ -26,8 +26,8 @@ class PriceChangeView: UIView, Subscriber {
     
     private let percentLabel = UILabel(font: Theme.body3)
     private let absoluteLabel = UILabel(font: Theme.body3)
-    private let image = UIImageView(image: UIImage(named: "PriceArrow"))
-    private let separator = UIView(color: UIColor.white.withAlphaComponent(0.6))
+    private let plusLabel = UILabel(font: Theme.body3)
+    private let separator = UIView(color: .greenCheck)
     
     private var priceInfo: FiatPriceInfo? {
         didSet {
@@ -62,14 +62,12 @@ class PriceChangeView: UIView, Subscriber {
             separator.topAnchor.constraint(equalTo: topAnchor, constant: 4.0),
             separator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4.0),
             separator.widthAnchor.constraint(equalToConstant: 1.0)])
-        image.constrain([
-            image.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: Padding.half),
-            image.centerYAnchor.constraint(equalTo: centerYAnchor),
-            image.widthAnchor.constraint(equalToConstant: 6.0),
-            image.heightAnchor.constraint(equalToConstant: 5.0)])
+        plusLabel.constrain([
+            plusLabel.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: Padding.half),
+            plusLabel.centerYAnchor.constraint(equalTo: centerYAnchor)])
         percentLabel.constrain([
             percentLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            percentLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 3.0)])
+            percentLabel.leadingAnchor.constraint(equalTo: plusLabel.trailingAnchor, constant: 3.0)])
         absoluteLabel.constrain([
             absoluteLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             absoluteLabel.leadingAnchor.constraint(equalTo: percentLabel.trailingAnchor, constant: C.padding[1]/2.0),
@@ -83,15 +81,15 @@ class PriceChangeView: UIView, Subscriber {
     private func addSubviews() {
         addSubview(separator)
         addSubview(percentLabel)
-        addSubview(image)
+        addSubview(plusLabel)
         addSubview(absoluteLabel)
     }
     
     private func setInitialData() {
         separator.alpha = 0.0
-        image.alpha = 0.0
-        percentLabel.textColor = UIColor.white.withAlphaComponent(0.6)
-        absoluteLabel.textColor = UIColor.white.withAlphaComponent(0.6)
+        plusLabel.textColor = .greenCheck
+        percentLabel.textColor = .greenCheck
+        absoluteLabel.textColor = .greenCheck
         percentLabel.text = nil
         absoluteLabel.text = nil
     }
@@ -101,6 +99,7 @@ class PriceChangeView: UIView, Subscriber {
         
         //Set label text
         let percentText = String(format: "%.2f%%", fabs(priceChange.changePercentage24Hrs))
+        plusLabel.text = "+"
         if style == .percentAndAbsolute, let absoluteString = currencyNumberFormatter.string(from: NSNumber(value: abs(priceChange.change24Hrs))) {
             absoluteLabel.text = "(\(absoluteString))"
             percentLabel.text = percentText
@@ -108,13 +107,6 @@ class PriceChangeView: UIView, Subscriber {
         } else if style == .percentOnly {
             percentLabel.fadeToText(percentText)
         }
-        
-        //Fade separator and image
-        self.image.transform = priceChange.changePercentage24Hrs > 0 ? .identity : CGAffineTransform(rotationAngle: .pi)
-        UIView.animate(withDuration: C.animationDuration, animations: {
-            self.separator.alpha = self.style == .percentAndAbsolute ? 0.0 : 1.0
-            self.image.alpha = 1.0
-        })
     }
     
     private func subscribeToPriceChange() {
