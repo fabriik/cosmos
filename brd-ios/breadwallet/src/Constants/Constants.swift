@@ -118,7 +118,7 @@ struct C {
     
     static let fixerAPITokenRecordId = "FixerAPIToken"
     // Currently our BE does not support asset updates yet
-    static let updateAssets = false
+    static let checkForUpdatedAssets = false
 }
 
 enum Words {

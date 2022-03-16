@@ -77,7 +77,7 @@ open class AssetArchive {
             }
         }
         
-        guard C.updateAssets else {
+        guard C.checkForUpdatedAssets else {
             extract()
             return
         }
