@@ -95,6 +95,7 @@ jobs:
             brew --cache
             brew install ghostscript SwiftLint
             brew install android-platform-tools
+            export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
             ls -la /usr/local/opt
 
       - run:
