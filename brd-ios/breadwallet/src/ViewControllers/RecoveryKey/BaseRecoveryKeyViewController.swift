@@ -92,7 +92,7 @@ class BaseRecoveryKeyViewController: UIViewController, Trackable {
                                    style: .plain,
                                    target: self,
                                    action: #selector(onBackButton))
-        back.tintColor = .white
+        back.tintColor = Theme.blueBackground
         navigationItem.leftBarButtonItem = back
     }
     

@@ -135,7 +135,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
                 Store.trigger(name: .presentFaq(ArticleIds.resetPinWithPaperKey, nil))
             }
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faq)
-            faq.tintColor = Theme.primaryText
+            faq.tintColor = Theme.blueBackground
         case .validateForWipingWallet:
             saveEvent("enterPhrase.wipeWallet")
             heading.text = S.RecoverKeyFlow.enterRecoveryKey

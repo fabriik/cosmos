@@ -969,7 +969,7 @@ class ModalPresenter: Subscriber, Trackable {
         let nc = ModalNavigationController()
         nc.setDarkStyle()
         let start = ImportKeyViewController(wallet: wallet, initialQRCode: scanResult)
-        start.addCloseNavigationItem(tintColor: .white)
+        start.addCloseNavigationItem(tintColor: Theme.blueBackground)
         start.navigationItem.title = S.Import.title
         let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.importWallet, currency: wallet.currency)
         faqButton.tintColor = .white
