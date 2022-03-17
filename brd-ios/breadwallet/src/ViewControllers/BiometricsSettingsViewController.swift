@@ -220,7 +220,7 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
         let negativePadding = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         negativePadding.width = -16.0
         let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.enableTouchId)
-        faqButton.tintColor = .white
+        faqButton.tintColor = Theme.blueBackground
         navigationItem.rightBarButtonItems = [negativePadding, UIBarButtonItem(customView: faqButton)]
     }
 

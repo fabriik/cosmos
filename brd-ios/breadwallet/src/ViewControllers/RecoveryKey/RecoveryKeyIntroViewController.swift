@@ -157,7 +157,7 @@ class RecoveryKeyIntroCell: RecoveryKeyPageCell {
         super.setUpSubviews()
         
         introStepLabel.font = Theme.body2
-        introStepLabel.textColor = Theme.accent
+        introStepLabel.textColor = Theme.blueBackground
         introStepLabel.textAlignment = .center
         introStepLabel.numberOfLines = 0
         
@@ -463,7 +463,6 @@ class RecoveryKeyIntroViewController: BaseRecoveryKeyViewController {
     }
     
     private func setUpContinueButton() {
-        continueButton.layer.cornerRadius = 2.0
         continueButton.tap = { [unowned self] in
             if self.mode == .unlinkWallet {
                 self.exit(action: .unlinkWallet)

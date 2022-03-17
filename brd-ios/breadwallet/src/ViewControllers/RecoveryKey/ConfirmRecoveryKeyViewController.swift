@@ -106,7 +106,6 @@ class ConfirmRecoveryKeyViewController: BaseRecoveryKeyViewController {
     }
     
     private func setUpContinueButton() {
-        continueButton.layer.cornerRadius = 2.0
         continueButton.isEnabled = false    // enable once words are confirmed
         
         view.addSubview(continueButton)
@@ -271,7 +270,7 @@ class RecoveryKeyWordInputView: UIView, UITextFieldDelegate {
     var hintLabelAnimationConstraint: NSLayoutConstraint?
     
     var checkImage: UIImage? {
-        return UIImage(named: "Checkmark")?.tinted(with: Theme.accent)
+        return UIImage(named: "Checkmark")?.tinted(with: Theme.blueBackground)
     }
     
     var clearInputImage: UIImage? {
@@ -365,7 +364,7 @@ class RecoveryKeyWordInputView: UIView, UITextFieldDelegate {
     }
     
     private func setUpMainContainer() {
-        mainContainer.backgroundColor = Theme.secondaryBackground
+        mainContainer.backgroundColor = Theme.transparentBlue
         addSubview(mainContainer)
         mainContainer.constrain([
             mainContainer.heightAnchor.constraint(equalToConstant: mainContainerHeight),

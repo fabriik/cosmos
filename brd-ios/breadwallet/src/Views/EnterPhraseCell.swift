@@ -81,8 +81,8 @@ class EnterPhraseCell: UICollectionViewCell {
 
     private func setup() {
         
-        backgroundColor = Theme.tertiaryBackground
-        contentView.backgroundColor = Theme.tertiaryBackground
+        backgroundColor = Theme.transparentBlue
+        contentView.backgroundColor = Theme.transparentBlue
         
         contentView.layer.cornerRadius = 2.0
         contentView.layer.masksToBounds = true

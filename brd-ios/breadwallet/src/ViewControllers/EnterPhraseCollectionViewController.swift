@@ -61,7 +61,7 @@ class EnterPhraseCollectionViewController: UICollectionViewController, UICollect
         // Omit the rounded border on small screens due to space constraints.
         if !E.isSmallScreen {
             collectionView.layer.cornerRadius = 8.0
-            collectionView.layer.borderColor = Theme.secondaryBackground.cgColor
+            collectionView.layer.borderColor = Theme.transparentBlue.cgColor
             collectionView.layer.borderWidth = 2.0
         }
         

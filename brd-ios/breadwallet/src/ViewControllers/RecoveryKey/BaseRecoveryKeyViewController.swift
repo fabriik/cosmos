@@ -71,7 +71,7 @@ class BaseRecoveryKeyViewController: UIViewController, Trackable {
                                         style: .plain,
                                         target: self,
                                         action: #selector(onCloseButton))
-            close.tintColor = .white
+            close.tintColor = Theme.blueBackground
             navigationItem.rightBarButtonItem = close
 
         case .skip:

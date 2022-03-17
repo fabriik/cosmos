@@ -55,7 +55,7 @@ class SegwitEnabledView: UIView {
     }
     
     private func setInitialData() {
-        backgroundColor = Theme.secondaryBackground
+        backgroundColor = Theme.transparentBlue
         layer.masksToBounds = true
         layer.cornerRadius = 8.0
         
