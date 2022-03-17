@@ -26,8 +26,8 @@ class KYCNavigationController: UINavigationController, UINavigationControllerDel
             navigationBar.compactAppearance = appearance
         }
         
-        navigationBar.tintColor = .navigationTint
-        navigationBar.barTintColor = .navigationTint
+        navigationBar.tintColor = .kycCompletelyWhite
+        navigationBar.barTintColor = .kycCompletelyWhite
         navigationBar.shadowImage = UIImage()
         navigationBar.prefersLargeTitles = false
         
