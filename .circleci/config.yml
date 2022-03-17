@@ -93,9 +93,9 @@ jobs:
           command: |
             sudo gem install xcpretty
             brew --cache
-            
+
             brew tap adoptopenjdk/openjdk
-            brew install --cask adoptopenjdk8
+            brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
             export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
             ls -la /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 
