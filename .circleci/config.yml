@@ -100,6 +100,7 @@ jobs:
             ls -la /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 
             brew install ghostscript SwiftLint android-platform-tools
+            printat $(which adb)
             export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
             ls -la /usr/local/opt
             ls -la ~/Library/Android/sdk/tools
