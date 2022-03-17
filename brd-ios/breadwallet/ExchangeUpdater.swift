@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoinGecko
+// import CoinGecko
 
 enum FiatPriceInfoResult {
     case success([String: FiatPriceInfo])
@@ -55,7 +55,7 @@ class ExchangeUpdater: Subscriber {
             group.enter()
             let coinGeckoIds = chunk.compactMap { $0.coinGeckoId }
             let vs = Store.state.defaultCurrencyCode.lowercased()
-            let resource = Resources.simplePrice(ids: coinGeckoIds, vsCurrency: vs, options: [.change]) { (result: Result<PriceList, CoinGeckoError>) in
+            let resource = Resources.simplePrice(ids: coinGeckoIds, vsCurrency: vs, options: [.change]) { (result: Result<[SimplePrice], CoinGeckoError>) in
                 guard case .success(let data) = result else { return group.leave() }
                 coinGeckoIds.forEach { id in
                     guard let simplePrice = data.first(where: { $0.id == id }) else { return }

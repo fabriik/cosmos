@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoinGecko
+// import CoinGecko
 
 class DefaultCurrencyViewController: UITableViewController, Subscriber, Trackable {
 
