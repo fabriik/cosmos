@@ -230,7 +230,6 @@ class CoreSystem: Subscriber, Trackable {
             return
         }
 
-        
         // networks tokens for which wallets are needed
         let requiredTokens = network.currencies.filter { assetCollection.isEnabled($0.uid) }
 
@@ -241,11 +240,9 @@ class CoreSystem: Subscriber, Trackable {
             addressScheme = network.defaultAddressScheme
         }
         
-        let mode = self.connectionMode(for: currency)
-        guard network.supportsMode(mode) else {
-            // TODO used to fatal fail.. is this ok?
-            // assertionFailure("invalid wallet manager mode \(mode) for \(network.currency.code)")
-            return
+        var mode = self.connectionMode(for: currency)
+        if !network.supportsMode(mode) {
+            mode = network.defaultMode
         }
         
         var success = false
