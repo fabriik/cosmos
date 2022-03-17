@@ -95,8 +95,9 @@ jobs:
             brew --cache
             brew install ghostscript SwiftLint
             brew install android-platform-tools
-            export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
+            export ANDROID_SDK_ROOT=~/Library/Android/sdk/tools
             ls -la /usr/local/opt
+            ls -la ~/Library/Android/sdk/tools
 
       - run:
           name: Check Key
