@@ -1,8 +1,8 @@
 [![Fabriik](images/top-logo.png)](https://fabriik.com/)
 
 <div align="center">
-  <a href="https://apps.apple.com/us/app/brd-bitcoin-wallet-btc-bch-eth/id885251393"><img align="center" width="140px" height="47px" src="images/app_store.png"/></a>
-  <a href="https://play.google.com/store/apps/details?id=com.breadwallet"><img align="center" width="170px" height="47px" src="images/play_store.png"/></a>
+  <a href="https://apps.apple.com/us/app/fabriik/id1595167194"><img align="center" width="140px" height="47px" src="images/app_store.png"/></a>
+  <a href="https://play.google.com/store/apps/details?id=com.fabriik.one"><img align="center" width="170px" height="47px" src="images/play_store.png"/></a>
 </div>
 
 Fabriik is the best way to get started with bitcoin.
