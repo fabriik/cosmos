@@ -75,7 +75,7 @@ class InAppNotificationViewController: UIViewController, Trackable {
                                     style: .plain,
                                     target: self,
                                     action: #selector(onCloseButton))
-        close.tintColor = .white
+        close.tintColor = Theme.blueBackground
         navigationItem.rightBarButtonItem = close
     }
     
@@ -110,7 +110,7 @@ class InAppNotificationViewController: UIViewController, Trackable {
         //
         
         imageView.contentMode = .center
-        imageView.backgroundColor = Theme.secondaryBackground
+        imageView.backgroundColor = Theme.transparentBlue
         imageView.clipsToBounds = true
         loadImage()
         

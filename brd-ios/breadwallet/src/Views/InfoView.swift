@@ -37,7 +37,7 @@ class InfoView: UIView {
     }
     
     private func setUp() {
-        backgroundColor = Theme.secondaryBackground
+        backgroundColor = Theme.transparentBlue
         
         infoLabel.numberOfLines = 0
         infoLabel.textColor = Theme.secondaryText

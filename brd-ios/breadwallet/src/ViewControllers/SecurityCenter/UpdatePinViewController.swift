@@ -384,7 +384,7 @@ class UpdatePinViewController: UIViewController, Subscriber {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return isCreatingPin ? .default : .lightContent
     }
 
     required init?(coder aDecoder: NSCoder) {

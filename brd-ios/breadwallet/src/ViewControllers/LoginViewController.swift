@@ -381,7 +381,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
 
     required init?(coder aDecoder: NSCoder) {

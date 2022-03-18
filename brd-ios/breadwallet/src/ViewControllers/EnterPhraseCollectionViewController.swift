@@ -57,14 +57,6 @@ class EnterPhraseCollectionViewController: UICollectionViewController, UICollect
         collectionView?.register(EnterPhraseCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView?.delegate = self
         collectionView?.dataSource = self
-        
-        // Omit the rounded border on small screens due to space constraints.
-        if !E.isSmallScreen {
-            collectionView.layer.cornerRadius = 8.0
-            collectionView.layer.borderColor = Theme.secondaryBackground.cgColor
-            collectionView.layer.borderWidth = 2.0
-        }
-        
         collectionView?.isScrollEnabled = false
     }
     
