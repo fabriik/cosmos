@@ -9,18 +9,6 @@
 //
 
 import Foundation
-import CoinGecko
-
-enum PriceHistoryResult {
-    case success([PriceDataPoint])
-    case unavailable
-}
-
-//Data points used in the chart on the Account Screen
-struct PriceDataPoint: Codable, Equatable {
-    let time: Date
-    let close: Double
-}
 
 class HistoryFetcher {
     
@@ -33,10 +21,7 @@ class HistoryFetcher {
     func fetchHistory(forCode code: String, period: HistoryPeriod, callback: @escaping (PriceHistoryResult) -> Void) {
         let chart = Resources.marketChart(currencyId: code, vs: UserDefaults.defaultCurrencyCode, days: period.days) { (result: Result<MarketChart, CoinGeckoError>) in
             guard case .success(let data) = result else { return }
-            let points: [PriceDataPoint] = data.dataPoints.map {
-                return PriceDataPoint(time: Date(timeIntervalSince1970: Double($0.timestamp)/1000.0), close: $0.price)
-            }
-            callback(.success(self.reduceDataSize(array: points, byFactor: period.reductionFactor)))
+            callback(.success(self.reduceDataSize(array: data.dataPoints, byFactor: period.reductionFactor)))
         }
         client.load(chart)
     }

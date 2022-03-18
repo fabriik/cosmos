@@ -9,7 +9,7 @@
 //
 
 import Foundation
-import CoinGecko
+// import CoinGecko
 import UIKit
 
 protocol CurrencyWithIcon {

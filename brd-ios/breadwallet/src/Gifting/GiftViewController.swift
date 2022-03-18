@@ -10,7 +10,6 @@
 
 import UIKit
 import WalletKit
-import CoinGecko
 
 class GiftViewController: UIViewController, Trackable {
     
@@ -218,7 +217,7 @@ class GiftViewController: UIViewController, Trackable {
         group.enter()
         let resource = Resources.simplePrice(ids: ["bitcoin"],
                                              vsCurrency: "usd",
-                                             options: []) {  (result: Result<PriceList, CoinGeckoError>) in
+                                             options: []) {  (result: Result<[SimplePrice], CoinGeckoError>) in
             group.leave()
             guard case .success(let data) = result else { return }
             self.rate = data.first

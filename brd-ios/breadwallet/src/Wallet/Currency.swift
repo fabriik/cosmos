@@ -9,7 +9,7 @@
 import Foundation
 import WalletKit
 import UIKit
-import CoinGecko
+// import CoinGecko
 
 protocol CurrencyWithIcon {
     var code: String { get }
@@ -440,12 +440,9 @@ extension CurrencyMetaData: Codable {
         // If the /currencies endpoint hasn't provided a coingeckoID,
         // use the local list. Eventually /currencies should provide
         // all of them
-        if !didFindCoinGeckoID {
-            if let id = CoinGeckoCodes.map[code.uppercased()] {
-                coinGeckoId = id
-            } else if code.uppercased() == "BSV" {
-                coinGeckoId = "bitcoin-cash-sv"
-            }
+        if !didFindCoinGeckoID,
+           let id = CoinGeckoCodes.map[code.uppercased()] {
+            coinGeckoId = id
         }
     }
 

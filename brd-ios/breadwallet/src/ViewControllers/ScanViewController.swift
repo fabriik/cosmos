@@ -95,6 +95,11 @@ class ScanViewController: UIViewController, Trackable {
         cameraRoll.tap = importCameraRoll
         addCameraPreview()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        session.stopRunning()
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

@@ -8,7 +8,7 @@
 //  See the LICENSE file at the project root for license information.
 //
 import Foundation
-import CoinGecko
+// import CoinGecko
 
 struct MarketInfo {
     let id: CurrencyId
@@ -37,7 +37,7 @@ extension MarketInfo {
         self.change24hr = simplePrice.change24hr
         self.lastUpdatedAt = simplePrice.lastUpdatedAt
         self.candles = chart?.dataPoints.map {
-            .init(uniformPrice: $0.price.float, timestamp: $0.timestamp)
+            .init(uniformPrice: $0.close.float, timestamp: Int($0.time.timeIntervalSince1970))
         } ?? []
     }
 }
