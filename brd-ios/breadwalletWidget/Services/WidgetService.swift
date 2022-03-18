@@ -9,7 +9,7 @@
 //
 
 import Foundation
-import CoinGecko
+// import CoinGecko
 
 typealias CurrencyHandler = (Result<[Currency], Error>) -> Void
 typealias AssetOptionHandler = (Result<[AssetOption], Error>) -> Void
@@ -208,7 +208,7 @@ class DefaultWidgetService: WidgetService {
 private extension DefaultWidgetService {
 
     typealias MarketChartResult = Result<MarketChart, CoinGeckoError>
-    typealias PriceListResult = Result<PriceList, CoinGeckoError>
+    typealias PriceListResult = Result<[SimplePrice], CoinGeckoError>
 
     func fetchPriceListAndChart(for currencies: [Currency],
                                 quote: String,
@@ -216,7 +216,7 @@ private extension DefaultWidgetService {
                                 handler: @escaping (CurrencyInfoResult) -> Void) {
         let group = DispatchGroup()
         let rInterval = interval.resources
-        var priceList: PriceList = []
+        var priceList: [SimplePrice] = []
         var charts: [CurrencyId: MarketChart] = [:]
         var error: Error?
         let codes = currencies.compactMap { $0.coinGeckoId }
@@ -291,7 +291,7 @@ private extension DefaultWidgetService {
     }
 
     func marketInfo(_ currencies: [Currency],
-                    priceList: PriceList,
+                    priceList: [SimplePrice],
                     charts: [CurrencyId: MarketChart]) -> [CurrencyId: MarketInfo] {
 
         var result = [CurrencyId: MarketInfo]()
@@ -316,14 +316,14 @@ private extension DefaultWidgetService {
 
 private extension DefaultWidgetService {
 
-    func cache(_ priceList: PriceList, codes: [String], quote: String) {
+    func cache(_ priceList: [SimplePrice], codes: [String], quote: String) {
         let key = cacheKey(codes: codes, quote: quote)
         cacheService?.cache(value: priceList, key: key)
     }
 
-    func cachedPriceList(codes: [String], quote: String) -> PriceList {
+    func cachedPriceList(codes: [String], quote: String) -> [SimplePrice] {
         let key = cacheKey(codes: codes, quote: quote)
-        let priceList: PriceList = cacheService?.cached(key: key) ?? []
+        let priceList: [SimplePrice] = cacheService?.cached(key: key) ?? []
         return priceList
     }
 

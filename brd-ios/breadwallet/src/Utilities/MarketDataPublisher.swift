@@ -9,10 +9,10 @@
 //
 import Foundation
 import Combine
-import CoinGecko
+// import CoinGecko
 
 struct MarketDataViewModel {
-    let data: MarketContainer?
+    let data: MarketData?
     
     var marketCap: String { format(value: data?.marketCap, decimals: 0) }
     var totalVolume: String { format(value: data?.totalVolume, decimals: 0) }
@@ -51,7 +51,7 @@ class MarketDataPublisher: ObservableObject {
     private let client = CoinGeckoClient()
     
     func fetch() {
-        let resource = Resources.coin(currencyId: currencyId, vs: fiatId) { (result: Result<MarketContainer, CoinGeckoError>) in
+        let resource = Resources.coin(currencyId: currencyId, vs: fiatId) { (result: Result<MarketData, CoinGeckoError>) in
             guard case .success(let data) = result else { return }
             DispatchQueue.main.async {
                 self.viewModel = MarketDataViewModel(data: data)

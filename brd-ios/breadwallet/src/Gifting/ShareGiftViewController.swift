@@ -9,7 +9,7 @@
 //
 
 import UIKit
-import CoinGecko
+//import CoinGecko
 
 struct GiftInfo {
     let name: String
