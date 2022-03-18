@@ -10,6 +10,7 @@ import UIKit
 import LocalAuthentication
 import SwiftUI
 import WalletKit
+import WebKit
 
 // swiftlint:disable type_body_length
 // swiftlint:disable cyclomatic_complexity
@@ -261,12 +262,17 @@ class ModalPresenter: Subscriber, Trackable {
             }
                         
             return ModalViewController(childViewController: requestVc)
-        case .buy(let currency):
-            var url = "/buy"
-            if let currency = currency {
-                url += "?currency=\(currency.code)"
-            }
-            presentPlatformWebViewController(url)
+        case .buy:
+            guard let request = WyreRequest().generateRequest() else { return nil }
+            
+            let webView = WKWebView()
+            webView.load(request)
+            let vc = UIViewController()
+            vc.view.addSubview(webView)
+            webView.constrain(toSuperviewEdges: nil)
+            webView.load(request)
+            topViewController?.show(vc, sender: nil)
+
             return nil
         case .sell(let currency):
             var url = "/sell"
