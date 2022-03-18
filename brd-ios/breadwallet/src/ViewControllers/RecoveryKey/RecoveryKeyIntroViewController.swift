@@ -323,6 +323,10 @@ class RecoveryKeyIntroViewController: BaseRecoveryKeyViewController {
         return eventContext == .onboarding ? .skip : .close
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return eventContext == .onboarding ? .default : .lightContent
+    }
+    
     override func onCloseButton() {
         guard let exit = self.exitCallback else { return }
         

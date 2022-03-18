@@ -170,6 +170,10 @@ class WriteRecoveryKeyViewController: BaseRecoveryKeyViewController {
         return eventContext == .onboarding ? .skip : .close
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return eventContext == .onboarding ? .default : .lightContent
+    }
+    
     // MARK: lifecycle
     
     override func viewDidLoad() {

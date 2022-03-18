@@ -95,6 +95,10 @@ class ConfirmRecoveryKeyViewController: BaseRecoveryKeyViewController {
         return eventContext == .onboarding ? .skip : .close
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return eventContext == .onboarding ? .default : .lightContent
+    }
+    
     override func onCloseButton() {
         RecoveryKeyFlowController.promptToSetUpRecoveryKeyLater(from: self) { [unowned self] (userWantsToSetUpLater) in
             if userWantsToSetUpLater {
