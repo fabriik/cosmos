@@ -12,7 +12,11 @@ import Foundation
 
 struct WyreRequest: ExternalAPIRequest {
     typealias Response = String
+#if DEBUG
     var hostName = "https://pay.testwyre.com"
+#else
+    var hostName = "https://pay.wyre.com"
+#endif
     var resourceName = "purchase"
     private static var wyreToken = "SK-DH6XP4AX-ZQ3ULQ2G-6CVP3PF9-TFJ4N7VJ"
     
