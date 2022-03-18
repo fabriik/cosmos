@@ -26,7 +26,7 @@ class StartNavigationDelegate: NSObject, UINavigationControllerDelegate {
         if viewController is EnterPhraseViewController {
             navigationController.navigationBar.tintColor = .navigationTint
             navigationController.navigationBar.titleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.white,
+                NSAttributedString.Key.foregroundColor: Theme.blueBackground,
                 NSAttributedString.Key.font: UIFont.customBold(size: 17.0)
             ]
             navigationController.setClearNavbar()
@@ -50,7 +50,7 @@ class StartNavigationDelegate: NSObject, UINavigationControllerDelegate {
             if viewController is UIHostingController<SelectBackupView> {
                navigationController.navigationBar.tintColor = .navigationTint
                navigationController.navigationBar.titleTextAttributes = [
-                   NSAttributedString.Key.foregroundColor: UIColor.white,
+                NSAttributedString.Key.foregroundColor: Theme.blueBackground,
                    NSAttributedString.Key.font: UIFont.customBold(size: 17.0)
                ]
                navigationController.setClearNavbar()

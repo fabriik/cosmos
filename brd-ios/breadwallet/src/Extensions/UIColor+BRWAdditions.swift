@@ -284,7 +284,6 @@ extension UIColor {
     }
     
     static var navigationTint: UIColor {
-//        return .white
         return Theme.blueBackground
     }
     
