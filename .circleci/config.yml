@@ -14,7 +14,7 @@ workflows:
 jobs:
   build-fabriik:
     macos:
-      xcode: 13.2.1 # Specify the Xcode version to use
+      xcode: 13.3 # Specify the Xcode version to use
 
     steps:
       - checkout
@@ -91,7 +91,6 @@ jobs:
       - run:
           name: Install Prerequisites
           command: |
-            sudo gem install xcpretty
             brew --cache
 
             brew tap adoptopenjdk/openjdk
@@ -101,7 +100,6 @@ jobs:
 
             brew install ghostscript SwiftLint
             brew install --cask android-commandlinetools
-            export ANDROID_SDK_ROOT=$(brew --prefix)/share/android-commandlinetools/cmdline-tools/homebrew/bin
 
       - run:
           name: Check Key
@@ -148,8 +146,7 @@ jobs:
             echo "API_URL = $API_URL" >> $BRD_ENV
             echo "DEBUG_TOKEN = $DEBUG_TOKEN" >> $BRD_ENV
             echo "DEBUG_URL = $DEBUG_URL" >> $BRD_ENV
-            echo "sdk.dir=$HOME/Library/Android/Sdk" > ./local.properties
-            ls  -la external/walletKit/WalletKitJava
+            echo "sdk.dir=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin" > ./local.properties
 
       - run:
           name: Build Walletkit Subproject
@@ -157,13 +154,10 @@ jobs:
             # security default-keychain
             # security set-keychain-settings -lut 9999
             # security unlock-keychain -p test ~/Library/Keychains/default.keychain
-            ls  -la external/walletKit/WalletKitJava
-            ./gradlew cosmos-bundled:createXCFramework
-            ls  -la external/walletKit/WalletKitJava
+            export ANDROID_SDK_ROOT=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin
             cp ./local.properties external/walletKit/walletKitJava/local.properties
-            ls  -la external/walletKit/WalletKitJava
+            ./gradlew cosmos-bundled:createXCFramework
             sed -i '' '18i\'$'\n        ndkVersion \'21.1.6352462\'\n\n' external/walletkit/WalletKitJava/corenative-android/build.gradle
-            ls  -la external/walletKit/WalletKitJava
 
       - run:
           name: Run Build
