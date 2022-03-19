@@ -172,24 +172,31 @@ jobs:
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
-            git config --global user.name "circleci"
-            git config --global user.email circleci@just.cash
-            git add --all *
-            git commit -m "circleci build"
+            #  git config --global user.name "circleci"
+            #  git config --global user.email circleci@just.cash
+            #  git add --all *
+            #  git commit -m "circleci build"
+            echo "Make Build Directory"
             mkdir brd-ios/build
+
+            echo "Copy exportOptions.plist to build"
             cp .circleci/config/exportOptions.plist brd-ios/build
+
+            echo "change to brd-ios directory and build"
             cd brd-ios
-            ./scripts/makebuild.sh 4.3.${CIRCLE_BUILD_NUM} ${CIRCLE_BUILD_NUM} ci
-            ./scripts/uploadbuild.sh ${CIRCLE_BRANCH}
+            ./scripts/makebuild.sh 4.11.0 ${CIRCLE_BUILD_NUM} ci
+
+            # echo "Upload build to testflight"
+            # ./scripts/uploadbuild.sh ${CIRCLE_BRANCH}
 
       - run:
           name: Build using xCode Config (disabled)
           command: |
-            security default-keychain
-            security set-keychain-settings -lut 9999
-            security unlock-keychain -p test ~/Library/Keychains/default.keychain
-            cd brd-ios
-            echo xcodebuild  build  -verbose   -workspace breadwallet.xcworkspace   -scheme breadwallet | xcpretty
+            # security default-keychain
+            # security set-keychain-settings -lut 9999
+            # security unlock-keychain -p test ~/Library/Keychains/default.keychain
+            # cd brd-ios
+            # echo xcodebuild  build  -verbose   -workspace breadwallet.xcworkspace   -scheme breadwallet | xcpretty
 
       - run:
           name: after build check
@@ -201,6 +208,7 @@ jobs:
       # files under test-results folder in the Artifacts tab
       - store_test_results:
           path: brd-ios/test_output
+
       - store_artifacts:
           path: brd-ios/test_output
           destination: scan-output
