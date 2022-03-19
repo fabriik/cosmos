@@ -99,11 +99,9 @@ jobs:
             export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
             ls -la /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 
-            brew install ghostscript SwiftLint android-platform-tools
-            echo $(which adb)
-            export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-            ls -la /usr/local/opt
-            ls -la ~/Library/Android/sdk/tools
+            brew install ghostscript SwiftLint
+            brew install --cask android-commandlinetools
+            export ANDROID_SDK_ROOT=$(brew --prefix)/share/android-commandlinetools/cmdline-tools/homebrew/bin
 
       - run:
           name: Check Key
