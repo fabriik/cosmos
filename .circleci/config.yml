@@ -159,9 +159,6 @@ jobs:
       - run:
           name: Build Walletkit Subproject
           command: |
-            # security default-keychain
-            # security set-keychain-settings -lut 9999
-            # security unlock-keychain -p test ~/Library/Keychains/default.keychain
             export ANDROID_SDK_ROOT=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin
             cp ./local.properties external/walletKit/walletKitJava/local.properties
             ./gradlew cosmos-bundled:createXCFramework
@@ -173,10 +170,6 @@ jobs:
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
-            #  git config --global user.name "circleci"
-            #  git config --global user.email circleci@just.cash
-            #  git add --all *
-            #  git commit -m "circleci build"
             echo "Make Build Directory"
             mkdir brd-ios/build
 
@@ -187,23 +180,24 @@ jobs:
             cd brd-ios
             ./scripts/makebuild.sh 4.11.0 ${CIRCLE_BUILD_NUM} ci
 
-            # echo "Upload build to testflight"
-            # ./scripts/uploadbuild.sh ${CIRCLE_BRANCH}
-
       - run:
-          name: Build using xCode Config (disabled)
+          name: Export Build
           command: |
-            # security default-keychain
-            # security set-keychain-settings -lut 9999
-            # security unlock-keychain -p test ~/Library/Keychains/default.keychain
-            # cd brd-ios
-            # echo xcodebuild  build  -verbose   -workspace breadwallet.xcworkspace   -scheme breadwallet | xcpretty
-
+            security default-keychain
+            security set-keychain-settings -lut 9999
+            security unlock-keychain -p test ~/Library/Keychains/default.keychain
+            echo "Export build to archive"
+            cd brd-ios
+            ./scripts/export_build.sh ${CIRCLE_BRANCH}
       - run:
-          name: after build check
+          name: Export Build
           command: |
-            ls -la build
-            ls -la .
+            security default-keychain
+            security set-keychain-settings -lut 9999
+            security unlock-keychain -p test ~/Library/Keychains/default.keychain
+            echo "Upload build to testflight"
+            cd brd-ios
+            ./scripts/upload_build.sh ${CIRCLE_BRANCH}
 
       - store_test_results:
           path: brd-ios/test_output

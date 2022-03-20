@@ -6,10 +6,8 @@ if [ ! -f $PWD/build/exportOptions.plist ]; then
 	cp $PWD/.circleci/config/exportOptions.plist $PWD/build/exportOptions.plist
 fi
 
-# use xcpretty if available for improved build output formatting
-xcpretty="xcpretty"
-command -v xcpretty >/dev/null 2>&1 || { xcpretty="cat"; echo >&2 "WARNING: xcpretty not found. Install with 'gem install xcpretty' for improved build output."; }
-
+# use xcquiet if available for improved build output formatting
+xcquiet="xcquiet.sh"
 scheme=$1
 
 if [[ -n "$scheme" ]]; then
