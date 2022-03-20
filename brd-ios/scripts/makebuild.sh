@@ -1,39 +1,11 @@
 #!/bin/bash
 
-commit_changes() {
-	version=${mainBundleShortVersionString}
-	if [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-		version="${version}.${mainBundleVersion}";
-	else
-		version="${version}.0.${mainBundleVersion}";
-	fi
-	tag="ios-${version}"
-
-	git add .
-	git status
-	read -n 1 -p "Tag, commit and push changes for build ${version}? [Y/n]" response
-  	if [[ $response == "y" || $response == "Y" || $response == "" ]]; then
-    	git commit -m "build ${version}"
-		git tag ${tag}
-		git push origin ${tag}
-		git push
-		echo
-		echo "Changes committed & pushed."
-		git show --summary
-	else
-		echo
-		echo -n "Changes not committed."
-  fi
-}
-
 show_usage() {
 	echo
 	echo "Usage: ${0##/*} [version] [build]"
-	echo "       ${0##/*} <version> <build> testnet"
+	echo "       ${0##/*} <version> <build> ci"
 	echo
-	echo "If only version number specified, build number is reset to 1."
-	echo "If nothing specified it increments the build number by 1."
-	echo "To make a testnet build specify both version and build followed by 'testnet'."
+	echo "To make a ci build specify both version and build followed by 'ci'."
 	echo
 	exit
 }
@@ -50,9 +22,7 @@ set -e
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-if [ "$3" == "testnet" ]; then
-	scheme="BRD Testnet - TestFlight"
-elif [ "$3" == "ci" ]; then
+if [ "$3" == "ci" ]; then
 	scheme="breadwallet"
 else
 	scheme="BRD Internal - TestFlight"
@@ -70,6 +40,15 @@ git restore breadwallet/Resources/brd-tokens-staging.tar
 git restore breadwallet/Info.plist
 git restore breadwalletWidget/Info.plist
 git restore breadwalletIntentHandler/Info.plist
+
+echo
+echo "Set versioning"
+echo
+agvtool new-marketing-version $1
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
+agvtool new-version $2
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 echo
 echo "Download currencies and bundles"
