@@ -186,22 +186,42 @@ jobs:
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
+
             echo "Export build to archive"
             cd brd-ios
-            ./scripts/export_build.sh ${CIRCLE_BRANCH}
+
+            scheme="breadwallet"
+            export_path="build"
+            archive_path="build/fabriik.xcarchive"
+
+            # Export the build
+            xcodebuild -exportArchive -archivePath "$archive_path" -exportOptionsPlist build/exportOptions.plist -exportPath $export_path
+
       - run:
-          name: Export Build
+          name: Upload Build
           command: |
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
+
             echo "Upload build to testflight"
             cd brd-ios
-            ./scripts/upload_build.sh ${CIRCLE_BRANCH}
+
+            scheme="breadwallet"
+            export_path="build"
+            archive_path="build/fabriik.xcarchive"
+
+            # Upload if on a release branch
+            if [[ ${CIRCLE_BRANCH} == releases* ]]; then
+                echo "Release build detected . Will upload to TestFlight.  Branch is " ${CIRCLE_BRANCH}
+                xcrun altool --upload-app --type ios --file "$export_path/"$scheme".ipa" --username "$APPLE_BUILD_USER" --password "$APPLE_BUILD_PASSWORD"
+            else
+                echo "Not a releases build.  Will NOT upload. Branch is " ${CIRCLE_BRANCH}
+            fi
 
       - store_test_results:
           path: brd-ios/test_output
 
       - store_artifacts:
-          path: brd-ios/test_output
-          destination: scan-output
+          path: brd-ios/build
+          destination: arty
