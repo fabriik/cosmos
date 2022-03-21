@@ -25,7 +25,7 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
     var images = [KYCUploadViewController.Step: Data]()
     
     func setImage(request: KYCUpload.SetImage.Request) {
-        guard let image = request.image.resized(withPercentage: 0.5, isOpaque: false)?.jpegData(compressionQuality: 0.7) else { return }
+        guard let image = request.image.resized(withPercentage: 0.5)?.jpegData(compressionQuality: 0.7) else { return }
         images[request.step] = image
     }
     
