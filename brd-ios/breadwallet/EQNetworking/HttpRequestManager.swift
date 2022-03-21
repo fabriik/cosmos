@@ -12,7 +12,6 @@ final class HTTPRequestManager {
                  media: [MultiPart] = [],
                  parameters: [String: Any] = [:],
                  encoding: Encoding = .json) -> HTTPRequest {
-        return HTTPRequest(method: method, url: url, headers: headers, media: media,
-                           parameters: parameters, encoding: encoding)
+        return HTTPRequest(method: method, url: url, headers: headers, media: media, parameters: parameters, encoding: encoding)
     }
 }
