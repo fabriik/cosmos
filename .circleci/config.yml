@@ -6,13 +6,13 @@ orbs:
 workflows:
   buildapp:
     jobs:
-      - build-fabriik:
+      - build-one-ios:
           filters:
             branches:
               only: gvh/ci
 
 jobs:
-  build-fabriik:
+  build-one-ios:
     macos:
       xcode: 13.3 # Specify the Xcode version to use
 
@@ -184,7 +184,7 @@ jobs:
             cd brd-ios
 
             echo "Make Build Directory"
-            mkdir brd-ios/build
+            mkdir build
 
             mainBundleShortVersionString=4.11.0
             mainBundleVersion=${CIRCLE_BUILD_NUM}
