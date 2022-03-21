@@ -157,6 +157,15 @@ jobs:
             echo "sdk.dir=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin" > ./local.properties
 
       - run:
+          name: Create exportOptions.plist
+          command: |
+            # check for config file
+            if [ ! -f $PWD/build/exportOptions.plist ]; then
+                mkdir -pv $PWD/build
+                cp $PWD/.circleci/config/exportOptions.plist $PWD/build/exportOptions.plist
+            fi
+
+      - run:
           name: Build Walletkit Subproject
           command: |
             export ANDROID_SDK_ROOT=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin
@@ -178,7 +187,26 @@ jobs:
 
             echo "change to brd-ios directory and build"
             cd brd-ios
-            ./scripts/makebuild.sh 4.11.0 ${CIRCLE_BUILD_NUM} ci
+
+            script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+            mainBundleShortVersionString=4.11.0
+            mainBundleVersion=${CIRCLE_BUILD_NUM}
+            scheme="breadwallet"
+
+            echo "Set version"
+            agvtool new-marketing-version ${mainBundleShortVersionString}
+            agvtool new-version ${mainBundleVersion}
+
+            echo "Download currencies and bundles"
+            ${script_dir}/download_bundles.sh
+            ${script_dir}/download_currencylist.sh
+
+            echo "Build $scheme version ${mainBundleShortVersionString} build number ${mainBundleVersion}"
+
+            # clean and archive the specified scheme
+            set -o pipefail
+            xcodebuild -workspace breadwallet.xcworkspace -scheme "$scheme" clean archive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
       - run:
           name: Export Build
@@ -192,7 +220,7 @@ jobs:
 
             scheme="breadwallet"
             export_path="build"
-            archive_path="build/fabriik.xcarchive"
+            archive_path="build/breadwallet.xcarchive"
 
             # Export the build
             xcodebuild -exportArchive -archivePath "$archive_path" -exportOptionsPlist build/exportOptions.plist -exportPath $export_path
@@ -209,7 +237,7 @@ jobs:
 
             scheme="breadwallet"
             export_path="build"
-            archive_path="build/fabriik.xcarchive"
+            archive_path="build/breadwallet.xcarchive"
 
             # Upload if on a release branch
             if [[ ${CIRCLE_BRANCH} == releases* ]]; then
