@@ -3,13 +3,13 @@ version: 2.1
 workflows:
   buildapp:
     jobs:
-      - build-fabriik:
+      - build-one-ios:
           filters:
             branches:
               only: gvh/ci
 
 jobs:
-  build-fabriik:
+  build-one-ios:
     macos:
       xcode: 13.3 # Specify the Xcode version to use
 
@@ -157,9 +157,9 @@ jobs:
           name: Create exportOptions.plist
           command: |
             # check for config file
-            if [ ! -f $PWD/build/exportOptions.plist ]; then
-                mkdir -pv $PWD/build
-                cp $PWD/.circleci/config/exportOptions.plist $PWD/build/exportOptions.plist
+            if [ ! -f brd-ios/build/exportOptions.plist ]; then
+                mkdir -pv brd-ios/build
+                cp .circleci/config/exportOptions.plist brd-ios/build/exportOptions.plist
             fi
 
       - run:
@@ -171,34 +171,32 @@ jobs:
             sed -i '' '18i\'$'\n        ndkVersion \'21.1.6352462\'\n\n' external/walletkit/WalletKitJava/corenative-android/build.gradle
 
       - run:
+          name: Set Versions
+          command: |
+            mainBundleShortVersionString=4.11.0
+            mainBundleVersion=${CIRCLE_BUILD_NUM}
+
+            cd brd-ios
+            agvtool new-marketing-version ${mainBundleShortVersionString}
+            agvtool new-version ${mainBundleVersion}
+
+      - run:
+          name: Download Currencies and Bundles
+          command: |
+            cd brd-ios
+            scripts/download_bundles.sh
+            scripts/download_currencylist.sh
+
+      - run:
           name: Run Build
           command: |
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
 
-            mainBundleShortVersionString=4.11.0
-            mainBundleVersion=${CIRCLE_BUILD_NUM}
-            scheme="breadwallet"
-
-            echo "Make Build Directory"
             cd brd-ios
-            mkdir -p build
-
-            echo "Copy exportOptions.plist to build"
-            cp .circleci/config/exportOptions.plist build
-
-            echo "Set versioning"
-            agvtool new-marketing-version ${mainBundleShortVersionString}
-            agvtool new-version ${mainBundleVersion}
-
-            echo "Download currencies and bundles"
-            scripts/download_bundles.sh
-            scripts/download_currencylist.sh
 
             echo "Build breadwallet version ${mainBundleShortVersionString} build number ${mainBundleVersion}"
-
-            # clean and archive the specified scheme
             set -o pipefail
             xcodebuild -workspace breadwallet.xcworkspace -scheme "breadwallet" archive -archivePath build/breadwallet.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
@@ -209,23 +207,18 @@ jobs:
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
 
-            echo "Export build to archive"
             cd brd-ios
 
-            # Export the build
             xcodebuild -exportArchive -archivePath build/breadwallet.xcarchive -exportOptionsPlist build/exportOptions.plist -exportPath build
 
       - run:
-          name: Upload Build
+          name: Upload Build To Testflight
           command: |
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
 
-            echo "Upload build to testflight"
             cd brd-ios
-
-            archive_path="build/breadwallet.xcarchive"
 
             # Upload if on a release branch
             if [[ ${CIRCLE_BRANCH} == releases* ]]; then
