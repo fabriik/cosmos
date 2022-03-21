@@ -38,15 +38,17 @@ struct KYCUploadSelfieWorkerData: RequestModelData, UrlModelData {
 }
 
 class KYCUploadSelfieWorker: KYCBasePlainResponseWorker {
-    override func execute() {
+    override func executeMultipartRequest(requestData: RequestModelData? = nil, completion: BasePlainResponseWorker.Completion?) {
         guard let getParameters = (requestData as? KYCUploadSelfieWorkerData)?.getParameters(),
               let selfieValue = getParameters[KYCUploadFrontBackWorker.frontKey] as? Data else { return }
         
-        executeMultipartRequest(data: [MultipartMedia(with: selfieValue,
-                                                      fileName: UUID().uuidString,
-                                                      forKey: KYCUploadFrontBackWorker.frontKey,
-                                                      mimeType: .jpeg,
-                                                      mimeFileFormat: .jpeg)])
+        self.data = [MultipartMedia(with: selfieValue,
+                                    fileName: UUID().uuidString,
+                                    forKey: KYCUploadFrontBackWorker.frontKey,
+                                    mimeType: .jpeg,
+                                    mimeFileFormat: .jpeg)]
+        
+        super.executeMultipartRequest(requestData: requestData, completion: completion)
     }
     
     override func getUrl() -> String {

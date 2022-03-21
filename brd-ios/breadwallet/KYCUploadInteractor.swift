@@ -25,7 +25,7 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
     var images = [KYCUploadViewController.Step: Data]()
     
     func setImage(request: KYCUpload.SetImage.Request) {
-        guard let image = request.image.jpegData(compressionQuality: 0.7) else { return }
+        guard let image = request.image.resized(withPercentage: 0.5, isOpaque: false)?.jpegData(compressionQuality: 0.7) else { return }
         images[request.step] = image
     }
     
@@ -49,9 +49,9 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
         let workerUrlModelData = KYCUploadSelfieWorkerUrlModelData()
         let workerRequest = KYCUploadSelfieWorkerRequest(imageData: image)
         let workerData = KYCUploadSelfieWorkerData(workerRequest: workerRequest,
-                                                  workerUrlModelData: workerUrlModelData)
+                                                   workerUrlModelData: workerUrlModelData)
         
-        worker.execute(requestData: workerData) { [weak self] error in
+        worker.executeMultipartRequest(requestData: workerData) { [weak self] error in
             guard error == nil else {
                 self?.presenter?.presentError(response: .init(error: error))
                 return
@@ -68,7 +68,7 @@ class KYCUploadInteractor: KYCUploadBusinessLogic, KYCUploadDataStore {
         let workerData = KYCUploadFrontBackWorkerData(workerRequest: workerRequest,
                                                       workerUrlModelData: workerUrlModelData)
         
-        worker.execute(requestData: workerData) { [weak self] error in
+        worker.executeMultipartRequest(requestData: workerData) { [weak self] error in
             guard error == nil else {
                 self?.presenter?.presentError(response: .init(error: error))
                 return

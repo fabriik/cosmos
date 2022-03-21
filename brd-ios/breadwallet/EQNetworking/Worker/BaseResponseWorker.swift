@@ -19,6 +19,12 @@ open class BaseResponseWorker<T: ModelResponse, U: Model, V: ModelMapper<T, U>>:
         execute()
     }
     
+    open func executeMultipartRequest(requestData: RequestModelData? = nil, completion: Completion?) {
+        self.requestData = requestData
+        self.completion = completion
+        executeMultipartRequest()
+    }
+    
     override open func processResponse(response: HTTPResponse) {
         guard let data = response.data, response.error == nil else { return }
         guard let payload = T.parse(from: data, type: T.self) else { return }

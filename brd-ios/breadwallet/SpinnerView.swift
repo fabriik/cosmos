@@ -81,6 +81,8 @@ class SpinnerView: UIView {
         animation.calculationMode = .linear
         animation.duration = duration
         animation.repeatCount = .infinity
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = .forwards
         layer.add(animation, forKey: animation.keyPath)
     }
     
@@ -89,6 +91,8 @@ class SpinnerView: UIView {
         animation.values = [UIColor.blueGradientStart.cgColor, UIColor.blueGradientEnd.cgColor]
         animation.calculationMode = .linear
         animation.repeatCount = .infinity
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = .forwards
         layer.add(animation, forKey: animation.keyPath)
     }
 }

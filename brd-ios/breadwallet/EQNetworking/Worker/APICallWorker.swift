@@ -7,18 +7,20 @@ import Foundation
 
 public protocol APICallWorkerProperties {
     func execute()
-    func executeMultipartRequest(data: [MultiPart])
+    func executeMultipartRequest()
     func processResponse(response: HTTPResponse)
     func apiCallDidFinish(response: HTTPResponse)
     func getUrl() -> String
     func getMethod() -> EQHTTPMethod
     func getParameters() -> [String: Any]
     func getHeaders() -> [String: String]
+    
+    var data: [MultiPart] { get set }
 }
 /**
  Super class for all workers that make api calls to API
  */
-open class APICallWorker {
+open class APICallWorker: APICallWorkerProperties {
     var httpRequestManager = HTTPRequestManager()
     
     public init() {}
@@ -27,7 +29,7 @@ open class APICallWorker {
         let method = getMethod()
         let url = getUrl()
         let headers = getHeaders()
-        var parameters = getParameters()
+        let parameters = getParameters()
         
         let request = httpRequestManager.request(method, url: url, headers: headers, parameters: parameters)
         request.run { response in
@@ -40,14 +42,14 @@ open class APICallWorker {
         }
     }
     
-    open func executeMultipartRequest(data: [MultiPart]) {
+    open func executeMultipartRequest() {
         let method = getMethod()
         let url = getUrl()
         let headers = getHeaders()
         let parameters = getParameters()
+        let myData = data
         
-        let request = httpRequestManager.request(method, url: url, headers: headers, parameters: parameters)
-        request.media = data
+        let request = httpRequestManager.request(method, url: url, headers: headers, media: myData, parameters: parameters)
         request.runMultipartRequest { response in
             DispatchQueue.global(qos: .background).async {
                 self.processResponse(response: response)
@@ -71,4 +73,6 @@ open class APICallWorker {
     open func getMethod() -> EQHTTPMethod { return .get }
     open func getParameters() -> [String: Any] { return [:] }
     open func getHeaders() -> [String: String] { return [:] }
+    
+    open var data = [MultiPart]()
 }

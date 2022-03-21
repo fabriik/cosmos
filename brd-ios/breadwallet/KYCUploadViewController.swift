@@ -157,7 +157,20 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
             return KYCProgressCell()
         }
         
-        cell.setValues(text: step.title, progress: .idFront)
+        var cellStep: KYCProgressCell.Progress = .idFront
+        switch step {
+        case .idFront:
+            cellStep = .idFront
+            
+        case .idBack:
+            cellStep = .idBack
+            
+        case .idSelfie:
+            cellStep = .idSelfie
+            
+        }
+        
+        cell.setValues(text: step.title, progress: cellStep)
         
         return cell
     }
@@ -207,7 +220,7 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
             }
             
             guard let progress = self.sections.firstIndex(of: .progress),
-                    let text = self.sections.firstIndex(of: .text) else { return }
+                  let text = self.sections.firstIndex(of: .text) else { return }
             self.tableView.reloadSections([progress, text], with: .fade)
             
         }
