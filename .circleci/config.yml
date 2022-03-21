@@ -1,18 +1,15 @@
 version: 2.1
 
-orbs:
-  slack: circleci/slack@4.8.3
-
 workflows:
   buildapp:
     jobs:
-      - build-one-ios:
+      - build-fabriik:
           filters:
             branches:
               only: gvh/ci
 
 jobs:
-  build-one-ios:
+  build-fabriik:
     macos:
       xcode: 13.3 # Specify the Xcode version to use
 
@@ -159,11 +156,10 @@ jobs:
       - run:
           name: Create exportOptions.plist
           command: |
-            cd brd-ios
             # check for config file
-            if [ ! -f build/exportOptions.plist ]; then
-                mkdir -pv build
-                cp ../.circleci/config/exportOptions.plist build/exportOptions.plist
+            if [ ! -f $PWD/build/exportOptions.plist ]; then
+                mkdir -pv $PWD/build
+                cp $PWD/.circleci/config/exportOptions.plist $PWD/build/exportOptions.plist
             fi
 
       - run:
@@ -181,17 +177,18 @@ jobs:
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
 
-            cd brd-ios
-
-            echo "Make Build Directory"
-            mkdir build
-
             mainBundleShortVersionString=4.11.0
             mainBundleVersion=${CIRCLE_BUILD_NUM}
             scheme="breadwallet"
-            archive_path="build/breadwallet.xcarchive"
 
-            echo "Set version"
+            echo "Make Build Directory"
+            cd brd-ios
+            mkdir -p build
+
+            echo "Copy exportOptions.plist to build"
+            cp .circleci/config/exportOptions.plist build
+
+            echo "Set versioning"
             agvtool new-marketing-version ${mainBundleShortVersionString}
             agvtool new-version ${mainBundleVersion}
 
@@ -199,11 +196,11 @@ jobs:
             scripts/download_bundles.sh
             scripts/download_currencylist.sh
 
-            echo "Build $scheme version ${mainBundleShortVersionString} build number ${mainBundleVersion}"
+            echo "Build breadwallet version ${mainBundleShortVersionString} build number ${mainBundleVersion}"
 
             # clean and archive the specified scheme
             set -o pipefail
-            xcodebuild -workspace breadwallet.xcworkspace -scheme "$scheme" clean archive -archivePath "$archive_path" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+            xcodebuild -workspace breadwallet.xcworkspace -scheme "breadwallet" archive -archivePath build/breadwallet.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
       - run:
           name: Export Build
@@ -215,12 +212,8 @@ jobs:
             echo "Export build to archive"
             cd brd-ios
 
-            scheme="breadwallet"
-            export_path="build"
-            archive_path="build/breadwallet.xcarchive"
-
             # Export the build
-            xcodebuild -exportArchive -archivePath "$archive_path" -exportOptionsPlist build/exportOptions.plist -exportPath $export_path
+            xcodebuild -exportArchive -archivePath build/breadwallet.xcarchive -exportOptionsPlist build/exportOptions.plist -exportPath build
 
       - run:
           name: Upload Build
@@ -232,14 +225,12 @@ jobs:
             echo "Upload build to testflight"
             cd brd-ios
 
-            scheme="breadwallet"
-            export_path="build"
             archive_path="build/breadwallet.xcarchive"
 
             # Upload if on a release branch
             if [[ ${CIRCLE_BRANCH} == releases* ]]; then
-                echo "Release build detected . Will upload to TestFlight.  Branch is " ${CIRCLE_BRANCH}
-                xcrun altool --upload-app --type ios --file "$export_path/"$scheme".ipa" --username "$APPLE_BUILD_USER" --password "$APPLE_BUILD_PASSWORD"
+                echo "Release build detected . Would have uploaded to TestFlight.  Branch is " ${CIRCLE_BRANCH}
+                # xcrun altool --upload-app --type ios --file "build/breadwallet.ipa" --username "$APPLE_BUILD_USER" --password "$APPLE_BUILD_PASSWORD"
             else
                 echo "Not a releases build.  Will NOT upload. Branch is " ${CIRCLE_BRANCH}
             fi
@@ -249,4 +240,4 @@ jobs:
 
       - store_artifacts:
           path: brd-ios/build
-          destination: arty
+          destination: artifacts/
