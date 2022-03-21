@@ -159,10 +159,11 @@ jobs:
       - run:
           name: Create exportOptions.plist
           command: |
+            cd brd-ios
             # check for config file
-            if [ ! -f $PWD/build/exportOptions.plist ]; then
-                mkdir -pv $PWD/build
-                cp $PWD/.circleci/config/exportOptions.plist $PWD/build/exportOptions.plist
+            if [ ! -f build/exportOptions.plist ]; then
+                mkdir -pv build
+                cp ../.circleci/config/exportOptions.plist build/exportOptions.plist
             fi
 
       - run:
@@ -179,18 +180,16 @@ jobs:
             security default-keychain
             security set-keychain-settings -lut 9999
             security unlock-keychain -p test ~/Library/Keychains/default.keychain
+
+            cd brd-ios
+
             echo "Make Build Directory"
             mkdir brd-ios/build
-
-            echo "Copy exportOptions.plist to build"
-            cp .circleci/config/exportOptions.plist brd-ios/build
-
-            echo "change to brd-ios directory and build"
-            cd brd-ios
 
             mainBundleShortVersionString=4.11.0
             mainBundleVersion=${CIRCLE_BUILD_NUM}
             scheme="breadwallet"
+            archive_path="build/breadwallet.xcarchive"
 
             echo "Set version"
             agvtool new-marketing-version ${mainBundleShortVersionString}
@@ -204,7 +203,7 @@ jobs:
 
             # clean and archive the specified scheme
             set -o pipefail
-            xcodebuild -workspace breadwallet.xcworkspace -scheme "$scheme" clean archive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+            xcodebuild -workspace breadwallet.xcworkspace -scheme "$scheme" clean archive -archivePath "$archive_path" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
       - run:
           name: Export Build
