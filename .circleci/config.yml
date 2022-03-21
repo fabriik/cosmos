@@ -188,8 +188,6 @@ jobs:
             echo "change to brd-ios directory and build"
             cd brd-ios
 
-            script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
             mainBundleShortVersionString=4.11.0
             mainBundleVersion=${CIRCLE_BUILD_NUM}
             scheme="breadwallet"
@@ -199,8 +197,8 @@ jobs:
             agvtool new-version ${mainBundleVersion}
 
             echo "Download currencies and bundles"
-            ${script_dir}/download_bundles.sh
-            ${script_dir}/download_currencylist.sh
+            scripts/download_bundles.sh
+            scripts/download_currencylist.sh
 
             echo "Build $scheme version ${mainBundleShortVersionString} build number ${mainBundleVersion}"
 
