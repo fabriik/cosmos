@@ -233,7 +233,9 @@ class ModalPresenter: Subscriber, Trackable {
         if let articleId = articleId {
             url = "/support/article?slug=\(articleId)"
             if let currency = currency {
-                url += "&currency=\(currency.supportCode)"
+                // TODO: BSV does not have a support page yet, so we redirect to the BTC one
+                let code = currency.code == "BSV" ? "btc" : currency.supportCode
+                url += "&currency=\(code)"
             }
         } else {
             url = "/support?"
