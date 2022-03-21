@@ -3,7 +3,7 @@
 //  Copyright © 2022 Equaleyes Ltd. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class HTTPRequest {
     var method: EQHTTPMethod = .get
