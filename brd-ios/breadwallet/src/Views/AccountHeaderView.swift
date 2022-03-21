@@ -213,7 +213,7 @@ class AccountHeaderView: UIView, GradientDrawable, Subscriber, Trackable {
         currencyName.textAlignment = .center
         currencyName.text = currency.name
         
-        exchangeRateLabel.textColor = Theme.primaryText
+        exchangeRateLabel.textColor = .white
         exchangeRateLabel.textAlignment = .center
 
         modeLabel.isHidden = true
@@ -228,7 +228,7 @@ class AccountHeaderView: UIView, GradientDrawable, Subscriber, Trackable {
         }
 
         priceChangeView.currency = currency
-        priceDateLabel.textColor = Theme.tertiaryText
+        priceDateLabel.textColor = UIColor.white.withAlphaComponent(0.6)
         priceDateLabel.textAlignment = .center
         priceDateLabel.alpha = 0.0
         

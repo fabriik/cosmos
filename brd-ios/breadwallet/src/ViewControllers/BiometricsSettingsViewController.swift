@@ -57,7 +57,7 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setWhiteStyle()
+        self.navigationController?.setDarkStyle()
     }
     
     override func viewDidLoad() {
@@ -157,6 +157,7 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
 
     private func setData() {
         imageView.image = UIImage(named: imageName)
+        imageView.tintColor = Theme.blueBackground
         explanationLabel.text = explanatoryText
         unlockTitleLabel.text = unlockTitleText
         transactionsTitleLabel.text = transactionsTitleText
@@ -219,7 +220,7 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
         let negativePadding = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         negativePadding.width = -16.0
         let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.enableTouchId)
-        faqButton.tintColor = .white
+        faqButton.tintColor = Theme.blueBackground
         navigationItem.rightBarButtonItems = [negativePadding, UIBarButtonItem(customView: faqButton)]
     }
 

@@ -65,6 +65,23 @@ open class AssetArchive {
             // we do not have the archive, download a fresh copy
             return downloadCompleteArchive(completionHandler: completionHandler)
         }
+        
+        // update assets if enabled (currently BE does not support it yet)
+        let extract: (() -> Void) = { [weak self] in
+            do {
+                try self?.extractArchive()
+                return completionHandler(nil)
+            } catch let e {
+                print("[AssetArchive] error extracting bundle: \(e)")
+                return completionHandler(BRAPIClientError.unknownError)
+            }
+        }
+        
+        guard C.checkForUpdatedAssets else {
+            extract()
+            return
+        }
+        
         apiClient.getAssetVersions(name) { (versions, err) in
             DispatchQueue.global(qos: .utility).async {
                 if let err = err {
@@ -77,13 +94,7 @@ open class AssetArchive {
                 if versions.firstIndex(of: version) == versions.count - 1 {
                     // have the most recent version
                     print("[AssetArchive] already at most recent version of bundle \(self.name)")
-                    do {
-                        try self.extractArchive()
-                        return completionHandler(nil)
-                    } catch let e {
-                        print("[AssetArchive] error extracting bundle: \(e)")
-                        return completionHandler(BRAPIClientError.unknownError)
-                    }
+                    extract()
                 } else {
                     // need to update the version
                     self.downloadAndPatchArchive(fromVersion: version, completionHandler: completionHandler)

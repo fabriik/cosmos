@@ -45,6 +45,7 @@ class MenuViewController: UITableViewController, Subscriber {
         tableView.backgroundColor = Theme.primaryBackground
         tableView.rowHeight = 48.0
         
+        navigationController?.navigationBar.backgroundColor = Theme.primaryBackground
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         if let button = faqButton {

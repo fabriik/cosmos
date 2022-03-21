@@ -26,8 +26,8 @@ class KYCNavigationController: UINavigationController, UINavigationControllerDel
             navigationBar.compactAppearance = appearance
         }
         
-        navigationBar.tintColor = .navigationTint
-        navigationBar.barTintColor = .navigationTint
+        navigationBar.tintColor = .kycCompletelyWhite
+        navigationBar.barTintColor = .kycCompletelyWhite
         navigationBar.shadowImage = UIImage()
         navigationBar.prefersLargeTitles = false
         
@@ -42,7 +42,17 @@ class KYCNavigationController: UINavigationController, UINavigationControllerDel
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        let item = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        let item = KYCBackBarButtonItem(title: "        ", style: .plain, target: nil, action: nil)
         viewController.navigationItem.backBarButtonItem = item
+    }
+}
+
+class KYCBackBarButtonItem: UIBarButtonItem {
+    @available(iOS 14.0, *)
+    override var menu: UIMenu? {
+        get {
+            return super.menu
+        }
+        set {}
     }
 }

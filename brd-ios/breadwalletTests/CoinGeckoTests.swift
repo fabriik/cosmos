@@ -11,7 +11,7 @@
 import Foundation
 import XCTest
 @testable import breadwallet
-import CoinGecko
+// import CoinGecko
 
 private var authenticator: WalletAuthenticator { return keyStore as WalletAuthenticator }
 private var brClient: BRAPIClient!
@@ -71,7 +71,7 @@ class CoinGeckoTests : XCTestCase {
             for chunk in chunks {
                 group.enter()
                 let vs = "usd"
-                let resource = Resources.simplePrice(ids: chunk, vsCurrency: vs, options: [.change]) { (result: Result<PriceList, CoinGeckoError>) in
+                let resource = Resources.simplePrice(ids: chunk, vsCurrency: vs, options: [.change]) { (result: Result<[SimplePrice], CoinGeckoError>) in
                     guard case .success(let data) = result else { return group.leave() }
                     var missing = [String]()
                     chunk.forEach { id in

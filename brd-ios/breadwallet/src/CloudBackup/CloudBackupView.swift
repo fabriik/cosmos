@@ -57,7 +57,7 @@ struct CloudBackupView: View {
                             .font(Font(Theme.body1))
                             .foregroundColor(Color(Theme.secondaryText))
                     }
-                    .toggleStyle(SwitchToggleStyle(tint: Color(Theme.accent)))
+                    .toggleStyle(SwitchToggleStyle(tint: Color(Theme.blueBackground)))
                     .onReceive(Just(isBackupOn), perform: self.onToggleChange)
                     .if(!E.isIPhone5, content: { $0.padding() })
                     .if(E.isIPhone5, content: { $0.padding([.leading, .trailing]) })
@@ -84,7 +84,7 @@ struct CloudBackupView: View {
                     .lineLimit(nil)
                     .if(!E.isIPhone5, content: { $0.padding() })
                     .if(E.isIPhone5, content: { $0.padding(4.0) })
-                }.background(Color(Theme.secondaryBackground))
+                }.background(Color(Theme.transparentBlue))
                 .cornerRadius(4.0)
                 .padding()
                 if self.synchronizer.context == .onboarding {
@@ -97,10 +97,10 @@ struct CloudBackupView: View {
                     }, label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 4.0)
-                                .fill(Color(Theme.accent))
+                                .fill(Color(Theme.blueBackground))
                             Text(S.Button.continueAction)
                                 .font(Font(Theme.body1))
-                                .foregroundColor(Color(Theme.primaryText))
+                                .foregroundColor(Color(Theme.primaryBackground))
                         }
                     })
                     .frame(height: 44.0)
@@ -195,7 +195,7 @@ struct CloudBackupViewBody: View {
             CloudBackupIcon(style: .up)
             Text(S.CloudBackup.mainTitle)
                 .font(Font(Theme.h1Title))
-                .foregroundColor(.white)
+                .foregroundColor(.black)
             Text(S.CloudBackup.mainBody)
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(nil)

@@ -105,7 +105,6 @@ class ApplicationController: Subscriber, Trackable {
         setupAppearance()
         setupRootViewController()
         window.makeKeyAndVisible()
-        initializeAssets()
         
         alertPresenter = AlertPresenter(window: self.window)
 
@@ -140,6 +139,7 @@ class ApplicationController: Subscriber, Trackable {
     private func setupKeyboard() {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
     }
     
     private func enterOnboarding() {
@@ -188,9 +188,9 @@ class ApplicationController: Subscriber, Trackable {
                                                              system: weakSelf.coreSystem,
                                                              window: weakSelf.window,
                                                              alertPresenter: weakSelf.alertPresenter)
+                    weakSelf.initializeAssets()
                     weakSelf.coreSystem.connect()
                 }
-                
             }
         }
         Backend.apiClient.updateExperiments()

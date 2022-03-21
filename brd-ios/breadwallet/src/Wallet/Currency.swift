@@ -9,7 +9,7 @@
 import Foundation
 import WalletKit
 import UIKit
-import CoinGecko
+// import CoinGecko
 
 protocol CurrencyWithIcon {
     var code: String { get }
@@ -124,6 +124,11 @@ class Currency: CurrencyWithIcon {
         if isHBAR {
             return ["hbar"]
         }
+        if isBitcoinSV {
+            // TODO: replace with proper schema!
+            return ["bitcoin-sv"]
+        }
+        
         return nil
     }
     
@@ -269,6 +274,7 @@ extension Currency {
     }
 
     var isBitcoin: Bool { return uid == Currencies.btc.uid }
+    var isBitcoinSV: Bool { return uid == Currencies.bsv.uid }
     var isBitcoinCash: Bool { return uid == Currencies.bch.uid }
     var isEthereum: Bool { return uid == Currencies.eth.uid }
     var isERC20Token: Bool { return tokenType == .erc20 }
@@ -440,10 +446,9 @@ extension CurrencyMetaData: Codable {
         // If the /currencies endpoint hasn't provided a coingeckoID,
         // use the local list. Eventually /currencies should provide
         // all of them
-        if !didFindCoinGeckoID {
-            if let id = CoinGeckoCodes.map[code.uppercased()] {
-                coinGeckoId = id
-            }
+        if !didFindCoinGeckoID,
+           let id = CoinGeckoCodes.map[code.uppercased()] {
+            coinGeckoId = id
         }
     }
 
@@ -486,6 +491,7 @@ extension CurrencyMetaData: Hashable {
 /// Natively supported currencies. Enum maps to ticker code.
 enum Currencies: String, CaseIterable {
     case btc
+    case bsv
     case bch
     case eth
     case brd
@@ -501,6 +507,8 @@ enum Currencies: String, CaseIterable {
         switch self {
         case .btc:
             uids = "bitcoin-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
+        case .bsv:
+            uids = "bitcoinsv-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
         case .bch:
             uids = "bitcoincash-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
         case .eth:

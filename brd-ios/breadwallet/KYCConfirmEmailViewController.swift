@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol KYCConfirmEmailDisplayLogic: class {
+protocol KYCConfirmEmailDisplayLogic: AnyObject {
     // MARK: Display logic functions
     
     func displaySubmitData(viewModel: KYCConfirmEmail.SubmitData.ViewModel)

@@ -81,10 +81,12 @@ class EnterPhraseCell: UICollectionViewCell {
 
     private func setup() {
         
-        backgroundColor = Theme.tertiaryBackground
-        contentView.backgroundColor = Theme.tertiaryBackground
+        backgroundColor = Theme.primaryBackground
+        contentView.backgroundColor = Theme.primaryBackground
+        contentView.layer.borderColor = UIColor.almostBlack.cgColor
+        contentView.layer.borderWidth = 1
         
-        contentView.layer.cornerRadius = 2.0
+        contentView.layer.cornerRadius = 10.0
         contentView.layer.masksToBounds = true
         
         contentView.addSubview(textField)
@@ -117,7 +119,7 @@ class EnterPhraseCell: UICollectionViewCell {
     }
 
     private func setData() {
-        textField.textColor = .white
+        textField.textColor = .black
         textField.inputAccessoryView = accessoryView
         textField.autocorrectionType = .no
         textField.textAlignment = .center

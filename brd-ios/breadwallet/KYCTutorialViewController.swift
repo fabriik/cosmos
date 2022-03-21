@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol KYCTutorialDisplayLogic: class {
+protocol KYCTutorialDisplayLogic: AnyObject {
     // MARK: Display logic functions
     
     func displayTutorialPages(viewModel: KYCTutorial.FetchTutorialPages.ViewModel)

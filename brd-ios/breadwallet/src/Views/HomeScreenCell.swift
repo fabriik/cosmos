@@ -34,7 +34,7 @@ class Background: UIView, GradientDrawable {
 
     override func draw(_ rect: CGRect) {
         guard let currency = currency else { return }
-        let colors = currency.isSupported ? currency.colors : (UIColor.disabledCellBackground, UIColor.disabledCellBackground)
+        let colors = currency.isSupported ? (.white, .white) : (UIColor.disabledCellBackground, UIColor.disabledCellBackground)
         drawGradient(start: colors.0, end: colors.1, rect)
     }
 }
@@ -55,7 +55,7 @@ class HomeScreenCell: UITableViewCell, Subscriber {
     private var isSyncIndicatorVisible: Bool = false {
         didSet {
             UIView.crossfade(tokenBalance, syncIndicator, toRight: isSyncIndicatorVisible, duration: isSyncIndicatorVisible == oldValue ? 0.0 : 0.3)
-            fiatBalance.textColor = (isSyncIndicatorVisible || !(container.currency?.isSupported ?? false)) ? .disabledWhiteText : .white
+            fiatBalance.textColor = (isSyncIndicatorVisible || !(container.currency?.isSupported ?? false)) ? .transparentBlack : .black
         }
     }
     
@@ -71,14 +71,14 @@ class HomeScreenCell: UITableViewCell, Subscriber {
     func set(viewModel: HomeScreenAssetViewModel) {
         accessibilityIdentifier = viewModel.currency.name
         container.currency = viewModel.currency
-        icon.image = viewModel.currency.imageNoBackground
+        icon.image = viewModel.currency.imageSquareBackground
         icon.tintColor = viewModel.currency.isSupported ? .white : .disabledBackground
         iconContainer.layer.cornerRadius = C.Sizes.homeCellCornerRadius
         currencyName.text = viewModel.currency.name
-        currencyName.textColor = viewModel.currency.isSupported ? .white : .disabledWhiteText
+        currencyName.textColor = viewModel.currency.isSupported ? .black : .transparentBlack
         price.text = viewModel.exchangeRate
         fiatBalance.text = viewModel.fiatBalance
-        fiatBalance.textColor = viewModel.currency.isSupported ? .white : .disabledWhiteText
+        fiatBalance.textColor = viewModel.currency.isSupported ? .black : .transparentBlack
         tokenBalance.text = viewModel.tokenBalance
         priceChangeView.isHidden = false
         priceChangeView.currency = viewModel.currency
@@ -170,8 +170,13 @@ class HomeScreenCell: UITableViewCell, Subscriber {
 
     private func setupStyle() {
         selectionStyle = .none
-        backgroundColor = .clear
-        iconContainer.layer.cornerRadius = 6.0
+        
+        layer.shadowRadius = 12
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
+        layer.shadowOpacity = 2
+        layer.shadowOffset = .zero
+        
+        iconContainer.layer.cornerRadius = 12.0
         iconContainer.clipsToBounds = true
         icon.tintColor = .white
     }

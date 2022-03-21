@@ -34,7 +34,7 @@ struct C {
         static let logoAspectRatio: CGFloat = 125.0/417.0
         static let cutoutLogoAspectRatio: CGFloat = 342.0/553.0
         static let roundedCornerRadius: CGFloat = 6.0
-        static let homeCellCornerRadius: CGFloat = 6.0
+        static let homeCellCornerRadius: CGFloat = 12.0
         static let brdLogoHeight: CGFloat = 32.0
         static let brdLogoTopMargin: CGFloat = E.isIPhoneX ? C.padding[9] + 35.0 : C.padding[9] + 20.0
     }
@@ -117,6 +117,8 @@ struct C {
     static let tusdContractCode = "TUSD"
     
     static let fixerAPITokenRecordId = "FixerAPIToken"
+    // Currently our BE does not support asset updates yet
+    static let checkForUpdatedAssets = false
 }
 
 enum Words {

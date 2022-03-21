@@ -9,7 +9,7 @@
 //
 
 import Foundation
-import CoinGecko
+// import CoinGecko
 import UIKit
 
 protocol CurrencyWithIcon {
@@ -163,6 +163,8 @@ extension CurrencyMetaData: Decodable {
         if !didFindCoinGeckoID {
             if let id = CoinGeckoCodes.map[code.uppercased()] {
                 coinGeckoId = id
+            } else if code.uppercased() == "BSV" {
+                coinGeckoId = "bitcoin-cash-sv"
             }
         }
     }

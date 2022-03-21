@@ -10,6 +10,7 @@ import UIKit
 import LocalAuthentication
 import SwiftUI
 import WalletKit
+import WebKit
 
 // swiftlint:disable type_body_length
 // swiftlint:disable cyclomatic_complexity
@@ -232,13 +233,15 @@ class ModalPresenter: Subscriber, Trackable {
         if let articleId = articleId {
             url = "/support/article?slug=\(articleId)"
             if let currency = currency {
-                url += "&currency=\(currency.supportCode)"
+                // TODO: BSV does not have a support page yet, so we redirect to the BTC one
+                let code = currency.code == "BSV" ? "btc" : currency.supportCode
+                url += "&currency=\(code)"
             }
         } else {
             url = "/support?"
         }
         supportCenter.navigate(to: url)
-        topViewController?.present(supportCenter, animated: true, completion: {})
+        topViewController?.present(supportCenter, animated: true)
     }
 
     private func rootModalViewController(_ type: RootModal) -> UIViewController? {
@@ -261,12 +264,17 @@ class ModalPresenter: Subscriber, Trackable {
             }
                         
             return ModalViewController(childViewController: requestVc)
-        case .buy(let currency):
-            var url = "/buy"
-            if let currency = currency {
-                url += "?currency=\(currency.code)"
-            }
-            presentPlatformWebViewController(url)
+        case .buy:
+            guard let request = WyreRequest().generateRequest() else { return nil }
+            
+            let webView = WKWebView()
+            webView.load(request)
+            let vc = UIViewController()
+            vc.view.addSubview(webView)
+            webView.constrain(toSuperviewEdges: nil)
+            webView.load(request)
+            topViewController?.show(vc, sender: nil)
+
             return nil
         case .sell(let currency):
             var url = "/sell"
@@ -967,10 +975,9 @@ class ModalPresenter: Subscriber, Trackable {
     
     private func presentKeyImport(wallet: Wallet, scanResult: QRCode? = nil) {
         let nc = ModalNavigationController()
-        nc.setClearNavbar()
-        nc.setWhiteStyle()
+        nc.setDarkStyle()
         let start = ImportKeyViewController(wallet: wallet, initialQRCode: scanResult)
-        start.addCloseNavigationItem(tintColor: .white)
+        start.addCloseNavigationItem(tintColor: Theme.blueBackground)
         start.navigationItem.title = S.Import.title
         let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.importWallet, currency: wallet.currency)
         faqButton.tintColor = .white
@@ -1010,9 +1017,8 @@ class ModalPresenter: Subscriber, Trackable {
     
     func presentBiometricsMenuItem() {
         let biometricsSettings = BiometricsSettingsViewController(self.keyStore)
-        biometricsSettings.addCloseNavigationItem(tintColor: .white)
+        biometricsSettings.addCloseNavigationItem(tintColor: Theme.blueBackground)
         let nc = ModalNavigationController(rootViewController: biometricsSettings)
-        nc.setWhiteStyle()
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
         topViewController?.present(nc, animated: true, completion: nil)

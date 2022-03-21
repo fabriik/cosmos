@@ -157,7 +157,7 @@ class OnboardingViewController: UIViewController {
     // CTA's that appear at the bottom of the screen
     private let topButton = BRDButton(title: "", type: .primary)
     private let middleButton = BRDButton(title: "", type: .darkOpaque)
-    private let bottomButton = BRDButton(title: "", type: .darkOpaque)
+    private let bottomButton = BRDButton(title: "", type: .secondary)
     private let nextButton = BRDButton(title: S.OnboardingScreen.next, type: .primary)
     
     // Constraints used to show and hide the bottom buttons.
@@ -289,7 +289,8 @@ class OnboardingViewController: UIViewController {
             return
         }
         
-        let iconCount = 20
+        // Used to be 20, and the app crashed
+        let iconCount = metaData.count
         let iconSize: CGFloat = 40
         let duration = 10.0
         let maxDelay = 15.0
@@ -902,7 +903,7 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
-        view.backgroundColor = Theme.primaryBackground
+        view.backgroundColor = Theme.onboardingBackground
                 
         setUpLogo()
         setUpPages()

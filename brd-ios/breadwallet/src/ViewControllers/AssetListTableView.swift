@@ -59,7 +59,7 @@ class AssetListTableView: UITableViewController, Subscriber {
         addWalletButton.titleLabel?.font = Theme.body1
         
         addWalletButton.tintColor = Theme.tertiaryBackground
-        addWalletButton.setTitleColor(Theme.tertiaryText, for: .normal)
+        addWalletButton.setTitleColor(Theme.blueBackground, for: .normal)
         addWalletButton.setTitleColor(.transparentWhite, for: .highlighted)
         addWalletButton.titleLabel?.font = Theme.body1
         

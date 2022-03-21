@@ -6,17 +6,8 @@
         "repositoryURL": "https://github.com/Flight-School/AnyCodable.git",
         "state": {
           "branch": null,
-          "revision": "876d162385e9862ae8b3c8d65dc301312b040005",
-          "version": "0.6.0"
-        }
-      },
-      {
-        "package": "CoinGecko",
-        "repositoryURL": "https://github.com/breadwallet/coingecko",
-        "state": {
-          "branch": null,
-          "revision": "c46a8fd0ea9752e465006d477553bf0c5a78c931",
-          "version": "1.0.2"
+          "revision": "22f302d4c048aafcda09a4ab5b8c0b03855316fb",
+          "version": "0.6.3"
         }
       },
       {

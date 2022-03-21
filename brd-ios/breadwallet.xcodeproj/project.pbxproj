@@ -295,6 +295,25 @@
 		7CF5319D231EE01300E61F12 /* Base32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5319C231EE01300E61F12 /* Base32.swift */; };
 		7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */; };
 		7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */; };
+		7EF2998A27E3B8C400A2238A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998827E3B8C400A2238A /* ApiClient.swift */; };
+		7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
+		7EF2999027E3B8D200A2238A /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998C27E3B8D200A2238A /* MarketData.swift */; };
+		7EF2999127E3B8D200A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
+		7EF2999227E3B8D200A2238A /* SimplePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998E27E3B8D200A2238A /* SimplePrice.swift */; };
+		7EF2999327E3B8D200A2238A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998F27E3B8D200A2238A /* Models.swift */; };
+		7EF2999527E3B9C700A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
+		7EF2999627E3B9C700A2238A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998F27E3B8D200A2238A /* Models.swift */; };
+		7EF2999727E3B9C700A2238A /* SimplePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998E27E3B8D200A2238A /* SimplePrice.swift */; };
+		7EF2999827E3B9C700A2238A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998827E3B8C400A2238A /* ApiClient.swift */; };
+		7EF2999927E3B9C700A2238A /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998C27E3B8D200A2238A /* MarketData.swift */; };
+		7EF2999A27E3B9C700A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
+		7EF2999B27E3B9D900A2238A /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998C27E3B8D200A2238A /* MarketData.swift */; };
+		7EF2999C27E3B9DA00A2238A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998F27E3B8D200A2238A /* Models.swift */; };
+		7EF2999D27E3B9DA00A2238A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998827E3B8C400A2238A /* ApiClient.swift */; };
+		7EF2999E27E3B9DA00A2238A /* SimplePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998E27E3B8D200A2238A /* SimplePrice.swift */; };
+		7EF2999F27E3B9DA00A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
+		7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
+		7EF299A627E4B0EC00A2238A /* WyreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF299A527E4B0EC00A2238A /* WyreRequest.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -467,9 +486,6 @@
 		9F0EA16525E2902700D4225E /* WidgetDataShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0EA16325E2902700D4225E /* WidgetDataShareService.swift */; };
 		9F0EA16C25E2904400D4225E /* WidgetDataShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0EA16325E2902700D4225E /* WidgetDataShareService.swift */; };
 		9F1143AD261B035300848E7B /* WalletKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C6087242A5CC900F0FBC2 /* WalletKit */; };
-		9F1143AE261B035300848E7B /* CoinGecko in Frameworks */ = {isa = PBXBuildFile; productRef = 3A858B29250A781700812B36 /* CoinGecko */; };
-		9F1143AF261B035300848E7B /* CoinGecko in Frameworks */ = {isa = PBXBuildFile; productRef = 9F3C2FA625DA7F1C00C7C398 /* CoinGecko */; };
-		9F1143B0261B035300848E7B /* CoinGecko in Frameworks */ = {isa = PBXBuildFile; productRef = 9F3C2FAA25DA7F2F00C7C398 /* CoinGecko */; };
 		9F1143B7261B048900848E7B /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2439F5D8263945E73EFF4A3 /* CacheService.swift */; };
 		9F1143BE261B04E900848E7B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDDE55025D5B79D00E42BE3 /* Date+Extension.swift */; };
 		9F13F5C925DDD73A0031AEC7 /* fiatcurrencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 71014F7B2327E49400DA1373 /* fiatcurrencies.json */; };
@@ -1130,6 +1146,13 @@
 		7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Experiments.swift"; path = "src/Platform/BRAPIClient+Experiments.swift"; sourceTree = "<group>"; };
 		7E09EA4027D60D2100B0268C /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		7EF2998827E3B8C400A2238A /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiClient.swift; path = CoinGecko/ApiClient.swift; sourceTree = "<group>"; };
+		7EF2998927E3B8C400A2238A /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resources.swift; path = CoinGecko/Resources.swift; sourceTree = "<group>"; };
+		7EF2998C27E3B8D200A2238A /* MarketData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketData.swift; path = CoinGecko/Models/MarketData.swift; sourceTree = "<group>"; };
+		7EF2998D27E3B8D200A2238A /* MarketChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketChart.swift; path = CoinGecko/Models/MarketChart.swift; sourceTree = "<group>"; };
+		7EF2998E27E3B8D200A2238A /* SimplePrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimplePrice.swift; path = CoinGecko/Models/SimplePrice.swift; sourceTree = "<group>"; };
+		7EF2998F27E3B8D200A2238A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = CoinGecko/Models/Models.swift; sourceTree = "<group>"; };
+		7EF299A527E4B0EC00A2238A /* WyreRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WyreRequest.swift; path = src/ExternalAPIClient/Wyre/WyreRequest.swift; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -1584,7 +1607,6 @@
 				9F1143AD261B035300848E7B /* WalletKit in Frameworks */,
 				7B2C9B0727DA1C5F00D5135C /* AnyCodable in Frameworks */,
 				22A9A9601DF61FD8000F0016 /* CoreLocation.framework in Frameworks */,
-				9F1143AE261B035300848E7B /* CoinGecko in Frameworks */,
 				22A9A95E1DF61FD0000F0016 /* PushKit.framework in Frameworks */,
 				7B2C9AFC27D9270B00D5135C /* IQKeyboardManagerSwift in Frameworks */,
 				9F18E567261630EB00698ADB /* Cosmos.xcframework in Frameworks */,
@@ -1612,7 +1634,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F29A99C25D5C605000FEB40 /* Intents.framework in Frameworks */,
-				9F1143B0261B035300848E7B /* CoinGecko in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1621,7 +1642,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FB0CA1225D5AD180057DD11 /* SwiftUI.framework in Frameworks */,
-				9F1143AF261B035300848E7B /* CoinGecko in Frameworks */,
 				9FB0CA1125D5AD180057DD11 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1818,6 +1838,7 @@
 		4F3AB11725D53F0000B378DC /* ExternalAPIClient */ = {
 			isa = PBXGroup;
 			children = (
+				7EF299A227E49EBD00A2238A /* Wyre */,
 				4F3AB12025D53F4900B378DC /* BakingBad */,
 				4F3AB11825D53F4300B378DC /* ExternalAPIClient.swift */,
 				4F3AB11925D53F4300B378DC /* ExternalAPIRequest.swift */,
@@ -1938,6 +1959,7 @@
 		75A2A7921DA5934300A983D8 /* breadwallet */ = {
 			isa = PBXGroup;
 			children = (
+				7EF2998727E3B8AA00A2238A /* CoinGecko */,
 				3A4972C32602E0D10002C3EC /* Cosmos */,
 				75A2A87C1DA59E4E00A983D8 /* breadwallet.entitlements */,
 				75A2A79F1DA5934300A983D8 /* Info.plist */,
@@ -1956,6 +1978,7 @@
 				CE4C1CC71ED88B600063E184 /* URLController.swift */,
 				75A2A79A1DA5934300A983D8 /* Assets.xcassets */,
 				CE5E6C991EB9135000A476DB /* Icon.xcassets */,
+				7B626F7027D1410B0077BAE3 /* Helpers */,
 				3A6785EF256F2EF70065F835 /* ReceiveGift */,
 				3AFAD92E2567ED22005853E8 /* Gifting */,
 				3A529E4A253B956000BD0A17 /* Staking */,
@@ -2101,7 +2124,6 @@
 		7B626F6F27D140FF0077BAE3 /* KYC */ = {
 			isa = PBXGroup;
 			children = (
-				7B626F7027D1410B0077BAE3 /* Helpers */,
 				7B2C9B0F27DA4B9800D5135C /* KYCModels */,
 				C461962C27D60F10007F6778 /* KYCSignIn */,
 				7B62701627D21E2C0077BAE3 /* KYCSignUp */,
@@ -2371,6 +2393,35 @@
 				7C54FF9D21658669007BF3EF /* currencies.json */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		7EF2998727E3B8AA00A2238A /* CoinGecko */ = {
+			isa = PBXGroup;
+			children = (
+				7EF299A127E3C5DF00A2238A /* Models */,
+				7EF2998827E3B8C400A2238A /* ApiClient.swift */,
+				7EF2998927E3B8C400A2238A /* Resources.swift */,
+			);
+			name = CoinGecko;
+			sourceTree = "<group>";
+		};
+		7EF299A127E3C5DF00A2238A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7EF2998D27E3B8D200A2238A /* MarketChart.swift */,
+				7EF2998C27E3B8D200A2238A /* MarketData.swift */,
+				7EF2998F27E3B8D200A2238A /* Models.swift */,
+				7EF2998E27E3B8D200A2238A /* SimplePrice.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7EF299A227E49EBD00A2238A /* Wyre */ = {
+			isa = PBXGroup;
+			children = (
+				7EF299A527E4B0EC00A2238A /* WyreRequest.swift */,
+			);
+			name = Wyre;
 			sourceTree = "<group>";
 		};
 		9A39B0752202A96500E5018B /* Cell Highlight View Frames */ = {
@@ -3200,7 +3251,6 @@
 			name = breadwallet;
 			packageProductDependencies = (
 				3A0C6087242A5CC900F0FBC2 /* WalletKit */,
-				3A858B29250A781700812B36 /* CoinGecko */,
 				7B2C9AFB27D9270B00D5135C /* IQKeyboardManagerSwift */,
 				7B2C9B0627DA1C5F00D5135C /* AnyCodable */,
 			);
@@ -3258,7 +3308,6 @@
 			);
 			name = breadwalletIntentHandler;
 			packageProductDependencies = (
-				9F3C2FAA25DA7F2F00C7C398 /* CoinGecko */,
 			);
 			productName = breadwalletIntentHandler;
 			productReference = 9F29A99A25D5C605000FEB40 /* breadwalletIntentHandler.appex */;
@@ -3278,7 +3327,6 @@
 			);
 			name = breadwalletWidgetExtension;
 			packageProductDependencies = (
-				9F3C2FA625DA7F1C00C7C398 /* CoinGecko */,
 			);
 			productName = breadwalletWidgetExtension;
 			productReference = 9FB0CA0F25D5AD180057DD11 /* breadwalletWidgetExtension.appex */;
@@ -3395,7 +3443,6 @@
 			);
 			mainGroup = 75A2A7871DA5934300A983D8;
 			packageReferences = (
-				3A858B28250A781700812B36 /* XCRemoteSwiftPackageReference "coingecko" */,
 				7B2C9AFA27D9270B00D5135C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				7B2C9B0527DA1C5F00D5135C /* XCRemoteSwiftPackageReference "AnyCodable" */,
 			);
@@ -3781,6 +3828,7 @@
 				3A529E4C253B957200BD0A17 /* StakingCell.swift in Sources */,
 				3A5C9B2B22A5676F00C907C1 /* PriceChange.swift in Sources */,
 				7B626FEE27D143ED0077BAE3 /* KYCUploadSelfieWorker.swift in Sources */,
+				7EF2999127E3B8D200A2238A /* MarketChart.swift in Sources */,
 				7B626FD627D142810077BAE3 /* KYCAddressModels.swift in Sources */,
 				CEA9178620C07FBB00F29B31 /* SyncingHeaderView.swift in Sources */,
 				7B626FFF27D144160077BAE3 /* KYCUploadModels.swift in Sources */,
@@ -3923,6 +3971,7 @@
 				7CBD578F2107EB560042C388 /* PairedWalletData.swift in Sources */,
 				7B626F8227D1411D0077BAE3 /* APIURLHandler.swift in Sources */,
 				7B626F8B27D1411D0077BAE3 /* HttpRequestManager.swift in Sources */,
+				7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */,
 				CEAA9E951DC1659F0066731D /* UILabel+BRWAdditions.swift in Sources */,
 				7C6FD3F4213F205400EFF35F /* InboxMetaData.swift in Sources */,
 				CEBF292E1EF99E55005C330A /* LightWeightAlert.swift in Sources */,
@@ -4002,6 +4051,7 @@
 				7CA238142011A97C00A4A59D /* TxDetailViewController.swift in Sources */,
 				CE20C9111DBE5B6F00C8397A /* Circle.swift in Sources */,
 				CE65C665207B0BEF000C99C4 /* ManageCurrencyCell.swift in Sources */,
+				7EF2999227E3B8D200A2238A /* SimplePrice.swift in Sources */,
 				7C6E0D912214C9B700CA3BA5 /* AssetArchive.swift in Sources */,
 				CE977109216FA16300B9F621 /* SegwitViewController.swift in Sources */,
 				22A9A94E1DF61945000F0016 /* BRHTTPIndexMiddleware.swift in Sources */,
@@ -4036,6 +4086,7 @@
 				7B2C9B1527DA4BAB00D5135C /* KYCSessionModel.swift in Sources */,
 				CE3840E81FD590BD00437C31 /* AssetListTableView.swift in Sources */,
 				71A3171022A6D55A0088F97C /* InAppNotificationViewController.swift in Sources */,
+				7EF299A627E4B0EC00A2238A /* WyreRequest.swift in Sources */,
 				7CF5319D231EE01300E61F12 /* Base32.swift in Sources */,
 				7B62700B27D1446C0077BAE3 /* KYCCompleteButtons.swift in Sources */,
 				7B626F8027D1411D0077BAE3 /* KYCAPI.swift in Sources */,
@@ -4064,6 +4115,7 @@
 				7B626F8727D1411D0077BAE3 /* HTTPRequestHelpers.swift in Sources */,
 				7C787AE221ED89510017EA7E /* KeyStore.swift in Sources */,
 				CEAA9E911DC0FDFE0066731D /* UIViewPropertyAnimator+BRWAdditions.swift in Sources */,
+				7EF2998A27E3B8C400A2238A /* ApiClient.swift in Sources */,
 				C461963527D60F85007F6778 /* KYCSignInRouter.swift in Sources */,
 				7C1931CD2327371A0061DE20 /* CoreDatabase.swift in Sources */,
 				7B626FA227D1413F0077BAE3 /* GenericSettable.swift in Sources */,
@@ -4094,6 +4146,7 @@
 				CE4B6C201E233C2C00CF935B /* UITableView+Additions.swift in Sources */,
 				CEEC70861E94397D00EF788E /* UserDefaults+Additions.swift in Sources */,
 				22A9A9501DF61945000F0016 /* BRHTTPServer.swift in Sources */,
+				7EF2999027E3B8D200A2238A /* MarketData.swift in Sources */,
 				CE1E7A9A20938DFD00C86BB7 /* MenuButton.swift in Sources */,
 				7B626FA827D1413F0077BAE3 /* DatePickerViewController.swift in Sources */,
 				C4192E4827DA0F7F00F07719 /* KYCConfirmEmailPresenter.swift in Sources */,
@@ -4127,6 +4180,7 @@
 				7C6ACCB41FEB34470028ABFA /* TxLabelCell.swift in Sources */,
 				7C40DE2D20E09207000E289D /* ToggleButton.swift in Sources */,
 				22A9A9541DF61945000F0016 /* BRReplicatedKVStore.swift in Sources */,
+				7EF2999327E3B8D200A2238A /* Models.swift in Sources */,
 				71249916221F466800BEA491 /* Prompt.swift in Sources */,
 				CE6B6B4A1E54C0CB00B31405 /* SecurityCenterCell.swift in Sources */,
 				3A1D416E250957A00089FE63 /* MarketDataView.swift in Sources */,
@@ -4224,9 +4278,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EF2999527E3B9C700A2238A /* MarketChart.swift in Sources */,
 				9F3C305725DA902E00C7C398 /* Currency.swift in Sources */,
 				9F3C311B25DAC14900C7C398 /* Numeric+Extensions.swift in Sources */,
 				9FC529D22604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
+				7EF2999927E3B9C700A2238A /* MarketData.swift in Sources */,
 				9F2118C025DD7D7D00ABD2C8 /* CoinGecko+Extesions.swift in Sources */,
 				9F29A99F25D5C605000FEB40 /* IntentHandler.swift in Sources */,
 				9F1143BE261B04E900848E7B /* Date+Extension.swift in Sources */,
@@ -4234,7 +4290,10 @@
 				9F3C307825DA926800C7C398 /* Environment.swift in Sources */,
 				9F9FAF7725D5D0140014F729 /* WidgetService.swift in Sources */,
 				9F00EAD725DDF28F00A99218 /* Bundle+Extensions.swift in Sources */,
+				7EF2999827E3B9C700A2238A /* ApiClient.swift in Sources */,
+				7EF2999627E3B9C700A2238A /* Models.swift in Sources */,
 				9F00EADE25DDF29800A99218 /* ImageStorageService.swift in Sources */,
+				7EF2999727E3B9C700A2238A /* SimplePrice.swift in Sources */,
 				9F3C30B025DA954300C7C398 /* UIFont+BRWAdditions.swift in Sources */,
 				9F3C308625DA929600C7C398 /* Identifier.swift in Sources */,
 				9F3C30A225DA951200C7C398 /* Theme.swift in Sources */,
@@ -4244,6 +4303,7 @@
 				9F3C313F25DACEDA00C7C398 /* ColorOption+ExtensionUI.swift in Sources */,
 				9F0EA16525E2902700D4225E /* WidgetDataShareService.swift in Sources */,
 				9F00EAEC25DDF93D00A99218 /* BRTar.swift in Sources */,
+				7EF2999A27E3B9C700A2238A /* Resources.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4260,6 +4320,7 @@
 				9F2118AC25DD74EA00ABD2C8 /* CoinGecko+Extesions.swift in Sources */,
 				9FD519D525E310D300F9D856 /* Strings.swift in Sources */,
 				9FC529D12604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
+				7EF2999B27E3B9D900A2238A /* MarketData.swift in Sources */,
 				9FB0CA1525D5AD180057DD11 /* BreadwalletWidget.swift in Sources */,
 				9F3C302525DA8B2F00C7C398 /* WidgetService.swift in Sources */,
 				9F3C315725DACF3300C7C398 /* PortfolioView.swift in Sources */,
@@ -4278,16 +4339,21 @@
 				9FDDE55C25D5B79D00E42BE3 /* ChartViewModel.swift in Sources */,
 				9FDDE58C25D5B88F00E42BE3 /* PortfolioWidget.swift in Sources */,
 				9F00EAE525DDF93C00A99218 /* BRTar.swift in Sources */,
+				7EF2999E27E3B9DA00A2238A /* SimplePrice.swift in Sources */,
 				9FDDE55925D5B79D00E42BE3 /* CGTypes+Extensions.swift in Sources */,
+				7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */,
 				9F00EAA825DDEF7900A99218 /* ImageStorageService.swift in Sources */,
 				9FDDE57925D5B85000E42BE3 /* AssetListWidget.swift in Sources */,
 				9FDDE55A25D5B79D00E42BE3 /* Numeric+Extensions.swift in Sources */,
 				9F3C30A925DA954300C7C398 /* UIFont+BRWAdditions.swift in Sources */,
 				9F3C313E25DACEDA00C7C398 /* ColorOption+ExtensionUI.swift in Sources */,
 				A2439D019C08106D6E14D70A /* MarketInfo.swift in Sources */,
+				7EF2999D27E3B9DA00A2238A /* ApiClient.swift in Sources */,
 				A243915E84E4AA2AE09D687F /* SharedComponentViews.swift in Sources */,
+				7EF2999C27E3B9DA00A2238A /* Models.swift in Sources */,
 				A24391B09865778F327FD609 /* PortfolioViewModel.swift in Sources */,
 				9F00EAF425DDFC9600A99218 /* Currency+Extensions.swift in Sources */,
+				7EF2999F27E3B9DA00A2238A /* Resources.swift in Sources */,
 				A24395E9DFDD64D08DDC45B4 /* Configuration.swift in Sources */,
 				A2439D7BB746E6CFC3F9B64A /* CacheService.swift in Sources */,
 			);
@@ -6831,14 +6897,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3A858B28250A781700812B36 /* XCRemoteSwiftPackageReference "coingecko" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/breadwallet/coingecko";
-			requirement = {
-				kind = exactVersion;
-				version = 1.0.2;
-			};
-		};
 		7B2C9AFA27D9270B00D5135C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -6852,7 +6910,7 @@
 			repositoryURL = "https://github.com/Flight-School/AnyCodable.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.6.0;
+				version = 0.6.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -6861,11 +6919,6 @@
 		3A0C6087242A5CC900F0FBC2 /* WalletKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WalletKit;
-		};
-		3A858B29250A781700812B36 /* CoinGecko */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3A858B28250A781700812B36 /* XCRemoteSwiftPackageReference "coingecko" */;
-			productName = CoinGecko;
 		};
 		7B2C9AFB27D9270B00D5135C /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -6876,16 +6929,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7B2C9B0527DA1C5F00D5135C /* XCRemoteSwiftPackageReference "AnyCodable" */;
 			productName = AnyCodable;
-		};
-		9F3C2FA625DA7F1C00C7C398 /* CoinGecko */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3A858B28250A781700812B36 /* XCRemoteSwiftPackageReference "coingecko" */;
-			productName = CoinGecko;
-		};
-		9F3C2FAA25DA7F2F00C7C398 /* CoinGecko */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3A858B28250A781700812B36 /* XCRemoteSwiftPackageReference "coingecko" */;
-			productName = CoinGecko;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -230,7 +230,6 @@ class CoreSystem: Subscriber, Trackable {
             return
         }
 
-        
         // networks tokens for which wallets are needed
         let requiredTokens = network.currencies.filter { assetCollection.isEnabled($0.uid) }
 
@@ -240,12 +239,12 @@ class CoreSystem: Subscriber, Trackable {
         } else {
             addressScheme = network.defaultAddressScheme
         }
-
+        
         var mode = self.connectionMode(for: currency)
         if !network.supportsMode(mode) {
-            assertionFailure("invalid wallet manager mode \(mode) for \(network.currency.code)")
             mode = network.defaultMode
         }
+        
         var success = false
         
         if system.accountIsInitialized(system.account, onNetwork: network) {
