@@ -18,14 +18,7 @@ class PinView: UIView {
 
     // MARK: - Public
     var itemSize: CGFloat {
-        switch style {
-        case .create:
-            return 24.0
-        case .login:
-            return 16.0
-        case .verify:
-            return 24.0
-        }
+        return 24.0
     }
     
     var width: CGFloat {
@@ -39,12 +32,9 @@ class PinView: UIView {
         self.style = style
         self.length = length
         switch style {
-        case .create:
+        case .create, .login:
             filled = (0...(length-1)).map { _ in Circle(color: Theme.blueBackground, style: .filled) }
             unFilled = (0...(length-1)).map { _ in Circle(color: Theme.blueBackground, style: .unfilled) }
-        case .login:
-            filled = (0...(length-1)).map { _ in ClearCircle(style: .filled) }
-            unFilled = (0...(length-1)).map { _ in ClearCircle(style: .unfilled) }
         case .verify:
             filled = (0...(length-1)).map { _ in Circle(color: .black, style: .filled) }
             unFilled = (0...(length-1)).map { _ in Circle(color: .borderGray, style: .filled) }
@@ -94,18 +84,14 @@ class PinView: UIView {
     }
 
     private func setupSubviews() {
-        if style == .login {
-            addSubview(gradientView)
-            gradientView.constrain(toSuperviewEdges: nil)
-        }
         addCircleContraints(unFilled)
         addCircleContraints(filled)
         filled.forEach { $0.isHidden = true }
     }
 
     private func addCircleContraints(_ circles: [UIView]) {
-        let padding: CGFloat = style == .login ? 0.0 : 8.0
-        let extraWidth: CGFloat = style == .login ? 8.0 : 0.0
+        let padding: CGFloat = 8.0
+        let extraWidth: CGFloat = 0.0
         circles.enumerated().forEach { index, circle in
             addSubview(circle)
             let leadingConstraint: NSLayoutConstraint?
