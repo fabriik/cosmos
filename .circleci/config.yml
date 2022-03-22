@@ -3,7 +3,10 @@ version: 2.1
 workflows:
   buildapp:
     jobs:
-      - build-one-ios
+      - build-one-ios:
+          filters:
+            branches:
+              only: gvh/ci
 
 jobs:
   build-one-ios:

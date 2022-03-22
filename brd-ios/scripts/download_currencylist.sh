@@ -1,6 +1,8 @@
 #!/bin/bash
 # Downlaods the latest currencies list to be embedded
+
 source .env
+
 filename="currencies.json"
 host="${API_URL}/blocksatoshi/"
 echo "Downloading ${filename} from ${host}..."
