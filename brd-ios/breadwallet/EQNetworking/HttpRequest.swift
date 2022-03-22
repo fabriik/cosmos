@@ -3,7 +3,7 @@
 //  Copyright © 2022 Equaleyes Ltd. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class HTTPRequest {
     var method: EQHTTPMethod = .get
@@ -11,27 +11,30 @@ class HTTPRequest {
     var headers: [String: String] = [:]
     var parameters: [String: Any] = [:]
     var encoding: Encoding = .json
-    
     var media: [MultiPart] = []
     
-    init(method: EQHTTPMethod, url: String, headers: [String: String] = [:],
-         parameters: [String: Any] = [:], encoding: Encoding = .json) {
+    init(method: EQHTTPMethod,
+         url: String,
+         headers: [String: String] = [:],
+         media: [MultiPart] = [],
+         parameters: [String: Any] = [:],
+         encoding: Encoding = .json) {
         self.method = method
         self.url = url
         self.headers = headers
         self.parameters = parameters
         self.encoding = encoding
+        self.media = media
         
         // Ignoring using caching respones
         URLSessionConfiguration.default.requestCachePolicy = .reloadIgnoringCacheData
     }
     
-    func add(media: [MultiPart]) {
-        self.media = media
-    }
-    
     func runMultipartRequest(completion: @escaping ((HTTPResponse) -> Void)) {
-        guard let url = URL(string: url) else { return }
+        guard let url = URL(string: url) else {
+            completion(HTTPResponse())
+            return
+        }
         
         let boundary = "Boundary-\(UUID().uuidString)"
         
@@ -46,13 +49,21 @@ class HTTPRequest {
         let dataBody = createMultipartDataBody(media: media, boundary: boundary)
         request.httpBody = dataBody
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        let backgroundTask: UIBackgroundTaskIdentifier = .init(rawValue: Int.random(in: 0...9999))
+        
+        UIApplication.shared.beginBackgroundTask()
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             let httpResponse = self.getHttpResponse(with: request,
                                                     from: response as? HTTPURLResponse,
                                                     data: data,
                                                     error: error)
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            
             completion(httpResponse)
-        }.resume()
+        }
+        
+        dataTask.resume()
     }
     
     func createMultipartDataBody(media: [MultiPart], boundary: String) -> Data {
@@ -84,7 +95,10 @@ class HTTPRequest {
     }
     
     func run(completion: @escaping ((HTTPResponse) -> Void)) {
-        guard let url = URL(string: url) else { return }
+        guard let url = URL(string: url) else {
+            completion(HTTPResponse())
+            return
+        }
         
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
@@ -103,13 +117,15 @@ class HTTPRequest {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             let httpResponse = self.getHttpResponse(with: request,
                                                     from: response as? HTTPURLResponse,
                                                     data: data,
                                                     error: error)
             completion(httpResponse)
-        }.resume()
+        }
+        
+        dataTask.resume()
     }
     
     private func getHttpResponse(with request: URLRequest, from response: HTTPURLResponse?, data: Data?, error: Error?) -> HTTPResponse {

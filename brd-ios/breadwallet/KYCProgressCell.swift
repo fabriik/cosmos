@@ -10,7 +10,7 @@ class KYCProgressCell: UITableViewCell {
         case personalInfo
         case idFront
         case idBack
-        case idVerification
+        case idSelfie
         case complete
         
         var value: Float {

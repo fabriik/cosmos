@@ -31,6 +31,14 @@ extension UIImage {
         guard let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent) else { return nil }
         return UIImage(cgImage: cgImage)
     }
+    
+    func resized(withPercentage percentage: CGFloat, isOpaque: Bool = true) -> UIImage? {
+        let canvas = CGSize(width: size.width * percentage, height: size.height * percentage)
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        
+        return UIGraphicsImageRenderer(size: canvas, format: format).image { _ in draw(in: CGRect(origin: .zero, size: canvas)) }
+    }
 
     func resize(_ size: CGSize, inset: CGFloat = 6.0) -> UIImage? {
         UIGraphicsBeginImageContext(size)

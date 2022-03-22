@@ -2184,8 +2184,8 @@
 		7B626F7B27D1411D0077BAE3 /* Worker */ = {
 			isa = PBXGroup;
 			children = (
-				7B626F7C27D1411D0077BAE3 /* BasePlainResponseWorker.swift */,
 				7B626F7D27D1411D0077BAE3 /* APICallWorker.swift */,
+				7B626F7C27D1411D0077BAE3 /* BasePlainResponseWorker.swift */,
 				7B626F7E27D1411D0077BAE3 /* BaseResponseWorker.swift */,
 			);
 			path = Worker;

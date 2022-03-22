@@ -42,21 +42,23 @@ class KYCUploadFrontBackWorker: KYCBasePlainResponseWorker {
     static let frontKey: String = "auto_upload_file"
     static let backKey: String = "auto_upload_file_back"
     
-    override func execute() {
+    override func executeMultipartRequest(requestData: RequestModelData? = nil, completion: BasePlainResponseWorker.Completion?) {
         guard let getParameters = (requestData as? KYCUploadFrontBackWorkerData)?.getParameters(),
               let frontValue = getParameters[KYCUploadFrontBackWorker.frontKey] as? Data,
               let backValue = getParameters[KYCUploadFrontBackWorker.backKey] as? Data else { return }
         
-        executeMultipartRequest(data: [MultipartMedia(with: frontValue,
-                                                      fileName: UUID().uuidString,
-                                                      forKey: KYCUploadFrontBackWorker.frontKey,
-                                                      mimeType: .jpeg,
-                                                      mimeFileFormat: .jpeg),
-                                       MultipartMedia(with: backValue,
-                                                      fileName: UUID().uuidString,
-                                                      forKey: KYCUploadFrontBackWorker.backKey,
-                                                      mimeType: .jpeg,
-                                                      mimeFileFormat: .jpeg)])
+        self.data = [MultipartMedia(with: frontValue,
+                                    fileName: UUID().uuidString,
+                                    forKey: KYCUploadFrontBackWorker.frontKey,
+                                    mimeType: .jpeg,
+                                    mimeFileFormat: .jpeg),
+                     MultipartMedia(with: backValue,
+                                    fileName: UUID().uuidString,
+                                    forKey: KYCUploadFrontBackWorker.backKey,
+                                    mimeType: .jpeg,
+                                    mimeFileFormat: .jpeg)]
+        
+        super.executeMultipartRequest(requestData: requestData, completion: completion)
     }
     
     override func getUrl() -> String {
