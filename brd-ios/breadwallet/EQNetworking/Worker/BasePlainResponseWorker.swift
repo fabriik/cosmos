@@ -18,6 +18,12 @@ open class BasePlainResponseWorker: APICallWorker {
         execute()
     }
     
+    open func executeMultipartRequest(requestData: RequestModelData? = nil, completion: Completion?) {
+        self.requestData = requestData
+        self.completion = completion
+        executeMultipartRequest()
+    }
+    
     override open func apiCallDidFinish(response: HTTPResponse) {
         completion?(response.error)
     }
