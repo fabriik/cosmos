@@ -125,8 +125,7 @@ class Currency: CurrencyWithIcon {
             return ["hbar"]
         }
         if isBitcoinSV {
-            // TODO: replace with proper schema!
-            return ["bitcoin-sv"]
+            return [""]
         }
         
         return nil
