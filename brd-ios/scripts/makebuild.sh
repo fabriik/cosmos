@@ -1,39 +1,11 @@
 #!/bin/bash
 
-commit_changes() {
-	version=${mainBundleShortVersionString}
-	if [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-		version="${version}.${mainBundleVersion}";
-	else
-		version="${version}.0.${mainBundleVersion}";
-	fi
-	tag="ios-${version}"
-
-	git add .
-	git status
-	read -n 1 -p "Tag, commit and push changes for build ${version}? [Y/n]" response
-  	if [[ $response == "y" || $response == "Y" || $response == "" ]]; then
-    	git commit -m "build ${version}"
-		git tag ${tag}
-		git push origin ${tag}
-		git push
-		echo
-		echo "Changes committed & pushed."
-		git show --summary
-	else
-		echo
-		echo -n "Changes not committed."
-  fi
-}
-
 show_usage() {
 	echo
 	echo "Usage: ${0##/*} [version] [build]"
-	echo "       ${0##/*} <version> <build> testnet"
+	echo "       ${0##/*} <version> <build> ci"
 	echo
-	echo "If only version number specified, build number is reset to 1."
-	echo "If nothing specified it increments the build number by 1."
-	echo "To make a testnet build specify both version and build followed by 'testnet'."
+	echo "To make a ci build specify both version and build followed by 'ci'."
 	echo
 	exit
 }
@@ -50,27 +22,46 @@ set -e
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-if [ "$3" == "testnet" ]; then
-	scheme="BRD Testnet - TestFlight"
+if [ "$3" == "ci" ]; then
+	scheme="breadwallet"
 else
 	scheme="BRD Internal - TestFlight"
 fi
 
-# make sure git is clean
-if output=$(git status --porcelain) && [ -z "$output" ]; then
-  # Working directory clean
-	source ${script_dir}/bump_build_number.sh "$1" "$2"
-	source ${script_dir}/download_bundles.sh
-	source ${script_dir}/download_currencylist.sh
-	echo
-	echo "Making $scheme version ${mainBundleShortVersionString} build ${mainBundleVersion} ..."
-    echo
-	source ${script_dir}/archive.sh "${scheme}"
-	if [ "$3" != "testnet" ]; then
-		commit_changes
-	fi
-else
-  # Uncommitted changes
-  echo "ERROR: Uncommitted changes. Must start with a clean repo."
-  exit 1
-fi
+
+echo
+echo "Restore build updated files"
+echo
+git restore breadwallet/Resources/currencies.json
+git restore breadwallet/Resources/brd-web-3.tar
+git restore breadwallet/Resources/brd-web-3-staging.tar
+git restore breadwallet/Resources/brd-tokens.tar
+git restore breadwallet/Resources/brd-tokens-staging.tar
+git restore breadwallet/Info.plist
+git restore breadwalletWidget/Info.plist
+git restore breadwalletIntentHandler/Info.plist
+
+echo
+echo "Set versioning"
+echo
+agvtool new-marketing-version $1
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
+agvtool new-version $2
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
+echo
+echo "Download currencies and bundles"
+echo
+source ${script_dir}/download_bundles.sh
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
+source ${script_dir}/download_currencylist.sh
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
+echo
+echo "Make $scheme version ${mainBundleShortVersionString} build ${mainBundleVersion} ..."
+echo
+
+source ${script_dir}/archive.sh "${scheme}"
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
