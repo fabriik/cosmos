@@ -14,12 +14,10 @@ class AccountFooterView: UIView, Subscriber, Trackable {
 
     var sendCallback: (() -> Void)?
     var receiveCallback: (() -> Void)?
-    var giftCallback: (() -> Void)?
     
     private var hasSetup = false
     private let currency: Currency
     private let toolbar = UIToolbar()
-    private var giftButton: UIButton?
     
     init(currency: Currency) {
         self.currency = currency
@@ -35,26 +33,6 @@ class AccountFooterView: UIView, Subscriber, Trackable {
 
     private func toRadian(value: Int) -> CGFloat {
         return CGFloat(Double(value) / 180.0 * .pi)
-    }
-    
-    func jiggle() {
-        guard let button = giftButton else { return }
-
-        let rotation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
-        rotation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-
-        rotation.values = [-10, 10, -5, 5, -3, 3, -2, 2, 0].map {
-            self.toRadian(value: $0)
-        }
-        
-        let scale = CAKeyframeAnimation(keyPath: "transform.scale")
-        scale.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        scale.values = [1.4, 1.35, 1.3, 1.25, 1.2, 1.15, 1.1, 1.05, 1.0]
-        
-        let shakeGroup: CAAnimationGroup = CAAnimationGroup()
-        shakeGroup.animations = [rotation, scale]
-        shakeGroup.duration = 0.8
-        button.imageView?.layer.add(shakeGroup, forKey: "jiggle")
     }
     
     private func setup() {
@@ -77,7 +55,7 @@ class AccountFooterView: UIView, Subscriber, Trackable {
     }
     
     private func setupToolbarButtons() {
-        var buttons = [
+        let buttons = [
             (S.Button.send, #selector(AccountFooterView.send)),
             (S.Button.receive, #selector(AccountFooterView.receive))
         ].compactMap { (title, selector) -> UIBarButtonItem in
