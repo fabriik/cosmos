@@ -3,10 +3,7 @@ version: 2.1
 workflows:
   buildapp:
     jobs:
-      - build-one-ios:
-          filters:
-            branches:
-              only: gvh/ci
+      - build-one-ios
 
 jobs:
   build-one-ios:
@@ -150,6 +147,7 @@ jobs:
             echo "API_URL = $API_URL" >> $BRD_ENV
             echo "DEBUG_TOKEN = $DEBUG_TOKEN" >> $BRD_ENV
             echo "DEBUG_URL = $DEBUG_URL" >> $BRD_ENV
+            echo "BREAD_TOKEN = $BREAD_TOKEN" >> $BRD_ENV
             cd ..
             echo "sdk.dir=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin" > ./local.properties
 

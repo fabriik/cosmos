@@ -1,8 +1,6 @@
 #!/bin/bash
 # Downlaods the latest app resource bundles to be embedded
 
-source .env
-
 function downloadBundle() {
     bundle_name="$1-staging"
     host="${API_URL}/blocksatoshi/wallet"
