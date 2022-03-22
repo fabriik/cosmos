@@ -114,7 +114,6 @@ class Currency: CurrencyWithIcon {
         if isBitcoinCash {
             return E.isTestnet ? ["bchtest"] : ["bitcoincash"]
         }
-
         if isEthereumCompatible {
             return ["ethereum"]
         }
@@ -125,8 +124,7 @@ class Currency: CurrencyWithIcon {
             return ["hbar"]
         }
         if isBitcoinSV {
-            // TODO: replace with proper schema!
-            return ["bitcoin-sv"]
+            return [""]
         }
         
         return nil
