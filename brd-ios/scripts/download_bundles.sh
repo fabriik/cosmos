@@ -3,13 +3,9 @@
 
 function downloadBundle() {
     bundle_name="$1-staging"
-    host="stage2.breadwallet.com"
-    if [[ "$2" == "prod" ]]; then
-      bundle_name="$1"
-      host="api.breadwallet.com"
-    fi
+    host="${API_URL}/blocksatoshi/wallet"
     echo "Downloading ${bundle_name}.tar from ${host}..."
-    curl --silent --show-error --output "breadwallet/Resources/${bundle_name}.tar" https://${host}/assets/bundles/${bundle_name}/download
+    curl -H "Authorization: bread ${BREAD_TOKEN}" --silent --show-error --output "breadwallet/Resources/${bundle_name}.tar" https://${host}/asset/bundles/${bundle_name}/download
 }
 
 plistBuddy="/usr/libexec/PlistBuddy"
