@@ -209,7 +209,7 @@ jobs:
 
             cd brd-ios
 
-            xcodebuild -exportArchive -archivePath build/breadwallet.xcarchive -exportOptionsPlist build/exportOptions.plist -exportPath build
+            # xcodebuild -exportArchive -archivePath build/breadwallet.xcarchive -exportOptionsPlist build/exportOptions.plist -exportPath build
 
       - run:
           name: Upload Build To Testflight
@@ -222,7 +222,7 @@ jobs:
 
             # Upload if on a release branch
             if [[ ${CIRCLE_BRANCH} == releases* ]]; then
-                echo "Release build detected . Would have uploaded to TestFlight.  Branch is " ${CIRCLE_BRANCH}
+                echo "Release build detected. Would have uploaded to TestFlight.  Branch is " ${CIRCLE_BRANCH}
                 # xcrun altool --upload-app --type ios --file "build/breadwallet.ipa" --username "$APPLE_BUILD_USER" --password "$APPLE_BUILD_PASSWORD"
             else
                 echo "Not a releases build.  Will NOT upload. Branch is " ${CIRCLE_BRANCH}
