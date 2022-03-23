@@ -363,6 +363,7 @@ class RecoveryKeyIntroViewController: BaseRecoveryKeyViewController {
         
         view.backgroundColor = Theme.primaryBackground
         navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.navigationBar.backgroundColor = Theme.primaryBackground
         
         showExitButton()
         setUpPages()
