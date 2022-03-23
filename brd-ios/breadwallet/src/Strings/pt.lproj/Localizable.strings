@@ -367,7 +367,7 @@
 "HomeScreen.portfolio" = "Carteiras";
 /* Label for the total balance of all the user's assets (style is all lower case if your language permits) */
 "HomeScreen.totalAssets" = "ativos totais";
-/* (Tap here to) trade (your assets for other assets) */
+/* (Tap here to) swap (your assets for other assets) */
 "HomeScreen.trade" = "Comércio";
 /* Checking private key balance progress view text */
 "Import.checking" = "A verificar o saldo da chave privada...";

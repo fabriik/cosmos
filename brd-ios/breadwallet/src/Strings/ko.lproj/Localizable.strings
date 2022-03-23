@@ -367,7 +367,7 @@
 "HomeScreen.portfolio" = "지갑";
 /* Label for the total balance of all the user's assets (style is all lower case if your language permits) */
 "HomeScreen.totalAssets" = "총 자산";
-/* (Tap here to) trade (your assets for other assets) */
+/* (Tap here to) swap (your assets for other assets) */
 "HomeScreen.trade" = "교환";
 /* Checking private key balance progress view text */
 "Import.checking" = "개인 열쇠 잔고 확인 중...";

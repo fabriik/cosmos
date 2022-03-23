@@ -367,8 +367,8 @@
 "HomeScreen.portfolio" = "Wallets";
 /* Label for the total balance of all the user's assets (style is all lower case if your language permits) */
 "HomeScreen.totalAssets" = "Total Assets";
-/* (Tap here to) trade (your assets for other assets) */
-"HomeScreen.trade" = "Trade";
+/* (Tap here to) swap (your assets for other assets) */
+"HomeScreen.trade" = "Swap";
 /* Checking private key balance progress view text */
 "Import.checking" = "Checking private key balance...";
 /* Sweep private key confirmation message */
@@ -524,7 +524,7 @@
 /* Onboarding screen Page 3 subtitle */
 "OnboardingPageThree.subtitle" = "Invest and diversify with Fabriik, easily and securely.";
 /* Onboarding screen Page 3 title */
-"OnboardingPageThree.title" = "Buy and trade bitcoin, tokens, and other digital currencies.";
+"OnboardingPageThree.title" = "Buy and swap bitcoin, tokens, and other digital currencies.";
 /* Onboarding screen Page 2 subtitle */
 "OnboardingPageTwo.subtitle" = "We have over $6 billion USD worth of assets under protection.";
 /* Onboarding screen Page 2 title */
@@ -712,19 +712,19 @@
 /* Subtitle displayed when the user starts the process of recovering a wallet */
 "RecoveryKeyFlow.recoveryYourWalletSubtitle" = "Please enter the recovery phrase of the wallet you want to recover.";
 /* Title for recovery key intro page */
-"RecoveryKeyFlow.relaxBuyTrade" = "Relax, buy, and trade";
+"RecoveryKeyFlow.relaxBuyTrade" = "Relax, buy, and swap";
 /* Reminds the user to write down the recovery key words. */
 "RecoveryKeyFlow.rememberToWriteDownReminder" = "Remember to write these words down. Swipe back if you forgot.";
 /* Instruction displayed when the user is resetting the PIN, which requires the recovery phrase to be entered */
 "RecoveryKeyFlow.resetPINInstruction" = "Please enter your recovery phrase to reset your PIN.";
 /* Assures the user that BRD will keep the user's funds secure. */
-"RecoveryKeyFlow.securityAssurance" = "Buy and trade knowing that your funds are protected by the best security and privacy in the business.";
+"RecoveryKeyFlow.securityAssurance" = "Buy and swap knowing that your funds are protected by the best security and privacy in the business.";
 /* Recommends that the user stores the recovery key in a secure location */
 "RecoveryKeyFlow.storeSecurelyRecommendation" = "Store your key in a secure location. This is the only way to recover your wallet. Fabriik does not keep a copy.";
 /* Title for the success page after the recovery phrase has been set up */
 "RecoveryKeyFlow.successHeading" = "Congratulations! You completed your recovery phrase setup.";
 /* Subtitle for the success page after the recovery key has been set up */
-"RecoveryKeyFlow.successSubheading" = "You're all set to deposit, trade, and buy crypto from your Fabriik wallet.";
+"RecoveryKeyFlow.successSubheading" = "You're all set to deposit, swap, and buy crypto from your Fabriik wallet.";
 /* Title displayed to the user on the intro screen when unlinking a wallet */
 "RecoveryKeyFlow.unlinkWallet" = "Unlink your wallet from this device.";
 /* Subtitle displayed to the user on the intro screen when unlinking a wallet. */
