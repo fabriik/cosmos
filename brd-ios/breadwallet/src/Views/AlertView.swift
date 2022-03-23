@@ -93,7 +93,7 @@ func == (lhs: AlertType, rhs: AlertType) -> Bool {
     }
 }
 
-class AlertView: UIView, GradientDrawable {
+class AlertView: UIView {
 
     private let type: AlertType
     private let header = UILabel()
@@ -119,6 +119,8 @@ class AlertView: UIView, GradientDrawable {
     }
 
     private func setupSubviews() {
+        backgroundColor = Theme.blueBackground
+        
         addSubview(header)
         addSubview(subheader)
         addSubview(icon)
@@ -132,7 +134,7 @@ class AlertView: UIView, GradientDrawable {
         header.text = type.header
         header.textAlignment = .center
         header.font = UIFont.customBold(size: 14.0)
-        header.textColor = .almostBlack
+        header.textColor = .white
 
         icon.backgroundColor = .clear
         separator.backgroundColor = .transparentWhite
@@ -140,7 +142,7 @@ class AlertView: UIView, GradientDrawable {
         subheader.text = type.subheader
         subheader.textAlignment = .center
         subheader.font = UIFont.customBody(size: 14.0)
-        subheader.textColor = .almostBlack
+        subheader.textColor = .white
     }
 
     private func addConstraints() {
@@ -165,11 +167,6 @@ class AlertView: UIView, GradientDrawable {
             subheader.constraint(.trailing, toView: self, constant: -C.padding[2]),
             subheader.constraint(toBottom: icon, constant: C.padding[3]) ])
     }
-
-    override func draw(_ rect: CGRect) {
-        drawGradient(rect)
-    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
