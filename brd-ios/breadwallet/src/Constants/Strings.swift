@@ -447,7 +447,7 @@ enum S {
         static let admin = NSLocalizedString("HomeScreen.admin", value: "Admin", comment: "Section header")
         static let buy = NSLocalizedString("HomeScreen.buy", value: "Buy", comment: "home screen toolbar button")
         static let buyAndSell = NSLocalizedString("HomeScreen.buyAndSell", value: "Buy & Sell", comment: "home screen Buy & Sell button")
-        static let trade = NSLocalizedString("HomeScreen.trade", value: "Trade", comment: "home screen toolbar button")
+        static let trade = NSLocalizedString("HomeScreen.trade", value: "Swap", comment: "home screen toolbar button")
         static let menu = NSLocalizedString("Button.menu", value: "Menu", comment: "home screen toolbar button")
     }
 
@@ -461,7 +461,7 @@ enum S {
         static let pageOneTitle = NSLocalizedString("OnboardingPageOne.title", value: "Welcome to your new digital asset wallet!", comment: "Title displayed on the first page of the onboarding flow.")
         static let pageTwoTitle = NSLocalizedString("OnboardingPageTwo.title", value: "Join  people around the world who trust Fabriik.", comment: "Title displayed on the second page of the onboarding flow.")
         static let pageTwoSubtitle = NSLocalizedString("OnboardingPageTwo.subtitle", value: "Join people around the world who trust Fabriik.", comment: "Subtitle displayed on the second page of the onboarding flow.")  
-        static let pageThreeTitle = NSLocalizedString("OnboardingPageThree.title", value: "Buy and trade bitcoin, tokens, and other digital currencies.", comment: "Title displayed on the third page of the onboarding flow.")  
+        static let pageThreeTitle = NSLocalizedString("OnboardingPageThree.title", value: "Buy and swap bitcoin, tokens, and other digital currencies.", comment: "Title displayed on the third page of the onboarding flow.")
         static let pageThreeSubtitle = NSLocalizedString("OnboardingPageThree.subtitle", value: "Invest and diversify with Fabriik, easily and securely.", comment: "Subtitle displayed on the third page of the onboarding flow.")
     }
     
@@ -738,7 +738,7 @@ enum S {
                                                     comment: "Title for recovery phrase intro page")
 
         static let relaxBuyTrade = NSLocalizedString("RecoveryKeyFlow.relaxBuyTrade",
-                                                     value: "Relax, buy, and trade",
+                                                     value: "Relax, buy, and swap",
                                                      comment: "Title for recovery phrase intro page")
         
         static let noScreenshotsRecommendation = NSLocalizedString("RecoveryKeyFlow.noScreenshotsRecommendation",
@@ -750,7 +750,7 @@ enum S {
                                                                    comment: "Recommends that the user stores the recovery phrase in a secure location")
         
         static let securityAssurance = NSLocalizedString("RecoveryKeyFlow.securityAssurance",
-                                                         value: "Buy and trade knowing that your funds are protected by the best security and privacy in the business.",
+                                                         value: "Buy and swap knowing that your funds are protected by the best security and privacy in the business.",
                                                          comment: "Assures the user that Fabriik will keep the user's funds secure.")
         
         static let generateKeyButton = NSLocalizedString("RecoveryKeyFlow.generateKeyButton",
@@ -801,7 +801,7 @@ enum S {
                                                              comment: "Title for the success page after the recovery phrase has been set up.")
 
         static let successSubheading = NSLocalizedString("RecoveryKeyFlow.successSubheading",
-                                                         value: "You're all set to deposit, trade, and buy crypto from your Fabriik wallet.",
+                                                         value: "You're all set to deposit, swap, and buy crypto from your Fabriik wallet.",
                                                          comment: "Subtitle for the success page after the recovery phrase has been set up.")
         
         static let invalidPhrase = NSLocalizedString("RecoveryKeyFlow.invalidPhrase",
