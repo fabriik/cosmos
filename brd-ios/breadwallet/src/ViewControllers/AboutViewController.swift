@@ -15,9 +15,9 @@ class AboutViewController: UIViewController {
     private let logo = UIImageView(image: #imageLiteral(resourceName: "LogoBlue"))
     private let logoBackground = MotionGradientView()
     private let walletID = WalletIDCell()
-    private let blog = AboutCell(text: S.About.blog)
-    private let twitter = AboutCell(text: S.About.twitter)
-    private let reddit = AboutCell(text: S.About.reddit)
+//    private let blog = AboutCell(text: S.About.blog)
+//    private let twitter = AboutCell(text: S.About.twitter)
+//    private let reddit = AboutCell(text: S.About.reddit)
     private let privacy = UIButton(type: .system)
     private let footer = UILabel.wrapping(font: .customBody(size: 13.0), color: Theme.primaryText)
     
@@ -32,9 +32,9 @@ class AboutViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(logo)
         view.addSubview(walletID)
-        view.addSubview(blog)
-        view.addSubview(twitter)
-        view.addSubview(reddit)
+//        view.addSubview(blog)
+//        view.addSubview(twitter)
+//        view.addSubview(reddit)
         view.addSubview(privacy)
         view.addSubview(footer)
     }
@@ -55,21 +55,21 @@ class AboutViewController: UIViewController {
             walletID.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: verticalMargin),
             walletID.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             walletID.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
-        blog.constrain([
-            blog.topAnchor.constraint(equalTo: walletID.bottomAnchor, constant: verticalMargin),
-            blog.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blog.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
-        twitter.constrain([
-            twitter.topAnchor.constraint(equalTo: blog.bottomAnchor, constant: verticalMargin),
-            twitter.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            twitter.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
-        reddit.constrain([
-            reddit.topAnchor.constraint(equalTo: twitter.bottomAnchor, constant: verticalMargin),
-            reddit.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            reddit.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
+//        blog.constrain([
+//            blog.topAnchor.constraint(equalTo: walletID.bottomAnchor, constant: verticalMargin),
+//            blog.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            blog.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
+//        twitter.constrain([
+//            twitter.topAnchor.constraint(equalTo: blog.bottomAnchor, constant: verticalMargin),
+//            twitter.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            twitter.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
+//        reddit.constrain([
+//            reddit.topAnchor.constraint(equalTo: twitter.bottomAnchor, constant: verticalMargin),
+//            reddit.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            reddit.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
         privacy.constrain([
             privacy.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            privacy.topAnchor.constraint(equalTo: reddit.bottomAnchor, constant: verticalMargin)])
+            privacy.topAnchor.constraint(equalTo: walletID.bottomAnchor, constant: verticalMargin)])
         footer.constrain([
             footer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[3]),
             footer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[3]),
@@ -90,17 +90,17 @@ class AboutViewController: UIViewController {
     }
 
     private func setActions() {
-        blog.button.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://brd.com/blog/")
-        }
-        twitter.button.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://twitter.com/brdhq")
-        }
-        reddit.button.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://reddit.com/r/brdapp/")
-        }
+//        blog.button.tap = strongify(self) { myself in
+//            myself.presentURL(string: "https://brd.com/blog/")
+//        }
+//        twitter.button.tap = strongify(self) { myself in
+//            myself.presentURL(string: "https://twitter.com/brdhq")
+//        }
+//        reddit.button.tap = strongify(self) { myself in
+//            myself.presentURL(string: "https://reddit.com/r/brdapp/")
+//        }
         privacy.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://brd.com/privacy")
+            myself.presentURL(string: "https://fabriik.com/privacy-policy/")
         }
     }
 
