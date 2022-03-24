@@ -37,8 +37,7 @@ class KYCConfirmEmailCell: UITableViewCell, GenericSettable {
     private lazy var confirmationCodeField: SimpleTextField = {
         let confirmationCodeField = SimpleTextField()
         confirmationCodeField.translatesAutoresizingMaskIntoConstraints = false
-        confirmationCodeField.setup(as: .text, title: "CONFIRMATION CODE", customPlaceholder: "Confirmation code")
-        confirmationCodeField.textField.autocapitalizationType = .none
+        confirmationCodeField.setup(as: .numbers, title: "CONFIRMATION CODE", customPlaceholder: "Confirmation code")
         confirmationCodeField.textField.textContentType = .oneTimeCode
         
         return confirmationCodeField
