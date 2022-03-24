@@ -36,7 +36,7 @@ struct KYCConfirmEmailWorkerData: RequestModelData, UrlModelData {
 class KYCConfirmEmailWorker: KYCBasePlainResponseWorker {
     override func getUrl() -> String {
         guard let urlParams = (requestData as? KYCConfirmEmailWorkerData)?.urlParameters() else { return "" }
-        print(APIURLHandler.getUrl(KYCAuthEndpoints.confirm, parameters: urlParams))
+        
         return APIURLHandler.getUrl(KYCAuthEndpoints.confirm, parameters: urlParams)
     }
     
