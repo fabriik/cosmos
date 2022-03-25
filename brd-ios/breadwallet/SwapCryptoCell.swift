@@ -10,6 +10,13 @@ class SwapCryptoCell: UITableViewCell, GenericSettable {
     struct ViewModel: Hashable {
     }
     
+    private lazy var currencyImageView: UILabel = {
+        let currencyImageView = currencyImageView()
+        currencyImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return currencyImageView
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
