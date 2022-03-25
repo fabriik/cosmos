@@ -34,7 +34,7 @@
     },
     {
         "code": "bsv",
-        "name": "Bitcoin SV",
+        "name": "Bitcoin BSV",
         "scale": 0,
         "is_supported": true,
         "contract_address": "__native__",
@@ -68,7 +68,7 @@
     },
     {
         "code": "bch",
-        "name": "Bitcoin Cash",
+        "name": "Bitcoin BCH",
         "scale": 8,
         "is_supported": true,
         "contract_address": "__native__",
@@ -83,7 +83,7 @@
     },
     {
         "code": "btc",
-        "name": "Bitcoin",
+        "name": "Bitcoin BTC",
         "scale": 8,
         "is_supported": true,
         "contract_address": "__native__",
