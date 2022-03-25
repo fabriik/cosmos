@@ -46,7 +46,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
     
     override func viewDidLoad() {
