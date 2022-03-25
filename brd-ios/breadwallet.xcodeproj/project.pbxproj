@@ -165,6 +165,7 @@
 		7B48B22C27EDC77900C54085 /* SwapPickCurrencyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22627EDC77900C54085 /* SwapPickCurrencyInteractor.swift */; };
 		7B48B23027EDD41300C54085 /* SwapCryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22E27EDD41300C54085 /* SwapCryptoCell.swift */; };
 		7B48B23127EDD41300C54085 /* SwapCryptoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B48B22F27EDD41300C54085 /* SwapCryptoCell.xib */; };
+		7B48B23327EDF7D600C54085 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B23227EDF7D500C54085 /* UIView+Extensions.swift */; };
 		7B626F8027D1411D0077BAE3 /* KYCAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7227D1411D0077BAE3 /* KYCAPI.swift */; };
 		7B626F8127D1411D0077BAE3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7327D1411D0077BAE3 /* NetworkingError.swift */; };
 		7B626F8227D1411D0077BAE3 /* APIURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7427D1411D0077BAE3 /* APIURLHandler.swift */; };
@@ -1025,6 +1026,7 @@
 		7B48B22627EDC77900C54085 /* SwapPickCurrencyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyInteractor.swift; sourceTree = "<group>"; };
 		7B48B22E27EDD41300C54085 /* SwapCryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCryptoCell.swift; sourceTree = "<group>"; };
 		7B48B22F27EDD41300C54085 /* SwapCryptoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwapCryptoCell.xib; sourceTree = "<group>"; };
+		7B48B23227EDF7D500C54085 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		7B626F7227D1411D0077BAE3 /* KYCAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAPI.swift; sourceTree = "<group>"; };
 		7B626F7327D1411D0077BAE3 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		7B626F7427D1411D0077BAE3 /* APIURLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIURLHandler.swift; sourceTree = "<group>"; };
@@ -2221,6 +2223,7 @@
 				7B626F8E27D1413C0077BAE3 /* RoundedView.swift */,
 				7B626F9927D1413E0077BAE3 /* SimpleTextField.swift */,
 				7B626F9127D1413D0077BAE3 /* SpinnerView.swift */,
+				7B48B23227EDF7D500C54085 /* UIView+Extensions.swift */,
 				7B626F8C27D1413C0077BAE3 /* UITableView+Extensions.swift */,
 			);
 			name = Helpers;
@@ -3960,6 +3963,7 @@
 				9F0EA16C25E2904400D4225E /* WidgetDataShareService.swift in Sources */,
 				9FC529D02604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
+				7B48B23327EDF7D600C54085 /* UIView+Extensions.swift in Sources */,
 				7B48B21827EDC29E00C54085 /* SwapMainPresenter.swift in Sources */,
 				7B48B21F27EDC3BE00C54085 /* SimpleNavigationController.swift in Sources */,
 				CEA05CC31F21B53C00D850F0 /* FeeSelector.swift in Sources */,

@@ -6,6 +6,8 @@ import UIKit
 
 protocol SwapPickCurrencyDisplayLogic: AnyObject {
     // MARK: Display logic functions
+    
+    func displayGetCurrencyList(viewModel: SwapPickCurrency.GetCurrencyList.ViewModel)
 }
 
 class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayLogic, UITableViewDelegate, UITableViewDataSource,
@@ -58,20 +60,22 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         .cryptos
     ]
     
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.setupDefault()
-        tableView.allowsSelection = false
+        tableView.indicatorStyle = .white
         
         return tableView
     }()
     
-    lazy var searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         var searchController = UISearchController(searchResultsController: nil)
         
         return searchController
     }()
+    
+    private var currencies: [SwapPickCurrency.GetCurrencyList.Currency] = []
     
     // MARK: View lifecycle
     override func viewDidLoad() {
@@ -79,6 +83,7 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
+        searchController.searchBar.sizeToFit()
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
@@ -97,19 +102,30 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         view.backgroundColor = UIColor(red: 51.0/255.0, green: 32.0/255.0, blue: 69.0/255.0, alpha: 1.0)
         
         localize()
+        fetch()
     }
     
     func localize() {
         title = "Trade Your"
     }
     
+    func fetch() {
+        interactor?.executeGetCurrencyList(request: .init())
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
+        guard let text = searchController.searchBar.text?.lowercased(), !text.isEmpty else { return }
         
-        print(text)
+        currencies.indices.forEach { currencies[$0].isVisible = currencies[$0].title.lowercased().contains(text) }
+        
+        tableView.reloadData()
     }
     
     // MARK: View controller functions
+    
+    func displayGetCurrencyList(viewModel: SwapPickCurrency.GetCurrencyList.ViewModel) {
+        currencies = viewModel.currencies
+    }
     
     func displayError(viewModel: GenericModels.Error.ViewModel) {
         LoadingView.hide()
@@ -126,13 +142,29 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let filteredCurrencies = currencies.filter { $0.isVisible == true }
+        return filteredCurrencies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sections[indexPath.section] {
         case .cryptos:
-            return UITableViewCell()
+            return getSwapCryptoCell(indexPath)
         }
+    }
+    
+    func getSwapCryptoCell(_ indexPath: IndexPath) -> SwapCryptoCell {
+        guard let cell = tableView.dequeue(cell: SwapCryptoCell.self) else {
+            return SwapCryptoCell()
+        }
+        
+        let currency = currencies[indexPath.row]
+        cell.setup(with: .init(image: currency.image,
+                               title: currency.title,
+                               subtitle: currency.subtitle,
+                               amount: currency.amount,
+                               conversion: currency.conversion))
+        
+        return cell
     }
 }

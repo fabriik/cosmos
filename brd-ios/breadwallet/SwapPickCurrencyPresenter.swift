@@ -6,6 +6,8 @@ import UIKit
 
 protocol SwapPickCurrencyPresentationLogic {
     // MARK: Presentation logic functions
+    
+    func presentGetCurrencyList(response: SwapPickCurrency.GetCurrencyList.Response)
 }
 
 class SwapPickCurrencyPresenter: SwapPickCurrencyPresentationLogic {
@@ -13,4 +15,7 @@ class SwapPickCurrencyPresenter: SwapPickCurrencyPresentationLogic {
     
     // MARK: Presenter functions
     
+    func presentGetCurrencyList(response: SwapPickCurrency.GetCurrencyList.Response) {
+        viewController?.displayGetCurrencyList(viewModel: .init(currencies: response.currencies))
+    }
 }
