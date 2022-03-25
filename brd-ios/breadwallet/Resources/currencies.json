@@ -48,24 +48,6 @@
         "currency_id": "bitcoinsv-mainnet:__native__"
     },
     {
-        "code": "ltc",
-        "name": "Litecoin",
-        "scale": 8,
-        "is_supported": true,
-        "contract_address": "__native__",
-        "sale_address": "",
-        "contract_info": {},
-        "colors": [
-            "#59667E",
-            "#59667E"
-        ],
-        "type": "",
-        "alternate_names": {
-            "coingecko": "litecoin"
-        },
-        "currency_id": "litecoin-mainnet:__native__"
-    },
-    {
         "code": "usdt",
         "name": "Tether USD",
         "scale": 6,
@@ -74,7 +56,7 @@
         "sale_address": "",
         "contract_info": {},
         "colors": [
-            "#137D61",
+            "#137D61",git 
             "#137D61"
         ],
         "type": "erc20",
@@ -113,23 +95,5 @@
         ],
         "type": "",
         "currency_id": "bitcoin-mainnet:__native__"
-    },
-    {
-        "code": "doge",
-        "name": "Dogecoin",
-        "scale": 8,
-        "is_supported": true,
-        "contract_address": "__native__",
-        "sale_address": "",
-        "contract_info": {},
-        "colors": [
-            "#DAB053",
-            "#DAB053"
-        ],
-        "type": "",
-        "alternate_names": {
-            "coingecko": "dogecoin"
-        },
-        "currency_id": "dogecoin-mainnet:__native__"
     }
 ]
