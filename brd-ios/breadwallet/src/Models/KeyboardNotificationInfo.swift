@@ -11,6 +11,9 @@ import UIKit
 struct KeyboardNotificationInfo {
 
     var deltaY: CGFloat {
+        guard endFrame.minY < startFrame.minY else {
+            return 0
+        }
         return endFrame.minY - startFrame.minY
     }
     var animationOptions: UIView.AnimationOptions {

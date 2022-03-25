@@ -229,9 +229,15 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         
         amountView.didChangeFirstResponder = { [weak self] isFirstResponder in
             if isFirstResponder {
-                self?.memoCell.textView.resignFirstResponder()
-                self?.addressCell.textField.resignFirstResponder()
-                self?.attributeCell?.textField.resignFirstResponder()
+                if self?.memoCell.textView.isFirstResponder == true {
+                    self?.memoCell.textView.resignFirstResponder()
+                }
+                if self?.addressCell.textField.isFirstResponder == true {
+                    self?.addressCell.textField.resignFirstResponder()
+                }
+                if self?.attributeCell?.textField.isFirstResponder == true {
+                    self?.attributeCell?.textField.resignFirstResponder()
+                }
             }
         }
         
@@ -730,6 +736,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
 extension SendViewController {
     
     @objc private func keyboardWillShow(notification: Notification) {
+        amountView.closePinPad()
         copyKeyboardChangeAnimation(notification: notification)
     }
     
@@ -742,7 +749,7 @@ extension SendViewController {
         guard let info = KeyboardNotificationInfo(notification.userInfo) else { return }
         UIView.animate(withDuration: info.animationDuration, delay: 0, options: info.animationOptions, animations: {
             guard let parentView = self.parentView else { return }
-            parentView.frame = parentView.frame.offsetBy(dx: 0, dy: info.deltaY)
+            parentView.frame.origin.y = info.deltaY
         }, completion: nil)
     }
 }
