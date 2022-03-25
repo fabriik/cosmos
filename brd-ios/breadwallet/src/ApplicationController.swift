@@ -140,6 +140,7 @@ class ApplicationController: Subscriber, Trackable {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
+        IQKeyboardManager.shared.disabledToolbarClasses = [SendViewController.self, AmountViewController.self]
     }
     
     private func enterOnboarding() {
