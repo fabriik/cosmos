@@ -152,6 +152,19 @@
 		7B2C9B1627DA4BAB00D5135C /* KYCSessionModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2C9B1327DA4BAB00D5135C /* KYCSessionModelResponse.swift */; };
 		7B2C9B1927DA772700D5135C /* KYCConfirmEmailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2C9B1827DA772700D5135C /* KYCConfirmEmailWorker.swift */; };
 		7B2C9B1B27DA7DBA00D5135C /* KYCResendConfirmEmailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2C9B1A27DA7DBA00D5135C /* KYCResendConfirmEmailWorker.swift */; };
+		7B48B21827EDC29E00C54085 /* SwapMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21227EDC29E00C54085 /* SwapMainPresenter.swift */; };
+		7B48B21A27EDC29E00C54085 /* SwapMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21427EDC29E00C54085 /* SwapMainRouter.swift */; };
+		7B48B21B27EDC29E00C54085 /* SwapMainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21527EDC29E00C54085 /* SwapMainModels.swift */; };
+		7B48B21C27EDC29E00C54085 /* SwapMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21627EDC29E00C54085 /* SwapMainViewController.swift */; };
+		7B48B21D27EDC29E00C54085 /* SwapMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21727EDC29E00C54085 /* SwapMainInteractor.swift */; };
+		7B48B21F27EDC3BE00C54085 /* SimpleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21E27EDC3BE00C54085 /* SimpleNavigationController.swift */; };
+		7B48B22727EDC77900C54085 /* SwapPickCurrencyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22127EDC77900C54085 /* SwapPickCurrencyPresenter.swift */; };
+		7B48B22927EDC77900C54085 /* SwapPickCurrencyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22327EDC77900C54085 /* SwapPickCurrencyRouter.swift */; };
+		7B48B22A27EDC77900C54085 /* SwapPickCurrencyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22427EDC77900C54085 /* SwapPickCurrencyModels.swift */; };
+		7B48B22B27EDC77900C54085 /* SwapPickCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22527EDC77900C54085 /* SwapPickCurrencyViewController.swift */; };
+		7B48B22C27EDC77900C54085 /* SwapPickCurrencyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22627EDC77900C54085 /* SwapPickCurrencyInteractor.swift */; };
+		7B48B23027EDD41300C54085 /* SwapCryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22E27EDD41300C54085 /* SwapCryptoCell.swift */; };
+		7B48B23127EDD41300C54085 /* SwapCryptoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B48B22F27EDD41300C54085 /* SwapCryptoCell.xib */; };
 		7B626F8027D1411D0077BAE3 /* KYCAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7227D1411D0077BAE3 /* KYCAPI.swift */; };
 		7B626F8127D1411D0077BAE3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7327D1411D0077BAE3 /* NetworkingError.swift */; };
 		7B626F8227D1411D0077BAE3 /* APIURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7427D1411D0077BAE3 /* APIURLHandler.swift */; };
@@ -999,6 +1012,19 @@
 		7B2C9B1327DA4BAB00D5135C /* KYCSessionModelResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSessionModelResponse.swift; sourceTree = "<group>"; };
 		7B2C9B1827DA772700D5135C /* KYCConfirmEmailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailWorker.swift; sourceTree = "<group>"; };
 		7B2C9B1A27DA7DBA00D5135C /* KYCResendConfirmEmailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResendConfirmEmailWorker.swift; sourceTree = "<group>"; };
+		7B48B21227EDC29E00C54085 /* SwapMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainPresenter.swift; sourceTree = "<group>"; };
+		7B48B21427EDC29E00C54085 /* SwapMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainRouter.swift; sourceTree = "<group>"; };
+		7B48B21527EDC29E00C54085 /* SwapMainModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainModels.swift; sourceTree = "<group>"; };
+		7B48B21627EDC29E00C54085 /* SwapMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainViewController.swift; sourceTree = "<group>"; };
+		7B48B21727EDC29E00C54085 /* SwapMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainInteractor.swift; sourceTree = "<group>"; };
+		7B48B21E27EDC3BE00C54085 /* SimpleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNavigationController.swift; sourceTree = "<group>"; };
+		7B48B22127EDC77900C54085 /* SwapPickCurrencyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyPresenter.swift; sourceTree = "<group>"; };
+		7B48B22327EDC77900C54085 /* SwapPickCurrencyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyRouter.swift; sourceTree = "<group>"; };
+		7B48B22427EDC77900C54085 /* SwapPickCurrencyModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyModels.swift; sourceTree = "<group>"; };
+		7B48B22527EDC77900C54085 /* SwapPickCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyViewController.swift; sourceTree = "<group>"; };
+		7B48B22627EDC77900C54085 /* SwapPickCurrencyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyInteractor.swift; sourceTree = "<group>"; };
+		7B48B22E27EDD41300C54085 /* SwapCryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCryptoCell.swift; sourceTree = "<group>"; };
+		7B48B22F27EDD41300C54085 /* SwapCryptoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwapCryptoCell.xib; sourceTree = "<group>"; };
 		7B626F7227D1411D0077BAE3 /* KYCAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAPI.swift; sourceTree = "<group>"; };
 		7B626F7327D1411D0077BAE3 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		7B626F7427D1411D0077BAE3 /* APIURLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIURLHandler.swift; sourceTree = "<group>"; };
@@ -2113,6 +2139,49 @@
 			name = Workers;
 			sourceTree = "<group>";
 		};
+		7B48B21027EDC27E00C54085 /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				7B48B21127EDC28900C54085 /* SwapMain */,
+				7B48B22027EDC76500C54085 /* SwapPickCurrency */,
+			);
+			name = Swap;
+			sourceTree = "<group>";
+		};
+		7B48B21127EDC28900C54085 /* SwapMain */ = {
+			isa = PBXGroup;
+			children = (
+				7B48B21227EDC29E00C54085 /* SwapMainPresenter.swift */,
+				7B48B21427EDC29E00C54085 /* SwapMainRouter.swift */,
+				7B48B21527EDC29E00C54085 /* SwapMainModels.swift */,
+				7B48B21627EDC29E00C54085 /* SwapMainViewController.swift */,
+				7B48B21727EDC29E00C54085 /* SwapMainInteractor.swift */,
+			);
+			name = SwapMain;
+			sourceTree = "<group>";
+		};
+		7B48B22027EDC76500C54085 /* SwapPickCurrency */ = {
+			isa = PBXGroup;
+			children = (
+				7B48B22D27EDD39900C54085 /* Cells */,
+				7B48B22127EDC77900C54085 /* SwapPickCurrencyPresenter.swift */,
+				7B48B22327EDC77900C54085 /* SwapPickCurrencyRouter.swift */,
+				7B48B22427EDC77900C54085 /* SwapPickCurrencyModels.swift */,
+				7B48B22527EDC77900C54085 /* SwapPickCurrencyViewController.swift */,
+				7B48B22627EDC77900C54085 /* SwapPickCurrencyInteractor.swift */,
+			);
+			name = SwapPickCurrency;
+			sourceTree = "<group>";
+		};
+		7B48B22D27EDD39900C54085 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7B48B22E27EDD41300C54085 /* SwapCryptoCell.swift */,
+				7B48B22F27EDD41300C54085 /* SwapCryptoCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		7B626F6F27D140FF0077BAE3 /* KYC */ = {
 			isa = PBXGroup;
 			children = (
@@ -2142,6 +2211,7 @@
 				7B626F9B27D1413F0077BAE3 /* KYCCameraView.swift */,
 				7B626F9A27D1413E0077BAE3 /* KYCConstants.swift */,
 				7B626F9527D1413D0077BAE3 /* KYCNavigationController.swift */,
+				7B48B21E27EDC3BE00C54085 /* SimpleNavigationController.swift */,
 				7B1323CF27DB628500A24DAB /* KYCViewController.swift */,
 				7B626F9027D1413D0077BAE3 /* LoadingView.swift */,
 				7B62702B27D631500077BAE3 /* KYCFooterView.swift */,
@@ -2750,6 +2820,7 @@
 		CE20C8EF1DBAF6D300C8397A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7B48B21027EDC27E00C54085 /* Swap */,
 				7B626F6F27D140FF0077BAE3 /* KYC */,
 				713CD88822401946004657D4 /* RecoverKey */,
 				CE1E5F241EF081F300BD0F72 /* Import */,
@@ -3640,6 +3711,7 @@
 				9AE800F421FFF81F00D5058C /* rewardsIcon-19.gif in Resources */,
 				9AE8010821FFF81F00D5058C /* rewardsIcon-42.gif in Resources */,
 				9A926F6522034B3800CC2263 /* CellHighlight-63.png in Resources */,
+				7B48B23127EDD41300C54085 /* SwapCryptoCell.xib in Resources */,
 				9AE800F121FFF81F00D5058C /* rewardsIcon-53.gif in Resources */,
 				9AE800DE21FFF81F00D5058C /* rewardsIcon-12.gif in Resources */,
 				9A926F7D22034B3800CC2263 /* CellHighlight-57.png in Resources */,
@@ -3849,6 +3921,7 @@
 				71904FB92225AB3900A6D027 /* AnnouncementPromptView.swift in Sources */,
 				71999FDD22147CD90024271F /* Events.swift in Sources */,
 				CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */,
+				7B48B21C27EDC29E00C54085 /* SwapMainViewController.swift in Sources */,
 				7B626FE627D143B60077BAE3 /* KYCPersonalInfoPresenter.swift in Sources */,
 				7B626FA727D1413F0077BAE3 /* KYCButton.swift in Sources */,
 				223DB2191DF691260076A151 /* BRSocketHelpers.c in Sources */,
@@ -3887,6 +3960,8 @@
 				9F0EA16C25E2904400D4225E /* WidgetDataShareService.swift in Sources */,
 				9FC529D02604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
+				7B48B21827EDC29E00C54085 /* SwapMainPresenter.swift in Sources */,
+				7B48B21F27EDC3BE00C54085 /* SimpleNavigationController.swift in Sources */,
 				CEA05CC31F21B53C00D850F0 /* FeeSelector.swift in Sources */,
 				E89C0611216A8BE70012CE0D /* GetUserEmailPromptView.swift in Sources */,
 				C4192E4B27DA0F7F00F07719 /* KYCConfirmEmailModels.swift in Sources */,
@@ -3902,6 +3977,7 @@
 				3ADE270C248F35B80023B770 /* ResolvedAddressLabel.swift in Sources */,
 				CE25BF8D1DF3B8A500BC67B6 /* InViewAlert.swift in Sources */,
 				22A9A9511DF61945000F0016 /* TxMetaData.swift in Sources */,
+				7B48B22C27EDC77900C54085 /* SwapPickCurrencyInteractor.swift in Sources */,
 				7B626FC127D141E80077BAE3 /* KYCTutorialInteractor.swift in Sources */,
 				7C6ACCB11FEB21580028ABFA /* TxDetailDataSource.swift in Sources */,
 				CE8CD8E11E31976800785E02 /* LoginViewController.swift in Sources */,
@@ -3938,9 +4014,11 @@
 				CEEC70941E96A24F00EF788E /* DefaultCurrencyViewController.swift in Sources */,
 				7B626F8927D1411D0077BAE3 /* APICallWorker.swift in Sources */,
 				7CAF4EDF22CE80D100326168 /* AssetCollection.swift in Sources */,
+				7B48B21D27EDC29E00C54085 /* SwapMainInteractor.swift in Sources */,
 				CEE6282A1EA98B6D001035AA /* DispatchQueue+Additions.swift in Sources */,
 				CEC6AA3D1DEE687000EE5AFD /* RadialGradientView.swift in Sources */,
 				7B626FB427D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.swift in Sources */,
+				7B48B22A27EDC77900C54085 /* SwapPickCurrencyModels.swift in Sources */,
 				7B62701227D1447D0077BAE3 /* KYCCompleteRouter.swift in Sources */,
 				7B62701427D1447D0077BAE3 /* KYCCompleteViewController.swift in Sources */,
 				CEEC70921E95DA4400EF788E /* GradientSwitch.swift in Sources */,
@@ -4032,6 +4110,7 @@
 				71988B0821EF8A0E008B8EA0 /* BRUserAgentHeaderGenerator.swift in Sources */,
 				CEE20C361EA5B4620086F724 /* Constants.swift in Sources */,
 				3A7605F724D0BB1F0057C1F4 /* CloudBackup.swift in Sources */,
+				7B48B23027EDD41300C54085 /* SwapCryptoCell.swift in Sources */,
 				E821D4CC21C16B2E00B0907B /* BRAnalyticsEvent.swift in Sources */,
 				CEEC707F1E8D6B4100EF788E /* MenuViewController.swift in Sources */,
 				CEEE92F11EBA7CBA00B7AC9C /* RequestAmountViewController.swift in Sources */,
@@ -4054,6 +4133,7 @@
 				71249913221F44FE00BEA491 /* Announcement.swift in Sources */,
 				71F829422321953F00B3C76E /* AlertPresenter.swift in Sources */,
 				CE8F0AE31EB91BB500AA7642 /* SearchHeaderView.swift in Sources */,
+				7B48B22727EDC77900C54085 /* SwapPickCurrencyPresenter.swift in Sources */,
 				7B1323D027DB628500A24DAB /* KYCViewController.swift in Sources */,
 				22A9A9551DF61945000F0016 /* BRTar.swift in Sources */,
 				CEAA9E971DC18E1F0066731D /* PhraseView.swift in Sources */,
@@ -4084,6 +4164,7 @@
 				7B626F9F27D1413F0077BAE3 /* BaseButton.swift in Sources */,
 				7B626FED27D143ED0077BAE3 /* KYCUploadFrontBackWorker.swift in Sources */,
 				CEAA9EA61DC3246F0066731D /* StartNavigationDelegate.swift in Sources */,
+				7B48B22B27EDC77900C54085 /* SwapPickCurrencyViewController.swift in Sources */,
 				7CBF4B6420081BCE00E003AA /* KeyedDecodingContainer+Additions.swift in Sources */,
 				3A188FF82582835600957819 /* Sharing.swift in Sources */,
 				C4192E4C27DA0F7F00F07719 /* KYCConfirmEmailViewController.swift in Sources */,
@@ -4148,6 +4229,7 @@
 				7C72D134226625130091B185 /* CoreSystem.swift in Sources */,
 				CE3D4C571EF5D5740016B1C8 /* ReachabilityMonitor.swift in Sources */,
 				7CBA74E62022784D00FBBFA9 /* HomeScreenAssetViewModel.swift in Sources */,
+				7B48B21B27EDC29E00C54085 /* SwapMainModels.swift in Sources */,
 				7B626F8327D1411D0077BAE3 /* Decodable+Extensions.swift in Sources */,
 				7CA1C47420EC25B9002E9E68 /* QRCode.swift in Sources */,
 				CE41327622CACA05002391E6 /* BalanceCell.swift in Sources */,
@@ -4170,6 +4252,7 @@
 				7C40DE2D20E09207000E289D /* ToggleButton.swift in Sources */,
 				22A9A9541DF61945000F0016 /* BRReplicatedKVStore.swift in Sources */,
 				7EF2999327E3B8D200A2238A /* Models.swift in Sources */,
+				7B48B22927EDC77900C54085 /* SwapPickCurrencyRouter.swift in Sources */,
 				71249916221F466800BEA491 /* Prompt.swift in Sources */,
 				CE6B6B4A1E54C0CB00B31405 /* SecurityCenterCell.swift in Sources */,
 				3A1D416E250957A00089FE63 /* MarketDataView.swift in Sources */,
@@ -4186,6 +4269,7 @@
 				CE6DCC271E6108D50044257B /* EnterPhraseCell.swift in Sources */,
 				CE760EDD1E561DF900EFAC2B /* UpdatePinViewController.swift in Sources */,
 				22A9A9481DF61945000F0016 /* BRBitID.swift in Sources */,
+				7B48B21A27EDC29E00C54085 /* SwapMainRouter.swift in Sources */,
 				CE0BC980215ACBE100E68B2B /* TokenImageNoBackground.swift in Sources */,
 				7C0F3DC42124A81100531E54 /* Backend.swift in Sources */,
 				7B626F8627D1411D0077BAE3 /* Generic.swift in Sources */,
