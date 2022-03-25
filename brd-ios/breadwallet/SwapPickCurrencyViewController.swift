@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol SwapPickCurrencyDisplayLogic: class {
+protocol SwapPickCurrencyDisplayLogic: AnyObject {
     // MARK: Display logic functions
 }
 
