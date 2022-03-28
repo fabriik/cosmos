@@ -397,7 +397,7 @@ class ApplicationController: Subscriber, Trackable {
         
         homeScreen.didTapTrade = {
             let vc = SwapMainViewController()
-            let navController = SimpleNavigationController(rootViewController: vc)
+            let navController = SwapNavigationController(rootViewController: vc)
             
             if #available(iOS 14.0, *) {
                 navController.isModalInPresentation = true

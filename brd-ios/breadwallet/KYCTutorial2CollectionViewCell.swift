@@ -7,7 +7,7 @@ import UIKit
 class KYCTutorial2CollectionViewCell: KYCTutorialBaseCell {
     @IBOutlet private var topLabel: UILabel!
     @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var nextButton: KYCButton!
+    @IBOutlet private var nextButton: SimpleButton!
     
     var didTapCloseButton: (() -> Void)?
     
@@ -20,7 +20,7 @@ class KYCTutorial2CollectionViewCell: KYCTutorialBaseCell {
         
         imageView.image = UIImage(named: "Tutorial2")
         
-        nextButton.setup(as: .enabled, title: "BEGIN")
+        nextButton.setup(as: .kycEnabled, title: "BEGIN")
         nextButton.didTap = { [weak self] in
             self?.didTapCloseButton?()
         }

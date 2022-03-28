@@ -7,6 +7,11 @@ import UIKit
 enum SwapPickCurrency {
     // MARK: Model name declarations
     
+    enum SwapType {
+        case from
+        case to
+    }
+    
     enum GetCurrencyList {
         struct Currency {
             let image: UIImage?

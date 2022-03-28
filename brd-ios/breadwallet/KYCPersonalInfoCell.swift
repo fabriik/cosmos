@@ -30,10 +30,10 @@ class KYCPersonalInfoCell: UITableViewCell, GenericSettable {
         return taxIdNumberField
     }()
     
-    private lazy var nextButton: KYCButton = {
-        let nextButton = KYCButton()
+    private lazy var nextButton: SimpleButton = {
+        let nextButton = SimpleButton()
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.setup(as: .enabled, title: "NEXT")
+        nextButton.setup(as: .kycEnabled, title: "NEXT")
         
         return nextButton
     }()

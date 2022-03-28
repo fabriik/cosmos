@@ -65,17 +65,44 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.setupDefault()
         tableView.indicatorStyle = .white
+        tableView.allowsSelection = false
         
         return tableView
     }()
     
     private lazy var searchController: UISearchController = {
-        var searchController = UISearchController(searchResultsController: nil)
+        var searchController = UISearchController()
+        searchController.searchBar.barStyle = .black
         
         return searchController
     }()
     
+    private lazy var historyButtonContainerView: UIView = {
+        var historyButtonContainerView = UIView()
+        historyButtonContainerView.translatesAutoresizingMaskIntoConstraints = false
+        historyButtonContainerView.backgroundColor = UIColor(red: 38.0/255.0, green: 21.0/255.0, blue: 56.0/255.0, alpha: 1.0)
+        
+        var historyButton = SimpleButton()
+        historyButton.translatesAutoresizingMaskIntoConstraints = false
+        historyButton.setup(as: .swapEnabled, title: "HISTORY")
+        
+        historyButton.didTap = { [weak self] in
+            self?.router?.showSwapHistory()
+        }
+        
+        historyButtonContainerView.addSubview(historyButton)
+        historyButton.constrainToCenter()
+        historyButton.topAnchor.constraint(equalTo: historyButtonContainerView.topAnchor, constant: 16).isActive = true
+        historyButton.bottomAnchor.constraint(equalTo: historyButtonContainerView.bottomAnchor, constant: -32).isActive = true
+        historyButton.leadingAnchor.constraint(equalTo: historyButtonContainerView.leadingAnchor, constant: 16).isActive = true
+        historyButton.trailingAnchor.constraint(equalTo: historyButtonContainerView.trailingAnchor, constant: -16).isActive = true
+        
+        return historyButtonContainerView
+    }()
+    
     private var currencies: [SwapPickCurrency.GetCurrencyList.Currency] = []
+    
+    var swapType: SwapPickCurrency.SwapType = .from
     
     // MARK: View lifecycle
     override func viewDidLoad() {
@@ -93,11 +120,17 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         tableView.delegate = self
         tableView.dataSource = self
         
+        view.addSubview(historyButtonContainerView)
+        historyButtonContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        historyButtonContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        historyButtonContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        historyButtonContainerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: historyButtonContainerView.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
         view.backgroundColor = UIColor(red: 51.0/255.0, green: 32.0/255.0, blue: 69.0/255.0, alpha: 1.0)
         
@@ -114,9 +147,13 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text?.lowercased(), !text.isEmpty else { return }
+        guard let text = searchController.searchBar.text?.lowercased() else { return }
         
-        currencies.indices.forEach { currencies[$0].isVisible = currencies[$0].title.lowercased().contains(text) }
+        if text.isEmpty {
+            currencies.indices.forEach { currencies[$0].isVisible = true }
+        } else {
+            currencies.indices.forEach { currencies[$0].isVisible = currencies[$0].title.lowercased().contains(text) }
+        }
         
         tableView.reloadData()
     }

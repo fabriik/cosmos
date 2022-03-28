@@ -51,7 +51,7 @@ class SwapCryptoCell: UITableViewCell, GenericSettable {
         let balanceStackView = UIStackView()
         balanceStackView.translatesAutoresizingMaskIntoConstraints = false
         balanceStackView.axis = .vertical
-        balanceStackView.distribution = .fill
+        balanceStackView.distribution = .fillEqually
         
         return balanceStackView
     }()
@@ -117,6 +117,9 @@ class SwapCryptoCell: UITableViewCell, GenericSettable {
         currencyImageView.image = model.image
         titleLabel.text = model.title
         subtitleLabel.text = model.subtitle
+        
+        fiatLabel.isHidden = model.amount == ""
+        
         fiatLabel.text = model.amount
         conversionLabel.text = model.conversion
     }

@@ -52,7 +52,7 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic {
         super.viewDidLoad()
         
         let vc = SwapPickCurrencyViewController()
-        let navController = SimpleNavigationController(rootViewController: vc)
+        let navController = SwapNavigationController(rootViewController: vc)
         
         if #available(iOS 14.0, *) {
             navController.isModalInPresentation = true
@@ -63,6 +63,17 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic {
         present(navController, animated: true, completion: nil)
         
         view.backgroundColor = UIColor(red: 51.0/255.0, green: 32.0/255.0, blue: 69.0/255.0, alpha: 1.0)
+        
+        localize()
+        fetch()
+    }
+    
+    func localize() {
+        title = ""
+    }
+    
+    func fetch() {
+        
     }
     
     // MARK: View controller functions

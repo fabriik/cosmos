@@ -157,7 +157,7 @@
 		7B48B21B27EDC29E00C54085 /* SwapMainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21527EDC29E00C54085 /* SwapMainModels.swift */; };
 		7B48B21C27EDC29E00C54085 /* SwapMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21627EDC29E00C54085 /* SwapMainViewController.swift */; };
 		7B48B21D27EDC29E00C54085 /* SwapMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21727EDC29E00C54085 /* SwapMainInteractor.swift */; };
-		7B48B21F27EDC3BE00C54085 /* SimpleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21E27EDC3BE00C54085 /* SimpleNavigationController.swift */; };
+		7B48B21F27EDC3BE00C54085 /* SwapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B21E27EDC3BE00C54085 /* SwapNavigationController.swift */; };
 		7B48B22727EDC77900C54085 /* SwapPickCurrencyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22127EDC77900C54085 /* SwapPickCurrencyPresenter.swift */; };
 		7B48B22927EDC77900C54085 /* SwapPickCurrencyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22327EDC77900C54085 /* SwapPickCurrencyRouter.swift */; };
 		7B48B22A27EDC77900C54085 /* SwapPickCurrencyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22427EDC77900C54085 /* SwapPickCurrencyModels.swift */; };
@@ -189,7 +189,7 @@
 		7B626FA427D1413F0077BAE3 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9427D1413D0077BAE3 /* PaddedTextField.swift */; };
 		7B626FA527D1413F0077BAE3 /* KYCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9527D1413D0077BAE3 /* KYCNavigationController.swift */; };
 		7B626FA627D1413F0077BAE3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9627D1413E0077BAE3 /* BaseView.swift */; };
-		7B626FA727D1413F0077BAE3 /* KYCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9727D1413E0077BAE3 /* KYCButton.swift */; };
+		7B626FA727D1413F0077BAE3 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9727D1413E0077BAE3 /* SimpleButton.swift */; };
 		7B626FA827D1413F0077BAE3 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9827D1413E0077BAE3 /* DatePickerViewController.swift */; };
 		7B626FA927D1413F0077BAE3 /* SimpleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9927D1413E0077BAE3 /* SimpleTextField.swift */; };
 		7B626FAA27D1413F0077BAE3 /* KYCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9A27D1413E0077BAE3 /* KYCConstants.swift */; };
@@ -1018,7 +1018,7 @@
 		7B48B21527EDC29E00C54085 /* SwapMainModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainModels.swift; sourceTree = "<group>"; };
 		7B48B21627EDC29E00C54085 /* SwapMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainViewController.swift; sourceTree = "<group>"; };
 		7B48B21727EDC29E00C54085 /* SwapMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainInteractor.swift; sourceTree = "<group>"; };
-		7B48B21E27EDC3BE00C54085 /* SimpleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNavigationController.swift; sourceTree = "<group>"; };
+		7B48B21E27EDC3BE00C54085 /* SwapNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapNavigationController.swift; sourceTree = "<group>"; };
 		7B48B22127EDC77900C54085 /* SwapPickCurrencyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyPresenter.swift; sourceTree = "<group>"; };
 		7B48B22327EDC77900C54085 /* SwapPickCurrencyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyRouter.swift; sourceTree = "<group>"; };
 		7B48B22427EDC77900C54085 /* SwapPickCurrencyModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyModels.swift; sourceTree = "<group>"; };
@@ -1050,7 +1050,7 @@
 		7B626F9427D1413D0077BAE3 /* PaddedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		7B626F9527D1413D0077BAE3 /* KYCNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCNavigationController.swift; sourceTree = "<group>"; };
 		7B626F9627D1413E0077BAE3 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		7B626F9727D1413E0077BAE3 /* KYCButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCButton.swift; sourceTree = "<group>"; };
+		7B626F9727D1413E0077BAE3 /* SimpleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
 		7B626F9827D1413E0077BAE3 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		7B626F9927D1413E0077BAE3 /* SimpleTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTextField.swift; sourceTree = "<group>"; };
 		7B626F9A27D1413E0077BAE3 /* KYCConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConstants.swift; sourceTree = "<group>"; };
@@ -2209,11 +2209,11 @@
 				7B626F9627D1413E0077BAE3 /* BaseView.swift */,
 				7B626F9827D1413E0077BAE3 /* DatePickerViewController.swift */,
 				7B626F9227D1413D0077BAE3 /* GenericSettable.swift */,
-				7B626F9727D1413E0077BAE3 /* KYCButton.swift */,
+				7B626F9727D1413E0077BAE3 /* SimpleButton.swift */,
 				7B626F9B27D1413F0077BAE3 /* KYCCameraView.swift */,
 				7B626F9A27D1413E0077BAE3 /* KYCConstants.swift */,
 				7B626F9527D1413D0077BAE3 /* KYCNavigationController.swift */,
-				7B48B21E27EDC3BE00C54085 /* SimpleNavigationController.swift */,
+				7B48B21E27EDC3BE00C54085 /* SwapNavigationController.swift */,
 				7B1323CF27DB628500A24DAB /* KYCViewController.swift */,
 				7B626F9027D1413D0077BAE3 /* LoadingView.swift */,
 				7B62702B27D631500077BAE3 /* KYCFooterView.swift */,
@@ -3926,7 +3926,7 @@
 				CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */,
 				7B48B21C27EDC29E00C54085 /* SwapMainViewController.swift in Sources */,
 				7B626FE627D143B60077BAE3 /* KYCPersonalInfoPresenter.swift in Sources */,
-				7B626FA727D1413F0077BAE3 /* KYCButton.swift in Sources */,
+				7B626FA727D1413F0077BAE3 /* SimpleButton.swift in Sources */,
 				223DB2191DF691260076A151 /* BRSocketHelpers.c in Sources */,
 				3A1D4180250965730089FE63 /* MarketDataPublisher.swift in Sources */,
 				3A88E1D1251533070097C3C2 /* LinkStatusCircle.swift in Sources */,
@@ -3965,7 +3965,7 @@
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
 				7B48B23327EDF7D600C54085 /* UIView+Extensions.swift in Sources */,
 				7B48B21827EDC29E00C54085 /* SwapMainPresenter.swift in Sources */,
-				7B48B21F27EDC3BE00C54085 /* SimpleNavigationController.swift in Sources */,
+				7B48B21F27EDC3BE00C54085 /* SwapNavigationController.swift in Sources */,
 				CEA05CC31F21B53C00D850F0 /* FeeSelector.swift in Sources */,
 				E89C0611216A8BE70012CE0D /* GetUserEmailPromptView.swift in Sources */,
 				C4192E4B27DA0F7F00F07719 /* KYCConfirmEmailModels.swift in Sources */,

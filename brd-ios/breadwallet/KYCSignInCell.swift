@@ -39,10 +39,10 @@ class KYCSignInCell: UITableViewCell, GenericSettable {
         return passwordField
     }()
     
-    private lazy var nextButton: KYCButton = {
-        let nextButton = KYCButton()
+    private lazy var nextButton: SimpleButton = {
+        let nextButton = SimpleButton()
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.setup(as: .disabled, title: "SUBMIT")
+        nextButton.setup(as: .kycDisabled, title: "SUBMIT")
         
         return nextButton
     }()
@@ -156,7 +156,7 @@ class KYCSignInCell: UITableViewCell, GenericSettable {
         }
     }
     
-    func changeButtonStyle(with style: KYCButton.ButtonStyle) {
+    func changeButtonStyle(with style: SimpleButton.ButtonStyle) {
         nextButton.changeStyle(with: style)
     }
     

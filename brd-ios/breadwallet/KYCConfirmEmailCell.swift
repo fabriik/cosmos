@@ -43,18 +43,18 @@ class KYCConfirmEmailCell: UITableViewCell, GenericSettable {
         return confirmationCodeField
     }()
     
-    private lazy var confirmButton: KYCButton = {
-        let confirmButton = KYCButton()
+    private lazy var confirmButton: SimpleButton = {
+        let confirmButton = SimpleButton()
         confirmButton.translatesAutoresizingMaskIntoConstraints = false
-        confirmButton.setup(as: .disabled, title: "CONFIRM")
+        confirmButton.setup(as: .kycDisabled, title: "CONFIRM")
         
         return confirmButton
     }()
     
-    private lazy var resendButton: KYCButton = {
-        let resendButton = KYCButton()
+    private lazy var resendButton: SimpleButton = {
+        let resendButton = SimpleButton()
         resendButton.translatesAutoresizingMaskIntoConstraints = false
-        resendButton.setup(as: .enabled, title: "RESEND CODE")
+        resendButton.setup(as: .kycEnabled, title: "RESEND CODE")
         
         return resendButton
     }()
@@ -114,7 +114,7 @@ class KYCConfirmEmailCell: UITableViewCell, GenericSettable {
         confirmationCodeField.textField.text = model.confirmationCode
     }
     
-    func changeButtonStyle(with style: KYCButton.ButtonStyle) {
+    func changeButtonStyle(with style: SimpleButton.ButtonStyle) {
         confirmButton.changeStyle(with: style)
     }
     
