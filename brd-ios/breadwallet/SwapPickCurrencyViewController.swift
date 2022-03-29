@@ -139,7 +139,7 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
     }
     
     func localize() {
-        title = "Trade Your"
+        title = "Swap Your"
     }
     
     func fetch() {
@@ -187,6 +187,7 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         switch sections[indexPath.section] {
         case .cryptos:
             return getSwapCryptoCell(indexPath)
+            
         }
     }
     

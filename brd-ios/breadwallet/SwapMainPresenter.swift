@@ -6,6 +6,8 @@ import UIKit
 
 protocol SwapMainPresentationLogic {
     // MARK: Presentation logic functions
+    
+    func presentFillData(response: SwapMain.FillData.Response)
 }
 
 class SwapMainPresenter: SwapMainPresentationLogic {
@@ -13,4 +15,7 @@ class SwapMainPresenter: SwapMainPresentationLogic {
     
     // MARK: Presenter functions
     
+    func presentFillData(response: SwapMain.FillData.Response) {
+        viewController?.displayFillData(viewModel: .init(sendAmount: response.sendAmount))
+    }
 }

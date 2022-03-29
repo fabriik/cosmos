@@ -253,6 +253,8 @@
 		7B62702E27D65E9F0077BAE3 /* KYCTickBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62702D27D65E9F0077BAE3 /* KYCTickBoxView.swift */; };
 		7B62703227D8CAFC0077BAE3 /* KYCSignInCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62703027D8CAFC0077BAE3 /* KYCSignInCell.swift */; };
 		7B62703327D8CAFC0077BAE3 /* KYCSignInCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B62703127D8CAFC0077BAE3 /* KYCSignInCell.xib */; };
+		7B7891E127F1D27000204E6C /* SwapConversionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7891DF27F1D27000204E6C /* SwapConversionCell.swift */; };
+		7B7891E227F1D27000204E6C /* SwapConversionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7891E027F1D27000204E6C /* SwapConversionCell.xib */; };
 		7C0A3ACE210A0E1D006C2783 /* NotificationAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */; };
 		7C0F3DC42124A81100531E54 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F3DC32124A81100531E54 /* Backend.swift */; };
 		7C1931CD2327371A0061DE20 /* CoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1931CC2327371A0061DE20 /* CoreDatabase.swift */; };
@@ -1114,6 +1116,8 @@
 		7B62702D27D65E9F0077BAE3 /* KYCTickBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCTickBoxView.swift; sourceTree = "<group>"; };
 		7B62703027D8CAFC0077BAE3 /* KYCSignInCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignInCell.swift; sourceTree = "<group>"; };
 		7B62703127D8CAFC0077BAE3 /* KYCSignInCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KYCSignInCell.xib; sourceTree = "<group>"; };
+		7B7891DF27F1D27000204E6C /* SwapConversionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConversionCell.swift; sourceTree = "<group>"; };
+		7B7891E027F1D27000204E6C /* SwapConversionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwapConversionCell.xib; sourceTree = "<group>"; };
 		7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationAuthorizer.swift; path = src/NotificationAuthorizer.swift; sourceTree = "<group>"; };
 		7C0F3DC32124A81100531E54 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Backend.swift; path = src/Backend.swift; sourceTree = "<group>"; };
 		7C1931CC2327371A0061DE20 /* CoreDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDatabase.swift; sourceTree = "<group>"; };
@@ -2153,6 +2157,7 @@
 		7B48B21127EDC28900C54085 /* SwapMain */ = {
 			isa = PBXGroup;
 			children = (
+				7B7891DE27F1D21D00204E6C /* Cells */,
 				7B48B21227EDC29E00C54085 /* SwapMainPresenter.swift */,
 				7B48B21427EDC29E00C54085 /* SwapMainRouter.swift */,
 				7B48B21527EDC29E00C54085 /* SwapMainModels.swift */,
@@ -2438,6 +2443,15 @@
 			children = (
 				7B62703027D8CAFC0077BAE3 /* KYCSignInCell.swift */,
 				7B62703127D8CAFC0077BAE3 /* KYCSignInCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		7B7891DE27F1D21D00204E6C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7B7891DF27F1D27000204E6C /* SwapConversionCell.swift */,
+				7B7891E027F1D27000204E6C /* SwapConversionCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -3582,6 +3596,7 @@
 				9A926F7122034B3800CC2263 /* CellHighlight-46.png in Resources */,
 				9AE800EE21FFF81F00D5058C /* rewardsIcon-46.gif in Resources */,
 				9A926F5122034B3800CC2263 /* CellHighlight-83.png in Resources */,
+				7B7891E227F1D27000204E6C /* SwapConversionCell.xib in Resources */,
 				7B626FF427D144050077BAE3 /* KYCCameraCell.xib in Resources */,
 				9A926F7B22034B3800CC2263 /* CellHighlight-79.png in Resources */,
 				9AE8010621FFF81F00D5058C /* rewardsIcon-67.gif in Resources */,
@@ -4120,6 +4135,7 @@
 				CEEE92F11EBA7CBA00B7AC9C /* RequestAmountViewController.swift in Sources */,
 				CE8CD8DF1E2E825100785E02 /* VerifyPinViewController.swift in Sources */,
 				71A3170D229C70C00088F97C /* Theme.swift in Sources */,
+				7B7891E127F1D27000204E6C /* SwapConversionCell.swift in Sources */,
 				7CA238142011A97C00A4A59D /* TxDetailViewController.swift in Sources */,
 				CE20C9111DBE5B6F00C8397A /* Circle.swift in Sources */,
 				CE65C665207B0BEF000C99C4 /* ManageCurrencyCell.swift in Sources */,

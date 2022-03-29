@@ -118,7 +118,7 @@ class SwapCryptoCell: UITableViewCell, GenericSettable {
         titleLabel.text = model.title
         subtitleLabel.text = model.subtitle
         
-        fiatLabel.isHidden = model.amount == ""
+        fiatLabel.isHidden = model.amount.isEmpty
         
         fiatLabel.text = model.amount
         conversionLabel.text = model.conversion
