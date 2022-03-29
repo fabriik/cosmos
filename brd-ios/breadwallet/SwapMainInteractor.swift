@@ -24,6 +24,9 @@ class SwapMainInteractor: SwapMainBusinessLogic, SwapMainDataStore {
     var sendAmount = ""
     
     func executeFillData(request: SwapMain.FillData.Request) {
+        // TODO: I don't know how any of these will work yet. Literally 0 clue. Will have a meeting with Ziga and Victor to figure out.
+        // Don't want to randomly mock everything and lose time as I am already mocking quite some stuff.
+        
         sendAmount = request.sendAmount?.isEmpty == true ? "0" : request.sendAmount ?? ""
         
         presenter?.presentFillData(response: .init(sendAmount: sendAmount))

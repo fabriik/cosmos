@@ -14,6 +14,8 @@ class SwapNavigationController: UINavigationController, UINavigationControllerDe
     }
     
     private func setup() {
+        // TODO: Move colors to constants
+        
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()

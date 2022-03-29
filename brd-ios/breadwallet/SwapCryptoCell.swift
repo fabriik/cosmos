@@ -7,6 +7,10 @@ import UIKit
 class SwapCryptoCell: UITableViewCell, GenericSettable {
     typealias Model = ViewModel
     
+    // TODO: Move fonts to constants
+    // TODO: Move colors to constants
+    // TODO: Cleanup labels
+    
     struct ViewModel: Hashable {
         let image: UIImage?
         let title: String

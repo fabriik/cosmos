@@ -6,6 +6,7 @@ import UIKit
 
 class SimpleButton: RoundedView {
     enum ButtonStyle {
+        // TODO: Use configurations
         case kycEnabled
         case kycDisabled
         case swapEnabled
@@ -37,9 +38,11 @@ class SimpleButton: RoundedView {
                 return .kycCompletelyWhite
                 
             case .swapEnabled:
+                // TODO: Move to constants
                 return UIColor(red: 0.0/255.0, green: 171.0/255.0, blue: 234.0/255.0, alpha: 1.0)
                 
             case .swapDisabled:
+                // TODO: Move to constants
                 return UIColor(red: 141.0/255.0, green: 210.0/255.0, blue: 228.0/255.0, alpha: 1.0)
                 
             }

@@ -7,6 +7,10 @@ import UIKit
 class SwapConversionCell: UITableViewCell, GenericSettable {
     typealias Model = ViewModel
     
+    // TODO: Move fonts to constants
+    // TODO: Move colors to constants
+    // TODO: Cleanup labels
+    
     struct ViewModel: Hashable {
         let sendAmount: String?
         let receiveAmount: String?

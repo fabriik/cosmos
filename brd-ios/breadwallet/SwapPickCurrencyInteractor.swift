@@ -22,6 +22,8 @@ class SwapPickCurrencyInteractor: SwapPickCurrencyBusinessLogic, SwapPickCurrenc
     func executeGetCurrencyList(request: SwapPickCurrency.GetCurrencyList.Request) {
         var currencies: [SwapPickCurrency.GetCurrencyList.Currency] = []
         
+        // TODO: I am not sure what it will look like. I only have a Medium article for reference.
+        // Can use workers to mock if needed...
         for _ in 0...20 {
             currencies.append(SwapPickCurrency.GetCurrencyList.Currency(image: UIImage(named: "TouchId-Large"),
                                                                         title: NSUUID().uuidString,
