@@ -352,7 +352,19 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     
     @objc private func buy() {
         saveEvent("currency.didTapBuyBitcoin", attributes: [ "buyAndSell": shouldShowBuyAndSell ? "true" : "false" ])
-        didTapBuy?()
+        
+        let isTest = false
+        let request = WyreReservationRequest(isTest: isTest)
+        
+        WyreReservationWorker().execute(requestData: request) { [weak self] data, error in
+            guard error == nil,
+                  data != nil else {
+                // TODO: handle error
+                return
+            }
+            
+            self?.didTapBuy?()
+        }
     }
     
     @objc private func trade() {
