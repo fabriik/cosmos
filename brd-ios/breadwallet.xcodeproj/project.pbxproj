@@ -295,6 +295,7 @@
 		7CF5319D231EE01300E61F12 /* Base32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5319C231EE01300E61F12 /* Base32.swift */; };
 		7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */; };
 		7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */; };
+		7E26B49927F2D0C8002E7DD8 /* WyreReservationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26B49827F2D0C8002E7DD8 /* WyreReservationRequest.swift */; };
 		7EF2998A27E3B8C400A2238A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998827E3B8C400A2238A /* ApiClient.swift */; };
 		7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF2999027E3B8D200A2238A /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998C27E3B8D200A2238A /* MarketData.swift */; };
@@ -1145,6 +1146,7 @@
 		7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TxMemoCell.swift; path = src/Views/TransactionCells/TxMemoCell.swift; sourceTree = "<group>"; };
 		7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Experiments.swift"; path = "src/Platform/BRAPIClient+Experiments.swift"; sourceTree = "<group>"; };
 		7E09EA4027D60D2100B0268C /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
+		7E26B49827F2D0C8002E7DD8 /* WyreReservationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WyreReservationRequest.swift; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7EF2998827E3B8C400A2238A /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiClient.swift; path = CoinGecko/ApiClient.swift; sourceTree = "<group>"; };
 		7EF2998927E3B8C400A2238A /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resources.swift; path = CoinGecko/Resources.swift; sourceTree = "<group>"; };
@@ -2387,6 +2389,23 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		7E26B49627F2D0AF002E7DD8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7E26B49727F2D0B8002E7DD8 /* Worker */,
+				CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		7E26B49727F2D0B8002E7DD8 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				7E26B49827F2D0C8002E7DD8 /* WyreReservationRequest.swift */,
+			);
+			name = Worker;
+			sourceTree = "<group>";
+		};
 		7EF2998727E3B8AA00A2238A /* CoinGecko */ = {
 			isa = PBXGroup;
 			children = (
@@ -2761,7 +2780,7 @@
 				CE6D0F951DE8B6B600BD4BCF /* ViewControllerTransitions */,
 				CE760ED71E55F9E000EFAC2B /* SecurityCenter */,
 				CEBF32EF1DDCD30600348FC6 /* AccountViewController.swift */,
-				CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */,
+				7E26B49627F2D0AF002E7DD8 /* Home */,
 				CE274A601FD7C902000A4E62 /* RootNavigationController.swift */,
 				CE3840E71FD590BD00437C31 /* AssetListTableView.swift */,
 				CEBF32F51DDCEAF900348FC6 /* TransactionsTableViewController.swift */,
@@ -3873,6 +3892,7 @@
 				7CBA74E820227D1300FBBFA9 /* MenuCell.swift in Sources */,
 				CEE9A2E920AB4F9A00C5CF2F /* BRAPIClient+Metrics.swift in Sources */,
 				CEBF32F01DDCD30600348FC6 /* AccountViewController.swift in Sources */,
+				7E26B49927F2D0C8002E7DD8 /* WyreReservationRequest.swift in Sources */,
 				CEE1F5631DF13E5A00D733AD /* ModalHeaderView.swift in Sources */,
 				9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */,
 				3AFAD9562569F722005853E8 /* GiftingStatusUpdater.swift in Sources */,
