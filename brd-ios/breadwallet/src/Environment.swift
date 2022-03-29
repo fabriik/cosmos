@@ -130,11 +130,4 @@ struct E {
         }
         return token
     }
-    
-    static var sessionKey: String {
-        guard let sessionKey = Bundle.main.object(forInfoDictionaryKey: "SESSION_KEY") as? String else {
-            fatalError("Env not configured properly")
-        }
-        return sessionKey
-    }
 }

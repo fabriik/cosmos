@@ -295,8 +295,7 @@
 		7CF5319D231EE01300E61F12 /* Base32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5319C231EE01300E61F12 /* Base32.swift */; };
 		7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */; };
 		7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */; };
-		7E26B49927F2D0C8002E7DD8 /* WyreReservationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26B49827F2D0C8002E7DD8 /* WyreReservationWorker.swift */; };
-		7E26B49B27F2D172002E7DD8 /* WyreEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26B49A27F2D172002E7DD8 /* WyreEndpoints.swift */; };
+		7E26B49927F2D0C8002E7DD8 /* WyreReservationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26B49827F2D0C8002E7DD8 /* WyreReservationRequest.swift */; };
 		7EF2998A27E3B8C400A2238A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998827E3B8C400A2238A /* ApiClient.swift */; };
 		7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF2999027E3B8D200A2238A /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998C27E3B8D200A2238A /* MarketData.swift */; };
@@ -1147,8 +1146,7 @@
 		7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TxMemoCell.swift; path = src/Views/TransactionCells/TxMemoCell.swift; sourceTree = "<group>"; };
 		7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Experiments.swift"; path = "src/Platform/BRAPIClient+Experiments.swift"; sourceTree = "<group>"; };
 		7E09EA4027D60D2100B0268C /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
-		7E26B49827F2D0C8002E7DD8 /* WyreReservationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WyreReservationWorker.swift; sourceTree = "<group>"; };
-		7E26B49A27F2D172002E7DD8 /* WyreEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WyreEndpoints.swift; sourceTree = "<group>"; };
+		7E26B49827F2D0C8002E7DD8 /* WyreReservationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WyreReservationRequest.swift; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7EF2998827E3B8C400A2238A /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiClient.swift; path = CoinGecko/ApiClient.swift; sourceTree = "<group>"; };
 		7EF2998927E3B8C400A2238A /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resources.swift; path = CoinGecko/Resources.swift; sourceTree = "<group>"; };
@@ -2166,7 +2164,6 @@
 				7B626F7B27D1411D0077BAE3 /* Worker */,
 				7B626F7727D1411D0077BAE3 /* Models */,
 				7B626F7227D1411D0077BAE3 /* KYCAPI.swift */,
-				7E26B49A27F2D172002E7DD8 /* WyreEndpoints.swift */,
 				7B626F7327D1411D0077BAE3 /* NetworkingError.swift */,
 				7B626F7427D1411D0077BAE3 /* APIURLHandler.swift */,
 				7B626F7527D1411D0077BAE3 /* Decodable+Extensions.swift */,
@@ -2404,7 +2401,7 @@
 		7E26B49727F2D0B8002E7DD8 /* Worker */ = {
 			isa = PBXGroup;
 			children = (
-				7E26B49827F2D0C8002E7DD8 /* WyreReservationWorker.swift */,
+				7E26B49827F2D0C8002E7DD8 /* WyreReservationRequest.swift */,
 			);
 			name = Worker;
 			sourceTree = "<group>";
@@ -3895,7 +3892,7 @@
 				7CBA74E820227D1300FBBFA9 /* MenuCell.swift in Sources */,
 				CEE9A2E920AB4F9A00C5CF2F /* BRAPIClient+Metrics.swift in Sources */,
 				CEBF32F01DDCD30600348FC6 /* AccountViewController.swift in Sources */,
-				7E26B49927F2D0C8002E7DD8 /* WyreReservationWorker.swift in Sources */,
+				7E26B49927F2D0C8002E7DD8 /* WyreReservationRequest.swift in Sources */,
 				CEE1F5631DF13E5A00D733AD /* ModalHeaderView.swift in Sources */,
 				9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */,
 				3AFAD9562569F722005853E8 /* GiftingStatusUpdater.swift in Sources */,
@@ -4006,7 +4003,6 @@
 				22A9A9581DF61945000F0016 /* BRWebViewController.swift in Sources */,
 				3A6FD42F24E4570900068ECE /* KeyStore+CloudBackup.swift in Sources */,
 				CEC4CF091F0C84AB00E5C82E /* UIViewController+Alerts.swift in Sources */,
-				7E26B49B27F2D172002E7DD8 /* WyreEndpoints.swift in Sources */,
 				7B626F8427D1411D0077BAE3 /* HttpRequest.swift in Sources */,
 				CE12289D20D3695400EC6F81 /* MotionGradientView.swift in Sources */,
 				7141BB5D2249543600F7ECF2 /* InfoView.swift in Sources */,

@@ -146,8 +146,6 @@
 		<string>AssetListIntent</string>
 		<string>PortfolioIntent</string>
 	</array>
-	<key>SESSION_KEY</key>
-	<string>$(SESSION_KEY)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Font-Bold.otf</string>
