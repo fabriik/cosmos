@@ -353,8 +353,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     @objc private func buy() {
         saveEvent("currency.didTapBuyBitcoin", attributes: [ "buyAndSell": shouldShowBuyAndSell ? "true" : "false" ])
         
-        let isTest = false
-        ExternalAPIClient.shared.send(WyreReservationRequest(isTest: isTest)) { response in
+        ExternalAPIClient.shared.send(WyreReservationRequest()) { response in
             switch response {
             case .success(let reservation):
                 // TODO: open wyre widget once BE fixes the error

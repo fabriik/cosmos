@@ -20,5 +20,9 @@ struct WyreReservationRequest: ExternalAPIRequest {
     var resourceName: String { return "wyre/reserve?test=\(isTest)&sessionKey=\(sessionKey)" }
     
     let sessionKey = E.apiToken
-    var isTest = false
+    #if DEBUG
+    let isTest = true
+    #else
+    let isTest = false
+    #endif
 }
