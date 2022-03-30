@@ -8,7 +8,6 @@ class SwapCryptoView: BaseView, GenericSettable {
     typealias Model = ViewModel
     
     // TODO: Move fonts to constants
-    // TODO: Move colors to constants
     // TODO: Cleanup labels
     
     struct ViewModel: Hashable {
@@ -85,10 +84,10 @@ class SwapCryptoView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
-        backgroundColor = UIColor(red: 56.0/255.0, green: 38.0/255.0, blue: 73.0/255.0, alpha: 1.0)
+        backgroundColor = .swapDividerColorColor
         
         addBorders(edges: [.bottom],
-                   color: UIColor(red: 40.0/255.0, green: 20.0/255.0, blue: 55.0/255.0, alpha: 1.0))
+                   color: .swapDividerColorColor)
         
         addSubview(currencyImageView)
         currencyImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true

@@ -65,7 +65,7 @@ class KYCSignInView: BaseView, GenericSettable {
         
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont(name: "AvenirNext-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16),
-            .foregroundColor: UIColor.vibrantYellow,
+            .foregroundColor: UIColor.kycVibrantYellow,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let attributeString = NSMutableAttributedString(

@@ -75,7 +75,7 @@ class KYCTutorial1CollectionView: UICollectionViewCell, Identifiable {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.setTitle("NEXT", for: .normal)
         nextButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 14)
-        nextButton.setTitleColor(.vibrantYellow, for: .normal)
+        nextButton.setTitleColor(.kycVibrantYellow, for: .normal)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         
         return nextButton

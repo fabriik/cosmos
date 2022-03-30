@@ -14,13 +14,11 @@ class SwapNavigationController: UINavigationController, UINavigationControllerDe
     }
     
     private func setup() {
-        // TODO: Move colors to constants
-        
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
             appearance.titleTextAttributes = [.foregroundColor: UIColor.kycCompletelyWhite]
-            appearance.backgroundColor = UIColor(red: 38.0/255.0, green: 21.0/255.0, blue: 56.0/255.0, alpha: 1.0)
+            appearance.backgroundColor = .swapDarkPurple
             appearance.shadowColor = nil
             
             navigationBar.scrollEdgeAppearance = appearance

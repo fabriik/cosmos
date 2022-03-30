@@ -8,7 +8,6 @@ class SwapConversionView: BaseView, GenericSettable {
     typealias Model = ViewModel
     
     // TODO: Move fonts to constants
-    // TODO: Move colors to constants
     // TODO: Cleanup labels
     
     struct ViewModel: Hashable {
@@ -77,7 +76,7 @@ class SwapConversionView: BaseView, GenericSettable {
     private lazy var separatorLine: UIView = {
         let separatorLine = UIView()
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
-        separatorLine.backgroundColor = UIColor(red: 51.0/255.0, green: 32.0/255.0, blue: 69.0/255.0, alpha: 1.0)
+        separatorLine.backgroundColor = .swapBackgroundPurpleColor
         
         return separatorLine
     }()
@@ -139,7 +138,7 @@ class SwapConversionView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
-        backgroundColor = UIColor(red: 38.0/255.0, green: 21.0/255.0, blue: 56.0/255.0, alpha: 1.0)
+        backgroundColor = .swapDarkPurple
         
         addSubview(sendAmountTitleLabel)
         sendAmountTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true

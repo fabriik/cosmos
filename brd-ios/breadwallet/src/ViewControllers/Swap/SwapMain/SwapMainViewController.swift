@@ -72,8 +72,7 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
     private lazy var nextButtonContainerView: UIView = {
         var nextButtonContainerView = UIView()
         nextButtonContainerView.translatesAutoresizingMaskIntoConstraints = false
-        nextButtonContainerView.backgroundColor = UIColor(red: 38.0/255.0, green: 21.0/255.0, blue: 56.0/255.0, alpha: 1.0)
-        // TODO: Move colors to constants
+        nextButtonContainerView.backgroundColor = .swapDarkPurple
         
         var historyButton = SimpleButton()
         historyButton.translatesAutoresizingMaskIntoConstraints = false
@@ -146,8 +145,7 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
         nextButtonContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         nextButtonContainerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        // TODO: Move to the constants.
-        view.backgroundColor = UIColor(red: 51.0/255.0, green: 32.0/255.0, blue: 69.0/255.0, alpha: 1.0)
+        view.backgroundColor = .swapBackgroundPurpleColor
         
         pinPad.ouputDidUpdate = { [weak self] amount in
             self?.interactor?.executeFillData(request: .init(sendAmount: amount))

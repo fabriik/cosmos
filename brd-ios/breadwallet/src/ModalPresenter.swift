@@ -284,7 +284,17 @@ class ModalPresenter: Subscriber, Trackable {
             presentPlatformWebViewController(url)
             return nil
         case .trade:
-            presentPlatformWebViewController("/trade")
+            let vc = SwapMainViewController()
+            let navController = SwapNavigationController(rootViewController: vc)
+            
+            if #available(iOS 14.0, *) {
+                navController.isModalInPresentation = true
+            } else {
+                navController.modalPresentationStyle = .overFullScreen
+            }
+            
+            topViewController?.present(navController, animated: true, completion: nil)
+            
             return nil
         case .receiveLegacy:
             guard let btc = Currencies.btc.instance else { return nil }
