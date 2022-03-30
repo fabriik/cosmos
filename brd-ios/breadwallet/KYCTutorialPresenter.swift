@@ -17,9 +17,7 @@ class KYCTutorialPresenter: KYCTutorialPresentationLogic {
     // MARK: Presenter functions
     
     func presentTutorialPages(response: KYCTutorial.FetchTutorialPages.Response) {
-        let identifiers = [String(describing: KYCTutorial1CollectionViewCell.self),
-                           String(describing: KYCTutorial2CollectionViewCell.self)]
-        viewController?.displayTutorialPages(viewModel: .init(tutorialPagesIdentifiers: identifiers))
+        viewController?.displayTutorialPages(viewModel: .init())
     }
     
     func presentNextTutorial(response: KYCTutorial.HandleTutorialPaging.Response) {

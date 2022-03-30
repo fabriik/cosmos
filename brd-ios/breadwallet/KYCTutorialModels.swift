@@ -7,20 +7,10 @@ import UIKit
 enum KYCTutorial {
     // MARK: Model name declarations
     
-    struct DisplayedTutorialPage {
-        let topTitle: String
-        let icon: UIImage?
-        let title: String
-        let text: String
-        let identifier: String
-    }
-    
     enum FetchTutorialPages {
         struct Request {}
         struct Response {}
-        struct ViewModel {
-            let tutorialPagesIdentifiers: [String]
-        }
+        struct ViewModel {}
     }
     
     enum HandleTutorialPaging {

@@ -198,11 +198,8 @@
 		7B626FA927D1413F0077BAE3 /* SimpleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9927D1413E0077BAE3 /* SimpleTextField.swift */; };
 		7B626FAA27D1413F0077BAE3 /* KYCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9A27D1413E0077BAE3 /* KYCConstants.swift */; };
 		7B626FAB27D1413F0077BAE3 /* KYCCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F9B27D1413F0077BAE3 /* KYCCameraView.swift */; };
-		7B626FB327D141AC0077BAE3 /* KYCTutorial2CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B626FAE27D141AB0077BAE3 /* KYCTutorial2CollectionViewCell.xib */; };
-		7B626FB427D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FAF27D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.swift */; };
-		7B626FB527D141AC0077BAE3 /* KYCTutorial2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FB027D141AC0077BAE3 /* KYCTutorial2CollectionViewCell.swift */; };
-		7B626FB627D141AC0077BAE3 /* KYCTutorialBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FB127D141AC0077BAE3 /* KYCTutorialBaseCell.swift */; };
-		7B626FB727D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B626FB227D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.xib */; };
+		7B626FB427D141AC0077BAE3 /* KYCTutorial1CollectionViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FAF27D141AC0077BAE3 /* KYCTutorial1CollectionViewView.swift */; };
+		7B626FB527D141AC0077BAE3 /* KYCTutorial2CollectionViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FB027D141AC0077BAE3 /* KYCTutorial2CollectionViewView.swift */; };
 		7B626FBD27D141E80077BAE3 /* KYCTutorialPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FB827D141E70077BAE3 /* KYCTutorialPresenter.swift */; };
 		7B626FBE27D141E80077BAE3 /* KYCTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FB927D141E70077BAE3 /* KYCTutorialViewController.swift */; };
 		7B626FBF27D141E80077BAE3 /* KYCTutorialRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FBA27D141E70077BAE3 /* KYCTutorialRouter.swift */; };
@@ -1055,11 +1052,8 @@
 		7B626F9927D1413E0077BAE3 /* SimpleTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTextField.swift; sourceTree = "<group>"; };
 		7B626F9A27D1413E0077BAE3 /* KYCConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConstants.swift; sourceTree = "<group>"; };
 		7B626F9B27D1413F0077BAE3 /* KYCCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCameraView.swift; sourceTree = "<group>"; };
-		7B626FAE27D141AB0077BAE3 /* KYCTutorial2CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCTutorial2CollectionViewCell.xib; sourceTree = "<group>"; };
-		7B626FAF27D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorial1CollectionViewCell.swift; sourceTree = "<group>"; };
-		7B626FB027D141AC0077BAE3 /* KYCTutorial2CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorial2CollectionViewCell.swift; sourceTree = "<group>"; };
-		7B626FB127D141AC0077BAE3 /* KYCTutorialBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialBaseCell.swift; sourceTree = "<group>"; };
-		7B626FB227D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCTutorial1CollectionViewCell.xib; sourceTree = "<group>"; };
+		7B626FAF27D141AC0077BAE3 /* KYCTutorial1CollectionViewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorial1CollectionViewView.swift; sourceTree = "<group>"; };
+		7B626FB027D141AC0077BAE3 /* KYCTutorial2CollectionViewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorial2CollectionViewView.swift; sourceTree = "<group>"; };
 		7B626FB827D141E70077BAE3 /* KYCTutorialPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialPresenter.swift; sourceTree = "<group>"; };
 		7B626FB927D141E70077BAE3 /* KYCTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialViewController.swift; sourceTree = "<group>"; };
 		7B626FBA27D141E70077BAE3 /* KYCTutorialRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialRouter.swift; sourceTree = "<group>"; };
@@ -2285,11 +2279,8 @@
 		7B626FAD27D1419F0077BAE3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7B626FAF27D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.swift */,
-				7B626FB227D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.xib */,
-				7B626FB027D141AC0077BAE3 /* KYCTutorial2CollectionViewCell.swift */,
-				7B626FAE27D141AB0077BAE3 /* KYCTutorial2CollectionViewCell.xib */,
-				7B626FB127D141AC0077BAE3 /* KYCTutorialBaseCell.swift */,
+				7B626FAF27D141AC0077BAE3 /* KYCTutorial1CollectionViewView.swift */,
+				7B626FB027D141AC0077BAE3 /* KYCTutorial2CollectionViewView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -3596,7 +3587,6 @@
 				9AE800D021FFF81F00D5058C /* rewardsIcon-17.gif in Resources */,
 				9A926F7322034B3800CC2263 /* CellHighlight-81.png in Resources */,
 				9AE800DD21FFF81F00D5058C /* rewardsIcon-24.gif in Resources */,
-				7B626FB327D141AC0077BAE3 /* KYCTutorial2CollectionViewCell.xib in Resources */,
 				9AE800E921FFF81F00D5058C /* rewardsIcon-33.gif in Resources */,
 				9A926F7122034B3800CC2263 /* CellHighlight-46.png in Resources */,
 				9AE800EE21FFF81F00D5058C /* rewardsIcon-46.gif in Resources */,
@@ -3652,7 +3642,6 @@
 				9A926F6022034B3800CC2263 /* CellHighlight-8.png in Resources */,
 				222319B21F279B3C00008F20 /* POSTBouncer.html in Resources */,
 				9AE800FE21FFF81F00D5058C /* rewardsIcon-40.gif in Resources */,
-				7B626FB727D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.xib in Resources */,
 				9AE800D921FFF81F00D5058C /* rewardsIcon-11.gif in Resources */,
 				9AE800FC21FFF81F00D5058C /* rewardsIcon-7.gif in Resources */,
 				9A926F7F22034B3800CC2263 /* CellHighlight-43.png in Resources */,
@@ -4023,7 +4012,6 @@
 				CE3CDB9720D443CE007059F6 /* CutoutLabel.swift in Sources */,
 				3A611A0C2322139D004B8E36 /* Dot.swift in Sources */,
 				7B626FC627D142540077BAE3 /* KYCPostPersonalInformationWorker.swift in Sources */,
-				7B626FB627D141AC0077BAE3 /* KYCTutorialBaseCell.swift in Sources */,
 				CE92F9F41DED59E80046B516 /* UIView+AnimationAdditions.swift in Sources */,
 				7B62702127D21E410077BAE3 /* KYCSignUpViewController.swift in Sources */,
 				CEDB0B0522D4354C00331FFC /* LineLoadingView.swift in Sources */,
@@ -4033,7 +4021,7 @@
 				7B48B21D27EDC29E00C54085 /* SwapMainInteractor.swift in Sources */,
 				CEE6282A1EA98B6D001035AA /* DispatchQueue+Additions.swift in Sources */,
 				CEC6AA3D1DEE687000EE5AFD /* RadialGradientView.swift in Sources */,
-				7B626FB427D141AC0077BAE3 /* KYCTutorial1CollectionViewCell.swift in Sources */,
+				7B626FB427D141AC0077BAE3 /* KYCTutorial1CollectionViewView.swift in Sources */,
 				7B48B22A27EDC77900C54085 /* SwapPickCurrencyModels.swift in Sources */,
 				7B62701227D1447D0077BAE3 /* KYCCompleteRouter.swift in Sources */,
 				7B62701427D1447D0077BAE3 /* KYCCompleteViewController.swift in Sources */,
@@ -4243,7 +4231,7 @@
 				22A9A9531DF61945000F0016 /* BRLinkPlugin.swift in Sources */,
 				7C0A3ACE210A0E1D006C2783 /* NotificationAuthorizer.swift in Sources */,
 				7CA3BC302006864C00517BF7 /* Currency.swift in Sources */,
-				7B626FB527D141AC0077BAE3 /* KYCTutorial2CollectionViewCell.swift in Sources */,
+				7B626FB527D141AC0077BAE3 /* KYCTutorial2CollectionViewView.swift in Sources */,
 				7C72D134226625130091B185 /* CoreSystem.swift in Sources */,
 				CE3D4C571EF5D5740016B1C8 /* ReachabilityMonitor.swift in Sources */,
 				7CBA74E62022784D00FBBFA9 /* HomeScreenAssetViewModel.swift in Sources */,

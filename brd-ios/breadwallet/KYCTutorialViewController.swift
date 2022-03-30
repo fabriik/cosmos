@@ -52,6 +52,16 @@ class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UIC
     }
     
     // MARK: - Properties
+    enum Rows {
+        case tutorial1
+        case tutorial2
+    }
+    
+    private let rows: [Rows] = [
+        .tutorial1,
+        .tutorial2
+    ]
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -80,14 +90,13 @@ class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UIC
     }()
     
     private var nextPage = 0
-    private var tutorialPagesIdentifiers = [String]()
     
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        collectionView.register(CellWrapperView<KYCTutorial1CollectionViewView>.self)
-//        collectionView.register(CellWrapperView<KYCTutorial2CollectionViewView>.self)
+        collectionView.register(KYCTutorial1CollectionView.self)
+        collectionView.register(KYCTutorial2CollectionView.self)
         
         interactor?.fetchTutorialPages(request: .init())
     }
@@ -136,46 +145,51 @@ class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tutorialPagesIdentifiers.count
+        return rows.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let reuseIdentifier = tutorialPagesIdentifiers[indexPath.row]
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                            for: indexPath) as? KYCTutorialBaseCell else {
-            return UICollectionViewCell()
-        }
-        
-        switch cell {
-        case is KYCTutorial1CollectionViewCell:
-            (cell as? KYCTutorial1CollectionViewCell)?.didTapCloseButton = { [weak self] in
+        return getTutorialCell(indexPath)
+    }
+    
+    private func getTutorialCell(_ indexPath: IndexPath) -> UICollectionViewCell {
+        switch rows[indexPath.row] {
+        case .tutorial1:
+            guard let cell: KYCTutorial1CollectionView = collectionView.dequeueReusableCell(for: indexPath) else {
+                return UICollectionViewCell()
+            }
+            
+            cell.didTapCloseButton = { [weak self] in
                 self?.router?.dismissFlow()
             }
             
-        case is KYCTutorial2CollectionViewCell:
-            (cell as? KYCTutorial2CollectionViewCell)?.didTapCloseButton = { [weak self] in
+            cell.didTapNextButton = { [weak self] in
+                guard let self = self else { return }
+                self.interactor?.nextTutorial(request: .init(row: indexPath.row,
+                                                             pageCount: self.rows.count))
+            }
+            
+            return cell
+            
+        case .tutorial2:
+            guard let cell: KYCTutorial2CollectionView = collectionView.dequeueReusableCell(for: indexPath) else {
+                return UICollectionViewCell()
+            }
+            
+            cell.didTapNextButton = { [weak self] in
                 self?.router?.showKYCAddressScene()
             }
             
-        default:
-            break
+            return cell
+            
         }
-        
-        cell.nextTapped = { [weak self] in
-            guard let self = self else { return }
-            self.interactor?.nextTutorial(request: .init(row: indexPath.row,
-                                                         pageCount: self.tutorialPagesIdentifiers.count))
-        }
-        
-        return cell
     }
     
     func displayTutorialPages(viewModel: KYCTutorial.FetchTutorialPages.ViewModel) {
-        tutorialPagesIdentifiers = viewModel.tutorialPagesIdentifiers
         collectionView.reloadData()
         
-        pageControl.numberOfPages = tutorialPagesIdentifiers.count
+        pageControl.numberOfPages = rows.count
     }
     
     func displayNextTutorial(viewModel: KYCTutorial.HandleTutorialPaging.ViewModel) {

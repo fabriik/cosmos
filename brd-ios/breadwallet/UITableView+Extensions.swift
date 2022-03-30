@@ -37,6 +37,16 @@ extension UITableView {
     }
 }
 
+extension UICollectionView {
+    public func register<T: Identifiable>(_ cell: T.Type) {
+        register(cell.className, forCellWithReuseIdentifier: cell.identifier)
+    }
+    
+    public func dequeueReusableCell<T: Identifiable>(for indexPath: IndexPath) -> T? {
+        return dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as? T
+    }
+}
+
 // MARK: - UI Tweaks
 
 extension UITableView {
