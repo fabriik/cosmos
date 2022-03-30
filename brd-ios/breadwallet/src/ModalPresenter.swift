@@ -437,7 +437,7 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     public func presentRegistrationAndKYC() {
-        let vc = KYCTutorialViewController()
+        let vc = KYCSignInViewController()
         let navController = KYCNavigationController(rootViewController: vc)
         
         if #available(iOS 14.0, *) {
