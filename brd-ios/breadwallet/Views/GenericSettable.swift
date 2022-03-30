@@ -9,3 +9,9 @@ protocol GenericSettable {
     associatedtype Model
     func setup(with model: Model)
 }
+
+/// For configuring the views UI
+protocol ViewConfigurable {
+    associatedtype ViewConfig
+    func configure(with viewConfig: ViewConfig)
+}

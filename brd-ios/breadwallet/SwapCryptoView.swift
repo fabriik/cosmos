@@ -4,7 +4,7 @@
 
 import UIKit
 
-class SwapCryptoCell: UITableViewCell, GenericSettable {
+class SwapCryptoView: BaseView, GenericSettable {
     typealias Model = ViewModel
     
     // TODO: Move fonts to constants
@@ -82,8 +82,8 @@ class SwapCryptoCell: UITableViewCell, GenericSettable {
         return conversionLabel
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         backgroundColor = UIColor(red: 56.0/255.0, green: 38.0/255.0, blue: 73.0/255.0, alpha: 1.0)
         

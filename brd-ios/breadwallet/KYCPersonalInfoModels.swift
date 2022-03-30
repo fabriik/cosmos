@@ -38,7 +38,7 @@ enum KYCPersonalInfo {
             let date: String
         }
         struct ViewModel {
-            let viewModel: KYCPersonalInfoCell.ViewModel
+            let viewModel: KYCPersonalInfoView.ViewModel
         }
     }
     

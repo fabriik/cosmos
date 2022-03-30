@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCPersonalInfoCell: UITableViewCell, GenericSettable {
+class KYCPersonalInfoView: BaseView, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {
@@ -42,8 +42,8 @@ class KYCPersonalInfoCell: UITableViewCell, GenericSettable {
     var didChangeTaxIdNumberField: ((String?) -> Void)?
     var didTapNextButton: (() -> Void)?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         let defaultDistance: CGFloat = 12
         
@@ -87,8 +87,5 @@ class KYCPersonalInfoCell: UITableViewCell, GenericSettable {
         if let taxIdNumber = model.taxIdNumber {
             taxIdNumberField.textField.text = taxIdNumber
         }
-        
-//        countryField.textField.text = model.country
-//        areaCodeField.textField.text = model.areaCode
     }
 }

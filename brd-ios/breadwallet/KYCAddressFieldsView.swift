@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCAddressFieldsCell: UITableViewCell, GenericSettable {
+class KYCAddressFieldsView: BaseView, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {
@@ -95,8 +95,8 @@ class KYCAddressFieldsCell: UITableViewCell, GenericSettable {
     var didTapStatePicker: (() -> Void)?
     var didTapNextButton: (() -> Void)?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         let defaultDistance: CGFloat = 12
         
@@ -227,8 +227,5 @@ class KYCAddressFieldsCell: UITableViewCell, GenericSettable {
         if let state = model.state {
             stateField.textField.text = state
         }
-        
-//        countryField.textField.text = model.country
-//        areaCodeField.textField.text = model.areaCode
     }
 }

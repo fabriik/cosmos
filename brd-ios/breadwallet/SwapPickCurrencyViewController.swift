@@ -117,7 +117,7 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         
         definesPresentationContext = true
         
-        tableView.register(cell: SwapCryptoCell.self)
+        tableView.register(CellWrapperView<SwapCryptoView>.self)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -193,17 +193,19 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         }
     }
     
-    func getSwapCryptoCell(_ indexPath: IndexPath) -> SwapCryptoCell {
-        guard let cell = tableView.dequeue(cell: SwapCryptoCell.self) else {
-            return SwapCryptoCell()
+    func getSwapCryptoCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<SwapCryptoView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        let currency = currencies[indexPath.row]
-        cell.setup(with: .init(image: currency.image,
-                               title: currency.title,
-                               subtitle: currency.subtitle,
-                               amount: currency.amount,
-                               conversion: currency.conversion))
+        cell.setup { view in
+            let currency = currencies[indexPath.row]
+            view.setup(with: .init(image: currency.image,
+                                   title: currency.title,
+                                   subtitle: currency.subtitle,
+                                   amount: currency.amount,
+                                   conversion: currency.conversion))
+        }
         
         return cell
     }

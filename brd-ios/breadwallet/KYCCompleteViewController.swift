@@ -64,9 +64,9 @@ class KYCCompleteViewController: KYCViewController, KYCCompleteDisplayLogic, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(cell: KYCProgressCell.self)
-        tableView.register(cell: KYCTextAndImageCell.self)
-        tableView.register(cell: KYCCompleteButtons.self)
+        tableView.register(CellWrapperView<KYCProgressView>.self)
+        tableView.register(CellWrapperView<KYCTextAndImageView>.self)
+        tableView.register(CellWrapperView<KYCCompleteButtonsView>.self)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -97,34 +97,39 @@ class KYCCompleteViewController: KYCViewController, KYCCompleteDisplayLogic, UIT
         }
     }
     
-    func getKYCProgressCell(_ indexPath: IndexPath) -> KYCProgressCell {
-        guard let cell = tableView.dequeue(cell: KYCProgressCell.self) else {
-            return KYCProgressCell()
+    func getKYCProgressCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCProgressView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.setValues(text: "KYC COMPLETE!", progress: .complete)
+        cell.setup { view in
+            view.setup(with: .init(text: "KYC COMPLETE!", progress: .complete))
+        }
         
         return cell
     }
     
-    func getKYCTextAndImageCell(_ indexPath: IndexPath) -> KYCTextAndImageCell {
-        guard let cell = tableView.dequeue(cell: KYCTextAndImageCell.self) else {
-            return KYCTextAndImageCell()
+    func getKYCTextAndImageCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCTextAndImageView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.set(text: "Your profile is under review.\nYou will recieve an email with the status of your review in 1-2 business days.",
-                 image: UIImage(named: "KYC Complete"))
+        cell.setup { view in
+            view.setup(with: .init(text: "Your profile is under review.\nYou will recieve an email with the status of your review in 1-2 business days.", image: UIImage(named: "KYC Complete")))
+        }
         
         return cell
     }
     
-    func getKYCCompleteButtons(_ indexPath: IndexPath) -> KYCCompleteButtons {
-        guard let cell = tableView.dequeue(cell: KYCCompleteButtons.self) else {
-            return KYCCompleteButtons()
+    func getKYCCompleteButtons(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCCompleteButtonsView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.didTapDoneButton = { [weak self] in
-            self?.router?.dismissFlow()
+        cell.setup { view in
+            view.didTapDoneButton = { [weak self] in
+                self?.router?.dismissFlow()
+            }
         }
         
         return cell

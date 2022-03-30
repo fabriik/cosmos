@@ -4,7 +4,14 @@
 
 import UIKit
 
-class KYCTextAndImageCell: UITableViewCell {
+class KYCTextAndImageView: BaseView, GenericSettable {
+    typealias Model = ViewModel
+    
+    struct ViewModel: Hashable {
+        let text: String
+        let image: UIImage?
+    }
+    
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -24,8 +31,8 @@ class KYCTextAndImageCell: UITableViewCell {
         return bigImageView
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         addSubview(label)
         label.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
@@ -40,8 +47,8 @@ class KYCTextAndImageCell: UITableViewCell {
         bigImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
     
-    func set(text: String, image: UIImage?) {
-        label.text = text
-        bigImageView.image = image
+    func setup(with model: ViewModel) {
+        label.text = model.text
+        bigImageView.image = model.image
     }
 }

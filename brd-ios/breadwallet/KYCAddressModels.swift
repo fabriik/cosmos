@@ -47,7 +47,7 @@ enum KYCAddress {
             let state: String
         }
         struct ViewModel {
-            let viewModel: KYCAddressFieldsCell.ViewModel
+            let viewModel: KYCAddressFieldsView.ViewModel
         }
     }
     

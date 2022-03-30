@@ -4,7 +4,7 @@
 
 import UIKit
 
-class SwapConversionCell: UITableViewCell, GenericSettable {
+class SwapConversionView: BaseView, GenericSettable {
     typealias Model = ViewModel
     
     // TODO: Move fonts to constants
@@ -136,8 +136,8 @@ class SwapConversionCell: UITableViewCell, GenericSettable {
         return receiveAmountCurrencyTitleLabel
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         backgroundColor = UIColor(red: 38.0/255.0, green: 21.0/255.0, blue: 56.0/255.0, alpha: 1.0)
         

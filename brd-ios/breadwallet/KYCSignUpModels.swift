@@ -47,7 +47,7 @@ enum KYCSignUp {
             let phonePrefix: String
         }
         struct ViewModel {
-            let viewModel: KYCSignUpCell.ViewModel
+            let viewModel: KYCSignUpView.ViewModel
         }
     }
     

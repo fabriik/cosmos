@@ -69,8 +69,8 @@ class KYCAddressViewController: KYCViewController, KYCAddressDisplayLogic, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(cell: KYCProgressCell.self)
-        tableView.register(cell: KYCAddressFieldsCell.self)
+        tableView.register(CellWrapperView<KYCProgressView>.self)
+        tableView.register(CellWrapperView<KYCAddressFieldsView>.self)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -92,13 +92,15 @@ class KYCAddressViewController: KYCViewController, KYCAddressDisplayLogic, UITab
     
     func displaySetPickerValue(viewModel: KYCAddress.SetPickerValue.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCAddressFieldsCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCAddressFieldsView> else { return }
         
-        cell.setup(with: .init(country: viewModel.viewModel.country,
-                               zipCode: nil,
-                               address: nil,
-                               apartment: nil,
-                               state: viewModel.viewModel.state))
+        cell.setup { view in
+            view.setup(with: .init(country: viewModel.viewModel.country,
+                                   zipCode: nil,
+                                   address: nil,
+                                   apartment: nil,
+                                   state: viewModel.viewModel.state))
+        }
     }
     
     func displaySubmitData(viewModel: KYCAddress.SubmitData.ViewModel) {
@@ -138,49 +140,53 @@ class KYCAddressViewController: KYCViewController, KYCAddressDisplayLogic, UITab
         }
     }
     
-    func getKYCProgressCell(_ indexPath: IndexPath) -> KYCProgressCell {
-        guard let cell = tableView.dequeue(cell: KYCProgressCell.self) else {
-            return KYCProgressCell()
+    func getKYCProgressCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCProgressView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.setValues(text: "ADDRESS", progress: .address)
+        cell.setup { view in
+            view.setup(with: .init(text: "ADDRESS", progress: .address))
+        }
         
         return cell
     }
     
-    func getKYCAddressFieldsCell(_ indexPath: IndexPath) -> KYCAddressFieldsCell {
-        guard let cell = tableView.dequeue(cell: KYCAddressFieldsCell.self) else {
-            return KYCAddressFieldsCell()
+    func getKYCAddressFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCAddressFieldsView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.didTapCountryPicker = { [weak self] in
-            self?.interactor?.executeGetDataForPickerView(request: .init(type: .country))
-        }
-        
-        cell.didChangeZipCodeField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .zipCode))
-        }
-        
-        cell.didChangeAddressField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .address))
-        }
-        
-        cell.didChangeApartmentField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .apartment))
-        }
-        
-        cell.didChangeCityField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .city))
-        }
-        
-        cell.didTapStatePicker = { [weak self] in
-            self?.interactor?.executeGetDataForPickerView(request: .init(type: .state))
-        }
-        
-        cell.didTapNextButton = { [weak self] in
-            self?.view.endEditing(true)
+        cell.setup { view in
+            view.didTapCountryPicker = { [weak self] in
+                self?.interactor?.executeGetDataForPickerView(request: .init(type: .country))
+            }
             
-            self?.router?.showKYCPersonalInfoScene()
+            view.didChangeZipCodeField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .zipCode))
+            }
+            
+            view.didChangeAddressField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .address))
+            }
+            
+            view.didChangeApartmentField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .apartment))
+            }
+            
+            view.didChangeCityField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .city))
+            }
+            
+            view.didTapStatePicker = { [weak self] in
+                self?.interactor?.executeGetDataForPickerView(request: .init(type: .state))
+            }
+            
+            view.didTapNextButton = { [weak self] in
+                self?.view.endEditing(true)
+                
+                self?.router?.showKYCPersonalInfoScene()
+            }
         }
         
         return cell

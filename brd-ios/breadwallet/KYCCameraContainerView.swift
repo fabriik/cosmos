@@ -4,7 +4,11 @@
 
 import UIKit
 
-class KYCCameraCell: UITableViewCell, KYCCameraViewDelegate {
+class KYCCameraContainerView: BaseView, GenericSettable, KYCCameraViewDelegate {
+    typealias Model = ViewModel
+    
+    struct ViewModel: Hashable {}
+    
     private lazy var cameraContainerView: RoundedView = {
         let cameraContainerView = RoundedView()
         cameraContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,8 +81,8 @@ class KYCCameraCell: UITableViewCell, KYCCameraViewDelegate {
     
     var didTapNextButton: ((UIImage) -> Void)?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         addSubview(cameraContainerView)
         cameraContainerView.topAnchor.constraint(equalTo: topAnchor, constant: 26).isActive = true
@@ -176,4 +180,6 @@ class KYCCameraCell: UITableViewCell, KYCCameraViewDelegate {
         nextButton.isEnabled = false
         flipCameraButton.isEnabled = false
     }
+    
+    func setup(with model: ViewModel) {}
 }

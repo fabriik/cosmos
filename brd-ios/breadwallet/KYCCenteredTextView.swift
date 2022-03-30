@@ -4,7 +4,13 @@
 
 import UIKit
 
-class KYCCenteredTextCell: UITableViewCell {
+class KYCCenteredTextView: BaseView, GenericSettable {
+    typealias Model = ViewModel
+    
+    struct ViewModel: Hashable {
+        let text: String
+    }
+    
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -16,8 +22,8 @@ class KYCCenteredTextCell: UITableViewCell {
         return label
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         addSubview(label)
         label.topAnchor.constraint(equalTo: topAnchor, constant: 4).isActive = true
@@ -26,7 +32,7 @@ class KYCCenteredTextCell: UITableViewCell {
         label.constrainToCenter()
     }
     
-    func setText(_ text: String) {
-        label.text = text
+    func setup(with model: ViewModel) {
+        label.text = model.text
     }
 }

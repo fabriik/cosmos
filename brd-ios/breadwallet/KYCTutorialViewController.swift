@@ -86,8 +86,8 @@ class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(cell: KYCTutorial1CollectionViewCell.self)
-        collectionView.register(cell: KYCTutorial2CollectionViewCell.self)
+//        collectionView.register(CellWrapperView<KYCTutorial1CollectionViewView>.self)
+//        collectionView.register(CellWrapperView<KYCTutorial2CollectionViewView>.self)
         
         interactor?.fetchTutorialPages(request: .init())
     }

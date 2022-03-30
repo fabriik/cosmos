@@ -66,7 +66,7 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(cell: KYCSignInCell.self)
+        tableView.register(CellWrapperView<KYCSignInView>.self)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -82,10 +82,12 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
     
     func displayShouldEnableSubmit(viewModel: KYCSignIn.ShouldEnableSubmit.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCSignInCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCSignInView> else { return }
         
-        let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
-        cell.changeButtonStyle(with: style)
+        cell.setup { view in
+            let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
+            view.changeButtonStyle(with: style)
+        }
     }
     
     func displayConfirmEmail(viewModel: KYCSignIn.ConfirmEmail.ViewModel) {
@@ -102,10 +104,12 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
     
     func displayValidateField(viewModel: KYCSignIn.ValidateField.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCSignInCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCSignInView> else { return }
         
-        cell.changeFieldStyle(isViable: viewModel.isViable,
-                              for: viewModel.type)
+        cell.setup { view in
+            view.changeFieldStyle(isViable: viewModel.isViable,
+                                  for: viewModel.type)
+        }
     }
     
     func displayError(viewModel: GenericModels.Error.ViewModel) {
@@ -134,31 +138,33 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
         }
     }
     
-    func getKYCSignInFieldsCell(_ indexPath: IndexPath) -> KYCSignInCell {
-        guard let cell = tableView.dequeue(cell: KYCSignInCell.self) else {
-            return KYCSignInCell()
+    func getKYCSignInFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCSignInView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.didChangeEmailField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .email))
-        }
-        
-        cell.didChangePasswordField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .password))
-        }
-        
-        cell.didTapNextButton = { [weak self] in
-            self?.view.endEditing(true)
+        cell.setup { view in
+            view.didChangeEmailField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .email))
+            }
             
-            LoadingView.show()
+            view.didChangePasswordField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .password))
+            }
             
-            self?.interactor?.executeSignIn(request: .init())
-        }
-        
-        cell.didTapSignUpButton = { [weak self] in
-            self?.view.endEditing(true)
+            view.didTapNextButton = { [weak self] in
+                self?.view.endEditing(true)
+                
+                LoadingView.show()
+                
+                self?.interactor?.executeSignIn(request: .init())
+            }
             
-            self?.router?.showKYCSignUpScene()
+            view.didTapSignUpButton = { [weak self] in
+                self?.view.endEditing(true)
+                
+                self?.router?.showKYCSignUpScene()
+            }
         }
         
         return cell

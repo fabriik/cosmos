@@ -115,7 +115,7 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
         let navController = SwapNavigationController(rootViewController: vc)
         present(navController, animated: true, completion: nil)
         
-        tableView.register(cell: SwapConversionCell.self)
+        tableView.register(CellWrapperView<SwapConversionView>.self)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -164,14 +164,16 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
     
     func displayFillData(viewModel: SwapMain.FillData.ViewModel) {
         guard let index = sections.firstIndex(of: .conversion) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? SwapConversionCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<SwapConversionView> else { return }
         
-        cell.setup(with: .init(sendAmount: viewModel.sendAmount,
-                               receiveAmount: nil,
-                               sendCurrencyIcon: nil,
-                               sendCurrencyName: nil,
-                               receiveCurrencyIcon: nil,
-                               receiveCurrencyName: nil))
+        cell.setup { view in
+            view.setup(with: .init(sendAmount: viewModel.sendAmount,
+                                   receiveAmount: nil,
+                                   sendCurrencyIcon: nil,
+                                   sendCurrencyName: nil,
+                                   receiveCurrencyIcon: nil,
+                                   receiveCurrencyName: nil))
+        }
     }
     
     // MARK: View controller functions
@@ -202,9 +204,9 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
         }
     }
     
-    func getSwapConversionCell(_ indexPath: IndexPath) -> SwapConversionCell {
-        guard let cell = tableView.dequeue(cell: SwapConversionCell.self) else {
-            return SwapConversionCell()
+    func getSwapConversionCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<SwapConversionView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
         return cell

@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCSignUpCell: UITableViewCell, GenericSettable {
+class KYCSignUpView: BaseView, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {
@@ -104,8 +104,8 @@ class KYCSignUpCell: UITableViewCell, GenericSettable {
     var didTickPrivacyPolicy: ((Bool) -> Void)?
     var didTapNextButton: (() -> Void)?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         addSubview(titleLabel)
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 36).isActive = true

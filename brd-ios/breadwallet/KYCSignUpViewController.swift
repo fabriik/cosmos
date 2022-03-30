@@ -66,7 +66,7 @@ class KYCSignUpViewController: KYCViewController, KYCSignUpDisplayLogic, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(cell: KYCSignUpCell.self)
+        tableView.register(CellWrapperView<KYCSignUpView>.self)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -88,23 +88,27 @@ class KYCSignUpViewController: KYCViewController, KYCSignUpDisplayLogic, UITable
     
     func displaySetPickerValue(viewModel: KYCSignUp.SetPickerValue.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCSignUpCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCSignUpView> else { return }
         
-        cell.setup(with: .init(firstName: nil,
-                               lastName: nil,
-                               email: nil,
-                               phonePrefix: viewModel.viewModel.phonePrefix,
-                               phoneNumber: nil,
-                               password: nil,
-                               tickBox: nil))
+        cell.setup { view in
+            view.setup(with: .init(firstName: nil,
+                                   lastName: nil,
+                                   email: nil,
+                                   phonePrefix: viewModel.viewModel.phonePrefix,
+                                   phoneNumber: nil,
+                                   password: nil,
+                                   tickBox: nil))
+        }
     }
     
     func displayShouldEnableSubmit(viewModel: KYCSignUp.ShouldEnableSubmit.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCSignUpCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCSignUpView> else { return }
         
-        let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
-        cell.changeButtonStyle(with: style)
+        cell.setup { view in
+            let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
+            view.changeButtonStyle(with: style)
+        }
     }
     
     func displaySubmitData(viewModel: KYCSignUp.SubmitData.ViewModel) {
@@ -139,45 +143,47 @@ class KYCSignUpViewController: KYCViewController, KYCSignUpDisplayLogic, UITable
         }
     }
     
-    func getKYCSignUpFieldsCell(_ indexPath: IndexPath) -> KYCSignUpCell {
-        guard let cell = tableView.dequeue(cell: KYCSignUpCell.self) else {
-            return KYCSignUpCell()
+    func getKYCSignUpFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCSignUpView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.didChangeFirstNameField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .firstName))
-        }
-        
-        cell.didChangeLastNameField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .lastName))
-        }
-        
-        cell.didChangeEmailField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .email))
-        }
-        
-        cell.didTapPhonePrefixField = { [weak self] in
-            self?.interactor?.executeGetDataForPickerView(request: .init(type: .phonePrefix))
-        }
-        
-        cell.didChangePhoneNumberField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .phoneNumber))
-        }
-        
-        cell.didChangePasswordField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .password))
-        }
-        
-        cell.didTickPrivacyPolicy = { [weak self] tickStatus in
-            self?.interactor?.executeCheckTickBox(request: .init(tickBox: tickStatus, type: .tickBox))
-        }
-        
-        cell.didTapNextButton = { [weak self] in
-            self?.view.endEditing(true)
+        cell.setup { view in
+            view.didChangeFirstNameField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .firstName))
+            }
             
-            LoadingView.show()
+            view.didChangeLastNameField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .lastName))
+            }
             
-            self?.interactor?.executeSubmitData(request: .init())
+            view.didChangeEmailField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .email))
+            }
+            
+            view.didTapPhonePrefixField = { [weak self] in
+                self?.interactor?.executeGetDataForPickerView(request: .init(type: .phonePrefix))
+            }
+            
+            view.didChangePhoneNumberField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .phoneNumber))
+            }
+            
+            view.didChangePasswordField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .password))
+            }
+            
+            view.didTickPrivacyPolicy = { [weak self] tickStatus in
+                self?.interactor?.executeCheckTickBox(request: .init(tickBox: tickStatus, type: .tickBox))
+            }
+            
+            view.didTapNextButton = { [weak self] in
+                self?.view.endEditing(true)
+                
+                LoadingView.show()
+                
+                self?.interactor?.executeSubmitData(request: .init())
+            }
         }
         
         return cell

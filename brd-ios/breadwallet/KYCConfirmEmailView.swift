@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCConfirmEmailCell: UITableViewCell, GenericSettable {
+class KYCConfirmEmailView: BaseView, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {
@@ -63,8 +63,8 @@ class KYCConfirmEmailCell: UITableViewCell, GenericSettable {
     var didTapConfirmButton: (() -> Void)?
     var didTapResendButton: (() -> Void)?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setupSubviews() {
+        super.setupSubviews()
         
         addSubview(titleLabel)
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 36).isActive = true

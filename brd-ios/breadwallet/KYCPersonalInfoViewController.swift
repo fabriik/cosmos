@@ -68,8 +68,8 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(cell: KYCProgressCell.self)
-        tableView.register(cell: KYCPersonalInfoCell.self)
+        tableView.register(CellWrapperView<KYCProgressView>.self)
+        tableView.register(CellWrapperView<KYCPersonalInfoView>.self)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -92,10 +92,12 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
     
     func displaySetPickerValue(viewModel: KYCPersonalInfo.SetPickerValue.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCPersonalInfoCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCPersonalInfoView> else { return }
         
-        cell.setup(with: .init(date: viewModel.viewModel.date,
-                               taxIdNumber: nil))
+        cell.setup { view in
+            view.setup(with: .init(date: viewModel.viewModel.date,
+                                   taxIdNumber: nil))
+        }
     }
     
     func displaySetDateAndTaxID(viewModel: KYCPersonalInfo.SetDateAndTaxID.ViewModel) {
@@ -123,42 +125,46 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
         }
     }
     
-    func getKYCProgressCell(_ indexPath: IndexPath) -> KYCProgressCell {
-        guard let cell = tableView.dequeue(cell: KYCProgressCell.self) else {
-            return KYCProgressCell()
+    func getKYCProgressCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCProgressView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.setValues(text: "PERSONAL INFO", progress: .personalInfo)
+        cell.setup { view in
+            view.setup(with: .init(text: "PERSONAL INFO", progress: .personalInfo))
+        }
         
         return cell
     }
     
-    func getKYCPersonalInfoCell(_ indexPath: IndexPath) -> KYCPersonalInfoCell {
-        guard let cell = tableView.dequeue(cell: KYCPersonalInfoCell.self) else {
-            return KYCPersonalInfoCell()
+    func getKYCPersonalInfoCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCPersonalInfoView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.didTapDateOfBirthField = { [weak self] in
-            self?.interactor?.executeGetDataForPickerView(request: .init(type: .date))
-        }
-        
-        cell.didChangeTaxIdNumberField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .taxIdNumber))
-        }
-        
-        cell.didTapNextButton = { [weak self] in
-            self?.view.endEditing(true)
-            
-            LoadingView.show()
-            
-            let kycAddressVC = self?.navigationController?.children.first(where: { $0 is KYCAddressViewController })
-            (kycAddressVC as? KYCAddressViewController)?.didSubmitData = { [weak self] in
-                LoadingView.hide()
-                
-                self?.router?.showKYCUploadScene()
+        cell.setup { view in
+            view.didTapDateOfBirthField = { [weak self] in
+                self?.interactor?.executeGetDataForPickerView(request: .init(type: .date))
             }
             
-            self?.interactor?.executeSetDateAndTaxID(request: .init())
+            view.didChangeTaxIdNumberField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .taxIdNumber))
+            }
+            
+            view.didTapNextButton = { [weak self] in
+                self?.view.endEditing(true)
+                
+                LoadingView.show()
+                
+                let kycAddressVC = self?.navigationController?.children.first(where: { $0 is KYCAddressViewController })
+                (kycAddressVC as? KYCAddressViewController)?.didSubmitData = { [weak self] in
+                    LoadingView.hide()
+                    
+                    self?.router?.showKYCUploadScene()
+                }
+                
+                self?.interactor?.executeSetDateAndTaxID(request: .init())
+            }
         }
         
         return cell

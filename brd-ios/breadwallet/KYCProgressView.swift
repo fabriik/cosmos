@@ -4,7 +4,14 @@
 
 import UIKit
 
-class KYCProgressCell: UITableViewCell {
+class KYCProgressView: BaseView, GenericSettable {
+    typealias Model = ViewModel
+    
+    struct ViewModel: Hashable {
+        let text: String
+        let progress: Progress
+    }
+    
     enum Progress: Int, CaseIterable {
         case address
         case personalInfo
@@ -41,15 +48,9 @@ class KYCProgressCell: UITableViewCell {
         return progressView
     }()
     
-    // MARK: initialisation
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupUI()
-    }
-    
-    // MARK: UI setup
-    private func setupUI() {
+    override func setupSubviews() {
+        super.setupSubviews()
+        
         addSubview(titleLabel)
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 36).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
@@ -62,8 +63,8 @@ class KYCProgressCell: UITableViewCell {
         progressView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -28).isActive = true
     }
     
-    func setValues(text: String, progress: Progress) {
-        titleLabel.text = text
-        progressView.progress = progress.value
+    func setup(with model: Model) {
+        titleLabel.text = model.text
+        progressView.progress = model.progress.value
     }
 }

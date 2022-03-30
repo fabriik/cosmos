@@ -104,9 +104,9 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(cell: KYCProgressCell.self)
-        tableView.register(cell: KYCCenteredTextCell.self)
-        tableView.register(cell: KYCCameraCell.self)
+        tableView.register(CellWrapperView<KYCProgressView>.self)
+        tableView.register(CellWrapperView<KYCCenteredTextView>.self)
+        tableView.register(CellWrapperView<KYCCameraContainerView>.self)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -152,12 +152,12 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
         }
     }
     
-    func getKYCProgressCell(_ indexPath: IndexPath) -> KYCProgressCell {
-        guard let cell = tableView.dequeue(cell: KYCProgressCell.self) else {
-            return KYCProgressCell()
+    func getKYCProgressCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCProgressView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        var cellStep: KYCProgressCell.Progress = .idFront
+        var cellStep: KYCProgressView.Progress = .idFront
         switch step {
         case .idFront:
             cellStep = .idFront
@@ -170,59 +170,65 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
             
         }
         
-        cell.setValues(text: step.title, progress: cellStep)
+        cell.setup { view in
+            view.setup(with: .init(text: step.title, progress: cellStep))
+        }
         
         return cell
     }
     
-    func getKYCCenteredTextCell(_ indexPath: IndexPath) -> KYCCenteredTextCell {
-        guard let cell = tableView.dequeue(cell: KYCCenteredTextCell.self) else {
-            return KYCCenteredTextCell()
+    func getKYCCenteredTextCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCCenteredTextView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.setText(step.subtitle)
+        cell.setup { view in
+            view.setup(with: .init(text: step.subtitle))
+        }
         
         return cell
     }
     
-    func getKYCCameraCell(_ indexPath: IndexPath) -> KYCCameraCell {
-        guard let cell = tableView.dequeue(cell: KYCCameraCell.self) else {
-            return KYCCameraCell()
+    func getKYCCameraCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCCameraContainerView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.didTapNextButton = { [weak self] image in
-            guard let self = self else { return }
-            
-            cell.retryAction()
-            cell.changeCameraControlState(isEnabled: true)
-            
-            switch self.step {
-            case .idFront:
-                self.step = .idBack
-                self.interactor?.setImage(request: .init(step: .idFront, image: image))
+        cell.setup { view in
+            view.didTapNextButton = { [weak self] image in
+                guard let self = self else { return }
                 
-            case .idBack:
-                LoadingView.show()
+                view.retryAction()
+                view.changeCameraControlState(isEnabled: true)
                 
-                self.step = .idSelfie
-                cell.activateSelfieCamera()
-                self.interactor?.setImage(request: .init(step: .idBack, image: image))
-                self.interactor?.saveImage(request: .init(step: .idBack))
+                switch self.step {
+                case .idFront:
+                    self.step = .idBack
+                    self.interactor?.setImage(request: .init(step: .idFront, image: image))
+                    
+                case .idBack:
+                    LoadingView.show()
+                    
+                    self.step = .idSelfie
+                    view.activateSelfieCamera()
+                    self.interactor?.setImage(request: .init(step: .idBack, image: image))
+                    self.interactor?.saveImage(request: .init(step: .idBack))
+                    
+                case .idSelfie:
+                    LoadingView.show()
+                    
+                    view.stopCamera()
+                    self.shouldShowKYCCompleteScene = true
+                    self.interactor?.setImage(request: .init(step: .idSelfie, image: image))
+                    self.interactor?.saveImage(request: .init(step: .idSelfie))
+                    
+                }
                 
-            case .idSelfie:
-                LoadingView.show()
-                
-                cell.stopCamera()
-                self.shouldShowKYCCompleteScene = true
-                self.interactor?.setImage(request: .init(step: .idSelfie, image: image))
-                self.interactor?.saveImage(request: .init(step: .idSelfie))
+                guard let progress = self.sections.firstIndex(of: .progress),
+                      let text = self.sections.firstIndex(of: .text) else { return }
+                self.tableView.reloadSections([progress, text], with: .fade)
                 
             }
-            
-            guard let progress = self.sections.firstIndex(of: .progress),
-                  let text = self.sections.firstIndex(of: .text) else { return }
-            self.tableView.reloadSections([progress, text], with: .fade)
-            
         }
         
         return cell

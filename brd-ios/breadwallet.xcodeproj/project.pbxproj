@@ -163,9 +163,13 @@
 		7B48B22A27EDC77900C54085 /* SwapPickCurrencyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22427EDC77900C54085 /* SwapPickCurrencyModels.swift */; };
 		7B48B22B27EDC77900C54085 /* SwapPickCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22527EDC77900C54085 /* SwapPickCurrencyViewController.swift */; };
 		7B48B22C27EDC77900C54085 /* SwapPickCurrencyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22627EDC77900C54085 /* SwapPickCurrencyInteractor.swift */; };
-		7B48B23027EDD41300C54085 /* SwapCryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22E27EDD41300C54085 /* SwapCryptoCell.swift */; };
-		7B48B23127EDD41300C54085 /* SwapCryptoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B48B22F27EDD41300C54085 /* SwapCryptoCell.xib */; };
+		7B48B23027EDD41300C54085 /* SwapCryptoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B22E27EDD41300C54085 /* SwapCryptoView.swift */; };
 		7B48B23327EDF7D600C54085 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48B23227EDF7D500C54085 /* UIView+Extensions.swift */; };
+		7B54E3CF27F45363002DD1E4 /* CellWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E3CE27F45363002DD1E4 /* CellWrapperView.swift */; };
+		7B54E3D127F4539B002DD1E4 /* LabelConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E3D027F4539B002DD1E4 /* LabelConfigurable.swift */; };
+		7B54E3D327F453C1002DD1E4 /* UIViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E3D227F453C1002DD1E4 /* UIViewConfigurable.swift */; };
+		7B54E3D527F453FA002DD1E4 /* Roundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E3D427F453FA002DD1E4 /* Roundable.swift */; };
+		7B54E3D727F4540D002DD1E4 /* Shadowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E3D627F4540D002DD1E4 /* Shadowable.swift */; };
 		7B626F8027D1411D0077BAE3 /* KYCAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7227D1411D0077BAE3 /* KYCAPI.swift */; };
 		7B626F8127D1411D0077BAE3 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7327D1411D0077BAE3 /* NetworkingError.swift */; };
 		7B626F8227D1411D0077BAE3 /* APIURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626F7427D1411D0077BAE3 /* APIURLHandler.swift */; };
@@ -205,17 +209,14 @@
 		7B626FC027D141E80077BAE3 /* KYCTutorialModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FBB27D141E70077BAE3 /* KYCTutorialModels.swift */; };
 		7B626FC127D141E80077BAE3 /* KYCTutorialInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FBC27D141E80077BAE3 /* KYCTutorialInteractor.swift */; };
 		7B626FC627D142540077BAE3 /* KYCPostPersonalInformationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FC527D142540077BAE3 /* KYCPostPersonalInformationWorker.swift */; };
-		7B626FCB27D1426E0077BAE3 /* KYCAddressFieldsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B626FC727D1426D0077BAE3 /* KYCAddressFieldsCell.xib */; };
-		7B626FCC27D1426E0077BAE3 /* KYCProgressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B626FC827D1426D0077BAE3 /* KYCProgressCell.xib */; };
-		7B626FCD27D1426E0077BAE3 /* KYCAddressFieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FC927D1426D0077BAE3 /* KYCAddressFieldsCell.swift */; };
-		7B626FCE27D1426E0077BAE3 /* KYCProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FCA27D1426E0077BAE3 /* KYCProgressCell.swift */; };
+		7B626FCD27D1426E0077BAE3 /* KYCAddressFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FC927D1426D0077BAE3 /* KYCAddressFieldsView.swift */; };
+		7B626FCE27D1426E0077BAE3 /* KYCProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FCA27D1426E0077BAE3 /* KYCProgressView.swift */; };
 		7B626FD427D142810077BAE3 /* KYCAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FCF27D142800077BAE3 /* KYCAddressViewController.swift */; };
 		7B626FD527D142810077BAE3 /* KYCAddressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FD027D142800077BAE3 /* KYCAddressPresenter.swift */; };
 		7B626FD627D142810077BAE3 /* KYCAddressModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FD127D142810077BAE3 /* KYCAddressModels.swift */; };
 		7B626FD727D142810077BAE3 /* KYCAddressInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FD227D142810077BAE3 /* KYCAddressInteractor.swift */; };
 		7B626FD827D142810077BAE3 /* KYCAddressRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FD327D142810077BAE3 /* KYCAddressRouter.swift */; };
-		7B626FDD27D143A70077BAE3 /* KYCPersonalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FDB27D143A70077BAE3 /* KYCPersonalInfoCell.swift */; };
-		7B626FDE27D143A70077BAE3 /* KYCPersonalInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B626FDC27D143A70077BAE3 /* KYCPersonalInfoCell.xib */; };
+		7B626FDD27D143A70077BAE3 /* KYCPersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FDB27D143A70077BAE3 /* KYCPersonalInfoView.swift */; };
 		7B626FE427D143B60077BAE3 /* KYCPersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FDF27D143B50077BAE3 /* KYCPersonalInfoViewController.swift */; };
 		7B626FE527D143B60077BAE3 /* KYCPersonalInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FE027D143B50077BAE3 /* KYCPersonalInfoInteractor.swift */; };
 		7B626FE627D143B60077BAE3 /* KYCPersonalInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FE127D143B50077BAE3 /* KYCPersonalInfoPresenter.swift */; };
@@ -223,18 +224,14 @@
 		7B626FE827D143B60077BAE3 /* KYCPersonalInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FE327D143B60077BAE3 /* KYCPersonalInfoRouter.swift */; };
 		7B626FED27D143ED0077BAE3 /* KYCUploadFrontBackWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FEB27D143EC0077BAE3 /* KYCUploadFrontBackWorker.swift */; };
 		7B626FEE27D143ED0077BAE3 /* KYCUploadSelfieWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FEC27D143ED0077BAE3 /* KYCUploadSelfieWorker.swift */; };
-		7B626FF427D144050077BAE3 /* KYCCameraCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B626FF027D144050077BAE3 /* KYCCameraCell.xib */; };
-		7B626FF527D144050077BAE3 /* KYCCenteredTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FF127D144050077BAE3 /* KYCCenteredTextCell.swift */; };
-		7B626FF627D144050077BAE3 /* KYCCameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FF227D144050077BAE3 /* KYCCameraCell.swift */; };
-		7B626FF727D144050077BAE3 /* KYCCenteredTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B626FF327D144050077BAE3 /* KYCCenteredTextCell.xib */; };
+		7B626FF527D144050077BAE3 /* KYCCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FF127D144050077BAE3 /* KYCCenteredTextView.swift */; };
+		7B626FF627D144050077BAE3 /* KYCCameraContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FF227D144050077BAE3 /* KYCCameraContainerView.swift */; };
 		7B626FFD27D144160077BAE3 /* KYCUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FF827D144150077BAE3 /* KYCUploadViewController.swift */; };
 		7B626FFE27D144160077BAE3 /* KYCUploadRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FF927D144150077BAE3 /* KYCUploadRouter.swift */; };
 		7B626FFF27D144160077BAE3 /* KYCUploadModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FFA27D144150077BAE3 /* KYCUploadModels.swift */; };
 		7B62700027D144160077BAE3 /* KYCUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FFB27D144150077BAE3 /* KYCUploadInteractor.swift */; };
 		7B62700127D144160077BAE3 /* KYCUploadPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B626FFC27D144150077BAE3 /* KYCUploadPresenter.swift */; };
-		7B62700827D1446C0077BAE3 /* KYCCompleteButtons.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B62700427D1446B0077BAE3 /* KYCCompleteButtons.xib */; };
-		7B62700927D1446C0077BAE3 /* KYCTextAndImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62700527D1446B0077BAE3 /* KYCTextAndImageCell.swift */; };
-		7B62700A27D1446C0077BAE3 /* KYCTextAndImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B62700627D1446B0077BAE3 /* KYCTextAndImageCell.xib */; };
+		7B62700927D1446C0077BAE3 /* KYCTextAndImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62700527D1446B0077BAE3 /* KYCTextAndImageView.swift */; };
 		7B62700B27D1446C0077BAE3 /* KYCCompleteButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62700727D1446C0077BAE3 /* KYCCompleteButtons.swift */; };
 		7B62701127D1447D0077BAE3 /* KYCCompleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62700C27D1447C0077BAE3 /* KYCCompleteInteractor.swift */; };
 		7B62701227D1447D0077BAE3 /* KYCCompleteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62700D27D1447C0077BAE3 /* KYCCompleteRouter.swift */; };
@@ -247,14 +244,11 @@
 		7B62702127D21E410077BAE3 /* KYCSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62701B27D21E410077BAE3 /* KYCSignUpViewController.swift */; };
 		7B62702227D21E410077BAE3 /* KYCSignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62701C27D21E410077BAE3 /* KYCSignUpInteractor.swift */; };
 		7B62702527D226B10077BAE3 /* KYCSignUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62702427D226B10077BAE3 /* KYCSignUpWorker.swift */; };
-		7B62702927D23B230077BAE3 /* KYCSignUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62702727D23B230077BAE3 /* KYCSignUpCell.swift */; };
-		7B62702A27D23B230077BAE3 /* KYCSignUpCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B62702827D23B230077BAE3 /* KYCSignUpCell.xib */; };
+		7B62702927D23B230077BAE3 /* KYCSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62702727D23B230077BAE3 /* KYCSignUpView.swift */; };
 		7B62702C27D631500077BAE3 /* KYCFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62702B27D631500077BAE3 /* KYCFooterView.swift */; };
 		7B62702E27D65E9F0077BAE3 /* KYCTickBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62702D27D65E9F0077BAE3 /* KYCTickBoxView.swift */; };
-		7B62703227D8CAFC0077BAE3 /* KYCSignInCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62703027D8CAFC0077BAE3 /* KYCSignInCell.swift */; };
-		7B62703327D8CAFC0077BAE3 /* KYCSignInCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B62703127D8CAFC0077BAE3 /* KYCSignInCell.xib */; };
-		7B7891E127F1D27000204E6C /* SwapConversionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7891DF27F1D27000204E6C /* SwapConversionCell.swift */; };
-		7B7891E227F1D27000204E6C /* SwapConversionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7891E027F1D27000204E6C /* SwapConversionCell.xib */; };
+		7B62703227D8CAFC0077BAE3 /* KYCSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B62703027D8CAFC0077BAE3 /* KYCSignInView.swift */; };
+		7B7891E127F1D27000204E6C /* SwapConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7891DF27F1D27000204E6C /* SwapConversionView.swift */; };
 		7C0A3ACE210A0E1D006C2783 /* NotificationAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */; };
 		7C0F3DC42124A81100531E54 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F3DC32124A81100531E54 /* Backend.swift */; };
 		7C1931CD2327371A0061DE20 /* CoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1931CC2327371A0061DE20 /* CoreDatabase.swift */; };
@@ -574,8 +568,7 @@
 		C4192E4B27DA0F7F00F07719 /* KYCConfirmEmailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4192E4527DA0F7F00F07719 /* KYCConfirmEmailModels.swift */; };
 		C4192E4C27DA0F7F00F07719 /* KYCConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4192E4627DA0F7F00F07719 /* KYCConfirmEmailViewController.swift */; };
 		C4192E4D27DA0F7F00F07719 /* KYCConfirmEmailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4192E4727DA0F7F00F07719 /* KYCConfirmEmailInteractor.swift */; };
-		C4192E5027DA0F8F00F07719 /* KYCConfirmEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4192E4E27DA0F8F00F07719 /* KYCConfirmEmailCell.swift */; };
-		C4192E5127DA0F8F00F07719 /* KYCConfirmEmailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4192E4F27DA0F8F00F07719 /* KYCConfirmEmailCell.xib */; };
+		C4192E5027DA0F8F00F07719 /* KYCConfirmEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4192E4E27DA0F8F00F07719 /* KYCConfirmEmailView.swift */; };
 		C461963327D60F85007F6778 /* KYCSignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461962D27D60F85007F6778 /* KYCSignInPresenter.swift */; };
 		C461963427D60F85007F6778 /* KYCSignInWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461962E27D60F85007F6778 /* KYCSignInWorker.swift */; };
 		C461963527D60F85007F6778 /* KYCSignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461962F27D60F85007F6778 /* KYCSignInRouter.swift */; };
@@ -1027,9 +1020,13 @@
 		7B48B22427EDC77900C54085 /* SwapPickCurrencyModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyModels.swift; sourceTree = "<group>"; };
 		7B48B22527EDC77900C54085 /* SwapPickCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyViewController.swift; sourceTree = "<group>"; };
 		7B48B22627EDC77900C54085 /* SwapPickCurrencyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPickCurrencyInteractor.swift; sourceTree = "<group>"; };
-		7B48B22E27EDD41300C54085 /* SwapCryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCryptoCell.swift; sourceTree = "<group>"; };
-		7B48B22F27EDD41300C54085 /* SwapCryptoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwapCryptoCell.xib; sourceTree = "<group>"; };
+		7B48B22E27EDD41300C54085 /* SwapCryptoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCryptoView.swift; sourceTree = "<group>"; };
 		7B48B23227EDF7D500C54085 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		7B54E3CE27F45363002DD1E4 /* CellWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWrapperView.swift; sourceTree = "<group>"; };
+		7B54E3D027F4539B002DD1E4 /* LabelConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelConfigurable.swift; sourceTree = "<group>"; };
+		7B54E3D227F453C1002DD1E4 /* UIViewConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewConfigurable.swift; sourceTree = "<group>"; };
+		7B54E3D427F453FA002DD1E4 /* Roundable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roundable.swift; sourceTree = "<group>"; };
+		7B54E3D627F4540D002DD1E4 /* Shadowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadowable.swift; sourceTree = "<group>"; };
 		7B626F7227D1411D0077BAE3 /* KYCAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAPI.swift; sourceTree = "<group>"; };
 		7B626F7327D1411D0077BAE3 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		7B626F7427D1411D0077BAE3 /* APIURLHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIURLHandler.swift; sourceTree = "<group>"; };
@@ -1069,17 +1066,14 @@
 		7B626FBB27D141E70077BAE3 /* KYCTutorialModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialModels.swift; sourceTree = "<group>"; };
 		7B626FBC27D141E80077BAE3 /* KYCTutorialInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialInteractor.swift; sourceTree = "<group>"; };
 		7B626FC527D142540077BAE3 /* KYCPostPersonalInformationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPostPersonalInformationWorker.swift; sourceTree = "<group>"; };
-		7B626FC727D1426D0077BAE3 /* KYCAddressFieldsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCAddressFieldsCell.xib; sourceTree = "<group>"; };
-		7B626FC827D1426D0077BAE3 /* KYCProgressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCProgressCell.xib; sourceTree = "<group>"; };
-		7B626FC927D1426D0077BAE3 /* KYCAddressFieldsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressFieldsCell.swift; sourceTree = "<group>"; };
-		7B626FCA27D1426E0077BAE3 /* KYCProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCProgressCell.swift; sourceTree = "<group>"; };
+		7B626FC927D1426D0077BAE3 /* KYCAddressFieldsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressFieldsView.swift; sourceTree = "<group>"; };
+		7B626FCA27D1426E0077BAE3 /* KYCProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCProgressView.swift; sourceTree = "<group>"; };
 		7B626FCF27D142800077BAE3 /* KYCAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressViewController.swift; sourceTree = "<group>"; };
 		7B626FD027D142800077BAE3 /* KYCAddressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressPresenter.swift; sourceTree = "<group>"; };
 		7B626FD127D142810077BAE3 /* KYCAddressModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressModels.swift; sourceTree = "<group>"; };
 		7B626FD227D142810077BAE3 /* KYCAddressInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressInteractor.swift; sourceTree = "<group>"; };
 		7B626FD327D142810077BAE3 /* KYCAddressRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressRouter.swift; sourceTree = "<group>"; };
-		7B626FDB27D143A70077BAE3 /* KYCPersonalInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoCell.swift; sourceTree = "<group>"; };
-		7B626FDC27D143A70077BAE3 /* KYCPersonalInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCPersonalInfoCell.xib; sourceTree = "<group>"; };
+		7B626FDB27D143A70077BAE3 /* KYCPersonalInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoView.swift; sourceTree = "<group>"; };
 		7B626FDF27D143B50077BAE3 /* KYCPersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoViewController.swift; sourceTree = "<group>"; };
 		7B626FE027D143B50077BAE3 /* KYCPersonalInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoInteractor.swift; sourceTree = "<group>"; };
 		7B626FE127D143B50077BAE3 /* KYCPersonalInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoPresenter.swift; sourceTree = "<group>"; };
@@ -1087,18 +1081,14 @@
 		7B626FE327D143B60077BAE3 /* KYCPersonalInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoRouter.swift; sourceTree = "<group>"; };
 		7B626FEB27D143EC0077BAE3 /* KYCUploadFrontBackWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadFrontBackWorker.swift; sourceTree = "<group>"; };
 		7B626FEC27D143ED0077BAE3 /* KYCUploadSelfieWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadSelfieWorker.swift; sourceTree = "<group>"; };
-		7B626FF027D144050077BAE3 /* KYCCameraCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCCameraCell.xib; sourceTree = "<group>"; };
-		7B626FF127D144050077BAE3 /* KYCCenteredTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCenteredTextCell.swift; sourceTree = "<group>"; };
-		7B626FF227D144050077BAE3 /* KYCCameraCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCameraCell.swift; sourceTree = "<group>"; };
-		7B626FF327D144050077BAE3 /* KYCCenteredTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCCenteredTextCell.xib; sourceTree = "<group>"; };
+		7B626FF127D144050077BAE3 /* KYCCenteredTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCenteredTextView.swift; sourceTree = "<group>"; };
+		7B626FF227D144050077BAE3 /* KYCCameraContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCameraContainerView.swift; sourceTree = "<group>"; };
 		7B626FF827D144150077BAE3 /* KYCUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadViewController.swift; sourceTree = "<group>"; };
 		7B626FF927D144150077BAE3 /* KYCUploadRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadRouter.swift; sourceTree = "<group>"; };
 		7B626FFA27D144150077BAE3 /* KYCUploadModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadModels.swift; sourceTree = "<group>"; };
 		7B626FFB27D144150077BAE3 /* KYCUploadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadInteractor.swift; sourceTree = "<group>"; };
 		7B626FFC27D144150077BAE3 /* KYCUploadPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadPresenter.swift; sourceTree = "<group>"; };
-		7B62700427D1446B0077BAE3 /* KYCCompleteButtons.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCCompleteButtons.xib; sourceTree = "<group>"; };
-		7B62700527D1446B0077BAE3 /* KYCTextAndImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTextAndImageCell.swift; sourceTree = "<group>"; };
-		7B62700627D1446B0077BAE3 /* KYCTextAndImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCTextAndImageCell.xib; sourceTree = "<group>"; };
+		7B62700527D1446B0077BAE3 /* KYCTextAndImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTextAndImageView.swift; sourceTree = "<group>"; };
 		7B62700727D1446C0077BAE3 /* KYCCompleteButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompleteButtons.swift; sourceTree = "<group>"; };
 		7B62700C27D1447C0077BAE3 /* KYCCompleteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompleteInteractor.swift; sourceTree = "<group>"; };
 		7B62700D27D1447C0077BAE3 /* KYCCompleteRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompleteRouter.swift; sourceTree = "<group>"; };
@@ -1111,14 +1101,11 @@
 		7B62701B27D21E410077BAE3 /* KYCSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignUpViewController.swift; sourceTree = "<group>"; };
 		7B62701C27D21E410077BAE3 /* KYCSignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignUpInteractor.swift; sourceTree = "<group>"; };
 		7B62702427D226B10077BAE3 /* KYCSignUpWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignUpWorker.swift; sourceTree = "<group>"; };
-		7B62702727D23B230077BAE3 /* KYCSignUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignUpCell.swift; sourceTree = "<group>"; };
-		7B62702827D23B230077BAE3 /* KYCSignUpCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KYCSignUpCell.xib; sourceTree = "<group>"; };
+		7B62702727D23B230077BAE3 /* KYCSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignUpView.swift; sourceTree = "<group>"; };
 		7B62702B27D631500077BAE3 /* KYCFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCFooterView.swift; sourceTree = "<group>"; };
 		7B62702D27D65E9F0077BAE3 /* KYCTickBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCTickBoxView.swift; sourceTree = "<group>"; };
-		7B62703027D8CAFC0077BAE3 /* KYCSignInCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignInCell.swift; sourceTree = "<group>"; };
-		7B62703127D8CAFC0077BAE3 /* KYCSignInCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KYCSignInCell.xib; sourceTree = "<group>"; };
-		7B7891DF27F1D27000204E6C /* SwapConversionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConversionCell.swift; sourceTree = "<group>"; };
-		7B7891E027F1D27000204E6C /* SwapConversionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwapConversionCell.xib; sourceTree = "<group>"; };
+		7B62703027D8CAFC0077BAE3 /* KYCSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignInView.swift; sourceTree = "<group>"; };
+		7B7891DF27F1D27000204E6C /* SwapConversionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConversionView.swift; sourceTree = "<group>"; };
 		7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationAuthorizer.swift; path = src/NotificationAuthorizer.swift; sourceTree = "<group>"; };
 		7C0F3DC32124A81100531E54 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Backend.swift; path = src/Backend.swift; sourceTree = "<group>"; };
 		7C1931CC2327371A0061DE20 /* CoreDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDatabase.swift; sourceTree = "<group>"; };
@@ -1405,8 +1392,7 @@
 		C4192E4527DA0F7F00F07719 /* KYCConfirmEmailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailModels.swift; sourceTree = "<group>"; };
 		C4192E4627DA0F7F00F07719 /* KYCConfirmEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailViewController.swift; sourceTree = "<group>"; };
 		C4192E4727DA0F7F00F07719 /* KYCConfirmEmailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailInteractor.swift; sourceTree = "<group>"; };
-		C4192E4E27DA0F8F00F07719 /* KYCConfirmEmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailCell.swift; sourceTree = "<group>"; };
-		C4192E4F27DA0F8F00F07719 /* KYCConfirmEmailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KYCConfirmEmailCell.xib; sourceTree = "<group>"; };
+		C4192E4E27DA0F8F00F07719 /* KYCConfirmEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailView.swift; sourceTree = "<group>"; };
 		C461962D27D60F85007F6778 /* KYCSignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignInPresenter.swift; sourceTree = "<group>"; };
 		C461962E27D60F85007F6778 /* KYCSignInWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignInWorker.swift; sourceTree = "<group>"; };
 		C461962F27D60F85007F6778 /* KYCSignInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSignInRouter.swift; sourceTree = "<group>"; };
@@ -2185,10 +2171,25 @@
 		7B48B22D27EDD39900C54085 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7B48B22E27EDD41300C54085 /* SwapCryptoCell.swift */,
-				7B48B22F27EDD41300C54085 /* SwapCryptoCell.xib */,
+				7B48B22E27EDD41300C54085 /* SwapCryptoView.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		7B54E3CD27F45320002DD1E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B626F8E27D1413C0077BAE3 /* RoundedView.swift */,
+				7B54E3CE27F45363002DD1E4 /* CellWrapperView.swift */,
+				7B54E3D027F4539B002DD1E4 /* LabelConfigurable.swift */,
+				7B54E3D227F453C1002DD1E4 /* UIViewConfigurable.swift */,
+				7B626F9627D1413E0077BAE3 /* BaseView.swift */,
+				7B626F9027D1413D0077BAE3 /* LoadingView.swift */,
+				7B62702B27D631500077BAE3 /* KYCFooterView.swift */,
+				7B626F9227D1413D0077BAE3 /* GenericSettable.swift */,
+				7B62702D27D65E9F0077BAE3 /* KYCTickBoxView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7B626F6F27D140FF0077BAE3 /* KYC */ = {
@@ -2210,24 +2211,21 @@
 		7B626F7027D1410B0077BAE3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7B54E3CD27F45320002DD1E4 /* Views */,
 				7B626F7127D1411D0077BAE3 /* EQNetworking */,
 				7B626F9327D1413D0077BAE3 /* AlertHelper.swift */,
 				7B626F8F27D1413C0077BAE3 /* BaseButton.swift */,
-				7B626F9627D1413E0077BAE3 /* BaseView.swift */,
 				7B626F9827D1413E0077BAE3 /* DatePickerViewController.swift */,
-				7B626F9227D1413D0077BAE3 /* GenericSettable.swift */,
+				7B54E3D427F453FA002DD1E4 /* Roundable.swift */,
+				7B54E3D627F4540D002DD1E4 /* Shadowable.swift */,
 				7B626F9727D1413E0077BAE3 /* SimpleButton.swift */,
 				7B626F9B27D1413F0077BAE3 /* KYCCameraView.swift */,
 				7B626F9A27D1413E0077BAE3 /* KYCConstants.swift */,
 				7B626F9527D1413D0077BAE3 /* KYCNavigationController.swift */,
 				7B48B21E27EDC3BE00C54085 /* SwapNavigationController.swift */,
 				7B1323CF27DB628500A24DAB /* KYCViewController.swift */,
-				7B626F9027D1413D0077BAE3 /* LoadingView.swift */,
-				7B62702B27D631500077BAE3 /* KYCFooterView.swift */,
-				7B62702D27D65E9F0077BAE3 /* KYCTickBoxView.swift */,
 				7B626F9427D1413D0077BAE3 /* PaddedTextField.swift */,
 				7B626F8D27D1413C0077BAE3 /* PickerViewViewController.swift */,
-				7B626F8E27D1413C0077BAE3 /* RoundedView.swift */,
 				7B626F9927D1413E0077BAE3 /* SimpleTextField.swift */,
 				7B626F9127D1413D0077BAE3 /* SpinnerView.swift */,
 				7B48B23227EDF7D500C54085 /* UIView+Extensions.swift */,
@@ -2321,10 +2319,8 @@
 		7B626FC427D142440077BAE3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7B626FC927D1426D0077BAE3 /* KYCAddressFieldsCell.swift */,
-				7B626FC727D1426D0077BAE3 /* KYCAddressFieldsCell.xib */,
-				7B626FCA27D1426E0077BAE3 /* KYCProgressCell.swift */,
-				7B626FC827D1426D0077BAE3 /* KYCProgressCell.xib */,
+				7B626FC927D1426D0077BAE3 /* KYCAddressFieldsView.swift */,
+				7B626FCA27D1426E0077BAE3 /* KYCProgressView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2345,8 +2341,7 @@
 		7B626FDA27D143980077BAE3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7B626FDB27D143A70077BAE3 /* KYCPersonalInfoCell.swift */,
-				7B626FDC27D143A70077BAE3 /* KYCPersonalInfoCell.xib */,
+				7B626FDB27D143A70077BAE3 /* KYCPersonalInfoView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2377,10 +2372,8 @@
 		7B626FEF27D143F80077BAE3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7B626FF227D144050077BAE3 /* KYCCameraCell.swift */,
-				7B626FF027D144050077BAE3 /* KYCCameraCell.xib */,
-				7B626FF127D144050077BAE3 /* KYCCenteredTextCell.swift */,
-				7B626FF327D144050077BAE3 /* KYCCenteredTextCell.xib */,
+				7B626FF227D144050077BAE3 /* KYCCameraContainerView.swift */,
+				7B626FF127D144050077BAE3 /* KYCCenteredTextView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2402,9 +2395,7 @@
 			isa = PBXGroup;
 			children = (
 				7B62700727D1446C0077BAE3 /* KYCCompleteButtons.swift */,
-				7B62700427D1446B0077BAE3 /* KYCCompleteButtons.xib */,
-				7B62700527D1446B0077BAE3 /* KYCTextAndImageCell.swift */,
-				7B62700627D1446B0077BAE3 /* KYCTextAndImageCell.xib */,
+				7B62700527D1446B0077BAE3 /* KYCTextAndImageView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2434,8 +2425,7 @@
 		7B62702627D23AFC0077BAE3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7B62702727D23B230077BAE3 /* KYCSignUpCell.swift */,
-				7B62702827D23B230077BAE3 /* KYCSignUpCell.xib */,
+				7B62702727D23B230077BAE3 /* KYCSignUpView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2443,8 +2433,7 @@
 		7B62702F27D8CAE30077BAE3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7B62703027D8CAFC0077BAE3 /* KYCSignInCell.swift */,
-				7B62703127D8CAFC0077BAE3 /* KYCSignInCell.xib */,
+				7B62703027D8CAFC0077BAE3 /* KYCSignInView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2452,8 +2441,7 @@
 		7B7891DE27F1D21D00204E6C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7B7891DF27F1D27000204E6C /* SwapConversionCell.swift */,
-				7B7891E027F1D27000204E6C /* SwapConversionCell.xib */,
+				7B7891DF27F1D27000204E6C /* SwapConversionView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2817,8 +2805,7 @@
 		C4192E5227DA0F9600F07719 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C4192E4E27DA0F8F00F07719 /* KYCConfirmEmailCell.swift */,
-				C4192E4F27DA0F8F00F07719 /* KYCConfirmEmailCell.xib */,
+				C4192E4E27DA0F8F00F07719 /* KYCConfirmEmailView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -3611,18 +3598,14 @@
 				9AE800DD21FFF81F00D5058C /* rewardsIcon-24.gif in Resources */,
 				7B626FB327D141AC0077BAE3 /* KYCTutorial2CollectionViewCell.xib in Resources */,
 				9AE800E921FFF81F00D5058C /* rewardsIcon-33.gif in Resources */,
-				C4192E5127DA0F8F00F07719 /* KYCConfirmEmailCell.xib in Resources */,
 				9A926F7122034B3800CC2263 /* CellHighlight-46.png in Resources */,
 				9AE800EE21FFF81F00D5058C /* rewardsIcon-46.gif in Resources */,
 				9A926F5122034B3800CC2263 /* CellHighlight-83.png in Resources */,
-				7B7891E227F1D27000204E6C /* SwapConversionCell.xib in Resources */,
-				7B626FF427D144050077BAE3 /* KYCCameraCell.xib in Resources */,
 				9A926F7B22034B3800CC2263 /* CellHighlight-79.png in Resources */,
 				9AE8010621FFF81F00D5058C /* rewardsIcon-67.gif in Resources */,
 				9AE800F221FFF81F00D5058C /* rewardsIcon-61.gif in Resources */,
 				9A926F6322034B3800CC2263 /* CellHighlight-76.png in Resources */,
 				9A926F7822034B3800CC2263 /* CellHighlight-42.png in Resources */,
-				7B62700827D1446C0077BAE3 /* KYCCompleteButtons.xib in Resources */,
 				9A926F5322034B3800CC2263 /* CellHighlight-2.png in Resources */,
 				CE4C1CD01ED8BCC70063E184 /* BIP39Words.plist in Resources */,
 				9A926F6E22034B3800CC2263 /* CellHighlight-17.png in Resources */,
@@ -3673,14 +3656,9 @@
 				9AE800D921FFF81F00D5058C /* rewardsIcon-11.gif in Resources */,
 				9AE800FC21FFF81F00D5058C /* rewardsIcon-7.gif in Resources */,
 				9A926F7F22034B3800CC2263 /* CellHighlight-43.png in Resources */,
-				7B62703327D8CAFC0077BAE3 /* KYCSignInCell.xib in Resources */,
 				9A926F8722034B3800CC2263 /* CellHighlight-52.png in Resources */,
-				7B626FCC27D1426E0077BAE3 /* KYCProgressCell.xib in Resources */,
-				7B626FF727D144050077BAE3 /* KYCCenteredTextCell.xib in Resources */,
 				9AE800F521FFF81F00D5058C /* rewardsIcon-45.gif in Resources */,
 				9AE8010C21FFF81F00D5058C /* rewardsIcon-70.gif in Resources */,
-				7B626FDE27D143A70077BAE3 /* KYCPersonalInfoCell.xib in Resources */,
-				7B62702A27D23B230077BAE3 /* KYCSignUpCell.xib in Resources */,
 				9AE800DA21FFF81F00D5058C /* rewardsIcon-29.gif in Resources */,
 				9AE800E221FFF81F00D5058C /* rewardsIcon-38.gif in Resources */,
 				9A926F9322034B3800CC2263 /* CellHighlight-35.png in Resources */,
@@ -3712,7 +3690,6 @@
 				9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */,
 				9AE8010A21FFF81F00D5058C /* rewardsIcon-49.gif in Resources */,
 				9A926F8522034B3800CC2263 /* CellHighlight-23.png in Resources */,
-				7B626FCB27D1426E0077BAE3 /* KYCAddressFieldsCell.xib in Resources */,
 				CE29901A1EFD6DE50093A0F2 /* Localizable.strings in Resources */,
 				9AE800D121FFF81F00D5058C /* rewardsIcon-28.gif in Resources */,
 				2218BD791E8F6CBA0091D5E8 /* AssetBundles.plist in Resources */,
@@ -3748,12 +3725,10 @@
 				9AE800F421FFF81F00D5058C /* rewardsIcon-19.gif in Resources */,
 				9AE8010821FFF81F00D5058C /* rewardsIcon-42.gif in Resources */,
 				9A926F6522034B3800CC2263 /* CellHighlight-63.png in Resources */,
-				7B48B23127EDD41300C54085 /* SwapCryptoCell.xib in Resources */,
 				9AE800F121FFF81F00D5058C /* rewardsIcon-53.gif in Resources */,
 				9AE800DE21FFF81F00D5058C /* rewardsIcon-12.gif in Resources */,
 				9A926F7D22034B3800CC2263 /* CellHighlight-57.png in Resources */,
 				9AE8010721FFF81F00D5058C /* rewardsIcon-16.gif in Resources */,
-				7B62700A27D1446C0077BAE3 /* KYCTextAndImageCell.xib in Resources */,
 				9A926F4D22034B3800CC2263 /* CellHighlight-68.png in Resources */,
 				9AE8010B21FFF81F00D5058C /* rewardsIcon-56.gif in Resources */,
 				9A926F6B22034B3800CC2263 /* CellHighlight-39.png in Resources */,
@@ -3921,7 +3896,7 @@
 				CEE0EF521EBD14B60018DB36 /* PinTransitioningDelegate.swift in Sources */,
 				9AE8FFFA21FE6FE000D5058C /* RewardsIconView.swift in Sources */,
 				754AE0BC1DFE8A46007FD001 /* SecureAllocator.swift in Sources */,
-				C4192E5027DA0F8F00F07719 /* KYCConfirmEmailCell.swift in Sources */,
+				C4192E5027DA0F8F00F07719 /* KYCConfirmEmailView.swift in Sources */,
 				22A9A94A1DF61945000F0016 /* BRCameraPlugin.swift in Sources */,
 				3A529E4C253B957200BD0A17 /* StakingCell.swift in Sources */,
 				3A5C9B2B22A5676F00C907C1 /* PriceChange.swift in Sources */,
@@ -3933,6 +3908,7 @@
 				7B62702E27D65E9F0077BAE3 /* KYCTickBoxView.swift in Sources */,
 				7B626FAB27D1413F0077BAE3 /* KYCCameraView.swift in Sources */,
 				CEC6AA3B1DEE4EB000EE5AFD /* CGRect+Additions.swift in Sources */,
+				7B54E3D727F4540D002DD1E4 /* Shadowable.swift in Sources */,
 				4F3AB12A25D58AB400B378DC /* SelectBakerViewController.swift in Sources */,
 				E843C1172188D19000F46672 /* OnboardingViewController.swift in Sources */,
 				3A36328D225301D60043EBA4 /* PriceChangeView.swift in Sources */,
@@ -4022,6 +3998,7 @@
 				CE8CD8E11E31976800785E02 /* LoginViewController.swift in Sources */,
 				CEC6AA391DEE10BA00EE5AFD /* UINavigationController+BRAdditions.swift in Sources */,
 				CECCE5AB1E038C9900D99448 /* GenericPinPadCell.swift in Sources */,
+				7B54E3D127F4539B002DD1E4 /* LabelConfigurable.swift in Sources */,
 				CECCE5B01E04AD7600D99448 /* DescriptionSendCell.swift in Sources */,
 				CE0822661FCE059A00EF371D /* HomeScreenCell.swift in Sources */,
 				CE44BA1B1F33BFC500392A1A /* NodeSelectorViewController.swift in Sources */,
@@ -4149,13 +4126,13 @@
 				71988B0821EF8A0E008B8EA0 /* BRUserAgentHeaderGenerator.swift in Sources */,
 				CEE20C361EA5B4620086F724 /* Constants.swift in Sources */,
 				3A7605F724D0BB1F0057C1F4 /* CloudBackup.swift in Sources */,
-				7B48B23027EDD41300C54085 /* SwapCryptoCell.swift in Sources */,
+				7B48B23027EDD41300C54085 /* SwapCryptoView.swift in Sources */,
 				E821D4CC21C16B2E00B0907B /* BRAnalyticsEvent.swift in Sources */,
 				CEEC707F1E8D6B4100EF788E /* MenuViewController.swift in Sources */,
 				CEEE92F11EBA7CBA00B7AC9C /* RequestAmountViewController.swift in Sources */,
 				CE8CD8DF1E2E825100785E02 /* VerifyPinViewController.swift in Sources */,
 				71A3170D229C70C00088F97C /* Theme.swift in Sources */,
-				7B7891E127F1D27000204E6C /* SwapConversionCell.swift in Sources */,
+				7B7891E127F1D27000204E6C /* SwapConversionView.swift in Sources */,
 				7CA238142011A97C00A4A59D /* TxDetailViewController.swift in Sources */,
 				CE20C9111DBE5B6F00C8397A /* Circle.swift in Sources */,
 				CE65C665207B0BEF000C99C4 /* ManageCurrencyCell.swift in Sources */,
@@ -4165,7 +4142,7 @@
 				22A9A94E1DF61945000F0016 /* BRHTTPIndexMiddleware.swift in Sources */,
 				71173059220CCC91001931B3 /* PromptView.swift in Sources */,
 				CE8CD8DD1E2D9EF200785E02 /* Sender.swift in Sources */,
-				7B62700927D1446C0077BAE3 /* KYCTextAndImageCell.swift in Sources */,
+				7B62700927D1446C0077BAE3 /* KYCTextAndImageView.swift in Sources */,
 				3AFAD94825698A74005853E8 /* Gift.swift in Sources */,
 				CE4DFB2C1E9BE5880014009E /* ReScanViewController.swift in Sources */,
 				7C9724661FF07B9A004248C4 /* StatusPip.swift in Sources */,
@@ -4178,7 +4155,7 @@
 				22A9A9551DF61945000F0016 /* BRTar.swift in Sources */,
 				CEAA9E971DC18E1F0066731D /* PhraseView.swift in Sources */,
 				3A6A3C7E24DDC90300ACAC70 /* BackupSynchronizer.swift in Sources */,
-				7B62702927D23B230077BAE3 /* KYCSignUpCell.swift in Sources */,
+				7B62702927D23B230077BAE3 /* KYCSignUpView.swift in Sources */,
 				3AFAD937256826F3005853E8 /* BorderedTextInput.swift in Sources */,
 				CEF3E82F1DE534C5007C0A9E /* GradientView.swift in Sources */,
 				CE6D0F991DE8B75900BD4BCF /* DismissModalAnimator.swift in Sources */,
@@ -4187,11 +4164,11 @@
 				CEEC708C1E95461A00EF788E /* AboutViewController.swift in Sources */,
 				7B626FD727D142810077BAE3 /* KYCAddressInteractor.swift in Sources */,
 				CEEC708A1E945E3B00EF788E /* UnEditableTextView.swift in Sources */,
-				7B626FF627D144050077BAE3 /* KYCCameraCell.swift in Sources */,
+				7B626FF627D144050077BAE3 /* KYCCameraContainerView.swift in Sources */,
 				7B626FFD27D144160077BAE3 /* KYCUploadViewController.swift in Sources */,
-				7B626FF527D144050077BAE3 /* KYCCenteredTextCell.swift in Sources */,
+				7B626FF527D144050077BAE3 /* KYCCenteredTextView.swift in Sources */,
 				CE3645481E7B424D0079D0CF /* WhiteNumberPad.swift in Sources */,
-				7B626FCE27D1426E0077BAE3 /* KYCProgressCell.swift in Sources */,
+				7B626FCE27D1426E0077BAE3 /* KYCProgressView.swift in Sources */,
 				7B2C9B1527DA4BAB00D5135C /* KYCSessionModel.swift in Sources */,
 				CE3840E81FD590BD00437C31 /* AssetListTableView.swift in Sources */,
 				71A3171022A6D55A0088F97C /* InAppNotificationViewController.swift in Sources */,
@@ -4210,13 +4187,13 @@
 				C4192E4C27DA0F7F00F07719 /* KYCConfirmEmailViewController.swift in Sources */,
 				C461963727D60F85007F6778 /* KYCSignInViewController.swift in Sources */,
 				22A9A94B1DF61945000F0016 /* BRCoding.swift in Sources */,
-				7B626FDD27D143A70077BAE3 /* KYCPersonalInfoCell.swift in Sources */,
+				7B626FDD27D143A70077BAE3 /* KYCPersonalInfoView.swift in Sources */,
 				22A9A9561DF61945000F0016 /* BRWalletPlugin.swift in Sources */,
 				C461963627D60F85007F6778 /* KYCSignInModels.swift in Sources */,
 				CE6B829A1FE3A7B6007A41B9 /* UIScrollView+Additions.swift in Sources */,
 				3AEA2CAB24D3219200DA4C3A /* SelectBackupView.swift in Sources */,
 				7B626F8A27D1411D0077BAE3 /* BaseResponseWorker.swift in Sources */,
-				7B62703227D8CAFC0077BAE3 /* KYCSignInCell.swift in Sources */,
+				7B62703227D8CAFC0077BAE3 /* KYCSignInView.swift in Sources */,
 				CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */,
 				CEB909FA1E5FF242001804DC /* RecoverWalletIntroViewController.swift in Sources */,
 				CE25BF911DF9ADE700BC67B6 /* UIImage+Utils.swift in Sources */,
@@ -4238,6 +4215,7 @@
 				CEAA9EA01DC2F9F50066731D /* UIFont+BRWAdditions.swift in Sources */,
 				CEF61B121ECF52C700C7EA6A /* AmountViewController.swift in Sources */,
 				CEBF32F21DDCE10D00348FC6 /* AccountHeaderView.swift in Sources */,
+				7B54E3D527F453FA002DD1E4 /* Roundable.swift in Sources */,
 				7B626FD527D142810077BAE3 /* KYCAddressPresenter.swift in Sources */,
 				CECCE5B21E04B00D00D99448 /* SendCell.swift in Sources */,
 				CE6DCC301E6666470044257B /* NonScrollingCollectionView.swift in Sources */,
@@ -4282,11 +4260,12 @@
 				CE20C90C1DBC59E600C8397A /* StartFlowPresenter.swift in Sources */,
 				CE20C8FC1DBB0F3A00C8397A /* UIColor+BRWAdditions.swift in Sources */,
 				7B62701D27D21E410077BAE3 /* KYCSignUpPresenter.swift in Sources */,
+				7B54E3D327F453C1002DD1E4 /* UIViewConfigurable.swift in Sources */,
 				3A6785F1256F2F1A0065F835 /* RedeemGiftViewController.swift in Sources */,
 				C461963327D60F85007F6778 /* KYCSignInPresenter.swift in Sources */,
 				9AE8FFF821FE64E200D5058C /* RewardsView.swift in Sources */,
 				7B626FE527D143B60077BAE3 /* KYCPersonalInfoInteractor.swift in Sources */,
-				7B626FCD27D1426E0077BAE3 /* KYCAddressFieldsCell.swift in Sources */,
+				7B626FCD27D1426E0077BAE3 /* KYCAddressFieldsView.swift in Sources */,
 				CEA3626A1E01150D0061FC0E /* CGContext+Additions.swift in Sources */,
 				7C6ACCB41FEB34470028ABFA /* TxLabelCell.swift in Sources */,
 				7C40DE2D20E09207000E289D /* ToggleButton.swift in Sources */,
@@ -4328,6 +4307,7 @@
 				713CD88A2240198A004657D4 /* RecoveryKeyIntroViewController.swift in Sources */,
 				CE6D0F971DE8B73A00BD4BCF /* ModalTransitionDelegate.swift in Sources */,
 				1B1AFFA01FB7EF7C00E61908 /* BiometricsSettingsViewController.swift in Sources */,
+				7B54E3CF27F45363002DD1E4 /* CellWrapperView.swift in Sources */,
 				7B626FFE27D144160077BAE3 /* KYCUploadRouter.swift in Sources */,
 				4F3AB13425D5E7F900B378DC /* SelectBakerCell.swift in Sources */,
 				3A529E5C253CAD3F00BD0A17 /* StakeViewController.swift in Sources */,

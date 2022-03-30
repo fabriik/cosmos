@@ -59,7 +59,6 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
         case fields
     }
     
-    
     private let sections: [Section] = [
         .fields
     ]
@@ -68,7 +67,7 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(cell: KYCConfirmEmailCell.self)
+        tableView.register(CellWrapperView<KYCConfirmEmailView>.self)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -89,17 +88,21 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
     
     func displayShouldEnableConfirm(viewModel: KYCConfirmEmail.ShouldEnableConfirm.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCConfirmEmailCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCConfirmEmailView> else { return }
         
-        let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
-        cell.changeButtonStyle(with: style)
+        cell.setup { view in
+            let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
+            view.changeButtonStyle(with: style)
+        }
     }
     
     func displayValidateField(viewModel: KYCConfirmEmail.ValidateField.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCConfirmEmailCell else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCConfirmEmailView> else { return }
         
-        cell.changeFieldStyle(isViable: viewModel.isViable)
+        cell.setup { view in
+            view.changeFieldStyle(isViable: viewModel.isViable)
+        }
     }
     
     func displayError(viewModel: GenericModels.Error.ViewModel) {
@@ -127,30 +130,32 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
         }
     }
     
-    func getKYCSConfirmEmailFieldsCell(_ indexPath: IndexPath) -> KYCConfirmEmailCell {
-        guard let cell = tableView.dequeue(cell: KYCConfirmEmailCell.self) else {
-            return KYCConfirmEmailCell()
+    func getKYCSConfirmEmailFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCConfirmEmailView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
         }
         
-        cell.didChangeConfirmationCodeField = { [weak self] text in
-            self?.interactor?.executeCheckFieldType(request: .init(text: text,
-                                                                   type: .code))
-        }
-        
-        cell.didTapConfirmButton = { [weak self] in
-            self?.view.endEditing(true)
+        cell.setup { view in
+            view.didChangeConfirmationCodeField = { [weak self] text in
+                self?.interactor?.executeCheckFieldType(request: .init(text: text,
+                                                                       type: .code))
+            }
             
-            LoadingView.show()
+            view.didTapConfirmButton = { [weak self] in
+                self?.view.endEditing(true)
+                
+                LoadingView.show()
+                
+                self?.interactor?.executeSubmitData(request: .init())
+            }
             
-            self?.interactor?.executeSubmitData(request: .init())
-        }
-        
-        cell.didTapResendButton = { [weak self] in
-            self?.view.endEditing(true)
-            
-            LoadingView.show()
-            
-            self?.interactor?.executeResendCode(request: .init())
+            view.didTapResendButton = { [weak self] in
+                self?.view.endEditing(true)
+                
+                LoadingView.show()
+                
+                self?.interactor?.executeResendCode(request: .init())
+            }
         }
         
         return cell
