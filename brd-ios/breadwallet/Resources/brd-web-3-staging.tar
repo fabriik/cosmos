@@ -1,1 +1,1 @@
-{"result":"error","error":{"code":"102","server_message":"Procedure not found: wallet/asset/bundles/brd-web-3-staging/download"},"data":null}
+{"result":"error","error":{"code":"102","server_message":"Procedure not found: wallet/assets/bundles/brd-web-3-staging/download"},"data":null}
