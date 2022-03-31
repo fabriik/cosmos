@@ -18,7 +18,7 @@ extension UIColor {
         return UIColor.fromHex("#282828")
     }
 
-    static var vibrantYellow: UIColor {
+    static var kycVibrantYellow: UIColor {
         return UIColor.fromHex("#F8BA37")
     }
     
@@ -44,6 +44,26 @@ extension UIColor {
     
     static var kycGreen: UIColor {
         return UIColor.fromHex("#00A86E")
+    }
+    
+    static var swapButtonEnabledColor: UIColor {
+        return UIColor(red: 0.0/255.0, green: 171.0/255.0, blue: 234.0/255.0, alpha: 1.0)
+    }
+    
+    static var swapButtonDisabledColor: UIColor {
+        return UIColor(red: 141.0/255.0, green: 210.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+    }
+    
+    static var swapDarkPurple: UIColor {
+        return UIColor(red: 38.0/255.0, green: 21.0/255.0, blue: 56.0/255.0, alpha: 1.0)
+    }
+    
+    static var swapBackgroundPurpleColor: UIColor {
+        return UIColor(red: 51.0/255.0, green: 32.0/255.0, blue: 69.0/255.0, alpha: 1.0)
+    }
+    
+    static var swapDividerColorColor: UIColor {
+        return UIColor(red: 56.0/255.0, green: 38.0/255.0, blue: 73.0/255.0, alpha: 1.0)
     }
     
     static var newGradientEnd: UIColor {
