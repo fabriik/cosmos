@@ -11,7 +11,8 @@
 import Foundation
 
 struct WyreReservationResponseObject: ModelResponse {
-    var code: String?
+    var url: String?
+    var reservation: String?
 }
 
 struct WyreReservationRequest: ExternalAPIRequest {

@@ -264,17 +264,14 @@ class ModalPresenter: Subscriber, Trackable {
             }
                         
             return ModalViewController(childViewController: requestVc)
-        case .buy:
-            guard let request = WyreRequest().generateRequest() else { return nil }
-            
+        case .buy(let url, _, _):
+            guard let url = URL(string: url) else { return nil }
             let webView = WKWebView()
-            webView.load(request)
+            webView.load(.init(url: url))
             let vc = UIViewController()
             vc.view.addSubview(webView)
             webView.constrain(toSuperviewEdges: nil)
-            webView.load(request)
             topViewController?.show(vc, sender: nil)
-
             return nil
         case .sell(let currency):
             var url = "/sell"
