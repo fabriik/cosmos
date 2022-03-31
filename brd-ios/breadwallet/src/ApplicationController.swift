@@ -396,19 +396,7 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapTrade = {
-            let vc = SwapMainViewController()
-            let navController = SwapNavigationController(rootViewController: vc)
-            
-            if #available(iOS 14.0, *) {
-                navController.isModalInPresentation = true
-            } else {
-                navController.modalPresentationStyle = .overFullScreen
-            }
-            
-            self.homeScreenViewController?.present(navController, animated: true, completion: nil)
-            
-            // TODO: Figure out how RootModalActions actually works
-//            Store.perform(action: RootModalActions.Present(modal: .trade))
+            Store.perform(action: RootModalActions.Present(modal: .trade))
         }
         
         homeScreen.didTapMenu = { [unowned self] in
