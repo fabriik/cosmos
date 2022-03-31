@@ -6,9 +6,6 @@ BREAD_TOKEN=$2
 function downloadBundle() {
     bundle_name="$1-staging"
     host="${API_URL}/wallet"
-    echo AAAAA
-    echo $host
-    echo AAAA
     if [[ "$2" == "prod" ]]; then
         bundle_name="$1"
     fi
