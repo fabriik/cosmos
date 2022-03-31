@@ -391,8 +391,8 @@ class ApplicationController: Subscriber, Trackable {
             navigationController.pushViewController(accountViewController, animated: true)
         }
         
-        homeScreen.didTapBuy = {
-            Store.perform(action: RootModalActions.Present(modal: .buy(currency: nil)))
+        homeScreen.didTapBuy = { url, reservationCode in
+            Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
         }
         
         homeScreen.didTapTrade = {

@@ -314,7 +314,6 @@
 		7EF2999E27E3B9DA00A2238A /* SimplePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998E27E3B8D200A2238A /* SimplePrice.swift */; };
 		7EF2999F27E3B9DA00A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
-		7EF299A627E4B0EC00A2238A /* WyreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF299A527E4B0EC00A2238A /* WyreRequest.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -1154,7 +1153,6 @@
 		7EF2998D27E3B8D200A2238A /* MarketChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketChart.swift; path = CoinGecko/Models/MarketChart.swift; sourceTree = "<group>"; };
 		7EF2998E27E3B8D200A2238A /* SimplePrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimplePrice.swift; path = CoinGecko/Models/SimplePrice.swift; sourceTree = "<group>"; };
 		7EF2998F27E3B8D200A2238A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = CoinGecko/Models/Models.swift; sourceTree = "<group>"; };
-		7EF299A527E4B0EC00A2238A /* WyreRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WyreRequest.swift; path = src/ExternalAPIClient/Wyre/WyreRequest.swift; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -1832,7 +1830,6 @@
 		4F3AB11725D53F0000B378DC /* ExternalAPIClient */ = {
 			isa = PBXGroup;
 			children = (
-				7EF299A227E49EBD00A2238A /* Wyre */,
 				4F3AB12025D53F4900B378DC /* BakingBad */,
 				4F3AB11825D53F4300B378DC /* ExternalAPIClient.swift */,
 				4F3AB11925D53F4300B378DC /* ExternalAPIRequest.swift */,
@@ -2425,14 +2422,6 @@
 				7EF2998E27E3B8D200A2238A /* SimplePrice.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		7EF299A227E49EBD00A2238A /* Wyre */ = {
-			isa = PBXGroup;
-			children = (
-				7EF299A527E4B0EC00A2238A /* WyreRequest.swift */,
-			);
-			name = Wyre;
 			sourceTree = "<group>";
 		};
 		9A39B0752202A96500E5018B /* Cell Highlight View Frames */ = {
@@ -4095,7 +4084,6 @@
 				7B2C9B1527DA4BAB00D5135C /* KYCSessionModel.swift in Sources */,
 				CE3840E81FD590BD00437C31 /* AssetListTableView.swift in Sources */,
 				71A3171022A6D55A0088F97C /* InAppNotificationViewController.swift in Sources */,
-				7EF299A627E4B0EC00A2238A /* WyreRequest.swift in Sources */,
 				7CF5319D231EE01300E61F12 /* Base32.swift in Sources */,
 				7B62700B27D1446C0077BAE3 /* KYCCompleteButtons.swift in Sources */,
 				7B626F8027D1411D0077BAE3 /* KYCAPI.swift in Sources */,
