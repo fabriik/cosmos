@@ -4,48 +4,70 @@
 
 import UIKit
 
-class KYCButton: RoundedView {
-    
+class SimpleButton: RoundedView {
     enum ButtonStyle {
-        case enabled
-        case disabled
+        // TODO: Use configurations
+        case kycEnabled
+        case kycDisabled
+        case swapEnabled
+        case swapDisabled
         
         var borderColor: UIColor? {
             switch self {
-            case .enabled:
+            case .kycEnabled:
                 return .clear
                 
-            case .disabled:
+            case .kycDisabled:
                 return .kycGray3
+                
+            case .swapEnabled:
+                return .clear
+                
+            case .swapDisabled:
+                return .clear
                 
             }
         }
         
         var backgroundColor: UIColor {
             switch self {
-            case .enabled:
+            case .kycEnabled:
                 return .vibrantYellow
                 
-            case .disabled:
+            case .kycDisabled:
                 return .kycCompletelyWhite
+                
+            case .swapEnabled:
+                // TODO: Move to constants
+                return UIColor(red: 0.0/255.0, green: 171.0/255.0, blue: 234.0/255.0, alpha: 1.0)
+                
+            case .swapDisabled:
+                // TODO: Move to constants
+                return UIColor(red: 141.0/255.0, green: 210.0/255.0, blue: 228.0/255.0, alpha: 1.0)
                 
             }
         }
         
         var titleColor: UIColor {
             switch self {
-            case .enabled:
+            case .kycEnabled:
                 return .almostBlack
                 
-            case .disabled:
+            case .kycDisabled:
                 return .kycGray3
+                
+            case .swapEnabled:
+                return .kycCompletelyWhite
+                
+            case .swapDisabled:
+                return .kycCompletelyWhite
                 
             }
         }
     }
     
     private let button = BaseButton(type: .system)
-    private var buttonStyle: ButtonStyle = .enabled
+    private var buttonStyle: ButtonStyle?
     
     var didTap: (() -> Void)?
     
@@ -78,12 +100,20 @@ class KYCButton: RoundedView {
     private func style() {
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 13
-        button.layer.borderColor = buttonStyle.borderColor?.cgColor
+        button.layer.borderColor = buttonStyle?.borderColor?.cgColor
         button.layer.borderWidth = 2
         
-        button.backgroundColor = buttonStyle.backgroundColor
-        button.setTitleColor(buttonStyle.titleColor, for: .normal)
-        button.isEnabled = buttonStyle != .disabled
+        button.backgroundColor = buttonStyle?.backgroundColor
+        button.setTitleColor(buttonStyle?.titleColor, for: .normal)
+        
+        switch buttonStyle {
+        case .kycEnabled, .swapEnabled:
+            button.isEnabled = true
+            
+        case .kycDisabled, .swapDisabled, .none:
+            button.isEnabled = false
+            
+        }
     }
     
     private func setupElements() {

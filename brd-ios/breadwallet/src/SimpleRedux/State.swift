@@ -67,19 +67,19 @@ extension State {
         )
     }
     
-    func mutate(   isOnboardingEnabled: Bool? = nil,
-                   isLoginRequired: Bool? = nil,
-                   rootModal: RootModal? = nil,
-                   showFiatAmounts: Bool? = nil,
-                   alert: AlertType? = nil,
-                   defaultCurrencyCode: String? = nil,
-                   isPushNotificationsEnabled: Bool? = nil,
-                   isPromptingBiometrics: Bool? = nil,
-                   pinLength: Int? = nil,
-                   walletID: String? = nil,
-                   wallets: [CurrencyId: WalletState]? = nil,
-                   experiments: [Experiment]? = nil,
-                   creationRequired: [CurrencyId]? = nil) -> State {
+    func mutate(isOnboardingEnabled: Bool? = nil,
+                isLoginRequired: Bool? = nil,
+                rootModal: RootModal? = nil,
+                showFiatAmounts: Bool? = nil,
+                alert: AlertType? = nil,
+                defaultCurrencyCode: String? = nil,
+                isPushNotificationsEnabled: Bool? = nil,
+                isPromptingBiometrics: Bool? = nil,
+                pinLength: Int? = nil,
+                walletID: String? = nil,
+                wallets: [CurrencyId: WalletState]? = nil,
+                experiments: [Experiment]? = nil,
+                creationRequired: [CurrencyId]? = nil) -> State {
         return State(isLoginRequired: isLoginRequired ?? self.isLoginRequired,
                      rootModal: rootModal ?? self.rootModal,
                      showFiatAmounts: showFiatAmounts ?? self.showFiatAmounts,

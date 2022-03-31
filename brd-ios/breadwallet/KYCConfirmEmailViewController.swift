@@ -91,7 +91,7 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
         guard let index = sections.firstIndex(of: .fields) else { return }
         guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? KYCConfirmEmailCell else { return }
         
-        let style: KYCButton.ButtonStyle = viewModel.shouldEnable ? .enabled : .disabled
+        let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
         cell.changeButtonStyle(with: style)
     }
     

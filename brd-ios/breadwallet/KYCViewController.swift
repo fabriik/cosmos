@@ -59,9 +59,9 @@ class KYCViewController: UIViewController {
         roundedView.addSubview(tableView)
         tableView.contentInset.bottom = 100
         tableView.topAnchor.constraint(equalTo: roundedView.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: roundedView.bottomAnchor, constant: -20).isActive = true
         tableView.leadingAnchor.constraint(equalTo: roundedView.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: roundedView.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: roundedView.bottomAnchor, constant: -20).isActive = true
         
         view.backgroundColor = .almostBlack
     }

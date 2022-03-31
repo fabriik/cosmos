@@ -5,10 +5,10 @@
 import UIKit
 
 class KYCCompleteButtons: UITableViewCell {
-    private lazy var doneButton: KYCButton = {
-        let doneButton = KYCButton()
+    private lazy var doneButton: SimpleButton = {
+        let doneButton = SimpleButton()
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.setup(as: .enabled, title: "DONE")
+        doneButton.setup(as: .kycEnabled, title: "DONE")
         
         return doneButton
     }()
