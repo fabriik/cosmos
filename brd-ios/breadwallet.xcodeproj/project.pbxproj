@@ -571,6 +571,12 @@
 		A243978083345DAFD36DA7A4 /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24399A172C828ECD708E17D /* MarketInfo.swift */; };
 		A2439D019C08106D6E14D70A /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24399A172C828ECD708E17D /* MarketInfo.swift */; };
 		A2439D7BB746E6CFC3F9B64A /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2439F5D8263945E73EFF4A3 /* CacheService.swift */; };
+		C469BF1627F6E6920070ED33 /* SwapConfirmTradePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1027F6E6920070ED33 /* SwapConfirmTradePresenter.swift */; };
+		C469BF1827F6E6920070ED33 /* SwapConfirmTradeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1227F6E6920070ED33 /* SwapConfirmTradeRouter.swift */; };
+		C469BF1927F6E6920070ED33 /* SwapConfirmTradeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1327F6E6920070ED33 /* SwapConfirmTradeModels.swift */; };
+		C469BF1A27F6E6920070ED33 /* SwapConfirmTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */; };
+		C469BF1B27F6E6920070ED33 /* SwapConfirmTradeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1527F6E6920070ED33 /* SwapConfirmTradeInteractor.swift */; };
+		C469BF1F27F6E6B10070ED33 /* SwapConfirmTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */; };
 		CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */; };
 		CE0822661FCE059A00EF371D /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0822651FCE059A00EF371D /* HomeScreenCell.swift */; };
 		CE0BC980215ACBE100E68B2B /* TokenImageNoBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0BC97F215ACBE100E68B2B /* TokenImageNoBackground.swift */; };
@@ -1391,6 +1397,12 @@
 		A243988A5DA12A405BFEB9F6 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A24399A172C828ECD708E17D /* MarketInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfo.swift; sourceTree = "<group>"; };
 		A2439F5D8263945E73EFF4A3 /* CacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		C469BF1027F6E6920070ED33 /* SwapConfirmTradePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradePresenter.swift; sourceTree = "<group>"; };
+		C469BF1227F6E6920070ED33 /* SwapConfirmTradeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeRouter.swift; sourceTree = "<group>"; };
+		C469BF1327F6E6920070ED33 /* SwapConfirmTradeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeModels.swift; sourceTree = "<group>"; };
+		C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeViewController.swift; sourceTree = "<group>"; };
+		C469BF1527F6E6920070ED33 /* SwapConfirmTradeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeInteractor.swift; sourceTree = "<group>"; };
+		C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeView.swift; sourceTree = "<group>"; };
 		CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenViewController.swift; path = src/ViewControllers/HomeScreenViewController.swift; sourceTree = "<group>"; };
 		CE0822651FCE059A00EF371D /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCell.swift; path = src/Views/HomeScreenCell.swift; sourceTree = "<group>"; };
 		CE0BC97F215ACBE100E68B2B /* TokenImageNoBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TokenImageNoBackground.swift; path = src/Views/TokenImageNoBackground.swift; sourceTree = "<group>"; };
@@ -2346,6 +2358,7 @@
 		7B54E54D27F4A218002DD1E4 /* Swap */ = {
 			isa = PBXGroup;
 			children = (
+				C469BF0F27F6E67F0070ED33 /* SwapConfirmTrade */,
 				7B54E54E27F4A218002DD1E4 /* SwapMain */,
 				7B54E55627F4A218002DD1E4 /* SwapPickCurrency */,
 			);
@@ -2813,6 +2826,27 @@
 				9FDDE55625D5B79D00E42BE3 /* ChartViewModel.swift */,
 			);
 			path = ChartView;
+			sourceTree = "<group>";
+		};
+		C469BF0F27F6E67F0070ED33 /* SwapConfirmTrade */ = {
+			isa = PBXGroup;
+			children = (
+				C469BF1C27F6E69A0070ED33 /* Cells */,
+				C469BF1027F6E6920070ED33 /* SwapConfirmTradePresenter.swift */,
+				C469BF1227F6E6920070ED33 /* SwapConfirmTradeRouter.swift */,
+				C469BF1327F6E6920070ED33 /* SwapConfirmTradeModels.swift */,
+				C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */,
+				C469BF1527F6E6920070ED33 /* SwapConfirmTradeInteractor.swift */,
+			);
+			path = SwapConfirmTrade;
+			sourceTree = "<group>";
+		};
+		C469BF1C27F6E69A0070ED33 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		CE1E5F241EF081F300BD0F72 /* Import */ = {
@@ -3873,6 +3907,7 @@
 				7C67B6362056FB13006487BE /* BRAPIClient+Currencies.swift in Sources */,
 				3A4972C52602E0ED0002C3EC /* IosBRDAuthProvider.swift in Sources */,
 				CEC6AA4D1DF0741100EE5AFD /* ModalDisplayable.swift in Sources */,
+				C469BF1827F6E6920070ED33 /* SwapConfirmTradeRouter.swift in Sources */,
 				7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */,
 				CEE0EF521EBD14B60018DB36 /* PinTransitioningDelegate.swift in Sources */,
 				7B54E53527F4A208002DD1E4 /* KYCSessionModelMapper.swift in Sources */,
@@ -4096,7 +4131,9 @@
 				7B54E54827F4A208002DD1E4 /* KYCAddressPresenter.swift in Sources */,
 				7B54E53A27F4A208002DD1E4 /* KYCTutorialModels.swift in Sources */,
 				7B54E54A27F4A208002DD1E4 /* KYCAddressModels.swift in Sources */,
+				C469BF1627F6E6920070ED33 /* SwapConfirmTradePresenter.swift in Sources */,
 				CEE20C341EA5B4550086F724 /* ArticleIds.swift in Sources */,
+				C469BF1927F6E6920070ED33 /* SwapConfirmTradeModels.swift in Sources */,
 				3A93890A22A303800081FCF9 /* CubicCurveAlgorithm.swift in Sources */,
 				7141BB5B2245271800F7ECF2 /* WriteRecoveryKeyViewController.swift in Sources */,
 				CEE65DF01E39056F0002994D /* Rate.swift in Sources */,
@@ -4154,7 +4191,6 @@
 				CE3840E81FD590BD00437C31 /* AssetListTableView.swift in Sources */,
 				71A3171022A6D55A0088F97C /* InAppNotificationViewController.swift in Sources */,
 				7B54E56927F4A218002DD1E4 /* SwapPickCurrencyViewController.swift in Sources */,
-				7EF299A627E4B0EC00A2238A /* WyreRequest.swift in Sources */,
 				7B54E53D27F4A208002DD1E4 /* KYCTutorialPresenter.swift in Sources */,
 				7CF5319D231EE01300E61F12 /* Base32.swift in Sources */,
 				22A9A9591DF61945000F0016 /* Extensions.swift in Sources */,
@@ -4168,6 +4204,7 @@
 				22A9A9561DF61945000F0016 /* BRWalletPlugin.swift in Sources */,
 				CE6B829A1FE3A7B6007A41B9 /* UIScrollView+Additions.swift in Sources */,
 				3AEA2CAB24D3219200DA4C3A /* SelectBackupView.swift in Sources */,
+				C469BF1F27F6E6B10070ED33 /* SwapConfirmTradeView.swift in Sources */,
 				7B54E54B27F4A208002DD1E4 /* KYCAddressRouter.swift in Sources */,
 				7B54E53727F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift in Sources */,
 				CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */,
@@ -4204,6 +4241,7 @@
 				71C44E90225D135E00EF4459 /* ConfirmRecoveryKeyViewController.swift in Sources */,
 				7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */,
 				3A0063BE2509D36500C74A97 /* ExtendedTouchArea.swift in Sources */,
+				C469BF1A27F6E6920070ED33 /* SwapConfirmTradeViewController.swift in Sources */,
 				3A3D63DE22F10B58000DE920 /* ManageWalletsViewController.swift in Sources */,
 				22A9A9471DF61945000F0016 /* BRAPIProxy.swift in Sources */,
 				CE20C9011DBBFFF800C8397A /* Actions.swift in Sources */,
@@ -4230,6 +4268,7 @@
 				7C72D134226625130091B185 /* CoreSystem.swift in Sources */,
 				CE3D4C571EF5D5740016B1C8 /* ReachabilityMonitor.swift in Sources */,
 				7B54E59F27F4A2B0002DD1E4 /* KYCAPI.swift in Sources */,
+				C469BF1B27F6E6920070ED33 /* SwapConfirmTradeInteractor.swift in Sources */,
 				7CBA74E62022784D00FBBFA9 /* HomeScreenAssetViewModel.swift in Sources */,
 				7CA1C47420EC25B9002E9E68 /* QRCode.swift in Sources */,
 				CE41327622CACA05002391E6 /* BalanceCell.swift in Sources */,

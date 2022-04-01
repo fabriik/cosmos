@@ -34,7 +34,7 @@ class SwapConversionView: BaseView, GenericSettable {
         let sendAmountLabel = UILabel()
         sendAmountLabel.translatesAutoresizingMaskIntoConstraints = false
         sendAmountLabel.textAlignment = .left
-        sendAmountLabel.textColor = .kycCompletelyWhite
+        sendAmountLabel.textColor = .almostBlack
         sendAmountLabel.font = UIFont(name: "AvenirNext-Medium", size: 34)
         sendAmountLabel.text = "0.003"
         
@@ -44,7 +44,7 @@ class SwapConversionView: BaseView, GenericSettable {
     private lazy var sendAmountcurrencyBackgroundView: UIView = {
         let sendAmountcurrencyBackgroundView = UIView()
         sendAmountcurrencyBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        sendAmountcurrencyBackgroundView.backgroundColor = UIColor(red: 32.0/255.0, green: 18.0/255.0, blue: 44.0/255.0, alpha: 1.0)
+        sendAmountcurrencyBackgroundView.backgroundColor = Theme.secondaryBackground.withAlphaComponent(0.1)
         
         return sendAmountcurrencyBackgroundView
     }()
@@ -66,7 +66,7 @@ class SwapConversionView: BaseView, GenericSettable {
         let sendAmountCurrencyTitleLabel = UILabel()
         sendAmountCurrencyTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         sendAmountCurrencyTitleLabel.textAlignment = .left
-        sendAmountCurrencyTitleLabel.textColor = .kycCompletelyWhite
+        sendAmountCurrencyTitleLabel.textColor = .almostBlack
         sendAmountCurrencyTitleLabel.font = UIFont(name: "AvenirNext-Medium", size: 16)
         sendAmountCurrencyTitleLabel.text = "BTC"
         
@@ -76,7 +76,7 @@ class SwapConversionView: BaseView, GenericSettable {
     private lazy var separatorLine: UIView = {
         let separatorLine = UIView()
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
-        separatorLine.backgroundColor = .swapBackgroundPurpleColor
+        separatorLine.backgroundColor = .kycGray3
         
         return separatorLine
     }()
@@ -85,7 +85,7 @@ class SwapConversionView: BaseView, GenericSettable {
         let receiveAmountTitleLabel = UILabel()
         receiveAmountTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         receiveAmountTitleLabel.textAlignment = .left
-        receiveAmountTitleLabel.textColor = .kycGray1
+        receiveAmountTitleLabel.textColor = .kycGray2
         receiveAmountTitleLabel.font = UIFont(name: "AvenirNext-Medium", size: 14)
         receiveAmountTitleLabel.text = "Receive"
         
@@ -96,7 +96,7 @@ class SwapConversionView: BaseView, GenericSettable {
         let receiveAmountLabel = UILabel()
         receiveAmountLabel.translatesAutoresizingMaskIntoConstraints = false
         receiveAmountLabel.textAlignment = .left
-        receiveAmountLabel.textColor = .kycCompletelyWhite
+        receiveAmountLabel.textColor = .almostBlack
         receiveAmountLabel.font = UIFont(name: "AvenirNext-Medium", size: 34)
         receiveAmountLabel.text = "346.5363"
         
@@ -106,7 +106,7 @@ class SwapConversionView: BaseView, GenericSettable {
     private lazy var receiveAmountcurrencyBackgroundView: UIView = {
         let receiveAmountcurrencyBackgroundView = UIView()
         receiveAmountcurrencyBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        receiveAmountcurrencyBackgroundView.backgroundColor = UIColor(red: 32.0/255.0, green: 18.0/255.0, blue: 44.0/255.0, alpha: 1.0)
+        receiveAmountcurrencyBackgroundView.backgroundColor = Theme.secondaryBackground.withAlphaComponent(0.1)
         
         return receiveAmountcurrencyBackgroundView
     }()
@@ -128,7 +128,7 @@ class SwapConversionView: BaseView, GenericSettable {
         let receiveAmountCurrencyTitleLabel = UILabel()
         receiveAmountCurrencyTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         receiveAmountCurrencyTitleLabel.textAlignment = .left
-        receiveAmountCurrencyTitleLabel.textColor = .kycCompletelyWhite
+        receiveAmountCurrencyTitleLabel.textColor = .almostBlack
         receiveAmountCurrencyTitleLabel.font = UIFont(name: "AvenirNext-Medium", size: 16)
         receiveAmountCurrencyTitleLabel.text = "BTC"
         
@@ -138,7 +138,7 @@ class SwapConversionView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
-        backgroundColor = .swapDarkPurple
+        backgroundColor = Theme.primaryBackground
         
         addSubview(sendAmountTitleLabel)
         sendAmountTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true

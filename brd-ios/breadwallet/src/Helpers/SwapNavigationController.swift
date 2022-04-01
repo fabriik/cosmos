@@ -17,8 +17,8 @@ class SwapNavigationController: UINavigationController, UINavigationControllerDe
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.kycCompletelyWhite]
-            appearance.backgroundColor = .swapDarkPurple
+            appearance.titleTextAttributes = [.foregroundColor: Theme.primaryText]
+            appearance.backgroundColor = Theme.primaryBackground
             appearance.shadowColor = nil
             
             navigationBar.scrollEdgeAppearance = appearance
@@ -26,8 +26,8 @@ class SwapNavigationController: UINavigationController, UINavigationControllerDe
             navigationBar.compactAppearance = appearance
         }
         
-        navigationBar.tintColor = .kycCompletelyWhite
-        navigationBar.barTintColor = .kycCompletelyWhite
+        navigationBar.tintColor = .almostBlack
+        navigationBar.barTintColor = .almostBlack
         navigationBar.shadowImage = UIImage()
         navigationBar.prefersLargeTitles = false
         

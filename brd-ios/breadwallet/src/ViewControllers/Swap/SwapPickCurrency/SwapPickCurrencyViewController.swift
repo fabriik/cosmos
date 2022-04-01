@@ -80,7 +80,7 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
     private lazy var historyButtonContainerView: UIView = {
         var historyButtonContainerView = UIView()
         historyButtonContainerView.translatesAutoresizingMaskIntoConstraints = false
-        historyButtonContainerView.backgroundColor = .swapDarkPurple
+        historyButtonContainerView.backgroundColor = Theme.primaryBackground
         
         var historyButton = SimpleButton()
         historyButton.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +132,7 @@ class SwapPickCurrencyViewController: UIViewController, SwapPickCurrencyDisplayL
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        view.backgroundColor = .swapBackgroundPurpleColor
+        view.backgroundColor = Theme.primaryBackground
         
         localize()
         fetch()
