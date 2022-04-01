@@ -19,8 +19,6 @@ class ModalPresenter: Subscriber, Trackable {
 
     // MARK: - Public
     
-    let keyStore: KeyStore
-    
     lazy var supportCenter: SupportCenterContainer = {
         let supportCenter = SupportCenterContainer()
         
@@ -43,6 +41,7 @@ class ModalPresenter: Subscriber, Trackable {
     
     // MARK: - Private
     private let window: UIWindow
+    private let keyStore: KeyStore
     private var alertPresenter: AlertPresenter?
     private let modalTransitionDelegate: ModalTransitionDelegate
     private let messagePresenter = MessageUIPresenter()
