@@ -49,9 +49,7 @@ class ModalPresenter: Subscriber, Trackable {
     private let verifyPinTransitionDelegate = PinTransitioningDelegate()
     private var currentRequest: PaymentRequest?
     private let wipeNavigationDelegate: StartNavigationDelegate
-
     private var menuNavController: UINavigationController?
-    
     private let system: CoreSystem
     
     private func addSubscriptions() {
