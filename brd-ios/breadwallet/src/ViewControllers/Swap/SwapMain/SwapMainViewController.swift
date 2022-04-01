@@ -81,6 +81,10 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
         historyButton.didTap = { [weak self] in
             // TODO: Implement when we figure out what it looks like.
 //            self?.router?.showConversationCompletion()
+            
+            let vc = SwapConfirmTradeViewController()
+            let navController = SwapNavigationController(rootViewController: vc)
+            self?.present(navController, animated: true, completion: nil)
         }
         
         nextButtonContainerView.addSubview(historyButton)
