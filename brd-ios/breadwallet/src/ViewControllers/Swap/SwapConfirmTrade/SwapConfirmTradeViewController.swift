@@ -49,10 +49,7 @@ class SwapConfirmTradeViewController: UIViewController, SwapConfirmTradeDisplayL
     
     private lazy var buyButtonContainerView: UIView = {
         var buyButtonContainerView = UIView()
-        buyButtonContainerView.translatesAutoresizingMaskIntoConstraints = false
-        buyButtonContainerView.backgroundColor = UIColor(red: 38.0/255.0, green: 21.0/255.0, blue: 56.0/255.0, alpha: 1.0)
-        // TODO: Move colors to constants
-        
+        buyButtonContainerView.translatesAutoresizingMaskIntoConstraints = false        
         var buyButton = SimpleButton()
         buyButton.translatesAutoresizingMaskIntoConstraints = false
         buyButton.setup(as: .swapEnabled, title: "Buy")
@@ -98,7 +95,7 @@ class SwapConfirmTradeViewController: UIViewController, SwapConfirmTradeDisplayL
         buyButtonContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         buyButtonContainerView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
-        view.backgroundColor = UIColor(red: 51.0/255.0, green: 32.0/255.0, blue: 69.0/255.0, alpha: 1.0)
+        view.backgroundColor = Theme.primaryBackground
         
         localize()
     }

@@ -72,27 +72,23 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
     private lazy var nextButtonContainerView: UIView = {
         var nextButtonContainerView = UIView()
         nextButtonContainerView.translatesAutoresizingMaskIntoConstraints = false
-        nextButtonContainerView.backgroundColor = .swapDarkPurple
+        nextButtonContainerView.backgroundColor = Theme.primaryBackground
         
-        var historyButton = SimpleButton()
-        historyButton.translatesAutoresizingMaskIntoConstraints = false
-        historyButton.setup(as: .swapEnabled, title: "NEXT")
+        var nextButton = SimpleButton()
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.setup(as: .swapEnabled, title: "NEXT")
         
-        historyButton.didTap = { [weak self] in
+        nextButton.didTap = { [weak self] in
             // TODO: Implement when we figure out what it looks like.
-//            self?.router?.showConversationCompletion()
-            
-            let vc = SwapConfirmTradeViewController()
-            let navController = SwapNavigationController(rootViewController: vc)
-            self?.present(navController, animated: true, completion: nil)
+           self?.router?.showSwapConfirmTrade()
         }
         
-        nextButtonContainerView.addSubview(historyButton)
-        historyButton.constrainToCenter()
-        historyButton.topAnchor.constraint(equalTo: nextButtonContainerView.topAnchor, constant: 16).isActive = true
-        historyButton.bottomAnchor.constraint(equalTo: nextButtonContainerView.bottomAnchor, constant: -32).isActive = true
-        historyButton.leadingAnchor.constraint(equalTo: nextButtonContainerView.leadingAnchor, constant: 16).isActive = true
-        historyButton.trailingAnchor.constraint(equalTo: nextButtonContainerView.trailingAnchor, constant: -16).isActive = true
+        nextButtonContainerView.addSubview(nextButton)
+        nextButton.constrainToCenter()
+        nextButton.topAnchor.constraint(equalTo: nextButtonContainerView.topAnchor, constant: 16).isActive = true
+        nextButton.bottomAnchor.constraint(equalTo: nextButtonContainerView.bottomAnchor, constant: -32).isActive = true
+        nextButton.leadingAnchor.constraint(equalTo: nextButtonContainerView.leadingAnchor, constant: 16).isActive = true
+        nextButton.trailingAnchor.constraint(equalTo: nextButtonContainerView.trailingAnchor, constant: -16).isActive = true
         
         return nextButtonContainerView
     }()
@@ -104,7 +100,7 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
                                     shouldShowBiometrics: false)
     }()
     
-    private let pinPadBackground = UIView(color: .almostBlack)
+    private let pinPadBackground = UIView(color: .white)
     
     private var currencies: [SwapPickCurrency.GetCurrencyList.Currency] = []
     
@@ -149,7 +145,7 @@ class SwapMainViewController: UIViewController, SwapMainDisplayLogic, UITableVie
         nextButtonContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         nextButtonContainerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        view.backgroundColor = .swapBackgroundPurpleColor
+        view.backgroundColor = Theme.primaryBackground
         
         pinPad.ouputDidUpdate = { [weak self] amount in
             self?.interactor?.executeFillData(request: .init(sendAmount: amount))

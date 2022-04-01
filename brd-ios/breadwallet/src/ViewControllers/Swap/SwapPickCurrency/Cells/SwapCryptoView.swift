@@ -34,7 +34,7 @@ class SwapCryptoView: BaseView, GenericSettable {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .left
-        titleLabel.textColor = .kycCompletelyWhite
+        titleLabel.textColor = .almostBlack
         titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 20)
         
         return titleLabel
@@ -63,7 +63,7 @@ class SwapCryptoView: BaseView, GenericSettable {
         let fiatLabel = UILabel()
         fiatLabel.translatesAutoresizingMaskIntoConstraints = false
         fiatLabel.textAlignment = .right
-        fiatLabel.textColor = .kycCompletelyWhite
+        fiatLabel.textColor = .almostBlack
         fiatLabel.font = UIFont(name: "AvenirNext-Medium", size: 20)
         fiatLabel.numberOfLines = 0
         
@@ -84,10 +84,10 @@ class SwapCryptoView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
-        backgroundColor = .swapDividerColorColor
+        backgroundColor = Theme.primaryBackground
         
         addBorders(edges: [.bottom],
-                   color: .swapDividerColorColor)
+                   color: .kycGray3)
         
         addSubview(currencyImageView)
         currencyImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
