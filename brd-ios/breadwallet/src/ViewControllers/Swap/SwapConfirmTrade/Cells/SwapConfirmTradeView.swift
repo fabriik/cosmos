@@ -10,13 +10,13 @@ class SwapConfirmTradeView: BaseView, GenericSettable {
     struct ViewModel: Hashable {}
     
     private lazy var currencyStack: UIStackView = {
-        let tradeStack = UIStackView()
-        tradeStack.translatesAutoresizingMaskIntoConstraints = false
-        tradeStack.backgroundColor = .clear
-        tradeStack.axis = .horizontal
-        tradeStack.spacing = 4
+        let currencyStack = UIStackView()
+        currencyStack.translatesAutoresizingMaskIntoConstraints = false
+        currencyStack.backgroundColor = .clear
+        currencyStack.axis = .horizontal
+        currencyStack.spacing = 4
         
-        return tradeStack
+        return currencyStack
     }()
     
     private lazy var tradeStack: UIStackView = {
@@ -63,14 +63,14 @@ class SwapConfirmTradeView: BaseView, GenericSettable {
     }()
     
     private lazy var label: UILabel = {
-        let currencyLabel = UILabel()
-        currencyLabel.translatesAutoresizingMaskIntoConstraints = false
-        currencyLabel.textAlignment = .center
-        currencyLabel.textColor = .almostBlack
-        currencyLabel.font = UIFont(name: "AvenirNext-Bold", size: 30)
-        currencyLabel.text = ">"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.textColor = .almostBlack
+        label.font = UIFont(name: "AvenirNext-Bold", size: 30)
+        label.text = ">"
         
-        return currencyLabel
+        return label
     }()
     
     private lazy var tradeForStack: UIStackView = {
@@ -84,36 +84,36 @@ class SwapConfirmTradeView: BaseView, GenericSettable {
     }()
     
     private lazy var tradeForLabel: UILabel = {
-        let tradeLabel = UILabel()
-        tradeLabel.translatesAutoresizingMaskIntoConstraints = false
-        tradeLabel.textAlignment = .center
-        tradeLabel.textColor = .almostBlack
-        tradeLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
-        tradeLabel.text = "For"
+        let tradeForLabel = UILabel()
+        tradeForLabel.translatesAutoresizingMaskIntoConstraints = false
+        tradeForLabel.textAlignment = .center
+        tradeForLabel.textColor = .almostBlack
+        tradeForLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        tradeForLabel.text = "For"
         
-        return tradeLabel
+        return tradeForLabel
     }()
     
     private lazy var tradeForImageView: UIImageView = {
-        let iconImageView = UIImageView()
-        iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        iconImageView.image = UIImage(named: "LogoBlue")
-        iconImageView.contentMode = .scaleAspectFit
-        iconImageView.layer.cornerRadius = 8
-        iconImageView.backgroundColor = .clear
+        let tradeForImageView = UIImageView()
+        tradeForImageView.translatesAutoresizingMaskIntoConstraints = false
+        tradeForImageView.image = UIImage(named: "LogoBlue")
+        tradeForImageView.contentMode = .scaleAspectFit
+        tradeForImageView.layer.cornerRadius = 8
+        tradeForImageView.backgroundColor = .clear
         
-        return iconImageView
+        return tradeForImageView
     }()
     
     private lazy var tradeForCurrencyLabel: UILabel = {
-        let currencyLabel = UILabel()
-        currencyLabel.translatesAutoresizingMaskIntoConstraints = false
-        currencyLabel.textAlignment = .center
-        currencyLabel.textColor = .almostBlack
-        currencyLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
-        currencyLabel.text = "86.4012 BRD"
+        let tradeForCurrencyLabel = UILabel()
+        tradeForCurrencyLabel.translatesAutoresizingMaskIntoConstraints = false
+        tradeForCurrencyLabel.textAlignment = .center
+        tradeForCurrencyLabel.textColor = .almostBlack
+        tradeForCurrencyLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
+        tradeForCurrencyLabel.text = "86.4012 BRD"
         
-        return currencyLabel
+        return tradeForCurrencyLabel
     }()
     
     private lazy var receiveAmountcurrencyBackgroundView: UIView = {
@@ -132,92 +132,92 @@ class SwapConfirmTradeView: BaseView, GenericSettable {
         return tradeInfoView
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textAlignment = .left
-        titleLabel.textColor = .almostBlack
-        titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
-        titleLabel.text = "Price:"
+    private lazy var priceLabel: UILabel = {
+        let priceLabel = UILabel()
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.textAlignment = .left
+        priceLabel.textColor = .almostBlack
+        priceLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        priceLabel.text = "Price:"
         
-        return titleLabel
+        return priceLabel
     }()
     
-    private lazy var infoLabel: UILabel = {
-        let infoLabel = UILabel()
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        infoLabel.textAlignment = .right
-        infoLabel.textColor = .almostBlack
-        infoLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
-        infoLabel.text = "1 ETH = 1.562.589 BRD"
+    private lazy var priceInfoLabel: UILabel = {
+        let priceInfoLabel = UILabel()
+        priceInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceInfoLabel.textAlignment = .right
+        priceInfoLabel.textColor = .almostBlack
+        priceInfoLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
+        priceInfoLabel.text = "1 ETH = 1.562.589 BRD"
         
-        return infoLabel
+        return priceInfoLabel
     }()
     
-    private lazy var titleLabel1: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textAlignment = .left
-        titleLabel.textColor = .almostBlack
-        titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
-        titleLabel.text = "Delivery:"
+    private lazy var deliveryLabel: UILabel = {
+        let deliveryLabel = UILabel()
+        deliveryLabel.translatesAutoresizingMaskIntoConstraints = false
+        deliveryLabel.textAlignment = .left
+        deliveryLabel.textColor = .almostBlack
+        deliveryLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        deliveryLabel.text = "Delivery:"
         
-        return titleLabel
+        return deliveryLabel
     }()
     
-    private lazy var infoLabel1: UILabel = {
-        let infoLabel = UILabel()
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        infoLabel.textAlignment = .right
-        infoLabel.textColor = .almostBlack
-        infoLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
-        infoLabel.text = "1-6 hours"
+    private lazy var deliveryInfoLabel: UILabel = {
+        let deliveryInfoLabel = UILabel()
+        deliveryInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        deliveryInfoLabel.textAlignment = .right
+        deliveryInfoLabel.textColor = .almostBlack
+        deliveryInfoLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
+        deliveryInfoLabel.text = "1-6 hours"
         
-        return infoLabel
+        return deliveryInfoLabel
     }()
     
-    private lazy var titleLabel2: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textAlignment = .left
-        titleLabel.textColor = .almostBlack
-        titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
-        titleLabel.text = "Fee:"
+    private lazy var feeLabel: UILabel = {
+        let feeLabel = UILabel()
+        feeLabel.translatesAutoresizingMaskIntoConstraints = false
+        feeLabel.textAlignment = .left
+        feeLabel.textColor = .almostBlack
+        feeLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        feeLabel.text = "Fee:"
         
-        return titleLabel
+        return feeLabel
     }()
     
-    private lazy var infoLabel2: UILabel = {
-        let infoLabel = UILabel()
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        infoLabel.textAlignment = .right
-        infoLabel.textColor = .almostBlack
-        infoLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
-        infoLabel.text = "0.0011 ETH"
+    private lazy var feeInfoLabel: UILabel = {
+        let feeInfoLabel = UILabel()
+        feeInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        feeInfoLabel.textAlignment = .right
+        feeInfoLabel.textColor = .almostBlack
+        feeInfoLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
+        feeInfoLabel.text = "0.0011 ETH"
         
-        return infoLabel
+        return feeInfoLabel
     }()
     
-    private lazy var titleLabel3: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textAlignment = .left
-        titleLabel.textColor = .almostBlack
-        titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
-        titleLabel.text = "Total Charge:"
+    private lazy var totalChargeLabel: UILabel = {
+        let totalChargeLabel = UILabel()
+        totalChargeLabel.translatesAutoresizingMaskIntoConstraints = false
+        totalChargeLabel.textAlignment = .left
+        totalChargeLabel.textColor = .almostBlack
+        totalChargeLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        totalChargeLabel.text = "Total Charge:"
         
-        return titleLabel
+        return totalChargeLabel
     }()
     
-    private lazy var infoLabel3: UILabel = {
-        let infoLabel = UILabel()
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        infoLabel.textAlignment = .right
-        infoLabel.textColor = .almostBlack
-        infoLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
-        infoLabel.text = "0.0799 ETH"
+    private lazy var totalChargeInfoLabel: UILabel = {
+        let totalChargeInfoLabel = UILabel()
+        totalChargeInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        totalChargeInfoLabel.textAlignment = .right
+        totalChargeInfoLabel.textColor = .almostBlack
+        totalChargeInfoLabel.font = UIFont(name: "AvenirNext-Bold", size: 16)
+        totalChargeInfoLabel.text = "0.0799 ETH"
         
-        return infoLabel
+        return totalChargeInfoLabel
     }()
 
     override func setupSubviews() {
@@ -251,41 +251,41 @@ class SwapConfirmTradeView: BaseView, GenericSettable {
         tradeInfoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -defaultViewsDistance).isActive = true
         tradeInfoView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -defaultViewsDistance).isActive = true
         
-        tradeInfoView.addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: tradeInfoView.topAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: tradeInfoView.leadingAnchor).isActive = true
+        tradeInfoView.addSubview(priceLabel)
+        priceLabel.topAnchor.constraint(equalTo: tradeInfoView.topAnchor).isActive = true
+        priceLabel.leadingAnchor.constraint(equalTo: tradeInfoView.leadingAnchor).isActive = true
         
-        tradeInfoView.addSubview(infoLabel)
-        infoLabel.topAnchor.constraint(equalTo: tradeInfoView.topAnchor).isActive = true
-        infoLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
-        infoLabel.trailingAnchor.constraint(equalTo: tradeInfoView.trailingAnchor).isActive = true
+        tradeInfoView.addSubview(priceInfoLabel)
+        priceInfoLabel.topAnchor.constraint(equalTo: tradeInfoView.topAnchor).isActive = true
+        priceInfoLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor).isActive = true
+        priceInfoLabel.trailingAnchor.constraint(equalTo: tradeInfoView.trailingAnchor).isActive = true
         
-        tradeInfoView.addSubview(titleLabel1)
-        titleLabel1.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: defaultViewsDistance).isActive = true
-        titleLabel1.leadingAnchor.constraint(equalTo: tradeInfoView.leadingAnchor).isActive = true
+        tradeInfoView.addSubview(deliveryLabel)
+        deliveryLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: defaultViewsDistance).isActive = true
+        deliveryLabel.leadingAnchor.constraint(equalTo: tradeInfoView.leadingAnchor).isActive = true
         
-        tradeInfoView.addSubview(infoLabel1)
-        infoLabel1.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: defaultViewsDistance).isActive = true
-        infoLabel1.leadingAnchor.constraint(equalTo: titleLabel1.trailingAnchor).isActive = true
-        infoLabel1.trailingAnchor.constraint(equalTo: tradeInfoView.trailingAnchor).isActive = true
+        tradeInfoView.addSubview(deliveryInfoLabel)
+        deliveryInfoLabel.topAnchor.constraint(equalTo: priceInfoLabel.bottomAnchor, constant: defaultViewsDistance).isActive = true
+        deliveryInfoLabel.leadingAnchor.constraint(equalTo: deliveryLabel.trailingAnchor).isActive = true
+        deliveryInfoLabel.trailingAnchor.constraint(equalTo: tradeInfoView.trailingAnchor).isActive = true
         
-        tradeInfoView.addSubview(titleLabel2)
-        titleLabel2.topAnchor.constraint(equalTo: titleLabel1.bottomAnchor, constant: defaultViewsDistance).isActive = true
-        titleLabel2.leadingAnchor.constraint(equalTo: tradeInfoView.leadingAnchor).isActive = true
+        tradeInfoView.addSubview(feeLabel)
+        feeLabel.topAnchor.constraint(equalTo: deliveryLabel.bottomAnchor, constant: defaultViewsDistance).isActive = true
+        feeLabel.leadingAnchor.constraint(equalTo: tradeInfoView.leadingAnchor).isActive = true
         
-        tradeInfoView.addSubview(infoLabel2)
-        infoLabel2.topAnchor.constraint(equalTo: infoLabel1.bottomAnchor, constant: defaultViewsDistance).isActive = true
-        infoLabel2.leadingAnchor.constraint(equalTo: titleLabel2.trailingAnchor).isActive = true
-        infoLabel2.trailingAnchor.constraint(equalTo: tradeInfoView.trailingAnchor).isActive = true
+        tradeInfoView.addSubview(feeInfoLabel)
+        feeInfoLabel.topAnchor.constraint(equalTo: deliveryInfoLabel.bottomAnchor, constant: defaultViewsDistance).isActive = true
+        feeInfoLabel.leadingAnchor.constraint(equalTo: feeLabel.trailingAnchor).isActive = true
+        feeInfoLabel.trailingAnchor.constraint(equalTo: tradeInfoView.trailingAnchor).isActive = true
         
-        tradeInfoView.addSubview(titleLabel3)
-        titleLabel3.topAnchor.constraint(equalTo: titleLabel2.bottomAnchor, constant: defaultViewsDistance).isActive = true
-        titleLabel3.leadingAnchor.constraint(equalTo: tradeInfoView.leadingAnchor).isActive = true
+        tradeInfoView.addSubview(totalChargeLabel)
+        totalChargeLabel.topAnchor.constraint(equalTo: feeLabel.bottomAnchor, constant: defaultViewsDistance).isActive = true
+        totalChargeLabel.leadingAnchor.constraint(equalTo: tradeInfoView.leadingAnchor).isActive = true
         
-        tradeInfoView.addSubview(infoLabel3)
-        infoLabel3.topAnchor.constraint(equalTo: infoLabel2.bottomAnchor, constant: defaultViewsDistance).isActive = true
-        infoLabel3.leadingAnchor.constraint(equalTo: titleLabel3.trailingAnchor).isActive = true
-        infoLabel3.trailingAnchor.constraint(equalTo: tradeInfoView.trailingAnchor).isActive = true
+        tradeInfoView.addSubview(totalChargeInfoLabel)
+        totalChargeInfoLabel.topAnchor.constraint(equalTo: feeInfoLabel.bottomAnchor, constant: defaultViewsDistance).isActive = true
+        totalChargeInfoLabel.leadingAnchor.constraint(equalTo: totalChargeLabel.trailingAnchor).isActive = true
+        totalChargeInfoLabel.trailingAnchor.constraint(equalTo: tradeInfoView.trailingAnchor).isActive = true
     }
     
     func setup(with model: ViewModel) {

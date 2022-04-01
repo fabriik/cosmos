@@ -14,7 +14,6 @@ protocol SwapConfirmTradeDataStore {
 
 class SwapConfirmTradeInteractor: SwapConfirmTradeBusinessLogic, SwapConfirmTradeDataStore {
     var presenter: SwapConfirmTradePresentationLogic?
-    var worker: SwapConfirmTradeWorker?
 
     // MARK: Interactor functions
 

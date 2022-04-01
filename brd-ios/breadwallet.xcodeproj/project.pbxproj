@@ -572,7 +572,6 @@
 		A2439D019C08106D6E14D70A /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24399A172C828ECD708E17D /* MarketInfo.swift */; };
 		A2439D7BB746E6CFC3F9B64A /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2439F5D8263945E73EFF4A3 /* CacheService.swift */; };
 		C469BF1627F6E6920070ED33 /* SwapConfirmTradePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1027F6E6920070ED33 /* SwapConfirmTradePresenter.swift */; };
-		C469BF1727F6E6920070ED33 /* SwapConfirmTradeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1127F6E6920070ED33 /* SwapConfirmTradeWorker.swift */; };
 		C469BF1827F6E6920070ED33 /* SwapConfirmTradeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1227F6E6920070ED33 /* SwapConfirmTradeRouter.swift */; };
 		C469BF1927F6E6920070ED33 /* SwapConfirmTradeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1327F6E6920070ED33 /* SwapConfirmTradeModels.swift */; };
 		C469BF1A27F6E6920070ED33 /* SwapConfirmTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */; };
@@ -1399,7 +1398,6 @@
 		A24399A172C828ECD708E17D /* MarketInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfo.swift; sourceTree = "<group>"; };
 		A2439F5D8263945E73EFF4A3 /* CacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		C469BF1027F6E6920070ED33 /* SwapConfirmTradePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradePresenter.swift; sourceTree = "<group>"; };
-		C469BF1127F6E6920070ED33 /* SwapConfirmTradeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeWorker.swift; sourceTree = "<group>"; };
 		C469BF1227F6E6920070ED33 /* SwapConfirmTradeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeRouter.swift; sourceTree = "<group>"; };
 		C469BF1327F6E6920070ED33 /* SwapConfirmTradeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeModels.swift; sourceTree = "<group>"; };
 		C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeViewController.swift; sourceTree = "<group>"; };
@@ -2835,7 +2833,6 @@
 			children = (
 				C469BF1C27F6E69A0070ED33 /* Cells */,
 				C469BF1027F6E6920070ED33 /* SwapConfirmTradePresenter.swift */,
-				C469BF1127F6E6920070ED33 /* SwapConfirmTradeWorker.swift */,
 				C469BF1227F6E6920070ED33 /* SwapConfirmTradeRouter.swift */,
 				C469BF1327F6E6920070ED33 /* SwapConfirmTradeModels.swift */,
 				C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */,
@@ -3948,7 +3945,6 @@
 				CE74F58D1E3BA85600ED5FA9 /* ExchangeUpdater.swift in Sources */,
 				3A611A0F2325738C004B8E36 /* AnimatedBlockSetLogo.swift in Sources */,
 				71C44E92225F95B100EF4459 /* RecoveryKeyCompleteViewController.swift in Sources */,
-				C469BF1727F6E6920070ED33 /* SwapConfirmTradeWorker.swift in Sources */,
 				CE6DCC251E6001E50044257B /* UIControl+Callback.swift in Sources */,
 				7B54E51A27F4A208002DD1E4 /* KYCPersonalInfoInteractor.swift in Sources */,
 				71904FB92225AB3900A6D027 /* AnnouncementPromptView.swift in Sources */,
