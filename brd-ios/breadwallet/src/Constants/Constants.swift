@@ -52,6 +52,7 @@ struct C {
     static let feedbackEmail = "feedback@fabriik.com"
     static let iosEmail = "ios@fabriik.com"
     static let reviewLink = "https://itunes.apple.com/app/breadwallet-bitcoin-wallet/id885251393?action=write-review"
+    static let supportLink = "https://app-support.fabriik.com/"
     static var standardPort: Int {
         return E.isTestnet ? 18333 : 8333
     }

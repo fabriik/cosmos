@@ -52,4 +52,12 @@ extension UIViewController {
     var safeBottomAnchor: NSLayoutYAxisAnchor {
         return view.safeAreaLayoutGuide.bottomAnchor
     }
+    
+    func setAsNonDismissableModal() {
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        } else {
+            modalPresentationStyle = .overFullScreen
+        }
+    }
 }

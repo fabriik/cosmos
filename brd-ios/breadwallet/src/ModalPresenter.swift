@@ -18,9 +18,13 @@ import WebKit
 class ModalPresenter: Subscriber, Trackable {
 
     // MARK: - Public
+    
     let keyStore: KeyStore
+    
     lazy var supportCenter: SupportCenterContainer = {
-        return SupportCenterContainer(walletAuthenticator: keyStore)
+        let supportCenter = SupportCenterContainer()
+        
+        return supportCenter
     }()
     
     init(keyStore: KeyStore, system: CoreSystem, window: UIWindow, alertPresenter: AlertPresenter?) {
@@ -221,27 +225,13 @@ class ModalPresenter: Subscriber, Trackable {
         }
     }
     
-    func preloadSupportCenter() {
-        supportCenter.preload() // pre-load contents for faster access
-    }
-
     func presentFaq(articleId: String? = nil, currency: Currency? = nil) {
-        supportCenter.modalPresentationStyle = .overFullScreen
-        supportCenter.modalPresentationCapturesStatusBarAppearance = true
-        supportCenter.transitioningDelegate = supportCenter
-        var url: String
-        if let articleId = articleId {
-            url = "/support/article?slug=\(articleId)"
-            if let currency = currency {
-                // TODO: BSV does not have a support page yet, so we redirect to the BTC one
-                let code = currency.code == "BSV" ? "btc" : currency.supportCode
-                url += "&currency=\(code)"
-            }
-        } else {
-            url = "/support?"
-        }
-        supportCenter.navigate(to: url)
-        topViewController?.present(supportCenter, animated: true)
+        let navController = UINavigationController(rootViewController: supportCenter)
+        
+        supportCenter.setAsNonDismissableModal()
+        supportCenter.navigate(to: C.supportLink)
+        
+        topViewController?.present(navController, animated: true)
     }
 
     private func rootModalViewController(_ type: RootModal) -> UIViewController? {
@@ -284,11 +274,7 @@ class ModalPresenter: Subscriber, Trackable {
             let vc = SwapMainViewController()
             let navController = SwapNavigationController(rootViewController: vc)
             
-            if #available(iOS 14.0, *) {
-                navController.isModalInPresentation = true
-            } else {
-                navController.modalPresentationStyle = .overFullScreen
-            }
+            vc.setAsNonDismissableModal()
             
             topViewController?.present(navController, animated: true, completion: nil)
             
@@ -447,11 +433,7 @@ class ModalPresenter: Subscriber, Trackable {
         let vc = KYCSignInViewController()
         let navController = KYCNavigationController(rootViewController: vc)
         
-        if #available(iOS 14.0, *) {
-            navController.isModalInPresentation = true
-        } else {
-            navController.modalPresentationStyle = .overFullScreen
-        }
+        vc.setAsNonDismissableModal()
         
         topViewController?.present(navController, animated: true, completion: nil)
     }
