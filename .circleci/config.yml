@@ -181,8 +181,8 @@ jobs:
           name: Download Currencies and Bundles
           command: |
             cd brd-ios
-            scripts/download_bundles.sh
-            scripts/download_currencylist.sh
+            scripts/download_bundles.sh $API_URL/blocksatoshi "$BREAD_TOKEN:SIG"
+            scripts/download_currencylist.sh $API_URL/blocksatoshi "$BREAD_TOKEN:SIG"
 
       - run:
           name: Run Build

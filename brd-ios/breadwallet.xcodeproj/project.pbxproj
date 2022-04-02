@@ -6,6 +6,20 @@
 	objectVersion = 54;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		7E390A2027F57D10003C929D /* syncResources */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7E390A2927F57D11003C929D /* Build configuration list for PBXAggregateTarget "syncResources" */;
+			buildPhases = (
+				7E390A2A27F57D15003C929D /* Download */,
+			);
+			dependencies = (
+			);
+			name = syncResources;
+			productName = syncResources;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1B1AFFA01FB7EF7C00E61908 /* BiometricsSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1AFF9E1FB7EF7C00E61908 /* BiometricsSettingsViewController.swift */; };
 		22122B721F0B8996000E9AB9 /* BRAPIClient+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22122B711F0B8996000E9AB9 /* BRAPIClient+Events.swift */; };
@@ -3509,6 +3523,9 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 75A2A78F1DA5934300A983D8;
 					};
+					7E390A2027F57D10003C929D = {
+						CreatedOnToolsVersion = 13.3;
+					};
 					9F29A99925D5C605000FEB40 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -3558,6 +3575,7 @@
 				CEA7E67A1F09A9D2001F8C27 /* Screenshots */,
 				9FB0CA0E25D5AD180057DD11 /* breadwalletWidgetExtension */,
 				9F29A99925D5C605000FEB40 /* breadwalletIntentHandler */,
+				7E390A2027F57D10003C929D /* syncResources */,
 			);
 		};
 /* End PBXProject section */
@@ -3873,6 +3891,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/usr/bin/env bash\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n\nif [ ! -f \"${FRAMEWORK_EXECUTABLE_PATH}\" ]; then\ncontinue\nfi\n\nif xcrun lipo -info \"${FRAMEWORK_EXECUTABLE_PATH}\" | grep --silent \"Non-fat\"; then\necho \"Framework non-fat, skipping: $FRAMEWORK_EXECUTABLE_NAME\"\ncontinue\nfi\n\necho \"Thinning framework $FRAMEWORK_EXECUTABLE_NAME\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nxcrun lipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nxcrun lipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\ndone\n";
+		};
+		7E390A2A27F57D15003C929D /* Download */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Download;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source \".env\"\n\nhost=\"$API_URL/blocksatoshi\"\n\njson=$(curl -k -v -X POST -H 'Content-type: application/json' -d '{\"deviceID\": \"b21f2253-51e1-4346-92b0-e32323733067\", \"pubKey\": \"rCxDp6qD8uGqK2Z3UgeQ5bvTCZegqGfVexyz5XkbvwfW\"}'  https://${host}/wallet/token)\n\ntoken=\"$(echo $json | sed \"s/{.*\\\"token\\\":\\\"\\([^\\\"]*\\).*}/\\1/g\"):sig\"\n./scripts/download_bundles.sh $host $token\n./scripts/download_currencylist.sh $host $token\n";
 		};
 		CEE0EF531EBF8C8A0018DB36 /* Icon Versioning */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5635,6 +5671,70 @@
 			};
 			name = "Release-Testnet";
 		};
+		7E390A2127F57D11003C929D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E390A2227F57D11003C929D /* Debug-Internal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Debug-Internal";
+		};
+		7E390A2327F57D11003C929D /* Debug-Testnet */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Debug-Testnet";
+		};
+		7E390A2427F57D11003C929D /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Screenshots;
+		};
+		7E390A2527F57D11003C929D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7E390A2627F57D11003C929D /* Release-Testflight */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Release-Testflight";
+		};
+		7E390A2727F57D11003C929D /* Release-Internal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Release-Internal";
+		};
+		7E390A2827F57D11003C929D /* Release-Testnet */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Release-Testnet";
+		};
 		9F29A9A425D5C605000FEB40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -6949,6 +7049,21 @@
 				CEE0EF571EBF8D7F0018DB36 /* Release-Testflight */,
 				7CF5934421B9B15D00A49FED /* Release-Internal */,
 				7CF5935021B9C1AD00A49FED /* Release-Testnet */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E390A2927F57D11003C929D /* Build configuration list for PBXAggregateTarget "syncResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E390A2127F57D11003C929D /* Debug */,
+				7E390A2227F57D11003C929D /* Debug-Internal */,
+				7E390A2327F57D11003C929D /* Debug-Testnet */,
+				7E390A2427F57D11003C929D /* Screenshots */,
+				7E390A2527F57D11003C929D /* Release */,
+				7E390A2627F57D11003C929D /* Release-Testflight */,
+				7E390A2727F57D11003C929D /* Release-Internal */,
+				7E390A2827F57D11003C929D /* Release-Testnet */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
