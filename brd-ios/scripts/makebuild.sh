@@ -50,12 +50,6 @@ rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 agvtool new-version $2
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
-echo
-echo "Download currencies and bundles"
-echo
-source ${script_dir}/download_bundles.sh
-rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
-
 source ${script_dir}/download_currencylist.sh
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 

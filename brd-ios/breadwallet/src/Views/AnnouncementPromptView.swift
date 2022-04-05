@@ -47,7 +47,6 @@ class AnnouncementPromptView: PromptView {
             
             if let url = action.url {
                 continueButton.tap = {
-                    Store.trigger(name: .openPlatformUrl(url))
                     DispatchQueue.main.async { [unowned self] in
                         if let handler = self.dismissButton.tap {
                             handler()
