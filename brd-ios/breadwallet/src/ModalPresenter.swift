@@ -260,13 +260,6 @@ class ModalPresenter: Subscriber, Trackable {
             webView.constrain(toSuperviewEdges: nil)
             topViewController?.show(vc, sender: nil)
             return nil
-        case .sell(let currency):
-            var url = "/sell"
-            if let currency = currency {
-                url += "?currency=\(currency.code)"
-            }
-            presentPlatformWebViewController(url)
-            return nil
         case .trade:
             let vc = SwapMainViewController()
             let navController = SwapNavigationController(rootViewController: vc)
