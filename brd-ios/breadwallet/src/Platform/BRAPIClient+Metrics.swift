@@ -20,8 +20,7 @@ extension BRAPIClient {
             guard let `self` = self else { return }
             self.getAttributionDetails { attributionInfo in
                 let vendorId = UIDevice.current.identifierForVendor!.uuidString
-                let payload = MetricsPayload(data: MetricsPayloadData.launch(LaunchData(bundles: self.bundles,
-                                                                                        userAgent: userAgent,
+                let payload = MetricsPayload(data: MetricsPayloadData.launch(LaunchData(userAgent: userAgent,
                                                                                         vendorId: vendorId,
                                                                                         attributionInfo: attributionInfo)))
                 self.sendMetrics(payload: payload)
@@ -78,21 +77,6 @@ extension BRAPIClient {
                 self.handleAttribution(data: responseData!)
             }
         }).resume()
-    }
-    
-    private var bundles: [String: String] {
-        do {
-            let contents = try FileManager.default.contentsOfDirectory(atPath: bundleDirUrl.path)
-            let bundleNames = contents.filter { $0.contains(".tar") }.map { $0.replacingOccurrences(of: ".tar", with: "")}
-            return bundleNames.reduce([String: String](), { dict, bundleName in
-                var dict = dict
-                dict[bundleName] = AssetArchive(name: bundleName, apiClient: self)?.version
-                return dict
-            })
-        } catch let e {
-            print("Load bundles error: \(e)")
-            return [:]
-        }
     }
     
     private func getAttributionDetails(completion: @escaping (AnyCodable) -> Void) {
@@ -175,7 +159,6 @@ extension MetricsPayload {
 }
 
 private struct LaunchData: Encodable {
-    let bundles: [String: String]
     let userAgent: String
     let vendorId: String
     let attributionInfo: AnyCodable
@@ -184,7 +167,6 @@ private struct LaunchData: Encodable {
     let applicationId: String = Bundle.main.bundleIdentifier ?? "unknown"
     
     enum CodingKeys: String, CodingKey {
-        case bundles
         case userAgent = "user_agent"
         case vendorId = "vendor_id"
         case osVersion = "os_version"

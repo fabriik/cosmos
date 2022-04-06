@@ -168,11 +168,13 @@ extension AssetViewModel {
     }
 
     static func image(currency: Currency?, logoStyle: LogoStyle) -> Image {
+        guard let currency = currency else { return Currency.placeholderImage }
+        
         switch logoStyle {
         case .iconNoBackground:
-            return currency?.noBgImage ?? Currency.placeholderImage
+            return currency.noBgImage
         default:
-            return currency?.bgImage ?? Currency.placeholderImage
+            return currency.bgImage
         }
     }
     

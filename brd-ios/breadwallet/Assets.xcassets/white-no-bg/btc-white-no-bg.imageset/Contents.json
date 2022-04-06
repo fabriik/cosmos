@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "btc-white-no-bg.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

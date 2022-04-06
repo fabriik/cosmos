@@ -19,7 +19,6 @@ struct AssetProvider: IntentTimelineProvider {
     let service: WidgetService = {
         DefaultWidgetService(
             widgetDataShareService: DefaultWidgetDataShareService(),
-            imageStoreService: DefaultImageStoreService(),
             cacheService: DefaultCacheService()
         )
     }()

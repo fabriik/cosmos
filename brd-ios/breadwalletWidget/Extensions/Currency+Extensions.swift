@@ -1,4 +1,4 @@
-// 
+//
 //  CurrencyExtensions.swift
 //  breadwalletWidgetExtension
 //
@@ -12,24 +12,19 @@ import Foundation
 import SwiftUI
 
 extension Currency {
-    
     var noBgImage: Image {
-        image(at: DefaultImageStoreService().noBgFolder().appendingPathComponent(code.lowercased()),
-              renderingMode: .alwaysTemplate)
+        guard let uiImage = UIImage(named: "\(code.lowercased())-white-no-bg")?.withRenderingMode(.alwaysTemplate) else { return Currency.placeholderImage }
+        
+        return Image(uiImage: uiImage)
     }
     
     var bgImage: Image {
-        image(at: DefaultImageStoreService().bgFolder().appendingPathComponent(code.lowercased()))
-    }
-
-    class var placeholderImage: Image {
-        Image("placeholder")
+        guard let uiImage = UIImage(named: "\(code.lowercased())-white-square-bg")?.withRenderingMode(.automatic) else { return Currency.placeholderImage }
+        
+        return Image(uiImage: uiImage)
     }
     
-    func image(at url: URL, renderingMode: UIImage.RenderingMode = .automatic) -> Image {
-        guard let image = UIImage(contentsOfFile: url.path) else {
-            return Currency.placeholderImage
-        }
-        return Image(uiImage: image.withRenderingMode(renderingMode))
+    class var placeholderImage: Image {
+        return Image("token-placeholder")
     }
 }
