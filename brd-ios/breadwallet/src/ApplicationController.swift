@@ -392,9 +392,9 @@ class ApplicationController: Subscriber, Trackable {
             Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
         }
         
-        homeScreen.didTapTrade = {
-            Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: Store.state.currencies,
-                                                                         amount: 1)))
+        homeScreen.didTapTrade = { [weak self] in
+            let currencies = self?.coreSystem.currencies.compactMap { $0.value } ?? []
+            Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
         }
         
         homeScreen.didTapMenu = { [unowned self] in
