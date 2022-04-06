@@ -19,12 +19,12 @@ enum ChangellyApi {
     var value: String {
         switch self {
         case .swap(let from, let amount, let to):
-            return "?from=\(from.code)"
-            + "&to=\(to.code)"
+            return "?from=\(from.code.lowercased())"
+            + "&to=\(to.code.lowercased())"
             + "&amount=\(amount)"
             + "&address="
-            + "&fromDefault=\(from.code.lowercased())"
-            + "&toDefault=\(to.code.lowercased())"
+            + "&fromDefault=btc"
+            + "&toDefault=bsv"
             + "&theme=default"
             + "&merchant_id=\(Self.merchantId)"
             + "&payment_id=&v=3"
