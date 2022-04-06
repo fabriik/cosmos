@@ -393,12 +393,8 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapTrade = {
-            // TODO: what to trade for what?
-            guard let to = Store.state.currencies.last,
-                  let from = Store.state.currencies.first(where: { $0.code != to.code })
-            else { return }
-
-            Store.perform(action: RootModalActions.Present(modal: .trade(from: from, amount: 1, to: to)))
+            Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: Store.state.currencies,
+                                                                         amount: 1)))
         }
         
         homeScreen.didTapMenu = { [unowned self] in

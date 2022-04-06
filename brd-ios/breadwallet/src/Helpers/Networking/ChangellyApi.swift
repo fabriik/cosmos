@@ -11,9 +11,7 @@
 import Foundation
 
 struct SwapRequestData: RequestModelData {
-    var lockedFromCurrency: String?
-    var lockedToCurrency: String?
-    
+    var currencyCodes: [String]
     var amount: Double = 1
     var address: String?
     
@@ -26,26 +24,21 @@ struct SwapRequestData: RequestModelData {
     // not sure what this does
     var version: Int = 3
     
-    init(from: Currency?, to: Currency?, amount: Double = 1, merchantId: String) {
-        // uncommenting these, prevents currency selection (locks currencies)
-//        lockedFromCurrency = from?.code.lowercased()
-//        lockedToCurrency = to?.code.lowercased()
-        
+    init(currencies: [Currency] = [], amount: Double = 1, merchantId: String) {
+        currencyCodes = currencies.compactMap { $0.code.lowercased() }
         self.amount = amount
-        
-        preselectedFromCurrency = from?.code.lowercased()
-        preselectedToCurrency = to?.code.lowercased()
         self.merchantId = merchantId
     }
     
     func getParameters() -> [String: Any] {
+        let codesString = currencyCodes.joined(separator: ",")
         let params: [String: Any?] = [
-            "from": lockedFromCurrency,
-            "to": lockedToCurrency,
+            "from": codesString,
+            "to": codesString,
             "amount": amount,
             "address": address,
-            "fromDefault": preselectedFromCurrency,
-            "toDefault": preselectedToCurrency,
+            "fromDefault": currencyCodes.first,
+            "toDefault": currencyCodes.last,
             "theme": theme,
             "merchantId": merchantId,
             "payment_id": paymentId,
@@ -60,12 +53,12 @@ enum ChangellyApi {
     static var baseUrl = "https://widget.changelly.com"
     static var merchantId = "NGVQYXnFp13iKtj1"
     
-    case swap(from: Currency, amount: Double, to: Currency)
+    case swap(currencies: [Currency], amount: Double)
     
     var requestData: SwapRequestData? {
         switch self {
-        case .swap(let from, let amount, let to):
-            return .init(from: from, to: to, amount: amount, merchantId: Self.merchantId)
+        case .swap(let currencies, let amount):
+            return .init(currencies: currencies, amount: amount, merchantId: Self.merchantId)
         }
     }
     
