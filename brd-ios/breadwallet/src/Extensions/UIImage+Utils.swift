@@ -15,7 +15,7 @@ extension UIImage {
     static func qrCode(from url: String?,
                        color: CIColor = .black,
                        backgroundColor: CIColor = .white) -> UIImage? {
-        guard let data = url?.data(using: .ascii),
+        guard let data = url?.data(using: .utf8),
             let qrFilter = CIFilter(name: "CIQRCodeGenerator"),
             let colorFilter = CIFilter(name: "CIFalseColor") else { return nil }
 

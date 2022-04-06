@@ -154,10 +154,10 @@ class ReceiveViewController: UIViewController, Subscriber, Trackable {
         guard let wallet = currency.wallet else { return assertionFailure() }   
         let addressText = isBTCLegacy ? wallet.receiveAddress(for: .btcLegacy) : wallet.receiveAddress
         
+        address.text = addressText
         if let uri = currency.addressURI(addressText),
            let qrImage = UIImage.qrCode(from: uri) {
             qrCode.image = qrImage.resize(CGSize(width: qrSize, height: qrSize))
-            address.text = uri
         }
     }
 
