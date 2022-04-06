@@ -10,28 +10,66 @@
 
 import Foundation
 
+struct SwapRequestData: RequestModelData {
+    var lockedFromCurrency: String?
+    var lockedToCurrency: String?
+    
+    var amount: Double = 1
+    var address: String?
+    
+    var preselectedFromCurrency: String?
+    var preselectedToCurrency: String?
+    
+    var theme: String = "default"
+    var merchantId: String
+    var paymentId: String?
+    // not sure what this does
+    var version: Int = 3
+    
+    init(from: Currency?, to: Currency?, amount: Double = 1, merchantId: String) {
+        // uncommenting these, prevents currency selection (locks currencies)
+//        lockedFromCurrency = from?.code.lowercased()
+//        lockedToCurrency = to?.code.lowercased()
+        
+        self.amount = amount
+        
+        preselectedFromCurrency = from?.code.lowercased()
+        preselectedToCurrency = to?.code.lowercased()
+        self.merchantId = merchantId
+    }
+    
+    func getParameters() -> [String: Any] {
+        let params: [String: Any?] = [
+            "from": lockedFromCurrency,
+            "to": lockedToCurrency,
+            "amount": amount,
+            "address": address,
+            "fromDefault": preselectedFromCurrency,
+            "toDefault": preselectedToCurrency,
+            "theme": theme,
+            "merchantId": merchantId,
+            "payment_id": paymentId,
+            "v": version
+        ]
+
+        return params.compactMapValues { $0 }
+    }
+}
+
 enum ChangellyApi {
     static var baseUrl = "https://widget.changelly.com"
     static var merchantId = "NGVQYXnFp13iKtj1"
     
     case swap(from: Currency, amount: Double, to: Currency)
     
-    var value: String {
+    var requestData: SwapRequestData? {
         switch self {
         case .swap(let from, let amount, let to):
-            return "?from=\(from.code)"
-            + "&to=\(to.code)"
-            + "&amount=\(amount)"
-            + "&address="
-            + "&fromDefault=\(from.code.lowercased())"
-            + "&toDefault=\(to.code.lowercased())"
-            + "&theme=default"
-            + "&merchant_id=\(Self.merchantId)"
-            + "&payment_id=&v=3"
+            return .init(from: from, to: to, amount: amount, merchantId: Self.merchantId)
         }
     }
     
     var url: String {
-        return Self.baseUrl + value
+        return Self.baseUrl
     }
 }
