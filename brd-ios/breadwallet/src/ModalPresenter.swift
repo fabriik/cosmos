@@ -261,8 +261,8 @@ class ModalPresenter: Subscriber, Trackable {
             topViewController?.show(vc, sender: nil)
             return nil
             
-        case .trade(let from, let amount, let to):
-            let request = ChangellyApi.swap(from: from, amount: amount, to: to)
+        case .trade(let currencies, let amount):
+            let request = ChangellyApi.swap(currencies: currencies, amount: amount)
             
             var components = URLComponents(string: request.url)
             components?.queryItems = request
