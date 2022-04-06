@@ -12,10 +12,11 @@ import CoreGraphics
 private let inputImageKey = "inputImage"
 
 extension UIImage {
-    static func qrCode(data: Data,
+    static func qrCode(from url: String?,
                        color: CIColor = .black,
                        backgroundColor: CIColor = .white) -> UIImage? {
-        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator"),
+        guard let data = url?.data(using: .ascii),
+            let qrFilter = CIFilter(name: "CIQRCodeGenerator"),
             let colorFilter = CIFilter(name: "CIFalseColor") else { return nil }
 
         qrFilter.setDefaults()

@@ -151,13 +151,13 @@ class ReceiveViewController: UIViewController, Subscriber, Trackable {
     }
 
     private func setReceiveAddress() {
-        guard let wallet = currency.wallet else { return assertionFailure() }
+        guard let wallet = currency.wallet else { return assertionFailure() }   
         let addressText = isBTCLegacy ? wallet.receiveAddress(for: .btcLegacy) : wallet.receiveAddress
-        address.text = addressText
+        
         if let uri = currency.addressURI(addressText),
-            let uriData = uri.data(using: .utf8),
-            let qrImage = UIImage.qrCode(data: uriData) {
+           let qrImage = UIImage.qrCode(from: uri) {
             qrCode.image = qrImage.resize(CGSize(width: qrSize, height: qrSize))
+            address.text = uri
         }
     }
 

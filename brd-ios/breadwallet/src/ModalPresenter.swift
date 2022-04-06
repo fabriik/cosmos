@@ -260,15 +260,19 @@ class ModalPresenter: Subscriber, Trackable {
             webView.constrain(toSuperviewEdges: nil)
             topViewController?.show(vc, sender: nil)
             return nil
-        case .trade:
-            let vc = SwapMainViewController()
-            let navController = SwapNavigationController(rootViewController: vc)
             
-            vc.setAsNonDismissableModal()
+        case .trade(let from, let amount, let to):
+            let urlString = ChangellyApi.swap(from: from, amount: amount, to: to).url
+            guard let url = URL(string: urlString) else { return nil }
             
-            topViewController?.present(navController, animated: true, completion: nil)
-            
+            let webView = WKWebView()
+            webView.load(.init(url: url))
+            let vc = UIViewController()
+            vc.view.addSubview(webView)
+            webView.constrain(toSuperviewEdges: nil)
+            topViewController?.show(vc, sender: nil)
             return nil
+            
         case .receiveLegacy:
             guard let btc = Currencies.btc.instance else { return nil }
             return makeReceiveView(currency: btc, isRequestAmountVisible: false, isBTCLegacy: true)
