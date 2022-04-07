@@ -38,23 +38,6 @@ class CoinGeckoTests : XCTestCase {
         keyStore.destroy()
     }
     
-    func testSupportedFiat() {
-        let exp = expectation(description: "Fetch supported currencies")
-        let supported = Resources.supported { (result: Result<[String], CoinGeckoError>) in
-            guard case .success(let supported) = result else { XCTFail("Coingecko supported should succeed"); exp.fulfill(); return }
-            var missingCodes = [String]()
-            self.fiatCurrencies.forEach {
-                if !supported.contains($0.code.lowercased()) {
-                    missingCodes.append($0.code)
-                }
-            }
-            XCTAssert(missingCodes.isEmpty, "Missing codes should be empty but contained: \(missingCodes)")
-            exp.fulfill()
-        }
-        coinGeckoClient.load(supported)
-        waitForExpectations(timeout: 60, handler: nil)
-    }
-    
     func testSupportedCrypto() {
         let exp = expectation(description: "Fetch supported currencies")
         brClient.getCurrencyMetaData { metadata in
