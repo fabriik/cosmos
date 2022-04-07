@@ -17,6 +17,13 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         return webView
     }()
     
+    private lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        
+        return toolbar
+    }()
+    
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +34,18 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         return activityIndicator
     }()
     
+    private lazy var backwardButton: UIBarButtonItem = {
+        let backwardButton = UIBarButtonItem()
+        
+        return backwardButton
+    }()
+    
+    private lazy var forwardButton: UIBarButtonItem = {
+        let forwardButton = UIBarButtonItem()
+        
+        return forwardButton
+    }()
+    
     var showDismissButton = true
     
     override func viewDidLoad() {
@@ -34,9 +53,28 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         
         title = "Support"
         
+        view.addSubview(toolbar)
+        toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        var items = [UIBarButtonItem]()
+        
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        
+        backwardButton = UIBarButtonItem(barButtonSystemItem: .rewind, target: nil, action: #selector(backAction))
+        backwardButton.isEnabled = false
+        items.append(backwardButton)
+        
+        forwardButton = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(forwardAction))
+        forwardButton.isEnabled = false
+        items.append(forwardButton)
+        
+        toolbar.setItems(items, animated: false)
+        
         view.addSubview(webView)
-        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: toolbar.topAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
@@ -65,12 +103,33 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         activityIndicator.stopAnimating()
+        
+        handleNavigationBarButtonState()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         activityIndicator.stopAnimating()
+        
+        handleNavigationBarButtonState()
     }
-
+    
+    @objc private func backAction() {
+        guard webView.canGoBack else { return }
+        
+        webView.goBack()
+    }
+    
+    @objc private func forwardAction() {
+        guard webView.canGoForward else { return }
+        
+        webView.goForward()
+    }
+    
+    private func handleNavigationBarButtonState() {
+        backwardButton.isEnabled = webView.canGoBack
+        forwardButton.isEnabled = webView.canGoForward
+    }
+    
     func webView(_ webView: WKWebView,
                  createWebViewWith configuration: WKWebViewConfiguration,
                  for navigationAction: WKNavigationAction,
