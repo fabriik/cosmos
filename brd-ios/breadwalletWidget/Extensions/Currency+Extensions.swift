@@ -13,13 +13,13 @@ import SwiftUI
 
 extension Currency {
     var noBgImage: Image {
-        guard let uiImage = UIImage(named: "\(code.lowercased())-white-no-bg")?.withRenderingMode(.alwaysTemplate) else { return Currency.placeholderImage }
+        guard let uiImage = UIImage(named: "\(code.lowercased())-white-no-bg") else { return Currency.placeholderImage }
         
         return Image(uiImage: uiImage)
     }
     
     var bgImage: Image {
-        guard let uiImage = UIImage(named: "\(code.lowercased())-white-square-bg")?.withRenderingMode(.automatic) else { return Currency.placeholderImage }
+        guard let uiImage = UIImage(named: "\(code.lowercased())-white-square-bg") else { return Currency.placeholderImage }
         
         return Image(uiImage: uiImage)
     }

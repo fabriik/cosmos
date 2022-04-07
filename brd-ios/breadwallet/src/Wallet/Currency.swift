@@ -336,7 +336,7 @@ extension CurrencyWithIcon {
     public var imageSquareBackground: UIImage? {
         if let asset = UIImage(named: "\(code.lowercased())-white-square-bg"),
            let data = asset.pngData() {
-            return UIImage(data: data)?.withRenderingMode(.automatic)
+            return UIImage(data: data)
         }
         
         return TokenImageSquareBackground(code: code, color: colors.0).renderedImage
@@ -346,7 +346,7 @@ extension CurrencyWithIcon {
     public var imageNoBackground: UIImage? {
         if let asset = UIImage(named: "\(code.lowercased())-white-no-bg"),
            let data = asset.pngData() {
-            return UIImage(data: data)?.withRenderingMode(.alwaysTemplate)
+            return UIImage(data: data)
         }
         
         return TokenImageNoBackground(code: code, color: colors.0).renderedImage
