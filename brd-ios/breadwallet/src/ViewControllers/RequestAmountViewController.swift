@@ -103,8 +103,7 @@ class RequestAmountViewController: UIViewController {
 
         address.text = receiveAddress
         if let uri = currency.addressURI(receiveAddress),
-            let uriData = uri.data(using: .utf8),
-            let qrImage = UIImage.qrCode(data: uriData) {
+            let qrImage = UIImage.qrCode(from: uri) {
             qrCode.image = qrImage.resize(qrSize)
         }
     }
@@ -123,8 +122,7 @@ class RequestAmountViewController: UIViewController {
         guard let amount = amount else { return }
         let request = PaymentRequest.requestString(withAddress: receiveAddress, forAmount: amount)
 
-        if let uriData = request.data(using: .utf8),
-            let qrImage = UIImage.qrCode(data: uriData) {
+        if let qrImage = UIImage.qrCode(from: request) {
             qrCode.image = qrImage.resize(qrSize)
         }
     }

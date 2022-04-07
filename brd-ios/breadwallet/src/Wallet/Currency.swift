@@ -124,7 +124,7 @@ class Currency: CurrencyWithIcon {
             return ["hbar"]
         }
         if isBitcoinSV {
-            return [""]
+            return ["bitcoinsv"]
         }
         
         return nil
@@ -185,7 +185,10 @@ class Currency: CurrencyWithIcon {
         //Tezos doesn't have a URI scheme
         if isTezos, isValidAddress(address) { return address }
         guard let scheme = urlSchemes?.first, isValidAddress(address) else { return nil }
-        if isERC20Token, let tokenAddress = tokenAddress {
+        
+        if scheme.isEmpty {
+            return address
+        } else if isERC20Token, let tokenAddress = tokenAddress {
             //This is a non-standard uri format to maintain backwards compatibility with old versions of BRD
             return "\(scheme):\(address)?tokenaddress=\(tokenAddress)"
         } else {
