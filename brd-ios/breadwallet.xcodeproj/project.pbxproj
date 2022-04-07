@@ -259,7 +259,8 @@
 		7B54E5BF27F4A2B1002DD1E4 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */; };
 		7B8140BA27FD6DBB00662724 /* Currency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */; };
 		7B8140BB27FD6DBB00662724 /* Currency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */; };
-		7B8140BC27FD6E9600662724 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A79A1DA5934300A983D8 /* Assets.xcassets */; };
+		7B8140BE27FEF82100662724 /* TokenAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8140BD27FEF82100662724 /* TokenAssets.xcassets */; };
+		7B8140BF27FEF82400662724 /* TokenAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8140BD27FEF82100662724 /* TokenAssets.xcassets */; };
 		7C0A3ACE210A0E1D006C2783 /* NotificationAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */; };
 		7C0F3DC42124A81100531E54 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F3DC32124A81100531E54 /* Backend.swift */; };
 		7C1931CD2327371A0061DE20 /* CoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1931CC2327371A0061DE20 /* CoreDatabase.swift */; };
@@ -1095,6 +1096,7 @@
 		7B54E59827F4A2B0002DD1E4 /* KYCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCViewController.swift; sourceTree = "<group>"; };
 		7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Extensions.swift"; sourceTree = "<group>"; };
+		7B8140BD27FEF82100662724 /* TokenAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TokenAssets.xcassets; sourceTree = "<group>"; };
 		7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationAuthorizer.swift; path = src/NotificationAuthorizer.swift; sourceTree = "<group>"; };
 		7C0F3DC32124A81100531E54 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Backend.swift; path = src/Backend.swift; sourceTree = "<group>"; };
 		7C1931CC2327371A0061DE20 /* CoreDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDatabase.swift; sourceTree = "<group>"; };
@@ -1943,6 +1945,7 @@
 				CE8CD8DC1E2D9EF200785E02 /* Sender.swift */,
 				CE4C1CC71ED88B600063E184 /* URLController.swift */,
 				75A2A79A1DA5934300A983D8 /* Assets.xcassets */,
+				7B8140BD27FEF82100662724 /* TokenAssets.xcassets */,
 				CE5E6C991EB9135000A476DB /* Icon.xcassets */,
 				7B54E56F27F4A2B0002DD1E4 /* Helpers */,
 				3A6785EF256F2EF70065F835 /* ReceiveGift */,
@@ -3551,6 +3554,7 @@
 				9A926F5222034B3800CC2263 /* CellHighlight-5.png in Resources */,
 				9A926F7622034B3800CC2263 /* CellHighlight-25.png in Resources */,
 				9AE800FF21FFF81F00D5058C /* rewardsIcon-69.gif in Resources */,
+				7B8140BE27FEF82100662724 /* TokenAssets.xcassets in Resources */,
 				9A926F8A22034B3800CC2263 /* CellHighlight-7.png in Resources */,
 				9AE8011321FFF81F00D5058C /* rewardsIcon-57.gif in Resources */,
 				9AE800D621FFF81F00D5058C /* rewardsIcon-36.gif in Resources */,
@@ -3732,7 +3736,7 @@
 				9FDDE5AC25D5B96000E42BE3 /* mock-candles.json in Resources */,
 				9FB0CA1825D5AD190057DD11 /* Assets.xcassets in Resources */,
 				9F13F5C925DDD73A0031AEC7 /* fiatcurrencies.json in Resources */,
-				7B8140BC27FD6E9600662724 /* Assets.xcassets in Resources */,
+				7B8140BF27FEF82400662724 /* TokenAssets.xcassets in Resources */,
 				9F3C301725DA841100C7C398 /* currencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
