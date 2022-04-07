@@ -210,11 +210,11 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     func presentFaq(articleId: String? = nil, currency: Currency? = nil) {
-        let supportCenter = SupportCenterContainer()
-        let navController = UINavigationController(rootViewController: supportCenter)
+        let webViewController = SimpleWebViewController()
+        let navController = UINavigationController(rootViewController: webViewController)
         
-        supportCenter.setAsNonDismissableModal()
-        supportCenter.navigate(to: C.supportLink)
+        webViewController.setAsNonDismissableModal()
+        webViewController.navigate(to: C.supportLink)
         
         topViewController?.present(navController, animated: true)
     }
@@ -258,14 +258,12 @@ class ModalPresenter: Subscriber, Trackable {
                 .getParameters()
                 .compactMap { URLQueryItem(name: $0.key, value: "\($0.value)") }
             
-            guard let url = components?.url else { return nil }
+            guard let urlString = components?.url?.absoluteString else { return nil }
             
-            let webView = WKWebView()
-            webView.load(.init(url: url))
-            let vc = UIViewController()
-            vc.view.addSubview(webView)
-            webView.constrain(toSuperviewEdges: nil)
-            topViewController?.show(vc, sender: nil)
+            let webViewController = SimpleWebViewController()
+            webViewController.showDismissButton = false
+            webViewController.navigate(to: urlString)
+            topViewController?.show(webViewController, sender: nil)
             return nil
             
         case .receiveLegacy:
