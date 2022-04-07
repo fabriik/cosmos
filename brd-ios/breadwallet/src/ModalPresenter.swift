@@ -19,12 +19,6 @@ class ModalPresenter: Subscriber, Trackable {
 
     // MARK: - Public
     
-    lazy var supportCenter: SupportCenterContainer = {
-        let supportCenter = SupportCenterContainer()
-        
-        return supportCenter
-    }()
-    
     init(keyStore: KeyStore, system: CoreSystem, window: UIWindow, alertPresenter: AlertPresenter?) {
         self.system = system
         self.window = window
@@ -216,6 +210,7 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     func presentFaq(articleId: String? = nil, currency: Currency? = nil) {
+        let supportCenter = SupportCenterContainer()
         let navController = UINavigationController(rootViewController: supportCenter)
         
         supportCenter.setAsNonDismissableModal()
