@@ -88,13 +88,6 @@ class URLController: Trackable, Subscriber {
             case "scanqr":
                 Store.trigger(name: .scanQr)
 
-            case "platform":
-                // grab the rest of the URL, e.g., /exchange/buy/coinify
-                let path = url.pathComponents[3...].joined(separator: "/")
-                let link = path.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-                let platformUrl = String(format: "/link?to=%@", link ?? "")
-                Store.trigger(name: .openPlatformUrl(platformUrl))
-
             case "debug":
                 handleDebugLink(url)
             case "gift":

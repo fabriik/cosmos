@@ -47,6 +47,8 @@ class SupportCenterContainer: UIViewController, WKNavigationDelegate {
         
         let dismissButton = UIBarButtonItem(title: "Dismiss", style: .done, target: self, action: #selector(dismissSupport))
         navigationItem.leftBarButtonItem = dismissButton
+        
+        view.backgroundColor = .white
     }
     
     @objc private func dismissSupport() {

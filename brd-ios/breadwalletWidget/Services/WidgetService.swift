@@ -53,7 +53,6 @@ class DefaultWidgetService: WidgetService {
 
     let widgetDataShareService: WidgetDataShareService?
     let cacheService: CacheService?
-    let imageStoreService: ImageStoreService?
     let coinGeckoClient = CoinGeckoClient()
 
     private(set) var currenciesCache: [Currency] = []
@@ -65,11 +64,9 @@ class DefaultWidgetService: WidgetService {
 
     init(
         widgetDataShareService: WidgetDataShareService?,
-        imageStoreService: ImageStoreService?,
         cacheService: CacheService?
     ) {
         self.widgetDataShareService = widgetDataShareService
-        self.imageStoreService = imageStoreService
         self.cacheService = cacheService
         self.lastRefreshed = cacheService?.cached(key: Constant.refreshedKey) ?? Date()
     }
@@ -78,7 +75,6 @@ class DefaultWidgetService: WidgetService {
                                       quote: String,
                                       interval: IntervalOption,
                                       handler: @escaping CurrencyInfoHandler) {
-        imageStoreService?.loadImagesIfNeeded()
         let uids = assetOptions.map { $0.identifier }
         fetchCurrencies { [weak self] result in
             switch result {

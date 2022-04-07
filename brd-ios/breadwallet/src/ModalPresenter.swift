@@ -19,12 +19,6 @@ class ModalPresenter: Subscriber, Trackable {
 
     // MARK: - Public
     
-    lazy var supportCenter: SupportCenterContainer = {
-        let supportCenter = SupportCenterContainer()
-        
-        return supportCenter
-    }()
-    
     init(keyStore: KeyStore, system: CoreSystem, window: UIWindow, alertPresenter: AlertPresenter?) {
         self.system = system
         self.window = window
@@ -165,13 +159,6 @@ class ModalPresenter: Subscriber, Trackable {
             }
         }
         
-        Store.subscribe(self, name: .openPlatformUrl("")) { [weak self] in
-            guard let trigger = $0 else { return }
-            if case let .openPlatformUrl(url) = trigger {
-                self?.presentPlatformWebViewController(url)
-            }
-        }
-        
         Store.subscribe(self, name: .handleGift(URL(string: "foo.com")!)) { [weak self] in
             guard let trigger = $0, let `self` = self else { return }
             if case let .handleGift(url) = trigger {
@@ -223,6 +210,7 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     func presentFaq(articleId: String? = nil, currency: Currency? = nil) {
+        let supportCenter = SupportCenterContainer()
         let navController = UINavigationController(rootViewController: supportCenter)
         
         supportCenter.setAsNonDismissableModal()
@@ -815,46 +803,7 @@ class ModalPresenter: Subscriber, Trackable {
 
                             menuNav.present(alert, animated: true, completion: nil)
                 }))
-
-            developerItems.append(
-                MenuItem(title: "Web Platform Bundle",
-                         accessoryText: { C.webBundle }, callback: {
-                            let alert = UIAlertController(title: "Set bundle name", message: "Clear and save to reset", preferredStyle: .alert)
-                            alert.addTextField(configurationHandler: { textField in
-                                textField.text = C.webBundle
-                                textField.keyboardType = .URL
-                                textField.clearButtonMode = .always
-                            })
-
-                            alert.addAction(UIAlertAction(title: "Save", style: .default) { (_) in
-                                guard let newBundleName = alert.textFields?.first?.text, !newBundleName.isEmpty else {
-                                    UserDefaults.debugWebBundleName = nil
-                                    (menuNav.topViewController as? MenuViewController)?.reloadMenu()
-                                    return
-                                }
-
-                                guard let bundle = AssetArchive(name: newBundleName, apiClient: Backend.apiClient) else { return assertionFailure() }
-                                bundle.update { error in
-                                    DispatchQueue.main.async {
-                                        guard error == nil else {
-                                            let alert = UIAlertController(title: S.Alert.error,
-                                                                          message: "Unable to fetch bundle named \(newBundleName)",
-                                                preferredStyle: .alert)
-                                            alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
-                                            menuNav.present(alert, animated: true, completion: nil)
-                                            return
-                                        }
-                                        UserDefaults.debugWebBundleName = newBundleName
-                                        (menuNav.topViewController as? MenuViewController)?.reloadMenu()
-                                    }
-                                }
-                            })
-
-                            alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
-
-                            menuNav.present(alert, animated: true, completion: nil)
-                }))
-
+            
             developerItems.append(
                 MenuItem(title: "Web Platform Debug URL",
                          accessoryText: { UserDefaults.platformDebugURL?.absoluteString ?? "<not set>" }, callback: {
@@ -938,18 +887,7 @@ class ModalPresenter: Subscriber, Trackable {
                                                        context: .none,
                                                        dismissAction: nil)
     }
-
-    private func presentPlatformWebViewController(_ mountPoint: String) {
-        let vc = BRWebViewController(bundleName: C.webBundle,
-                                     mountPoint: mountPoint,
-                                     walletAuthenticator: keyStore,
-                                     system: system)
-        vc.startServer()
-        vc.preload()
-        vc.modalPresentationStyle = .overFullScreen
-        self.topViewController?.present(vc, animated: true, completion: nil)
-    }
-
+    
     private func wipeWallet() {
         let alert = UIAlertController.confirmationAlert(title: S.WipeWallet.alertTitle,
                                                         message: S.WipeWallet.alertMessage,

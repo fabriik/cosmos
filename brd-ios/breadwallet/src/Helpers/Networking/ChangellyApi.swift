@@ -1,11 +1,5 @@
-// 
-//  ChangellyApi.swift
-//  breadwallet
-//
-//  Created by Rok on 06/04/2022.
-//  Copyright © 2022 Breadwinner AG. All rights reserved.
-//
-//  See the LICENSE file at the project root for license information.
+// 
+// Created by Equaleyes Solutions Ltd
 //
 
 import Foundation
