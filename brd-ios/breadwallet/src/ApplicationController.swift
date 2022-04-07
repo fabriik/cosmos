@@ -367,13 +367,9 @@ class ApplicationController: Subscriber, Trackable {
             Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
         }
         
-        homeScreen.didTapTrade = {
-            // TODO: what to trade for what?
-            guard let to = Store.state.currencies.last,
-                  let from = Store.state.currencies.first(where: { $0.code != to.code })
-            else { return }
-
-            Store.perform(action: RootModalActions.Present(modal: .trade(from: from, amount: 1, to: to)))
+        homeScreen.didTapTrade = { [weak self] in
+            let currencies = self?.coreSystem.currencies.compactMap { $0.value } ?? []
+            Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
         }
         
         homeScreen.didTapMenu = { [unowned self] in

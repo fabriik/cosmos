@@ -253,9 +253,17 @@ class ModalPresenter: Subscriber, Trackable {
             webView.constrain(toSuperviewEdges: nil)
             topViewController?.show(vc, sender: nil)
             return nil
-        case .trade(let from, let amount, let to):
-            let urlString = ChangellyApi.swap(from: from, amount: amount, to: to).url
-            guard let url = URL(string: urlString) else { return nil }
+            
+        case .trade(let currencies, let amount):
+            let request = ChangellyApi.swap(currencies: currencies, amount: amount)
+            
+            var components = URLComponents(string: request.url)
+            components?.queryItems = request
+                .requestData?
+                .getParameters()
+                .compactMap { URLQueryItem(name: $0.key, value: "\($0.value)") }
+            
+            guard let url = components?.url else { return nil }
             
             let webView = WKWebView()
             webView.load(.init(url: url))
