@@ -240,13 +240,10 @@ class ModalPresenter: Subscriber, Trackable {
                         
             return ModalViewController(childViewController: requestVc)
         case .buy(let url, _, _):
-            guard let url = URL(string: url) else { return nil }
-            let webView = WKWebView()
-            webView.load(.init(url: url))
-            let vc = UIViewController()
-            vc.view.addSubview(webView)
-            webView.constrain(toSuperviewEdges: nil)
-            topViewController?.show(vc, sender: nil)
+            let webViewController = SimpleWebViewController()
+            webViewController.showDismissButton = false
+            webViewController.navigate(to: url)
+            topViewController?.show(webViewController, sender: nil)
             return nil
             
         case .trade(let currencies, let amount):
