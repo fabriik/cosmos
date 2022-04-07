@@ -1,20 +1,17 @@
-//
-//  SupportCenterContainer.swift
-//  breadwallet
-//
-//  Created by Adrian Corscadden on 2017-05-02.
-//  Copyright © 2017-2019 Breadwinner AG. All rights reserved.
+// 
+// Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
 import WebKit
 
-class SupportCenterContainer: UIViewController, WKNavigationDelegate {
+class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.backgroundColor = .clear
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.allowsBackForwardNavigationGestures = true
         
         return webView
@@ -29,6 +26,8 @@ class SupportCenterContainer: UIViewController, WKNavigationDelegate {
         
         return activityIndicator
     }()
+    
+    var showDismissButton = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +44,12 @@ class SupportCenterContainer: UIViewController, WKNavigationDelegate {
         activityIndicator.centerXAnchor.constraint(equalTo: webView.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: webView.centerYAnchor).isActive = true
         
+        view.backgroundColor = .white
+        
+        guard showDismissButton else { return }
+        
         let dismissButton = UIBarButtonItem(title: "Dismiss", style: .done, target: self, action: #selector(dismissSupport))
         navigationItem.leftBarButtonItem = dismissButton
-        
-        view.backgroundColor = .white
     }
     
     @objc private func dismissSupport() {
@@ -68,5 +69,18 @@ class SupportCenterContainer: UIViewController, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         activityIndicator.stopAnimating()
+    }
+
+    func webView(_ webView: WKWebView,
+                 createWebViewWith configuration: WKWebViewConfiguration,
+                 for navigationAction: WKNavigationAction,
+                 windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if let frame = navigationAction.targetFrame, frame.isMainFrame {
+            return nil
+        }
+        
+        webView.load(navigationAction.request)
+        
+        return nil
     }
 }
