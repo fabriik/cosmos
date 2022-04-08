@@ -100,7 +100,7 @@ class AboutViewController: UIViewController {
 //            myself.presentURL(string: "https://reddit.com/r/brdapp/")
 //        }
         privacy.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://fabriik.com/privacy-policy/")
+            myself.presentURL(string: C.privacyPolicy)
         }
     }
 
