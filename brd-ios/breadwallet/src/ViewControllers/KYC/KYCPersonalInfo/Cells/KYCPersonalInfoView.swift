@@ -25,7 +25,7 @@ class KYCPersonalInfoView: BaseView, GenericSettable {
     private lazy var taxIdNumberField: SimpleTextField = {
         let taxIdNumberField = SimpleTextField()
         taxIdNumberField.translatesAutoresizingMaskIntoConstraints = false
-        taxIdNumberField.setup(as: .numbers, title: "TAX ID NUMBER", customPlaceholder: "000 000 000")
+        taxIdNumberField.setup(as: .numbers, title: "TAX ID NUMBER", customPlaceholder: "SSN, ITIN, or EIN")
         
         return taxIdNumberField
     }()
@@ -36,6 +36,18 @@ class KYCPersonalInfoView: BaseView, GenericSettable {
         nextButton.setup(as: .kycEnabled, title: "NEXT")
         
         return nextButton
+    }()
+    
+    private lazy var privacyPolicyTextView: UITextView = {
+        let privacyPolicyTextView = UITextView()
+        privacyPolicyTextView.translatesAutoresizingMaskIntoConstraints = false
+        privacyPolicyTextView.textAlignment = .center
+        privacyPolicyTextView.textColor = .kycGray2
+        privacyPolicyTextView.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        privacyPolicyTextView.isEditable = false
+        privacyPolicyTextView.tintColor = .kycGray2
+        
+        return privacyPolicyTextView
     }()
     
     var didTapDateOfBirthField: (() -> Void)?
@@ -61,10 +73,17 @@ class KYCPersonalInfoView: BaseView, GenericSettable {
         
         addSubview(nextButton)
         nextButton.topAnchor.constraint(equalTo: taxIdNumberField.bottomAnchor, constant: defaultDistance * 2).isActive = true
-        nextButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         nextButton.leadingAnchor.constraint(equalTo: dateOfBirthField.leadingAnchor).isActive = true
         nextButton.trailingAnchor.constraint(equalTo: dateOfBirthField.trailingAnchor).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        
+        addSubview(privacyPolicyTextView)
+        setupPrivacyPolicyText()
+        privacyPolicyTextView.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: defaultDistance).isActive = true
+        privacyPolicyTextView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        privacyPolicyTextView.leadingAnchor.constraint(equalTo: dateOfBirthField.leadingAnchor).isActive = true
+        privacyPolicyTextView.trailingAnchor.constraint(equalTo: dateOfBirthField.trailingAnchor).isActive = true
+        privacyPolicyTextView.heightAnchor.constraint(equalTo: nextButton.heightAnchor).isActive = true
         
         taxIdNumberField.didChangeText = { [weak self] text in
             self?.didChangeTaxIdNumberField?(text)
@@ -77,6 +96,33 @@ class KYCPersonalInfoView: BaseView, GenericSettable {
     
     @objc private func showDateOfBirthPicker(_ textField: SimpleTextField) {
         didTapDateOfBirthField?()
+    }
+    
+    private func setupPrivacyPolicyText() {
+        let string = "Fabriik terms of use and privacy policy."
+        let fullRange = (string as NSString).range(of: string)
+        let termsRange = (string as NSString).range(of: "terms of use")
+        let privacyRange = (string as NSString).range(of: "privacy policy")
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        
+        var attributedString = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: style])
+        
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.kycGray2, range: fullRange)
+        
+        createLink(attributedString: &attributedString, urlString: C.termsAndConditions, range: termsRange)
+        createLink(attributedString: &attributedString, urlString: C.privacyPolicy, range: privacyRange)
+        
+        privacyPolicyTextView.attributedText = attributedString
+    }
+    
+    private func createLink(attributedString: inout NSMutableAttributedString, urlString: String, range: NSRange) {
+        guard let url = NSURL(string: urlString) else { return }
+        
+        attributedString.addAttribute(.link, value: url, range: range)
+        attributedString.addAttribute(.underlineStyle, value: NSNumber(value: 1), range: range)
+        attributedString.addAttribute(.underlineColor, value: UIColor.kycGray2, range: range)
     }
     
     func setup(with model: Model) {

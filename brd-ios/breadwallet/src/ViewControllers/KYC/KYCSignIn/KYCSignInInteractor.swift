@@ -85,7 +85,8 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
     private func validatePasswordUsingRegex() -> Bool {
         guard let password = password else { return false }
         
-        let numberFormat = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        // check if the password has eight characters
+        let numberFormat = "^.{8,}$"
         let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
         
         let isViable = numberPredicate.evaluate(with: password)

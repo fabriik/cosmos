@@ -26,7 +26,7 @@ class KYCSignInView: BaseView, GenericSettable {
     private lazy var emailField: SimpleTextField = {
         let emailField = SimpleTextField()
         emailField.translatesAutoresizingMaskIntoConstraints = false
-        emailField.setup(as: .email, title: "EMAIL", customPlaceholder: "Email Address")
+        emailField.setup(as: .email, title: "EMAIL", customPlaceholder: "Email")
         
         return emailField
     }()
@@ -34,7 +34,7 @@ class KYCSignInView: BaseView, GenericSettable {
     private lazy var passwordField: SimpleTextField = {
         let passwordField = SimpleTextField()
         passwordField.translatesAutoresizingMaskIntoConstraints = false
-        passwordField.setup(as: .password, title: "PASSWORD", customPlaceholder: "Minimum 8 characters")
+        passwordField.setup(as: .password, title: "PASSWORD", customPlaceholder: "Password")
         
         return passwordField
     }()

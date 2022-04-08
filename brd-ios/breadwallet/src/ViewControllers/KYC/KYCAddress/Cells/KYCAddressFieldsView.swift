@@ -44,7 +44,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
     private lazy var apartmentField: SimpleTextField = {
         let apartmentField = SimpleTextField()
         apartmentField.translatesAutoresizingMaskIntoConstraints = false
-        apartmentField.setup(as: .text, title: "", customPlaceholder: "Unit/Apartment")
+        apartmentField.setup(as: .text, title: "UNIT/APARTMENT (OPTIONAL)", customPlaceholder: "Unit/Apartment")
         
         return apartmentField
     }()
@@ -106,38 +106,43 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         countryField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
         countryField.heightAnchor.constraint(equalToConstant: 68).isActive = true
         
+        //addSubview(zipCodeField)
+        addSubview(stateField)
+        stateField.topAnchor.constraint(equalTo: countryField.bottomAnchor, constant: defaultDistance).isActive = true
+        stateField.leadingAnchor.constraint(equalTo: countryField.leadingAnchor).isActive = true
+        stateField.trailingAnchor.constraint(equalTo: countryField.trailingAnchor).isActive = true
+        stateField.heightAnchor.constraint(equalTo: countryField.heightAnchor).isActive = true
+        
+        //addSubview(addressField)
+        addSubview(cityField)
+        cityField.topAnchor.constraint(equalTo: stateField.bottomAnchor, constant: defaultDistance).isActive = true
+        cityField.leadingAnchor.constraint(equalTo: countryField.leadingAnchor).isActive = true
+        cityField.trailingAnchor.constraint(equalTo: countryField.trailingAnchor).isActive = true
+        cityField.heightAnchor.constraint(equalTo: countryField.heightAnchor).isActive = true
+        
+       // addSubview(apartmentField)
         addSubview(zipCodeField)
-        zipCodeField.topAnchor.constraint(equalTo: countryField.bottomAnchor, constant: defaultDistance).isActive = true
+        zipCodeField.topAnchor.constraint(equalTo: cityField.bottomAnchor, constant: defaultDistance / 3).isActive = true
         zipCodeField.leadingAnchor.constraint(equalTo: countryField.leadingAnchor).isActive = true
         zipCodeField.trailingAnchor.constraint(equalTo: countryField.trailingAnchor).isActive = true
         zipCodeField.heightAnchor.constraint(equalTo: countryField.heightAnchor).isActive = true
         
+        //addSubview(cityField)
         addSubview(addressField)
         addressField.topAnchor.constraint(equalTo: zipCodeField.bottomAnchor, constant: defaultDistance).isActive = true
         addressField.leadingAnchor.constraint(equalTo: countryField.leadingAnchor).isActive = true
         addressField.trailingAnchor.constraint(equalTo: countryField.trailingAnchor).isActive = true
         addressField.heightAnchor.constraint(equalTo: countryField.heightAnchor).isActive = true
         
+        // addSubview(stateField)
         addSubview(apartmentField)
-        apartmentField.topAnchor.constraint(equalTo: addressField.bottomAnchor, constant: defaultDistance / 3).isActive = true
+        apartmentField.topAnchor.constraint(equalTo: addressField.bottomAnchor, constant: defaultDistance).isActive = true
         apartmentField.leadingAnchor.constraint(equalTo: countryField.leadingAnchor).isActive = true
         apartmentField.trailingAnchor.constraint(equalTo: countryField.trailingAnchor).isActive = true
         apartmentField.heightAnchor.constraint(equalTo: countryField.heightAnchor).isActive = true
         
-        addSubview(cityField)
-        cityField.topAnchor.constraint(equalTo: apartmentField.bottomAnchor, constant: defaultDistance).isActive = true
-        cityField.leadingAnchor.constraint(equalTo: countryField.leadingAnchor).isActive = true
-        cityField.trailingAnchor.constraint(equalTo: countryField.trailingAnchor).isActive = true
-        cityField.heightAnchor.constraint(equalTo: countryField.heightAnchor).isActive = true
-        
-        addSubview(stateField)
-        stateField.topAnchor.constraint(equalTo: cityField.bottomAnchor, constant: defaultDistance).isActive = true
-        stateField.leadingAnchor.constraint(equalTo: countryField.leadingAnchor).isActive = true
-        stateField.trailingAnchor.constraint(equalTo: countryField.trailingAnchor).isActive = true
-        stateField.heightAnchor.constraint(equalTo: countryField.heightAnchor).isActive = true
-        
         addSubview(nextButton)
-        nextButton.topAnchor.constraint(equalTo: stateField.bottomAnchor, constant: defaultDistance * 2).isActive = true
+        nextButton.topAnchor.constraint(equalTo: apartmentField.bottomAnchor, constant: defaultDistance * 2).isActive = true
         nextButton.leadingAnchor.constraint(equalTo: countryField.leadingAnchor).isActive = true
         nextButton.trailingAnchor.constraint(equalTo: countryField.trailingAnchor).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
