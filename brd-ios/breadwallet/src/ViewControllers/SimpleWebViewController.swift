@@ -45,7 +45,7 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
                 navigationItem.leftBarButtonItem = nil
                 return
             }
-            let dismissButton = UIBarButtonItem(title: "Dismiss", style: .done, target: self, action: #selector(dismissSupport))
+            let dismissButton = UIBarButtonItem(title: "Dismiss", style: .done, target: self, action: #selector(dismissScene))
             navigationItem.leftBarButtonItem = dismissButton
         }
     }
@@ -72,7 +72,7 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         view.backgroundColor = .white
     }
     
-    @objc private func dismissSupport() {
+    @objc private func dismissScene() {
         dismiss(animated: true)
     }
     
