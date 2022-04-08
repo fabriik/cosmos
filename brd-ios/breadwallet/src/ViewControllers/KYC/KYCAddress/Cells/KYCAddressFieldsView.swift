@@ -192,9 +192,8 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.kycGray2, range: fullRange)
         
-        let url = "https://fabriik.com/terms-and-conditions/"
-        createLink(attributedString: &attributedString, urlString: url, range: termsRange)
-        createLink(attributedString: &attributedString, urlString: url, range: privacyRange)
+        createLink(attributedString: &attributedString, urlString: C.termsAndConditions, range: termsRange)
+        createLink(attributedString: &attributedString, urlString: C.privacyPolicy, range: privacyRange)
         
         privacyPolicyTextView.attributedText = attributedString
     }
