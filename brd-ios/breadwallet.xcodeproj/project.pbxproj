@@ -3406,10 +3406,10 @@
 		75A2A7881DA5934300A983D8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = BR;
+				CLASSPREFIX = FE;
 				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1240;
-				ORGANIZATIONNAME = "Breadwinner AG";
+				ORGANIZATIONNAME = "Fabriik Exchange, LLC";
 				TargetAttributes = {
 					22A9A9951DF63426000F0016 = {
 						CreatedOnToolsVersion = 8.1;
