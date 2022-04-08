@@ -211,6 +211,7 @@ class ModalPresenter: Subscriber, Trackable {
     
     func presentFaq(articleId: String? = nil, currency: Currency? = nil) {
         let webViewController = SimpleWebViewController()
+        webViewController.setup(with: .init(title: "Support"))
         let navController = UINavigationController(rootViewController: webViewController)
         
         webViewController.setAsNonDismissableModal()
@@ -241,9 +242,10 @@ class ModalPresenter: Subscriber, Trackable {
             return ModalViewController(childViewController: requestVc)
         case .buy(let url, _, _):
             let webViewController = SimpleWebViewController()
-            webViewController.showDismissButton = false
+            let navController = UINavigationController(rootViewController: webViewController)
+            webViewController.setup(with: .init(title: "Buy"))
             webViewController.navigate(to: url)
-            topViewController?.show(webViewController, sender: nil)
+            topViewController?.show(navController, sender: nil)
             return nil
             
         case .trade(let currencies, let amount):
@@ -258,9 +260,11 @@ class ModalPresenter: Subscriber, Trackable {
             guard let urlString = components?.url?.absoluteString else { return nil }
             
             let webViewController = SimpleWebViewController()
-            webViewController.showDismissButton = false
+            let navController = UINavigationController(rootViewController: webViewController)
+            webViewController.setup(with: .init(title: "Swap"))
+            webViewController.showDismissButton = true
             webViewController.navigate(to: urlString)
-            topViewController?.show(webViewController, sender: nil)
+            topViewController?.show(navController, sender: nil)
             return nil
             
         case .receiveLegacy:
