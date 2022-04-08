@@ -6,6 +6,11 @@ import UIKit
 import WebKit
 
 class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
+    
+    struct Model {
+        var title: String
+        var showDismissButton: Bool = true
+    }
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,47 +39,29 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         return activityIndicator
     }()
     
-    private lazy var backwardButton: UIBarButtonItem = {
-        let backwardButton = UIBarButtonItem()
-        
-        return backwardButton
-    }()
-    
-    private lazy var forwardButton: UIBarButtonItem = {
-        let forwardButton = UIBarButtonItem()
-        
-        return forwardButton
-    }()
-    
-    var showDismissButton = true
+    var showDismissButton = true {
+        didSet {
+            guard showDismissButton else {
+                navigationItem.leftBarButtonItem = nil
+                return
+            }
+            let dismissButton = UIBarButtonItem(title: "Dismiss", style: .done, target: self, action: #selector(dismissSupport))
+            navigationItem.leftBarButtonItem = dismissButton
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Support"
-        
-        view.addSubview(toolbar)
-        toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        var items = [UIBarButtonItem]()
-        
-        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
-        
-        backwardButton = UIBarButtonItem(barButtonSystemItem: .rewind, target: nil, action: #selector(backAction))
+        let backwardButton = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(backAction))
         backwardButton.isEnabled = false
-        items.append(backwardButton)
-        
-        forwardButton = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(forwardAction))
+        let forwardButton = UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(forwardAction))
         forwardButton.isEnabled = false
-        items.append(forwardButton)
-        
-        toolbar.setItems(items, animated: false)
+        navigationItem.rightBarButtonItems = [forwardButton, backwardButton]
         
         view.addSubview(webView)
         webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: toolbar.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
@@ -83,15 +70,10 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         activityIndicator.centerYAnchor.constraint(equalTo: webView.centerYAnchor).isActive = true
         
         view.backgroundColor = .white
-        
-        guard showDismissButton else { return }
-        
-        let dismissButton = UIBarButtonItem(title: "Dismiss", style: .done, target: self, action: #selector(dismissSupport))
-        navigationItem.leftBarButtonItem = dismissButton
     }
     
     @objc private func dismissSupport() {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func navigate(to: String) {
@@ -126,8 +108,8 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
     }
     
     private func handleNavigationBarButtonState() {
-        backwardButton.isEnabled = webView.canGoBack
-        forwardButton.isEnabled = webView.canGoForward
+        navigationItem.rightBarButtonItems?.first?.isEnabled = webView.canGoForward
+        navigationItem.rightBarButtonItems?.last?.isEnabled = webView.canGoBack
     }
     
     func webView(_ webView: WKWebView,
@@ -141,5 +123,10 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         webView.load(navigationAction.request)
         
         return nil
+    }
+    
+    func setup(with model: Model) {
+        title = model.title
+        showDismissButton = model.showDismissButton
     }
 }
