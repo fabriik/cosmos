@@ -73,7 +73,7 @@ class SimpleWebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
     }
     
     @objc private func dismissSupport() {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
     
     func navigate(to: String) {
