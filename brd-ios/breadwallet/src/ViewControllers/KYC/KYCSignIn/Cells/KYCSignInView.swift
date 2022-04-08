@@ -39,12 +39,12 @@ class KYCSignInView: BaseView, GenericSettable {
         return passwordField
     }()
     
-    private lazy var nextButton: SimpleButton = {
-        let nextButton = SimpleButton()
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.setup(as: .kycDisabled, title: "SUBMIT")
+    private lazy var submitButton: SimpleButton = {
+        let submitButton = SimpleButton()
+        submitButton.translatesAutoresizingMaskIntoConstraints = false
+        submitButton.setup(as: .kycDisabled, title: "SUBMIT")
         
-        return nextButton
+        return submitButton
     }()
     
     private lazy var accountNoticeLabel: UILabel = {
@@ -114,14 +114,14 @@ class KYCSignInView: BaseView, GenericSettable {
         passwordField.trailingAnchor.constraint(equalTo: emailField.trailingAnchor).isActive = true
         passwordField.heightAnchor.constraint(equalTo: emailField.heightAnchor).isActive = true
         
-        addSubview(nextButton)
-        nextButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: defaultDistance * 2).isActive = true
-        nextButton.leadingAnchor.constraint(equalTo: emailField.leadingAnchor).isActive = true
-        nextButton.trailingAnchor.constraint(equalTo: emailField.trailingAnchor).isActive = true
-        nextButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        addSubview(submitButton)
+        submitButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: defaultDistance * 2).isActive = true
+        submitButton.leadingAnchor.constraint(equalTo: emailField.leadingAnchor).isActive = true
+        submitButton.trailingAnchor.constraint(equalTo: emailField.trailingAnchor).isActive = true
+        submitButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         addSubview(signUpStack)
-        signUpStack.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: defaultDistance * 2).isActive = true
+        signUpStack.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: defaultDistance * 2).isActive = true
         signUpStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         signUpStack.centerXAnchor.constraint(equalTo: emailField.centerXAnchor).isActive = true
         signUpStack.heightAnchor.constraint(equalToConstant: 48).isActive = true
@@ -137,7 +137,7 @@ class KYCSignInView: BaseView, GenericSettable {
             self?.didChangePasswordField?(text)
         }
         
-        nextButton.didTap = { [weak self] in
+        submitButton.didTap = { [weak self] in
             self?.didTapNextButton?()
         }
     }
@@ -157,7 +157,7 @@ class KYCSignInView: BaseView, GenericSettable {
     }
     
     func changeButtonStyle(with style: SimpleButton.ButtonStyle) {
-        nextButton.changeStyle(with: style)
+        submitButton.changeStyle(with: style)
     }
     
     func changeFieldStyle(isViable: Bool, for fieldType: KYCSignIn.FieldType) {
