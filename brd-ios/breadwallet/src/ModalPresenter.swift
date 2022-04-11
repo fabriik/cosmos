@@ -242,6 +242,7 @@ class ModalPresenter: Subscriber, Trackable {
             return ModalViewController(childViewController: requestVc)
         case .buy(let url, _, _):
             let webViewController = SimpleWebViewController()
+            webViewController.setAsNonDismissableModal()
             let navController = UINavigationController(rootViewController: webViewController)
             webViewController.setup(with: .init(title: "Buy"))
             webViewController.navigate(to: url)
@@ -260,6 +261,7 @@ class ModalPresenter: Subscriber, Trackable {
             guard let urlString = components?.url?.absoluteString else { return nil }
             
             let webViewController = SimpleWebViewController()
+            webViewController.setAsNonDismissableModal()
             let navController = UINavigationController(rootViewController: webViewController)
             webViewController.setup(with: .init(title: "Swap"))
             webViewController.showDismissButton = true
