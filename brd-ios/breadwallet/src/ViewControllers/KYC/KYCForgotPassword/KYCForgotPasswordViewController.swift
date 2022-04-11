@@ -1,22 +1,21 @@
-//
+// 
 // Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
 
-protocol KYCSignInDisplayLogic: AnyObject {
+protocol KYCForgotPasswordDisplayLogic: AnyObject {
     // MARK: Display logic functions
     
-    func displayShouldEnableSubmit(viewModel: KYCSignIn.ShouldEnableSubmit.ViewModel)
-    func displaySignIn(viewModel: KYCSignIn.SubmitData.ViewModel)
-    func displayConfirmEmail(viewModel: KYCSignIn.ConfirmEmail.ViewModel)
-    func displayValidateField(viewModel: KYCSignIn.ValidateField.ViewModel)
+    func displaySubmitData(viewModel: KYCForgotPassword.SubmitData.ViewModel)
+    func displayShouldEnableConfirm(viewModel: KYCForgotPassword.ShouldEnableConfirm.ViewModel)
+    func displayValidateField(viewModel: KYCForgotPassword.ValidateField.ViewModel)
     func displayError(viewModel: GenericModels.Error.ViewModel)
 }
 
-class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITableViewDelegate, UITableViewDataSource {
-    var interactor: KYCSignInBusinessLogic?
-    var router: (NSObjectProtocol & KYCSignInRoutingLogic)?
+class KYCForgotPasswordViewController: KYCViewController, KYCForgotPasswordDisplayLogic, UITableViewDelegate, UITableViewDataSource {
+    var interactor: KYCForgotPasswordBusinessLogic?
+    var router: (NSObjectProtocol & KYCForgotPasswordRoutingLogic)?
     
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -32,9 +31,9 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
     // MARK: Setup
     private func setup() {
         let viewController = self
-        let interactor = KYCSignInInteractor()
-        let presenter = KYCSignInPresenter()
-        let router = KYCSignInRouter()
+        let interactor = KYCForgotPasswordInteractor()
+        let presenter = KYCForgotPasswordPresenter()
+        let router = KYCForgotPasswordRouter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -54,11 +53,14 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
     }
     
     // MARK: - Properties
+    
     enum Section {
+        case progress
         case fields
     }
     
     private let sections: [Section] = [
+        .progress,
         .fields
     ]
     
@@ -66,23 +68,23 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(CellWrapperView<KYCSignInView>.self)
+        tableView.register(CellWrapperView<KYCProgressView>.self)
+        tableView.register(CellWrapperView<KYCForgotPasswordView>.self)
         tableView.delegate = self
         tableView.dataSource = self
-        
-        let dismissFlowButton = UIBarButtonItem(title: "Dismiss", style: .done, target: self, action: #selector(dismissFlow))
-        navigationItem.leftBarButtonItem = dismissFlowButton
-    }
-    
-    @objc private func dismissFlow() {
-        router?.dismissFlow()
     }
     
     // MARK: View controller functions
     
-    func displayShouldEnableSubmit(viewModel: KYCSignIn.ShouldEnableSubmit.ViewModel) {
+    func displaySubmitData(viewModel: KYCForgotPassword.SubmitData.ViewModel) {
+        LoadingView.hide()
+        
+        router?.showKYCResetPasswordScene()
+    }
+    
+    func displayShouldEnableConfirm(viewModel: KYCForgotPassword.ShouldEnableConfirm.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCSignInView> else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCForgotPasswordView> else { return }
         
         cell.setup { view in
             let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
@@ -90,25 +92,12 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
         }
     }
     
-    func displayConfirmEmail(viewModel: KYCSignIn.ConfirmEmail.ViewModel) {
-        LoadingView.hide()
-        
-        router?.showKYCConfirmEmailScene()
-    }
-    
-    func displaySignIn(viewModel: KYCSignIn.SubmitData.ViewModel) {
-        LoadingView.hide()
-        
-        router?.showKYCTutorialScene()
-    }
-    
-    func displayValidateField(viewModel: KYCSignIn.ValidateField.ViewModel) {
+    func displayValidateField(viewModel: KYCForgotPassword.ValidateField.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCSignInView> else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCForgotPasswordView> else { return }
         
         cell.setup { view in
-            view.changeFieldStyle(isViable: viewModel.isViable,
-                                  for: viewModel.type)
+            view.changeFieldStyle(isViable: viewModel.isViable)
         }
     }
     
@@ -132,42 +121,46 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sections[indexPath.section] {
+        case .progress:
+            return getKYCProgressCell(indexPath)
+            
         case .fields:
-            return getKYCSignInFieldsCell(indexPath)
+            return getKYCForgotPasswordFieldsCell(indexPath)
             
         }
     }
     
-    func getKYCSignInFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: CellWrapperView<KYCSignInView> = tableView.dequeueReusableCell(for: indexPath) else {
+    func getKYCProgressCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCProgressView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.setup(with: .init(text: "PASSWORD RECOVERY",
+                                   stepCount: KYCProgressView.ForgotPasswordProgress.allCases.count,
+                                   currentStep: KYCProgressView.ForgotPasswordProgress.email.rawValue))
+        }
+        
+        return cell
+    }
+    
+    func getKYCForgotPasswordFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCForgotPasswordView> = tableView.dequeueReusableCell(for: indexPath) else {
             return UITableViewCell()
         }
         
         cell.setup { view in
             view.didChangeEmailField = { [weak self] text in
-                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .email))
+                self?.interactor?.executeCheckFieldType(request: .init(text: text,
+                                                                       type: .email))
             }
             
-            view.didChangePasswordField = { [weak self] text in
-                self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .password))
-            }
-            
-            view.didTapForgotPasswordButton = { [weak self] in
-                self?.router?.showKYCForgotPasswordScene()
-            }
-            
-            view.didTapNextButton = { [weak self] in
+            view.didTapConfirmButton = { [weak self] in
                 self?.view.endEditing(true)
                 
                 LoadingView.show()
                 
-                self?.interactor?.executeSignIn(request: .init())
-            }
-            
-            view.didTapSignUpButton = { [weak self] in
-                self?.view.endEditing(true)
-                
-                self?.router?.showKYCSignUpScene()
+                self?.interactor?.executeSubmitData(request: .init())
             }
         }
         

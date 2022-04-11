@@ -146,7 +146,9 @@ class KYCAddressViewController: KYCViewController, KYCAddressDisplayLogic, UITab
         }
         
         cell.setup { view in
-            view.setup(with: .init(text: "ADDRESS", progress: .address))
+            view.setup(with: .init(text: "ADDRESS",
+                                   stepCount: KYCProgressView.PersonalInformationProgress.allCases.count,
+                                   currentStep: KYCProgressView.PersonalInformationProgress.address.rawValue))
         }
         
         return cell

@@ -96,8 +96,6 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
     }
     
     private func validateEmailUsingRegex() -> Bool {
-        guard !email.isNilOrEmpty else { return false }
-        
         let emailFormat = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
         

@@ -131,7 +131,9 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
         }
         
         cell.setup { view in
-            view.setup(with: .init(text: "PERSONAL INFO", progress: .personalInfo))
+            view.setup(with: .init(text: "PERSONAL INFO",
+                                   stepCount: KYCProgressView.PersonalInformationProgress.allCases.count,
+                                   currentStep: KYCProgressView.PersonalInformationProgress.personalInfo.rawValue))
         }
         
         return cell
