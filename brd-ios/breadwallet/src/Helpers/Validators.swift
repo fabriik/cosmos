@@ -33,6 +33,8 @@ struct Validator {
         
         let isViable = numberPredicate.evaluate(with: value)
         
+        completion(isViable)
+        
         return isViable
     }
 }
