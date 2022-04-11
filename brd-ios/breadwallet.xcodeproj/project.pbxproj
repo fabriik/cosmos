@@ -281,6 +281,7 @@
 		7BA83DA6280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA0280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift */; };
 		7BA83DA7280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */; };
 		7BA83DAA28045F94003F73AA /* KYCResetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */; };
+		7BA83DAC28047894003F73AA /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DAB28047894003F73AA /* Validators.swift */; };
 		7C0A3ACE210A0E1D006C2783 /* NotificationAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */; };
 		7C0F3DC42124A81100531E54 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F3DC32124A81100531E54 /* Backend.swift */; };
 		7C1931CD2327371A0061DE20 /* CoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1931CC2327371A0061DE20 /* CoreDatabase.swift */; };
@@ -1137,6 +1138,7 @@
 		7BA83DA0280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessViewController.swift; sourceTree = "<group>"; };
 		7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessInteractor.swift; sourceTree = "<group>"; };
 		7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetSuccessView.swift; sourceTree = "<group>"; };
+		7BA83DAB28047894003F73AA /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationAuthorizer.swift; path = src/NotificationAuthorizer.swift; sourceTree = "<group>"; };
 		7C0F3DC32124A81100531E54 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Backend.swift; path = src/Backend.swift; sourceTree = "<group>"; };
 		7C1931CC2327371A0061DE20 /* CoreDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDatabase.swift; sourceTree = "<group>"; };
@@ -2485,6 +2487,7 @@
 				7B54E58527F4A2B0002DD1E4 /* SimpleTextField.swift */,
 				7B54E58427F4A2B0002DD1E4 /* SpinnerView.swift */,
 				7B54E58927F4A2B0002DD1E4 /* SwapNavigationController.swift */,
+				7BA83DAB28047894003F73AA /* Validators.swift */,
 				7B54E58A27F4A2B0002DD1E4 /* UITableView+Extensions.swift */,
 				7B54E57027F4A2B0002DD1E4 /* UIView+Extensions.swift */,
 			);
@@ -4262,6 +4265,7 @@
 				7B54E5BA27F4A2B1002DD1E4 /* KYCFooterView.swift in Sources */,
 				7B54E54527F4A208002DD1E4 /* KYCAddressInteractor.swift in Sources */,
 				7C9724661FF07B9A004248C4 /* StatusPip.swift in Sources */,
+				7BA83DAC28047894003F73AA /* Validators.swift in Sources */,
 				7C35E712200AC2080064808F /* TxViewModel.swift in Sources */,
 				71249913221F44FE00BEA491 /* Announcement.swift in Sources */,
 				71F829422321953F00B3C76E /* AlertPresenter.swift in Sources */,

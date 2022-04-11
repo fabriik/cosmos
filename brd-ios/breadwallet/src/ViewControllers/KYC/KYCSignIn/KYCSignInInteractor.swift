@@ -73,36 +73,16 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
         var validationValues = [Bool]()
         validationValues.append(!email.isNilOrEmpty)
         validationValues.append(!password.isNilOrEmpty)
-        validationValues.append(validatePasswordUsingRegex())
-        validationValues.append(validateEmailUsingRegex())
+        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .password))
+        }))
+        validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .email))
+        }))
         validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
-    }
-    
-    private func validatePasswordUsingRegex() -> Bool {
-        guard let password = password else { return false }
-        
-        let numberFormat = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
-        
-        let isViable = numberPredicate.evaluate(with: password)
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .password))
-        
-        return isViable
-    }
-    
-    private func validateEmailUsingRegex() -> Bool {
-        let emailFormat = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        
-        let isViable = emailPredicate.evaluate(with: email)
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .email))
-        
-        return isViable
     }
 }

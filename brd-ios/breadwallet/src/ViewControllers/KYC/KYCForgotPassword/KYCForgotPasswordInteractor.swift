@@ -50,21 +50,12 @@ class KYCForgotPasswordInteractor: KYCForgotPasswordBusinessLogic, KYCForgotPass
     private func checkCredentials() {
         var validationValues = [Bool]()
         validationValues.append(!email.isNilOrEmpty)
-        validationValues.append(validateEmailUsingRegex())
+        validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .email))
+        }))
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableConfirm(response: .init(shouldEnable: shouldEnable))
-    }
-    
-    private func validateEmailUsingRegex() -> Bool {
-        let emailFormat = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        
-        let isViable = emailPredicate.evaluate(with: email)
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .email))
-        
-        return isViable
     }
 }

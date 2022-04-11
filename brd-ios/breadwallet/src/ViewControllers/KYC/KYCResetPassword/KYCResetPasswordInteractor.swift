@@ -66,24 +66,13 @@ class KYCResetPasswordInteractor: KYCResetPasswordBusinessLogic, KYCResetPasswor
         validationValues.append(!recoveryCode.isNilOrEmpty)
         validationValues.append(!password.isNilOrEmpty)
         validationValues.append(!passwordRepeat.isNilOrEmpty)
-        validationValues.append(validatePasswordUsingRegex())
+        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable && password == passwordRepeat, type: .password))
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable && password == passwordRepeat, type: .passwordRepeat))
+        }))
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableConfirm(response: .init(shouldEnable: shouldEnable))
-    }
-    
-    private func validatePasswordUsingRegex() -> Bool {
-        guard let password = password, let passwordRepeat = passwordRepeat else { return false }
-        
-        let numberFormat = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
-        
-        let isViable = numberPredicate.evaluate(with: password)
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable && password == passwordRepeat, type: .password))
-        presenter?.presentValidateField(response: .init(isViable: isViable && password == passwordRepeat, type: .passwordRepeat))
-
-        return isViable
     }
 }

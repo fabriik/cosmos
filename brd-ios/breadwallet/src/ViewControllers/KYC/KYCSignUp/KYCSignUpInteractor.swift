@@ -165,47 +165,17 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         validationValues.append(!firstName.isNilOrEmpty)
         validationValues.append(!lastName.isNilOrEmpty)
         validationValues.append(!email.isNilOrEmpty)
+        validationValues.append(!passwordOriginal.isNilOrEmpty)
         validationValues.append(!phonePrefix.isNilOrEmpty)
         validationValues.append(!phoneNumber.isNilOrEmpty)
         validationValues.append(tickBox == true)
-        validationValues.append(validatePasswordUsingRegex())
-        validationValues.append(validatePhoneNumberUsingRegex())
-        validationValues.append(validateEmailUsingRegex())
+        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { _ in }))
+        validationValues.append(Validator.validateEmail(value: email ?? "", completion: { _ in }))
+        validationValues.append(Validator.validatePhoneNumber(value: (phonePrefix ?? "") + (phoneNumber ?? ""), completion: { _ in }))
         validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
-    }
-    
-    private func validatePasswordUsingRegex() -> Bool {
-        guard let passwordOriginal = passwordOriginal else { return false }
-        
-        let numberFormat = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
-        
-        let isViable = numberPredicate.evaluate(with: passwordOriginal)
-        
-        return isViable
-    }
-    
-    private func validatePhoneNumberUsingRegex() -> Bool {
-        guard let phonePrefix = phonePrefix, let phoneNumber = phoneNumber else { return false }
-        
-        let numberFormat = "^\\+[1-9][0-9]{5,20}$"
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
-        
-        let isViable = numberPredicate.evaluate(with: phonePrefix + phoneNumber)
-        
-        return isViable
-    }
-    
-    private func validateEmailUsingRegex() -> Bool {
-        let emailFormat = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        
-        let isViable = emailPredicate.evaluate(with: email)
-        
-        return isViable
     }
 }
