@@ -89,7 +89,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         let font = UIFont(name: "AvenirNext-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
         textField.font = font
         textField.attributedPlaceholder = NSAttributedString(string: customPlaceholder ?? "",
-                                                             attributes: [.foregroundColor: UIColor.kycGray1, .font: font])
+                                                             attributes: [.foregroundColor: UIColor.kycGray2, .font: font])
         
         titleLabel.text = title
         
@@ -217,13 +217,5 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
         didChangeText?(textField.text)
-    }
-}
-
-extension UITextField {
-    fileprivate func setPasswordToggleImage(_ button: UIButton) {
-        isSecureTextEntry ?
-        button.setImage(UIImage(named: "KYC ShowPassword"), for: .normal) :
-        button.setImage(UIImage(named: "KYC HidePassword"), for: .selected)
     }
 }

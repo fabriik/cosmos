@@ -11,6 +11,7 @@ protocol KYCSignUpPresentationLogic {
     func presentSetPickerValue(response: KYCSignUp.SetPickerValue.Response)
     func presentSubmitData(response: KYCSignUp.SubmitData.Response)
     func presentShouldEnableSubmit(response: KYCSignUp.ShouldEnableSubmit.Response)
+    func presentValidateField(response: KYCSignUp.ValidateField.Response)
     func presentError(response: GenericModels.Error.Response)
 }
 
@@ -51,6 +52,11 @@ class KYCSignUpPresenter: KYCSignUpPresentationLogic {
     
     func presentShouldEnableSubmit(response: KYCSignUp.ShouldEnableSubmit.Response) {
         viewController?.displayShouldEnableSubmit(viewModel: .init(shouldEnable: response.shouldEnable))
+    }
+    
+    func presentValidateField(response: KYCSignUp.ValidateField.Response) {
+        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable,
+                                                              type: response.type, isFieldEmpty: response.isFieldEmpty))
     }
     
     func presentError(response: GenericModels.Error.Response) {

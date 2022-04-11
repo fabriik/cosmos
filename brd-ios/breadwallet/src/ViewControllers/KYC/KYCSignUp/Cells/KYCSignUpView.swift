@@ -118,7 +118,7 @@ class KYCSignUpView: BaseView, GenericSettable {
         firstNameField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
         firstNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
         firstNameField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
-        firstNameField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        firstNameField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(lastNameField)
         lastNameField.topAnchor.constraint(equalTo: firstNameField.bottomAnchor, constant: defaultDistance).isActive = true
@@ -223,6 +223,36 @@ class KYCSignUpView: BaseView, GenericSettable {
         
         if let tickBox = model.tickBox {
             tickBoxView.toggle(with: tickBox)
+        }
+    }
+    
+    func changeFieldStyle(isViable: Bool, for fieldType: KYCSignUp.FieldType, isFieldEmpty: Bool) {
+        switch fieldType {
+        case .email:
+            emailField.setCheckMark(isVisible: isViable)
+            emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .password:
+            passwordField.setCheckMark(isVisible: isViable)
+            passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .firstName:
+            firstNameField.setCheckMark(isVisible: isViable)
+            firstNameField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .lastName:
+            lastNameField.setCheckMark(isVisible: isViable)
+            lastNameField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .phonePrefix:
+            phonePrefixField.setCheckMark(isVisible: isViable)
+            phonePrefixField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .phoneNumber:
+            phoneNumberField.setCheckMark(isVisible: isViable)
+            phoneNumberField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .tickBox: break
         }
     }
     

@@ -172,10 +172,29 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         validationValues.append(validatePhoneNumberUsingRegex())
         validationValues.append(validateEmailUsingRegex())
         validationValues.append(contentsOf: fieldValidationIsAllowed.values)
+        validationValues.append(validateFirstName())
+        validationValues.append(validateLastName())
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
+    }
+    
+    private func validateFirstName() -> Bool {
+        guard let firstName = firstName else { return false }
+        
+        let isViable = !firstName.isEmpty
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .firstName, isFieldEmpty: !isViable))
+        
+        return isViable
+    }
+    
+    private func validateLastName() -> Bool {
+        guard let lastName = lastName else { return false }
+        
+        let isViable = !lastName.isEmpty
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .lastName, isFieldEmpty: !isViable))
+        return isViable
     }
     
     private func validatePasswordUsingRegex() -> Bool {
@@ -185,6 +204,9 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
         
         let isViable = numberPredicate.evaluate(with: passwordOriginal)
+        let isPasswordEmpty = passwordOriginal.isEmpty
+        
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .password, isFieldEmpty: isPasswordEmpty))
         
         return isViable
     }
@@ -196,17 +218,23 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
         
         let isViable = numberPredicate.evaluate(with: phonePrefix + phoneNumber)
+        let isPhoneNumberEmpty = phonePrefix.isEmpty || phoneNumber.isEmpty
+        
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .phoneNumber, isFieldEmpty: isPhoneNumberEmpty))
         
         return isViable
     }
     
     private func validateEmailUsingRegex() -> Bool {
-        guard !email.isNilOrEmpty else { return false }
+        guard let email = email else { return false }
         
         let emailFormat = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
         
         let isViable = emailPredicate.evaluate(with: email)
+        let isEmailEmpty = email.isEmpty
+        
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: isEmailEmpty))
         
         return isViable
     }
