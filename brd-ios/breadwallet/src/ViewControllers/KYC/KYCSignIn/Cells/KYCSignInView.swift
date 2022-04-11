@@ -100,13 +100,13 @@ class KYCSignInView: BaseView, GenericSettable {
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         
-        let defaultDistance: CGFloat = 12
+        let defaultDistance: CGFloat = 8
         
         addSubview(emailField)
         emailField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
         emailField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
         emailField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
-        emailField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        emailField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(passwordField)
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: defaultDistance).isActive = true
@@ -160,13 +160,15 @@ class KYCSignInView: BaseView, GenericSettable {
         submitButton.changeStyle(with: style)
     }
     
-    func changeFieldStyle(isViable: Bool, for fieldType: KYCSignIn.FieldType) {
+    func changeFieldStyle(isViable: Bool, for fieldType: KYCSignIn.FieldType, isFieldEmpty: Bool) {
         switch fieldType {
         case .email:
             emailField.setCheckMark(isVisible: isViable)
+            emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             
         case .password:
             passwordField.setCheckMark(isVisible: isViable)
+            passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             
         }
     }

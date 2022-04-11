@@ -90,21 +90,23 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
         let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
         
         let isViable = numberPredicate.evaluate(with: password)
+        let isPasswordEmpty = password.isEmpty
         
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .password))
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .password, isFieldEmpty: isPasswordEmpty))
         
         return isViable
     }
     
     private func validateEmailUsingRegex() -> Bool {
-        guard !email.isNilOrEmpty else { return false }
+        guard let email = email else { return false }
         
         let emailFormat = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
         
         let isViable = emailPredicate.evaluate(with: email)
+        let isEmailEmpty = email.isEmpty
         
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .email))
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: isEmailEmpty))
         
         return isViable
     }

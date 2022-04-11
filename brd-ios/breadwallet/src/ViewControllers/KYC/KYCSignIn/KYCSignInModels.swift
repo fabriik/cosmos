@@ -23,11 +23,13 @@ enum KYCSignIn {
         struct Response {
             let isViable: Bool
             let type: KYCSignIn.FieldType
+            let isFieldEmpty: Bool
         }
         
         struct ViewModel {
             let isViable: Bool
             let type: KYCSignIn.FieldType
+            let isFieldEmpty: Bool
         }
     }
     

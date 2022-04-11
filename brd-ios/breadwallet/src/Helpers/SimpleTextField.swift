@@ -43,6 +43,19 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         return textField
     }()
     
+    private lazy var errorLabel: UILabel = {
+        var errorLabel = UILabel()
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.textColor = .red
+        errorLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        errorLabel.text = "Cannot be empty"
+        errorLabel.textAlignment = .left
+        errorLabel.numberOfLines = 1
+        errorLabel.isHidden = true
+        
+        return errorLabel
+    }()
+    
     var didChangeText: ((String?) -> Void)?
     
     override init(frame: CGRect) {
@@ -123,8 +136,13 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
         textField.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         textField.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         textField.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        
+        addSubview(errorLabel)
+        errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 4).isActive = true
+        errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        errorLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         textField.addSubview(rightButton)
         rightButton.topAnchor.constraint(equalTo: textField.topAnchor).isActive = true
@@ -138,6 +156,13 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         rightButton.isHidden = !isVisible
         rightButton.setImage(isVisible ? UIImage(named: "Field Check Mark") : nil, for: .normal)
         textField.layer.borderColor = isVisible ? UIColor.kycGreen.cgColor : UIColor.kycGray1.cgColor
+    }
+    
+    func setEmptyErrorMessage(isFieldEmpty: Bool) {
+        errorLabel.isHidden = !isFieldEmpty
+        if isFieldEmpty {
+            textField.layer.borderColor = UIColor.red.cgColor
+        }
     }
     
     func roundSpecifiedCorners(maskedCorners: CACornerMask) {
