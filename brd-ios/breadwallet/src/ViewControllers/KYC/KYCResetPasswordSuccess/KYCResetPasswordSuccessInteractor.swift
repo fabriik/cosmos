@@ -1,9 +1,5 @@
-//
-//  KYCResetPasswordSuccessInteractor.swift
-//  breadwallet
-//
-//  Created by Kenan Mamedoff on 11/04/2022.
-//  Copyright (c) 2022 Fabriik Exchange, LLC. All rights reserved.
+// 
+// Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
