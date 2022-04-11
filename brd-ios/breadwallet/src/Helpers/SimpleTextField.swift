@@ -160,14 +160,14 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         rightButton.topAnchor.constraint(equalTo: textField.topAnchor).isActive = true
         rightButton.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
         rightButton.trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: -8).isActive = true
-        rightButton.widthAnchor.constraint(equalToConstant: 18).isActive = true
+        rightButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
         rightButton.heightAnchor.constraint(equalTo: textField.heightAnchor).isActive = true
         
         textField.addSubview(showHidePasswordButton)
         showHidePasswordButton.topAnchor.constraint(equalTo: textField.topAnchor).isActive = true
         showHidePasswordButton.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
-        showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -8).isActive = true
-        showHidePasswordButton.widthAnchor.constraint(equalTo: rightButton.widthAnchor).isActive = true
+        showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
+        showHidePasswordButton.widthAnchor.constraint(equalToConstant: 18).isActive = true
         showHidePasswordButton.heightAnchor.constraint(equalTo: textField.heightAnchor).isActive = true
     }
     

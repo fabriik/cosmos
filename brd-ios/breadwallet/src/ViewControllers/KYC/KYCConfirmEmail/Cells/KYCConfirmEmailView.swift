@@ -93,7 +93,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         confirmationCodeField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 30).isActive = true
         confirmationCodeField.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor).isActive = true
         confirmationCodeField.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor).isActive = true
-        confirmationCodeField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        confirmationCodeField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(confirmButton)
         confirmButton.topAnchor.constraint(equalTo: confirmationCodeField.bottomAnchor, constant: defaultDistance).isActive = true
@@ -131,5 +131,6 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
     
     func changeFieldStyle(isViable: Bool) {
         confirmationCodeField.setCheckMark(isVisible: isViable)
+        confirmationCodeField.setEmptyErrorMessage(isFieldEmpty: !isViable)
     }
 }
