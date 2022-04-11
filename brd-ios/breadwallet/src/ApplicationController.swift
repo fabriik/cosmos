@@ -368,7 +368,7 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapTrade = { [weak self] in
-            let currencies = self?.coreSystem.currencies.compactMap { $0.value } ?? []
+            let currencies = self?.coreSystem.assetCollection?.allAssets.compactMap { $0.value.code } ?? []
             Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
         }
         
