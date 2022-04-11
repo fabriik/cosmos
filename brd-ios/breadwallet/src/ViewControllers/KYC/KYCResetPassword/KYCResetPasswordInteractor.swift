@@ -67,8 +67,9 @@ class KYCResetPasswordInteractor: KYCResetPasswordBusinessLogic, KYCResetPasswor
         validationValues.append(!password.isNilOrEmpty)
         validationValues.append(!passwordRepeat.isNilOrEmpty)
         validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable && password == passwordRepeat, type: .password))
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable && password == passwordRepeat, type: .passwordRepeat))
+            guard let self = self else { return }
+            self.presenter?.presentValidateField(response: .init(isViable: isViable && self.password == self.passwordRepeat, type: .password))
+            self.presenter?.presentValidateField(response: .init(isViable: isViable && self.password == self.passwordRepeat, type: .passwordRepeat))
         }))
         
         let shouldEnable = !validationValues.contains(false)

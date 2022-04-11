@@ -169,9 +169,9 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         validationValues.append(!phonePrefix.isNilOrEmpty)
         validationValues.append(!phoneNumber.isNilOrEmpty)
         validationValues.append(tickBox == true)
-        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { _ in }))
-        validationValues.append(Validator.validateEmail(value: email ?? "", completion: { _ in }))
-        validationValues.append(Validator.validatePhoneNumber(value: (phonePrefix ?? "") + (phoneNumber ?? ""), completion: { _ in }))
+        validationValues.append(Validator.validatePassword(value: password ?? ""))
+        validationValues.append(Validator.validateEmail(value: email ?? ""))
+        validationValues.append(Validator.validatePhoneNumber(value: (phonePrefix ?? "") + (phoneNumber ?? "")))
         validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
         let shouldEnable = !validationValues.contains(false)
