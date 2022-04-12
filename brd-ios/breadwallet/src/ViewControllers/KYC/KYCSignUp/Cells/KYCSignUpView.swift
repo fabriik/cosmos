@@ -107,15 +107,15 @@ class KYCSignUpView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
+        let defaultDistance: CGFloat = 12
+        
         addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 36).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: defaultDistance * 3).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         
-        let defaultDistance: CGFloat = 12
-        
         addSubview(firstNameField)
-        firstNameField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
+        firstNameField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: defaultDistance * 3).isActive = true
         firstNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
         firstNameField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
         firstNameField.heightAnchor.constraint(equalToConstant: 68).isActive = true

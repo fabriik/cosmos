@@ -126,11 +126,11 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sections[indexPath.section] {
         case .fields:
-            return getKYCSConfirmEmailFieldsCell(indexPath)
+            return getKYCConfirmEmailFieldsCell(indexPath)
         }
     }
     
-    func getKYCSConfirmEmailFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
+    func getKYCConfirmEmailFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
         guard let cell: CellWrapperView<KYCConfirmEmailView> = tableView.dequeueReusableCell(for: indexPath) else {
             return UITableViewCell()
         }

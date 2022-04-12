@@ -157,7 +157,7 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
             return UITableViewCell()
         }
         
-        var cellStep: KYCProgressView.Progress = .idFront
+        var cellStep: KYCProgressView.PersonalInformationProgress = .idFront
         switch step {
         case .idFront:
             cellStep = .idFront
@@ -171,7 +171,9 @@ class KYCUploadViewController: KYCViewController, KYCUploadDisplayLogic, UITable
         }
         
         cell.setup { view in
-            view.setup(with: .init(text: step.title, progress: cellStep))
+            view.setup(with: .init(text: step.title,
+                                   stepCount: KYCProgressView.PersonalInformationProgress.allCases.count,
+                                   currentStep: cellStep.rawValue))
         }
         
         return cell
