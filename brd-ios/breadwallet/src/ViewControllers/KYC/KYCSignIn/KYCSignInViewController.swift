@@ -153,6 +153,10 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
                 self?.interactor?.executeCheckFieldType(request: .init(text: text, type: .password))
             }
             
+            view.didTapForgotPasswordButton = { [weak self] in
+                self?.router?.showKYCForgotPasswordScene()
+            }
+            
             view.didTapNextButton = { [weak self] in
                 self?.view.endEditing(true)
                 

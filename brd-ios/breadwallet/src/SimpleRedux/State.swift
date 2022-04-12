@@ -126,7 +126,7 @@ enum RootModal {
     case requestAmount(currency: Currency, address: String)
     case buy(url: String, reservationCode: String, currency: Currency?)
     // TODO: add wallet address as well?
-    case trade(availibleCurrencies: [Currency], amount: Double)
+    case trade(availibleCurrencies: [String], amount: Double)
     case receiveLegacy
     case stake(currency: Currency)
     case gift

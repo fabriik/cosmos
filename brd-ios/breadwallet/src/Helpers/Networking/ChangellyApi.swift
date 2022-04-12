@@ -18,14 +18,19 @@ struct SwapRequestData: RequestModelData {
     // not sure what this does
     var version: Int = 3
     
-    init(currencies: [Currency] = [], amount: Double = 1, merchantId: String) {
-        currencyCodes = currencies.compactMap { $0.code.lowercased() }
+    init(currencies: [String] = [], amount: Double = 1, merchantId: String) {
+        currencyCodes = currencies.compactMap { $0.lowercased() }
         self.amount = amount
         self.merchantId = merchantId
     }
     
     func getParameters() -> [String: Any] {
-        let codesString = currencyCodes.joined(separator: ",")
+        let codesString = currencyCodes.map { value in
+            guard value == "usdt" else { return value }
+            // we support ERC20 usdt trading
+            return value + "20"
+        }.joined(separator: ",")
+        
         let params: [String: Any?] = [
             "from": codesString,
             "to": codesString,
@@ -47,7 +52,7 @@ enum ChangellyApi {
     static var baseUrl = "https://widget.changelly.com"
     static var merchantId = "NGVQYXnFp13iKtj1"
     
-    case swap(currencies: [Currency], amount: Double)
+    case swap(currencies: [String], amount: Double)
     
     var requestData: SwapRequestData? {
         switch self {

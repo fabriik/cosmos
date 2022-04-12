@@ -1,22 +1,21 @@
-//
+// 
 // Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
 
-protocol KYCConfirmEmailDisplayLogic: AnyObject {
+protocol KYCForgotPasswordDisplayLogic: AnyObject {
     // MARK: Display logic functions
     
-    func displaySubmitData(viewModel: KYCConfirmEmail.SubmitData.ViewModel)
-    func displayResendCode(viewModel: KYCConfirmEmail.ResendCode.ViewModel)
-    func displayShouldEnableConfirm(viewModel: KYCConfirmEmail.ShouldEnableConfirm.ViewModel)
-    func displayValidateField(viewModel: KYCConfirmEmail.ValidateField.ViewModel)
+    func displaySubmitData(viewModel: KYCForgotPassword.SubmitData.ViewModel)
+    func displayShouldEnableConfirm(viewModel: KYCForgotPassword.ShouldEnableConfirm.ViewModel)
+    func displayValidateField(viewModel: KYCForgotPassword.ValidateField.ViewModel)
     func displayError(viewModel: GenericModels.Error.ViewModel)
 }
 
-class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLogic, UITableViewDelegate, UITableViewDataSource {
-    var interactor: KYCConfirmEmailBusinessLogic?
-    var router: (NSObjectProtocol & KYCConfirmEmailRoutingLogic)?
+class KYCForgotPasswordViewController: KYCViewController, KYCForgotPasswordDisplayLogic, UITableViewDelegate, UITableViewDataSource {
+    var interactor: KYCForgotPasswordBusinessLogic?
+    var router: (NSObjectProtocol & KYCForgotPasswordRoutingLogic)?
     
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -32,9 +31,9 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
     // MARK: Setup
     private func setup() {
         let viewController = self
-        let interactor = KYCConfirmEmailInteractor()
-        let presenter = KYCConfirmEmailPresenter()
-        let router = KYCConfirmEmailRouter()
+        let interactor = KYCForgotPasswordInteractor()
+        let presenter = KYCForgotPasswordPresenter()
+        let router = KYCForgotPasswordRouter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -56,10 +55,12 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
     // MARK: - Properties
     
     enum Section {
+        case progress
         case fields
     }
     
     private let sections: [Section] = [
+        .progress,
         .fields
     ]
     
@@ -67,28 +68,23 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(CellWrapperView<KYCConfirmEmailView>.self)
+        tableView.register(CellWrapperView<KYCProgressView>.self)
+        tableView.register(CellWrapperView<KYCForgotPasswordView>.self)
         tableView.delegate = self
         tableView.dataSource = self
-        
-        interactor?.executeShouldResendCode(request: .init())
     }
     
     // MARK: View controller functions
     
-    func displaySubmitData(viewModel: KYCConfirmEmail.SubmitData.ViewModel) {
+    func displaySubmitData(viewModel: KYCForgotPassword.SubmitData.ViewModel) {
         LoadingView.hide()
         
-        router?.showKYCSignInScene()
+        router?.showKYCResetPasswordScene()
     }
     
-    func displayResendCode(viewModel: KYCConfirmEmail.ResendCode.ViewModel) {
-        LoadingView.hide()
-    }
-    
-    func displayShouldEnableConfirm(viewModel: KYCConfirmEmail.ShouldEnableConfirm.ViewModel) {
+    func displayShouldEnableConfirm(viewModel: KYCForgotPassword.ShouldEnableConfirm.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCConfirmEmailView> else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCForgotPasswordView> else { return }
         
         cell.setup { view in
             let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
@@ -96,9 +92,9 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
         }
     }
     
-    func displayValidateField(viewModel: KYCConfirmEmail.ValidateField.ViewModel) {
+    func displayValidateField(viewModel: KYCForgotPassword.ValidateField.ViewModel) {
         guard let index = sections.firstIndex(of: .fields) else { return }
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCConfirmEmailView> else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCForgotPasswordView> else { return }
         
         cell.setup { view in
             view.changeFieldStyle(isViable: viewModel.isViable)
@@ -125,20 +121,38 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sections[indexPath.section] {
+        case .progress:
+            return getKYCProgressCell(indexPath)
+            
         case .fields:
-            return getKYCConfirmEmailFieldsCell(indexPath)
+            return getKYCForgotPasswordFieldsCell(indexPath)
+            
         }
     }
     
-    func getKYCConfirmEmailFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: CellWrapperView<KYCConfirmEmailView> = tableView.dequeueReusableCell(for: indexPath) else {
+    func getKYCProgressCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCProgressView> = tableView.dequeueReusableCell(for: indexPath) else {
             return UITableViewCell()
         }
         
         cell.setup { view in
-            view.didChangeConfirmationCodeField = { [weak self] text in
+            view.setup(with: .init(text: "PASSWORD RECOVERY",
+                                   stepCount: KYCProgressView.ForgotPasswordProgress.allCases.count,
+                                   currentStep: KYCProgressView.ForgotPasswordProgress.email.rawValue))
+        }
+        
+        return cell
+    }
+    
+    func getKYCForgotPasswordFieldsCell(_ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: CellWrapperView<KYCForgotPasswordView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.didChangeEmailField = { [weak self] text in
                 self?.interactor?.executeCheckFieldType(request: .init(text: text,
-                                                                       type: .code))
+                                                                       type: .email))
             }
             
             view.didTapConfirmButton = { [weak self] in
@@ -147,14 +161,6 @@ class KYCConfirmEmailViewController: KYCViewController, KYCConfirmEmailDisplayLo
                 LoadingView.show()
                 
                 self?.interactor?.executeSubmitData(request: .init())
-            }
-            
-            view.didTapResendButton = { [weak self] in
-                self?.view.endEditing(true)
-                
-                LoadingView.show()
-                
-                self?.interactor?.executeResendCode(request: .init())
             }
         }
         

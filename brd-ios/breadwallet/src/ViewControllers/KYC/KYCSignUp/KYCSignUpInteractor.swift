@@ -165,12 +165,26 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         validationValues.append(!firstName.isNilOrEmpty)
         validationValues.append(!lastName.isNilOrEmpty)
         validationValues.append(!email.isNilOrEmpty)
+        validationValues.append(!passwordOriginal.isNilOrEmpty)
         validationValues.append(!phonePrefix.isNilOrEmpty)
         validationValues.append(!phoneNumber.isNilOrEmpty)
         validationValues.append(tickBox == true)
-        validationValues.append(validatePasswordUsingRegex())
-        validationValues.append(validatePhoneNumberUsingRegex())
-        validationValues.append(validateEmailUsingRegex())
+        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
+            guard let password = self?.password else { return }
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .password, isFieldEmpty: password.isEmpty))
+        }))
+        validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
+            guard let email = self?.email else { return }
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: email.isEmpty))
+        }))
+        validationValues.append(Validator.validatePhoneNumber(value: (phonePrefix ?? "") + (phoneNumber ?? ""), completion: { [weak self] isViable in
+            guard let phonePrefix = self?.phonePrefix, let phoneNumber = self?.phoneNumber else { return }
+            
+            let isPhoneNumberEmpty = phonePrefix.isEmpty || phoneNumber.isEmpty
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .phoneNumber, isFieldEmpty: isPhoneNumberEmpty))
+        }))
         validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         validationValues.append(validateFirstName())
         validationValues.append(validateLastName())
@@ -194,48 +208,6 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         
         let isViable = !lastName.isEmpty
         presenter?.presentValidateField(response: .init(isViable: isViable, type: .lastName, isFieldEmpty: !isViable))
-        return isViable
-    }
-    
-    private func validatePasswordUsingRegex() -> Bool {
-        guard let passwordOriginal = passwordOriginal else { return false }
-        
-        let numberFormat = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
-        
-        let isViable = numberPredicate.evaluate(with: passwordOriginal)
-        let isPasswordEmpty = passwordOriginal.isEmpty
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .password, isFieldEmpty: isPasswordEmpty))
-        
-        return isViable
-    }
-    
-    private func validatePhoneNumberUsingRegex() -> Bool {
-        guard let phonePrefix = phonePrefix, let phoneNumber = phoneNumber else { return false }
-        
-        let numberFormat = "^\\+[1-9][0-9]{5,20}$"
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
-        
-        let isViable = numberPredicate.evaluate(with: phonePrefix + phoneNumber)
-        let isPhoneNumberEmpty = phonePrefix.isEmpty || phoneNumber.isEmpty
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .phoneNumber, isFieldEmpty: isPhoneNumberEmpty))
-        
-        return isViable
-    }
-    
-    private func validateEmailUsingRegex() -> Bool {
-        guard let email = email else { return false }
-        
-        let emailFormat = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        
-        let isViable = emailPredicate.evaluate(with: email)
-        let isEmailEmpty = email.isEmpty
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: isEmailEmpty))
-        
         return isViable
     }
 }

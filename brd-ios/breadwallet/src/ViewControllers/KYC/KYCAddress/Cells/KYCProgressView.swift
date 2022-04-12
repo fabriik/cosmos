@@ -9,23 +9,22 @@ class KYCProgressView: BaseView, GenericSettable {
     
     struct ViewModel: Hashable {
         let text: String
-        let progress: Progress
+        let stepCount: Int
+        let currentStep: Int
     }
     
-    enum Progress: Int, CaseIterable {
+    enum PersonalInformationProgress: Int, CaseIterable {
         case address
         case personalInfo
         case idFront
         case idBack
         case idSelfie
         case complete
-        
-        var value: Float {
-            let percent: Float = Float(100 / Progress.allCases.count) + 1
-            let realValue: Float = Float(rawValue + 1) * percent
-            
-            return realValue / 100
-        }
+    }
+    
+    enum ForgotPasswordProgress: Int, CaseIterable {
+        case email
+        case newPassword
     }
     
     private lazy var titleLabel: UILabel = {
@@ -63,8 +62,15 @@ class KYCProgressView: BaseView, GenericSettable {
         progressView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -28).isActive = true
     }
     
+    private func value(stepCount: Int, currentStep: Int) -> Float {
+        let percent: Float = Float(100 / stepCount) + 1
+        let realValue: Float = Float(currentStep + 1) * percent
+        
+        return realValue / 100
+    }
+    
     func setup(with model: Model) {
         titleLabel.text = model.text
-        progressView.progress = model.progress.value
+        progressView.progress = value(stepCount: model.stepCount, currentStep: model.currentStep)
     }
 }

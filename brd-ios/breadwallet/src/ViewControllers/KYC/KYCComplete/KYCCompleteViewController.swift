@@ -48,6 +48,7 @@ class KYCCompleteViewController: KYCViewController, KYCCompleteDisplayLogic, UIT
     }
     
     // MARK: - Properties
+    
     enum Section {
         case progress
         case textAndImage
@@ -103,7 +104,9 @@ class KYCCompleteViewController: KYCViewController, KYCCompleteDisplayLogic, UIT
         }
         
         cell.setup { view in
-            view.setup(with: .init(text: "KYC COMPLETE!", progress: .complete))
+            view.setup(with: .init(text: "KYC COMPLETE!",
+                                   stepCount: KYCProgressView.PersonalInformationProgress.allCases.count,
+                                   currentStep: KYCProgressView.PersonalInformationProgress.complete.rawValue))
         }
         
         return cell

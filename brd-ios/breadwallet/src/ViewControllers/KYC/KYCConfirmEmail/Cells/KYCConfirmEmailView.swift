@@ -28,8 +28,8 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         descriptionLabel.textAlignment = .center
         descriptionLabel.textColor = .kycGray1
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 19)
-        descriptionLabel.text = "We’ve sent a SMS with a confirmation code to your mobile phone. Please enter the 6-digit code below."
+        descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 20)
+        descriptionLabel.text = "We’ve sent a confirmation code to your email. Click on it on this device to confirm your email address. \n\nYou can also copy and paste the code here:"
         
         return descriptionLabel
     }()
@@ -77,12 +77,12 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
+        let defaultDistance: CGFloat = 12
+        
         addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 36).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: defaultDistance * 3).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        
-        let defaultDistance: CGFloat = 12
         
         addSubview(descriptionLabel)
         descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 22).isActive = true
@@ -90,7 +90,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
         
         addSubview(confirmationCodeField)
-        confirmationCodeField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 30).isActive = true
+        confirmationCodeField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: defaultDistance * 3).isActive = true
         confirmationCodeField.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor).isActive = true
         confirmationCodeField.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor).isActive = true
         confirmationCodeField.heightAnchor.constraint(equalToConstant: 82).isActive = true

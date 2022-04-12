@@ -47,6 +47,25 @@ class KYCSignInView: BaseView, GenericSettable {
         return submitButton
     }()
     
+    private lazy var forgotPasswordButton: UIButton = {
+        let forgotPasswordButton = UIButton()
+        forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordAction), for: .touchUpInside)
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(name: "AvenirNext-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12),
+            .foregroundColor: UIColor.kycGray2,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeString = NSMutableAttributedString(
+            string: "Forgot Password?",
+            attributes: attributes
+        )
+        forgotPasswordButton.setAttributedTitle(attributeString, for: .normal)
+        
+        return forgotPasswordButton
+    }()
+        
     private lazy var accountNoticeLabel: UILabel = {
         let accountNoticeLabel = UILabel()
         accountNoticeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -89,21 +108,22 @@ class KYCSignInView: BaseView, GenericSettable {
     
     var didChangeEmailField: ((String?) -> Void)?
     var didChangePasswordField: ((String?) -> Void)?
+    var didTapForgotPasswordButton: (() -> Void)?
     var didTapNextButton: (() -> Void)?
     var didTapSignUpButton: (() -> Void)?
     
     override func setupSubviews() {
         super.setupSubviews()
         
+        let defaultDistance: CGFloat = 12
+        
         addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 36).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: defaultDistance * 3).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         
-        let defaultDistance: CGFloat = 8
-        
         addSubview(emailField)
-        emailField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
+        emailField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: defaultDistance * 3).isActive = true
         emailField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
         emailField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
         emailField.heightAnchor.constraint(equalToConstant: 82).isActive = true
@@ -113,6 +133,11 @@ class KYCSignInView: BaseView, GenericSettable {
         passwordField.leadingAnchor.constraint(equalTo: emailField.leadingAnchor).isActive = true
         passwordField.trailingAnchor.constraint(equalTo: emailField.trailingAnchor).isActive = true
         passwordField.heightAnchor.constraint(equalTo: emailField.heightAnchor).isActive = true
+        
+        addSubview(forgotPasswordButton)
+        forgotPasswordButton.topAnchor.constraint(equalTo: passwordField.topAnchor).isActive = true
+        forgotPasswordButton.trailingAnchor.constraint(equalTo: passwordField.trailingAnchor).isActive = true
+        forgotPasswordButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         addSubview(submitButton)
         submitButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: defaultDistance * 2).isActive = true
@@ -144,6 +169,10 @@ class KYCSignInView: BaseView, GenericSettable {
     
     @objc private func signUpAction() {
         didTapSignUpButton?()
+    }
+    
+    @objc private func forgotPasswordAction() {
+        didTapForgotPasswordButton?()
     }
     
     func setup(with model: Model) {

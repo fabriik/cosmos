@@ -22,7 +22,6 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     private lazy var showHidePasswordButton: UIButton = {
         let showHidePasswordButton = UIButton()
         showHidePasswordButton.translatesAutoresizingMaskIntoConstraints = false
-        showHidePasswordButton.isUserInteractionEnabled = true
         showHidePasswordButton.setImage(UIImage(named: "KYC ShowPassword"), for: .normal)
         showHidePasswordButton.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
         showHidePasswordButton.isHidden = true

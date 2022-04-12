@@ -73,41 +73,20 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
         var validationValues = [Bool]()
         validationValues.append(!email.isNilOrEmpty)
         validationValues.append(!password.isNilOrEmpty)
-        validationValues.append(validatePasswordUsingRegex())
-        validationValues.append(validateEmailUsingRegex())
+        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
+            guard let password = self?.password else { return }
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .password, isFieldEmpty: password.isEmpty))
+        }))
+        validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
+            guard let email = self?.email else { return }
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: email.isEmpty))
+        }))
         validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
-    }
-    
-    private func validatePasswordUsingRegex() -> Bool {
-        guard let password = password else { return false }
-        
-        // check if the password has eight characters
-        let numberFormat = "^.{8,}$"
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberFormat)
-        
-        let isViable = numberPredicate.evaluate(with: password)
-        let isPasswordEmpty = password.isEmpty
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .password, isFieldEmpty: isPasswordEmpty))
-        
-        return isViable
-    }
-    
-    private func validateEmailUsingRegex() -> Bool {
-        guard let email = email else { return false }
-        
-        let emailFormat = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        
-        let isViable = emailPredicate.evaluate(with: email)
-        let isEmailEmpty = email.isEmpty
-        
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: isEmailEmpty))
-        
-        return isViable
     }
 }
