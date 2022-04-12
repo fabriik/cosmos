@@ -37,12 +37,12 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let menuButtonIndex = 2
     
     private var buyButton: UIButton? {
-        guard toolbarButtons.count == 3 else { return nil }
+//        guard toolbarButtons.count == 3 else { return nil }
         return toolbarButtons[buyButtonIndex]
     }
     
     private var tradeButton: UIButton? {
-        guard toolbarButtons.count == 3 else { return nil }
+//        guard toolbarButtons.count == 3 else { return nil }
         return toolbarButtons[tradeButtonIndex]
     }
     
@@ -241,7 +241,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
                 
         let paddingWidth = C.padding[2]
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
+        toolbarButtons = []
         toolbar.items = [
             flexibleSpace,
             buttons[0],
