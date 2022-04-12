@@ -135,7 +135,7 @@ class KYCSignInView: BaseView, GenericSettable {
         passwordField.heightAnchor.constraint(equalTo: emailField.heightAnchor).isActive = true
         
         addSubview(forgotPasswordButton)
-        forgotPasswordButton.topAnchor.constraint(equalTo: passwordField.topAnchor).isActive = true
+        forgotPasswordButton.topAnchor.constraint(equalTo: passwordField.topAnchor, constant: -2).isActive = true
         forgotPasswordButton.trailingAnchor.constraint(equalTo: passwordField.trailingAnchor).isActive = true
         forgotPasswordButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         

@@ -27,7 +27,9 @@ class KYCForgotPasswordPresenter: KYCForgotPasswordPresentationLogic {
     }
     
     func presentValidateField(response: KYCForgotPassword.ValidateField.Response) {
-        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable, type: response.type))
+        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable,
+                                                              type: response.type,
+                                                              isFieldEmpty: response.isFieldEmpty))
     }
     
     func presentError(response: GenericModels.Error.Response) {
