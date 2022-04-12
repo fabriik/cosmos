@@ -44,6 +44,7 @@ class ModalPresenter: Subscriber, Trackable {
     private var currentRequest: PaymentRequest?
     private let wipeNavigationDelegate: StartNavigationDelegate
     private var menuNavController: UINavigationController?
+    private var feedbackManager: EmailFeedbackManager?
     private let system: CoreSystem
     
     private func addSubscriptions() {
@@ -620,6 +621,21 @@ class ModalPresenter: Subscriber, Trackable {
 //            MenuItem(title: S.MenuButton.registrationAndKyc, icon: MenuItem.Icon.registrationAndKyc) { [weak self] in
 //                self?.presentRegistrationAndKYC()
 //            },
+            
+            // Feedback
+            MenuItem(title: S.MenuButton.feedback, icon: MenuItem.Icon.feedback) { [weak self] in
+                let feedback = EmailFeedbackManager.Feedback(recipients: "feedback@fabriik.com", subject: "Fabriik - Feedback", body: "")
+                if let feedbackManager = EmailFeedbackManager(feedback: feedback) {
+                    self?.feedbackManager = feedbackManager
+                    
+                    guard let topVc = self?.topViewController,
+                          let feedbackManager = self?.feedbackManager else { return }
+                    
+                    self?.feedbackManager?.send(on: topVc) { _ in
+                        self?.feedbackManager = nil
+                    }
+                } else {}
+            },
             
             // Manage Wallets
             MenuItem(title: S.MenuButton.manageWallets, icon: MenuItem.Icon.wallet) { [weak self] in

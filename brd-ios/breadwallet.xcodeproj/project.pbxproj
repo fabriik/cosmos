@@ -282,6 +282,7 @@
 		7BA83DA7280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */; };
 		7BA83DAA28045F94003F73AA /* KYCResetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */; };
 		7BA83DAC28047894003F73AA /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DAB28047894003F73AA /* Validators.swift */; };
+		7BDB49B62805AC780031F015 /* EmailFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */; };
 		7C0A3ACE210A0E1D006C2783 /* NotificationAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */; };
 		7C0F3DC42124A81100531E54 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F3DC32124A81100531E54 /* Backend.swift */; };
 		7C1931CD2327371A0061DE20 /* CoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1931CC2327371A0061DE20 /* CoreDatabase.swift */; };
@@ -1139,6 +1140,7 @@
 		7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessInteractor.swift; sourceTree = "<group>"; };
 		7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetSuccessView.swift; sourceTree = "<group>"; };
 		7BA83DAB28047894003F73AA /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFeedbackManager.swift; sourceTree = "<group>"; };
 		7C0A3ACD210A0E1D006C2783 /* NotificationAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationAuthorizer.swift; path = src/NotificationAuthorizer.swift; sourceTree = "<group>"; };
 		7C0F3DC32124A81100531E54 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Backend.swift; path = src/Backend.swift; sourceTree = "<group>"; };
 		7C1931CC2327371A0061DE20 /* CoreDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDatabase.swift; sourceTree = "<group>"; };
@@ -2475,6 +2477,7 @@
 				7B54E57127F4A2B0002DD1E4 /* AlertHelper.swift */,
 				7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */,
 				7B54E57427F4A2B0002DD1E4 /* DatePickerViewController.swift */,
+				7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */,
 				7B54E58827F4A2B0002DD1E4 /* KYCCameraView.swift */,
 				7B54E57227F4A2B0002DD1E4 /* KYCConstants.swift */,
 				7B54E58627F4A2B0002DD1E4 /* KYCNavigationController.swift */,
@@ -4245,6 +4248,7 @@
 				E821D4CC21C16B2E00B0907B /* BRAnalyticsEvent.swift in Sources */,
 				CEEC707F1E8D6B4100EF788E /* MenuViewController.swift in Sources */,
 				CEEE92F11EBA7CBA00B7AC9C /* RequestAmountViewController.swift in Sources */,
+				7BDB49B62805AC780031F015 /* EmailFeedbackManager.swift in Sources */,
 				CE8CD8DF1E2E825100785E02 /* VerifyPinViewController.swift in Sources */,
 				71A3170D229C70C00088F97C /* Theme.swift in Sources */,
 				7CA238142011A97C00A4A59D /* TxDetailViewController.swift in Sources */,
