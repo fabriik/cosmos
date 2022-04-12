@@ -102,7 +102,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         confirmButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         addSubview(resendCodeButton)
-        resendCodeButton.topAnchor.constraint(equalTo: confirmButton.bottomAnchor, constant: 20).isActive = true
+        resendCodeButton.topAnchor.constraint(equalTo: confirmButton.bottomAnchor, constant: defaultDistance * 2).isActive = true
         resendCodeButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         resendCodeButton.leadingAnchor.constraint(equalTo: confirmationCodeField.leadingAnchor).isActive = true
         resendCodeButton.trailingAnchor.constraint(equalTo: confirmationCodeField.trailingAnchor).isActive = true

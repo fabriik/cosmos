@@ -179,12 +179,11 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     func setEmptyErrorMessage(isFieldEmpty: Bool) {
         errorLabel.isHidden = !isFieldEmpty
         if isFieldEmpty {
-            textField.layer.borderColor = UIColor.red.cgColor
+            textField.layer.borderColor = UIColor.kycRed.cgColor
         }
     }
     
     @objc func togglePasswordView(_ sender: Any) {
-        showHidePasswordButton.isSelected.toggle()
         textField.isSecureTextEntry = !textField.isSecureTextEntry
         textField.setPasswordToggleImage(showHidePasswordButton)
     }

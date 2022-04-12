@@ -99,6 +99,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         super.setupSubviews()
         
         backgroundColor = Theme.primaryBackground
+        
         let defaultDistance: CGFloat = 12
         
         addSubview(countryField)

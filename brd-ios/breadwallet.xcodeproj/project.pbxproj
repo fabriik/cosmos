@@ -591,7 +591,6 @@
 		C469BF1A27F6E6920070ED33 /* SwapConfirmTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */; };
 		C469BF1B27F6E6920070ED33 /* SwapConfirmTradeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1527F6E6920070ED33 /* SwapConfirmTradeInteractor.swift */; };
 		C469BF1F27F6E6B10070ED33 /* SwapConfirmTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */; };
-		C4B300B228046CE400015A16 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B300B128046CE400015A16 /* UITextField+Extensions.swift */; };
 		CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */; };
 		CE0822661FCE059A00EF371D /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0822651FCE059A00EF371D /* HomeScreenCell.swift */; };
 		CE0BC980215ACBE100E68B2B /* TokenImageNoBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0BC97F215ACBE100E68B2B /* TokenImageNoBackground.swift */; };
@@ -1420,7 +1419,6 @@
 		C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeViewController.swift; sourceTree = "<group>"; };
 		C469BF1527F6E6920070ED33 /* SwapConfirmTradeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeInteractor.swift; sourceTree = "<group>"; };
 		C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeView.swift; sourceTree = "<group>"; };
-		C4B300B128046CE400015A16 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenViewController.swift; path = src/ViewControllers/HomeScreenViewController.swift; sourceTree = "<group>"; };
 		CE0822651FCE059A00EF371D /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCell.swift; path = src/Views/HomeScreenCell.swift; sourceTree = "<group>"; };
 		CE0BC97F215ACBE100E68B2B /* TokenImageNoBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TokenImageNoBackground.swift; path = src/Views/TokenImageNoBackground.swift; sourceTree = "<group>"; };
@@ -2492,7 +2490,6 @@
 				7BA83DAB28047894003F73AA /* Validators.swift */,
 				7B54E58A27F4A2B0002DD1E4 /* UITableView+Extensions.swift */,
 				7B54E57027F4A2B0002DD1E4 /* UIView+Extensions.swift */,
-				C4B300B128046CE400015A16 /* UITextField+Extensions.swift */,
 			);
 			name = Helpers;
 			path = src/Helpers;
@@ -4398,7 +4395,6 @@
 				71249916221F466800BEA491 /* Prompt.swift in Sources */,
 				CE6B6B4A1E54C0CB00B31405 /* SecurityCenterCell.swift in Sources */,
 				7B54E54127F4A208002DD1E4 /* KYCCompletePresenter.swift in Sources */,
-				C4B300B228046CE400015A16 /* UITextField+Extensions.swift in Sources */,
 				3A1D416E250957A00089FE63 /* MarketDataView.swift in Sources */,
 				3A858B2C250A7A9300812B36 /* TxStatusIcon.swift in Sources */,
 				CE36454C1E7B42850079D0CF /* WhiteDecimalPad.swift in Sources */,

@@ -252,7 +252,8 @@ class KYCSignUpView: BaseView, GenericSettable {
             phoneNumberField.setCheckMark(isVisible: isViable)
             phoneNumberField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             
-        case .tickBox: break
+        case .tickBox:
+            break
         }
     }
     
