@@ -31,14 +31,9 @@ class PinView: UIView {
     init(style: PinViewStyle, length: Int) {
         self.style = style
         self.length = length
-        switch style {
-        case .create, .login:
-            filled = (0...(length-1)).map { _ in Circle(color: Theme.blueBackground, style: .filled) }
-            unFilled = (0...(length-1)).map { _ in Circle(color: Theme.blueBackground, style: .unfilled) }
-        case .verify:
-            filled = (0...(length-1)).map { _ in Circle(color: .black, style: .filled) }
-            unFilled = (0...(length-1)).map { _ in Circle(color: .borderGray, style: .filled) }
-        }
+        
+        filled = (0...(length-1)).map { _ in Circle(color: Theme.blueBackground, style: .filled) }
+        unFilled = (0...(length-1)).map { _ in Circle(color: Theme.blueBackground, style: .unfilled) }
 
         super.init(frame: CGRect())
         setupSubviews()

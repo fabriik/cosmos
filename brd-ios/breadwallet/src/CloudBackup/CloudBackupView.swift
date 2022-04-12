@@ -226,7 +226,7 @@ struct CloudBackupIcon: View {
     }
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [Color(UIColor.gradientStart), Color(UIColor.gradientEnd)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(gradient: Gradient(colors: [Color(Theme.blueBackground), Color(Theme.transparentBlue)]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .mask(Image(systemName: style.rawValue)
                 .resizable()
                 .scaledToFit()
