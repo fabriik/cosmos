@@ -616,9 +616,10 @@ class ModalPresenter: Subscriber, Trackable {
             },
             
             // Registration and KYC
-            MenuItem(title: S.MenuButton.registrationAndKyc, icon: MenuItem.Icon.registrationAndKyc) { [weak self] in
-                self?.presentRegistrationAndKYC()
-            },
+            // TODO: Add back when ready.
+//            MenuItem(title: S.MenuButton.registrationAndKyc, icon: MenuItem.Icon.registrationAndKyc) { [weak self] in
+//                self?.presentRegistrationAndKYC()
+//            },
             
             // Manage Wallets
             MenuItem(title: S.MenuButton.manageWallets, icon: MenuItem.Icon.wallet) { [weak self] in
