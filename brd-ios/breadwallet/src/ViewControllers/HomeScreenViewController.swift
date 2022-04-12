@@ -37,12 +37,12 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let menuButtonIndex = 2
     
     private var buyButton: UIButton? {
-//        guard toolbarButtons.count == 3 else { return nil }
+        guard toolbarButtons.count == 3 else { return nil }
         return toolbarButtons[buyButtonIndex]
     }
     
     private var tradeButton: UIButton? {
-//        guard toolbarButtons.count == 3 else { return nil }
+        guard toolbarButtons.count == 3 else { return nil }
         return toolbarButtons[tradeButtonIndex]
     }
     
