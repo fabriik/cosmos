@@ -6,7 +6,7 @@ import Foundation
 
 struct Validator {
     static func validatePassword(value: String, completion: ((Bool) -> Void)? = nil) -> Bool {
-        let format = "^.{8,}$"
+        let format = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
         let numberPredicate = NSPredicate(format: "SELF MATCHES %@", format)
         
         let isViable = numberPredicate.evaluate(with: value)
