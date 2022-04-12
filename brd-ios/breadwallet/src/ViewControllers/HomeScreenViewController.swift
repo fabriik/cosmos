@@ -241,7 +241,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
                 
         let paddingWidth = C.padding[2]
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
+        toolbarButtons = []
         toolbar.items = [
             flexibleSpace,
             buttons[0],
@@ -351,6 +351,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     // MARK: Actions
     
     @objc private func buy() {
+        // TODO: move worker out of VC
+        buyButton?.isEnabled = false
         saveEvent("currency.didTapBuyBitcoin", attributes: [ "buyAndSell": shouldShowBuyAndSell ? "true" : "false" ])
         
         ExternalAPIClient.shared.send(WyreReservationRequest()) { [weak self] response in
@@ -365,7 +367,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-            
+            self?.buyButton?.isEnabled = true
         }
         
     }
