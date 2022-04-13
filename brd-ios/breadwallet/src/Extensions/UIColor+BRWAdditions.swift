@@ -47,7 +47,7 @@ extension UIColor {
     }
     
     static var kycRed: UIColor {
-        return UIColor.red
+        return UIColor.fromHex("#FF5C4A")
     }
     
     static var swapButtonEnabledColor: UIColor {

@@ -56,8 +56,8 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     private lazy var errorLabel: UILabel = {
         var errorLabel = UILabel()
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        errorLabel.textColor = .red
-        errorLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        errorLabel.textColor = .kycRed
+        errorLabel.font = UIFont(name: "AvenirNext-Regular", size: 11)
         errorLabel.text = "Cannot be empty"
         errorLabel.textAlignment = .left
         errorLabel.numberOfLines = 1
@@ -114,7 +114,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         case .password:
             textField.isSecureTextEntry = true
             showHidePasswordButton.isHidden = false
-            
+            textField.padding = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 48)
         }
         
         setupElements()
@@ -184,6 +184,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     }
     
     @objc func togglePasswordView(_ sender: Any) {
+        showHidePasswordButton.isSelected.toggle()
         textField.isSecureTextEntry = !textField.isSecureTextEntry
         textField.setPasswordToggleImage(showHidePasswordButton)
     }
