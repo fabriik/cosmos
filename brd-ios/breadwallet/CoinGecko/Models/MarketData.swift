@@ -15,8 +15,14 @@ struct MarketData: Codable {
     let low24h: Double
     
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
-        guard let customKey = decoder.userInfo[CustomKeyUserInfoKey] as? String else { throw CoinGeckoError.jsonDecoding }
+        guard let marketDataKey = DynamicCodingKeys(stringValue: "market_data"),
+              let customKey = decoder.userInfo[CustomKeyUserInfoKey] as? String
+        else { throw CoinGeckoError.jsonDecoding }
+        
+        let container = try decoder
+            .container(keyedBy: DynamicCodingKeys.self)
+            .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: marketDataKey)
+        
         self.marketCap = try extractDouble(container: container, key1: "market_cap", key2: customKey)
         self.totalVolume = try extractDouble(container: container, key1: "total_volume", key2: customKey)
         self.high24h = try extractDouble(container: container, key1: "high_24h", key2: customKey)
