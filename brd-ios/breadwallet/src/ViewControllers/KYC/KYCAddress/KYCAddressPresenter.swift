@@ -10,6 +10,8 @@ protocol KYCAddressPresentationLogic {
     func presentGetDataForPickerView(response: KYCAddress.GetDataForPickerView.Response)
     func presentSetPickerValue(response: KYCAddress.SetPickerValue.Response)
     func presentSubmitData(response: KYCAddress.SubmitData.Response)
+    func presentShouldEnableSubmit(response: KYCAddress.ShouldEnableSubmit.Response)
+    func presentValidateField(response: KYCAddress.ValidateField.Response)
     func presentError(response: GenericModels.Error.Response)
 }
 
@@ -53,6 +55,15 @@ class KYCAddressPresenter: KYCAddressPresentationLogic {
     
     func presentSubmitData(response: KYCAddress.SubmitData.Response) {
         viewController?.displaySubmitData(viewModel: .init())
+    }
+    
+    func presentShouldEnableSubmit(response: KYCAddress.ShouldEnableSubmit.Response) {
+        viewController?.displayShouldEnableSubmit(viewModel: .init(shouldEnable: response.shouldEnable))
+    }
+    
+    func presentValidateField(response: KYCAddress.ValidateField.Response) {
+        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable,
+                                                              type: response.type, isFieldEmpty: response.isFieldEmpty))
     }
     
     func presentError(response: GenericModels.Error.Response) {

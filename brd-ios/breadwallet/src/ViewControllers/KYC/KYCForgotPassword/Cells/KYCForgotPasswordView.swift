@@ -83,7 +83,7 @@ class KYCForgotPasswordView: BaseView, GenericSettable {
     }
     
     func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool) {
-        emailField.setCheckMark(isVisible: isViable)
         emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+        emailField.setCheckMark(isVisible: isViable)
     }
 }

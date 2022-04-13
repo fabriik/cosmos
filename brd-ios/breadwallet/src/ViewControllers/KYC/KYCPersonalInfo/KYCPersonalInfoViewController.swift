@@ -10,6 +10,8 @@ protocol KYCPersonalInfoDisplayLogic: AnyObject {
     func displaySetDateAndTaxID(viewModel: KYCPersonalInfo.SetDateAndTaxID.ViewModel)
     func displayGetDataForPickerView(viewModel: KYCPersonalInfo.GetDataForPickerView.ViewModel)
     func displaySetPickerValue(viewModel: KYCPersonalInfo.SetPickerValue.ViewModel)
+    func displayShouldEnableSubmit(viewModel: KYCPersonalInfo.ShouldEnableSubmit.ViewModel)
+    func displayValidateField(viewModel: KYCPersonalInfo.ValidateField.ViewModel)
 }
 
 class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLogic, UITableViewDelegate, UITableViewDataSource {
@@ -170,5 +172,26 @@ class KYCPersonalInfoViewController: KYCViewController, KYCPersonalInfoDisplayLo
         }
         
         return cell
+    }
+    
+    func displayShouldEnableSubmit(viewModel: KYCPersonalInfo.ShouldEnableSubmit.ViewModel) {
+        guard let index = sections.firstIndex(of: .fields) else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCPersonalInfoView> else { return }
+        
+        cell.setup { view in
+            let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
+            view.changeButtonStyle(with: style)
+        }
+    }
+    
+    func displayValidateField(viewModel: KYCPersonalInfo.ValidateField.ViewModel) {
+        guard let index = sections.firstIndex(of: .fields) else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCPersonalInfoView> else { return }
+        
+        cell.setup { view in
+            view.changeFieldStyle(isViable: viewModel.isViable,
+                                  for: viewModel.type,
+                                  isFieldEmpty: viewModel.isFieldEmpty)
+        }
     }
 }

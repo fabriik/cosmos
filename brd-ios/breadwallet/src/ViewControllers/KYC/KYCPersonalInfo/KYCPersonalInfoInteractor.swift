@@ -90,6 +90,32 @@ class KYCPersonalInfoInteractor: KYCPersonalInfoBusinessLogic, KYCPersonalInfoDa
     }
     
     private func checkCredentials() {
-        // TODO: - Implement.....
+        var validationValues = [Bool]()
+        validationValues.append(!date.isNilOrEmpty)
+        validationValues.append(!taxIdNumber.isNilOrEmpty)
+        validationValues.append(validateDate())
+        validationValues.append(validateTaxIdNumber())
+        
+        let shouldEnable = !validationValues.contains(false)
+        
+        presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
+    }
+    
+    private func validateDate() -> Bool {
+        guard let date = date else { return false }
+        
+        let isViable = !date.isEmpty
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .date, isFieldEmpty: !isViable))
+        
+        return isViable
+    }
+    
+    private func validateTaxIdNumber() -> Bool {
+        guard let taxIdNumber = taxIdNumber else { return false }
+        
+        let isViable = !taxIdNumber.isEmpty
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .taxIdNumber, isFieldEmpty: !isViable))
+        
+        return isViable
     }
 }

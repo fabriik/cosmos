@@ -192,12 +192,12 @@ class KYCSignInView: BaseView, GenericSettable {
     func changeFieldStyle(isViable: Bool, for fieldType: KYCSignIn.FieldType, isFieldEmpty: Bool) {
         switch fieldType {
         case .email:
-            emailField.setCheckMark(isVisible: isViable)
             emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            emailField.setCheckMark(isVisible: isViable)
             
         case .password:
-            passwordField.setCheckMark(isVisible: isViable)
             passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            passwordField.setCheckMark(isVisible: isViable)
             
         }
     }

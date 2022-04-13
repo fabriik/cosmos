@@ -63,4 +63,27 @@ enum KYCAddress {
         struct Response {}
         struct ViewModel {}
     }
+    
+    enum ShouldEnableSubmit {
+        struct Response {
+            let shouldEnable: Bool
+        }
+        struct ViewModel {
+            let shouldEnable: Bool
+        }
+    }
+    
+    enum ValidateField {
+        struct Response {
+            let isViable: Bool
+            let type: KYCAddress.FieldType
+            let isFieldEmpty: Bool
+        }
+        
+        struct ViewModel {
+            let isViable: Bool
+            let type: KYCAddress.FieldType
+            let isFieldEmpty: Bool
+        }
+    }
 }

@@ -33,7 +33,7 @@ class KYCPersonalInfoView: BaseView, GenericSettable {
     private lazy var nextButton: SimpleButton = {
         let nextButton = SimpleButton()
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.setup(as: .kycEnabled, title: "NEXT")
+        nextButton.setup(as: .kycDisabled, title: "NEXT")
         
         return nextButton
     }()
@@ -63,7 +63,7 @@ class KYCPersonalInfoView: BaseView, GenericSettable {
         dateOfBirthField.topAnchor.constraint(equalTo: topAnchor).isActive = true
         dateOfBirthField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
         dateOfBirthField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
-        dateOfBirthField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        dateOfBirthField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(taxIdNumberField)
         taxIdNumberField.topAnchor.constraint(equalTo: dateOfBirthField.bottomAnchor, constant: defaultDistance).isActive = true
@@ -133,5 +133,19 @@ class KYCPersonalInfoView: BaseView, GenericSettable {
         if let taxIdNumber = model.taxIdNumber {
             taxIdNumberField.textField.text = taxIdNumber
         }
+    }
+    
+    func changeFieldStyle(isViable: Bool, for fieldType: KYCPersonalInfo.FieldType, isFieldEmpty: Bool) {
+        switch fieldType {
+        case .date:
+            dateOfBirthField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .taxIdNumber:
+            taxIdNumberField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+        }
+    }
+    
+    func changeButtonStyle(with style: SimpleButton.ButtonStyle) {
+        nextButton.changeStyle(with: style)
     }
 }

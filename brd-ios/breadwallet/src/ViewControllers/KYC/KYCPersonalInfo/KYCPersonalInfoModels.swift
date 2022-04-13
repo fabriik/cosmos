@@ -60,4 +60,27 @@ enum KYCPersonalInfo {
             let type: KYCPersonalInfo.FieldType
         }
     }
+    
+    enum ShouldEnableSubmit {
+        struct Response {
+            let shouldEnable: Bool
+        }
+        struct ViewModel {
+            let shouldEnable: Bool
+        }
+    }
+    
+    enum ValidateField {
+        struct Response {
+            let isViable: Bool
+            let type: KYCPersonalInfo.FieldType
+            let isFieldEmpty: Bool
+        }
+        
+        struct ViewModel {
+            let isViable: Bool
+            let type: KYCPersonalInfo.FieldType
+            let isFieldEmpty: Bool
+        }
+    }
 }

@@ -147,6 +147,45 @@ class KYCAddressInteractor: KYCAddressBusinessLogic, KYCAddressDataStore {
     }
     
     private func checkCredentials() {
-        // TODO: - Implement.....
+        var validationValues = [Bool]()
+        validationValues.append(!country.isNilOrEmpty)
+        validationValues.append(!state.isNilOrEmpty)
+        validationValues.append(!city.isNilOrEmpty)
+        validationValues.append(!zipCode.isNilOrEmpty)
+        validationValues.append(!address.isNilOrEmpty)
+        validationValues.append(validateCity())
+        validationValues.append(validateZipCode())
+        validationValues.append(validateAddress())
+        
+        let shouldEnable = !validationValues.contains(false)
+        
+        presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
+    }
+    
+    private func validateCity() -> Bool {
+        guard let city = city else { return false }
+        
+        let isViable = !city.isEmpty
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .city, isFieldEmpty: !isViable))
+        
+        return isViable
+    }
+    
+    private func validateZipCode() -> Bool {
+        guard let zipCode = zipCode else { return false }
+        
+        let isViable = !zipCode.isEmpty
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .zipCode, isFieldEmpty: !isViable))
+        
+        return isViable
+    }
+    
+    private func validateAddress() -> Bool {
+        guard let address = address else { return false }
+        
+        let isViable = !address.isEmpty
+        presenter?.presentValidateField(response: .init(isViable: isViable, type: .address, isFieldEmpty: !isViable))
+        
+        return isViable
     }
 }

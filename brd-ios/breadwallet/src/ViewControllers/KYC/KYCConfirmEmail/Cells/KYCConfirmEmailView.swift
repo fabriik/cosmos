@@ -130,7 +130,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
     }
     
     func changeFieldStyle(isViable: Bool) {
-        confirmationCodeField.setCheckMark(isVisible: isViable)
         confirmationCodeField.setEmptyErrorMessage(isFieldEmpty: !isViable)
+        confirmationCodeField.setCheckMark(isVisible: isViable)
     }
 }

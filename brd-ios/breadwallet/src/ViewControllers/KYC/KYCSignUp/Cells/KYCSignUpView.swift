@@ -107,6 +107,8 @@ class KYCSignUpView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
+        backgroundColor = .kycCompletelyWhite
+        
         let defaultDistance: CGFloat = 12
         
         addSubview(titleLabel)
@@ -229,27 +231,23 @@ class KYCSignUpView: BaseView, GenericSettable {
     func changeFieldStyle(isViable: Bool, for fieldType: KYCSignUp.FieldType, isFieldEmpty: Bool) {
         switch fieldType {
         case .email:
-            emailField.setCheckMark(isVisible: isViable)
             emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            emailField.setCheckMark(isVisible: isViable)
             
         case .password:
-            passwordField.setCheckMark(isVisible: isViable)
             passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            passwordField.setCheckMark(isVisible: isViable)
             
         case .firstName:
-            firstNameField.setCheckMark(isVisible: isViable)
             firstNameField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             
         case .lastName:
-            lastNameField.setCheckMark(isVisible: isViable)
             lastNameField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             
         case .phonePrefix:
-            phonePrefixField.setCheckMark(isVisible: isViable)
             phonePrefixField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             
         case .phoneNumber:
-            phoneNumberField.setCheckMark(isVisible: isViable)
             phoneNumberField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             
         case .tickBox:

@@ -70,7 +70,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
     private lazy var nextButton: SimpleButton = {
         let nextButton = SimpleButton()
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.setup(as: .kycEnabled, title: "NEXT")
+        nextButton.setup(as: .kycDisabled, title: "NEXT")
         
         return nextButton
     }()
@@ -98,7 +98,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
-        backgroundColor = Theme.primaryBackground
+        backgroundColor = .kycCompletelyWhite
         
         let defaultDistance: CGFloat = 12
         
@@ -106,7 +106,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         countryField.topAnchor.constraint(equalTo: topAnchor).isActive = true
         countryField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
         countryField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
-        countryField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        countryField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(stateField)
         stateField.topAnchor.constraint(equalTo: countryField.bottomAnchor, constant: defaultDistance).isActive = true
@@ -228,5 +228,31 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         if let state = model.state {
             stateField.textField.text = state
         }
+    }
+    
+    func changeFieldStyle(isViable: Bool, for fieldType: KYCAddress.FieldType, isFieldEmpty: Bool) {
+        switch fieldType {
+        case .country:
+            countryField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .zipCode:
+            zipCodeField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .address:
+            addressField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .apartment:
+            apartmentField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .city:
+            cityField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .state:
+            stateField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+        }
+    }
+    
+    func changeButtonStyle(with style: SimpleButton.ButtonStyle) {
+        nextButton.changeStyle(with: style)
     }
 }
