@@ -189,6 +189,7 @@ class ApplicationController: Subscriber, Trackable {
                                                              system: weakSelf.coreSystem,
                                                              window: weakSelf.window,
                                                              alertPresenter: weakSelf.alertPresenter)
+                    weakSelf.initializeAssets()
                     weakSelf.coreSystem.connect()
                 }
             }
@@ -205,6 +206,19 @@ class ApplicationController: Subscriber, Trackable {
             _ = self.urlController?.handleUrl(url)
             self.launchURL = nil
         }
+    }
+    
+    /// background init of assets / animations
+    private func initializeAssets() {
+        DispatchQueue.global(qos: .background).async {
+            _ = Rate.symbolMap //Initialize currency symbol map
+        }
+        
+        updateAssetBundles()
+        
+        // Set up the animation frames early during the startup process so that they're
+        // ready to roll by the time the home screen is displayed.
+        RewardsIconView.prepareAnimationFrames()
     }
     
     private func handleLaunchOptions(_ options: [UIApplication.LaunchOptionsKey: Any]?) {
@@ -233,6 +247,7 @@ class ApplicationController: Subscriber, Trackable {
             Store.perform(action: RequireLogin())
         }
         resume()
+        updateAssetBundles()
         coreSystem.updateFees()
     }
 
@@ -325,6 +340,16 @@ class ApplicationController: Subscriber, Trackable {
         Backend.apiClient.updateExperiments()
         Backend.updateExchangeRates()
         Backend.apiClient.fetchAnnouncements()
+    }
+    
+    private func updateAssetBundles() {
+        DispatchQueue.global(qos: .utility).async { [unowned self] in
+            Backend.apiClient.updateBundles { errors in
+                for (n, e) in errors {
+                    print("Bundle \(n) ran update. err: \(String(describing: e))")
+                }
+            }
+        }
     }
     
     // MARK: - UI

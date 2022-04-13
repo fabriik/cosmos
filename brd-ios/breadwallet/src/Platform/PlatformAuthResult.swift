@@ -1,5 +1,5 @@
 //
-//  BRWalletPlugin.swift
+//  PlatformAuthResult.swift
 //  BreadWallet
 //
 //  Created by Samuel Sutch on 2/18/16.
