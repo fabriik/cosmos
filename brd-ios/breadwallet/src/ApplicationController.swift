@@ -84,7 +84,7 @@ class ApplicationController: Subscriber, Trackable {
         UNUserNotificationCenter.current().delegate = notificationHandler
         EventMonitor.shared.register(.pushNotifications)
         
-        setup()
+        mainSetup()
         setupKeyboard()
         Reachability.addDidChangeCallback({ isReachable in
             self.isReachable = isReachable
@@ -100,7 +100,7 @@ class ApplicationController: Subscriber, Trackable {
         UserDefaults.appLaunchCount = (UserDefaults.appLaunchCount + 1)
     }
     
-    private func setup() {
+    private func mainSetup() {
         setupDefaults()
         setupAppearance()
         setupRootViewController()
@@ -129,6 +129,12 @@ class ApplicationController: Subscriber, Trackable {
             self.enterOnboarding()
         }
         
+        initializeAssets(completionHandler: { [weak self] in
+            self?.decideFlow()
+        })
+    }
+    
+    func decideFlow() {
         if keyStore.noWallet {
             enterOnboarding()
         } else {
@@ -189,7 +195,6 @@ class ApplicationController: Subscriber, Trackable {
                                                              system: weakSelf.coreSystem,
                                                              window: weakSelf.window,
                                                              alertPresenter: weakSelf.alertPresenter)
-                    weakSelf.initializeAssets()
                     weakSelf.coreSystem.connect()
                 }
             }
@@ -209,12 +214,16 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     /// background init of assets / animations
-    private func initializeAssets() {
-        DispatchQueue.global(qos: .background).async {
-            _ = Rate.symbolMap //Initialize currency symbol map
-        }
+    private func initializeAssets(completionHandler: @escaping () -> Void) {
+        _ = Rate.symbolMap //Initialize currency symbol map
         
-        updateAssetBundles()
+        Backend.apiClient.updateBundles { errors in
+            for (n, e) in errors {
+                print("Bundle \(n) ran update. err: \(String(describing: e))")
+            }
+            
+            completionHandler()
+        }
         
         // Set up the animation frames early during the startup process so that they're
         // ready to roll by the time the home screen is displayed.
@@ -247,7 +256,6 @@ class ApplicationController: Subscriber, Trackable {
             Store.perform(action: RequireLogin())
         }
         resume()
-        updateAssetBundles()
         coreSystem.updateFees()
     }
 
@@ -314,11 +322,6 @@ class ApplicationController: Subscriber, Trackable {
         self.backgroundTaskID = .invalid
     }
     
-    // MARK: Services/Assets
-    
-    func performFetch(_ completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    }
-
     /// Initialize WalletInfo in KV-store. Needed prior to creating the System.
     private func setWalletInfo(account: Account) {
         guard let kvStore = Backend.kvStore, WalletInfo(kvStore: kvStore) == nil else { return }
@@ -340,16 +343,6 @@ class ApplicationController: Subscriber, Trackable {
         Backend.apiClient.updateExperiments()
         Backend.updateExchangeRates()
         Backend.apiClient.fetchAnnouncements()
-    }
-    
-    private func updateAssetBundles() {
-        DispatchQueue.global(qos: .utility).async { [unowned self] in
-            Backend.apiClient.updateBundles { errors in
-                for (n, e) in errors {
-                    print("Bundle \(n) ran update. err: \(String(describing: e))")
-                }
-            }
-        }
     }
     
     // MARK: - UI

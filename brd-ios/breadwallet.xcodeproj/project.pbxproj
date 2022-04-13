@@ -31,7 +31,6 @@
 		22717B062315D3E300F77F4E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22717B052315D3E300F77F4E /* CloudKit.framework */; };
 		22A9A9461DF61945000F0016 /* BRAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A9321DF61945000F0016 /* BRAPIClient.swift */; };
 		22A9A9481DF61945000F0016 /* BRBitID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A9341DF61945000F0016 /* BRBitID.swift */; };
-		22A9A9491DF61945000F0016 /* BRBSPatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A9351DF61945000F0016 /* BRBSPatch.swift */; };
 		22A9A94B1DF61945000F0016 /* BRCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A9371DF61945000F0016 /* BRCoding.swift */; };
 		22A9A9511DF61945000F0016 /* TxMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A93D1DF61945000F0016 /* TxMetaData.swift */; };
 		22A9A9541DF61945000F0016 /* BRReplicatedKVStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A9401DF61945000F0016 /* BRReplicatedKVStore.swift */; };
@@ -41,7 +40,6 @@
 		22A9A9641DF61FE7000F0016 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A9A9631DF61FE7000F0016 /* Security.framework */; };
 		22A9A9661DF61FEE000F0016 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A9A9651DF61FEE000F0016 /* WebKit.framework */; };
 		22A9A9A31DF63497000F0016 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A9A9671DF61FF8000F0016 /* libbz2.tbd */; };
-		22C4312C1DF89D700017CAEA /* BRBSPatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4312B1DF89D700017CAEA /* BRBSPatchTests.swift */; };
 		22C431301DF89DC00017CAEA /* BRReplicatedKVStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4312F1DF89DC00017CAEA /* BRReplicatedKVStoreTests.swift */; };
 		22C431341DF89DFE0017CAEA /* BRCoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C431331DF89DFE0017CAEA /* BRCoderTests.swift */; };
 		22C431361DF8A6DF0017CAEA /* BRAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C431351DF8A6DF0017CAEA /* BRAPIClientTests.swift */; };
@@ -887,7 +885,6 @@
 		22717B052315D3E300F77F4E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		22A9A9321DF61945000F0016 /* BRAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRAPIClient.swift; path = src/Platform/BRAPIClient.swift; sourceTree = "<group>"; };
 		22A9A9341DF61945000F0016 /* BRBitID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRBitID.swift; path = src/Platform/BRBitID.swift; sourceTree = "<group>"; };
-		22A9A9351DF61945000F0016 /* BRBSPatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRBSPatch.swift; path = src/Platform/BRBSPatch.swift; sourceTree = "<group>"; };
 		22A9A9371DF61945000F0016 /* BRCoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRCoding.swift; path = src/Platform/BRCoding.swift; sourceTree = "<group>"; };
 		22A9A93D1DF61945000F0016 /* TxMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxMetaData.swift; path = src/Platform/TxMetaData.swift; sourceTree = "<group>"; };
 		22A9A9401DF61945000F0016 /* BRReplicatedKVStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRReplicatedKVStore.swift; path = src/Platform/BRReplicatedKVStore.swift; sourceTree = "<group>"; };
@@ -901,7 +898,6 @@
 		22A9A9A91DF64B97000F0016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Modules/libbz2/Info.plist; sourceTree = SOURCE_ROOT; };
 		22A9A9AA1DF64B97000F0016 /* iphone.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = iphone.modulemap; path = Modules/libbz2/iphone.modulemap; sourceTree = SOURCE_ROOT; };
 		22A9A9AB1DF64B97000F0016 /* iphonesim.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = iphonesim.modulemap; path = Modules/libbz2/iphonesim.modulemap; sourceTree = SOURCE_ROOT; };
-		22C4312B1DF89D700017CAEA /* BRBSPatchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRBSPatchTests.swift; sourceTree = "<group>"; };
 		22C4312F1DF89DC00017CAEA /* BRReplicatedKVStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRReplicatedKVStoreTests.swift; sourceTree = "<group>"; };
 		22C431331DF89DFE0017CAEA /* BRCoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRCoderTests.swift; sourceTree = "<group>"; };
 		22C431351DF8A6DF0017CAEA /* BRAPIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRAPIClientTests.swift; sourceTree = "<group>"; };
@@ -1733,7 +1729,6 @@
 				22A9A9341DF61945000F0016 /* BRBitID.swift */,
 				7BDB49F82806F1090031F015 /* PlatformAuthResult.swift */,
 				222319AF1F27985A00008F20 /* BRBrowserViewController.swift */,
-				22A9A9351DF61945000F0016 /* BRBSPatch.swift */,
 				22A9A9371DF61945000F0016 /* BRCoding.swift */,
 				22A9A9401DF61945000F0016 /* BRReplicatedKVStore.swift */,
 				71988B0721EF8A0E008B8EA0 /* BRUserAgentHeaderGenerator.swift */,
@@ -3141,7 +3136,6 @@
 		CE4CA7B81EE0C89F00373F11 /* Platform */ = {
 			isa = PBXGroup;
 			children = (
-				22C4312B1DF89D700017CAEA /* BRBSPatchTests.swift */,
 				22C4312F1DF89DC00017CAEA /* BRReplicatedKVStoreTests.swift */,
 				22C431331DF89DFE0017CAEA /* BRCoderTests.swift */,
 				22C431351DF8A6DF0017CAEA /* BRAPIClientTests.swift */,
@@ -4100,7 +4094,6 @@
 				CE20C8F21DBAF71500C8397A /* ApplicationController.swift in Sources */,
 				7B54E55E27F4A218002DD1E4 /* SwapConversionView.swift in Sources */,
 				7B54E5A527F4A2B0002DD1E4 /* Generic.swift in Sources */,
-				22A9A9491DF61945000F0016 /* BRBSPatch.swift in Sources */,
 				CE92F9F61DEDF6890046B516 /* UIViewControllerContextTransitioning+BRAdditions.swift in Sources */,
 				7B54E59B27F4A2B0002DD1E4 /* AlertHelper.swift in Sources */,
 				7BDB4A052806F4470031F015 /* Extensions.swift in Sources */,
@@ -4486,7 +4479,6 @@
 				71249918222046EB00BEA491 /* PromptTests.swift in Sources */,
 				71988B0B21EF8D06008B8EA0 /* BRUserAgentHeaderGeneratorTests.swift in Sources */,
 				E821D4CA21C16A8300B0907B /* AnalyticsEventTests.swift in Sources */,
-				22C4312C1DF89D700017CAEA /* BRBSPatchTests.swift in Sources */,
 				CEA7E6761F057D77001F8C27 /* WalletInfoTest.swift in Sources */,
 				3A211D1D2242AF0500C2A906 /* Bip38Tests.swift in Sources */,
 				3ADA10D924BE097D000A1D99 /* CoinGeckoTests.swift in Sources */,

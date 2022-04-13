@@ -57,49 +57,43 @@ open class AssetArchive {
         } catch let e {
             return completionHandler(e)
         }
-        if !archiveExists {
-            // see if the archive was shipped with the app
-            copyBundledArchive()
-        }
-        if !archiveExists {
-            // we do not have the archive, download a fresh copy
-            return downloadCompleteArchive(completionHandler: completionHandler)
-        }
         
-        // update assets if enabled (currently BE does not support it yet)
-        let extract: (() -> Void) = { [weak self] in
-            do {
-                try self?.extractArchive()
-                return completionHandler(nil)
-            } catch let e {
-                print("[AssetArchive] error extracting bundle: \(e)")
-                return completionHandler(BRAPIClientError.unknownError)
-            }
-        }
+        copyBundledArchive()
         
-        guard C.checkForUpdatedAssets else {
-            extract()
-            return
-        }
-        
-        apiClient.getAssetVersions(name) { (versions, err) in
+        apiClient.getAssetVersions(name) { versions, err in
             DispatchQueue.global(qos: .utility).async {
                 if let err = err {
                     print("[AssetArchive] could not get asset versions. error: \(err)")
+                    
                     return completionHandler(err)
                 }
+                
                 guard let versions = versions, let version = self.version else {
                     return completionHandler(BRAPIClientError.unknownError)
                 }
+                
                 if versions.firstIndex(of: version) == versions.count - 1 {
-                    // have the most recent version
                     print("[AssetArchive] already at most recent version of bundle \(self.name)")
-                    extract()
+                    
+                    self.extract { error in
+                        completionHandler(error)
+                    }
                 } else {
-                    // need to update the version
-                    self.downloadAndPatchArchive(fromVersion: version, completionHandler: completionHandler)
+                    self.downloadCompleteArchive(completionHandler: completionHandler)
                 }
             }
+        }
+    }
+    
+    fileprivate func extract(completionHandler: @escaping (_ error: Error?) -> Void) {
+        do {
+            try BRTar.createFilesAndDirectoriesAtPath(extractedPath, withTarPath: archivePath)
+            
+            completionHandler(nil)
+        } catch let error {
+            completionHandler(error)
+            
+            print("[AssetArchive] error extracting bundle: \(error)")
         }
     }
     
@@ -108,6 +102,7 @@ open class AssetArchive {
             DispatchQueue.global(qos: .utility).async {
                 if let err = err {
                     print("[AssetArchive] error downloading complete archive \(self.name) error=\(err)")
+                    
                     return completionHandler(err)
                 }
                 guard let data = data else {
@@ -115,51 +110,14 @@ open class AssetArchive {
                 }
                 do {
                     try data.write(to: self.archiveUrl, options: .atomic)
-                    try self.extractArchive()
-                    return completionHandler(nil)
+                    
+                    self.extract { error in
+                        return completionHandler(error)
+                    }
                 } catch let e {
                     print("[AssetArchive] error extracting complete archive \(self.name) error=\(e)")
+                    
                     return completionHandler(e)
-                }
-            }
-        }
-    }
-    
-    fileprivate func downloadAndPatchArchive(fromVersion: String, completionHandler: @escaping (_ error: Error?) -> Void) {
-        apiClient.downloadAssetDiff(name, fromVersion: fromVersion) { (data, err) in
-            DispatchQueue.global(qos: .utility).async {
-                if let err = err {
-                    print("[AssetArchive] error downloading asset path \(self.name) \(fromVersion) error=\(err)")
-                    return completionHandler(err)
-                }
-                guard let data = data else {
-                    return completionHandler(BRAPIClientError.unknownError)
-                }
-                let fm = self.fileManager
-                let diffPath = self.apiClient.bundleDirUrl.appendingPathComponent("\(self.name).diff").path
-                let oldBundlePath = self.apiClient.bundleDirUrl.appendingPathComponent("\(self.name).old").path
-                do {
-                    if fm.fileExists(atPath: diffPath) {
-                        try fm.removeItem(atPath: diffPath)
-                    }
-                    if fm.fileExists(atPath: oldBundlePath) {
-                        try fm.removeItem(atPath: oldBundlePath)
-                    }
-                    try data.write(to: URL(fileURLWithPath: diffPath), options: .atomic)
-                    try fm.moveItem(atPath: self.archivePath, toPath: oldBundlePath)
-                    _ = try BRBSPatch.patch(
-                        oldBundlePath, newFilePath: self.archivePath, patchFilePath: diffPath)
-                    try fm.removeItem(atPath: diffPath)
-                    try fm.removeItem(atPath: oldBundlePath)
-                    try self.extractArchive()
-                    return completionHandler(nil)
-                } catch let e {
-                    // something failed, clean up whatever we can, next attempt
-                    // will download fresh
-                    _ = try? fm.removeItem(atPath: diffPath)
-                    _ = try? fm.removeItem(atPath: oldBundlePath)
-                    _ = try? fm.removeItem(atPath: self.archivePath)
-                    print("[AssetArchive] error applying diff \(self.name) error=\(e)")
                 }
             }
         }
@@ -167,23 +125,21 @@ open class AssetArchive {
     
     fileprivate func ensureExtractedPath() throws {
         if !extractedDirExists {
-            try fileManager.createDirectory(
-                atPath: extractedPath, withIntermediateDirectories: true, attributes: nil
+            try fileManager.createDirectory(atPath: extractedPath,
+                                            withIntermediateDirectories: true,
+                                            attributes: nil
             )
         }
-    }
-    
-    fileprivate func extractArchive() throws {
-        try BRTar.createFilesAndDirectoriesAtPath(extractedPath, withTarPath: archivePath)
     }
     
     fileprivate func copyBundledArchive() {
         if let bundledArchiveUrl = Bundle.main.url(forResource: name, withExtension: "tar") {
             do {
                 try fileManager.copyItem(at: bundledArchiveUrl, to: archiveUrl)
+                
                 print("[AssetArchive] used bundled archive for \(name)")
-            } catch let e {
-                print("[AssetArchive] unable to copy bundled archive `\(name)` \(bundledArchiveUrl) -> \(archiveUrl): \(e)")
+            } catch let error {
+                print("[AssetArchive] unable to copy bundled archive `\(name)` \(bundledArchiveUrl) -> \(archiveUrl): \(error)")
             }
         }
     }

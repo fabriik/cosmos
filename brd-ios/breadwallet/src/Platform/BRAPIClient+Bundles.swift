@@ -102,21 +102,4 @@ extension BRAPIClient {
             }
         }.resume()
     }
-    
-    open func downloadAssetDiff(_ name: String, fromVersion: String, completionHandler: @escaping (Data?, Error?) -> Void) {
-        let req = URLRequest(url: self.url("/assets/bundles/\(name)/diff/\(fromVersion)"))
-        self.dataTaskWithRequest(req, handler: { (data, resp, err) in
-            if err != nil {
-                return completionHandler(nil, err)
-            }
-            if resp?.statusCode != 200 {
-                return completionHandler(nil, BRAPIClientError.unknownError)
-            }
-            if let data = data {
-                return completionHandler(data, nil)
-            } else {
-                return completionHandler(nil, BRAPIClientError.malformedDataError)
-            }
-        }).resume()
-    }
 }
