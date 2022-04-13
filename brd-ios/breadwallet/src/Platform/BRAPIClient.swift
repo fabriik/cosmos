@@ -106,7 +106,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
         }
     }
 
-    private func signRequest(_ request: URLRequest) -> URLRequest {
+    func signRequest(_ request: URLRequest) -> URLRequest {
         var mutableRequest = request
         let dateHeader = mutableRequest.allHTTPHeaderFields?.get(lowercasedKey: "date")
         if dateHeader == nil {
