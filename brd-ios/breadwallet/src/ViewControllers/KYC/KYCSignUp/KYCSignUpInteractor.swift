@@ -198,7 +198,7 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         
         presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .firstName))
         
-        return isFieldEmpty
+        return !isFieldEmpty
     }
     
     private func validateLastName() -> Bool {
@@ -206,6 +206,6 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         
         presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .lastName))
         
-        return isFieldEmpty
+        return !isFieldEmpty
     }
 }

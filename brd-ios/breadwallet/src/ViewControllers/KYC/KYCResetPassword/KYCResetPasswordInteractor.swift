@@ -88,12 +88,4 @@ class KYCResetPasswordInteractor: KYCResetPasswordBusinessLogic, KYCResetPasswor
         
         presenter?.presentShouldEnableConfirm(response: .init(shouldEnable: shouldEnable))
     }
-    
-    private func validateRecoveryCode() -> Bool {
-        let isFieldEmpty = (recoveryCode ?? "").isEmpty
-        
-        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .recoveryCode))
-        
-        return isFieldEmpty
-    }
 }

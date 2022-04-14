@@ -75,13 +75,11 @@ enum KYCAddress {
     
     enum ValidateField {
         struct Response {
-            let isViable: Bool
             let isFieldEmpty: Bool
             let type: KYCAddress.FieldType
         }
         
         struct ViewModel {
-            let isViable: Bool
             let isFieldEmpty: Bool
             let type: KYCAddress.FieldType
         }

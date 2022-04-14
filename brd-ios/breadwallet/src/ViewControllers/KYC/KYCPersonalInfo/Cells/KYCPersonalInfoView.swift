@@ -135,7 +135,7 @@ class KYCPersonalInfoView: BaseView, GenericSettable {
         }
     }
     
-    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCPersonalInfo.FieldType) {
+    func changeFieldStyle(isFieldEmpty: Bool, for fieldType: KYCPersonalInfo.FieldType) {
         switch fieldType {
         case .date:
             dateOfBirthField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)

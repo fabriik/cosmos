@@ -211,8 +211,7 @@ class KYCAddressViewController: KYCViewController, KYCAddressDisplayLogic, UITab
         guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCAddressFieldsView> else { return }
         
         cell.setup { view in
-            view.changeFieldStyle(isViable: viewModel.isViable,
-                                  isFieldEmpty: viewModel.isFieldEmpty,
+            view.changeFieldStyle(isFieldEmpty: viewModel.isFieldEmpty,
                                   for: viewModel.type)
         }
     }

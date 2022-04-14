@@ -62,8 +62,7 @@ class KYCAddressPresenter: KYCAddressPresentationLogic {
     }
     
     func presentValidateField(response: KYCAddress.ValidateField.Response) {
-        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable,
-                                                              isFieldEmpty: response.isFieldEmpty,
+        viewController?.displayValidateField(viewModel: .init(isFieldEmpty: response.isFieldEmpty,
                                                               type: response.type))
     }
     

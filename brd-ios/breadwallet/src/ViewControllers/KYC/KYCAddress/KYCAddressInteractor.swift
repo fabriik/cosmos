@@ -170,24 +170,24 @@ class KYCAddressInteractor: KYCAddressBusinessLogic, KYCAddressDataStore {
     private func validateCity() -> Bool {
         let isFieldEmpty = (city ?? "").isEmpty
         
-        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .city))
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .city))
         
-        return isFieldEmpty
+        return !isFieldEmpty
     }
     
     private func validateZipCode() -> Bool {
         let isFieldEmpty = (zipCode ?? "").isEmpty
         
-        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .zipCode))
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .zipCode))
         
-        return isFieldEmpty
+        return !isFieldEmpty
     }
     
     private func validateAddress() -> Bool {
         let isFieldEmpty = (address ?? "").isEmpty
         
-        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .address))
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .address))
         
-        return isFieldEmpty
+        return !isFieldEmpty
     }
 }

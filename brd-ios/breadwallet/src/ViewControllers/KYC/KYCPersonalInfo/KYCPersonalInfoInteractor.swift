@@ -97,16 +97,16 @@ class KYCPersonalInfoInteractor: KYCPersonalInfoBusinessLogic, KYCPersonalInfoDa
     private func validateDate() -> Bool {
         let isFieldEmpty = (date ?? "").isEmpty
         
-        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .date))
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .date))
         
-        return isFieldEmpty
+        return !isFieldEmpty
     }
     
     private func validateTaxIdNumber() -> Bool {
         let isFieldEmpty = (taxIdNumber ?? "").isEmpty
         
-        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .taxIdNumber))
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .taxIdNumber))
         
-        return isFieldEmpty
+        return !isFieldEmpty
     }
 }
