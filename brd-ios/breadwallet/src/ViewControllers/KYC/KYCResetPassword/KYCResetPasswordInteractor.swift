@@ -67,9 +67,21 @@ class KYCResetPasswordInteractor: KYCResetPasswordBusinessLogic, KYCResetPasswor
         validationValues.append(!password.isNilOrEmpty)
         validationValues.append(!passwordRepeat.isNilOrEmpty)
         validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
-            guard let self = self else { return }
-            self.presenter?.presentValidateField(response: .init(isViable: isViable && self.password == self.passwordRepeat, type: .password))
-            self.presenter?.presentValidateField(response: .init(isViable: isViable && self.password == self.passwordRepeat, type: .passwordRepeat))
+            let isFieldEmpty = (self?.password ?? "").isEmpty
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .password))
+        }))
+        validationValues.append(Validator.validatePassword(value: passwordRepeat ?? "", completion: { [weak self] isViable in
+            let isFieldEmpty = (self?.passwordRepeat ?? "").isEmpty
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable && self?.password == self?.passwordRepeat,
+                                                                  isFieldEmpty: isFieldEmpty,
+                                                                  type: .passwordRepeat))
+        }))
+        validationValues.append(Validator.validateConfirmationCode(value: recoveryCode ?? "", completion: { [weak self] isViable in
+            let isFieldEmpty = (self?.recoveryCode ?? "").isEmpty
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .recoveryCode))
         }))
         
         let shouldEnable = !validationValues.contains(false)

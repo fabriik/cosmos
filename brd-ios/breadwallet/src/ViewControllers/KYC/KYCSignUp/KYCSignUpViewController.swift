@@ -11,6 +11,7 @@ protocol KYCSignUpDisplayLogic: AnyObject {
     func displaySetPickerValue(viewModel: KYCSignUp.SetPickerValue.ViewModel)
     func displaySubmitData(viewModel: KYCSignUp.SubmitData.ViewModel)
     func displayShouldEnableSubmit(viewModel: KYCSignUp.ShouldEnableSubmit.ViewModel)
+    func displayValidateField(viewModel: KYCSignUp.ValidateField.ViewModel)
     func displayError(viewModel: GenericModels.Error.ViewModel)
 }
 
@@ -187,5 +188,16 @@ class KYCSignUpViewController: KYCViewController, KYCSignUpDisplayLogic, UITable
         }
         
         return cell
+    }
+    
+    func displayValidateField(viewModel: KYCSignUp.ValidateField.ViewModel) {
+        guard let index = sections.firstIndex(of: .fields) else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCSignUpView> else { return }
+        
+        cell.setup { view in
+            view.changeFieldStyle(isViable: viewModel.isViable,
+                                  isFieldEmpty: viewModel.isFieldEmpty,
+                                  for: viewModel.type)
+        }
     }
 }

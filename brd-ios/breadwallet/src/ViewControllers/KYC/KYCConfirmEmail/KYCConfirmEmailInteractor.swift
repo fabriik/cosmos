@@ -76,10 +76,14 @@ class KYCConfirmEmailInteractor: KYCConfirmEmailBusinessLogic, KYCConfirmEmailDa
     private func checkCredentials() {
         var validationValues = [Bool]()
         validationValues.append(!confirmationCode.isNilOrEmpty)
+        validationValues.append(Validator.validateConfirmationCode(value: confirmationCode ?? "", completion: { [weak self] isViable in
+            let isFieldEmpty = (self?.confirmationCode ?? "").isEmpty
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty))
+        }))
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableConfirm(response: .init(shouldEnable: shouldEnable))
-        presenter?.presentValidateField(response: .init(isViable: shouldEnable))
     }
 }

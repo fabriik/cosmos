@@ -27,7 +27,9 @@ class KYCResetPasswordPresenter: KYCResetPasswordPresentationLogic {
     }
     
     func presentValidateField(response: KYCResetPassword.ValidateField.Response) {
-        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable, type: response.type))
+        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable,
+                                                              isFieldEmpty: response.isFieldEmpty,
+                                                              type: response.type))
     }
     
     func presentError(response: GenericModels.Error.Response) {

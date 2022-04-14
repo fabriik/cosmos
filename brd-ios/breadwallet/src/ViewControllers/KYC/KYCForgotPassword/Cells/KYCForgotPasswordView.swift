@@ -56,7 +56,7 @@ class KYCForgotPasswordView: BaseView, GenericSettable {
         emailField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: defaultDistance * 3).isActive = true
         emailField.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor).isActive = true
         emailField.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor).isActive = true
-        emailField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        emailField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(confirmButton)
         confirmButton.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: defaultDistance * 3).isActive = true
@@ -82,7 +82,8 @@ class KYCForgotPasswordView: BaseView, GenericSettable {
         confirmButton.changeStyle(with: style)
     }
     
-    func changeFieldStyle(isViable: Bool) {
+    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool) {
+        emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
         emailField.setCheckMark(isVisible: isViable)
     }
 }

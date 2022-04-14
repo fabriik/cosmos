@@ -10,6 +10,8 @@ protocol KYCAddressDisplayLogic: AnyObject {
     func displayGetDataForPickerView(viewModel: KYCAddress.GetDataForPickerView.ViewModel)
     func displaySetPickerValue(viewModel: KYCAddress.SetPickerValue.ViewModel)
     func displaySubmitData(viewModel: KYCAddress.SubmitData.ViewModel)
+    func displayShouldEnableSubmit(viewModel: KYCAddress.ShouldEnableSubmit.ViewModel)
+    func displayValidateField(viewModel: KYCAddress.ValidateField.ViewModel)
     func displayError(viewModel: GenericModels.Error.ViewModel)
 }
 
@@ -192,5 +194,25 @@ class KYCAddressViewController: KYCViewController, KYCAddressDisplayLogic, UITab
         }
         
         return cell
+    }
+    
+    func displayShouldEnableSubmit(viewModel: KYCAddress.ShouldEnableSubmit.ViewModel) {
+        guard let index = sections.firstIndex(of: .fields) else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCAddressFieldsView> else { return }
+        
+        cell.setup { view in
+            let style: SimpleButton.ButtonStyle = viewModel.shouldEnable ? .kycEnabled : .kycDisabled
+            view.changeButtonStyle(with: style)
+        }
+    }
+    
+    func displayValidateField(viewModel: KYCAddress.ValidateField.ViewModel) {
+        guard let index = sections.firstIndex(of: .fields) else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCAddressFieldsView> else { return }
+        
+        cell.setup { view in
+            view.changeFieldStyle(isFieldEmpty: viewModel.isFieldEmpty,
+                                  for: viewModel.type)
+        }
     }
 }

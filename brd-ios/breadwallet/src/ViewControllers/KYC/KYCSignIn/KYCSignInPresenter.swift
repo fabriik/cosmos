@@ -33,6 +33,7 @@ class KYCSignInPresenter: KYCSignInPresentationLogic {
     
     func presentValidateField(response: KYCSignIn.ValidateField.Response) {
         viewController?.displayValidateField(viewModel: .init(isViable: response.isViable,
+                                                              isFieldEmpty: response.isFieldEmpty,
                                                               type: response.type))
     }
     

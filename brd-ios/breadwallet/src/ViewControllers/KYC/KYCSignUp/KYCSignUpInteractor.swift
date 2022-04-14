@@ -169,13 +169,43 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         validationValues.append(!phonePrefix.isNilOrEmpty)
         validationValues.append(!phoneNumber.isNilOrEmpty)
         validationValues.append(tickBox == true)
-        validationValues.append(Validator.validatePassword(value: password ?? ""))
-        validationValues.append(Validator.validateEmail(value: email ?? ""))
-        validationValues.append(Validator.validatePhoneNumber(value: (phonePrefix ?? "") + (phoneNumber ?? "")))
+        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
+            let isFieldEmpty = (self?.password ?? "").isEmpty
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .password))
+        }))
+        validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
+            let isFieldEmpty = (self?.email ?? "").isEmpty
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .email))
+        }))
+        validationValues.append(Validator.validatePhoneNumber(value: (phonePrefix ?? "") + (phoneNumber ?? ""), completion: { [weak self] isViable in
+            let isFieldEmpty = (self?.phonePrefix ?? "").isEmpty || (self?.phoneNumber ?? "").isEmpty
+            
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .phoneNumber))
+        }))
+        validationValues.append(validateFirstName())
+        validationValues.append(validateLastName())
         validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
+    }
+    
+    private func validateFirstName() -> Bool {
+        let isFieldEmpty = (firstName ?? "").isEmpty
+        
+        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .firstName))
+        
+        return !isFieldEmpty
+    }
+    
+    private func validateLastName() -> Bool {
+        let isFieldEmpty = (lastName ?? "").isEmpty
+        
+        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .lastName))
+        
+        return !isFieldEmpty
     }
 }

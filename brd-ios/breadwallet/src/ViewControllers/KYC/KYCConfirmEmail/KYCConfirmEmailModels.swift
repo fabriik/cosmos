@@ -46,10 +46,12 @@ enum KYCConfirmEmail {
     enum ValidateField {
         struct Response {
             let isViable: Bool
+            let isFieldEmpty: Bool
         }
         
         struct ViewModel {
             let isViable: Bool
+            let isFieldEmpty: Bool
         }
     }
 }

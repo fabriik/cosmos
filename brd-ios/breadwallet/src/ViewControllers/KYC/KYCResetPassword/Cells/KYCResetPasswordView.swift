@@ -76,7 +76,7 @@ class KYCResetPasswordView: BaseView, GenericSettable {
         codeField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: defaultDistance * 3).isActive = true
         codeField.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor).isActive = true
         codeField.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor).isActive = true
-        codeField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        codeField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(passwordField)
         passwordField.topAnchor.constraint(equalTo: codeField.bottomAnchor, constant: defaultDistance).isActive = true
@@ -124,8 +124,18 @@ class KYCResetPasswordView: BaseView, GenericSettable {
         confirmButton.changeStyle(with: style)
     }
     
-    func changeFieldStyle(isViable: Bool) {
-        passwordField.setCheckMark(isVisible: isViable)
-        passwordRepeatField.setCheckMark(isVisible: isViable)
+    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCResetPassword.FieldType) {
+        switch fieldType {
+        case .recoveryCode:
+            codeField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            
+        case .password:
+            passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            passwordField.setCheckMark(isVisible: isViable)
+            
+        case .passwordRepeat:
+            passwordRepeatField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            passwordRepeatField.setCheckMark(isVisible: isViable)
+        }
     }
 }

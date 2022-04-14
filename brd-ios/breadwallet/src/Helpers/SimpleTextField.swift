@@ -19,6 +19,16 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         return rightButton
     }()
     
+    private lazy var showHidePasswordButton: UIButton = {
+        let showHidePasswordButton = UIButton()
+        showHidePasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        showHidePasswordButton.setImage(UIImage(named: "KYC ShowPassword"), for: .normal)
+        showHidePasswordButton.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
+        showHidePasswordButton.isHidden = true
+        
+        return showHidePasswordButton
+    }()
+    
     private lazy var titleLabel: UILabel = {
         var titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -43,6 +53,19 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         return textField
     }()
     
+    private lazy var errorLabel: UILabel = {
+        var errorLabel = UILabel()
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.textColor = .kycRed
+        errorLabel.font = UIFont(name: "AvenirNext-Regular", size: 11)
+        errorLabel.text = "Cannot be empty"
+        errorLabel.textAlignment = .left
+        errorLabel.numberOfLines = 1
+        errorLabel.isHidden = true
+        
+        return errorLabel
+    }()
+    
     var didChangeText: ((String?) -> Void)?
     
     override init(frame: CGRect) {
@@ -65,7 +88,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         let font = UIFont(name: "AvenirNext-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
         textField.font = font
         textField.attributedPlaceholder = NSAttributedString(string: customPlaceholder ?? "",
-                                                             attributes: [.foregroundColor: UIColor.kycGray1, .font: font])
+                                                             attributes: [.foregroundColor: UIColor.kycGray2, .font: font])
         
         titleLabel.text = title
         
@@ -90,7 +113,8 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         case .password:
             textField.isSecureTextEntry = true
-            
+            showHidePasswordButton.isHidden = false
+            textField.padding = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 48)
         }
         
         setupElements()
@@ -123,21 +147,48 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
         textField.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         textField.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         textField.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        
+        addSubview(errorLabel)
+        errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 4).isActive = true
+        errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        errorLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         textField.addSubview(rightButton)
         rightButton.topAnchor.constraint(equalTo: textField.topAnchor).isActive = true
         rightButton.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
-        rightButton.trailingAnchor.constraint(equalTo: textField.trailingAnchor).isActive = true
+        rightButton.trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: -8).isActive = true
+        rightButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
         rightButton.heightAnchor.constraint(equalTo: textField.heightAnchor).isActive = true
-        rightButton.widthAnchor.constraint(equalTo: textField.heightAnchor).isActive = true
+        
+        textField.addSubview(showHidePasswordButton)
+        showHidePasswordButton.topAnchor.constraint(equalTo: textField.topAnchor).isActive = true
+        showHidePasswordButton.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
+        showHidePasswordButton.trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: -8).isActive = true
+        showHidePasswordButton.widthAnchor.constraint(equalToConstant: 18).isActive = true
+        showHidePasswordButton.heightAnchor.constraint(equalTo: textField.heightAnchor).isActive = true
     }
     
     func setCheckMark(isVisible: Bool) {
         rightButton.isHidden = !isVisible
         rightButton.setImage(isVisible ? UIImage(named: "Field Check Mark") : nil, for: .normal)
         textField.layer.borderColor = isVisible ? UIColor.kycGreen.cgColor : UIColor.kycGray1.cgColor
+        
+        if isVisible && fieldType == .password {
+            showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
+        }
+    }
+    
+    func setEmptyErrorMessage(isFieldEmpty: Bool) {
+        errorLabel.isHidden = !isFieldEmpty
+        textField.layer.borderColor = isFieldEmpty && !rightButton.isHidden ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
+    }
+    
+    @objc func togglePasswordView(_ sender: Any) {
+        showHidePasswordButton.isSelected.toggle()
+        textField.isSecureTextEntry = !showHidePasswordButton.isSelected
+        textField.setPasswordToggleImage(showHidePasswordButton)
     }
     
     func roundSpecifiedCorners(maskedCorners: CACornerMask) {

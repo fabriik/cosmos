@@ -79,4 +79,18 @@ enum KYCSignUp {
             let shouldEnable: Bool
         }
     }
+    
+    enum ValidateField {
+        struct Response {
+            let isViable: Bool
+            let isFieldEmpty: Bool
+            let type: KYCSignUp.FieldType
+        }
+        
+        struct ViewModel {
+            let isViable: Bool
+            let isFieldEmpty: Bool
+            let type: KYCSignUp.FieldType
+        }
+    }
 }

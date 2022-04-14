@@ -26,7 +26,7 @@ class KYCSignInView: BaseView, GenericSettable {
     private lazy var emailField: SimpleTextField = {
         let emailField = SimpleTextField()
         emailField.translatesAutoresizingMaskIntoConstraints = false
-        emailField.setup(as: .email, title: "EMAIL", customPlaceholder: "Email Address")
+        emailField.setup(as: .email, title: "EMAIL", customPlaceholder: "Email")
         
         return emailField
     }()
@@ -34,9 +34,17 @@ class KYCSignInView: BaseView, GenericSettable {
     private lazy var passwordField: SimpleTextField = {
         let passwordField = SimpleTextField()
         passwordField.translatesAutoresizingMaskIntoConstraints = false
-        passwordField.setup(as: .password, title: "PASSWORD", customPlaceholder: "Minimum 8 characters")
+        passwordField.setup(as: .password, title: "PASSWORD", customPlaceholder: "Password")
         
         return passwordField
+    }()
+    
+    private lazy var submitButton: SimpleButton = {
+        let submitButton = SimpleButton()
+        submitButton.translatesAutoresizingMaskIntoConstraints = false
+        submitButton.setup(as: .kycDisabled, title: "SUBMIT")
+        
+        return submitButton
     }()
     
     private lazy var forgotPasswordButton: UIButton = {
@@ -57,15 +65,7 @@ class KYCSignInView: BaseView, GenericSettable {
         
         return forgotPasswordButton
     }()
-    
-    private lazy var nextButton: SimpleButton = {
-        let nextButton = SimpleButton()
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.setup(as: .kycDisabled, title: "SUBMIT")
         
-        return nextButton
-    }()
-    
     private lazy var accountNoticeLabel: UILabel = {
         let accountNoticeLabel = UILabel()
         accountNoticeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -126,7 +126,7 @@ class KYCSignInView: BaseView, GenericSettable {
         emailField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: defaultDistance * 3).isActive = true
         emailField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
         emailField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
-        emailField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        emailField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(passwordField)
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: defaultDistance).isActive = true
@@ -135,18 +135,18 @@ class KYCSignInView: BaseView, GenericSettable {
         passwordField.heightAnchor.constraint(equalTo: emailField.heightAnchor).isActive = true
         
         addSubview(forgotPasswordButton)
-        forgotPasswordButton.topAnchor.constraint(equalTo: passwordField.topAnchor).isActive = true
+        forgotPasswordButton.topAnchor.constraint(equalTo: passwordField.topAnchor, constant: -2).isActive = true
         forgotPasswordButton.trailingAnchor.constraint(equalTo: passwordField.trailingAnchor).isActive = true
         forgotPasswordButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
-        addSubview(nextButton)
-        nextButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: defaultDistance * 2).isActive = true
-        nextButton.leadingAnchor.constraint(equalTo: emailField.leadingAnchor).isActive = true
-        nextButton.trailingAnchor.constraint(equalTo: emailField.trailingAnchor).isActive = true
-        nextButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        addSubview(submitButton)
+        submitButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: defaultDistance * 2).isActive = true
+        submitButton.leadingAnchor.constraint(equalTo: emailField.leadingAnchor).isActive = true
+        submitButton.trailingAnchor.constraint(equalTo: emailField.trailingAnchor).isActive = true
+        submitButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         addSubview(signUpStack)
-        signUpStack.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: defaultDistance * 2).isActive = true
+        signUpStack.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: defaultDistance * 2).isActive = true
         signUpStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         signUpStack.centerXAnchor.constraint(equalTo: emailField.centerXAnchor).isActive = true
         signUpStack.heightAnchor.constraint(equalToConstant: 48).isActive = true
@@ -162,7 +162,7 @@ class KYCSignInView: BaseView, GenericSettable {
             self?.didChangePasswordField?(text)
         }
         
-        nextButton.didTap = { [weak self] in
+        submitButton.didTap = { [weak self] in
             self?.didTapNextButton?()
         }
     }
@@ -186,15 +186,17 @@ class KYCSignInView: BaseView, GenericSettable {
     }
     
     func changeButtonStyle(with style: SimpleButton.ButtonStyle) {
-        nextButton.changeStyle(with: style)
+        submitButton.changeStyle(with: style)
     }
     
-    func changeFieldStyle(isViable: Bool, for fieldType: KYCSignIn.FieldType) {
+    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCSignIn.FieldType) {
         switch fieldType {
         case .email:
+            emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             emailField.setCheckMark(isVisible: isViable)
             
         case .password:
+            passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             passwordField.setCheckMark(isVisible: isViable)
             
         }

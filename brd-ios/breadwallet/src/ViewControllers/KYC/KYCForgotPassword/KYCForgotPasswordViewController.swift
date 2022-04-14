@@ -97,7 +97,8 @@ class KYCForgotPasswordViewController: KYCViewController, KYCForgotPasswordDispl
         guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCForgotPasswordView> else { return }
         
         cell.setup { view in
-            view.changeFieldStyle(isViable: viewModel.isViable)
+            view.changeFieldStyle(isViable: viewModel.isViable,
+                                  isFieldEmpty: viewModel.isFieldEmpty)
         }
     }
     

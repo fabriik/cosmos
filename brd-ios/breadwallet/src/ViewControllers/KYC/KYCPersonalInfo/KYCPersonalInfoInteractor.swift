@@ -20,8 +20,6 @@ protocol KYCPersonalInfoDataStore {
     var taxIdNumber: String? { get set }
     
     var selectedCurrentDate: Date? { get set }
-    
-    var fieldValidationIsAllowed: [KYCPersonalInfo.FieldType: Bool] { get set }
 }
 
 class KYCPersonalInfoInteractor: KYCPersonalInfoBusinessLogic, KYCPersonalInfoDataStore {
@@ -33,8 +31,6 @@ class KYCPersonalInfoInteractor: KYCPersonalInfoBusinessLogic, KYCPersonalInfoDa
     var taxIdNumber: String?
     
     var selectedCurrentDate: Date?
-    
-    var fieldValidationIsAllowed = [KYCPersonalInfo.FieldType: Bool]()
     
     func executeSetDateAndTaxID(request: KYCPersonalInfo.SetDateAndTaxID.Request) {
         presenter?.presentSetDateAndTaxID(response: .init(date: date ?? "",
@@ -71,9 +67,6 @@ class KYCPersonalInfoInteractor: KYCPersonalInfoBusinessLogic, KYCPersonalInfoDa
         
         presenter?.presentSetPickerValue(response: .init(date: date ?? ""))
         
-        // TODO: - Implement.....
-//        fieldValidationIsAllowed[request.type] = index != nil
-        
         checkCredentials()
     }
     
@@ -90,6 +83,30 @@ class KYCPersonalInfoInteractor: KYCPersonalInfoBusinessLogic, KYCPersonalInfoDa
     }
     
     private func checkCredentials() {
-        // TODO: - Implement.....
+        var validationValues = [Bool]()
+        validationValues.append(!date.isNilOrEmpty)
+        validationValues.append(!taxIdNumber.isNilOrEmpty)
+        validationValues.append(validateDate())
+        validationValues.append(validateTaxIdNumber())
+        
+        let shouldEnable = !validationValues.contains(false)
+        
+        presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
+    }
+    
+    private func validateDate() -> Bool {
+        let isFieldEmpty = (date ?? "").isEmpty
+        
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .date))
+        
+        return !isFieldEmpty
+    }
+    
+    private func validateTaxIdNumber() -> Bool {
+        let isFieldEmpty = (taxIdNumber ?? "").isEmpty
+        
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .taxIdNumber))
+        
+        return !isFieldEmpty
     }
 }

@@ -10,6 +10,8 @@ protocol KYCPersonalInfoPresentationLogic {
     func presentSetDateAndTaxID(response: KYCPersonalInfo.SetDateAndTaxID.Response)
     func presentGetDataForPickerView(response: KYCPersonalInfo.GetDataForPickerView.Response)
     func presentSetPickerValue(response: KYCPersonalInfo.SetPickerValue.Response)
+    func presentShouldEnableSubmit(response: KYCPersonalInfo.ShouldEnableSubmit.Response)
+    func presentValidateField(response: KYCPersonalInfo.ValidateField.Response)
 }
 
 class KYCPersonalInfoPresenter: KYCPersonalInfoPresentationLogic {
@@ -36,5 +38,14 @@ class KYCPersonalInfoPresenter: KYCPersonalInfoPresentationLogic {
     func presentSetPickerValue(response: KYCPersonalInfo.SetPickerValue.Response) {
         viewController?.displaySetPickerValue(viewModel: .init(viewModel: .init(date: response.date,
                                                                                 taxIdNumber: nil)))
+    }
+    
+    func presentShouldEnableSubmit(response: KYCPersonalInfo.ShouldEnableSubmit.Response) {
+        viewController?.displayShouldEnableSubmit(viewModel: .init(shouldEnable: response.shouldEnable))
+    }
+    
+    func presentValidateField(response: KYCPersonalInfo.ValidateField.Response) {
+        viewController?.displayValidateField(viewModel: .init(isFieldEmpty: response.isFieldEmpty,
+                                                              type: response.type))
     }
 }

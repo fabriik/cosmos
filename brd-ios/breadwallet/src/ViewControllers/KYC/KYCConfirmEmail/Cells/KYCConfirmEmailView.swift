@@ -17,7 +17,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         titleLabel.textAlignment = .center
         titleLabel.textColor = .almostBlack
         titleLabel.font = UIFont(name: "AvenirNext-Bold", size: 20)
-        titleLabel.text = "CONFIRM EMAIL"
+        titleLabel.text = "CONFIRMATION CODE"
         
         return titleLabel
     }()
@@ -51,12 +51,23 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         return confirmButton
     }()
     
-    private lazy var resendButton: SimpleButton = {
-        let resendButton = SimpleButton()
-        resendButton.translatesAutoresizingMaskIntoConstraints = false
-        resendButton.setup(as: .kycEnabled, title: "RESEND CODE")
+    private lazy var resendCodeButton: UIButton = {
+        let resendCodeButton = UIButton()
+        resendCodeButton.translatesAutoresizingMaskIntoConstraints = false
+        resendCodeButton.addTarget(self, action: #selector(resendCodeAction), for: .touchUpInside)
         
-        return resendButton
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(name: "AvenirNext-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16),
+            .foregroundColor: UIColor.kycGray1,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributeString = NSMutableAttributedString(
+            string: "Resend code",
+            attributes: attributes
+        )
+        resendCodeButton.setAttributedTitle(attributeString, for: .normal)
+        
+        return resendCodeButton
     }()
     
     var didChangeConfirmationCodeField: ((String?) -> Void)?
@@ -82,7 +93,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         confirmationCodeField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: defaultDistance * 3).isActive = true
         confirmationCodeField.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor).isActive = true
         confirmationCodeField.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor).isActive = true
-        confirmationCodeField.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        confirmationCodeField.heightAnchor.constraint(equalToConstant: 82).isActive = true
         
         addSubview(confirmButton)
         confirmButton.topAnchor.constraint(equalTo: confirmationCodeField.bottomAnchor, constant: defaultDistance).isActive = true
@@ -90,12 +101,12 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         confirmButton.trailingAnchor.constraint(equalTo: confirmationCodeField.trailingAnchor).isActive = true
         confirmButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
-        addSubview(resendButton)
-        resendButton.topAnchor.constraint(equalTo: confirmButton.bottomAnchor, constant: defaultDistance * 3).isActive = true
-        resendButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        resendButton.leadingAnchor.constraint(equalTo: confirmationCodeField.leadingAnchor).isActive = true
-        resendButton.trailingAnchor.constraint(equalTo: confirmationCodeField.trailingAnchor).isActive = true
-        resendButton.heightAnchor.constraint(equalTo: confirmButton.heightAnchor).isActive = true
+        addSubview(resendCodeButton)
+        resendCodeButton.topAnchor.constraint(equalTo: confirmButton.bottomAnchor, constant: defaultDistance * 2).isActive = true
+        resendCodeButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        resendCodeButton.leadingAnchor.constraint(equalTo: confirmationCodeField.leadingAnchor).isActive = true
+        resendCodeButton.trailingAnchor.constraint(equalTo: confirmationCodeField.trailingAnchor).isActive = true
+        resendCodeButton.heightAnchor.constraint(equalTo: confirmButton.heightAnchor).isActive = true
         
         confirmationCodeField.didChangeText = { [weak self] text in
             self?.didChangeConfirmationCodeField?(text)
@@ -104,10 +115,10 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         confirmButton.didTap = { [weak self] in
             self?.didTapConfirmButton?()
         }
-        
-        resendButton.didTap = { [weak self] in
-            self?.didTapResendButton?()
-        }
+    }
+    
+    @objc private func resendCodeAction() {
+        didTapResendButton?()
     }
     
     func setup(with model: ViewModel) {
@@ -118,7 +129,8 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         confirmButton.changeStyle(with: style)
     }
     
-    func changeFieldStyle(isViable: Bool) {
+    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool) {
+        confirmationCodeField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
         confirmationCodeField.setCheckMark(isVisible: isViable)
     }
 }
