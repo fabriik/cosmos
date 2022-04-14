@@ -32,7 +32,7 @@ class KYCConfirmEmailPresenter: KYCConfirmEmailPresentationLogic {
     }
     
     func presentValidateField(response: KYCConfirmEmail.ValidateField.Response) {
-        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable))
+        viewController?.displayValidateField(viewModel: .init(isViable: response.isViable, isFieldEmpty: response.isFieldEmpty))
     }
     
     func presentError(response: GenericModels.Error.Response) {

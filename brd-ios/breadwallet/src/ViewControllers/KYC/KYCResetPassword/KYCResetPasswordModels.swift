@@ -39,11 +39,13 @@ enum KYCResetPassword {
         struct Response {
             let isViable: Bool
             let type: KYCResetPassword.FieldType
+            let isFieldEmpty: Bool
         }
         
         struct ViewModel {
             let isViable: Bool
             let type: KYCResetPassword.FieldType
+            let isFieldEmpty: Bool
         }
     }
 }

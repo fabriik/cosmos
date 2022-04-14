@@ -97,7 +97,9 @@ class KYCResetPasswordViewController: KYCViewController, KYCResetPasswordDisplay
         guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCResetPasswordView> else { return }
         
         cell.setup { view in
-            view.changeFieldStyle(isViable: viewModel.isViable)
+            view.changeFieldStyle(isViable: viewModel.isViable,
+                                  for: viewModel.type,
+                                  isFieldEmpty: viewModel.isFieldEmpty)
         }
     }
     

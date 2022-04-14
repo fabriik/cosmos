@@ -165,7 +165,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         textField.addSubview(showHidePasswordButton)
         showHidePasswordButton.topAnchor.constraint(equalTo: textField.topAnchor).isActive = true
         showHidePasswordButton.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
-        showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
+        showHidePasswordButton.trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: -8).isActive = true
         showHidePasswordButton.widthAnchor.constraint(equalToConstant: 18).isActive = true
         showHidePasswordButton.heightAnchor.constraint(equalTo: textField.heightAnchor).isActive = true
     }
@@ -174,6 +174,10 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         rightButton.isHidden = !isVisible
         rightButton.setImage(isVisible ? UIImage(named: "Field Check Mark") : nil, for: .normal)
         textField.layer.borderColor = isVisible ? UIColor.kycGreen.cgColor : UIColor.kycGray1.cgColor
+        
+        if isVisible && fieldType == .password {
+            showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
+        }
     }
     
     func setEmptyErrorMessage(isFieldEmpty: Bool) {
