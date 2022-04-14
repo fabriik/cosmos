@@ -12,8 +12,8 @@ open class AssetArchive {
     let name: String
     private let fileManager: FileManager
     private let archiveUrl: URL
-    private let archivePath: String
-    private let extractedPath: String
+    private var archivePath: String { return archiveUrl.path }
+    private var extractedPath: String { return extractedUrl.path }
     let extractedUrl: URL
     private unowned let apiClient: BRAPIClient
     
@@ -39,8 +39,6 @@ open class AssetArchive {
         let bundleDirUrl = apiClient.bundleDirUrl
         archiveUrl = bundleDirUrl.appendingPathComponent("\(name).tar")
         extractedUrl = bundleDirUrl.appendingPathComponent("\(name)-extracted", isDirectory: true)
-        archivePath = archiveUrl.path
-        extractedPath = extractedUrl.path
     }
     
     func update(completionHandler: @escaping (_ error: Error?) -> Void) {
@@ -135,6 +133,10 @@ open class AssetArchive {
     fileprivate func copyBundledArchive() {
         if let bundledArchiveUrl = Bundle.main.url(forResource: name, withExtension: "tar") {
             do {
+                if fileManager.fileExists(atPath: archivePath) {
+                    try fileManager.removeItem(atPath: archivePath)
+                }
+                
                 try fileManager.copyItem(at: bundledArchiveUrl, to: archiveUrl)
                 
                 print("[AssetArchive] used bundled archive for \(name)")

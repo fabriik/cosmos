@@ -2,11 +2,9 @@
 # Downlaods the latest app resource bundles to be embedded
 API_URL=$1
 
-host="${API_URL}/wallet"
-
 function downloadBundle() {
-    echo "Downloading $1.tar from ${host}..."
-    curl --silent --show-error --output "$SCRIPT_DIR/../breadwallet/Resources/$1.tar" "https://${host}/assets/bundles/$1/download"
+    echo "Downloading $1.tar from ${API_URL}/wallet..."
+    curl --silent --show-error --output "$SCRIPT_DIR/../breadwallet/Resources/$1.tar" "https://${API_URL}/wallet/assets/bundles/$1/download"
 }
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
