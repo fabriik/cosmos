@@ -5,8 +5,6 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 API_URL=$1
 BREAD_TOKEN=$2
 filename="currencies.json"
-echo $API_URL
 host="${API_URL}/wallet/currencies"
-echo $host
 echo "Downloading ${filename} from ${host}"
 curl -H "Authorization: bread ${BREAD_TOKEN}" --silent --show-error --output "$SCRIPT_DIR/../breadwallet/Resources/${filename}" https://${host}
