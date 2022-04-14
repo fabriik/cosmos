@@ -107,6 +107,10 @@ class ApplicationController: Subscriber, Trackable {
         window.makeKeyAndVisible()
         
         alertPresenter = AlertPresenter(window: self.window)
+        modalPresenter = ModalPresenter(keyStore: keyStore,
+                                        system: coreSystem,
+                                        window: window,
+                                        alertPresenter: alertPresenter)
 
         // Start collecting analytics events. Once we have a wallet, startBackendServices() will
         // notify `Backend.apiClient.analytics` so that it can upload events to the server.
