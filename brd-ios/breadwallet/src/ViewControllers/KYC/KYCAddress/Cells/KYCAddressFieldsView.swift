@@ -230,7 +230,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         }
     }
     
-    func changeFieldStyle(isViable: Bool, for fieldType: KYCAddress.FieldType, isFieldEmpty: Bool) {
+    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCAddress.FieldType) {
         switch fieldType {
         case .country:
             countryField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)

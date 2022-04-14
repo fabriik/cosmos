@@ -124,7 +124,7 @@ class KYCResetPasswordView: BaseView, GenericSettable {
         confirmButton.changeStyle(with: style)
     }
     
-    func changeFieldStyle(isViable: Bool,for fieldType: KYCResetPassword.FieldType, isFieldEmpty: Bool) {
+    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCResetPassword.FieldType) {
         switch fieldType {
         case .recoveryCode:
             codeField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)

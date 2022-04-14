@@ -170,24 +170,23 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         validationValues.append(!phoneNumber.isNilOrEmpty)
         validationValues.append(tickBox == true)
         validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
-            guard let password = self?.password else { return }
+            let isFieldEmpty = (self?.password ?? "").isEmpty
             
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .password, isFieldEmpty: password.isEmpty))
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .password))
         }))
         validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
-            guard let email = self?.email else { return }
+            let isFieldEmpty = (self?.email ?? "").isEmpty
             
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: email.isEmpty))
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .email))
         }))
         validationValues.append(Validator.validatePhoneNumber(value: (phonePrefix ?? "") + (phoneNumber ?? ""), completion: { [weak self] isViable in
-            guard let phonePrefix = self?.phonePrefix, let phoneNumber = self?.phoneNumber else { return }
+            let isFieldEmpty = (self?.phonePrefix ?? "").isEmpty || (self?.phoneNumber ?? "").isEmpty
             
-            let isPhoneNumberEmpty = phonePrefix.isEmpty || phoneNumber.isEmpty
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .phoneNumber, isFieldEmpty: isPhoneNumberEmpty))
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .phoneNumber))
         }))
-        validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         validationValues.append(validateFirstName())
         validationValues.append(validateLastName())
+        validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
         let shouldEnable = !validationValues.contains(false)
         
@@ -195,19 +194,18 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
     }
     
     private func validateFirstName() -> Bool {
-        guard let firstName = firstName else { return false }
+        let isFieldEmpty = (firstName ?? "").isEmpty
         
-        let isViable = !firstName.isEmpty
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .firstName, isFieldEmpty: !isViable))
+        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .firstName))
         
-        return isViable
+        return isFieldEmpty
     }
     
     private func validateLastName() -> Bool {
-        guard let lastName = lastName else { return false }
+        let isFieldEmpty = (lastName ?? "").isEmpty
         
-        let isViable = !lastName.isEmpty
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .lastName, isFieldEmpty: !isViable))
-        return isViable
+        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .lastName))
+        
+        return isFieldEmpty
     }
 }

@@ -46,6 +46,7 @@ class KYCPersonalInfoPresenter: KYCPersonalInfoPresentationLogic {
     
     func presentValidateField(response: KYCPersonalInfo.ValidateField.Response) {
         viewController?.displayValidateField(viewModel: .init(isViable: response.isViable,
-                                                              type: response.type, isFieldEmpty: response.isFieldEmpty))
+                                                              isFieldEmpty: response.isFieldEmpty,
+                                                              type: response.type))
     }
 }

@@ -56,7 +56,8 @@ class KYCSignUpPresenter: KYCSignUpPresentationLogic {
     
     func presentValidateField(response: KYCSignUp.ValidateField.Response) {
         viewController?.displayValidateField(viewModel: .init(isViable: response.isViable,
-                                                              type: response.type, isFieldEmpty: response.isFieldEmpty))
+                                                              isFieldEmpty: response.isFieldEmpty,
+                                                              type: response.type))
     }
     
     func presentError(response: GenericModels.Error.Response) {

@@ -36,14 +36,14 @@ enum KYCForgotPassword {
     enum ValidateField {
         struct Response {
             let isViable: Bool
-            let type: KYCForgotPassword.FieldType
             let isFieldEmpty: Bool
+            let type: KYCForgotPassword.FieldType
         }
         
         struct ViewModel {
             let isViable: Bool
-            let type: KYCForgotPassword.FieldType
             let isFieldEmpty: Bool
+            let type: KYCForgotPassword.FieldType
         }
     }
 }

@@ -187,7 +187,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     
     @objc func togglePasswordView(_ sender: Any) {
         showHidePasswordButton.isSelected.toggle()
-        textField.isSecureTextEntry = !textField.isSecureTextEntry
+        textField.isSecureTextEntry = !showHidePasswordButton.isSelected
         textField.setPasswordToggleImage(showHidePasswordButton)
     }
     

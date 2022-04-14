@@ -108,8 +108,8 @@ class KYCSignInViewController: KYCViewController, KYCSignInDisplayLogic, UITable
         
         cell.setup { view in
             view.changeFieldStyle(isViable: viewModel.isViable,
-                                  for: viewModel.type,
-                                  isFieldEmpty: viewModel.isFieldEmpty)
+                                  isFieldEmpty: viewModel.isFieldEmpty,
+                                  for: viewModel.type)
         }
     }
     

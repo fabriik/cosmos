@@ -228,7 +228,7 @@ class KYCSignUpView: BaseView, GenericSettable {
         }
     }
     
-    func changeFieldStyle(isViable: Bool, for fieldType: KYCSignUp.FieldType, isFieldEmpty: Bool) {
+    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCSignUp.FieldType) {
         switch fieldType {
         case .email:
             emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)

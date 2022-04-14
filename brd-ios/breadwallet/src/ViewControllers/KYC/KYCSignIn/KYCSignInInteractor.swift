@@ -16,8 +16,6 @@ protocol KYCSignInDataStore {
     
     var email: String? { get set }
     var password: String? { get set }
-    
-    var fieldValidationIsAllowed: [KYCSignIn.FieldType: Bool] { get set }
 }
 
 class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
@@ -27,8 +25,6 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
     
     var email: String?
     var password: String?
-    
-    var fieldValidationIsAllowed = [KYCSignIn.FieldType: Bool]()
     
     func executeSignIn(request: KYCSignIn.SubmitData.Request) {
         let worker = KYCSignInWorker()
@@ -74,16 +70,15 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
         validationValues.append(!email.isNilOrEmpty)
         validationValues.append(!password.isNilOrEmpty)
         validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
-            guard let password = self?.password else { return }
+            let isFieldEmpty = (self?.password ?? "").isEmpty
             
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .password, isFieldEmpty: password.isEmpty))
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .password))
         }))
         validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
-            guard let email = self?.email else { return }
+            let isFieldEmpty = (self?.email ?? "").isEmpty
             
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: email.isEmpty))
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .email))
         }))
-        validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
         let shouldEnable = !validationValues.contains(false)
         

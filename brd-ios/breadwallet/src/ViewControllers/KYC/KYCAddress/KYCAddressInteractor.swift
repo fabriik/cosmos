@@ -156,36 +156,38 @@ class KYCAddressInteractor: KYCAddressBusinessLogic, KYCAddressDataStore {
         validationValues.append(validateCity())
         validationValues.append(validateZipCode())
         validationValues.append(validateAddress())
+        validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
     }
     
+    private func validate(type: KYCAddress.FieldType) {
+        
+    }
+    
     private func validateCity() -> Bool {
-        guard let city = city else { return false }
+        let isFieldEmpty = (city ?? "").isEmpty
         
-        let isViable = !city.isEmpty
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .city, isFieldEmpty: !isViable))
+        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .city))
         
-        return isViable
+        return isFieldEmpty
     }
     
     private func validateZipCode() -> Bool {
-        guard let zipCode = zipCode else { return false }
+        let isFieldEmpty = (zipCode ?? "").isEmpty
         
-        let isViable = !zipCode.isEmpty
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .zipCode, isFieldEmpty: !isViable))
+        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .zipCode))
         
-        return isViable
+        return isFieldEmpty
     }
     
     private func validateAddress() -> Bool {
-        guard let address = address else { return false }
+        let isFieldEmpty = (address ?? "").isEmpty
         
-        let isViable = !address.isEmpty
-        presenter?.presentValidateField(response: .init(isViable: isViable, type: .address, isFieldEmpty: !isViable))
+        presenter?.presentValidateField(response: .init(isViable: !isFieldEmpty, isFieldEmpty: isFieldEmpty, type: .address))
         
-        return isViable
+        return isFieldEmpty
     }
 }

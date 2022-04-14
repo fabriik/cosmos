@@ -189,7 +189,7 @@ class KYCSignInView: BaseView, GenericSettable {
         submitButton.changeStyle(with: style)
     }
     
-    func changeFieldStyle(isViable: Bool, for fieldType: KYCSignIn.FieldType, isFieldEmpty: Bool) {
+    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCSignIn.FieldType) {
         switch fieldType {
         case .email:
             emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)

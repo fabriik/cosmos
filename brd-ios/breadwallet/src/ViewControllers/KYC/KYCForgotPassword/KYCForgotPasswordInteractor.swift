@@ -51,9 +51,9 @@ class KYCForgotPasswordInteractor: KYCForgotPasswordBusinessLogic, KYCForgotPass
         var validationValues = [Bool]()
         validationValues.append(!email.isNilOrEmpty)
         validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
-            guard let email = self?.email else { return }
+            let isFieldEmpty = (self?.email ?? "").isEmpty
             
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable, type: .email, isFieldEmpty: email.isEmpty))
+            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .email))
         }))
         
         let shouldEnable = !validationValues.contains(false)
