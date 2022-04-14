@@ -1,16 +1,12 @@
 #!/bin/bash
 # Downlaods the latest app resource bundles to be embedded
 API_URL=$1
-BREAD_TOKEN=$2
+
+host="${API_URL}/wallet"
 
 function downloadBundle() {
-    bundle_name="$1-staging"
-    host="${API_URL}/wallet"
-    if [[ "$2" == "prod" ]]; then
-        bundle_name="$1"
-    fi
-    echo "Downloading ${bundle_name}.tar from ${host}..."
-    curl -H "Authorization: bread ${BREAD_TOKEN}" --silent --show-error --output "$SCRIPT_DIR/../breadwallet/Resources/${bundle_name}.tar" https://${host}/assets/bundles/${bundle_name}/download
+    echo "Downloading $1.tar from ${host}..."
+    curl --silent --show-error --output "$SCRIPT_DIR/../breadwallet/Resources/$1.tar" "https://${host}/assets/bundles/$1/download"
 }
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -20,6 +16,6 @@ bundleNames=($("${plistBuddy}" -c "print" "${plist}" | sed -e 1d -e '$d'))
 
 for bundleName in "${bundleNames[@]}"
 do
+  downloadBundle "${bundleName}-staging"
   downloadBundle ${bundleName}
-  downloadBundle ${bundleName} "prod"
 done
