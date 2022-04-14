@@ -133,7 +133,7 @@ open class AssetArchive {
     fileprivate func copyBundledArchive() {
         if let bundledArchiveUrl = Bundle.main.url(forResource: name, withExtension: "tar") {
             do {
-                if fileManager.fileExists(atPath: archivePath) {
+                if archiveExists {
                     try fileManager.removeItem(atPath: archivePath)
                 }
                 
