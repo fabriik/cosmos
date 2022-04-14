@@ -4691,11 +4691,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 355;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 355;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Modules/libbz2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4720,11 +4720,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 355;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 355;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Modules/libbz2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4896,7 +4896,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Internal";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				CURRENT_PROJECT_VERSION = 329;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/Modules",
@@ -4925,12 +4925,12 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				MARKETING_VERSION = 3.17.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -4943,7 +4943,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				CURRENT_PROJECT_VERSION = 329;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				EXCLUDED_SOURCE_FILE_NAMES = "brd-tokens-staging.tar";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4973,11 +4973,11 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				MARKETING_VERSION = 3.17.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -5154,7 +5154,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Internal";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				CURRENT_PROJECT_VERSION = 329;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/Modules",
@@ -5183,12 +5183,12 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				MARKETING_VERSION = 3.17.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug-Internal";
 		};
@@ -5250,11 +5250,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 355;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 355;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Modules/libbz2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5371,7 +5371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Internal";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				CURRENT_PROJECT_VERSION = 329;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				EXCLUDED_SOURCE_FILE_NAMES = "brd-tokens.tar";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5401,11 +5401,11 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				MARKETING_VERSION = 3.17.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Internal";
 		};
@@ -5467,11 +5467,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 355;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 355;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Modules/libbz2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5589,7 +5589,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Internal";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				CURRENT_PROJECT_VERSION = 329;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				EXCLUDED_SOURCE_FILE_NAMES = "brd-tokens.tar";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5619,11 +5619,11 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				MARKETING_VERSION = 3.17.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.testnetQA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Testnet";
 		};
@@ -5685,11 +5685,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 355;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 355;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Modules/libbz2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5807,7 +5807,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5818,7 +5818,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletIntentHandler;
@@ -5827,6 +5826,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -5839,7 +5839,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5850,7 +5850,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.breadwalletIntentHandler;
@@ -5859,6 +5858,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug-Internal";
 		};
@@ -5871,7 +5871,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5882,7 +5882,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.testnetQA.breadwalletIntentHandler;
@@ -5891,6 +5890,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TESTNET IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug-Testnet";
 		};
@@ -5903,7 +5903,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletIntentHandler/Info.plist;
@@ -5913,7 +5913,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletIntentHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5921,6 +5920,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG SCREENSHOTS TESTNET IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Screenshots;
 		};
@@ -5933,7 +5933,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletIntentHandler/Info.plist;
@@ -5943,7 +5943,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletIntentHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5951,6 +5950,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = IS_EXTENSION_ENVIRONMENT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -5963,7 +5963,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletIntentHandler/Info.plist;
@@ -5973,7 +5973,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletIntentHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5981,6 +5980,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "TESTFLIGHT IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Testflight";
 		};
@@ -5993,7 +5993,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletIntentHandler/Info.plist;
@@ -6003,7 +6003,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.breadwalletIntentHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6011,6 +6010,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "TESTFLIGHT INTERNAL IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Internal";
 		};
@@ -6023,7 +6023,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletIntentHandler/Info.plist;
@@ -6033,7 +6033,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.testnetQA.breadwalletIntentHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6041,6 +6040,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "TESTFLIGHT TESTNET IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Testnet";
 		};
@@ -6057,7 +6057,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6068,7 +6068,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletWidget;
@@ -6077,6 +6076,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -6093,7 +6093,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6104,7 +6104,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.breadwalletWidget;
@@ -6113,6 +6112,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug-Internal";
 		};
@@ -6129,7 +6129,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -6140,7 +6140,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.testnetQA.breadwalletWidget;
@@ -6149,6 +6148,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TESTNET IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug-Testnet";
 		};
@@ -6165,7 +6165,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletWidget/Info.plist;
@@ -6175,7 +6175,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6183,6 +6182,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG SCREENSHOTS TESTNET IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Screenshots;
 		};
@@ -6199,7 +6199,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletWidget/Info.plist;
@@ -6209,7 +6209,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6217,6 +6216,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = IS_EXTENSION_ENVIRONMENT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -6233,7 +6233,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletWidget/Info.plist;
@@ -6243,7 +6243,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6251,6 +6250,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "TESTFLIGHT IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Testflight";
 		};
@@ -6267,7 +6267,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletWidget/Info.plist;
@@ -6277,7 +6277,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.breadwalletWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6285,6 +6284,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "TESTFLIGHT INTERNAL IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Internal";
 		};
@@ -6301,7 +6301,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = breadwalletWidget/Info.plist;
@@ -6311,7 +6311,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.testnetQA.breadwalletWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6319,6 +6318,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "TESTFLIGHT TESTNET IS_EXTENSION_ENVIRONMENT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Testnet";
 		};
@@ -6470,7 +6470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Internal";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				CURRENT_PROJECT_VERSION = 329;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/Modules",
@@ -6489,12 +6489,12 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				MARKETING_VERSION = 3.17.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Screenshots;
 		};
@@ -6556,11 +6556,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 355;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 355;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Modules/libbz2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -6682,7 +6682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Internal";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				CURRENT_PROJECT_VERSION = 329;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/Modules",
@@ -6711,12 +6711,12 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				MARKETING_VERSION = 3.17.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.testnetQA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Debug-Testnet";
 		};
@@ -6778,11 +6778,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 355;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 355;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Modules/libbz2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -6899,7 +6899,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Internal";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				CURRENT_PROJECT_VERSION = 329;
+				CURRENT_PROJECT_VERSION = 355;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				EXCLUDED_SOURCE_FILE_NAMES = "brd-tokens.tar";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6929,11 +6929,11 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				MARKETING_VERSION = 3.17.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release-Testflight";
 		};
@@ -6995,11 +6995,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 355;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 355;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Modules/libbz2/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

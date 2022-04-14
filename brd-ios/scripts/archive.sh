@@ -3,7 +3,7 @@
 # check for config file
 if [ ! -f $PWD/build/exportOptions.plist ]; then
 	mkdir -pv $PWD/build
-	cp $PWD/.circleci/config/exportOptions.plist $PWD/build/exportOptions.plist
+	cp $PWD/../.circleci/config/exportOptions.plist $PWD/build/exportOptions.plist
 fi
 
 # use xcquiet if available for improved build output formatting
