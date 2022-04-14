@@ -2,10 +2,11 @@
 
 show_usage() {
 	echo
-	echo "Usage: ${0##/*} [version] [build]"
-	echo "       ${0##/*} <version> <build> ci"
+	echo "Usage: ${0##/*} [version]"
+	echo "       ${0##/*} <version> ci"
 	echo
-	echo "To make a ci build specify both version and build followed by 'ci'."
+	echo "To make a ci build specify version followed by 'ci'."
+	echo "Build number is handled automatically."
 	echo
 	exit
 }
@@ -22,7 +23,7 @@ set -e
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-if [ "$3" == "ci" ]; then
+if [ "$2" == "ci" ]; then
 	scheme="breadwallet"
 else
 	scheme="BRD Internal - TestFlight"
@@ -45,7 +46,7 @@ echo
 agvtool new-marketing-version $1
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
-agvtool new-version $2
+agvtool next-version -all
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 echo
