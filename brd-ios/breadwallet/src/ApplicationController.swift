@@ -84,7 +84,7 @@ class ApplicationController: Subscriber, Trackable {
         UNUserNotificationCenter.current().delegate = notificationHandler
         EventMonitor.shared.register(.pushNotifications)
         
-        setup()
+        mainSetup()
         setupKeyboard()
         Reachability.addDidChangeCallback({ isReachable in
             self.isReachable = isReachable
@@ -100,13 +100,17 @@ class ApplicationController: Subscriber, Trackable {
         UserDefaults.appLaunchCount = (UserDefaults.appLaunchCount + 1)
     }
     
-    private func setup() {
+    private func mainSetup() {
         setupDefaults()
         setupAppearance()
         setupRootViewController()
         window.makeKeyAndVisible()
         
         alertPresenter = AlertPresenter(window: self.window)
+        modalPresenter = ModalPresenter(keyStore: keyStore,
+                                        system: coreSystem,
+                                        window: window,
+                                        alertPresenter: alertPresenter)
 
         // Start collecting analytics events. Once we have a wallet, startBackendServices() will
         // notify `Backend.apiClient.analytics` so that it can upload events to the server.
@@ -129,6 +133,12 @@ class ApplicationController: Subscriber, Trackable {
             self.enterOnboarding()
         }
         
+        initializeAssets(completionHandler: { [weak self] in
+            self?.decideFlow()
+        })
+    }
+    
+    func decideFlow() {
         if keyStore.noWallet {
             enterOnboarding()
         } else {
@@ -205,6 +215,23 @@ class ApplicationController: Subscriber, Trackable {
             _ = self.urlController?.handleUrl(url)
             self.launchURL = nil
         }
+    }
+    
+    /// background init of assets / animations
+    private func initializeAssets(completionHandler: @escaping () -> Void) {
+        _ = Rate.symbolMap //Initialize currency symbol map
+        
+        Backend.apiClient.updateBundles { errors in
+            for (n, e) in errors {
+                print("Bundle \(n) ran update. err: \(String(describing: e))")
+            }
+            
+            completionHandler()
+        }
+        
+        // Set up the animation frames early during the startup process so that they're
+        // ready to roll by the time the home screen is displayed.
+        RewardsIconView.prepareAnimationFrames()
     }
     
     private func handleLaunchOptions(_ options: [UIApplication.LaunchOptionsKey: Any]?) {
@@ -299,11 +326,6 @@ class ApplicationController: Subscriber, Trackable {
         self.backgroundTaskID = .invalid
     }
     
-    // MARK: Services/Assets
-    
-    func performFetch(_ completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    }
-
     /// Initialize WalletInfo in KV-store. Needed prior to creating the System.
     private func setWalletInfo(account: Account) {
         guard let kvStore = Backend.kvStore, WalletInfo(kvStore: kvStore) == nil else { return }

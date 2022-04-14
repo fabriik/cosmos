@@ -33,6 +33,8 @@ echo
 echo "Restore build updated files"
 echo
 git restore breadwallet/Resources/currencies.json
+git restore breadwallet/Resources/brd-tokens.tar
+git restore breadwallet/Resources/brd-tokens-staging.tar
 git restore breadwallet/Info.plist
 git restore breadwalletWidget/Info.plist
 git restore breadwalletIntentHandler/Info.plist
@@ -47,7 +49,7 @@ agvtool new-version $2
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 echo
-echo "Download currencies"
+echo "Download currencies and bundles"
 echo
 
 if [ ! -f ../.env ]; then
@@ -58,6 +60,10 @@ fi
 source ../.env
 host="$API_URL/blocksatoshi"
 json=$(curl -k -v -X POST -H 'Content-type: application/json' -d '{"deviceID": "b21f2253-51e1-4346-92b0-e32323733067", "pubKey": "rCxDp6qD8uGqK2Z3UgeQ5bvTCZegqGfVexyz5XkbvwfW"}'  https://${host}/wallet/token)
+
+token="$(echo $json | sed "s/{.*\"token\":\"\([^\"]*\).*}/\1/g"):sig"
+source ${script_dir}/download_bundles.sh $host $token
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 source ${script_dir}/download_currencylist.sh $host $token
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi

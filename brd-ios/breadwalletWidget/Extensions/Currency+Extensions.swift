@@ -13,18 +13,21 @@ import SwiftUI
 
 extension Currency {
     var noBgImage: Image {
-        guard let uiImage = UIImage(named: "\(code.lowercased())-white-no-bg") else { return Currency.placeholderImage }
-        
-        return Image(uiImage: uiImage)
+        image(at: DefaultImageStoreService().noBgFolder().appendingPathComponent(code.lowercased()), renderingMode: .alwaysTemplate)
     }
     
     var bgImage: Image {
-        guard let uiImage = UIImage(named: "\(code.lowercased())-white-square-bg") else { return Currency.placeholderImage }
-        
-        return Image(uiImage: uiImage)
+        image(at: DefaultImageStoreService().bgFolder().appendingPathComponent(code.lowercased()))
     }
     
     class var placeholderImage: Image {
-        return Image("token-placeholder")
+        Image("placeholder")
+    }
+    
+    func image(at url: URL, renderingMode: UIImage.RenderingMode = .automatic) -> Image {
+         guard let image = UIImage(contentsOfFile: url.path) else {
+             return Currency.placeholderImage
+         }
+         return Image(uiImage: image.withRenderingMode(renderingMode))
     }
 }

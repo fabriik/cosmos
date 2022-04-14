@@ -112,8 +112,6 @@ struct C {
     static let tusdContractCode = "TUSD"
     
     static let fixerAPITokenRecordId = "FixerAPIToken"
-    // Currently our BE does not support asset updates yet
-    static let checkForUpdatedAssets = false
 }
 
 enum Words {
