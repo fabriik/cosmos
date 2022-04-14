@@ -262,6 +262,10 @@
 		7B54E5BF27F4A2B1002DD1E4 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */; };
 		7B8140BA27FD6DBB00662724 /* Currency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */; };
 		7B8140BB27FD6DBB00662724 /* Currency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */; };
+		7B8EC630280896F0008C6DE5 /* brd-tokens.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0F2806FA190031F015 /* brd-tokens.tar */; };
+		7B8EC631280896F1008C6DE5 /* brd-tokens.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0F2806FA190031F015 /* brd-tokens.tar */; };
+		7B8EC632280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */; };
+		7B8EC633280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */; };
 		7BA83DA2280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83D9C280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift */; };
 		7BA83DA4280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83D9E280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift */; };
 		7BA83DA5280459F3003F73AA /* KYCResetPasswordSuccessModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83D9F280459F3003F73AA /* KYCResetPasswordSuccessModels.swift */; };
@@ -2564,6 +2568,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7B8EC63428089729008C6DE5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				7BDB49F22806EB4C0031F015 /* AssetBundles.plist */,
+				7BDB4A0F2806FA190031F015 /* brd-tokens.tar */,
+				7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		7BA83D9B280459D8003F73AA /* KYCResetPasswordSuccess */ = {
 			isa = PBXGroup;
 			children = (
@@ -2588,15 +2602,13 @@
 		7C377EBC20F64C1200E8CF1C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */,
-				7BDB4A0F2806FA190031F015 /* brd-tokens.tar */,
-				7BDB49F22806EB4C0031F015 /* AssetBundles.plist */,
-				71014F7B2327E49400DA1373 /* fiatcurrencies.json */,
+				7B8EC63428089729008C6DE5 /* Assets */,
 				E837FCFB219D1BBC00F59D99 /* onboarding-videos */,
+				71014F7B2327E49400DA1373 /* fiatcurrencies.json */,
+				7C54FF9D21658669007BF3EF /* currencies.json */,
 				CE473D7B1F042F1E00C0ACFD /* coinflip.aiff */,
 				CEDA9EDB1FDE0C56005E8D1B /* countries.plist */,
 				CE4C1CD21ED8BCC70063E184 /* BIP39Words.plist */,
-				7C54FF9D21658669007BF3EF /* currencies.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3854,8 +3866,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B8EC631280896F1008C6DE5 /* brd-tokens.tar in Resources */,
 				9F13F5D025DDD73B0031AEC7 /* fiatcurrencies.json in Resources */,
 				9FD519E425E3185F00F9D856 /* Localizable.strings in Resources */,
+				7B8EC633280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */,
 				9F3C301E25DA841100C7C398 /* currencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3864,6 +3878,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B8EC630280896F0008C6DE5 /* brd-tokens.tar in Resources */,
+				7B8EC632280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */,
 				9FD519E325E3185F00F9D856 /* Localizable.strings in Resources */,
 				9FDDE5AC25D5B96000E42BE3 /* mock-candles.json in Resources */,
 				9FB0CA1825D5AD190057DD11 /* Assets.xcassets in Resources */,
