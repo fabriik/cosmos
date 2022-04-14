@@ -63,9 +63,8 @@ host="$API_URL/blocksatoshi"
 json=$(curl -k -v -X POST -H 'Content-type: application/json' -d '{"deviceID": "b21f2253-51e1-4346-92b0-e32323733067", "pubKey": "rCxDp6qD8uGqK2Z3UgeQ5bvTCZegqGfVexyz5XkbvwfW"}'  https://${host}/wallet/token)
 
 token="$(echo $json | sed "s/{.*\"token\":\"\([^\"]*\).*}/\1/g"):sig"
-source ${script_dir}/download_bundles.sh $host $token
+source ${script_dir}/download_bundles.sh $host
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
-
 source ${script_dir}/download_currencylist.sh $host $token
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
