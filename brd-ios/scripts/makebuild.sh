@@ -29,25 +29,24 @@ else
 	scheme="BRD Internal - TestFlight"
 fi
 
-#
-# echo
-# echo "Restore build updated files"
-# echo
-# git restore breadwallet/Resources/currencies.json
-# git restore breadwallet/Resources/brd-tokens.tar
-# git restore breadwallet/Resources/brd-tokens-staging.tar
-# git restore breadwallet/Info.plist
-# git restore breadwalletWidget/Info.plist
-# git restore breadwalletIntentHandler/Info.plist
-#
-# echo
-# echo "Set versioning"
-# echo
-# agvtool new-marketing-version $1
-# rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
-#
-# agvtool next-version -all
-# rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+echo
+echo "Restore build updated files"
+echo
+git restore breadwallet/Resources/currencies.json
+git restore breadwallet/Resources/brd-tokens.tar
+git restore breadwallet/Resources/brd-tokens-staging.tar
+git restore breadwallet/Info.plist
+git restore breadwalletWidget/Info.plist
+git restore breadwalletIntentHandler/Info.plist
+
+echo
+echo "Set versioning"
+echo
+agvtool new-marketing-version $1
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
+agvtool next-version -all
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 echo
 echo "Download currencies and bundles"
@@ -68,9 +67,9 @@ rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 source ${script_dir}/download_currencylist.sh $host $token
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
-# echo
-# echo "Make $scheme version ${mainBundleShortVersionString} build ${mainBundleVersion} ..."
-# echo
-#
-# source ${script_dir}/archive.sh "${scheme}"
-# rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+echo
+echo "Make $scheme version ${mainBundleShortVersionString} build ${mainBundleVersion} ..."
+echo
+
+source ${script_dir}/archive.sh "${scheme}"
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
