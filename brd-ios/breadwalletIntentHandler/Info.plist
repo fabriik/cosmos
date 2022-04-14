@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>4.11.0</string>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>355</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
