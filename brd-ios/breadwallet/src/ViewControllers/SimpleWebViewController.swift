@@ -5,7 +5,8 @@
 import UIKit
 import SafariServices
 
-class SimpleWebViewController: SFSafariViewController, SFSafariViewControllerDelegate {    
+class SimpleWebViewController: SFSafariViewController, SFSafariViewControllerDelegate {
+    
     struct Model {
         var title: String
     }

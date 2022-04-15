@@ -11,7 +11,6 @@ import LocalAuthentication
 import SwiftUI
 import WalletKit
 import WebKit
-import SafariServices
 
 // swiftlint:disable type_body_length
 // swiftlint:disable cyclomatic_complexity
@@ -212,12 +211,11 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     func presentFaq(articleId: String? = nil, currency: Currency? = nil) {
-        let webViewController = SimpleWebViewController()
+        guard let url = URL(string: C.supportLink) else { return }
+        let webViewController = SimpleWebViewController(url: url)
         webViewController.setup(with: .init(title: "Support"))
         let navController = UINavigationController(rootViewController: webViewController)
-        
         webViewController.setAsNonDismissableModal()
-        webViewController.navigate(to: C.supportLink)
         
         topViewController?.present(navController, animated: true)
     }
@@ -427,7 +425,6 @@ class ModalPresenter: Subscriber, Trackable {
     public func presentRegistrationAndKYC() {
         let vc = KYCSignInViewController()
         let navController = KYCNavigationController(rootViewController: vc)
-        
         vc.setAsNonDismissableModal()
         
         topViewController?.present(navController, animated: true, completion: nil)
