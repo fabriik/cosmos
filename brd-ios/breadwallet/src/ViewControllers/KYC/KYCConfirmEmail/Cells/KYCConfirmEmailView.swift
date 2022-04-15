@@ -29,7 +29,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         descriptionLabel.textColor = .kycGray1
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 20)
-        descriptionLabel.text = "We’ve sent a confirmation code to your email. Click on it on this device to confirm your email address. \n\nYou can also copy and paste the code here:"
+        descriptionLabel.text = "We’ve sent a SMS with a confirmation code to your mobile phone. Please enter the 6-digit code below."
         
         return descriptionLabel
     }()
