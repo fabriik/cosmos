@@ -37,7 +37,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
     private lazy var confirmationCodeField: SimpleTextField = {
         let confirmationCodeField = SimpleTextField()
         confirmationCodeField.translatesAutoresizingMaskIntoConstraints = false
-        confirmationCodeField.setup(as: .numbers, title: "CONFIRMATION CODE", customPlaceholder: "Confirmation code")
+        confirmationCodeField.setup(as: .numbers, title: "CONFIRMATION CODE", customPlaceholder: "000-000")
         confirmationCodeField.textField.textContentType = .oneTimeCode
         
         return confirmationCodeField

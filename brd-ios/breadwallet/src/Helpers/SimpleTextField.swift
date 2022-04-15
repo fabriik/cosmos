@@ -173,16 +173,28 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     func setCheckMark(isVisible: Bool) {
         rightButton.isHidden = !isVisible
         rightButton.setImage(isVisible ? UIImage(named: "Field Check Mark") : nil, for: .normal)
-        textField.layer.borderColor = isVisible ? UIColor.kycGreen.cgColor : UIColor.kycGray1.cgColor
         
-        if isVisible && fieldType == .password {
-            showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
+        if isVisible {
+            textField.layer.borderColor = UIColor.kycGreen.cgColor
+            
+            if fieldType == .password {
+                showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
+            }
         }
     }
     
     func setEmptyErrorMessage(isFieldEmpty: Bool) {
+        errorLabel.text = "Cannot be empty"
+        errorLabel.textColor = UIColor.kycRed
         errorLabel.isHidden = !isFieldEmpty
-        textField.layer.borderColor = isFieldEmpty && !rightButton.isHidden ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
+        textField.layer.borderColor = isFieldEmpty ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
+    }
+    
+    func setDescriptionMessage(isWrongFormat: Bool) {
+        errorLabel.text = fieldType == .email ? "Wrong email format" : "Weak password"
+        errorLabel.textColor = UIColor.kycGray1
+        errorLabel.isHidden = !isWrongFormat
+        textField.layer.borderColor = isWrongFormat ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
     }
     
     @objc func togglePasswordView(_ sender: Any) {
