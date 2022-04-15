@@ -12,17 +12,72 @@ class EmailFeedbackManager: NSObject, MFMailComposeViewControllerDelegate {
         let body: String
     }
     
-    struct Client {
-        let name: String
-        let scheme: String
-        let params: String
+    enum EmailClients: CaseIterable {
+        case defaultClient
+        case gmail
+        case outlook
+        case spark
+        case yahoo
         
-        static let defaultClient = Client(name: "Mail", scheme: "mailto:", params: "%@?subject=%@&body=%@")
-        static let gmail = Client(name: "Outlook", scheme: "googlegmail://", params: "co?to=%@&subject=%@&body=%@")
-        static let outlook = Client(name: "Gmail", scheme: "ms-outlook://", params: "compose?to=%@&subject=%@&body=%@")
-        static let spark = Client(name: "Spark", scheme: "readdle-spark://", params: "compose?recipient=%@&subject=%@&body=%@")
-        static let yahoo = Client(name: "Yahoo Mail", scheme: "ymail://", params: "mail/compose?to=%@&subject=%@&body=%@")
-        static let thirdPartyClients = [gmail, outlook, spark, yahoo]
+        var name: String {
+            switch self {
+            case .defaultClient:
+                return "Mail"
+                
+            case .gmail:
+                return "Outlook"
+                
+            case .outlook:
+                return "Gmail"
+                
+            case .spark:
+                return "Spark"
+                
+            case .yahoo:
+                return "Yahoo Mail"
+                
+            }
+        }
+        
+        var scheme: String {
+            switch self {
+            case .defaultClient:
+                return "mailto:"
+                
+            case .gmail:
+                return "googlegmail://"
+                
+            case .outlook:
+                return "ms-outlook://"
+                
+            case .spark:
+                return "readdle-spark://"
+                
+            case .yahoo:
+                return "ymail://"
+                
+            }
+        }
+        
+        var params: String {
+            switch self {
+            case .defaultClient:
+                return "%@?subject=%@&body=%@"
+                
+            case .gmail:
+                return "co?to=%@&subject=%@&body=%@"
+                
+            case .outlook:
+                return "compose?to=%@&subject=%@&body=%@"
+                
+            case .spark:
+                return "compose?recipient=%@&subject=%@&body=%@"
+                
+            case .yahoo:
+                return "mail/compose?to=%@&subject=%@&body=%@"
+                
+            }
+        }
     }
     
     private var superVC = UIViewController()
@@ -37,10 +92,10 @@ class EmailFeedbackManager: NSObject, MFMailComposeViewControllerDelegate {
     init?(feedback: Feedback, on viewController: UIViewController) {
         guard MFMailComposeViewController.canSendMail() else {
             if #available(iOS 14.0, *) {
-                guard let mailTo = (Client.defaultClient.scheme + String(format: Client.defaultClient.params,
-                                                                         feedback.recipients,
-                                                                         feedback.subject,
-                                                                         feedback.body))
+                guard let mailTo = (EmailClients.defaultClient.scheme + String(format: EmailClients.defaultClient.params,
+                                                                               feedback.recipients,
+                                                                               feedback.subject,
+                                                                               feedback.body))
                     .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
                       let url = URL(string: mailTo) else { return nil }
                 
@@ -83,7 +138,7 @@ extension EmailFeedbackManager {
         let mailClients = getAllAvailableMailClients()
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let thirdPartyClients = EmailFeedbackManager.Client.thirdPartyClients
+        let thirdPartyClients = EmailFeedbackManager.EmailClients.allCases.filter { $0 != .defaultClient }
         
         for client in mailClients {
             let action = UIAlertAction(title: client.name, style: .default, handler: { _ in
@@ -105,8 +160,10 @@ extension EmailFeedbackManager {
         viewController.present(alert, animated: true)
     }
     
-    private static func getAllAvailableMailClients() -> [EmailFeedbackManager.Client] {
-        return EmailFeedbackManager.Client.thirdPartyClients.filter {
+    private static func getAllAvailableMailClients() -> [EmailFeedbackManager.EmailClients] {
+        let thirdPartyClients = EmailFeedbackManager.EmailClients.allCases.filter { $0 != .defaultClient }
+        
+        return thirdPartyClients.filter {
             guard let url = URL(string: $0.scheme) else { return false }
             return UIApplication.shared.canOpenURL(url)
         }
