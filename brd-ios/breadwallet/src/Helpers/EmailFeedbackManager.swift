@@ -25,10 +25,10 @@ class EmailFeedbackManager: NSObject, MFMailComposeViewControllerDelegate {
                 return "Mail"
                 
             case .gmail:
-                return "Outlook"
+                return "Gmail"
                 
             case .outlook:
-                return "Gmail"
+                return "Outlook"
                 
             case .spark:
                 return "Spark"
@@ -138,11 +138,9 @@ extension EmailFeedbackManager {
         let mailClients = getAllAvailableMailClients()
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let thirdPartyClients = EmailFeedbackManager.EmailClients.allCases.filter { $0 != .defaultClient }
-        
         for client in mailClients {
             let action = UIAlertAction(title: client.name, style: .default, handler: { _ in
-                guard let selectedClient = thirdPartyClients.first(where: { $0.scheme.contains(client.scheme) == true }),
+                guard let selectedClient = mailClients.first(where: { $0.scheme.contains(client.scheme) == true }),
                       let mailTo = (selectedClient.scheme + String(format: selectedClient.params,
                                                                    feedback.recipients,
                                                                    feedback.subject,
@@ -161,9 +159,9 @@ extension EmailFeedbackManager {
     }
     
     private static func getAllAvailableMailClients() -> [EmailFeedbackManager.EmailClients] {
-        let thirdPartyClients = EmailFeedbackManager.EmailClients.allCases.filter { $0 != .defaultClient }
+        let allClients = EmailFeedbackManager.EmailClients.allCases
         
-        return thirdPartyClients.filter {
+        return allClients.filter {
             guard let url = URL(string: $0.scheme) else { return false }
             return UIApplication.shared.canOpenURL(url)
         }
