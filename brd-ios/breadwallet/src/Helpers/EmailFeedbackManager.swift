@@ -140,9 +140,7 @@ extension EmailFeedbackManager {
         
         for client in mailClients {
             let action = UIAlertAction(title: client.name, style: .default, handler: { _ in
-                let allClients = EmailFeedbackManager.EmailClients.allCases
-                
-                guard let selectedClient = allClients.first(where: { $0.scheme.contains(client.scheme) == true }),
+                guard let selectedClient = mailClients.first(where: { $0.scheme.contains(client.scheme) == true }),
                       let mailTo = (selectedClient.scheme + String(format: selectedClient.params,
                                                                    feedback.recipients,
                                                                    feedback.subject,
