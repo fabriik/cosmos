@@ -25,7 +25,7 @@ class EmailFeedbackManager: NSObject, MFMailComposeViewControllerDelegate {
         case spark
         case yahoo
         
-        public var chosen: Client {
+        public var selected: Client {
             switch self {
             case .defaultClient:
                 return Client(name: "Mail", scheme: "mailto:", params: "%@?subject=%@&body=%@")
@@ -58,7 +58,7 @@ class EmailFeedbackManager: NSObject, MFMailComposeViewControllerDelegate {
     init?(feedback: Feedback, on viewController: UIViewController) {
         guard MFMailComposeViewController.canSendMail() else {
             if #available(iOS 14.0, *) {
-                guard let mailTo = (EmailClients.defaultClient.chosen.scheme + String(format: EmailClients.defaultClient.chosen.params,
+                guard let mailTo = (EmailClients.defaultClient.selected.scheme + String(format: EmailClients.defaultClient.selected.params,
                                                                                       feedback.recipients,
                                                                                       feedback.subject,
                                                                                       feedback.body))
@@ -107,9 +107,9 @@ extension EmailFeedbackManager {
         let thirdPartyClients = EmailFeedbackManager.EmailClients.allCases.filter { $0 != .defaultClient }
         
         for client in mailClients {
-            let action = UIAlertAction(title: client.chosen.name, style: .default, handler: { _ in
-                guard let selectedClient = thirdPartyClients.first(where: { $0.chosen.scheme.contains(client.chosen.scheme) == true }),
-                      let mailTo = (selectedClient.chosen.scheme + String(format: selectedClient.chosen.params,
+            let action = UIAlertAction(title: client.selected.name, style: .default, handler: { _ in
+                guard let selectedClient = thirdPartyClients.first(where: { $0.selected.scheme.contains(client.selected.scheme) == true }),
+                      let mailTo = (selectedClient.selected.scheme + String(format: selectedClient.selected.params,
                                                                           feedback.recipients,
                                                                           feedback.subject,
                                                                           feedback.body))
@@ -130,7 +130,7 @@ extension EmailFeedbackManager {
         let thirdPartyClients = EmailFeedbackManager.EmailClients.allCases.filter { $0 != .defaultClient }
         
         return thirdPartyClients.filter {
-            guard let url = URL(string: $0.chosen.scheme) else { return false }
+            guard let url = URL(string: $0.selected.scheme) else { return false }
             return UIApplication.shared.canOpenURL(url)
         }
     }
