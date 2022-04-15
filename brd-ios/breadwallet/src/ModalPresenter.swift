@@ -11,6 +11,7 @@ import LocalAuthentication
 import SwiftUI
 import WalletKit
 import WebKit
+import SafariServices
 
 // swiftlint:disable type_body_length
 // swiftlint:disable cyclomatic_complexity
@@ -242,11 +243,13 @@ class ModalPresenter: Subscriber, Trackable {
                         
             return ModalViewController(childViewController: requestVc)
         case .buy(let url, _, _):
-            let webViewController = SimpleWebViewController()
+            guard let url = URL(string: url) else { return nil }
+            
+            let webViewController = SimpleWebViewController(url: url)
             webViewController.setAsNonDismissableModal()
-            let navController = UINavigationController(rootViewController: webViewController)
+            // TODO: localize
             webViewController.setup(with: .init(title: "Buy"))
-            webViewController.navigate(to: url)
+            let navController = UINavigationController(rootViewController: webViewController)
             topViewController?.show(navController, sender: nil)
             return nil
             
@@ -259,14 +262,15 @@ class ModalPresenter: Subscriber, Trackable {
                 .getParameters()
                 .compactMap { URLQueryItem(name: $0.key, value: "\($0.value)") }
             
-            guard let urlString = components?.url?.absoluteString else { return nil }
+            guard let url = components?.url else { return nil }
             
-            let webViewController = SimpleWebViewController()
+            let webViewController = SimpleWebViewController(url: url)
             webViewController.setAsNonDismissableModal()
-            let navController = UINavigationController(rootViewController: webViewController)
+            // TODO: localize
             webViewController.setup(with: .init(title: "Swap"))
-            webViewController.showDismissButton = true
-            webViewController.navigate(to: urlString)
+            
+            let navController = UINavigationController(rootViewController: webViewController)
+            navController.modalPresentationStyle = .overFullScreen
             topViewController?.show(navController, sender: nil)
             return nil
             
