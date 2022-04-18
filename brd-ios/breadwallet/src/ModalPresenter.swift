@@ -625,14 +625,13 @@ class ModalPresenter: Subscriber, Trackable {
             
             // Feedback
             MenuItem(title: S.MenuButton.feedback, icon: MenuItem.Icon.feedback) { [weak self] in
+                guard let topVc = self?.topViewController else { return }
+                
                 let feedback = EmailFeedbackManager.Feedback(recipients: "feedback@fabriik.com", subject: "Fabriik - Feedback", body: "")
-                if let feedbackManager = EmailFeedbackManager(feedback: feedback) {
+                if let feedbackManager = EmailFeedbackManager(feedback: feedback, on: topVc) {
                     self?.feedbackManager = feedbackManager
                     
-                    guard let topVc = self?.topViewController,
-                          let feedbackManager = self?.feedbackManager else { return }
-                    
-                    self?.feedbackManager?.send(on: topVc) { _ in
+                    self?.feedbackManager?.send { _ in
                         self?.feedbackManager = nil
                     }
                 } else {}
