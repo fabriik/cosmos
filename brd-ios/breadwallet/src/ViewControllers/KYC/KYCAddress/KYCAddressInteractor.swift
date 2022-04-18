@@ -153,6 +153,8 @@ class KYCAddressInteractor: KYCAddressBusinessLogic, KYCAddressDataStore {
         validationValues.append(!city.isNilOrEmpty)
         validationValues.append(!zipCode.isNilOrEmpty)
         validationValues.append(!address.isNilOrEmpty)
+        validationValues.append(validateCountry())
+        validationValues.append(validateState())
         validationValues.append(validateCity())
         validationValues.append(validateZipCode())
         validationValues.append(validateAddress())
@@ -163,8 +165,20 @@ class KYCAddressInteractor: KYCAddressBusinessLogic, KYCAddressDataStore {
         presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
     }
     
-    private func validate(type: KYCAddress.FieldType) {
+    private func validateCountry() -> Bool {
+        let isFieldEmpty = (country ?? "").isEmpty
         
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .country))
+        
+        return !isFieldEmpty
+    }
+    
+    private func validateState() -> Bool {
+        let isFieldEmpty = (state ?? "").isEmpty
+        
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isFieldEmpty, type: .state))
+        
+        return !isFieldEmpty
     }
     
     private func validateCity() -> Bool {

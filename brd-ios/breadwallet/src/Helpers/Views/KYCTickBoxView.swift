@@ -19,7 +19,7 @@ class KYCTickBoxView: UIView {
         let noticeLabel = UITextView()
         noticeLabel.translatesAutoresizingMaskIntoConstraints = false
         noticeLabel.textAlignment = .left
-        noticeLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        noticeLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
         noticeLabel.isEditable = false
         noticeLabel.textColor = .kycGray1
         noticeLabel.tintColor = .kycGray1
@@ -50,7 +50,7 @@ class KYCTickBoxView: UIView {
         
         addSubview(noticeLabel)
         noticeLabel.topAnchor.constraint(equalTo: tickButton.topAnchor).isActive = true
-        noticeLabel.leadingAnchor.constraint(equalTo: tickButton.trailingAnchor, constant: 8).isActive = true
+        noticeLabel.leadingAnchor.constraint(equalTo: tickButton.trailingAnchor, constant: 2).isActive = true
         noticeLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         noticeLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
