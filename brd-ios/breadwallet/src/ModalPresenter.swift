@@ -619,9 +619,9 @@ class ModalPresenter: Subscriber, Trackable {
             
             // Registration and KYC
             // TODO: Add back when ready.
-            MenuItem(title: S.MenuButton.registrationAndKyc, icon: MenuItem.Icon.registrationAndKyc) { [weak self] in
-                self?.presentRegistrationAndKYC()
-            },
+//            MenuItem(title: S.MenuButton.registrationAndKyc, icon: MenuItem.Icon.registrationAndKyc) { [weak self] in
+//                self?.presentRegistrationAndKYC()
+//            },
             
             // Feedback
             MenuItem(title: S.MenuButton.feedback, icon: MenuItem.Icon.feedback) { [weak self] in
