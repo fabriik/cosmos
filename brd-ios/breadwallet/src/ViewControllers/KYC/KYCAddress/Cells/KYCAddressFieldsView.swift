@@ -63,6 +63,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         stateField.setup(as: .picker, title: "STATE", customPlaceholder: "State")
         stateField.textField.addTarget(self, action: #selector(showStatesPicker(_:)),
                                        for: .touchDown)
+        stateField.setupFieldStyle(with: .tfDisabled)
         
         return stateField
     }()
@@ -254,5 +255,9 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
     
     func changeButtonStyle(with style: SimpleButton.ButtonStyle) {
         nextButton.changeStyle(with: style)
+    }
+    
+    func shouldEnableField(with style: SimpleTextField.TextFieldStyle) {
+        stateField.setupFieldStyle(with: style)
     }
 }

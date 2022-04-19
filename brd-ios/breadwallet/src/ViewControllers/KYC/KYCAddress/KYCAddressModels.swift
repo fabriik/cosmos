@@ -84,4 +84,13 @@ enum KYCAddress {
             let type: KYCAddress.FieldType
         }
     }
+    
+    enum ShouldEnableField {
+        struct Response {
+            let shouldEnable: Bool
+        }
+        struct ViewModel {
+            let shouldEnable: Bool
+        }
+    }
 }

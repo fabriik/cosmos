@@ -149,20 +149,32 @@ class KYCAddressInteractor: KYCAddressBusinessLogic, KYCAddressDataStore {
     private func checkCredentials() {
         var validationValues = [Bool]()
         validationValues.append(!country.isNilOrEmpty)
-        validationValues.append(!state.isNilOrEmpty)
         validationValues.append(!city.isNilOrEmpty)
         validationValues.append(!zipCode.isNilOrEmpty)
         validationValues.append(!address.isNilOrEmpty)
         validationValues.append(validateCountry())
-        validationValues.append(validateState())
         validationValues.append(validateCity())
         validationValues.append(validateZipCode())
         validationValues.append(validateAddress())
         validationValues.append(contentsOf: fieldValidationIsAllowed.values)
         
+        // checks if the selected country is US
+        let shouldEnableStateField = country == "US"
+        
+        validateCountry(shouldEnable: shouldEnableStateField)
+        
+        if shouldEnableStateField {
+            validationValues.append(validateState())
+            validationValues.append(!state.isNilOrEmpty)
+        }
+        
         let shouldEnable = !validationValues.contains(false)
         
         presenter?.presentShouldEnableSubmit(response: .init(shouldEnable: shouldEnable))
+    }
+    
+    private func validateCountry(shouldEnable: Bool) {
+        presenter?.presentShouldEnableField(response: .init(shouldEnable: shouldEnable))
     }
     
     private func validateCountry() -> Bool {

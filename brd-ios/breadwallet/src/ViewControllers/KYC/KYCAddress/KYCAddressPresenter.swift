@@ -12,6 +12,7 @@ protocol KYCAddressPresentationLogic {
     func presentSubmitData(response: KYCAddress.SubmitData.Response)
     func presentShouldEnableSubmit(response: KYCAddress.ShouldEnableSubmit.Response)
     func presentValidateField(response: KYCAddress.ValidateField.Response)
+    func presentShouldEnableField(response: KYCAddress.ShouldEnableField.Response)
     func presentError(response: GenericModels.Error.Response)
 }
 
@@ -64,6 +65,10 @@ class KYCAddressPresenter: KYCAddressPresentationLogic {
     func presentValidateField(response: KYCAddress.ValidateField.Response) {
         viewController?.displayValidateField(viewModel: .init(isFieldEmpty: response.isFieldEmpty,
                                                               type: response.type))
+    }
+    
+    func presentShouldEnableField(response: KYCAddress.ShouldEnableField.Response) {
+        viewController?.displayShouldEnableField(viewModel: .init(shouldEnable: response.shouldEnable))
     }
     
     func presentError(response: GenericModels.Error.Response) {

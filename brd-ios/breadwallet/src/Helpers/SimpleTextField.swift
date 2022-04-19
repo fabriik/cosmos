@@ -9,7 +9,24 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         case text, numbers, password, email, picker
     }
     
+    enum TextFieldStyle {
+        case tfEnabled
+        case tfDisabled
+        
+        var tintColor: UIColor? {
+            switch self {
+            case .tfEnabled:
+                return .kycGray1
+                
+            case .tfDisabled:
+                return .kycGray3
+                
+            }
+        }
+    }
+    
     private var fieldType: FieldType = .text
+    private var fieldStyle: TextFieldStyle?
     
     private lazy var rightButton: UIButton = {
         let rightButton = UIButton()
@@ -103,6 +120,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         case .picker:
             rightButton.setImage(UIImage(named: "KYC Dropdown Arrow"), for: .normal)
+            rightButton.tintColor = .kycGray1
             textField.inputView = UIView()
             textField.inputAccessoryView = UIView()
             
@@ -131,6 +149,28 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         default:
             return true
+        }
+    }
+    
+    func setupFieldStyle(with textFieldStyle: TextFieldStyle) {
+        self.fieldStyle = textFieldStyle
+        
+        style()
+    }
+    
+    private func style() {
+        textField.layer.borderColor = fieldStyle?.tintColor?.cgColor
+        rightButton.tintColor = fieldStyle?.tintColor
+        
+        switch fieldStyle {
+        case .tfEnabled, .none:
+            textField.isUserInteractionEnabled = true
+       
+        case .tfDisabled:
+            textField.isUserInteractionEnabled = false
+            textField.text = nil
+            errorLabel.isHidden = true
+            
         }
     }
     
