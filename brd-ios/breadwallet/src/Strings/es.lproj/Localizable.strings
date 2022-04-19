@@ -8,7 +8,7 @@
 "About.privacy" = "Política de privacidad";
 /* About screen reddit label */
 "About.reddit" = "Reddit";
-/* Terms of Use button label */
+/* Terms And Conditions button label */
 "About.terms" = "Términos de uso";
 /* About screen title */
 "About.title" = "Acerca de nosotros";
@@ -441,14 +441,6 @@
 "LocationPlugin.disabled" = "Los servicios de ubicación están desactivados.";
 /* No permissions for location services */
 "LocationPlugin.notAuthorized" = "BRD no tiene permiso para acceder a los servicios de ubicación.";
-/* Wallet creation date prefix */
-"ManageWallet.creationDatePrefix" = "Has creado una cartera en %1$@";
-/* Manage wallet description text */
-"ManageWallet.description" = "El nombre de tu cartera solo aparece en el historial de transacciones de tu cuenta y nadie más lo puede ver.";
-/* Change Wallet name textfield label */
-"ManageWallet.textFeildLabel" = "Nombre de la cartera";
-/* Manage wallet modal title */
-"ManageWallet.title" = "Gestionar cartera";
 "MarketData.high24h" = "24h alto";
 "MarketData.low24h" = "24h bajo";
 "MarketData.marketCap" = "Capitalización del mercado";
@@ -525,8 +517,6 @@
 "OnboardingPageThree.subtitle" = "Invierte y diversifica con BRD de forma segura y sencilla.";
 /* Onboarding screen Page 3 title */
 "OnboardingPageThree.title" = "Compra y negocia con bitcoins, vales y otras divisas digitales.";
-/* Onboarding screen Page 2 subtitle */
-"OnboardingPageTwo.subtitle" = "Tenemos activos protegidos por valor de más de 6 billones de $.";
 /* Onboarding screen Page 2 title */
 "OnboardingPageTwo.title" = "Únete a millones de personas en todo el mundo que confían en BRD.";
 /* Eg. Send 1.0Eth to purchase CCC */

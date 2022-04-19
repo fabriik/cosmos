@@ -8,8 +8,8 @@
 "About.privacy" = "Privacy Policy";
 /* About screen reddit label */
 "About.reddit" = "Reddit";
-/* Terms of Use button label */
-"About.terms" = "Terms of Use";
+/* Terms And Conditions button label */
+"About.terms" = "Terms And Conditions";
 /* About screen title */
 "About.title" = "About";
 /* About screen twitter label */
@@ -441,14 +441,6 @@
 "LocationPlugin.disabled" = "Location services are disabled.";
 /* No permissions for location services */
 "LocationPlugin.notAuthorized" = "Fabriik does not have permission to access location services.";
-/* Wallet creation date prefix */
-"ManageWallet.creationDatePrefix" = "You created your wallet on %1$@";
-/* Manage wallet description text */
-"ManageWallet.description" = "Your wallet name only appears in your account transaction history and cannot be seen by anyone else.";
-/* Change Wallet name textfield label */
-"ManageWallet.textFeildLabel" = "Wallet Name";
-/* Manage wallet modal title */
-"ManageWallet.title" = "Manage Wallet";
 "MarketData.high24h" = "24h high";
 "MarketData.low24h" = "24h low";
 "MarketData.marketCap" = "Market Cap";
@@ -458,7 +450,7 @@
 /* Menu button title */
 "MenuButton.lock" = "Lock Wallet";
 /* (Click here to) manage (your list of) wallets */
-"MenuButton.manageWallets" = "Manage Wallets";
+"MenuButton.manageAssets" = "Manage Assets";
 /* (press here to) scan (a) QR code */
 "MenuButton.scan" = "Scan QR Code";
 /* Menu button title */
@@ -525,8 +517,6 @@
 "OnboardingPageThree.subtitle" = "Invest and diversify with Fabriik, easily and securely.";
 /* Onboarding screen Page 3 title */
 "OnboardingPageThree.title" = "Buy and swap bitcoin, tokens, and other digital currencies.";
-/* Onboarding screen Page 2 subtitle */
-"OnboardingPageTwo.subtitle" = "We have over $6 billion USD worth of assets under protection.";
 /* Onboarding screen Page 2 title */
 "OnboardingPageTwo.title" = "Join people around the world who trust Fabriik.";
 /* Eg. Send 1.0Eth to purchase CCC */
@@ -1088,8 +1078,8 @@
 "TokenList.addTitle" = "Add Wallets";
 /* Hide [this token from view] */
 "TokenList.hide" = "Hide";
-/* [click here to] Manage [your] Wallets */
-"TokenList.manageTitle" = "Manage Wallets";
+/* [click here to] Manage [your] Assets */
+"TokenList.manageTitle" = "Manage Assets";
 /* Remove [this item from the list] */
 "TokenList.remove" = "Remove";
 /* Show [this item on your home screen] */

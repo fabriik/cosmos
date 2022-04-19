@@ -8,7 +8,7 @@
 "About.privacy" = "プライバシーポリシー";
 /* About screen reddit label */
 "About.reddit" = "Reddit（レディット）";
-/* Terms of Use button label */
+/* Terms And Conditions button label */
 "About.terms" = "利用規約";
 /* About screen title */
 "About.title" = "概要";
@@ -441,14 +441,6 @@
 "LocationPlugin.disabled" = "位置情報サービスが無効化されています。";
 /* No permissions for location services */
 "LocationPlugin.notAuthorized" = "ブレッドは位置情報サービスへのアクセスが許可されていません。";
-/* Wallet creation date prefix */
-"ManageWallet.creationDatePrefix" = "あなたは%1$@にご自身のウォレットを作成しました";
-/* Manage wallet description text */
-"ManageWallet.description" = "あなたのウォレットの名前はご自身のアカウントの取引履歴上でのみ表示され、あなた以外誰も閲覧することができません。";
-/* Change Wallet name textfield label */
-"ManageWallet.textFeildLabel" = "ウォレットの名前";
-/* Manage wallet modal title */
-"ManageWallet.title" = "ウォレットを管理";
 "MarketData.high24h" = "24時間高";
 "MarketData.low24h" = "24時間低";
 "MarketData.marketCap" = "時価総額";
@@ -525,8 +517,6 @@
 "OnboardingPageThree.subtitle" = "BRDで容易に安全に投資して多様化しましょう。";
 /* Onboarding screen Page 3 title */
 "OnboardingPageThree.title" = "ビットコイン,トークン,その他のデジタル通貨を購入・取引しましょう。";
-/* Onboarding screen Page 2 subtitle */
-"OnboardingPageTwo.subtitle" = "当社の保護下には,60億USドル超相当の資産があります。";
 /* Onboarding screen Page 2 title */
 "OnboardingPageTwo.title" = "世界中で何百万もの人々がBRDを利用しています。あなたもぜひ。";
 /* Eg. Send 1.0Eth to purchase CCC */
