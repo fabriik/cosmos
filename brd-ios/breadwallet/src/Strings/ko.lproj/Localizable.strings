@@ -8,7 +8,7 @@
 "About.privacy" = "개인정보 보호정책";
 /* About screen reddit label */
 "About.reddit" = "레딧";
-/* Terms of Use button label */
+/* Terms And Conditions button label */
 "About.terms" = "이용 약관";
 /* About screen title */
 "About.title" = "관련 사항";
@@ -441,14 +441,6 @@
 "LocationPlugin.disabled" = "위치 서비스가 꺼졌습니다.";
 /* No permissions for location services */
 "LocationPlugin.notAuthorized" = "BRD가 위치 서비스 접속 권한이 없습니다.";
-/* Wallet creation date prefix */
-"ManageWallet.creationDatePrefix" = "귀하께서는 %1$@ 에 지갑을 만들었습니다";
-/* Manage wallet description text */
-"ManageWallet.description" = "귀하의 지갑 이름은 귀하 계정의 거래 기록에서만 나타나며 다른 사람은 볼 수 없습니다.";
-/* Change Wallet name textfield label */
-"ManageWallet.textFeildLabel" = "지갑 이름";
-/* Manage wallet modal title */
-"ManageWallet.title" = "지갑 관리";
 "MarketData.high24h" = "24 시간 최고";
 "MarketData.low24h" = "24 시간 최저";
 "MarketData.marketCap" = "시가 총액";
@@ -525,8 +517,6 @@
 "OnboardingPageThree.subtitle" = "BRD와 함께 쉽고 안전하게 투자하고 다양하게 분산시키세요.";
 /* Onboarding screen Page 3 title */
 "OnboardingPageThree.title" = "비트코인, 토큰, 그리고 그 외 다른 가상 화폐들을 구매하고 거래하세요.";
-/* Onboarding screen Page 2 subtitle */
-"OnboardingPageTwo.subtitle" = "저희는 60억 달러 넘는 가치의 자산을 안전하게 보유하고 있습니다.";
 /* Onboarding screen Page 2 title */
 "OnboardingPageTwo.title" = "BRD를 신뢰하는 전 세계 수백만 명과 함께 하십시오.";
 /* Eg. Send 1.0Eth to purchase CCC */

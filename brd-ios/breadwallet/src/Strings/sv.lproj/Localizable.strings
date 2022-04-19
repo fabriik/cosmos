@@ -8,7 +8,7 @@
 "About.privacy" = "Sekretesspolicy";
 /* About screen reddit label */
 "About.reddit" = "Reddit";
-/* Terms of Use button label */
+/* Terms And Conditions button label */
 "About.terms" = "Användarvillkor";
 /* About screen title */
 "About.title" = "Om";
@@ -441,14 +441,6 @@
 "LocationPlugin.disabled" = "Platstjänster är inaktiverade.";
 /* No permissions for location services */
 "LocationPlugin.notAuthorized" = "BRD har inte rätt att utnyttja platstjänster";
-/* Wallet creation date prefix */
-"ManageWallet.creationDatePrefix" = "Du skapade din plånbok på %1$@";
-/* Manage wallet description text */
-"ManageWallet.description" = "Din plånboks namn visas bara i din kontohistorik och kan inte ses av någon annan.";
-/* Change Wallet name textfield label */
-"ManageWallet.textFeildLabel" = "Plånbokens namn";
-/* Manage wallet modal title */
-"ManageWallet.title" = "Hantera plånbok";
 "MarketData.high24h" = "24h hög";
 "MarketData.low24h" = "24 timmar låg";
 "MarketData.marketCap" = "Börsvärde";
@@ -525,8 +517,6 @@
 "OnboardingPageThree.subtitle" = "Investera och bredda dig med BRD, lätt och tryggt.";
 /* Onboarding screen Page 3 title */
 "OnboardingPageThree.title" = "Köp och handla med bitcoin, jetonger och andra digitala valutor.";
-/* Onboarding screen Page 2 subtitle */
-"OnboardingPageTwo.subtitle" = "Vi har skyddade tillgångar värda över 6 miljarder  USD.";
 /* Onboarding screen Page 2 title */
 "OnboardingPageTwo.title" = "Bli en av miljontals människor runt om i världen som litar på BRD.";
 /* Eg. Send 1.0Eth to purchase CCC */

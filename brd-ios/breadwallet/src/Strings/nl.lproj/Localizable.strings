@@ -8,7 +8,7 @@
 "About.privacy" = "Privacyverklaring";
 /* About screen reddit label */
 "About.reddit" = "Reddit";
-/* Terms of Use button label */
+/* Terms And Conditions button label */
 "About.terms" = "Gebruikersvoorwaarden";
 /* About screen title */
 "About.title" = "Over";
@@ -441,14 +441,6 @@
 "LocationPlugin.disabled" = "Locatievoorzieningen zijn uitgeschakeld.";
 /* No permissions for location services */
 "LocationPlugin.notAuthorized" = "BRD heeft geen toestemming om locatievoorzieningen te gebruiken.";
-/* Wallet creation date prefix */
-"ManageWallet.creationDatePrefix" = "Je hebt je portemonnee gecreëerd op %1$@";
-/* Manage wallet description text */
-"ManageWallet.description" = "Jouw portemonnee naam zal alleen verschijnen in je account transactie geschiedenis en kan door niemand anders worden gezien.";
-/* Change Wallet name textfield label */
-"ManageWallet.textFeildLabel" = "Portemonnee Naam";
-/* Manage wallet modal title */
-"ManageWallet.title" = "Portemonnee Beheren";
 "MarketData.high24h" = "24u hoog";
 "MarketData.low24h" = "24u laag";
 "MarketData.marketCap" = "Marktkapitalisatie";
@@ -525,8 +517,6 @@
 "OnboardingPageThree.subtitle" = "Investeer en diversifieer met BRD, snel en veilig.";
 /* Onboarding screen Page 3 title */
 "OnboardingPageThree.title" = "Koop en handel in bitcoin, tokens en andere digitale valuta.";
-/* Onboarding screen Page 2 subtitle */
-"OnboardingPageTwo.subtitle" = "We hebben meer dan $6 miljard USD waard aan aandelen onder onze bescherming.";
 /* Onboarding screen Page 2 title */
 "OnboardingPageTwo.title" = "Sluit je aan bij miljoenen mensen over de hele wereld die op BRD vertrouwen.";
 /* Eg. Send 1.0Eth to purchase CCC */
