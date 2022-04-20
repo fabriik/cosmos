@@ -8,7 +8,7 @@
 "About.privacy" = "Privatlivspolitik";
 /* About screen reddit label */
 "About.reddit" = "Reddit";
-/* Terms of Use button label */
+/* Terms And Conditions button label */
 "About.terms" = "Brugsbetingelser";
 /* About screen title */
 "About.title" = "Om";
@@ -441,14 +441,6 @@
 "LocationPlugin.disabled" = "Placeringstjenester er deaktiveret.";
 /* No permissions for location services */
 "LocationPlugin.notAuthorized" = "BRD har ikke adgang til placeringstjenester.";
-/* Wallet creation date prefix */
-"ManageWallet.creationDatePrefix" = "Du lavede din pung den %1$@";
-/* Manage wallet description text */
-"ManageWallet.description" = "Din pungs navn vises kun i din kontos transaktionshistorik, og kan ikke ses af nogen andre.";
-/* Change Wallet name textfield label */
-"ManageWallet.textFeildLabel" = "Pungens navn";
-/* Manage wallet modal title */
-"ManageWallet.title" = "Administrer pung";
 "MarketData.high24h" = "24 timer høj";
 "MarketData.low24h" = "24 timer lav";
 "MarketData.marketCap" = "Markedsværdi";
@@ -525,8 +517,6 @@
 "OnboardingPageThree.subtitle" = "Invester og diversificer med BRD, nemt og sikkert.";
 /* Onboarding screen Page 3 title */
 "OnboardingPageThree.title" = "Køb og sælg bitcoin, tokens og andre digitale valutaer.";
-/* Onboarding screen Page 2 subtitle */
-"OnboardingPageTwo.subtitle" = "Vi har aktiver til en værdi af mere end 6 milliarder dollars under vores beskyttelse.";
 /* Onboarding screen Page 2 title */
 "OnboardingPageTwo.title" = "Gør som millioner af mennesker over hele verden, der stoler på BRD.";
 /* Eg. Send 1.0Eth to purchase CCC */

@@ -113,6 +113,23 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         }
     }
     
+    private var timer: Timer?
+    
+    private func startTimer() {
+        guard timer == nil else { return }
+        // start the timer
+        timer = Timer.scheduledTimer(timeInterval: 15,
+                                     target: self,
+                                     selector: #selector(updateFees),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -229,9 +246,12 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         
         amountView.didChangeFirstResponder = { [weak self] isFirstResponder in
             if isFirstResponder {
+                self?.stopTimer()
                 self?.memoCell.textView.resignFirstResponder()
                 self?.addressCell.textField.resignFirstResponder()
                 self?.attributeCell?.textField.resignFirstResponder()
+            } else {
+                self?.startTimer()
             }
         }
         
@@ -251,7 +271,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         }
     }
     
-    private func updateFees() {
+    @objc private func updateFees() {
         guard paymentProtocolRequest == nil else {
             self.estimateFeeForRequest(paymentProtocolRequest!) {
                 guard case .success(let feeBasis) = $0 else { return }
@@ -731,6 +751,7 @@ extension SendViewController {
     
     @objc private func keyboardWillShow(notification: Notification) {
         copyKeyboardChangeAnimation(notification: notification)
+        startTimer()
     }
     
     @objc private func keyboardWillHide(notification: Notification) {

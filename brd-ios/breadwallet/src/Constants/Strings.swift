@@ -258,13 +258,6 @@ enum S {
         static let invalid = NSLocalizedString("RecoverWallet.invalid", value:"The paper key you entered is invalid. Please double-check each word and try again.", comment: "Invalid paper key message")
     }
 
-    enum ManageWallet {
-        static let title = NSLocalizedString("ManageWallet.title", value:"Manage Wallet", comment: "Manage wallet modal title")
-        static let textFieldLabel = NSLocalizedString("ManageWallet.textFeildLabel", value:"Wallet Name", comment: "Change Wallet name textfield label")
-        static let description = NSLocalizedString("ManageWallet.description", value:"Your wallet name only appears in your account transaction history and cannot be seen by anyone else.", comment: "Manage wallet description text")
-        static let creationDatePrefix = NSLocalizedString("ManageWallet.creationDatePrefix", value:"You created your wallet on %1$@", comment: "Wallet creation date prefix")
-    }
-
     enum AccountHeader {
         static let defaultWalletName = NSLocalizedString("AccountHeader.defaultWalletName", value:"My Fabriik", comment: "Default wallet name")
         static let equals = NSLocalizedString("AccountHeader.equals", value:"=", comment: "Equals symbol")
@@ -335,6 +328,7 @@ enum S {
         static let twitter = NSLocalizedString("About.twitter", value:"Twitter", comment: "About screen twitter label")
         static let reddit = NSLocalizedString("About.reddit", value:"Reddit", comment: "About screen reddit label")
         static let privacy = NSLocalizedString("About.privacy", value:"Privacy Policy", comment: "Privay Policy button label")
+        static let terms = NSLocalizedString("About.terms", value:"Terms And Conditions", comment: "Terms And Conditions button label")
         static let walletID = NSLocalizedString("About.walletID", value:"Fabriik Rewards ID", comment: "About screen wallet ID label")
         static let footer = NSLocalizedString("About.footer", value:"Made by the global Fabriik team. Version %1$@ Build %2$@", comment: "About screen footer")
     }
@@ -436,7 +430,7 @@ enum S {
         static let settings = NSLocalizedString("MenuButton.settings", value:"Settings", comment: "Menu button title")
         static let lock = NSLocalizedString("MenuButton.lock", value:"Lock Wallet", comment: "Menu button title")
         static let addWallet = NSLocalizedString("MenuButton.addWallet", value: "Add Wallet", comment: "Menu button title")
-        static let manageWallets = NSLocalizedString("MenuButton.manageWallets", value: "Manage Wallets", comment: "Menu button title")
+        static let manageAssets = NSLocalizedString("MenuButton.manageAssets", value: "Manage Assets", comment: "Menu button title")
         static let scan = NSLocalizedString("MenuButton.scan", value: "Scan QR Code", comment: "Menu button title")
         static let registrationAndKyc = NSLocalizedString("MenuButton.registrationAndKyc", value: "Registration and KYC", comment: "Menu button title")
         static let feedback = NSLocalizedString("MenuButton.registrationAndKyc", value: "Feedback", comment: "Menu button title")
@@ -461,7 +455,6 @@ enum S {
         static let skip = NSLocalizedString("Onboarding.skip", value: "Skip", comment: "Button that allows the user to skip to the end of the onboarding flow.")
         static let pageOneTitle = NSLocalizedString("OnboardingPageOne.title", value: "Welcome to your new digital asset wallet!", comment: "Title displayed on the first page of the onboarding flow.")
         static let pageTwoTitle = NSLocalizedString("OnboardingPageTwo.title", value: "Join  people around the world who trust Fabriik.", comment: "Title displayed on the second page of the onboarding flow.")
-        static let pageTwoSubtitle = NSLocalizedString("OnboardingPageTwo.subtitle", value: "Join people around the world who trust Fabriik.", comment: "Subtitle displayed on the second page of the onboarding flow.")  
         static let pageThreeTitle = NSLocalizedString("OnboardingPageThree.title", value: "Buy and swap bitcoin, tokens, and other digital currencies.", comment: "Title displayed on the third page of the onboarding flow.")
         static let pageThreeSubtitle = NSLocalizedString("OnboardingPageThree.subtitle", value: "Invest and diversify with Fabriik, easily and securely.", comment: "Subtitle displayed on the third page of the onboarding flow.")
     }
@@ -672,7 +665,7 @@ enum S {
         static let show = NSLocalizedString("TokenList.show", value: "Show", comment: "Show currency button label")
         static let remove = NSLocalizedString("TokenList.remove", value: "Remove", comment: "Remove currency button label")
         static let hide = NSLocalizedString("TokenList.hide", value: "Hide", comment: "Hide currency button label")
-        static let manageTitle = NSLocalizedString("TokenList.manageTitle", value: "Manage Wallets", comment: "Manage Wallets view title")
+        static let manageTitle = NSLocalizedString("TokenList.manageTitle", value: "Manage Assets", comment: "Manage Assets view title")
     }
 
     enum LinkWallet {

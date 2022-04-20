@@ -344,20 +344,20 @@ class OnboardingViewController: UIViewController {
     }
     
     private func setUpPages() {
-
+        
         pages.append(OnboardingPage(heading: S.OnboardingScreen.pageOneTitle,
-                                    subheading: "", 
+                                    subheading: "",
                                     videoClip: ""))
         
         pages.append(OnboardingPage(heading: S.OnboardingScreen.pageTwoTitle,
-                                    subheading: S.OnboardingScreen.pageTwoSubtitle,
+                                    subheading: "",
                                     videoClip: "onboarding-video-globe"))
-            
-        pages.append(OnboardingPage(heading: S.OnboardingScreen.pageThreeTitle,
-                           subheading: S.OnboardingScreen.pageThreeSubtitle,
-                           videoClip: "onboarding-video-coins-in"))
-    }
         
+        pages.append(OnboardingPage(heading: S.OnboardingScreen.pageThreeTitle,
+                                    subheading: S.OnboardingScreen.pageThreeSubtitle,
+                                    videoClip: "onboarding-video-coins-in"))
+    }
+    
     private func makeHeadingLabel(text: String, font: UIFont, color: UIColor) -> UILabel {
         let label = UILabel()
         

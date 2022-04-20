@@ -637,8 +637,8 @@ class ModalPresenter: Subscriber, Trackable {
                 } else {}
             },
             
-            // Manage Wallets
-            MenuItem(title: S.MenuButton.manageWallets, icon: MenuItem.Icon.wallet) { [weak self] in
+            // Manage Assets
+            MenuItem(title: S.MenuButton.manageAssets, icon: MenuItem.Icon.wallet) { [weak self] in
                 guard let `self` = self, let assetCollection = self.system.assetCollection else { return }
                 let vc = ManageWalletsViewController(assetCollection: assetCollection, coreSystem: self.system)
                 menuNav.pushViewController(vc, animated: true)

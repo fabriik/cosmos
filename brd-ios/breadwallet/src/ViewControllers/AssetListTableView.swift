@@ -69,9 +69,9 @@ class AssetListTableView: UITableViewController, Subscriber {
         addWalletButton.contentHorizontalAlignment = .center
         addWalletButton.contentVerticalAlignment = .center
 
-        let buttonTitle = S.MenuButton.manageWallets
+        let buttonTitle = S.MenuButton.manageAssets
         addWalletButton.setTitle(buttonTitle, for: .normal)
-        addWalletButton.accessibilityLabel = E.isScreenshots ? "Manage Wallets" : buttonTitle
+        addWalletButton.accessibilityLabel = buttonTitle
 
         addWalletButton.addTarget(self, action: #selector(addWallet), for: .touchUpInside)
 
