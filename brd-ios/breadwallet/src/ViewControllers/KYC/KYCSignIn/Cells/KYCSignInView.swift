@@ -189,23 +189,15 @@ class KYCSignInView: BaseView, GenericSettable {
         submitButton.changeStyle(with: style)
     }
     
-    func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCSignIn.FieldType) {
-        let isWrongFormat = !isViable && !isFieldEmpty
+    func changeFieldStyle(isFieldEmpty: Bool, for fieldType: KYCSignIn.FieldType) {
         
         switch fieldType {
         case .email:
             emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
-            emailField.setCheckMark(isVisible: isViable)
-            if isWrongFormat {
-                emailField.setDescriptionMessage(isWrongFormat: isWrongFormat)
-            }
             
         case .password:
             passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
-            passwordField.setCheckMark(isVisible: isViable)
-            if isWrongFormat {
-                passwordField.setDescriptionMessage(isWrongFormat: isWrongFormat)
-            }
+            
         }
     }
 }

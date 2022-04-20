@@ -69,16 +69,12 @@ class KYCSignInInteractor: KYCSignInBusinessLogic, KYCSignInDataStore {
         var validationValues = [Bool]()
         validationValues.append(!email.isNilOrEmpty)
         validationValues.append(!password.isNilOrEmpty)
-        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
-            let isFieldEmpty = (self?.password ?? "").isEmpty
-            
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .password))
-        }))
-        validationValues.append(Validator.validateEmail(value: email ?? "", completion: { [weak self] isViable in
-            let isFieldEmpty = (self?.email ?? "").isEmpty
-            
-            self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .email))
-        }))
+        
+        let isPasswordFieldEmpty = (password ?? "").isEmpty
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isPasswordFieldEmpty, type: .password))
+
+        let isEmailFieldEmpty = (email ?? "").isEmpty
+        presenter?.presentValidateField(response: .init(isFieldEmpty: isEmailFieldEmpty, type: .email))
         
         let shouldEnable = !validationValues.contains(false)
         

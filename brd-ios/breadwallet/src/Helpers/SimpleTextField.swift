@@ -231,7 +231,8 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     }
     
     func setDescriptionMessage(isWrongFormat: Bool) {
-        errorLabel.text = fieldType == .email ? "Wrong email format" : "Weak password"
+        // TODO: Add better explanations
+        errorLabel.text = fieldType == .email ? "Wrong email format" : "Please enter a better password"
         errorLabel.textColor = UIColor.kycGray1
         errorLabel.isHidden = !isWrongFormat
         textField.layer.borderColor = isWrongFormat ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
