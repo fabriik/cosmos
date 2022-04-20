@@ -439,11 +439,6 @@ class ModalPresenter: Subscriber, Trackable {
         var btcItems: [MenuItem] = []
         if let btc = Currencies.btc.instance, let btcWallet = btc.wallet {
             
-            // Connection mode
-            btcItems.append(MenuItem(title: S.WalletConnectionSettings.menuTitle) { [weak self] in
-                self?.presentConnectionModeScreen(menuNav: menuNav)
-            })
-
             // Rescan
             var rescan = MenuItem(title: S.Settings.sync, callback: { [unowned self] in
                 menuNav.pushViewController(ReScanViewController(system: self.system, wallet: btcWallet), animated: true)
