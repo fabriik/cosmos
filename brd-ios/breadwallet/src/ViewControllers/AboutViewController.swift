@@ -51,16 +51,16 @@ class AboutViewController: UIViewController {
             walletID.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: verticalMargin),
             walletID.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             walletID.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
-        privacy.constrain([
-            privacy.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            privacy.topAnchor.constraint(equalTo: walletID.bottomAnchor, constant: verticalMargin)])
         terms.constrain([
             terms.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            terms.topAnchor.constraint(equalTo: privacy.bottomAnchor)])
+            terms.topAnchor.constraint(equalTo: walletID.bottomAnchor, constant: verticalMargin)])
+        privacy.constrain([
+            privacy.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            privacy.topAnchor.constraint(equalTo: terms.bottomAnchor)])
         footer.constrain([
             footer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[3]),
             footer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[3]),
-            footer.topAnchor.constraint(equalTo: terms.bottomAnchor, constant: verticalMargin)])
+            footer.topAnchor.constraint(equalTo: privacy.bottomAnchor, constant: verticalMargin)])
     }
 
     private func setData() {
@@ -96,8 +96,7 @@ class AboutViewController: UIViewController {
         guard let url = URL(string: string) else { return }
         let webViewController = SimpleWebViewController(url: url)
         webViewController.setup(with: .init(title: title))
-        let navController = UINavigationController(rootViewController: webViewController)
         
-        present(navController, animated: true)
+        navigationController?.pushViewController(webViewController, animated: true)
     }
 }
