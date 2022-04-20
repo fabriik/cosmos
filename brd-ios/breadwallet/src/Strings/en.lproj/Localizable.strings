@@ -1075,7 +1075,7 @@
 /* Add [this item to the list] */
 "TokenList.add" = "Add";
 /* Add Wallets  [to your home screen] */
-"TokenList.addTitle" = "Add Wallets";
+"TokenList.addTitle" = "Add Assets";
 /* Hide [this token from view] */
 "TokenList.hide" = "Hide";
 /* [click here to] Manage [your] Assets */
