@@ -1,83 +1,55 @@
-//
-//  AboutCell.swift
-//  breadwallet
-//
-//  Created by Adrian Corscadden on 2017-04-05.
-//  Copyright © 2017-2019 Breadwinner AG. All rights reserved.
+// 
+// Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
 
-class AboutCell: UIView {
-
-    let button: UIButton
-
-    init(text: String) {
-        button = UIButton.icon(image: #imageLiteral(resourceName: "OpenBrowser"), accessibilityLabel: text)
-        label.text = text
-        super.init(frame: .zero)
-        setup()
-    }
-
-    private let label = UILabel(font: .customBody(size: 16.0), color: .almostBlack)
-    private let separator = UIView(color: .secondaryShadow)
-
-    private func setup() {
-        addSubview(label)
-        addSubview(button)
-        addSubview(separator)
-
-        label.constrain([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[2]),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[2]) ])
-        button.constrain([
-            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
-            button.centerYAnchor.constraint(equalTo: label.centerYAnchor) ])
-        separator.constrain([
-            separator.leadingAnchor.constraint(equalTo: label.leadingAnchor),
-            separator.trailingAnchor.constraint(equalTo: button.trailingAnchor),
-            separator.bottomAnchor.constraint(equalTo: bottomAnchor),
-            separator.heightAnchor.constraint(equalToConstant: 1.0) ])
-        button.tintColor = .primaryButton
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class WalletIDCell: UIView {
+class AboutHeaderView: BaseView {
+    private lazy var mainLogoView: UIImageView = {
+        let mainLogoView = UIImageView(image: UIImage(named: "LogoBlue"))
+        mainLogoView.translatesAutoresizingMaskIntoConstraints = false
+        mainLogoView.contentMode = .scaleAspectFit
+        
+        return mainLogoView
+    }()
     
-    init() {
-        super.init(frame: .zero)
-        setup()
-    }
+    private lazy var mainLogoTextView: UIImageView = {
+        let mainLogoTextView = UIImageView(image: UIImage(named: "LogoBlueOnlyText"))
+        mainLogoTextView.translatesAutoresizingMaskIntoConstraints = false
+        mainLogoTextView.contentMode = .scaleAspectFit
+        
+        return mainLogoTextView
+    }()
     
-    private let label = UILabel(font: .customMedium(size: 40.0), color: .almostBlack)
-    private let separator = UIView(color: .secondaryShadow)
+    private lazy var separator: UIView = {
+        let separator = UIView(color: .secondaryShadow)
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return separator
+    }()
     
-    private func setup() {
-        addSubview(label)
+    override func setupSubviews() {
+        super.setupSubviews()
+        
+        addSubview(mainLogoView)
+        addSubview(mainLogoTextView)
         addSubview(separator)
         
-        // constraints
-        label.constrain([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[1]),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[2]) ])
+        mainLogoView.constrain([
+            mainLogoView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            mainLogoView.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[2]),
+            mainLogoView.widthAnchor.constraint(equalToConstant: 50),
+            mainLogoView.heightAnchor.constraint(equalToConstant: 50) ])
+        mainLogoTextView.constrain([
+            mainLogoTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
+            mainLogoTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
+            mainLogoTextView.topAnchor.constraint(equalTo: mainLogoView.bottomAnchor, constant: C.padding[2]),
+            mainLogoTextView.heightAnchor.constraint(equalTo: mainLogoView.heightAnchor) ])
         separator.constrain([
-            separator.leadingAnchor.constraint(equalTo: label.leadingAnchor),
-            separator.trailingAnchor.constraint(equalTo: label.trailingAnchor),
+            separator.topAnchor.constraint(equalTo: mainLogoTextView.bottomAnchor, constant: C.padding[3]),
+            separator.leadingAnchor.constraint(equalTo: mainLogoTextView.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: mainLogoTextView.trailingAnchor),
             separator.bottomAnchor.constraint(equalTo: bottomAnchor),
             separator.heightAnchor.constraint(equalToConstant: 1.0) ])
-        
-        label.text = "Fabriik"
-        label.textAlignment = .center
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
