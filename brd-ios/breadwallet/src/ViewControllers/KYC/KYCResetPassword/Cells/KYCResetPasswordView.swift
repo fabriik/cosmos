@@ -28,7 +28,8 @@ class KYCResetPasswordView: BaseView, GenericSettable {
     private lazy var codeField: SimpleTextField = {
         let codeField = SimpleTextField()
         codeField.translatesAutoresizingMaskIntoConstraints = false
-        codeField.setup(as: .text, title: "RECOVERY CODE", customPlaceholder: "000-000")
+        codeField.setup(as: .numbers, title: "RECOVERY CODE", customPlaceholder: "000-000")
+        codeField.textField.textContentType = .oneTimeCode
         
         return codeField
     }()
@@ -125,17 +126,26 @@ class KYCResetPasswordView: BaseView, GenericSettable {
     }
     
     func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCResetPassword.FieldType) {
+        let isWrongFormat = !isViable && !isFieldEmpty
+        
         switch fieldType {
         case .recoveryCode:
             codeField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
+            codeField.setCheckMark(isVisible: isViable)
             
         case .password:
             passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             passwordField.setCheckMark(isVisible: isViable)
+            if isWrongFormat {
+                passwordField.setDescriptionMessage(isWrongFormat: isWrongFormat)
+            }
             
         case .passwordRepeat:
             passwordRepeatField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             passwordRepeatField.setCheckMark(isVisible: isViable)
+            if isWrongFormat {
+                passwordRepeatField.setDescriptionMessage(isWrongFormat: isWrongFormat)
+            }
         }
     }
 }

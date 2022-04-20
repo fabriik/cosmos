@@ -29,7 +29,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         descriptionLabel.textColor = .kycGray1
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 20)
-        descriptionLabel.text = "We’ve sent a confirmation code to your email. Click on it on this device to confirm your email address. \n\nYou can also copy and paste the code here:"
+        descriptionLabel.text = "We’ve sent a SMS with a confirmation code to your mobile phone. Please enter the 6-digit code below."
         
         return descriptionLabel
     }()
@@ -37,7 +37,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
     private lazy var confirmationCodeField: SimpleTextField = {
         let confirmationCodeField = SimpleTextField()
         confirmationCodeField.translatesAutoresizingMaskIntoConstraints = false
-        confirmationCodeField.setup(as: .numbers, title: "CONFIRMATION CODE", customPlaceholder: "Confirmation code")
+        confirmationCodeField.setup(as: .numbers, title: "CONFIRMATION CODE", customPlaceholder: "000-000")
         confirmationCodeField.textField.textContentType = .oneTimeCode
         
         return confirmationCodeField

@@ -12,6 +12,7 @@ protocol KYCAddressDisplayLogic: AnyObject {
     func displaySubmitData(viewModel: KYCAddress.SubmitData.ViewModel)
     func displayShouldEnableSubmit(viewModel: KYCAddress.ShouldEnableSubmit.ViewModel)
     func displayValidateField(viewModel: KYCAddress.ValidateField.ViewModel)
+    func displayShouldEnableField(viewModel: KYCAddress.ShouldEnableField.ViewModel)
     func displayError(viewModel: GenericModels.Error.ViewModel)
 }
 
@@ -213,6 +214,16 @@ class KYCAddressViewController: KYCViewController, KYCAddressDisplayLogic, UITab
         cell.setup { view in
             view.changeFieldStyle(isFieldEmpty: viewModel.isFieldEmpty,
                                   for: viewModel.type)
+        }
+    }
+    
+    func displayShouldEnableField(viewModel: KYCAddress.ShouldEnableField.ViewModel) {
+        guard let index = sections.firstIndex(of: .fields) else { return }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: index)) as? CellWrapperView<KYCAddressFieldsView> else { return }
+        
+        cell.setup { view in
+            let style: SimpleTextField.TextFieldStyle = viewModel.shouldEnable ? .tfEnabled : .tfDisabled
+            view.shouldEnableField(with: style)
         }
     }
 }

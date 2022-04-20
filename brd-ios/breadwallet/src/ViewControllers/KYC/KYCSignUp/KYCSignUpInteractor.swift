@@ -169,8 +169,8 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
         validationValues.append(!phonePrefix.isNilOrEmpty)
         validationValues.append(!phoneNumber.isNilOrEmpty)
         validationValues.append(tickBox == true)
-        validationValues.append(Validator.validatePassword(value: password ?? "", completion: { [weak self] isViable in
-            let isFieldEmpty = (self?.password ?? "").isEmpty
+        validationValues.append(Validator.validatePassword(value: passwordOriginal ?? "", completion: { [weak self] isViable in
+            let isFieldEmpty = (self?.passwordOriginal ?? "").isEmpty
             
             self?.presenter?.presentValidateField(response: .init(isViable: isViable, isFieldEmpty: isFieldEmpty, type: .password))
         }))

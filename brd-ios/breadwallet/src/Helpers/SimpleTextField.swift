@@ -7,9 +7,40 @@ import UIKit
 class SimpleTextField: UIView, UITextFieldDelegate {
     enum FieldType {
         case text, numbers, password, email, picker
+        
+        var description: String {
+            switch self {
+            case .email:
+                return "Wrong email format"
+                
+            case .password:
+                return "Please enter a better password"
+            
+            default:
+                return ""
+                
+            }
+        }
+    }
+    
+    enum TextFieldStyle {
+        case tfEnabled
+        case tfDisabled
+        
+        var tintColor: UIColor? {
+            switch self {
+            case .tfEnabled:
+                return .kycGray1
+                
+            case .tfDisabled:
+                return .kycGray3
+                
+            }
+        }
     }
     
     private var fieldType: FieldType = .text
+    private var fieldStyle: TextFieldStyle?
     
     private lazy var rightButton: UIButton = {
         let rightButton = UIButton()
@@ -103,6 +134,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         case .picker:
             rightButton.setImage(UIImage(named: "KYC Dropdown Arrow"), for: .normal)
+            rightButton.tintColor = .kycGray1
             textField.inputView = UIView()
             textField.inputAccessoryView = UIView()
             
@@ -131,6 +163,28 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         default:
             return true
+        }
+    }
+    
+    func setupFieldStyle(with textFieldStyle: TextFieldStyle) {
+        self.fieldStyle = textFieldStyle
+        
+        style()
+    }
+    
+    private func style() {
+        textField.layer.borderColor = fieldStyle?.tintColor?.cgColor
+        rightButton.tintColor = fieldStyle?.tintColor
+        
+        switch fieldStyle {
+        case .tfEnabled, .none:
+            textField.isUserInteractionEnabled = true
+       
+        case .tfDisabled:
+            textField.isUserInteractionEnabled = false
+            textField.text = nil
+            errorLabel.isHidden = true
+            
         }
     }
     
@@ -173,16 +227,29 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     func setCheckMark(isVisible: Bool) {
         rightButton.isHidden = !isVisible
         rightButton.setImage(isVisible ? UIImage(named: "Field Check Mark") : nil, for: .normal)
-        textField.layer.borderColor = isVisible ? UIColor.kycGreen.cgColor : UIColor.kycGray1.cgColor
         
-        if isVisible && fieldType == .password {
-            showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
+        if isVisible {
+            textField.layer.borderColor = UIColor.kycGreen.cgColor
+            
+            if fieldType == .password {
+                showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
+            }
         }
     }
     
     func setEmptyErrorMessage(isFieldEmpty: Bool) {
+        errorLabel.text = "Cannot be empty"
+        errorLabel.textColor = UIColor.kycRed
         errorLabel.isHidden = !isFieldEmpty
-        textField.layer.borderColor = isFieldEmpty && !rightButton.isHidden ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
+        textField.layer.borderColor = isFieldEmpty ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
+    }
+    
+    func setDescriptionMessage(isWrongFormat: Bool) {
+        // TODO: Add better explanations
+        errorLabel.text = fieldType.description
+        errorLabel.textColor = UIColor.kycGray1
+        errorLabel.isHidden = !isWrongFormat
+        textField.layer.borderColor = isWrongFormat ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
     }
     
     @objc func togglePasswordView(_ sender: Any) {

@@ -229,14 +229,22 @@ class KYCSignUpView: BaseView, GenericSettable {
     }
     
     func changeFieldStyle(isViable: Bool, isFieldEmpty: Bool, for fieldType: KYCSignUp.FieldType) {
+        let isWrongFormat = !isViable && !isFieldEmpty
+        
         switch fieldType {
         case .email:
             emailField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             emailField.setCheckMark(isVisible: isViable)
+            if isWrongFormat {
+                emailField.setDescriptionMessage(isWrongFormat: isWrongFormat)
+            }
             
         case .password:
             passwordField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
             passwordField.setCheckMark(isVisible: isViable)
+            if isWrongFormat {
+                passwordField.setDescriptionMessage(isWrongFormat: isWrongFormat)
+            }
             
         case .firstName:
             firstNameField.setEmptyErrorMessage(isFieldEmpty: isFieldEmpty)
