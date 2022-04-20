@@ -14,7 +14,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let widgetDataShareService: WidgetDataShareService
     private let assetList = AssetListTableView()
     private let subHeaderView = UIView()
-    private let logo = UIImageView(image: UIImage(named: "LogoBlue"))
     private let total = UILabel(font: Theme.boldTitle.withSize(Theme.FontSize.h1Title.rawValue), color: Theme.tertiaryText)
     private let totalAssetsLabel = UILabel(font: Theme.caption, color: Theme.tertiaryText)
     private let debugLabel = UILabel(font: .customBody(size: 12.0), color: .transparentWhiteText) // debug info
@@ -23,6 +22,14 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let toolbar = UIToolbar()
     private var toolbarButtons = [UIButton]()
     private let notificationHandler = NotificationHandler()
+    private lazy var logoImageView: UIImageView = {
+        let logoImageView = UIImageView()
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.image = E.isIPhone6OrSmaller ? UIImage(named: "LogoBlue") : UIImage(named: "LogoBlueWithText")
+        
+        return logoImageView
+    }()
     
     private var shouldShowBuyAndSell: Bool {
         return (Store.state.experimentWithName(.buyAndSell)?.active ?? false) && (Store.state.defaultCurrencyCode == C.usdCurrencyCode)
@@ -117,7 +124,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
 
     private func addSubviews() {
         view.addSubview(subHeaderView)
-        subHeaderView.addSubview(logo)
+        subHeaderView.addSubview(logoImageView)
         subHeaderView.addSubview(totalAssetsLabel)
         subHeaderView.addSubview(total)
         subHeaderView.addSubview(debugLabel)
@@ -143,15 +150,14 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             totalAssetsLabel.trailingAnchor.constraint(equalTo: total.trailingAnchor),
             totalAssetsLabel.bottomAnchor.constraint(equalTo: total.topAnchor)])
         
-        logo.constrain([
-            logo.leadingAnchor.constraint(equalTo: subHeaderView.leadingAnchor, constant: C.padding[2]),
-            logo.heightAnchor.constraint(equalToConstant: 43),
-            logo.widthAnchor.constraint(equalToConstant: 43),
-            logo.centerYAnchor.constraint(equalTo: total.centerYAnchor)])
+        logoImageView.constrain([
+            logoImageView.leadingAnchor.constraint(equalTo: subHeaderView.leadingAnchor, constant: C.padding[2]),
+            logoImageView.heightAnchor.constraint(equalToConstant: 40),
+            logoImageView.centerYAnchor.constraint(equalTo: total.centerYAnchor, constant: -4)])
 
         debugLabel.constrain([
-            debugLabel.leadingAnchor.constraint(equalTo: logo.leadingAnchor),
-            debugLabel.bottomAnchor.constraint(equalTo: logo.topAnchor, constant: -4.0)])
+            debugLabel.leadingAnchor.constraint(equalTo: logoImageView.leadingAnchor),
+            debugLabel.bottomAnchor.constraint(equalTo: logoImageView.topAnchor, constant: -4.0)])
         
         promptHiddenConstraint = prompt.heightAnchor.constraint(equalToConstant: 0.0)
         prompt.constrain([
@@ -184,8 +190,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.shadowImage = #imageLiteral(resourceName: "TransparentPixel")
         navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "TransparentPixel"), for: .default)
-        
-        logo.contentMode = .center
         
         total.textAlignment = .right
         total.text = "0"
