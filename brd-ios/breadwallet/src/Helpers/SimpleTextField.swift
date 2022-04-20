@@ -7,6 +7,20 @@ import UIKit
 class SimpleTextField: UIView, UITextFieldDelegate {
     enum FieldType {
         case text, numbers, password, email, picker
+        
+        var description: String {
+            switch self {
+            case .email:
+                return "Wrong email format"
+                
+            case .password:
+                return "Please enter a better password"
+            
+            default:
+                return ""
+                
+            }
+        }
     }
     
     enum TextFieldStyle {
@@ -232,7 +246,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     
     func setDescriptionMessage(isWrongFormat: Bool) {
         // TODO: Add better explanations
-        errorLabel.text = fieldType == .email ? "Wrong email format" : "Please enter a better password"
+        errorLabel.text = fieldType.description
         errorLabel.textColor = UIColor.kycGray1
         errorLabel.isHidden = !isWrongFormat
         textField.layer.borderColor = isWrongFormat ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
