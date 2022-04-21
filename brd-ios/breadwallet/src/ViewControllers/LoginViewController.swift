@@ -56,7 +56,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         return PinView(style: .login, length: Store.state.pinLength)
     }()
     private let disabledView: WalletDisabledView
-    private var logo = UIImageView(image: #imageLiteral(resourceName: "LogoBlue"))
+    private var logo = UIImageView(image: #imageLiteral(resourceName: "LogoBlue-Large"))
     private var pinPadPottom: NSLayoutConstraint?
     private var topControlTop: NSLayoutConstraint?
     private var unlockTimer: Timer?
@@ -157,7 +157,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             pinView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: E.isIPhone4 ? -C.padding[2] : 0.0),
             pinView.centerXAnchor.constraint(equalTo: pinViewContainer.centerXAnchor),
             pinView.widthAnchor.constraint(equalToConstant: pinView.width),
-            pinView.heightAnchor.constraint(equalToConstant: pinView.itemSize) ])
+            pinView.heightAnchor.constraint(equalToConstant: pinView.itemSize)])
     }
 
     private func addSubviews() {
@@ -173,16 +173,16 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         backgroundView.backgroundColor = Theme.primaryBackground
         pinViewContainer.constrain(toSuperviewEdges: nil)
         debugLabel.constrain([
-            debugLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[3]),
+            debugLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[6]),
             debugLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2])
         ])
         topControlTop = logo.topAnchor.constraint(equalTo: view.topAnchor,
-                                                            constant: C.Sizes.brdLogoHeight + C.Sizes.brdLogoTopMargin)
+                                                            constant: C.Sizes.brdLogoHeight * 2 + C.Sizes.brdLogoTopMargin)
         logo.constrain([
             topControlTop,
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logo.widthAnchor.constraint(equalToConstant: 50),
-            logo.heightAnchor.constraint(equalToConstant: 50)])
+            logo.widthAnchor.constraint(equalToConstant: 104),
+            logo.heightAnchor.constraint(equalTo: logo.widthAnchor)])
 
         pinPadPottom = pinPadBackground.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         pinPadBackground.constrain([
