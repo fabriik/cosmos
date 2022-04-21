@@ -18,7 +18,7 @@ class PinView: UIView {
 
     // MARK: - Public
     var itemSize: CGFloat {
-        return 24.0
+        return 22.0
     }
     
     var width: CGFloat {
