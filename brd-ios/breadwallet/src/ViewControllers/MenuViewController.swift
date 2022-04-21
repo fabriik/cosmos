@@ -42,7 +42,6 @@ class MenuViewController: UITableViewController, Subscriber {
         tableView.register(MenuCell.self, forCellReuseIdentifier: MenuCell.cellIdentifier)
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
-        // tableView.separatorColor = .kycLightGray
         tableView.backgroundColor = Theme.primaryBackground
         
         navigationController?.navigationBar.backgroundColor = Theme.primaryBackground
