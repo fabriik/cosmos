@@ -125,11 +125,6 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
                                      repeats: true)
     }
     
-    private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -195,10 +190,15 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateLimits()
+        startTimer()
         if let initialRequest = initialRequest {
             handleRequest(initialRequest)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
     }
     
     private func addAddressChangeListener() {
@@ -246,12 +246,9 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         
         amountView.didChangeFirstResponder = { [weak self] isFirstResponder in
             if isFirstResponder {
-                self?.stopTimer()
                 self?.memoCell.textView.resignFirstResponder()
                 self?.addressCell.textField.resignFirstResponder()
                 self?.attributeCell?.textField.resignFirstResponder()
-            } else {
-                self?.startTimer()
             }
         }
         
@@ -751,7 +748,6 @@ extension SendViewController {
     
     @objc private func keyboardWillShow(notification: Notification) {
         copyKeyboardChangeAnimation(notification: notification)
-        startTimer()
     }
     
     @objc private func keyboardWillHide(notification: Notification) {
