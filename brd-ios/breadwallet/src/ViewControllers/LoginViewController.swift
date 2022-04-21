@@ -173,7 +173,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         backgroundView.backgroundColor = Theme.primaryBackground
         pinViewContainer.constrain(toSuperviewEdges: nil)
         debugLabel.constrain([
-            debugLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[6]),
+            debugLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: C.padding[3]),
             debugLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2])
         ])
         topControlTop = logo.topAnchor.constraint(equalTo: view.topAnchor,
