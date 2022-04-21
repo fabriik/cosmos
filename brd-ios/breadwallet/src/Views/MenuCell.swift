@@ -26,7 +26,7 @@ class MenuCell: SeparatorCell {
         textLabel?.textColor = .almostBlack
         
         imageView?.image = item.icon
-        imageView?.tintColor = Theme.blueBackground
+        imageView?.tintColor = .kycGray1
         
         if let accessoryText = item.accessoryText?() {
             let label = UILabel(font: Theme.body1, color: Theme.primaryText)
