@@ -15,24 +15,50 @@ enum PriceChangeViewStyle {
 
 class PriceChangeView: UIView, Subscriber {
     
-    var currency: Currency? = nil {
+    var currency: Currency? {
         didSet {
             //These cells get recycled, so we need to cancel any previous subscriptions
             Store.unsubscribe(self)
-            setInitialData()
             subscribeToPriceChange()
         }
     }
     
     private let percentLabel = UILabel(font: Theme.body3)
     private let absoluteLabel = UILabel(font: Theme.body3)
-    private let plusLabel = UILabel(font: Theme.body3)
-    private let separator = UIView(color: .greenCheck)
+    private let prefixLabel = UILabel(font: Theme.body3)
     
     private var priceInfo: FiatPriceInfo? {
         didSet {
             handlePriceChange()
         }
+    }
+    
+    private var prefixValue: String {
+        guard let change24Hrs = priceInfo?.change24Hrs else { return "" }
+        
+        if change24Hrs > 0 {
+            return "+"
+        } else if change24Hrs < 0 {
+            return "-"
+        } else if change24Hrs == 0 {
+            return ""
+        }
+        
+        return ""
+    }
+    
+    private var valueColor: UIColor {
+        guard let change24Hrs = priceInfo?.change24Hrs else { return .shuttleGrey }
+        
+        if change24Hrs > 0 {
+            return .greenCheck
+        } else if change24Hrs < 0 {
+            return .redCheck
+        } else if change24Hrs == 0 {
+            return .shuttleGrey
+        }
+        
+        return .shuttleGrey
     }
     
     private var currencyNumberFormatter: NumberFormatter {
@@ -53,21 +79,15 @@ class PriceChangeView: UIView, Subscriber {
     private func setup() {
         addSubviews()
         setupConstraints()
-        setInitialData()
     }
     
     private func setupConstraints() {
-        separator.constrain([
-            separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.half),
-            separator.topAnchor.constraint(equalTo: topAnchor, constant: 4.0),
-            separator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4.0),
-            separator.widthAnchor.constraint(equalToConstant: 1.0)])
-        plusLabel.constrain([
-            plusLabel.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: Padding.half),
-            plusLabel.centerYAnchor.constraint(equalTo: centerYAnchor)])
+        prefixLabel.constrain([
+            prefixLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.half),
+            prefixLabel.centerYAnchor.constraint(equalTo: centerYAnchor)])
         percentLabel.constrain([
             percentLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            percentLabel.leadingAnchor.constraint(equalTo: plusLabel.trailingAnchor, constant: 3.0)])
+            percentLabel.leadingAnchor.constraint(equalTo: prefixLabel.trailingAnchor, constant: 3.0)])
         absoluteLabel.constrain([
             absoluteLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             absoluteLabel.leadingAnchor.constraint(equalTo: percentLabel.trailingAnchor, constant: C.padding[1]/2.0),
@@ -79,27 +99,21 @@ class PriceChangeView: UIView, Subscriber {
     }
     
     private func addSubviews() {
-        addSubview(separator)
         addSubview(percentLabel)
-        addSubview(plusLabel)
+        addSubview(prefixLabel)
         addSubview(absoluteLabel)
-    }
-    
-    private func setInitialData() {
-        separator.alpha = 0.0
-        plusLabel.textColor = .greenCheck
-        percentLabel.textColor = .greenCheck
-        absoluteLabel.textColor = .greenCheck
-        percentLabel.text = nil
-        absoluteLabel.text = nil
     }
     
     private func handlePriceChange() {
         guard let priceChange = priceInfo else { return }
         
-        //Set label text
         let percentText = String(format: "%.2f%%", fabs(priceChange.changePercentage24Hrs))
-        plusLabel.text = "+"
+        
+        prefixLabel.text = prefixValue
+        prefixLabel.textColor = valueColor
+        percentLabel.textColor = valueColor
+        absoluteLabel.textColor = valueColor
+        
         if style == .percentAndAbsolute, let absoluteString = currencyNumberFormatter.string(from: NSNumber(value: abs(priceChange.change24Hrs))) {
             absoluteLabel.text = "(\(absoluteString))"
             percentLabel.text = percentText
@@ -123,7 +137,6 @@ class PriceChangeView: UIView, Subscriber {
 }
 
 private extension UILabel {
-    
     func fadeToText(_ text: String) {
         fadeTransition(C.animationDuration)
         self.text = text
