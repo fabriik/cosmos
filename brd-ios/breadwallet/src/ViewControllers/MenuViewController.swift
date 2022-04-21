@@ -10,8 +10,8 @@ import UIKit
 
 class MenuViewController: UITableViewController, Subscriber {
     
-    let standardItemHeight: CGFloat = 48.0
-    let subtitleItemHeight: CGFloat = 58.0
+    let standardItemHeight: CGFloat = 56.0
+    let subtitleItemHeight: CGFloat = 62.0
     
     init(items: [MenuItem], title: String, faqButton: UIButton? = nil) {
         self.items = items
@@ -37,15 +37,15 @@ class MenuViewController: UITableViewController, Subscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Theme.primaryBackground
+        view.backgroundColor = .kycCompletelyWhite
         
         tableView.register(MenuCell.self, forCellReuseIdentifier: MenuCell.cellIdentifier)
         tableView.tableFooterView = UIView()
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = Theme.primaryBackground
-        tableView.rowHeight = 48.0
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .kycGray3
+        tableView.backgroundColor = .kycCompletelyWhite
         
-        navigationController?.navigationBar.backgroundColor = Theme.primaryBackground
+        navigationController?.navigationBar.backgroundColor = .kycCompletelyWhite
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         if let button = faqButton {

@@ -39,8 +39,8 @@ class ClearNumberPad: GenericPinPadCell {
                 }
             } else if let text = text, PinPadViewController.SpecialKeys(rawValue: text) != nil {
                 backgroundColor = .clear
-                imageView.tintColor = .darkBackground
-                imageView.backgroundColor = .clear
+                imageView.tintColor = .almostBlack
+                imageView.backgroundColor = .darkBackground
                 label.isHidden = true
                 masks.forEach {
                     $0.isHidden = false
