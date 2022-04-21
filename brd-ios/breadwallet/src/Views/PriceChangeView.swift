@@ -33,29 +33,25 @@ class PriceChangeView: UIView, Subscriber {
         }
     }
     
-    private var prefixValue: String {
-        guard let change24Hrs = priceInfo?.change24Hrs else { return "" }
+    private var prefixValue: String? {
+        guard let change24Hrs = priceInfo?.change24Hrs else { return nil }
         
         if change24Hrs > 0 {
             return "+"
         } else if change24Hrs < 0 {
             return "-"
-        } else if change24Hrs == 0 {
-            return ""
         }
         
-        return ""
+        return nil
     }
     
-    private var valueColor: UIColor {
-        guard let change24Hrs = priceInfo?.change24Hrs else { return .shuttleGrey }
+    private var valueColor: UIColor? {
+        guard let change24Hrs = priceInfo?.change24Hrs else { return nil }
         
         if change24Hrs > 0 {
             return .greenCheck
         } else if change24Hrs < 0 {
             return .redCheck
-        } else if change24Hrs == 0 {
-            return .shuttleGrey
         }
         
         return .shuttleGrey
