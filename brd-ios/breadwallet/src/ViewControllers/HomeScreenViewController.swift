@@ -9,19 +9,36 @@
 import UIKit
 
 class HomeScreenViewController: UIViewController, Subscriber, Trackable {
-
     private let walletAuthenticator: WalletAuthenticator
     private let widgetDataShareService: WidgetDataShareService
     private let assetList = AssetListTableView()
     private let subHeaderView = UIView()
-    private let total = UILabel(font: Theme.boldTitle.withSize(Theme.FontSize.h1Title.rawValue), color: Theme.tertiaryText)
-    private let totalAssetsLabel = UILabel(font: Theme.caption, color: Theme.tertiaryText)
     private let debugLabel = UILabel(font: .customBody(size: 12.0), color: .transparentWhiteText) // debug info
     private let prompt = UIView()
     private var promptHiddenConstraint: NSLayoutConstraint!
     private let toolbar = UIToolbar()
     private var toolbarButtons = [UIButton]()
     private let notificationHandler = NotificationHandler()
+    
+    private lazy var totalAssetsTitleLabel: UILabel = {
+        let totalAssetsTitleLabel = UILabel(font: Theme.caption, color: Theme.tertiaryText)
+        totalAssetsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        totalAssetsTitleLabel.text = S.HomeScreen.totalAssets
+        
+        return totalAssetsTitleLabel
+    }()
+    
+    private lazy var totalAssetsAmountLabel: UILabel = {
+        let totalAssetsAmountLabel = UILabel(font: Theme.boldTitle.withSize(Theme.FontSize.h1Title.rawValue), color: Theme.tertiaryText)
+        totalAssetsAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+        totalAssetsAmountLabel.adjustsFontSizeToFitWidth = true
+        totalAssetsAmountLabel.minimumScaleFactor = 0.5
+        totalAssetsAmountLabel.textAlignment = .right
+        totalAssetsAmountLabel.text = "0"
+        
+        return totalAssetsAmountLabel
+    }()
+    
     private lazy var logoImageView: UIImageView = {
         let logoImageView = UIImageView()
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +113,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         assetList.didSelectCurrency = didSelectCurrency
         assetList.didTapAddWallet = didTapManageWallets
         addSubviews()
@@ -125,8 +144,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private func addSubviews() {
         view.addSubview(subHeaderView)
         subHeaderView.addSubview(logoImageView)
-        subHeaderView.addSubview(totalAssetsLabel)
-        subHeaderView.addSubview(total)
+        subHeaderView.addSubview(totalAssetsTitleLabel)
+        subHeaderView.addSubview(totalAssetsAmountLabel)
         subHeaderView.addSubview(debugLabel)
         view.addSubview(prompt)
         view.addSubview(toolbar)
@@ -142,18 +161,20 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             subHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             subHeaderView.heightAnchor.constraint(equalToConstant: headerHeight) ])
 
-        total.constrain([
-            total.trailingAnchor.constraint(equalTo: subHeaderView.trailingAnchor, constant: -C.padding[2]),
-            total.centerYAnchor.constraint(equalTo: subHeaderView.topAnchor, constant: C.padding[1])])
+        totalAssetsAmountLabel.constrain([
+            totalAssetsAmountLabel.trailingAnchor.constraint(equalTo: subHeaderView.trailingAnchor, constant: -C.padding[2]),
+            totalAssetsAmountLabel.centerYAnchor.constraint(equalTo: subHeaderView.topAnchor, constant: C.padding[1])])
 
-        totalAssetsLabel.constrain([
-            totalAssetsLabel.trailingAnchor.constraint(equalTo: total.trailingAnchor),
-            totalAssetsLabel.bottomAnchor.constraint(equalTo: total.topAnchor)])
+        totalAssetsTitleLabel.constrain([
+            totalAssetsTitleLabel.trailingAnchor.constraint(equalTo: totalAssetsAmountLabel.trailingAnchor),
+            totalAssetsTitleLabel.bottomAnchor.constraint(equalTo: totalAssetsAmountLabel.topAnchor)])
         
         logoImageView.constrain([
             logoImageView.leadingAnchor.constraint(equalTo: subHeaderView.leadingAnchor, constant: C.padding[2]),
+            logoImageView.trailingAnchor.constraint(equalTo: totalAssetsAmountLabel.leadingAnchor, constant: -C.padding[1]),
             logoImageView.heightAnchor.constraint(equalToConstant: 40),
-            logoImageView.centerYAnchor.constraint(equalTo: total.centerYAnchor, constant: -4)])
+            logoImageView.widthAnchor.constraint(equalToConstant: E.isIPhone6OrSmaller ? 40 : 158),
+            logoImageView.centerYAnchor.constraint(equalTo: totalAssetsAmountLabel.centerYAnchor, constant: -4)])
 
         debugLabel.constrain([
             debugLabel.leadingAnchor.constraint(equalTo: logoImageView.leadingAnchor),
@@ -191,8 +212,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         navigationController?.navigationBar.shadowImage = #imageLiteral(resourceName: "TransparentPixel")
         navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "TransparentPixel"), for: .default)
         
-        total.textAlignment = .right
-        total.text = "0"
         title = ""
         
         if E.isTestnet && !E.isScreenshots {
@@ -205,32 +224,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             debugLabel.isHidden = true
         }
         
-        totalAssetsLabel.text = S.HomeScreen.totalAssets
-        
         setupToolbar()
         updateTotalAssets()
-    }
-    
-    //Returns the added image view so that it can be kept track of for removing later
-    private func addNotificationIndicatorToButton(button: UIButton) -> UIImageView? {
-        guard (button.subviews.last as? UIImageView) == nil else { return nil }    // make sure we didn't already add the bell
-        guard let buttonImageView = button.imageView else { return nil }
-        let buyImageFrame = buttonImageView
-        let bellImage = UIImage(named: "notification-bell")
-
-        let bellImageView = UIImageView(image: bellImage)
-        bellImageView.contentMode = .center
-
-        let bellWidth = bellImage?.size.width ?? 0
-        let bellHeight = bellImage?.size.height ?? 0
-        
-        let bellXOffset = buyImageFrame.center.x + 4
-        let bellYOffset = buyImageFrame.center.y - bellHeight + 2.0
-        
-        bellImageView.frame = CGRect(x: bellXOffset, y: bellYOffset, width: bellWidth, height: bellHeight)
-        
-        button.addSubview(bellImageView)
-        return bellImageView
     }
     
     private func setupToolbar() {
@@ -335,7 +330,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         totalAssetsNumberFormatter.locale = Locale(identifier: localeIdentifier)
         totalAssetsNumberFormatter.currencySymbol = Store.state.orderedWallets.first?.currentRate?.currencySymbol ?? ""
         
-        self.total.text = totalAssetsNumberFormatter.string(from: fiatTotal as NSDecimalNumber)
+        totalAssetsAmountLabel.text = totalAssetsNumberFormatter.string(from: fiatTotal as NSDecimalNumber)
     }
     
     private func updateAmountsForWidgets() {
@@ -386,7 +381,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     // MARK: - Prompt
     
     private let promptDelay: TimeInterval = 0.6
-    private let inAppNotificationDelay: TimeInterval = 3.0
     
     private var currentPromptView: PromptView? {
         didSet {
