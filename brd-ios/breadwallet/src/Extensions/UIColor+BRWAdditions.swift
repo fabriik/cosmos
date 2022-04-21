@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIColor {
-        
     static var newGradientStart: UIColor {
         return UIColor.fromHex("FB5491")
     }
@@ -108,6 +107,14 @@ extension UIColor {
     
     static var greenCheck: UIColor {
         return UIColor.fromHex("00A86E")
+    }
+    
+    static var redCheck: UIColor {
+        return UIColor.fromHex("D72431")
+    }
+    
+    static var shuttleGrey: UIColor {
+        return UIColor.fromHex("5F6368")
     }
     
     static var disabledBackground: UIColor {
