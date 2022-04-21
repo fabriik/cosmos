@@ -247,6 +247,7 @@ class ModalPresenter: Subscriber, Trackable {
             webViewController.setAsNonDismissableModal()
             // TODO: localize
             webViewController.setup(with: .init(title: "Buy"))
+            
             let navController = UINavigationController(rootViewController: webViewController)
             topViewController?.show(navController, sender: nil)
             return nil
@@ -268,7 +269,6 @@ class ModalPresenter: Subscriber, Trackable {
             webViewController.setup(with: .init(title: "Swap"))
             
             let navController = UINavigationController(rootViewController: webViewController)
-            navController.modalPresentationStyle = .overFullScreen
             topViewController?.show(navController, sender: nil)
             return nil
             
