@@ -144,27 +144,28 @@ class SearchHeaderView: UIView {
     }
 
     private func addConstraints() {
-        cancel.setTitle(S.Button.cancel, for: .normal)
-        let titleSize = NSString(string: cancel.titleLabel!.text!).size(withAttributes: [NSAttributedString.Key.font: cancel.titleLabel!.font!])
         cancel.constrain([
-            cancel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
-            cancel.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor),
-            cancel.widthAnchor.constraint(equalToConstant: titleSize.width + C.padding[4])])
+            cancel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[1]),
+            cancel.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor) ])
         searchBar.constrain([
-            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[1]),
-            searchBar.topAnchor.constraint(equalTo: topAnchor, constant: E.isIPhoneX ? C.padding[5] : C.padding[2]),
-            searchBar.trailingAnchor.constraint(equalTo: cancel.leadingAnchor, constant: -C.padding[1]) ])
+            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: cancel.leadingAnchor) ])
     }
 
     private func setData() {
         backgroundColor = .whiteTint
+        
         searchBar.backgroundImage = UIImage()
         searchBar.delegate = self
+        
+        cancel.setTitle(S.Button.cancel, for: .normal)
         cancel.tap = { [weak self] in
             self?.didChangeFilters?([])
             self?.searchBar.resignFirstResponder()
             self?.didCancel?()
         }
+        
         sent.isToggleable = true
         received.isToggleable = true
         pending.isToggleable = true
@@ -227,9 +228,10 @@ class SearchHeaderView: UIView {
         stackView.distribution = .fillProportionally
         stackView.spacing = C.padding[1]
         stackView.constrain([
-            stackView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor, constant: C.padding[1]),
             stackView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: C.padding[1]),
-            stackView.trailingAnchor.constraint(equalTo: cancel.trailingAnchor) ])
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[1]),
+            stackView.trailingAnchor.constraint(equalTo: cancel.trailingAnchor, constant: -C.padding[1]) ])
         stackView.addArrangedSubview(sent)
         stackView.addArrangedSubview(received)
         stackView.addArrangedSubview(pending)

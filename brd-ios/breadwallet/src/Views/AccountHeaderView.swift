@@ -40,6 +40,7 @@ class AccountHeaderView: UIView, GradientDrawable, Subscriber, Trackable {
     private let priceInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.spacing = C.padding[1]
         return stackView
     }()
     

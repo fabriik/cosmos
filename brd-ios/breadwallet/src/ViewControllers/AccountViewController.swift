@@ -68,7 +68,6 @@ class AccountViewController: UIViewController, Subscriber, Trackable {
         }
     }
     private var tableViewTopConstraint: NSLayoutConstraint?
-    private var headerContainerSearchHeight: NSLayoutConstraint?
     private var rewardsViewHeightConstraint: NSLayoutConstraint?
     private var rewardsView: RewardsView?
     private var extraCell: UIView?
@@ -170,7 +169,6 @@ class AccountViewController: UIViewController, Subscriber, Trackable {
             headerContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
         headerView.constrain(toSuperviewEdges: nil)
         searchHeaderview.constrain(toSuperviewEdges: nil)
-        headerContainerSearchHeight = headerContainer.heightAnchor.constraint(equalToConstant: AccountHeaderView.headerViewMinHeight)
         
         footerHeightConstraint = footerView.heightAnchor.constraint(equalToConstant: AccountFooterView.height)
         footerView.constrain([
@@ -309,7 +307,6 @@ class AccountViewController: UIViewController, Subscriber, Trackable {
     private func showSearchHeaderView() {
         navigationController?.setNavigationBarHidden(true, animated: false)
         headerView.stopHeightConstraint()
-        headerContainerSearchHeight?.isActive = true
         UIView.animate(withDuration: C.animationDuration, animations: {
             self.view.layoutIfNeeded()
         })
@@ -327,7 +324,6 @@ class AccountViewController: UIViewController, Subscriber, Trackable {
     private func hideSearchHeaderView() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         headerView.resumeHeightConstraint()
-        headerContainerSearchHeight?.isActive = false
         UIView.animate(withDuration: C.animationDuration, animations: {
             self.view.layoutIfNeeded()
         })
