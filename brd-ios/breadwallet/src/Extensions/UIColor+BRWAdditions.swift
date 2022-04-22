@@ -110,6 +110,14 @@ extension UIColor {
         return UIColor.fromHex("00A86E")
     }
     
+    static var redCheck: UIColor {
+        return UIColor.fromHex("D72431")
+    }
+    
+    static var shuttleGrey: UIColor {
+        return UIColor.fromHex("5F6368")
+    }
+    
     static var disabledBackground: UIColor {
         return UIColor.fromHex("3E3C61")
     }
