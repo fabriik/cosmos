@@ -116,13 +116,19 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
     private var timer: Timer?
     
     private func startTimer() {
-        guard timer == nil else { return }
+        guard timer?.isValid != true else { return }
+        
         // start the timer
         timer = Timer.scheduledTimer(timeInterval: 15,
                                      target: self,
                                      selector: #selector(updateFees),
                                      userInfo: nil,
                                      repeats: true)
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
     
     // MARK: - Lifecycle
@@ -198,7 +204,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        timer?.invalidate()
+        stopTimer()
     }
     
     private func addAddressChangeListener() {
