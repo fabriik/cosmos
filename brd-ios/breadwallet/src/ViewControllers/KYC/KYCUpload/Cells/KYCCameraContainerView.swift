@@ -13,7 +13,7 @@ class KYCCameraContainerView: BaseView, GenericSettable, KYCCameraViewDelegate {
         let cameraContainerView = RoundedView()
         cameraContainerView.translatesAutoresizingMaskIntoConstraints = false
         cameraContainerView.cornerRadius = 15
-        cameraContainerView.backgroundColor = .kycGray1
+        cameraContainerView.backgroundColor = .gray1
         
         return cameraContainerView
     }()

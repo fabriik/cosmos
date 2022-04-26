@@ -20,7 +20,7 @@ class KYCViewController: UIViewController {
         let roundedView = RoundedView()
         roundedView.translatesAutoresizingMaskIntoConstraints = false
         roundedView.cornerRadius = 10
-        roundedView.backgroundColor = .kycCompletelyWhite
+        roundedView.backgroundColor = Theme.primaryBackground
         
         return roundedView
     }()

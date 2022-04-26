@@ -30,10 +30,10 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         var tintColor: UIColor? {
             switch self {
             case .tfEnabled:
-                return .kycGray1
+                return .gray1
                 
             case .tfDisabled:
-                return .kycGray3
+                return .gray3
                 
             }
         }
@@ -63,7 +63,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     private lazy var titleLabel: UILabel = {
         var titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textColor = .kycGray2
+        titleLabel.textColor = .gray2
         titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 12)
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 1
@@ -74,11 +74,11 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     lazy var textField: PaddedTextField = {
         var textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = .kycGray1
+        textField.textColor = .gray1
         textField.clipsToBounds = true
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 4
-        textField.layer.borderColor = UIColor.kycGray1.cgColor
+        textField.layer.borderColor = UIColor.gray1.cgColor
         textField.layer.borderWidth = 1
         
         return textField
@@ -87,7 +87,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     private lazy var errorLabel: UILabel = {
         var errorLabel = UILabel()
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        errorLabel.textColor = .kycRed
+        errorLabel.textColor = .red
         errorLabel.font = UIFont(name: "AvenirNext-Regular", size: 11)
         errorLabel.text = "Cannot be empty"
         errorLabel.textAlignment = .left
@@ -119,7 +119,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         let font = UIFont(name: "AvenirNext-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
         textField.font = font
         textField.attributedPlaceholder = NSAttributedString(string: customPlaceholder ?? "",
-                                                             attributes: [.foregroundColor: UIColor.kycGray2, .font: font])
+                                                             attributes: [.foregroundColor: UIColor.gray2, .font: font])
         
         titleLabel.text = title
         
@@ -134,7 +134,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
             
         case .picker:
             rightButton.setImage(UIImage(named: "KYC Dropdown Arrow"), for: .normal)
-            rightButton.tintColor = .kycGray1
+            rightButton.tintColor = .gray1
             textField.inputView = UIView()
             textField.inputAccessoryView = UIView()
             
@@ -229,7 +229,7 @@ class SimpleTextField: UIView, UITextFieldDelegate {
         rightButton.setImage(isVisible ? UIImage(named: "Field Check Mark") : nil, for: .normal)
         
         if isVisible {
-            textField.layer.borderColor = UIColor.kycGreen.cgColor
+            textField.layer.borderColor = UIColor.green.cgColor
             
             if fieldType == .password {
                 showHidePasswordButton.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -6).isActive = true
@@ -239,17 +239,17 @@ class SimpleTextField: UIView, UITextFieldDelegate {
     
     func setEmptyErrorMessage(isFieldEmpty: Bool) {
         errorLabel.text = "Cannot be empty"
-        errorLabel.textColor = UIColor.kycRed
+        errorLabel.textColor = UIColor.red
         errorLabel.isHidden = !isFieldEmpty
-        textField.layer.borderColor = isFieldEmpty ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
+        textField.layer.borderColor = isFieldEmpty ? UIColor.red.cgColor : UIColor.gray1.cgColor
     }
     
     func setDescriptionMessage(isWrongFormat: Bool) {
         // TODO: Add better explanations
         errorLabel.text = fieldType.description
-        errorLabel.textColor = UIColor.kycGray1
+        errorLabel.textColor = UIColor.gray1
         errorLabel.isHidden = !isWrongFormat
-        textField.layer.borderColor = isWrongFormat ? UIColor.kycRed.cgColor : UIColor.kycGray1.cgColor
+        textField.layer.borderColor = isWrongFormat ? UIColor.red.cgColor : UIColor.gray1.cgColor
     }
     
     @objc func togglePasswordView(_ sender: Any) {

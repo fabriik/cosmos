@@ -15,7 +15,7 @@ class KYCCenteredTextView: BaseView, GenericSettable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = .kycGray1
+        label.textColor = .gray1
         label.font = UIFont(name: "AvenirNext-Regular", size: 14)
         label.numberOfLines = 0
         

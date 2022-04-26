@@ -27,7 +27,7 @@ class KYCTutorial2CollectionView: UICollectionViewCell, Identifiable {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .center
-        titleLabel.textColor = .kycCompletelyWhite
+        titleLabel.textColor = Theme.primaryBackground
         titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 20)
         titleLabel.numberOfLines = 0
         titleLabel.adjustsFontSizeToFitWidth = true

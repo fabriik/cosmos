@@ -75,7 +75,7 @@ class Theme: BRDTheme {
     }
     
     enum ColorHex: String {
-        case primaryBackground = "#F9F9F9"
+        case primaryBackground = "#FFFFFF"
         case secondaryBackground = "#211F3F"
         case tertiaryBackground = "#312F4C"
         case blueBackground = "#2C78FF"

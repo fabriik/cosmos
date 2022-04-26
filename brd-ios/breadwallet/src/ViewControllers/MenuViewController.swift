@@ -37,15 +37,15 @@ class MenuViewController: UITableViewController, Subscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .kycCompletelyWhite
+        view.backgroundColor = Theme.primaryBackground
         
         tableView.register(MenuCell.self, forCellReuseIdentifier: MenuCell.cellIdentifier)
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .singleLine
-        tableView.separatorColor = .kycGray3
-        tableView.backgroundColor = .kycCompletelyWhite
+        tableView.separatorColor = .gray3
+        tableView.backgroundColor = Theme.primaryBackground
         
-        navigationController?.navigationBar.backgroundColor = .kycCompletelyWhite
+        navigationController?.navigationBar.backgroundColor = Theme.primaryBackground
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         if let button = faqButton {
