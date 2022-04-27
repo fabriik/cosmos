@@ -10,13 +10,13 @@
 
 import UIKit
 
-private let addWalletButtonHeight: CGFloat = 72.0
-
 class ManageWalletsViewController: UITableViewController {
     
     private let assetCollection: AssetCollection
     private let coreSystem: CoreSystem
     private var displayData = [CurrencyMetaData]()
+    
+    private let addWalletButtonHeight: CGFloat = 56.0
     
     init(assetCollection: AssetCollection, coreSystem: CoreSystem) {
         self.assetCollection = assetCollection
@@ -27,7 +27,8 @@ class ManageWalletsViewController: UITableViewController {
     override func viewDidLoad() {
         tableView.backgroundColor = .darkBackground
         tableView.rowHeight = 66.0
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .gray3
         title = S.TokenList.manageTitle
         tableView.register(ManageCurrencyCell.self, forCellReuseIdentifier: ManageCurrencyCell.cellIdentifier)
         tableView.setEditing(true, animated: true)
@@ -73,7 +74,7 @@ class ManageWalletsViewController: UITableViewController {
     
     private func setupAddButton() {
         guard tableView.tableFooterView == nil else { return }
-        let topInset: CGFloat = C.padding[1]
+        let topInset: CGFloat = 20
         let leftRightInset: CGFloat = C.padding[2]
         let width = tableView.frame.width - tableView.contentInset.left - tableView.contentInset.right
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: addWalletButtonHeight))
@@ -82,11 +83,12 @@ class ManageWalletsViewController: UITableViewController {
         
         addButton.tintColor = Theme.tertiaryBackground
         addButton.setTitleColor(Theme.blueBackground, for: .normal)
-        addButton.setTitleColor(.transparentWhite, for: .highlighted)
+        addButton.setTitleColor(Theme.transparentBlue, for: .highlighted)
         addButton.titleLabel?.font = Theme.body1
         
-        addButton.imageView?.contentMode = .scaleAspectFit
-        addButton.setBackgroundImage(UIImage(named: "add"), for: .normal)
+        addButton.layer.borderColor = UIColor.gray2.cgColor
+        addButton.layer.borderWidth = 0.5
+        addButton.layer.cornerRadius = C.Sizes.homeCellCornerRadius
         
         addButton.contentHorizontalAlignment = .center
         addButton.contentVerticalAlignment = .center
