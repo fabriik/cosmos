@@ -21,8 +21,8 @@ class KYCTickBoxView: UIView {
         noticeLabel.textAlignment = .left
         noticeLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
         noticeLabel.isEditable = false
-        noticeLabel.textColor = .kycGray1
-        noticeLabel.tintColor = .kycGray1
+        noticeLabel.textColor = .gray1
+        noticeLabel.tintColor = .gray1
         
         return noticeLabel
     }()
@@ -82,7 +82,7 @@ class KYCTickBoxView: UIView {
         
         var attributedString = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: style])
         
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.kycGray1, range: fullRange)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray1, range: fullRange)
         
         createLink(attributedString: &attributedString, urlString: C.termsAndConditions, range: termsRange)
         createLink(attributedString: &attributedString, urlString: C.privacyPolicy, range: privacyRange)
@@ -95,6 +95,6 @@ class KYCTickBoxView: UIView {
         
         attributedString.addAttribute(.link, value: url, range: range)
         attributedString.addAttribute(.underlineStyle, value: NSNumber(value: 1), range: range)
-        attributedString.addAttribute(.underlineColor, value: UIColor.kycGray1, range: range)
+        attributedString.addAttribute(.underlineColor, value: UIColor.gray1, range: range)
     }
 }

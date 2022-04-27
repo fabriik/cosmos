@@ -107,7 +107,7 @@ class KYCSignUpView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
-        backgroundColor = .kycCompletelyWhite
+        backgroundColor = Theme.primaryBackground
         
         let defaultDistance: CGFloat = 12
         

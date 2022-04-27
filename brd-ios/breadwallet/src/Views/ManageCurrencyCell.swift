@@ -29,7 +29,7 @@ class ManageCurrencyCell: SeparatorCell {
     private let removeColor = UIColor.orangeButton
 
     private let header = UILabel(font: Theme.h3Title, color: .almostBlack)
-    private let subheader = UILabel(font: .customBody(size: 14.0), color: .kycGray2)
+    private let subheader = UILabel(font: .customBody(size: 14.0), color: .gray2)
     private let icon = UIImageView()
     private let balanceLabel = UILabel(font: Theme.body3, color: Theme.secondaryText)
     private let button = ToggleButton(normalTitle: S.TokenList.add, normalColor: .navigationTint, selectedTitle: S.TokenList.hide, selectedColor: .orangeButton)

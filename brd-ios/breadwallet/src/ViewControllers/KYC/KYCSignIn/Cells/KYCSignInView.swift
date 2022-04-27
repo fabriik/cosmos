@@ -54,7 +54,7 @@ class KYCSignInView: BaseView, GenericSettable {
         
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont(name: "AvenirNext-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12),
-            .foregroundColor: UIColor.kycGray2,
+            .foregroundColor: UIColor.gray2,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let attributeString = NSMutableAttributedString(
@@ -72,7 +72,7 @@ class KYCSignInView: BaseView, GenericSettable {
         accountNoticeLabel.textAlignment = .left
         accountNoticeLabel.font = UIFont(name: "AvenirNext-Regular", size: 16)
         accountNoticeLabel.text = "Don’t have an account?"
-        accountNoticeLabel.textColor = .kycGray2
+        accountNoticeLabel.textColor = .gray2
         
         return accountNoticeLabel
     }()
@@ -84,7 +84,7 @@ class KYCSignInView: BaseView, GenericSettable {
         
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont(name: "AvenirNext-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16),
-            .foregroundColor: UIColor.kycVibrantYellow,
+            .foregroundColor: UIColor.vibrantYellow,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let attributeString = NSMutableAttributedString(

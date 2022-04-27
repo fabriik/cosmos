@@ -17,7 +17,7 @@ class KYCResetPasswordView: BaseView, GenericSettable {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.textAlignment = .center
-        descriptionLabel.textColor = .kycGray1
+        descriptionLabel.textColor = .gray1
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 20)
         descriptionLabel.text = "An email containing a 6-digit code has been sent to your email. Please copy it from the email and paste it below, then setup a new password."

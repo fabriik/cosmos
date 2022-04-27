@@ -23,7 +23,7 @@ class SwapConversionView: BaseView, GenericSettable {
         let sendAmountTitleLabel = UILabel()
         sendAmountTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         sendAmountTitleLabel.textAlignment = .left
-        sendAmountTitleLabel.textColor = .kycGray1
+        sendAmountTitleLabel.textColor = .gray1
         sendAmountTitleLabel.font = UIFont(name: "AvenirNext-Medium", size: 14)
         sendAmountTitleLabel.text = "Pay With"
         
@@ -76,7 +76,7 @@ class SwapConversionView: BaseView, GenericSettable {
     private lazy var separatorLine: UIView = {
         let separatorLine = UIView()
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
-        separatorLine.backgroundColor = .kycGray3
+        separatorLine.backgroundColor = .gray3
         
         return separatorLine
     }()
@@ -85,7 +85,7 @@ class SwapConversionView: BaseView, GenericSettable {
         let receiveAmountTitleLabel = UILabel()
         receiveAmountTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         receiveAmountTitleLabel.textAlignment = .left
-        receiveAmountTitleLabel.textColor = .kycGray2
+        receiveAmountTitleLabel.textColor = .gray2
         receiveAmountTitleLabel.font = UIFont(name: "AvenirNext-Medium", size: 14)
         receiveAmountTitleLabel.text = "Receive"
         

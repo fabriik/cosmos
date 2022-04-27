@@ -41,7 +41,7 @@ class KYCProgressView: BaseView, GenericSettable {
         let progressView = UIProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
         progressView.transform = progressView.transform.scaledBy(x: 1, y: 1.6)
-        progressView.trackTintColor = .kycGray3
+        progressView.trackTintColor = .gray3
         progressView.progressTintColor = .almostBlack
         
         return progressView

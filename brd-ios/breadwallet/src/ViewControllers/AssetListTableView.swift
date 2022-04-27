@@ -61,7 +61,7 @@ class AssetListTableView: UITableViewController, Subscriber {
         addWalletButton.setTitleColor(Theme.blueBackground, for: .normal)
         addWalletButton.setTitleColor(Theme.transparentBlue, for: .highlighted)
         
-        addWalletButton.layer.borderColor = UIColor.kycGray2.cgColor
+        addWalletButton.layer.borderColor = UIColor.gray2.cgColor
         addWalletButton.layer.borderWidth = 0.5
         addWalletButton.layer.cornerRadius = C.Sizes.homeCellCornerRadius
         

@@ -84,7 +84,7 @@ class KYCTutorialViewController: KYCViewController, KYCTutorialDisplayLogic, UIC
         let pageControl = UIPageControl()
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.isUserInteractionEnabled = false
-        pageControl.currentPageIndicatorTintColor = .kycVibrantYellow
+        pageControl.currentPageIndicatorTintColor = .vibrantYellow
         
         return pageControl
     }()

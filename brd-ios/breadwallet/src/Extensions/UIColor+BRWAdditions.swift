@@ -18,35 +18,27 @@ extension UIColor {
         return UIColor.fromHex("#282828")
     }
 
-    static var kycVibrantYellow: UIColor {
+    static var vibrantYellow: UIColor {
         return UIColor.fromHex("#F8BA37")
     }
     
-    static var kycLightGray: UIColor {
-        return UIColor.fromHex("#F5F5F5")
-    }
-    
-    static var kycGray1: UIColor {
+    static var gray1: UIColor {
         return UIColor.fromHex("#696969")
     }
     
-    static var kycGray2: UIColor {
+    static var gray2: UIColor {
         return UIColor.fromHex("#A0A0A0")
     }
     
-    static var kycGray3: UIColor {
+    static var gray3: UIColor {
         return UIColor.fromHex("#C9C9C9")
     }
     
-    static var kycCompletelyWhite: UIColor {
-        return UIColor.white
-    }
-    
-    static var kycGreen: UIColor {
+    static var green: UIColor {
         return UIColor.fromHex("#00A86E")
     }
     
-    static var kycRed: UIColor {
+    static var red: UIColor {
         return UIColor.fromHex("#FF5C4A")
     }
     

@@ -80,10 +80,10 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         let privacyPolicyTextView = UITextView()
         privacyPolicyTextView.translatesAutoresizingMaskIntoConstraints = false
         privacyPolicyTextView.textAlignment = .center
-        privacyPolicyTextView.textColor = .kycGray2
+        privacyPolicyTextView.textColor = .gray2
         privacyPolicyTextView.font = UIFont(name: "AvenirNext-Regular", size: 14)
         privacyPolicyTextView.isEditable = false
-        privacyPolicyTextView.tintColor = .kycGray2
+        privacyPolicyTextView.tintColor = .gray2
         
         return privacyPolicyTextView
     }()
@@ -99,7 +99,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
     override func setupSubviews() {
         super.setupSubviews()
         
-        backgroundColor = .kycCompletelyWhite
+        backgroundColor = Theme.primaryBackground
         
         let defaultDistance: CGFloat = 12
         
@@ -193,7 +193,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         
         var attributedString = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: style])
         
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.kycGray2, range: fullRange)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray2, range: fullRange)
         
         createLink(attributedString: &attributedString, urlString: C.termsAndConditions, range: termsRange)
         createLink(attributedString: &attributedString, urlString: C.privacyPolicy, range: privacyRange)
@@ -206,7 +206,7 @@ class KYCAddressFieldsView: BaseView, GenericSettable {
         
         attributedString.addAttribute(.link, value: url, range: range)
         attributedString.addAttribute(.underlineStyle, value: NSNumber(value: 1), range: range)
-        attributedString.addAttribute(.underlineColor, value: UIColor.kycGray2, range: range)
+        attributedString.addAttribute(.underlineColor, value: UIColor.gray2, range: range)
     }
     
     func setup(with model: Model) {
