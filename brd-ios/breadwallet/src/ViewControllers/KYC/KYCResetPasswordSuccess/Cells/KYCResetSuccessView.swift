@@ -33,7 +33,7 @@ class KYCResetSuccessView: BaseView, GenericSettable {
         let subtitleLabel = UILabel()
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.textAlignment = .left
-        subtitleLabel.textColor = .kycGray3
+        subtitleLabel.textColor = .gray3
         subtitleLabel.font = UIFont(name: "AvenirNext-Medium", size: 18)
         subtitleLabel.numberOfLines = 0
         subtitleLabel.textAlignment = .center

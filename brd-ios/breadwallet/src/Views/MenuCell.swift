@@ -26,7 +26,7 @@ class MenuCell: UITableViewCell {
         textLabel?.textColor = .almostBlack
         
         imageView?.image = item.icon
-        imageView?.tintColor = .kycGray1
+        imageView?.tintColor = .gray1
         
         if let accessoryText = item.accessoryText?() {
             let label = UILabel(font: Theme.body1, color: Theme.primaryText)

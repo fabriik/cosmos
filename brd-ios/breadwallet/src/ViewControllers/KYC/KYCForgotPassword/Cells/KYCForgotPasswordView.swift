@@ -15,7 +15,7 @@ class KYCForgotPasswordView: BaseView, GenericSettable {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.textAlignment = .center
-        descriptionLabel.textColor = .kycGray1
+        descriptionLabel.textColor = .gray1
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 20)
         descriptionLabel.text = "Please enter an email below that you have used to register with Fabriik Wallet."

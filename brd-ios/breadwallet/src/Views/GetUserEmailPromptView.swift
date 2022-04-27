@@ -169,7 +169,7 @@ class GetUserEmailPromptView: PromptView {
     private func setUpEmailInput() {
         emailInput.delegate = self
         
-        emailInput.backgroundColor = Theme.tertiaryBackground
+        emailInput.backgroundColor = Theme.primaryBackground
         emailInput.layer.cornerRadius = 2.0
         emailInput.textColor = Theme.primaryText
         emailInput.font = UIFont.emailPlaceholder()

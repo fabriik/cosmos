@@ -18,7 +18,7 @@ class SimpleButton: RoundedView {
                 return .clear
                 
             case .kycDisabled:
-                return .kycGray3
+                return .gray3
                 
             case .swapEnabled:
                 return .clear
@@ -32,10 +32,10 @@ class SimpleButton: RoundedView {
         var backgroundColor: UIColor {
             switch self {
             case .kycEnabled:
-                return .kycVibrantYellow
+                return .vibrantYellow
                 
             case .kycDisabled:
-                return .kycCompletelyWhite
+                return Theme.primaryBackground
                 
             case .swapEnabled:
                 return .swapButtonEnabledColor
@@ -52,13 +52,13 @@ class SimpleButton: RoundedView {
                 return .almostBlack
                 
             case .kycDisabled:
-                return .kycGray3
+                return .gray3
                 
             case .swapEnabled:
-                return .kycCompletelyWhite
+                return Theme.primaryBackground
                 
             case .swapDisabled:
-                return .kycCompletelyWhite
+                return Theme.primaryBackground
                 
             }
         }

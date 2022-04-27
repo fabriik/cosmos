@@ -26,7 +26,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.textAlignment = .center
-        descriptionLabel.textColor = .kycGray1
+        descriptionLabel.textColor = .gray1
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 20)
         descriptionLabel.text = "We’ve sent a SMS with a confirmation code to your mobile phone. Please enter the 6-digit code below."
@@ -58,7 +58,7 @@ class KYCConfirmEmailView: BaseView, GenericSettable {
         
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont(name: "AvenirNext-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16),
-            .foregroundColor: UIColor.kycGray1,
+            .foregroundColor: UIColor.gray1,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let attributeString = NSMutableAttributedString(
