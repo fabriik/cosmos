@@ -51,20 +51,19 @@ class AssetListTableView: UITableViewController, Subscriber {
     
     private func setupAddWalletButton() {
         guard tableView.tableFooterView == nil else { return }
-        let topInset: CGFloat = 0
-        let leftRightInset: CGFloat = C.padding[1]
+        let topInset: CGFloat = 20
+        let leftRightInset: CGFloat = C.padding[2]
         let width = tableView.frame.width - tableView.contentInset.left - tableView.contentInset.right
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: addWalletButtonHeight))
         
         addWalletButton.titleLabel?.font = Theme.body1
-        
         addWalletButton.tintColor = Theme.tertiaryBackground
         addWalletButton.setTitleColor(Theme.blueBackground, for: .normal)
-        addWalletButton.setTitleColor(.transparentWhite, for: .highlighted)
-        addWalletButton.titleLabel?.font = Theme.body1
+        addWalletButton.setTitleColor(Theme.transparentBlue, for: .highlighted)
         
-        addWalletButton.imageView?.contentMode = .scaleAspectFit
-        addWalletButton.setBackgroundImage(UIImage(named: "add"), for: .normal)
+        addWalletButton.layer.borderColor = UIColor.gray2.cgColor
+        addWalletButton.layer.borderWidth = 0.5
+        addWalletButton.layer.cornerRadius = C.Sizes.homeCellCornerRadius
         
         addWalletButton.contentHorizontalAlignment = .center
         addWalletButton.contentVerticalAlignment = .center
