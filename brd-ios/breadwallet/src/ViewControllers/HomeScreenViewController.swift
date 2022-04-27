@@ -233,7 +233,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
                        (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
                        (S.HomeScreen.menu, #imageLiteral(resourceName: "menu"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
                         let button = UIButton.vertical(title: title, image: image)
-                        button.tintColor = .navigationTint
+                        button.tintColor = .kycGray1
                         button.addTarget(self, action: selector, for: .touchUpInside)
                         return UIBarButtonItem(customView: button)
         }
@@ -266,7 +266,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
 
         toolbar.isTranslucent = false
         toolbar.layer.borderWidth = 1
-        toolbar.layer.borderColor = Theme.blueBackground.cgColor
+        toolbar.layer.borderColor = UIColor.kycGray1.cgColor
         toolbar.barTintColor = Theme.primaryBackground
     }
     
