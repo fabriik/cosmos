@@ -97,6 +97,22 @@ class AddWalletsViewController: UITableViewController {
         searchBar.isTranslucent = false
         searchBar.barTintColor = .darkBackground
         searchBar.placeholder = S.Search.search
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 48.0))
+        let infoLabel = UILabel()
+        infoLabel.text = "Trouble finding assets?"
+        infoLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        infoLabel.textColor = .gray2
+        infoLabel.textAlignment = .center
+        infoLabel.numberOfLines = 0
+        footerView.addSubview(infoLabel)
+        
+        infoLabel.constrain([
+            infoLabel.leftAnchor.constraint(equalTo: footerView.leftAnchor, constant: C.padding[2]),
+            infoLabel.rightAnchor.constraint(equalTo: footerView.rightAnchor, constant: -C.padding[2])
+            ])
+
+        tableView.tableFooterView = footerView
     }
     
     required init?(coder aDecoder: NSCoder) {
