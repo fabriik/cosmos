@@ -63,7 +63,8 @@ class AddWalletsViewController: UITableViewController {
     override func viewDidLoad() {
         tableView.backgroundColor = .darkBackground
         tableView.keyboardDismissMode = .interactive
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .gray3
         tableView.rowHeight = 66.0
         tableView.register(ManageCurrencyCell.self, forCellReuseIdentifier: ManageCurrencyCell.cellIdentifier)
         setupSearchBar()

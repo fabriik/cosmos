@@ -21,7 +21,7 @@ enum EditWalletType {
     }
 }
 
-class ManageCurrencyCell: SeparatorCell {
+class ManageCurrencyCell: UITableViewCell {
     
     static let cellIdentifier = "ManageCurrencyCell"
     
