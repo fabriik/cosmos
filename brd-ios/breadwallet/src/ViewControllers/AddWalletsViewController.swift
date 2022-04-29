@@ -10,7 +10,7 @@
 
 import UIKit
 
-class AddWalletsViewController: UITableViewController {
+class AddWalletsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private let assetCollection: AssetCollection
     private let coreSystem: CoreSystem
@@ -19,6 +19,44 @@ class AddWalletsViewController: UITableViewController {
     private var addedCurrencyIndices = [Int]()
     private var addedCurrencyIdentifiers = [CurrencyId]()
     private let searchBar = UISearchBar()
+  
+    lazy var tableView: UITableView = {
+        var tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .darkBackground
+        tableView.keyboardDismissMode = .interactive
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .gray3
+        tableView.rowHeight = 66.0
+        tableView.register(ManageCurrencyCell.self, forCellReuseIdentifier: ManageCurrencyCell.cellIdentifier)
+        
+        return tableView
+    }()
+    
+    lazy var footerView: UIView = {
+        let footerView = UIView()
+        footerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return footerView
+    }()
+    
+    lazy var infoLabel: UILabel = {
+        let infoLabel = UILabel()
+        infoLabel.text = "Trouble finding assets?"
+        infoLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        infoLabel.textColor = .gray2
+        infoLabel.textAlignment = .right
+        
+        return infoLabel
+    }()
+    
+    lazy var infoButton: UIButton = {
+        let infoButton = UIButton()
+        infoButton.setImage(UIImage(named: "infoIcon"), for: .normal)
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        
+        return infoButton
+    }()
     
     init(assetCollection: AssetCollection, coreSystem: CoreSystem) {
         self.assetCollection = assetCollection
@@ -61,14 +99,21 @@ class AddWalletsViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        tableView.backgroundColor = .darkBackground
-        tableView.keyboardDismissMode = .interactive
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = .gray3
-        tableView.rowHeight = 66.0
-        tableView.register(ManageCurrencyCell.self, forCellReuseIdentifier: ManageCurrencyCell.cellIdentifier)
-        setupSearchBar()
         title = S.TokenList.addTitle
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        view.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        view.backgroundColor = Theme.primaryBackground
+        
+        setupSearchBar()
+        setupInfoView()
     }
     
     private func addCurrency(_ identifier: CurrencyId) {
@@ -99,18 +144,51 @@ class AddWalletsViewController: UITableViewController {
         searchBar.placeholder = S.Search.search
     }
     
+    private func setupInfoView() {
+        view.addSubview(footerView)
+        
+        footerView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
+        footerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        footerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        footerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        footerView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        footerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        footerView.addSubview(infoLabel)
+        infoLabel.constrain([
+            infoLabel.centerXAnchor.constraint(equalTo: footerView.centerXAnchor)
+        ])
+        
+        footerView.addSubview(infoButton)
+        infoButton.constrain([
+            infoButton.leadingAnchor.constraint(equalTo: infoLabel.trailingAnchor, constant: C.padding[1])
+        ])
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc private func infoButtonTapped() {
+        // show info message alert
+        let message = "We currently support BSV, BTC, BCH, ETH, and USDT. Other assets cannot be accessed through this wallet at the moment."
+        
+        let alert = UIAlertController(title: "Limited assets",
+                                      message: message,
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: S.Button.ok, style: .default)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension AddWalletsViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayData.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ManageCurrencyCell.cellIdentifier, for: indexPath) as? ManageCurrencyCell else {
             return UITableViewCell()
         }
