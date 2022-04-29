@@ -137,6 +137,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         }
 
         updateTotalAssets()
+        sendErrorsToBackend()
     }
     
     // MARK: Setup
@@ -457,5 +458,17 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // TODO: this might need to be removed
+    private func sendErrorsToBackend() {
+        guard let errors = UserDefaults.errors else { return }
+        
+        Backend.apiClient.sendErrors(messages: errors) { success in
+            guard success else {
+                return
+            }
+            UserDefaults.errors = nil
+        }
     }
 }
