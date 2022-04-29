@@ -42,6 +42,14 @@ extension UIColor {
         return UIColor.fromHex("#FF5C4A")
     }
     
+    static var homeBackground: UIColor {
+        return UIColor.fromHex("#fafafa")
+    }
+    
+    static var shadowColor: UIColor {
+        return UIColor.black.withAlphaComponent(0.15)
+    }
+    
     static var swapButtonEnabledColor: UIColor {
         return UIColor(red: 0.0/255.0, green: 171.0/255.0, blue: 234.0/255.0, alpha: 1.0)
     }

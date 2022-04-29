@@ -49,6 +49,7 @@ class HomeScreenCell: UITableViewCell, Subscriber {
     private let tokenBalance = UILabel(font: Theme.body3, color: Theme.secondaryText)
     private let syncIndicator = SyncingIndicator(style: .home)
     private let priceChangeView = PriceChangeView(style: .percentOnly)
+    private let cardView = UIView()
     
     let container = Background()    // not private for inheritance
         
@@ -114,27 +115,34 @@ class HomeScreenCell: UITableViewCell, Subscriber {
     }
 
     private func addSubviews() {
+        backgroundColor = .homeBackground
+        
         contentView.addSubview(container)
-        container.addSubview(iconContainer)
+        container.addSubview(cardView)
+        cardView.addSubview(iconContainer)
         iconContainer.addSubview(icon)
-        container.addSubview(currencyName)
-        container.addSubview(price)
-        container.addSubview(fiatBalance)
-        container.addSubview(tokenBalance)
-        container.addSubview(syncIndicator)
-        container.addSubview(priceChangeView)
+        cardView.addSubview(currencyName)
+        cardView.addSubview(price)
+        cardView.addSubview(fiatBalance)
+        cardView.addSubview(tokenBalance)
+        cardView.addSubview(syncIndicator)
+        cardView.addSubview(priceChangeView)
         syncIndicator.isHidden = true
     }
 
     private func addConstraints() {
         let containerPadding = C.padding[1]
-        container.constrain(toSuperviewEdges: UIEdgeInsets(top: 0,
-                                                           left: containerPadding,
-                                                           bottom: -C.padding[1],
-                                                           right: -containerPadding))
+        container.constrain(toSuperviewEdges: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        
+        cardView.constrain([
+            cardView.topAnchor.constraint(equalTo: container.topAnchor, constant: 4),
+            cardView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -4),
+            cardView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: containerPadding),
+            cardView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -containerPadding)])
+            
         iconContainer.constrain([
-            iconContainer.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: containerPadding),
-            iconContainer.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            iconContainer.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: containerPadding),
+            iconContainer.centerYAnchor.constraint(equalTo: cardView.centerYAnchor),
             iconContainer.heightAnchor.constraint(equalToConstant: 40),
             iconContainer.widthAnchor.constraint(equalTo: iconContainer.heightAnchor)])
         icon.constrain(toSuperviewEdges: .zero)
@@ -149,7 +157,7 @@ class HomeScreenCell: UITableViewCell, Subscriber {
             priceChangeView.centerYAnchor.constraint(equalTo: price.centerYAnchor),
             priceChangeView.heightAnchor.constraint(equalToConstant: 24)])
         fiatBalance.constrain([
-            fiatBalance.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -containerPadding),
+            fiatBalance.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -containerPadding),
             fiatBalance.leadingAnchor.constraint(greaterThanOrEqualTo: currencyName.trailingAnchor, constant: C.padding[1]),
             fiatBalance.topAnchor.constraint(equalTo: currencyName.topAnchor)])
         tokenBalance.constrain([
@@ -171,12 +179,17 @@ class HomeScreenCell: UITableViewCell, Subscriber {
     private func setupStyle() {
         selectionStyle = .none
         
-        layer.shadowRadius = 12
-        layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
-        layer.shadowOpacity = 2
-        layer.shadowOffset = .zero
+        cardView.layer.cornerRadius = C.Sizes.homeCellCornerRadius
+        cardView.layer.borderColor = UIColor.shadowColor.cgColor
+        cardView.layer.borderWidth = 0.5
         
-        iconContainer.layer.cornerRadius = 12.0
+        cardView.layer.shadowRadius = C.Sizes.homeCellCornerRadius
+        cardView.layer.shadowColor = UIColor.shadowColor.cgColor
+        cardView.layer.shadowOpacity = 2
+        cardView.layer.shadowOffset = .zero
+        cardView.backgroundColor = .whiteBackground
+        
+        iconContainer.layer.cornerRadius = C.Sizes.homeCellCornerRadius
         iconContainer.clipsToBounds = true
         icon.tintColor = .white
     }
