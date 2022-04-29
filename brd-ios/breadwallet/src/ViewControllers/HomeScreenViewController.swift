@@ -204,8 +204,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
 
     private func setInitialData() {
-        view.backgroundColor = .white
-        subHeaderView.backgroundColor = .white
+        view.backgroundColor = .homeBackground
+        subHeaderView.backgroundColor = .homeBackground
         subHeaderView.clipsToBounds = false
         
         navigationItem.titleView = UIView()
@@ -268,7 +268,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         toolbar.isTranslucent = false
         toolbar.layer.borderWidth = 1
         toolbar.layer.borderColor = UIColor.gray1.cgColor
-        toolbar.barTintColor = Theme.primaryBackground
+        toolbar.barTintColor = .homeBackground
     }
     
     private func setupSubscriptions() {

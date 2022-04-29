@@ -38,7 +38,7 @@ class AssetListTableView: UITableViewController, Subscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .darkBackground
+        tableView.backgroundColor = .homeBackground
         tableView.register(HomeScreenCell.self, forCellReuseIdentifier: HomeScreenCellIds.regularCell.rawValue)
         tableView.register(HomeScreenHiglightableCell.self, forCellReuseIdentifier: HomeScreenCellIds.highlightableCell.rawValue)
         tableView.separatorStyle = .none
@@ -79,7 +79,7 @@ class AssetListTableView: UITableViewController, Subscriber {
                                        height: addWalletButtonHeight)
         
         footerView.addSubview(addWalletButton)
-        footerView.backgroundColor = .darkBackground
+        footerView.backgroundColor = .homeBackground
         tableView.tableFooterView = footerView
     }
     
