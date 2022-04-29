@@ -108,9 +108,20 @@ class AddWalletsViewController: UITableViewController {
         footerView.addSubview(infoLabel)
         
         infoLabel.constrain([
-            infoLabel.leftAnchor.constraint(equalTo: footerView.leftAnchor, constant: C.padding[2]),
-            infoLabel.rightAnchor.constraint(equalTo: footerView.rightAnchor, constant: -C.padding[2])
-            ])
+            infoLabel.topAnchor.constraint(equalTo: footerView.topAnchor, constant: C.padding[2]),
+            infoLabel.leftAnchor.constraint(equalTo: footerView.leftAnchor, constant: C.padding[4])
+        ])
+        
+        let infoButton = UIButton()
+        infoButton.setImage(UIImage(named: "infoIcon"), for: .normal)
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        footerView.addSubview(infoButton)
+        
+        infoButton.constrain([
+            infoButton.topAnchor.constraint(equalTo: footerView.topAnchor, constant: C.padding[2]),
+            infoButton.leftAnchor.constraint(equalTo: infoLabel.leftAnchor, constant: C.padding[1]),
+            infoButton.rightAnchor.constraint(equalTo: footerView.rightAnchor, constant: -C.padding[2])
+        ])
 
         tableView.tableFooterView = footerView
     }
@@ -119,6 +130,18 @@ class AddWalletsViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc private func infoButtonTapped() {
+        // add info alert
+        let message = "We currently support BSV, BTC, BCH, ETH, and USDT. Other assets cannot be accessed through this wallet at the moment."
+        
+        let alert = UIAlertController(title: "Limited assets",
+                                      message: message,
+                                      preferredStyle: .alert)
+        let enableAction = UIAlertAction(title: S.Button.ok, style: .default)
+        alert.addAction(enableAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension AddWalletsViewController {
