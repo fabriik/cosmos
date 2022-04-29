@@ -52,6 +52,7 @@ private let deviceIdKey = "BR_DEVICE_ID"
 private let savedChartHistoryPeriodKey = "savedHistoryPeriodKey"
 private let balanceKey = "balanceKey"
 private let kycSessionKey = "kycSessionKey"
+private let cachedErrors = "cachedErrors"
 
 typealias ResettableBooleanSetting = [String: Bool]
 typealias ResettableObjectSetting = String
@@ -569,5 +570,23 @@ extension UserDefaults {
         set {
             defaults.set(newValue.rawValue, forKey: debugConnectionModeOverrideKey)
         }
+    }
+    
+    static var errors: [ErrorStruct]? {
+        get {
+            let decoder = PropertyListDecoder()
+            return defaults.array(forKey: cachedErrors)?.compactMap { element in
+                guard let data = element as? Data else { return nil }
+                return try? decoder.decode(ErrorStruct.self, from: data)
+            }
+        }
+        set {
+            let encoder = PropertyListEncoder()
+            let errors = newValue?.compactMap { try? encoder.encode($0) }
+            defaults.set(errors, forKey: cachedErrors)
+        }
+    }
+    static func addError(error: ErrorStruct) {
+        Self.errors = (Self.errors ?? []) + [error]
     }
 }
