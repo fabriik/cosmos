@@ -109,6 +109,7 @@ extension BRAPIClient {
     }
     
     // At most, update the conversion value every 24 hours.
+    // TODO: calls for Ads... do we need this at all?
     private func handleAttribution(data: Data) {
         guard let responseJson = try? JSONDecoder().decode([String: Int].self, from: data) else { return }
         guard let conversionValue = responseJson["value"] else { return }
