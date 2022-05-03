@@ -281,22 +281,6 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
     }
     
     // MARK: URLSession Delegate
-
-    public func urlSession(_ session: URLSession,
-                           task: URLSessionTask,
-                           didReceive challenge: URLAuthenticationChallenge,
-                           completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if challenge.protectionSpace.host == host && challenge.protectionSpace.serverTrust != nil {
-                log("URLSession challenge accepted!")
-                completionHandler(.useCredential,
-                    URLCredential(trust: challenge.protectionSpace.serverTrust!))
-            } else {
-                log("URLSession challenge rejected")
-                completionHandler(.rejectProtectionSpace, nil)
-            }
-        }
-    }
     
     public func urlSession(_ session: URLSession,
                            task: URLSessionTask,
