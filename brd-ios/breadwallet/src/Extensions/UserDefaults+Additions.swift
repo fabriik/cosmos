@@ -574,6 +574,8 @@ extension UserDefaults {
     
     static var errors: [ErrorStruct]? {
         get {
+            guard E.isTestFlight else { return nil }
+            
             let decoder = PropertyListDecoder()
             return defaults.array(forKey: cachedErrors)?.compactMap { element in
                 guard let data = element as? Data else { return nil }
@@ -581,6 +583,8 @@ extension UserDefaults {
             }
         }
         set {
+            guard E.isTestFlight else { return }
+            
             let encoder = PropertyListEncoder()
             let errors = newValue?.compactMap { try? encoder.encode($0) }
             defaults.set(errors, forKey: cachedErrors)
