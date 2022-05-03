@@ -281,7 +281,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
     }
     
     // MARK: URLSession Delegate
-    
+    // TODO: might also not be needed. No logs appear
     public func urlSession(_ session: URLSession,
                            task: URLSessionTask,
                            willPerformHTTPRedirection response: HTTPURLResponse,
