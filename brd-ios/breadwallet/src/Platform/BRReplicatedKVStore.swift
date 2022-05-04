@@ -814,7 +814,7 @@ extension BRReplicatedKVStore {
     public func get(_ key: String) throws -> BRKVStoreObject {
         let (v, d, r, b) = try get(key)
         return BRKVStoreObject(key: key, version: v, lastModified: d, deleted: r,
-                               data: Data(bytes: UnsafePointer<UInt8>(b), count: b.count))
+                               data: Data(bytes: b, count: b.count))
     }
     
     public func set(_ object: BRKVStoreObject) throws -> BRKVStoreObject {
