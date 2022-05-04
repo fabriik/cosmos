@@ -68,8 +68,7 @@ class AssetIndex: BRKVStoreObject, Codable {
         return [
             Currencies.btc.uid,
             Currencies.eth.uid,
-            Currencies.brd.uid,
-            Currencies.usdc.uid
+            Currencies.bsv.uid,
         ]
     }
 }
