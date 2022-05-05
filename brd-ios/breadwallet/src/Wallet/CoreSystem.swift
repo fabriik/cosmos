@@ -638,7 +638,7 @@ extension CoreSystem: SystemListener {
                 manager.connect(using: manager.customPeer)
             }
             
-        case .changed(_, _):
+        case .changed(old: _, new: _):
             break
             
         case .deleted:

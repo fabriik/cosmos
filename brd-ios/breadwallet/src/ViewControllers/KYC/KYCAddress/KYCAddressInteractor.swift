@@ -58,7 +58,7 @@ class KYCAddressInteractor: KYCAddressBusinessLogic, KYCAddressDataStore {
     
     func executeSubmitData(request: KYCAddress.SubmitData.Request) {
         let worker = KYCPostPersonalInformationWorker()
-        let workerUrlModelData = KYCPostPersonalInformationWorkerUrlModelData()
+        let workerUrlModelData = KYCPostPersonalInfoWorkerUrlModelData()
         let workerRequest = KYCPostPersonalInformationWorkerRequest(street: (address ?? "") + " " + (apartment ?? ""),
                                                                     city: city,
                                                                     state: state,
