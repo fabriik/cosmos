@@ -18,7 +18,7 @@ The backup is encrypted with the BRD app PIN.
 
 ### Designed with New Users in Mind
 
-Simplicity and ease-of-use is **Fabriik**'s core design principle. A simple recovery phrase (which we call a recovery key) is all that is needed to restore the user's wallet if they ever lose or replace their device. **BRD** is [deterministic](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which means the user's balance and transaction history can be recovered just from the recovery key.
+Simplicity and ease-of-use is **Fabriik**'s core design principle. A simple recovery phrase (which we call a recovery key) is all that is needed to restore the user's wallet if they ever lose or replace their device. **Fabriik** is [deterministic](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which means the user's balance and transaction history can be recovered just from the recovery key.
 
 ### Features
 
@@ -34,7 +34,7 @@ Simplicity and ease-of-use is **Fabriik**'s core design principle. A simple reco
 
 ## About brd-mobile
 
-This repository is the Fabriik Mobile monorepo for iOS and Android, powered by a collection of Kotlin Multiplatform Mobile ([KMM](https://kotlinlang.org/lp/mobile/)) modules codenamed Cosmos.
+This repository is the Fabriik Mobile repository for iOS, powered by a collection of Kotlin Multiplatform Mobile ([KMM](https://kotlinlang.org/lp/mobile/)) modules codenamed Cosmos.
 
 Cosmos breaks down into many modules that are bundled to produce a final Jar/AAR and Framework for mobile projects.
 Each module contains only code related to a single feature, helping keep the project organized and improve incremental build times.
@@ -49,7 +49,6 @@ The following modules are available, click on the name to learn more.
 
 **Mobile Applications**
 
-- [`brd-android`](/brd-android) A collection of gradle modules to build BRD Android.
 - [`brd-ios`](/brd-ios) xcode project containing BRD iOS, pre-configured to build and link Cosmos.
 
 ## Development
@@ -61,17 +60,11 @@ The following modules are available, click on the name to learn more.
 
 ### Setup
 
-1. Clone this repository `git clone git@github.com:atmcoin/brd-mobile.git --recurse-submodules`
+1. Clone this repository `git clone git@github.com:fabriik/wallet-ios.git --recurse-submodules`
 2. Open the `Cosmos` folder using Intellij IDEA or Android Studio
-3. (iOS Development) Open the `brd-ios/breadwallet.xcworkspace` file in xcode
+3. Open the `brd-ios/breadwallet.xcworkspace` file in xcode
 
 ## Advanced Setup
-
-### (Android) Firebase
-
-To enable Firebase services like Crashlytics, add the `google-services.json` file into the `brd-android/app` directory.
-Without this file, runtime Firebase dependencies are still used but do not start and the Google Services gradle plugin is disabled so builds will succeed.
-
 
 ## Gradle Tasks
 
@@ -121,4 +114,4 @@ Any jailbreak app can grant itself access to every other app's keychain data. Th
 
 **Fabriik** is open source and available under the terms of the MIT license.
 
-Source code is available at https://github.com/atmcoin
+Source code is available at https://github.com/fabriik
