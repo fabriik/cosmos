@@ -136,9 +136,9 @@ class KYCSignUpInteractor: KYCSignUpBusinessLogic, KYCSignUpDataStore {
     private func hashSHA512(data: Data) -> String? {
         var hashData = Data(count: Int(CC_SHA512_DIGEST_LENGTH))
                 
-        _ = hashData.withUnsafeMutableBytes { digestBytes in
-            data.withUnsafeBytes { messageBytes in
-                CC_MD5(messageBytes.baseAddress, CC_LONG(data.count), digestBytes.bindMemory(to: UInt8.self).baseAddress)
+        _ = hashData.withUnsafeMutableBytes {digestBytes in
+            data.withUnsafeBytes {messageBytes in
+                CC_SHA512(messageBytes, CC_LONG(data.count), digestBytes)
             }
         }
         
