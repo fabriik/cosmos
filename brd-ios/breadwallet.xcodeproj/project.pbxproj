@@ -411,6 +411,9 @@
 		7EF2999E27E3B9DA00A2238A /* SimplePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998E27E3B8D200A2238A /* SimplePrice.swift */; };
 		7EF2999F27E3B9DA00A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
+		7EF36C062829893700BB43A7 /* theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EF36C052829893600BB43A7 /* theme.plist */; };
+		7EF36C082829894300BB43A7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C072829894300BB43A7 /* Colors.swift */; };
+		7EF36C0A2829895600BB43A7 /* UIColor+fromPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C092829895600BB43A7 /* UIColor+fromPlist.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -1309,6 +1312,9 @@
 		7EF2998D27E3B8D200A2238A /* MarketChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketChart.swift; path = CoinGecko/Models/MarketChart.swift; sourceTree = "<group>"; };
 		7EF2998E27E3B8D200A2238A /* SimplePrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimplePrice.swift; path = CoinGecko/Models/SimplePrice.swift; sourceTree = "<group>"; };
 		7EF2998F27E3B8D200A2238A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = CoinGecko/Models/Models.swift; sourceTree = "<group>"; };
+		7EF36C052829893600BB43A7 /* theme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
+		7EF36C072829894300BB43A7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		7EF36C092829895600BB43A7 /* UIColor+fromPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+fromPlist.swift"; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -2074,6 +2080,7 @@
 				3A4972C32602E0D10002C3EC /* Cosmos */,
 				75A2A87C1DA59E4E00A983D8 /* breadwallet.entitlements */,
 				75A2A79F1DA5934300A983D8 /* Info.plist */,
+				7EF36C052829893600BB43A7 /* theme.plist */,
 				75A2A7931DA5934300A983D8 /* AppDelegate.swift */,
 				CE20C8F11DBAF71500C8397A /* ApplicationController.swift */,
 				7C0F3DC32124A81100531E54 /* Backend.swift */,
@@ -2956,6 +2963,7 @@
 		7EF36BFF282982D600BB43A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7EF36C092829895600BB43A7 /* UIColor+fromPlist.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2963,6 +2971,7 @@
 		7EF36C022829860D00BB43A7 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				7EF36C072829894300BB43A7 /* Colors.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -4064,6 +4073,7 @@
 				9AE800DC21FFF81F00D5058C /* rewardsIcon-52.gif in Resources */,
 				9AE8010221FFF81F00D5058C /* rewardsIcon-34.gif in Resources */,
 				9AE8010D21FFF81F00D5058C /* rewardsIcon-13.gif in Resources */,
+				7EF36C062829893700BB43A7 /* theme.plist in Resources */,
 				9A926F8F22034B3800CC2263 /* CellHighlight-85.png in Resources */,
 				7BDB49F32806EB4C0031F015 /* AssetBundles.plist in Resources */,
 				9AE800F321FFF81F00D5058C /* rewardsIcon-47.gif in Resources */,
@@ -4769,6 +4779,7 @@
 				7B54E5A327F4A2B0002DD1E4 /* HttpRequest.swift in Sources */,
 				7EC41B6928292F680090894A /* AlertViewConfigurable.swift in Sources */,
 				7B54E53B27F4A208002DD1E4 /* KYCTutorialRouter.swift in Sources */,
+				7EF36C0A2829895600BB43A7 /* UIColor+fromPlist.swift in Sources */,
 				9AE8FFF821FE64E200D5058C /* RewardsView.swift in Sources */,
 				7BA83DA2280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift in Sources */,
 				7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */,
@@ -4808,6 +4819,7 @@
 				713CD8872240117A004657D4 /* RecoveryKeyFlowController.swift in Sources */,
 				CED341331EF5A5C00014912A /* InAppAlert.swift in Sources */,
 				7EC41B6828292F680090894A /* AccessoryViewConfigurable.swift in Sources */,
+				7EF36C082829894300BB43A7 /* Colors.swift in Sources */,
 				CE47A8E01F7DA54000FF35BA /* UIScreen+Additions.swift in Sources */,
 				7B54E51327F4A208002DD1E4 /* KYCUploadRouter.swift in Sources */,
 				7EC41BC1282949620090894A /* Alertable.swift in Sources */,
