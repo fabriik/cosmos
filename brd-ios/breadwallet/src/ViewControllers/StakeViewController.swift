@@ -229,7 +229,8 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
     
     private func selectBakerTapped() {
         let stakeSelectViewController = SelectBakerViewController(currency: currency)
-        stakeSelectViewController.transitioningDelegate = ModalTransitionDelegate(type: .regular)
+        let transitionDelegate = ModalTransitionDelegate(type: .regular)
+        stakeSelectViewController.transitioningDelegate = transitionDelegate
         stakeSelectViewController.modalPresentationStyle = .overFullScreen
         stakeSelectViewController.modalPresentationCapturesStatusBarAppearance = true
         let vc = ModalViewController(childViewController: stakeSelectViewController)

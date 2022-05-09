@@ -23,7 +23,7 @@ public class ExternalAPIClient {
     
     public func send<T: ExternalAPIRequest>(_ request: T, completion: @escaping ResultCompletion<T.Response>) {
         guard let endpoint = self.endpoint(for: request) else { return }
-        URLSession.shared.dataTask(with: URLRequest(url: endpoint)) { data, response, error in
+        URLSession.shared.dataTask(with: URLRequest(url: endpoint)) { data, _, error in
             if let data = data {
                 do {
                     let result = try JSONDecoder().decode(T.Response.self, from: data)
@@ -46,8 +46,7 @@ public class ExternalAPIClient {
     // MARK: - Private
     
     private func endpoint<T: ExternalAPIRequest>(for request: T) -> URL? {
-        guard let url = URL(string: request.resourceName, relativeTo: URL(string: request.hostName)),
-              var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+        guard let url = URL(string: request.resourceName, relativeTo: URL(string: request.hostName)) else {
             fatalError("Bad url: \(request.hostName)/\(request.resourceName)")
         }
         return url

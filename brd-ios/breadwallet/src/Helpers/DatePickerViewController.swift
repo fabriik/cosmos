@@ -45,7 +45,13 @@ final public class DatePickerViewController: UIViewController {
         datePicker.maximumDate = maximumDate
     }
     
-    static func show(on viewController: UIViewController, sourceView: UIView, title: String?, date: Date? = nil, minimumDate: Date? = nil, maximumDate: Date? = nil, action: Action?) {
+    static func show(on viewController: UIViewController,
+                     sourceView: UIView,
+                     title: String?,
+                     date: Date? = nil,
+                     minimumDate: Date? = nil,
+                     maximumDate: Date? = nil,
+                     action: Action?) {
         
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         alert.view.tintColor = .almostBlack

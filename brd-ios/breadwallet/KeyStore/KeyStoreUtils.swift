@@ -64,7 +64,7 @@ func keychainItem<T>(key: String) throws -> T? {
         guard data.count == MemoryLayout<T>.stride else { return nil }
         return data.withUnsafeBytes({ $0.load(as: T.self) })
     case is Dictionary<AnyHashable, Any>.Type:
-        return NSKeyedUnarchiver.unarchiveObject(with: data) as? T
+        return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? T
     default:
         throw NSError(domain: NSOSStatusErrorDomain, code: Int(errSecParam))
     }
@@ -89,7 +89,11 @@ func setKeychainItem<T>(key: String, item: T?, authenticated: Bool = false) thro
             data = CFDataCreateMutable(secureAllocator, MemoryLayout<T>.stride) as Data
             [item].withUnsafeBufferPointer { data?.append($0) }
         case let item as [AnyHashable: Any]:
-            data = NSKeyedArchiver.archivedData(withRootObject: item)
+            do {
+                data = try NSKeyedArchiver.archivedData(withRootObject: item, requiringSecureCoding: true)
+            } catch {
+                print(error)
+            }
         default:
             throw NSError(domain: NSOSStatusErrorDomain, code: Int(errSecParam))
         }

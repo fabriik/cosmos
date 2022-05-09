@@ -373,7 +373,7 @@ extension Wallet {
         case .deleted:
             publishEvent(.transferDeleted(transfer: transfer))
         }
-        if case .changed(_, let new) = event, case .failed(_) = new {
+        if case .changed(_, let new) = event, case .failed(error: _) = new {
             //TODO:CRYPTO workaround needed because transferSubmitted is never received
             //publishEvent(.transferSubmitted(transfer: transfer, success: false))
         }

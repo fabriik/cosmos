@@ -82,7 +82,7 @@ private extension DefaultCacheService {
 // MARK: - Constants
 
 private extension  DefaultCacheService {
-
+    
     enum Constant {
         static let cacheFolder = "marketdata"
     }

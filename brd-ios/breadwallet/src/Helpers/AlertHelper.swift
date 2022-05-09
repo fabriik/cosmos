@@ -59,7 +59,11 @@ extension UIAlertController {
     ///   - style: action style (default is UIAlertActionStyle.default)
     ///   - isEnabled: isEnabled status for action (default is true)
     ///   - handler: optional action handler to be called when button is tapped (default is nil)
-    func addAction(image: UIImage? = nil, title: String, color: UIColor? = nil, style: UIAlertAction.Style = .default, isEnabled: Bool = true,
+    func addAction(image: UIImage? = nil,
+                   title: String,
+                   color: UIColor? = nil,
+                   style: UIAlertAction.Style = .default,
+                   isEnabled: Bool = true,
                    handler: ((UIAlertAction) -> Void)? = nil) {
         // let isPad: Bool = UIDevice.current.userInterfaceIdiom == .pad
         // let action = UIAlertAction(title: title, style: isPad && style == .cancel ? .default : style, handler: handler)

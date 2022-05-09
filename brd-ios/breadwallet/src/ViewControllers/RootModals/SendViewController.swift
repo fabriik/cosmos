@@ -300,13 +300,13 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             return _ = handleValidationResult(.invalidAddress)
         }
         
-        guard let currentAmount = amount?.cryptoAmount as? WalletKit.Amount else { return }
+        guard let currentAmount = amount?.cryptoAmount else { return }
         
         guard currentAmount < balance.cryptoAmount else {
             return _ = handleValidationResult(.insufficientFunds)
         }
         
-        guard let fee = currentFeeBasis?.fee as? WalletKit.Amount else {
+        guard let fee = currentFeeBasis?.fee else {
             return
         }
         
