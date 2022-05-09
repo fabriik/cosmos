@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NotificationConfigurable: BaseButtonConfigurable {
+protocol NotificationConfigurable2: BaseButtonConfigurable {
     associatedtype ImageViewConfig: ImageViewConfigurable
     associatedtype LabelConfig: LabelConfigurable
     associatedtype AccessoryConfig: AccessoryConfigurable
