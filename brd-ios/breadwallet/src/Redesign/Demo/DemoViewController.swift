@@ -21,7 +21,6 @@ class DemoViewController: VIPTableViewController<DemoCoordinator,
         super.setupSubviews()
         
         tableView.frame = view.frame
-        tableView.backgroundColor = Colors.Text.secondary
     }
     
     // MARK: - User Interaction

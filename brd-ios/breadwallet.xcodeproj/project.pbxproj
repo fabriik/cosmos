@@ -411,9 +411,6 @@
 		7EF2999E27E3B9DA00A2238A /* SimplePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998E27E3B8D200A2238A /* SimplePrice.swift */; };
 		7EF2999F27E3B9DA00A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
-		7EF36BFE28297AB100BB43A7 /* theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EF36BFD28297AB100BB43A7 /* theme.plist */; };
-		7EF36C01282982E900BB43A7 /* UIColor+fromPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C00282982E900BB43A7 /* UIColor+fromPlist.swift */; };
-		7EF36C042829861800BB43A7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C032829861800BB43A7 /* Colors.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -1312,9 +1309,6 @@
 		7EF2998D27E3B8D200A2238A /* MarketChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketChart.swift; path = CoinGecko/Models/MarketChart.swift; sourceTree = "<group>"; };
 		7EF2998E27E3B8D200A2238A /* SimplePrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimplePrice.swift; path = CoinGecko/Models/SimplePrice.swift; sourceTree = "<group>"; };
 		7EF2998F27E3B8D200A2238A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = CoinGecko/Models/Models.swift; sourceTree = "<group>"; };
-		7EF36BFD28297AB100BB43A7 /* theme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
-		7EF36C00282982E900BB43A7 /* UIColor+fromPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+fromPlist.swift"; sourceTree = "<group>"; };
-		7EF36C032829861800BB43A7 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -2079,7 +2073,6 @@
 				7EF2998727E3B8AA00A2238A /* CoinGecko */,
 				3A4972C32602E0D10002C3EC /* Cosmos */,
 				75A2A87C1DA59E4E00A983D8 /* breadwallet.entitlements */,
-				7EF36BFD28297AB100BB43A7 /* theme.plist */,
 				75A2A79F1DA5934300A983D8 /* Info.plist */,
 				75A2A7931DA5934300A983D8 /* AppDelegate.swift */,
 				CE20C8F11DBAF71500C8397A /* ApplicationController.swift */,
@@ -2963,7 +2956,6 @@
 		7EF36BFF282982D600BB43A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7EF36C00282982E900BB43A7 /* UIColor+fromPlist.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2971,7 +2963,6 @@
 		7EF36C022829860D00BB43A7 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				7EF36C032829861800BB43A7 /* Colors.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -4057,7 +4048,6 @@
 				9AE800DF21FFF81F00D5058C /* rewardsIcon-30.gif in Resources */,
 				9AE800E421FFF81F00D5058C /* rewardsIcon-5.gif in Resources */,
 				9A926F4A22034B3800CC2263 /* CellHighlight-49.png in Resources */,
-				7EF36BFE28297AB100BB43A7 /* theme.plist in Resources */,
 				9A926F5F22034B3800CC2263 /* CellHighlight-58.png in Resources */,
 				9AE8010421FFF81F00D5058C /* rewardsIcon-62.gif in Resources */,
 				9AE800D321FFF81F00D5058C /* rewardsIcon-66.gif in Resources */,
@@ -4403,7 +4393,6 @@
 				CE6DCC251E6001E50044257B /* UIControl+Callback.swift in Sources */,
 				7B54E51A27F4A208002DD1E4 /* KYCPersonalInfoInteractor.swift in Sources */,
 				7EC41B7028292FA00090894A /* Margins.swift in Sources */,
-				7EF36C01282982E900BB43A7 /* UIColor+fromPlist.swift in Sources */,
 				71904FB92225AB3900A6D027 /* AnnouncementPromptView.swift in Sources */,
 				71999FDD22147CD90024271F /* Events.swift in Sources */,
 				CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */,
@@ -4528,7 +4517,6 @@
 				CEA2480023DE819D00B18BC6 /* AttributeCell.swift in Sources */,
 				7CBD578F2107EB560042C388 /* PairedWalletData.swift in Sources */,
 				7B54E52E27F4A208002DD1E4 /* KYCSignUpInteractor.swift in Sources */,
-				7EF36C042829861800BB43A7 /* Colors.swift in Sources */,
 				7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */,
 				7B432FB9280448520056B364 /* KYCResetPasswordViewController.swift in Sources */,
 				CEAA9E951DC1659F0066731D /* UILabel+BRWAdditions.swift in Sources */,
