@@ -142,7 +142,7 @@ class PromptView: UIView {
         imageView.image = UIImage(named: "ExclamationStandalone")
         
         container.backgroundColor = Theme.transparentBlue
-        container.layer.cornerRadius = 2.0
+        container.layer.cornerRadius = C.Sizes.homeCellCornerRadius
     }
         
     required init?(coder aDecoder: NSCoder) {

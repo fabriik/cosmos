@@ -223,7 +223,7 @@ class BalanceCell: UIView, Subscriber {
 private extension UILabel {
     func makePrimary() {
         font = UIFont.customBold(size: largeFontSize)
-        textColor = .black
+        textColor = .darkPromptTitleColor
         reset()
     }
     

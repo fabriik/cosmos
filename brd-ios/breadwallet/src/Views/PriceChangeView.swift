@@ -105,18 +105,21 @@ class PriceChangeView: UIView, Subscriber {
         
         let percentText = String(format: "%.2f%%", fabs(priceChange.changePercentage24Hrs))
         
-        prefixLabel.text = prefixValue
-        prefixLabel.textColor = valueColor
-        percentLabel.textColor = valueColor
-        absoluteLabel.textColor = valueColor
+        var textColor = valueColor
         
         if style == .percentAndAbsolute, let absoluteString = currencyNumberFormatter.string(from: NSNumber(value: abs(priceChange.change24Hrs))) {
             absoluteLabel.text = "(\(absoluteString))"
             percentLabel.text = percentText
+            textColor = Theme.primaryBackground
             layoutIfNeeded()
         } else if style == .percentOnly {
             percentLabel.fadeToText(percentText)
         }
+        
+        prefixLabel.text = prefixValue
+        prefixLabel.textColor = textColor
+        percentLabel.textColor = textColor
+        absoluteLabel.textColor = textColor
     }
     
     private func subscribeToPriceChange() {
