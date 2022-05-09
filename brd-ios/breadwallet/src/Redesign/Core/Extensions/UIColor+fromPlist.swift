@@ -11,6 +11,21 @@
 import UIKit
 
 extension UIColor {
+    
+    convenience init(hex: String) {
+        var sanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        if sanitized.hasPrefix("#") {
+            sanitized.remove(at: sanitized.startIndex)
+        }
+        var rgbValue: UInt64 = 0
+        Scanner(string: sanitized).scanHexInt64(&rgbValue)
+
+        self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                  green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                  blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                  alpha: CGFloat(1.0))
+    }
+    
     // get color from Theme.plist
     static func color(for key: String) -> UIColor {
         guard let path = Bundle.main.path(forResource: "theme", ofType: "plist"),
@@ -21,6 +36,6 @@ extension UIColor {
             fatalError("Theme.plist error")
         }
         
-        return UIColor.fromHex(color)
+        return UIColor(hex: color)
     }
 }

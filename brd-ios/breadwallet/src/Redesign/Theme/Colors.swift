@@ -20,7 +20,7 @@ struct Colors {
     }
     
     struct Text {
-        static var primary: UIColor = .color(for: "primary")
+        static var primary = UIColor.color(for: "primary")
         /// zelena yo!
         static var secondary: UIColor = .color(for: "secondary")
     }
