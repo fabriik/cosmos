@@ -4,7 +4,7 @@
 
 import UIKit
 
-protocol Identifiable {
+public protocol Identifiable {
     static var identifier: String { get }
     static var className: AnyClass { get }
 }
@@ -49,15 +49,6 @@ extension UICollectionView {
 
 // MARK: - UI Tweaks
 
-struct TableViewConfiguration: Configurable {
-    
-}
-
-extension UITableView: ViewProtocol {
-    func configure(with config: TableViewConfiguration?) {
-        
-    }
-}
 extension UITableView {
     func emptyHeaderFooterView() {
         tableHeaderView = UIView(frame: CGRect(origin: .zero,

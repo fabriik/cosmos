@@ -12,7 +12,7 @@ import WalletKit
 // swiftlint:disable legacy_hashing
 
 typealias Reducer = (State) -> State
-typealias Selector = (_ oldState: State, _ newState: State) -> Bool
+typealias ReduxSelector = (_ oldState: State, _ newState: State) -> Bool
 
 protocol Action {
     var reduce: Reducer { get }
@@ -174,7 +174,7 @@ class Store {
         return shared.state
     }
     
-    static func subscribe(_ subscriber: Subscriber, selector: @escaping Selector, callback: @escaping (State) -> Void) {
+    static func subscribe(_ subscriber: Subscriber, selector: @escaping ReduxSelector, callback: @escaping (State) -> Void) {
         Store.shared.subscribe(subscriber, selector: selector, callback: callback)
     }
 
@@ -182,7 +182,7 @@ class Store {
         Store.shared.subscribe(subscriber, name: name, callback: callback)
     }
 
-    static func lazySubscribe(_ subscriber: Subscriber, selector: @escaping Selector, callback: @escaping (State) -> Void) {
+    static func lazySubscribe(_ subscriber: Subscriber, selector: @escaping ReduxSelector, callback: @escaping (State) -> Void) {
         Store.shared.lazySubscribe(subscriber, selector: selector, callback: callback)
     }
 
@@ -213,13 +213,13 @@ class Store {
 
     //Subscription callback is immediately called with current State value on subscription
     //and then any time the selected value changes
-    func subscribe(_ subscriber: Subscriber, selector: @escaping Selector, callback: @escaping (State) -> Void) {
+    func subscribe(_ subscriber: Subscriber, selector: @escaping ReduxSelector, callback: @escaping (State) -> Void) {
         lazySubscribe(subscriber, selector: selector, callback: callback)
         callback(state)
     }
 
     //Same as subscribe(), but doesn't call the callback with current state upon subscription
-    func lazySubscribe(_ subscriber: Subscriber, selector: @escaping Selector, callback: @escaping (State) -> Void) {
+    func lazySubscribe(_ subscriber: Subscriber, selector: @escaping ReduxSelector, callback: @escaping (State) -> Void) {
         let key = subscriber.hashValue
         let subscription = Subscription(selector: selector, callback: callback)
         subscriptions[key, default: []].append(subscription)

@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol URLType {
+public protocol URLType {
     static var baseURL: String { get }
     var url: String { get }
 }

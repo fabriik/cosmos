@@ -5,14 +5,13 @@
 
 import Foundation
 
-protocol ModelResponse: Codable {
-}
+protocol ModelResponse: Codable {}
 
 protocol Model {}
 
 extension Array: Model {}
 
-open class ModelMapper<T: ModelResponse, U: Model> {
+class ModelMapper<T: ModelResponse, U: Model> {
     required public init() {}
     
     open func getModel(from response: T) -> U? {

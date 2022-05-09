@@ -10,7 +10,7 @@
 
 import Foundation
 
-protocol ExternalAPIRequest: Encodable {
+public protocol ExternalAPIRequest: Encodable {
     associatedtype Response: Decodable
     var hostName: String { get }
     var resourceName: String { get }

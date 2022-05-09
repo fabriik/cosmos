@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol NetworkingError: Error {
+public protocol NetworkingError: Error {
     var errorMessage: String { get }
     var userInfo: [String: Any]? { get set }
     
