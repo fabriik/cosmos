@@ -40,7 +40,7 @@ class AccountHeaderView: UIView, GradientDrawable, Subscriber, Trackable {
     private let priceInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = C.padding[1]
+        stackView.spacing = C.padding[2]
         return stackView
     }()
     
@@ -60,7 +60,7 @@ class AccountHeaderView: UIView, GradientDrawable, Subscriber, Trackable {
     private var historyPeriodPillY: NSLayoutConstraint?
     
     // MARK: Properties
-    private static  let marketDataHeight: CGFloat = 110
+    private static  let marketDataHeight: CGFloat = 130
     static let headerViewMinHeight: CGFloat = 160.0
     private let currency: Currency
     private var isChartHidden = false
@@ -409,7 +409,7 @@ class AccountHeaderView: UIView, GradientDrawable, Subscriber, Trackable {
         button.setTitleColor(.white, for: .normal)
         graphButtons.forEach {
             if $0.button != button {
-                $0.button.setTitleColor(Theme.tertiaryText, for: .normal)
+                $0.button.setTitleColor(Theme.primaryBackground, for: .normal)
             }
         }
     }

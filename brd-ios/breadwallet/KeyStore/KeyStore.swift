@@ -947,7 +947,7 @@ extension KeyStore {
 
 struct NoAuthWalletAuthenticator: WalletAuthenticator {
     
-    var bdbAuthToken: JWT? = nil
+    var bdbAuthToken: JWT?
     var apiUserAccount: [AnyHashable: Any]?
     
     var noWallet: Bool { return true }

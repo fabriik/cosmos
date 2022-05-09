@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-protocol BezierViewDataSource: class {
+protocol BezierViewDataSource: AnyObject {
     var bezierViewDataPoints: [CGPoint] { get }
 }
 
@@ -19,7 +19,7 @@ class BezierView: UIView {
     private let kFadeAnimationKey = "FadeAnimationKey"
     
     weak var dataSource: BezierViewDataSource?
-    private let lineColor = Theme.primaryText
+    private let lineColor = Theme.primaryBackground
     private var animates = true
     private var lineLayer = CAShapeLayer()
     private var graphPath: UIBezierPath?

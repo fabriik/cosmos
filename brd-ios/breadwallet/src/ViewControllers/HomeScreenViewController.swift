@@ -467,9 +467,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         else { return }
         
         Backend.apiClient.sendErrors(messages: errors) { success in
-            guard success else {
-                return
-            }
+            guard success else { return }
             UserDefaults.errors = nil
         }
     }

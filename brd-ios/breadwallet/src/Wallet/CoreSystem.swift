@@ -307,8 +307,7 @@ class CoreSystem: Subscriber, Trackable {
     /// Migrates the old sqlite persistent storage data to Core, if present.
     /// Deletes old database after successful migration.
     private func migrateLegacyDatabase(network: Network) {
-        guard let system = system,
-            let currency = currencies[network.currency.uid],
+        guard let currency = currencies[network.currency.uid],
             (currency.isBitcoin || currency.isBitcoinCash) else { return assertionFailure() }
         let fm = FileManager.default
         let filename = currency.isBitcoin ? "BreadWallet.sqlite" : "BreadWallet-bch.sqlite"
@@ -639,7 +638,7 @@ extension CoreSystem: SystemListener {
                 manager.connect(using: manager.customPeer)
             }
             
-        case .changed(_, _):
+        case .changed(old: _, new: _):
             break
             
         case .deleted:

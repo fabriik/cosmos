@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct KYCPostPersonalInformationWorkerUrlModelData: UrlModelData {
+struct KYCPostPersonalInfoWorkerUrlModelData: UrlModelData {
     func urlParameters() -> [String] {
         let sessionKey: String = "sessionKey=\(UserDefaults.kycSessionKeyValue)"
         
@@ -36,7 +36,7 @@ struct KYCPostPersonalInformationWorkerRequest: RequestModelData {
 
 struct KYCPostPersonalInformationWorkerData: RequestModelData, UrlModelData {
     let workerRequest: KYCPostPersonalInformationWorkerRequest
-    let workerUrlModelData: KYCPostPersonalInformationWorkerUrlModelData
+    let workerUrlModelData: KYCPostPersonalInfoWorkerUrlModelData
     
     func getParameters() -> [String: Any] {
         return workerRequest.getParameters()

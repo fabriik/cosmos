@@ -45,7 +45,7 @@ class AnnouncementPromptView: PromptView {
         if let actions = announcement.actions(for: .initialDisplay), !actions.isEmpty, let action = actions.first {
             continueButton.setTitle(action.titleText, for: .normal)
             
-            if let url = action.url {
+            if action.url != nil {
                 continueButton.tap = {
                     DispatchQueue.main.async { [unowned self] in
                         if let handler = self.dismissButton.tap {

@@ -54,7 +54,7 @@ class SwapConfirmTradeViewController: UIViewController, SwapConfirmTradeDisplayL
         buyButton.translatesAutoresizingMaskIntoConstraints = false
         buyButton.setup(as: .swapEnabled, title: "Buy")
         
-        buyButton.didTap = { [weak self] in
+        buyButton.didTap = { [] in
             // TODO: Implement when we figure out what it looks like.
         }
         
