@@ -5,10 +5,10 @@
 
 import Foundation
 
-public protocol ModelResponse: Codable {
+protocol ModelResponse: Codable {
 }
 
-public protocol Model {}
+protocol Model {}
 
 extension Array: Model {}
 

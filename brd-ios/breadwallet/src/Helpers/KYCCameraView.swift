@@ -5,7 +5,7 @@
 import AVFoundation
 import UIKit
 
-public protocol KYCCameraViewDelegate: AnyObject {
+protocol KYCCameraViewDelegate: AnyObject {
     func cameraViewDidCaptureImage(image: UIImage, cameraView: KYCCameraView)
     func cameraViewDidFailToCaptureImage(error: Error, cameraView: KYCCameraView)
 }

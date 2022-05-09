@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol APICallWorkerProperties {
+protocol APICallWorkerProperties {
     func execute()
     func executeMultipartRequest()
     func processResponse(response: HTTPResponse)
