@@ -22,6 +22,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         tableView.frame = view.frame
         tableView.register(WrapperTableViewCell<UILabel>.self)
+        tableView.register(WrapperTableViewCell<WrapperView<UILabel>>.self)
         
         sections = [Models.Section.demo]
         sectionRows = [Models.Section.demo: ["test", "rok"]]
@@ -33,14 +34,17 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = sections[indexPath.section] as? Models.Section,
               let text = sectionRows[section]?[indexPath.row] as? String,
-              let cell: WrapperTableViewCell<UILabel> = tableView.dequeueReusableCell(for: indexPath)
+              let cell: WrapperTableViewCell<WrapperView<UILabel>> = tableView.dequeueReusableCell(for: indexPath)
         else {
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.setup { label in
-            label.text = text
-            label.textAlignment = .center
+        cell.setup { wrapper in
+            wrapper.setup { label in
+                label.text = text
+                label.textAlignment = .center
+            }
+            wrapper
         }
         
         return cell

@@ -10,17 +10,7 @@ import UIKit
 /// Base Configurable protocol,
 ///
 /// - Needs to be extended
-protocol Configurable {
-//    associatedtype ThemeConfiguration: (Any)
-//    associatedtype Options: (Any)
-    associatedtype ShadowConfig: ShadowConfigurable
-    associatedtype BorderConfig: BorderConfigurable
-    
-    var shadowConfiguration: ShadowConfig? { get set }
-    var borderConfiguration: BorderConfig? { get set }
-    
-//    init(theme: ThemeConfiguration, options: Options?)
-}
+protocol Configurable {}
 
 /// BackgorundConfigurable protocol,
 ///

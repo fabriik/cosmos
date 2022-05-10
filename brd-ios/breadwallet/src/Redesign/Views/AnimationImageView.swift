@@ -10,28 +10,8 @@
 
 import UIKit
 
-struct BackgorundConfiguration: BackgorundConfigurable {
-    var backgroundColor: UIColor
-    var tintColor: UIColor
-}
-
-struct ShadowConfiguration: ShadowConfigurable {
-    var color: UIColor
-    var opacity: Opacity
-    var offset: CGSize
-    var cornerRadius: CornerRadius
-}
-
-struct BorderConfiguration: BorderConfigurable {
-    var tintColor: UIColor
-    var borderWidth: CGFloat
-    var cornerRadius: CornerRadius
-}
-
-struct ImageViewConfiguration: Configurable, ImageViewConfigurable {
-    var backgroundConfiguration: BackgorundConfiguration
-    var shadowConfiguration: ShadowConfiguration?
-    var borderConfiguration: BorderConfiguration?
+struct ImageViewConfiguration: Configurable {
+    var tintColor: UIColor?
 }
 
 enum ImageViewModel: ViewModel {
@@ -85,7 +65,7 @@ class ImageView: BaseView<ImageViewConfiguration, ImageViewModel> {
     // MARK: NCViewProtocol
     override func configure(with config: ImageViewConfiguration?) {
         super.configure(with: config)
-        guard let tintColor = config?.backgroundConfiguration.tintColor else { return }
+        guard let tintColor = config?.tintColor else { return }
         
         switch viewModel {
 //        case .animation:

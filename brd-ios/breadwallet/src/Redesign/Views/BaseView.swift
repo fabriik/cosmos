@@ -16,13 +16,13 @@ class BaseView<C: Configurable, M: ViewModel>: UIView,
     // MARK: NCViewProtocol
     var config: C?
     var viewModel: M?
-
+    
     // MARK: Lazy UI
     lazy var content: UIView = {
         let view = UIView()
         return view
     }()
-
+    
     // MARK: - Initializers
     required override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -69,41 +69,39 @@ class BaseView<C: Configurable, M: ViewModel>: UIView,
         self.viewModel = nil
     }
     
-    func configureBackground(background: BackgorundConfigurable? = nil,
-                                    border: BorderConfigurable? = nil,
-                                    shadow: ShadowConfigurable? = nil) {
-        content.backgroundColor = background?.backgroundColor
-
-        let cornerRadius = border?.cornerRadius ?? shadow?.cornerRadius ?? .zero
-
-        let radius: CGFloat
-        switch cornerRadius {
-        case .zero,
-                .halfRadius:
-            radius = cornerRadius.rawValue
-
-        case .fullRadius:
-            radius = content.frame.height * cornerRadius.rawValue
-        }
-
-        // CornerRadius
-        if let config = border {
-            content.layer.masksToBounds = true
-            content.layer.cornerRadius = radius
-            content.layer.borderWidth = config.borderWidth
-            content.layer.borderColor = config.tintColor.cgColor
-        }
-
-        if let config = shadow {
-            content.layer.masksToBounds = false
-            content.layer.shadowColor = config.color.cgColor
-            content.layer.shadowOpacity = config.opacity.rawValue
-            content.layer.shadowOffset = config.offset
-            content.layer.shadowRadius = 1
-            content.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: radius).cgPath
-            content.layer.shouldRasterize = true
-            content.layer.rasterizationScale = UIScreen.main.scale
-        }
-    }
+//    func configureBackground(background: BackgorundConfiguration,
+//                             border: BorderConfiguration? = nil,
+//                             shadow: ShadowConfiguration? = nil) {
+//        content.backgroundColor = background.backgroundColor
+//
+//        let cornerRadius = border?.cornerRadius ?? shadow?.cornerRadius ?? .zero
+//
+//        let radius: CGFloat
+//        switch cornerRadius {
+//        case .zero, .halfRadius:
+//            radius = cornerRadius.rawValue
+//
+//        case .fullRadius:
+//            radius = content.frame.height * cornerRadius.rawValue
+//        }
+//
+//        // CornerRadius
+//        if let config = border {
+//            content.layer.masksToBounds = true
+//            content.layer.cornerRadius = radius
+//            content.layer.borderWidth = config.borderWidth
+//            content.layer.borderColor = config.tintColor.cgColor
+//        }
+//
+//        if let config = shadow {
+//            content.layer.masksToBounds = false
+//            content.layer.shadowColor = config.color.cgColor
+//            content.layer.shadowOpacity = config.opacity.rawValue
+//            content.layer.shadowOffset = config.offset
+//            content.layer.shadowRadius = 1
+//            content.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: radius).cgPath
+//            content.layer.shouldRasterize = true
+//            content.layer.rasterizationScale = UIScreen.main.scale
+//        }
+//    }
 }
-

@@ -10,12 +10,15 @@
 
 import UIKit
 
-class WrapperView<V: ViewProtocol>: BaseView<V.C, V.VM>,
-                                    Wrappable,
-                                    SubviewConfigurable {
+class WrapperView<T: UIView>: UIView,
+                              Wrappable,
+                              Marginable,
+                              Reusable {
+    
+    lazy var content = UIView()
 
     // MARK: Lazy UI
-    lazy var wrappedView = V()
+    lazy var wrappedView = T()
 
     // MARK: - Overrides
     override var tintColor: UIColor! {
@@ -24,40 +27,36 @@ class WrapperView<V: ViewProtocol>: BaseView<V.C, V.VM>,
         }
     }
 
-    override func setupSubviews() {
-        super.setupSubviews()
+    func setupSubviews() {
+        addSubview(content)
+        content.translatesAutoresizingMaskIntoConstraints = false
+        
+        var constraints = [
+            content.centerXAnchor.constraint(equalTo: centerXAnchor),
+            content.centerYAnchor.constraint(equalTo: centerYAnchor),
+            content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutMargins.left),
+            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top)
+        ]
+        NSLayoutConstraint.activate(constraints)
+        
         content.addSubview(wrappedView)
         wrappedView.translatesAutoresizingMaskIntoConstraints = false
         
-        let constraints = [
+        constraints = [
             wrappedView.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             wrappedView.centerYAnchor.constraint(equalTo: content.centerYAnchor),
             wrappedView.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: content.layoutMargins.left),
             wrappedView.topAnchor.constraint(equalTo: content.topAnchor, constant: content.layoutMargins.top)
         ]
-        NSLayoutConstraint.activate(constraints)
         setupClearMargins()
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setup(_ closure: (T) -> Void) {
+        closure(wrappedView)
     }
 
-    public func configureSubviews(configure: (V) -> Void) {
-        configure(wrappedView)
-    }
-
-    override func configure(with config: V.C?) {
-        super.configure(with: config)
-        wrappedView.configure(with: config)
-    }
-
-    override func setup(with viewModel: V.VM?) {
-        super.setup(with: viewModel)
-        wrappedView.setup(with: viewModel)
-    }
-
-    override func prepareForReuse() {
-        defer {
-            super.prepareForReuse()
-        }
-
+    func prepareForReuse() {
         guard let reusable = wrappedView as? Reusable else { return }
         reusable.prepareForReuse()
     }

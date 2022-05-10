@@ -349,18 +349,9 @@
 		7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */; };
 		7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
-		7E400FD428295419006C8A95 /* NotificationConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E400FD328295419006C8A95 /* NotificationConfigurable.swift */; };
 		7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC37908281C098900028CA1 /* ErrorStruct.swift */; };
 		7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */; };
 		7EC41B6128292F680090894A /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5228292F680090894A /* Configurable.swift */; };
-		7EC41B6228292F680090894A /* TableViewHeaderFooterConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5528292F680090894A /* TableViewHeaderFooterConfigurable.swift */; };
-		7EC41B6328292F680090894A /* BarConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5728292F680090894A /* BarConfigurable.swift */; };
-		7EC41B6428292F680090894A /* ButtonConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5928292F680090894A /* ButtonConfigurable.swift */; };
-		7EC41B6528292F680090894A /* LabelConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5A28292F680090894A /* LabelConfigurable.swift */; };
-		7EC41B6628292F680090894A /* TextFieldConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5B28292F680090894A /* TextFieldConfigurable.swift */; };
-		7EC41B6728292F680090894A /* ImageViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5D28292F680090894A /* ImageViewConfigurable.swift */; };
-		7EC41B6828292F680090894A /* AccessoryViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5E28292F680090894A /* AccessoryViewConfigurable.swift */; };
-		7EC41B6928292F680090894A /* AlertViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5F28292F680090894A /* AlertViewConfigurable.swift */; };
 		7EC41B6F28292FA00090894A /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B6C28292FA00090894A /* UIConstants.swift */; };
 		7EC41B7028292FA00090894A /* Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B6D28292FA00090894A /* Margins.swift */; };
 		7EC41B7128292FA00090894A /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B6E28292FA00090894A /* CornerRadius.swift */; };
@@ -1269,18 +1260,9 @@
 		7E09EA4027D60D2100B0268C /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
-		7E400FD328295419006C8A95 /* NotificationConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationConfigurable.swift; sourceTree = "<group>"; };
 		7EC37908281C098900028CA1 /* ErrorStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStruct.swift; sourceTree = "<group>"; };
 		7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorRequest.swift; sourceTree = "<group>"; };
 		7EC41B5228292F680090894A /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
-		7EC41B5528292F680090894A /* TableViewHeaderFooterConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeaderFooterConfigurable.swift; sourceTree = "<group>"; };
-		7EC41B5728292F680090894A /* BarConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarConfigurable.swift; sourceTree = "<group>"; };
-		7EC41B5928292F680090894A /* ButtonConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonConfigurable.swift; sourceTree = "<group>"; };
-		7EC41B5A28292F680090894A /* LabelConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelConfigurable.swift; sourceTree = "<group>"; };
-		7EC41B5B28292F680090894A /* TextFieldConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldConfigurable.swift; sourceTree = "<group>"; };
-		7EC41B5D28292F680090894A /* ImageViewConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewConfigurable.swift; sourceTree = "<group>"; };
-		7EC41B5E28292F680090894A /* AccessoryViewConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessoryViewConfigurable.swift; sourceTree = "<group>"; };
-		7EC41B5F28292F680090894A /* AlertViewConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewConfigurable.swift; sourceTree = "<group>"; };
 		7EC41B6C28292FA00090894A /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		7EC41B6D28292FA00090894A /* Margins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Margins.swift; sourceTree = "<group>"; };
 		7EC41B6E28292FA00090894A /* CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
@@ -2777,7 +2759,6 @@
 		7EC41B5328292F680090894A /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				7EC41B5428292F680090894A /* Lists */,
 				7EC41B5628292F680090894A /* Bars */,
 				7EC41B5828292F680090894A /* Controls */,
 				7EC41B5C28292F680090894A /* Views */,
@@ -2785,18 +2766,9 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
-		7EC41B5428292F680090894A /* Lists */ = {
-			isa = PBXGroup;
-			children = (
-				7EC41B5528292F680090894A /* TableViewHeaderFooterConfigurable.swift */,
-			);
-			path = Lists;
-			sourceTree = "<group>";
-		};
 		7EC41B5628292F680090894A /* Bars */ = {
 			isa = PBXGroup;
 			children = (
-				7EC41B5728292F680090894A /* BarConfigurable.swift */,
 			);
 			path = Bars;
 			sourceTree = "<group>";
@@ -2804,9 +2776,6 @@
 		7EC41B5828292F680090894A /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				7EC41B5928292F680090894A /* ButtonConfigurable.swift */,
-				7EC41B5A28292F680090894A /* LabelConfigurable.swift */,
-				7EC41B5B28292F680090894A /* TextFieldConfigurable.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -2814,10 +2783,6 @@
 		7EC41B5C28292F680090894A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7EC41B5D28292F680090894A /* ImageViewConfigurable.swift */,
-				7EC41B5E28292F680090894A /* AccessoryViewConfigurable.swift */,
-				7E400FD328295419006C8A95 /* NotificationConfigurable.swift */,
-				7EC41B5F28292F680090894A /* AlertViewConfigurable.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4471,7 +4436,6 @@
 				7B54E5BC27F4A2B1002DD1E4 /* GenericSettable.swift in Sources */,
 				3A188FEC257FF1A300957819 /* GiftCurrencyCell.swift in Sources */,
 				CE8644251F2C160200033129 /* ConfirmationViewController.swift in Sources */,
-				7E400FD428295419006C8A95 /* NotificationConfigurable.swift in Sources */,
 				7CBA74E820227D1300FBBFA9 /* MenuCell.swift in Sources */,
 				7EC41BAA282949620090894A /* FetchModels.swift in Sources */,
 				CEE9A2E920AB4F9A00C5CF2F /* BRAPIClient+Metrics.swift in Sources */,
@@ -4530,7 +4494,6 @@
 				7B54E5AE27F4A2B0002DD1E4 /* PickerViewViewController.swift in Sources */,
 				CE36454A1E7B426B0079D0CF /* ClearNumberPad.swift in Sources */,
 				3A93890922A303800081FCF9 /* BezierView.swift in Sources */,
-				7EC41B6428292F680090894A /* ButtonConfigurable.swift in Sources */,
 				CE124D001E69170900DFA146 /* SyncingView.swift in Sources */,
 				CE20C90E1DBE52B000C8397A /* UIView+BRWAdditions.swift in Sources */,
 				7B54E56527F4A218002DD1E4 /* SwapCryptoView.swift in Sources */,
@@ -4611,7 +4574,6 @@
 				CE27F9591E2C8EA300F7F7F2 /* Amount.swift in Sources */,
 				CE1280F61EEA855C00D27649 /* Date+Additions.swift in Sources */,
 				CED82D4E1E575A5500507A9B /* main.swift in Sources */,
-				7EC41B6328292F680090894A /* BarConfigurable.swift in Sources */,
 				7B54E5A727F4A2B0002DD1E4 /* BasePlainResponseWorker.swift in Sources */,
 				CEEC708E1E954AAB00EF788E /* AboutHeaderView.swift in Sources */,
 				7B54E52227F4A208002DD1E4 /* KYCSignInWorker.swift in Sources */,
@@ -4659,7 +4621,6 @@
 				7B54E54827F4A208002DD1E4 /* KYCAddressPresenter.swift in Sources */,
 				7B54E53A27F4A208002DD1E4 /* KYCTutorialModels.swift in Sources */,
 				7B54E54A27F4A208002DD1E4 /* KYCAddressModels.swift in Sources */,
-				7EC41B6228292F680090894A /* TableViewHeaderFooterConfigurable.swift in Sources */,
 				C469BF1627F6E6920070ED33 /* SwapConfirmTradePresenter.swift in Sources */,
 				CEE20C341EA5B4550086F724 /* ArticleIds.swift in Sources */,
 				C469BF1927F6E6920070ED33 /* SwapConfirmTradeModels.swift in Sources */,
@@ -4716,14 +4677,12 @@
 				7B54E51F27F4A208002DD1E4 /* KYCSignInInteractor.swift in Sources */,
 				3A6A3C7E24DDC90300ACAC70 /* BackupSynchronizer.swift in Sources */,
 				7B54E51827F4A208002DD1E4 /* KYCPersonalInfoView.swift in Sources */,
-				7EC41B6528292F680090894A /* LabelConfigurable.swift in Sources */,
 				3AFAD937256826F3005853E8 /* BorderedTextInput.swift in Sources */,
 				CEF3E82F1DE534C5007C0A9E /* GradientView.swift in Sources */,
 				CE6D0F991DE8B75900BD4BCF /* DismissModalAnimator.swift in Sources */,
 				CE4C1CC61ED65D830063E184 /* DrawableCircle.swift in Sources */,
 				7CBD57912107FAFA0042C388 /* PairedWalletIndex.swift in Sources */,
 				7B54E52527F4A208002DD1E4 /* KYCConfirmEmailInteractor.swift in Sources */,
-				7EC41B6628292F680090894A /* TextFieldConfigurable.swift in Sources */,
 				CEEC708C1E95461A00EF788E /* AboutViewController.swift in Sources */,
 				CEEC708A1E945E3B00EF788E /* UnEditableTextView.swift in Sources */,
 				7B54E56727F4A218002DD1E4 /* SwapPickCurrencyPresenter.swift in Sources */,
@@ -4744,7 +4703,6 @@
 				3AEA2CAB24D3219200DA4C3A /* SelectBackupView.swift in Sources */,
 				C469BF1F27F6E6B10070ED33 /* SwapConfirmTradeView.swift in Sources */,
 				7B54E54B27F4A208002DD1E4 /* KYCAddressRouter.swift in Sources */,
-				7EC41B6728292F680090894A /* ImageViewConfigurable.swift in Sources */,
 				7B54E53727F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift in Sources */,
 				CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */,
 				CEB909FA1E5FF242001804DC /* RecoverWalletIntroViewController.swift in Sources */,
@@ -4829,7 +4787,6 @@
 				7EC41B7128292FA00090894A /* CornerRadius.swift in Sources */,
 				CE20C8FC1DBB0F3A00C8397A /* UIColor+BRWAdditions.swift in Sources */,
 				7B54E5A327F4A2B0002DD1E4 /* HttpRequest.swift in Sources */,
-				7EC41B6928292F680090894A /* AlertViewConfigurable.swift in Sources */,
 				7B54E53B27F4A208002DD1E4 /* KYCTutorialRouter.swift in Sources */,
 				7EF36C0A2829895600BB43A7 /* UIColor+fromPlist.swift in Sources */,
 				9AE8FFF821FE64E200D5058C /* RewardsView.swift in Sources */,
@@ -4870,7 +4827,6 @@
 				7BDB4A032806F4290031F015 /* CsvExporter.swift in Sources */,
 				713CD8872240117A004657D4 /* RecoveryKeyFlowController.swift in Sources */,
 				CED341331EF5A5C00014912A /* InAppAlert.swift in Sources */,
-				7EC41B6828292F680090894A /* AccessoryViewConfigurable.swift in Sources */,
 				7EF36C082829894300BB43A7 /* Colors.swift in Sources */,
 				CE47A8E01F7DA54000FF35BA /* UIScreen+Additions.swift in Sources */,
 				7B54E51327F4A208002DD1E4 /* KYCUploadRouter.swift in Sources */,
