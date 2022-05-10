@@ -86,6 +86,8 @@ class BaseTableViewController<C: CoordinatableRoutes,
             view = UIView(frame: .zero)
         }
         (view as? Marginable)?.setupCustomMargins(vertical: .small, horizontal: .small)
+        view?.setNeedsUpdateConstraints()
+        view?.backgroundColor = .brown
 
         return view
     }
@@ -98,6 +100,9 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
         view.setup { view in
             view.text = text
+            view.backgroundColor = .green
+            view.font = .systemFont(ofSize: 25)
+            view.textAlignment = .center
         }
 
         return view
@@ -124,6 +129,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
         view.setup { view in
             view.setTitle(text, for: .normal)
+            view.backgroundColor = .yellow
             // TODO: add callback to suplementaryViewTapped
         }
 

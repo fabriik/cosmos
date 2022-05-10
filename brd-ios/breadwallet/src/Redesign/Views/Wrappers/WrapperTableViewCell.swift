@@ -65,8 +65,8 @@ class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Marginable, R
             wrappedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.layoutMargins.left),
             wrappedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.layoutMargins.top)
         ]
-        NSLayoutConstraint.activate(constraints)
         setupCustomMargins(vertical: .zero, horizontal: .small)
+        NSLayoutConstraint.activate(constraints)
     }
     
     // TODO: add cornerRadius option?

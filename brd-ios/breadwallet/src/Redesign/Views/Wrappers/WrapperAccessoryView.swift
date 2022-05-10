@@ -16,6 +16,16 @@ class WrapperAccessoryView<V: UIView>: UITableViewHeaderFooterView, Wrappable, I
     public lazy var wrappedView = V()
     
     // MARK: Overrides
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        setupSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupSubviews()
+    }
+    
     func setupSubviews() {
         contentView.addSubview(wrappedView)
         wrappedView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,8 +37,8 @@ class WrapperAccessoryView<V: UIView>: UITableViewHeaderFooterView, Wrappable, I
             wrappedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.layoutMargins.top)
         ]
         
+        setupCustomMargins(vertical: .large, horizontal: .small)
         NSLayoutConstraint.activate(constraints)
-        setupClearMargins()
     }
     
     func setup(_ closure: (V) -> Void) {
