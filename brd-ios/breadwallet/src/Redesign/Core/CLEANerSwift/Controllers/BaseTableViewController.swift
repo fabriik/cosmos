@@ -92,7 +92,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
     
     private func tableView(_ tableView: UITableView, supplementaryViewWith text: String?) -> UIView? {
         // TODO: custom label
-        guard let view: WrapperAccessoryView<UILabel> = tableView.dequeueHeaderFooter(),
+        guard let view: WrapperAccessoryView<UILabel> = tableView.dequeueAccessoryView(),
               let text = text
         else { return UIView(frame: .zero) }
 
@@ -105,7 +105,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
     private func tableView(_ tableView: UITableView, supplementaryViewWith attributedText: NSAttributedString?) -> UIView? {
         // TODO: custom label
-        guard let view: WrapperAccessoryView<UILabel> = tableView.dequeueHeaderFooter(),
+        guard let view: WrapperAccessoryView<UILabel> = tableView.dequeueAccessoryView(),
               let text = attributedText
         else { return UIView(frame: .zero) }
 
@@ -118,7 +118,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
     private func tableView(_ tableView: UITableView, supplementaryViewWith buttonTitle: String?, for section: Int, callback: @escaping (() -> Void)) -> UIView? {
         // TODO: custom button (actionButton look alike?)
-        guard let view: WrapperAccessoryView<UIButton> = tableView.dequeueHeaderFooter(),
+        guard let view: WrapperAccessoryView<UIButton> = tableView.dequeueAccessoryView(),
               let text = buttonTitle
         else { return UIView(frame: .zero) }
 

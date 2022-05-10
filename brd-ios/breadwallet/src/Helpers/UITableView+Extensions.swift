@@ -32,7 +32,7 @@ extension UITableView {
         register(cell.className, forHeaderFooterViewReuseIdentifier: cell.identifier)
     }
     
-    func dequeueHeaderFooter<T: Identifiable>() -> T? {
+    func dequeueAccessoryView<T: Identifiable>() -> T? {
         return dequeueReusableHeaderFooterView(withIdentifier: T.identifier) as? T
     }
 }
