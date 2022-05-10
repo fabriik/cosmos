@@ -78,26 +78,21 @@ class ApplicationController: Subscriber, Trackable {
     /// didFinishLaunchingWithOptions
     func launch(application: UIApplication, options: [UIApplication.LaunchOptionsKey: Any]?) {
         self.application = application
-        let nvc = RootNavigationController()
-        let coordinator = DemoCoordinator(navigationController: nvc)
-        coordinator.start()
-        window.rootViewController = nvc
-        window.makeKeyAndVisible()
-//        handleLaunchOptions(options)
-//        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalNever)
-//
-//        UNUserNotificationCenter.current().delegate = notificationHandler
-//        EventMonitor.shared.register(.pushNotifications)
-//
-//        mainSetup()
-//        setupKeyboard()
-//        Reachability.addDidChangeCallback({ isReachable in
-//            self.isReachable = isReachable
-//        })
-//
-//        if #available(iOS 14.0, *) {
-//            WidgetCenter.shared.reloadAllTimelines()
-//        }
+        handleLaunchOptions(options)
+        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalNever)
+        
+        UNUserNotificationCenter.current().delegate = notificationHandler
+        EventMonitor.shared.register(.pushNotifications)
+        
+        mainSetup()
+        setupKeyboard()
+        Reachability.addDidChangeCallback({ isReachable in
+            self.isReachable = isReachable
+        })
+
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
     
     private func bumpLaunchCount() {
