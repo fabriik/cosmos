@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCSignUpView: BaseView, GenericSettable {
+class KYCSignUpView: BaseViewDeprecated, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {

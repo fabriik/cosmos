@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCCameraContainerView: BaseView, GenericSettable, KYCCameraViewDelegate {
+class KYCCameraContainerView: BaseViewDeprecated, GenericSettable, KYCCameraViewDelegate {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {}

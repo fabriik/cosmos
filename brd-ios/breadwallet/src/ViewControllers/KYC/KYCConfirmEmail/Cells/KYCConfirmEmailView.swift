@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCConfirmEmailView: BaseView, GenericSettable {
+class KYCConfirmEmailView: BaseViewDeprecated, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {

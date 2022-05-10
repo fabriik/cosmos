@@ -4,7 +4,7 @@
 
 import UIKit
 
-class SwapConversionView: BaseView, GenericSettable {
+class SwapConversionView: BaseViewDeprecated, GenericSettable {
     typealias Model = ViewModel
     
     // TODO: Move fonts to constants

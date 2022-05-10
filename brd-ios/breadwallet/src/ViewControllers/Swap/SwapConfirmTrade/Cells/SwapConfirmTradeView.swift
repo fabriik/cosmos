@@ -4,7 +4,7 @@
 
 import UIKit
 
-class SwapConfirmTradeView: BaseView, GenericSettable {
+class SwapConfirmTradeView: BaseViewDeprecated, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {}

@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCPersonalInfoView: BaseView, GenericSettable {
+class KYCPersonalInfoView: BaseViewDeprecated, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {

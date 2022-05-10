@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCProgressView: BaseView, GenericSettable {
+class KYCProgressView: BaseViewDeprecated, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {

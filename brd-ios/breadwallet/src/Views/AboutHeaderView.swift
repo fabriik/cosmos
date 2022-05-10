@@ -4,7 +4,7 @@
 
 import UIKit
 
-class AboutHeaderView: BaseView {
+class AboutHeaderView: BaseViewDeprecated {
     private lazy var mainLogoView: UIImageView = {
         let mainLogoView = UIImageView(image: UIImage(named: "LogoBlue"))
         mainLogoView.translatesAutoresizingMaskIntoConstraints = false
