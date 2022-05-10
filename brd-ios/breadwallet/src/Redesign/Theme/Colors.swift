@@ -32,8 +32,8 @@ struct Colors {
     
     struct Text {
         /// Primary text; Body copy; Headers; Hover text color for light-text-02
-        static var primary = UIColor.color(for: "primary")
+        static var primary = ThemeManager.shared.color(for: "light-text-01")
         /// Secondary text;Input labels
-        static var secondary = UIColor.color(for: "secondary")
+        static var secondary = ThemeManager.shared.color(for: "light-text-02")
     }
 }

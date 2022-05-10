@@ -348,6 +348,7 @@
 		7CF5319D231EE01300E61F12 /* Base32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5319C231EE01300E61F12 /* Base32.swift */; };
 		7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */; };
 		7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */; };
+		7E274B0B282A84CF00E336EE /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B0A282A84CF00E336EE /* ThemeManager.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC37908281C098900028CA1 /* ErrorStruct.swift */; };
 		7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */; };
@@ -404,7 +405,7 @@
 		7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
 		7EF36C062829893700BB43A7 /* theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EF36C052829893600BB43A7 /* theme.plist */; };
 		7EF36C082829894300BB43A7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C072829894300BB43A7 /* Colors.swift */; };
-		7EF36C0A2829895600BB43A7 /* UIColor+fromPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C092829895600BB43A7 /* UIColor+fromPlist.swift */; };
+		7EF36C0A2829895600BB43A7 /* UIColor+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C092829895600BB43A7 /* UIColor+init.swift */; };
 		7EF36C0D282A30C300BB43A7 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C0C282A30C300BB43A7 /* BaseTableViewController.swift */; };
 		7EF36C12282A33D500BB43A7 /* WrapperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C11282A33D500BB43A7 /* WrapperTableViewCell.swift */; };
 		7EF36C14282A351400BB43A7 /* WrapperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C13282A351400BB43A7 /* WrapperCollectionViewCell.swift */; };
@@ -1258,6 +1259,7 @@
 		7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TxMemoCell.swift; path = src/Views/TransactionCells/TxMemoCell.swift; sourceTree = "<group>"; };
 		7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Experiments.swift"; path = "src/Platform/BRAPIClient+Experiments.swift"; sourceTree = "<group>"; };
 		7E09EA4027D60D2100B0268C /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
+		7E274B0A282A84CF00E336EE /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7EC37908281C098900028CA1 /* ErrorStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStruct.swift; sourceTree = "<group>"; };
@@ -1303,7 +1305,7 @@
 		7EF2998F27E3B8D200A2238A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = CoinGecko/Models/Models.swift; sourceTree = "<group>"; };
 		7EF36C052829893600BB43A7 /* theme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
 		7EF36C072829894300BB43A7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		7EF36C092829895600BB43A7 /* UIColor+fromPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+fromPlist.swift"; sourceTree = "<group>"; };
+		7EF36C092829895600BB43A7 /* UIColor+init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+init.swift"; sourceTree = "<group>"; };
 		7EF36C0C282A30C300BB43A7 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		7EF36C11282A33D500BB43A7 /* WrapperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperTableViewCell.swift; sourceTree = "<group>"; };
 		7EF36C13282A351400BB43A7 /* WrapperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -2944,7 +2946,7 @@
 		7EF36BFF282982D600BB43A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7EF36C092829895600BB43A7 /* UIColor+fromPlist.swift */,
+				7EF36C092829895600BB43A7 /* UIColor+init.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2953,6 +2955,7 @@
 			isa = PBXGroup;
 			children = (
 				7EF36C072829894300BB43A7 /* Colors.swift */,
+				7E274B0A282A84CF00E336EE /* ThemeManager.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -4400,6 +4403,7 @@
 				7B54E54927F4A208002DD1E4 /* KYCPostPersonalInformationWorker.swift in Sources */,
 				CE90571A1DFF18B2006BA848 /* ScanViewController.swift in Sources */,
 				7CBC6B302177D72600899AFB /* DelistedTokenView.swift in Sources */,
+				7E274B0B282A84CF00E336EE /* ThemeManager.swift in Sources */,
 				7C6ACCB61FEB345E0028ABFA /* TxStatusCell.swift in Sources */,
 				7BA83DA7280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift in Sources */,
 				7EC41BAC282949620090894A /* ErrorModels.swift in Sources */,
@@ -4788,7 +4792,7 @@
 				CE20C8FC1DBB0F3A00C8397A /* UIColor+BRWAdditions.swift in Sources */,
 				7B54E5A327F4A2B0002DD1E4 /* HttpRequest.swift in Sources */,
 				7B54E53B27F4A208002DD1E4 /* KYCTutorialRouter.swift in Sources */,
-				7EF36C0A2829895600BB43A7 /* UIColor+fromPlist.swift in Sources */,
+				7EF36C0A2829895600BB43A7 /* UIColor+init.swift in Sources */,
 				9AE8FFF821FE64E200D5058C /* RewardsView.swift in Sources */,
 				7BA83DA2280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift in Sources */,
 				7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */,

@@ -11,7 +11,6 @@
 import UIKit
 
 extension UIColor {
-    
     convenience init(hex: String) {
         var sanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if sanitized.hasPrefix("#") {
@@ -24,18 +23,5 @@ extension UIColor {
                   green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
                   blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
                   alpha: CGFloat(1.0))
-    }
-    
-    // get color from Theme.plist
-    static func color(for key: String) -> UIColor {
-        guard let path = Bundle.main.path(forResource: "theme", ofType: "plist"),
-              let dict = NSDictionary(contentsOfFile: path),
-              let colors = dict["colors"] as? [String: String],
-              let color = colors[key]
-        else {
-            fatalError("Theme.plist error")
-        }
-        
-        return UIColor(hex: color)
     }
 }
