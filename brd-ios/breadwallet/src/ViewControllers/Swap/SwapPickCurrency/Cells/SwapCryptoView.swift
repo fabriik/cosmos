@@ -4,7 +4,7 @@
 
 import UIKit
 
-class SwapCryptoView: BaseView, GenericSettable {
+class SwapCryptoView: BaseViewDeprecated, GenericSettable {
     typealias Model = ViewModel
     
     // TODO: Move fonts to constants

@@ -10,6 +10,7 @@ import UIKit
 
 class DemoStore: NSObject, BaseDataStore, DemoDataStore {
     // MARK: - DemoDataStore
+    var itemId: String?
 
     // MARK: - Aditional helpers
 }

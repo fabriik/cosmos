@@ -8,7 +8,8 @@
 
 import UIKit
 
-class DemoCoordinator: BaseCoordinator, DemoRoutes {
+class DemoCoordinator: BaseCoordinator, MainRoutes, DemoRoutes {
+    
     // MARK: - DemoRoutes
 
     // MARK: - Aditional helpers

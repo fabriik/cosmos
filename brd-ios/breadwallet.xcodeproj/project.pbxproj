@@ -257,7 +257,7 @@
 		7B54E5BA27F4A2B1002DD1E4 /* KYCFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59427F4A2B0002DD1E4 /* KYCFooterView.swift */; };
 		7B54E5BB27F4A2B1002DD1E4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59527F4A2B0002DD1E4 /* LoadingView.swift */; };
 		7B54E5BC27F4A2B1002DD1E4 /* GenericSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59627F4A2B0002DD1E4 /* GenericSettable.swift */; };
-		7B54E5BD27F4A2B1002DD1E4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59727F4A2B0002DD1E4 /* BaseView.swift */; };
+		7B54E5BD27F4A2B1002DD1E4 /* BaseViewDeprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59727F4A2B0002DD1E4 /* BaseViewDeprecated.swift */; };
 		7B54E5BE27F4A2B1002DD1E4 /* KYCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59827F4A2B0002DD1E4 /* KYCViewController.swift */; };
 		7B54E5BF27F4A2B1002DD1E4 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */; };
 		7B8140BA27FD6DBB00662724 /* Currency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */; };
@@ -414,6 +414,12 @@
 		7EF36C062829893700BB43A7 /* theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EF36C052829893600BB43A7 /* theme.plist */; };
 		7EF36C082829894300BB43A7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C072829894300BB43A7 /* Colors.swift */; };
 		7EF36C0A2829895600BB43A7 /* UIColor+fromPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C092829895600BB43A7 /* UIColor+fromPlist.swift */; };
+		7EF36C0D282A30C300BB43A7 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C0C282A30C300BB43A7 /* BaseTableViewController.swift */; };
+		7EF36C12282A33D500BB43A7 /* WrapperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C11282A33D500BB43A7 /* WrapperTableViewCell.swift */; };
+		7EF36C14282A351400BB43A7 /* WrapperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C13282A351400BB43A7 /* WrapperCollectionViewCell.swift */; };
+		7EF36C16282A357600BB43A7 /* WrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C15282A357600BB43A7 /* WrapperView.swift */; };
+		7EF36C18282A35C000BB43A7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C17282A35C000BB43A7 /* BaseView.swift */; };
+		7EF36C1A282A3DEF00BB43A7 /* WrapperAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C19282A3DEF00BB43A7 /* WrapperAccessoryView.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -1176,7 +1182,7 @@
 		7B54E59427F4A2B0002DD1E4 /* KYCFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCFooterView.swift; sourceTree = "<group>"; };
 		7B54E59527F4A2B0002DD1E4 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7B54E59627F4A2B0002DD1E4 /* GenericSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericSettable.swift; sourceTree = "<group>"; };
-		7B54E59727F4A2B0002DD1E4 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		7B54E59727F4A2B0002DD1E4 /* BaseViewDeprecated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewDeprecated.swift; sourceTree = "<group>"; };
 		7B54E59827F4A2B0002DD1E4 /* KYCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCViewController.swift; sourceTree = "<group>"; };
 		7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Extensions.swift"; sourceTree = "<group>"; };
@@ -1315,6 +1321,12 @@
 		7EF36C052829893600BB43A7 /* theme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
 		7EF36C072829894300BB43A7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7EF36C092829895600BB43A7 /* UIColor+fromPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+fromPlist.swift"; sourceTree = "<group>"; };
+		7EF36C0C282A30C300BB43A7 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		7EF36C11282A33D500BB43A7 /* WrapperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperTableViewCell.swift; sourceTree = "<group>"; };
+		7EF36C13282A351400BB43A7 /* WrapperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperCollectionViewCell.swift; sourceTree = "<group>"; };
+		7EF36C15282A357600BB43A7 /* WrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperView.swift; sourceTree = "<group>"; };
+		7EF36C17282A35C000BB43A7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		7EF36C19282A3DEF00BB43A7 /* WrapperAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperAccessoryView.swift; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -2644,7 +2656,7 @@
 		7B54E58E27F4A2B0002DD1E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7B54E59727F4A2B0002DD1E4 /* BaseView.swift */,
+				7B54E59727F4A2B0002DD1E4 /* BaseViewDeprecated.swift */,
 				7B54E59327F4A2B0002DD1E4 /* CellWrapperView.swift */,
 				7B54E59627F4A2B0002DD1E4 /* GenericSettable.swift */,
 				7B54E59427F4A2B0002DD1E4 /* KYCFooterView.swift */,
@@ -2730,9 +2742,9 @@
 		7EC41B4F28292F680090894A /* Redesign */ = {
 			isa = PBXGroup;
 			children = (
+				7EF36C0F282A33AE00BB43A7 /* Views */,
+				7EF36C0E282A338F00BB43A7 /* Scenes */,
 				7EF36C022829860D00BB43A7 /* Theme */,
-				7EC41BC428294FD30090894A /* Demo */,
-				7EC41B7F282949610090894A /* CLEANerSwift */,
 				7EC41B5028292F680090894A /* Core */,
 			);
 			name = Redesign;
@@ -2742,6 +2754,7 @@
 		7EC41B5028292F680090894A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7EC41B7F282949610090894A /* CLEANerSwift */,
 				7EF36BFF282982D600BB43A7 /* Extensions */,
 				7EC41B72282930A50090894A /* Views */,
 				7EC41B6B28292FA00090894A /* Constants */,
@@ -2921,6 +2934,7 @@
 			children = (
 				7EC41BA6282949610090894A /* VIPViewController.swift */,
 				7EC41BA7282949610090894A /* VIPTableViewController.swift */,
+				7EF36C0C282A30C300BB43A7 /* BaseTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2974,6 +2988,34 @@
 				7EF36C072829894300BB43A7 /* Colors.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		7EF36C0E282A338F00BB43A7 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				7EC41BC428294FD30090894A /* Demo */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		7EF36C0F282A33AE00BB43A7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7EF36C10282A33B400BB43A7 /* Wrappers */,
+				7EF36C17282A35C000BB43A7 /* BaseView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7EF36C10282A33B400BB43A7 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				7EF36C11282A33D500BB43A7 /* WrapperTableViewCell.swift */,
+				7EF36C19282A3DEF00BB43A7 /* WrapperAccessoryView.swift */,
+				7EF36C15282A357600BB43A7 /* WrapperView.swift */,
+				7EF36C13282A351400BB43A7 /* WrapperCollectionViewCell.swift */,
+			);
+			path = Wrappers;
 			sourceTree = "<group>";
 		};
 		9A39B0752202A96500E5018B /* Cell Highlight View Frames */ = {
@@ -4367,6 +4409,7 @@
 				3A5C9B2B22A5676F00C907C1 /* PriceChange.swift in Sources */,
 				7B54E51527F4A208002DD1E4 /* KYCUploadSelfieWorker.swift in Sources */,
 				7B54E5AC27F4A2B0002DD1E4 /* SimpleTextField.swift in Sources */,
+				7EF36C16282A357600BB43A7 /* WrapperView.swift in Sources */,
 				7B54E52A27F4A208002DD1E4 /* KYCConfirmEmailPresenter.swift in Sources */,
 				7EF2999127E3B8D200A2238A /* MarketChart.swift in Sources */,
 				7EC41BA9282949620090894A /* AlertVIP.swift in Sources */,
@@ -4446,6 +4489,7 @@
 				CE4B6C1A1E219CA600CF935B /* RescanCoordinator.swift in Sources */,
 				9F0EA16C25E2904400D4225E /* WidgetDataShareService.swift in Sources */,
 				9FC529D02604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
+				7EF36C12282A33D500BB43A7 /* WrapperTableViewCell.swift in Sources */,
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
 				7B54E53827F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift in Sources */,
 				7B432FBA280448520056B364 /* KYCResetPasswordInteractor.swift in Sources */,
@@ -4519,6 +4563,7 @@
 				3A6C13FF257D463300EA0689 /* GiftHeaderView.swift in Sources */,
 				CEC6AA441DEFCDE900EE5AFD /* ModalViewController.swift in Sources */,
 				CEF7D94622CE6AC000939D19 /* HistoryPeriodButton.swift in Sources */,
+				7EF36C0D282A30C300BB43A7 /* BaseTableViewController.swift in Sources */,
 				3AFB571724E2E10A00087527 /* RadioButton.swift in Sources */,
 				CEEC70831E90C07C00EF788E /* MenuItem.swift in Sources */,
 				7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */,
@@ -4529,6 +4574,7 @@
 				7B54E52E27F4A208002DD1E4 /* KYCSignUpInteractor.swift in Sources */,
 				7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */,
 				7B432FB9280448520056B364 /* KYCResetPasswordViewController.swift in Sources */,
+				7EF36C18282A35C000BB43A7 /* BaseView.swift in Sources */,
 				CEAA9E951DC1659F0066731D /* UILabel+BRWAdditions.swift in Sources */,
 				7C6FD3F4213F205400EFF35F /* InboxMetaData.swift in Sources */,
 				CEBF292E1EF99E55005C330A /* LightWeightAlert.swift in Sources */,
@@ -4565,7 +4611,7 @@
 				7B54E5A727F4A2B0002DD1E4 /* BasePlainResponseWorker.swift in Sources */,
 				CEEC708E1E954AAB00EF788E /* AboutHeaderView.swift in Sources */,
 				7B54E52227F4A208002DD1E4 /* KYCSignInWorker.swift in Sources */,
-				7B54E5BD27F4A2B1002DD1E4 /* BaseView.swift in Sources */,
+				7B54E5BD27F4A2B1002DD1E4 /* BaseViewDeprecated.swift in Sources */,
 				22A9A9461DF61945000F0016 /* BRAPIClient.swift in Sources */,
 				CEAA9E9B1DC2B9320066731D /* ConfirmPhraseView.swift in Sources */,
 				7EC41BD228294FE60090894A /* DemoInteractor.swift in Sources */,
@@ -4647,6 +4693,7 @@
 				7B54E5AF27F4A2B0002DD1E4 /* KYCCameraView.swift in Sources */,
 				CE8CD8DD1E2D9EF200785E02 /* Sender.swift in Sources */,
 				7BA83DA6280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift in Sources */,
+				7EF36C1A282A3DEF00BB43A7 /* WrapperAccessoryView.swift in Sources */,
 				7EC41BAB282949620090894A /* FetchVIP.swift in Sources */,
 				3AFAD94825698A74005853E8 /* Gift.swift in Sources */,
 				CE4DFB2C1E9BE5880014009E /* ReScanViewController.swift in Sources */,
@@ -4773,6 +4820,7 @@
 				3A6785FB257019220065F835 /* RedeemTransitioningDelegate.swift in Sources */,
 				7B54E5BF27F4A2B1002DD1E4 /* BaseButton.swift in Sources */,
 				CE20C90C1DBC59E600C8397A /* StartFlowPresenter.swift in Sources */,
+				7EF36C14282A351400BB43A7 /* WrapperCollectionViewCell.swift in Sources */,
 				7B54E5A227F4A2B0002DD1E4 /* Decodable+Extensions.swift in Sources */,
 				7EC41B7128292FA00090894A /* CornerRadius.swift in Sources */,
 				CE20C8FC1DBB0F3A00C8397A /* UIColor+BRWAdditions.swift in Sources */,

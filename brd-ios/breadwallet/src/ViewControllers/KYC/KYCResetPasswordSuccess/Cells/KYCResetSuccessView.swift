@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCResetSuccessView: BaseView, GenericSettable {
+class KYCResetSuccessView: BaseViewDeprecated, GenericSettable {
     typealias Model = ViewModel
     
     struct ViewModel: Hashable {}

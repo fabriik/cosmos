@@ -4,7 +4,7 @@
 
 import UIKit
 
-class KYCCompleteButtonsView: BaseView {
+class KYCCompleteButtonsView: BaseViewDeprecated {
     private lazy var doneButton: SimpleButton = {
         let doneButton = SimpleButton()
         doneButton.translatesAutoresizingMaskIntoConstraints = false

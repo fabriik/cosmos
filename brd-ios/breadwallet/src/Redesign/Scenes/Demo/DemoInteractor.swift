@@ -15,6 +15,7 @@ class DemoInteractor: NSObject, Interactor, DemoViewActions {
     var dataStore: DemoStore?
 
     // MARK: - DemoViewActions
+    func getData(viewAction: FetchModels.Get.ViewAction) {}
 
     // MARK: - Aditional helpers
 }

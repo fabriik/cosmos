@@ -5,6 +5,7 @@
 import UIKit
 
 class KYCTutorial1CollectionView: UICollectionViewCell, Identifiable {
+    // TODO: not needed anymore
     static var identifier: String { return classIdentifier }
     
     class var classIdentifier: String {

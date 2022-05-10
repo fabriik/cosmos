@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DemoViewController: VIPTableViewController<DemoCoordinator,
+class DemoViewController: BaseTableViewController<DemoCoordinator,
                           DemoInteractor,
                           DemoPresenter,
                           DemoStore>,
@@ -22,6 +22,7 @@ class DemoViewController: VIPTableViewController<DemoCoordinator,
         
         tableView.frame = view.frame
         tableView.backgroundColor = Colors.Text.secondary
+        tableView.register(WrapperTableViewCell<UILabel>.self)
     }
     
     // MARK: - User Interaction

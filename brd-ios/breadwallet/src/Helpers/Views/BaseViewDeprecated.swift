@@ -4,7 +4,7 @@
 
 import UIKit
 
-class BaseView: UIView {
+class BaseViewDeprecated: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         

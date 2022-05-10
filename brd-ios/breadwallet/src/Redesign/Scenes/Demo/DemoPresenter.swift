@@ -14,6 +14,7 @@ final class DemoPresenter: NSObject, Presenter, DemoActionResponses {
     weak var viewController: DemoViewController?
 
     // MARK: - DemoActionResponses
+    func presentData(actionResponse: FetchModels.Get.ActionResponse) {}
 
     // MARK: - Additional Helpers
 

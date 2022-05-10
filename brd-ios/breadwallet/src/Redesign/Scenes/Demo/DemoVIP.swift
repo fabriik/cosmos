@@ -12,16 +12,16 @@ extension Scenes {
     static let Demo = DemoViewController.self
 }
 
-protocol DemoViewActions: BaseViewActions {
+protocol DemoViewActions: BaseViewActions, FetchViewActions {
 }
 
-protocol DemoActionResponses: BaseActionResponses {
+protocol DemoActionResponses: BaseActionResponses, FetchActionResponses {
 }
 
-protocol DemoResponseDisplays: AnyObject, BaseResponseDisplays {
+protocol DemoResponseDisplays: AnyObject, BaseResponseDisplays, FetchResponseDisplays {
 }
 
-protocol DemoDataStore: BaseDataStore {
+protocol DemoDataStore: BaseDataStore, FetchDataStore {
 }
 
 protocol DemoDataPassing {
