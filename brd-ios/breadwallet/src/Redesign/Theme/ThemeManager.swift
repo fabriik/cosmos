@@ -11,30 +11,31 @@
 import UIKit
 
 class ThemeManager {
-    private var dict: NSDictionary
+    private var colors: [String: String]
     
     static var shared = ThemeManager()
     
     init() {
         guard let path = Bundle.main.path(forResource: "theme", ofType: "plist"),
-              let dict = NSDictionary(contentsOfFile: path)
+              let dict = NSDictionary(contentsOfFile: path),
+              let colors = dict["colors"] as? [String: String]
+                // TODO: get fonts / other theme configs as well
         else {
             fatalError("Theme.plist error")
         }
-        self.dict = dict
+        self.colors = colors
     }
     
     func color(for key: String) -> UIColor {
-        guard let colors = dict["colors"] as? [String: String],
-              let color = colors[key]
+        guard let color = colors[key]
         else {
             return .clear
-        }   
+        }
         return UIColor(hex: color)
     }
     
     func font(for key: String, size: CGFloat) -> UIFont {
         // TODO: return proper font
-        return .systemFont(ofSize: 12)
+        return .systemFont(ofSize: size)
     }
 }
