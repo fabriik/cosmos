@@ -8,18 +8,18 @@
 import UIKit
 
 protocol BaseViewActions: AlertViewActions,
-                                 ErrorViewActions,
-                                 NotificationViewActions {
+                          ErrorViewActions,
+                          NotificationViewActions {
 }
 
 protocol BaseActionResponses: AlertActionResponses,
-                                     ErrorActionResponses,
-                                     NotificationActionResponses {
+                              ErrorActionResponses,
+                              NotificationActionResponses {
 }
 
 protocol BaseResponseDisplays: AlertResponseDisplays,
-                                      ErrorResponseDisplays,
-                                      NotificationResponseDisplays {
+                               ErrorResponseDisplays,
+                               NotificationResponseDisplays {
 }
 
 protocol BaseDataStore {}
@@ -30,8 +30,8 @@ protocol BaseDataPassing {
 }
 
 protocol CoordinatableRoutes: NSObject,
-                                     AlertDisplayable,
-                                     NotificationDisplayable {
+                              AlertDisplayable,
+                              NotificationDisplayable {
     func goBack()
 }
 

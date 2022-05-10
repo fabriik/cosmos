@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class VIPTableViewController<C: CoordinatableRoutes,
                                   I: Interactor,
                                   P: Presenter,

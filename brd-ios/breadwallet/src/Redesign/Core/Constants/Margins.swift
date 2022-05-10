@@ -34,7 +34,7 @@ enum BorderWidth: CGFloat {
     case minimum = 1
 }
 
-enum Opacity: CGFloat {
+enum Opacity: Float {
     /// 0
     case zero = 0
     /// 0.08
@@ -45,10 +45,6 @@ enum Opacity: CGFloat {
     case high = 0.3
     /// 0.80
     case highest = 0.8
-    
-    var value: Float {
-        return Float(self.rawValue)
-    }
 }
 
 enum ViewSizes: CGFloat {

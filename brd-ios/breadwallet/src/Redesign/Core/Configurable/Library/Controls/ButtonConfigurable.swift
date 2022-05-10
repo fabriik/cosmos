@@ -23,8 +23,7 @@ extension BaseButtonConfigurable {
         case .normal:
             return backgroundConfiguration
             
-        case .selected,
-                .highlighted:
+        case .selected, .highlighted:
             return selectedBackgroundConfiguration
             
         case .disabled:

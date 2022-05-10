@@ -43,6 +43,6 @@ extension Presenter {
                                         subButtonConfiguration: alert?.secondaryConfiguration,
                                         tertiaryConfiguration: alert?.tertiaryConfigraution)
 
-//        viewController?.displayAlert(responseDisplay: .init(config: config))
+        viewController?.displayAlert(responseDisplay: .init(config: config))
     }
 }

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AlertConfiguration.swift
 //  
 //
 //  Created by Rok Cresnik on 08/12/2021.

@@ -24,9 +24,9 @@ protocol ObjectViewModelable: NSObject {
 }
 
 protocol ViewProtocol: UIView,
-                                ObjectConfigurable,
-                                ObjectViewModelable,
-                                Marginable {
+                       ObjectConfigurable,
+                       ObjectViewModelable,
+                       Marginable {
     
     func configureBackground(background: BackgorundConfigurable?,
                              border: BorderConfigurable?,
@@ -44,9 +44,9 @@ extension ViewProtocol {
         let radius: CGFloat
         switch cornerRadius {
         case .zero,
-             .halfRadius:
+                .halfRadius:
             radius = cornerRadius.rawValue
-
+            
         case .fullRadius:
             radius = marginableView.frame.height * cornerRadius.rawValue
         }
@@ -58,11 +58,11 @@ extension ViewProtocol {
             marginableView.layer.borderWidth = config.borderWidth
             marginableView.layer.borderColor = config.tintColor.cgColor
         }
-    
+        
         if let config = shadow {
             marginableView.layer.masksToBounds = false
             marginableView.layer.shadowColor = config.color.cgColor
-            marginableView.layer.shadowOpacity = config.opacity.value
+            marginableView.layer.shadowOpacity = config.opacity.rawValue
             marginableView.layer.shadowOffset = config.offset
             marginableView.layer.shadowRadius = 1
             marginableView.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: radius).cgPath

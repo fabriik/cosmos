@@ -123,7 +123,7 @@ class VIPViewController<C: CoordinatableRoutes,
 
     // MARK: BaseResponseDisplay
     func displayAlert(responseDisplay: AlertModels.Alerts.ResponseDisplay) {
-//        coordinator?.showAlertView(with: responseDisplay.config)
+        coordinator?.showAlertView(with: responseDisplay.config)
     }
 
     func displayNotification(responseDisplay: NotificationModels.Notification.ResponseDisplay) {
