@@ -1,5 +1,5 @@
 // 
-//  File.swift
+//  CoinGecko+Extensions.swift
 //  breadwallet
 //
 //  Created by stringcode on 17/02/2021.

@@ -10,7 +10,7 @@
 
 import UIKit
 
-class WrapperAccessoryView<V: UIView>: UITableViewHeaderFooterView, Wrappable, Reusable, Marginable {
+class WrapperAccessoryView<V: UIView>: UITableViewHeaderFooterView, Wrappable, Identifiable, Reusable, Marginable {
     
     // MARK: Wrappable
     public lazy var wrappedView = V()

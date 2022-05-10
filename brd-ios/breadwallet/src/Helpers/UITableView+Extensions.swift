@@ -28,7 +28,7 @@ extension UITableView {
         return dequeueReusableCell(withIdentifier: T.identifier, for: indexPath) as? T
     }
     
-    func registerHeaderFooter<T: Identifiable>(_ cell: T.Type) {
+    func registerAccessoryView<T: Identifiable>(_ cell: T.Type) {
         register(cell.className, forHeaderFooterViewReuseIdentifier: cell.identifier)
     }
     

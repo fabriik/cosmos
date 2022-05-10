@@ -45,9 +45,15 @@ class BaseView<C: Configurable, M: ViewModel>: UIView,
         guard viewModel != nil else { return }
         
         addSubview(content)
-//        content.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
+        content.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            content.centerXAnchor.constraint(equalTo: centerXAnchor),
+            content.centerYAnchor.constraint(equalTo: centerYAnchor),
+            content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutMargins.left),
+            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top)
+        ]
+        NSLayoutConstraint.activate(constraints)
         setupClearMargins()
     }
     

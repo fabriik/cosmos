@@ -10,5 +10,5 @@ import Foundation
 protocol ImageViewConfigurable {
     associatedtype BackgroundConfig: BackgorundConfigurable
     
-    var backgroundConfiguration: BackgroundConfig { get }
+    var backgroundConfiguration: BackgroundConfig { get set }
 }

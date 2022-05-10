@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ErrorVIP.swift
 //  
 //
 //  Created by Rok Cresnik on 01/12/2021.

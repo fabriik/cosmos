@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ModalViewController.swift
 //  breadwallet
 //
 //  Created by Adrian Corscadden on 2016-11-30.
