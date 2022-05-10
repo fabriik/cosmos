@@ -30,7 +30,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "75A2A78F1DA5934300A983D8"
-               BuildableName = "Fabriik.app"
+               BuildableName = "breadwallet.app"
                BlueprintName = "breadwallet"
                ReferencedContainer = "container:breadwallet.xcodeproj">
             </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75A2A78F1DA5934300A983D8"
-            BuildableName = "Fabriik.app"
+            BuildableName = "breadwallet.app"
             BlueprintName = "breadwallet"
             ReferencedContainer = "container:breadwallet.xcodeproj">
          </BuildableReference>
@@ -97,7 +97,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75A2A78F1DA5934300A983D8"
-            BuildableName = "Fabriik.app"
+            BuildableName = "breadwallet.app"
             BlueprintName = "breadwallet"
             ReferencedContainer = "container:breadwallet.xcodeproj">
          </BuildableReference>

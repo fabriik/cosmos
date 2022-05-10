@@ -42,8 +42,6 @@ class BaseView<C: Configurable, M: ViewModel>: UIView,
     
     // MARK: View setup
     func setupSubviews() {
-        guard viewModel != nil else { return }
-        
         addSubview(content)
         content.translatesAutoresizingMaskIntoConstraints = false
         
@@ -53,8 +51,8 @@ class BaseView<C: Configurable, M: ViewModel>: UIView,
             content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutMargins.left),
             content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top)
         ]
-        NSLayoutConstraint.activate(constraints)
         setupClearMargins()
+        NSLayoutConstraint.activate(constraints)
     }
     
     func setup(with viewModel: M?) {
@@ -69,8 +67,6 @@ class BaseView<C: Configurable, M: ViewModel>: UIView,
     func prepareForReuse() {
         self.config = nil
         self.viewModel = nil
-        content.subviews.forEach { $0.removeFromSuperview() }
-        content.removeFromSuperview()
     }
     
     func configureBackground(background: BackgorundConfigurable? = nil,
