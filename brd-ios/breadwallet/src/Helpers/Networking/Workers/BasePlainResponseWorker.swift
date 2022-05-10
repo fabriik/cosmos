@@ -5,30 +5,30 @@
 
 import Foundation
 
-open class BasePlainResponseWorker: APICallWorker {
-    public typealias Completion = (NetworkingError?) -> Void
+class BasePlainResponseWorker: APICallWorker {
+    typealias Completion = (NetworkingError?) -> Void
     
-    open var requestData: RequestModelData?
+    var requestData: RequestModelData?
     
-    open var completion: Completion?
+    var completion: Completion?
     
-    open func execute(requestData: RequestModelData? = nil, completion: Completion?) {
+    func execute(requestData: RequestModelData? = nil, completion: Completion?) {
         self.requestData = requestData
         self.completion = completion
         execute()
     }
     
-    open func executeMultipartRequest(requestData: RequestModelData? = nil, completion: Completion?) {
+    func executeMultipartRequest(requestData: RequestModelData? = nil, completion: Completion?) {
         self.requestData = requestData
         self.completion = completion
         executeMultipartRequest()
     }
     
-    override open func apiCallDidFinish(response: HTTPResponse) {
+    override func apiCallDidFinish(response: HTTPResponse) {
         completion?(response.error)
     }
     
-    override open func getParameters() -> [String: Any] {
+    override func getParameters() -> [String: Any] {
         return requestData?.getParameters() ?? [:]
     }
 }

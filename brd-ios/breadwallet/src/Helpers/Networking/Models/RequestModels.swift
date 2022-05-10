@@ -5,11 +5,11 @@
 
 import Foundation
 
-public protocol UrlModelData {
+protocol UrlModelData {
     func urlParameters() -> [String]
 }
 
-public protocol RequestModelData {
+protocol RequestModelData {
     func getParameters() -> [String: Any]
 }
 

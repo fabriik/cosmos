@@ -20,7 +20,7 @@ public typealias URLSessionTaskHandler = (Data?, HTTPURLResponse?, NSError?) -> 
 public typealias URLSessionChallengeHandler = (URLSession.AuthChallengeDisposition, URLCredential?) -> Void
 
 // an object which implements BRAPIAdaptor can execute API Requests on the current wallet's behalf
-public protocol BRAPIAdaptor {
+protocol BRAPIAdaptor {
     // execute an API request against the current wallet
     func dataTaskWithRequest(_ request: URLRequest,
                              authenticated: Bool,

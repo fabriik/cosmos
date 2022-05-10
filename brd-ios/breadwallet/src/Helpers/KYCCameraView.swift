@@ -5,20 +5,20 @@
 import AVFoundation
 import UIKit
 
-public protocol KYCCameraViewDelegate: AnyObject {
+protocol KYCCameraViewDelegate: AnyObject {
     func cameraViewDidCaptureImage(image: UIImage, cameraView: KYCCameraView)
     func cameraViewDidFailToCaptureImage(error: Error, cameraView: KYCCameraView)
 }
 
-public class KYCCameraView: UIView {
+class KYCCameraView: UIView {
     public enum CameraType {
         case front
         case back
     }
     
-    public weak var delegate: KYCCameraViewDelegate?
+    weak var delegate: KYCCameraViewDelegate?
     
-    public var cameraType: CameraType = .back {
+    var cameraType: CameraType = .back {
         didSet {
             if self.cameraType != oldValue {
                 updateForCameraType()
@@ -26,7 +26,7 @@ public class KYCCameraView: UIView {
         }
     }
     
-    public var authorizedForCapture: Bool {
+    var authorizedForCapture: Bool {
         return AVCaptureDevice.authorizationStatus(for: .video) == .authorized
     }
     
@@ -36,7 +36,7 @@ public class KYCCameraView: UIView {
     private var photoOutput: AVCapturePhotoOutput?
     private var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .black
@@ -45,11 +45,11 @@ public class KYCCameraView: UIView {
         setupCaptureSession()
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         guard let cameraPreviewLayer = cameraPreviewLayer else { return }
@@ -112,7 +112,7 @@ public class KYCCameraView: UIView {
         }
     }
     
-    public func startPreview(requestPermissionIfNeeded: Bool = true) {
+    func startPreview(requestPermissionIfNeeded: Bool = true) {
         if authorizedForCapture {
             if captureSession == nil {
                 setupCaptureSession()
@@ -132,11 +132,11 @@ public class KYCCameraView: UIView {
         }
     }
     
-    public func stopPreview() {
+    func stopPreview() {
         captureSession?.stopRunning()
     }
     
-    public func capturePhoto(imageStabilization: Bool = true, flashMode: AVCaptureDevice.FlashMode = .auto) {
+    func capturePhoto(imageStabilization: Bool = true, flashMode: AVCaptureDevice.FlashMode = .auto) {
         guard let photoOutput = self.photoOutput else { return }
         
         let captureSettings = AVCapturePhotoSettings(format: [ AVVideoCodecKey: AVVideoCodecType.jpeg ])

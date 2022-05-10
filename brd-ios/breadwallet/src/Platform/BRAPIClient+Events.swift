@@ -9,7 +9,7 @@
 import UIKit
 
 /// Implement Trackable in your class to have access to these functions
-public protocol Trackable {
+protocol Trackable {
     /// Saves a basic named event.
     func saveEvent(_ eventName: String)
     

@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol APICallWorkerProperties {
+protocol APICallWorkerProperties {
     func execute()
     func executeMultipartRequest()
     func processResponse(response: HTTPResponse)
@@ -20,12 +20,12 @@ public protocol APICallWorkerProperties {
 /**
  Super class for all workers that make api calls to API
  */
-open class APICallWorker: APICallWorkerProperties {
+class APICallWorker: APICallWorkerProperties {
     var httpRequestManager = HTTPRequestManager()
     
-    public init() {}
+    init() {}
     
-    open func execute() {
+    func execute() {
         let method = getMethod()
         let url = getUrl()
         let headers = getHeaders()
@@ -42,7 +42,7 @@ open class APICallWorker: APICallWorkerProperties {
         }
     }
     
-    open func executeMultipartRequest() {
+    func executeMultipartRequest() {
         let method = getMethod()
         let url = getUrl()
         let headers = getHeaders()
@@ -63,16 +63,16 @@ open class APICallWorker: APICallWorkerProperties {
     /**
      Function for any complex processing of http response. This function is called on a background thread.
      */
-    open func processResponse(response: HTTPResponse) { }
+    func processResponse(response: HTTPResponse) { }
     
     /**
      Call completion from this function. This function is called on the main thread.
      */
-    open func apiCallDidFinish(response: HTTPResponse) { }
-    open func getUrl() -> String { return "" }
-    open func getMethod() -> EQHTTPMethod { return .get }
-    open func getParameters() -> [String: Any] { return [:] }
-    open func getHeaders() -> [String: String] { return [:] }
+    func apiCallDidFinish(response: HTTPResponse) { }
+    func getUrl() -> String { return "" }
+    func getMethod() -> EQHTTPMethod { return .get }
+    func getParameters() -> [String: Any] { return [:] }
+    func getHeaders() -> [String: String] { return [:] }
     
-    open var data = [MultiPart]()
+    var data = [MultiPart]()
 }

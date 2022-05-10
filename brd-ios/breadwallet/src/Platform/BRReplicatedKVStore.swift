@@ -29,7 +29,7 @@ public enum BRRemoteKVStoreError: Error {
 }
 
 /// An interface to a remote key value store which utilizes optimistic-locking for concurrency control
-public protocol BRRemoteKVStoreAdaptor {
+protocol BRRemoteKVStoreAdaptor {
     /// Fetch the version of the key from the remote store
     /// returns a tuple of (remoteVersion, remoteDate, remoteErr?)
     func ver(key: String, completionFunc: @escaping (UInt64, Date, BRRemoteKVStoreError?) -> Void)

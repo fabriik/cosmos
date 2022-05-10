@@ -33,7 +33,7 @@ public struct HTTPResponse {
     public var data: Data?
 }
 
-public protocol MultiPart {
+protocol MultiPart {
     var key: String { get set }
     var fileName: String? { get set }
     var data: Data { get set }
