@@ -35,8 +35,7 @@ class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Marginable, R
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-//        (wrappedView as? Selectable)?.setSelected(selected, animated: animated)
+        // TODO: fix this logic to work with selectionStyle
     }
     
     override func prepareForReuse() {
@@ -44,10 +43,8 @@ class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Marginable, R
         (wrappedView as? Reusable)?.prepareForReuse()
     }
     
-    // TODO: fix this logic to work with selectionStyle
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        guard shouldHighlight else { return }
-//        wrappedView.backgroundColor = highlighted ? R.color.textfieldBackgroundColor() : .clear
+        // TODO: fix this logic to work with selectionStyle
     }
     
     var shouldHighlight: Bool = false
@@ -69,7 +66,6 @@ class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Marginable, R
         NSLayoutConstraint.activate(constraints)
     }
     
-    // TODO: add cornerRadius option?
     func setup(_ closure: (T) -> Void) {
         closure(wrappedView)
     }

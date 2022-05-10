@@ -20,18 +20,8 @@ enum ImageViewModel: ViewModel {
 }
 
 class ImageView: BaseView<ImageViewConfiguration, ImageViewModel> {
+    
     // MARK: Lazy UI
-    
-    // TODO: lottie or no lottie?
-    private lazy var animationView: UIView = {
-        let view = UIView()
-        view.clipsToBounds = true
-//        view.backgroundBehavior = .pauseAndRestore
-//        view.loopMode = .loop
-        
-        return view
-    }()
-    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -44,20 +34,12 @@ class ImageView: BaseView<ImageViewConfiguration, ImageViewModel> {
 
         let accessoryView: UIView
         switch viewModel {
-//        case .animation:
-//            accessoryView = animationView
-
         case .image:
             accessoryView = imageView
 
         default:
             return
         }
-
-        content.addSubview(accessoryView)
-//        accessoryView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
 
         setupClearMargins()
     }
@@ -68,12 +50,6 @@ class ImageView: BaseView<ImageViewConfiguration, ImageViewModel> {
         guard let tintColor = config?.tintColor else { return }
         
         switch viewModel {
-//        case .animation:
-//            animationView.setValueProvider(ColorValueProvider(tintColor.lottieColorValue),
-//                                           keypath: AnimationKeypath(keypath: "**.Color"))
-//            animationView.reloadImages()
-//            animationView.forceDisplayUpdate()
-            
         case .image:
             imageView.tintColor = tintColor
             
@@ -88,10 +64,6 @@ class ImageView: BaseView<ImageViewConfiguration, ImageViewModel> {
         super.setup(with: viewModel)
         
         switch viewModel {
-//        case .animation(let animation):
-//            animationView.animation = animation.animation
-//            animationView.play()
-            
         case .image(let image):
             imageView.image = .init(named: image)
             
@@ -105,10 +77,6 @@ class ImageView: BaseView<ImageViewConfiguration, ImageViewModel> {
     
     public override func prepareForReuse() {
         switch viewModel {
-//        case .animation:
-//            animationView.animation = nil
-//            animationView.removeFromSuperview()
-
         case .image:
             imageView.image = nil
             imageView.removeFromSuperview()
