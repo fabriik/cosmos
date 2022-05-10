@@ -171,7 +171,9 @@ class AddWalletsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @objc private func infoButtonTapped() {
         // show info message alert
-        let message = "We currently support BSV, BTC, BCH, ETH, and USDT. Other assets cannot be accessed through this wallet at the moment."
+        
+        let assetCollectionCodes = coreSystem.assetCollection?.allAssets.compactMap { $0.value.code.localizedUppercase }.joined(separator: ", ") ?? ""
+        let message = "We currently support \(assetCollectionCodes). Other assets cannot be accessed through this wallet at the moment."
         
         let alert = UIAlertController(title: "Limited assets",
                                       message: message,
