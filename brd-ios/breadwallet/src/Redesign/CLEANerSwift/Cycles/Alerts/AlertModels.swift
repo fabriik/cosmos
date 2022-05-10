@@ -15,22 +15,10 @@ enum AlertModels {
 
         struct ActionResponse {
             var alert: Alertable?
-
-            init(alert: Alertable?) {
-                self.alert = alert
-            }
         }
 
         struct ResponseDisplay {
-            let config: AlertConfigurationModel
-
-            init(config: AlertConfigurationModel) {
-                self.config = config
-            }
+            let config: AlertConfiguration
         }
     }
-}
-
-struct AlertConfigurationModel {
-    
 }

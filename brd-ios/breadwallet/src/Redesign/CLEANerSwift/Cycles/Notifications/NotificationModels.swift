@@ -16,7 +16,7 @@ enum NotificationModels {
         struct ActionResponse {
             var text: String
             var autoDimissisable: Bool
-
+            
             init(text: String, autoDimissisable: Bool = true) {
                 self.text = text
                 self.autoDimissisable = autoDimissisable
@@ -25,7 +25,7 @@ enum NotificationModels {
         
         struct ResponseDisplay {
             var config: NotificationConfiguration
-
+            
             init(config: NotificationConfiguration) {
                 self.config = config
             }
@@ -48,10 +48,10 @@ struct NotificationConfiguration: NotificationConfigurable {
     var text: String
     var autoDismissable: Bool = true
     var tapCallback: ((UIView) -> Void)?
-
+    
     init(text: String,
-                autoDismissable: Bool = true,
-                tapCallback: ((UIView) -> Void)? = nil) {
+         autoDismissable: Bool = true,
+         tapCallback: ((UIView) -> Void)? = nil) {
         self.text = text
         self.tapCallback = tapCallback
         self.autoDismissable = autoDismissable
