@@ -20,6 +20,13 @@ struct Presets {
             static var disabled = BackgroundConfiguration(backgroundColor: .lightGray, tintColor: .gray)
             static var error = BackgroundConfiguration(backgroundColor: .white, tintColor: .red)
         }
+        
+        struct Blue {
+            static var normal = BackgroundConfiguration(backgroundColor: .blue, tintColor: .black)
+            static var selected = BackgroundConfiguration(backgroundColor: .blue, tintColor: .black)
+            static var disabled = BackgroundConfiguration(backgroundColor: .blue, tintColor: .gray)
+            static var error = BackgroundConfiguration(backgroundColor: .blue, tintColor: .red)
+        }
     }
     
     struct Border {
@@ -28,7 +35,7 @@ struct Presets {
     }
     
     struct Shadow {
-        static var normal = ShadowConfiguration(color: .cyan, opacity: .highest, offset: .init(width: 30, height: 30), cornerRadius: .halfRadius)
+        static var normal = ShadowConfiguration(color: .black, opacity: .lowest, offset: .init(width: 5, height: 5), cornerRadius: .halfRadius)
         static var zero = ShadowConfiguration(color: .clear, opacity: .zero, offset: .zero, cornerRadius: .halfRadius)
     }
     
@@ -77,5 +84,17 @@ extension Presets {
                                                     backgroundConfiguration: Presets.Background.Primary.normal,
                                                     selectedBackgroundConfiguration: Presets.Background.Primary.selected,
                                                     disabledBackgroundConfiguration: Presets.Background.Primary.disabled)
+    }
+    
+    struct InfoView {
+        static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.primary,
+                                                   headerTitle: Presets.Label.secondary,
+                                                   headerTrailingImage: Presets.Image.primary,
+                                                   title: Presets.Label.primary,
+                                                   description: Presets.Label.primary,
+                                                   button: Presets.Button.secondary,
+                                                   background: Presets.Background.Blue.normal,
+                                                   border: Presets.Border.normal,
+                                                   shadow: Presets.Shadow.normal)
     }
 }

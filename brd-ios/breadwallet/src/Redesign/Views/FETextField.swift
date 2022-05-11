@@ -90,9 +90,12 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel> {
         return view
     }()
     
-    private func constraint(constraint: NSLayoutConstraint, with priority: UILayoutPriority) -> NSLayoutConstraint {
-        constraint.priority = priority
-        return constraint
+    override func layoutSubviews() {
+        super.layoutSubviews()    
+        // Border
+        configure(border: config?.borderConfiguration)
+        // Shadow
+        configure(shadow: config?.shadowConfiguration)
     }
     
     override func setupSubviews() {

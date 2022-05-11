@@ -19,9 +19,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     override func prepareData() {
         sections = [
-            Models.Section.demo,
+            Models.Section.label,
             Models.Section.button,
-            Models.Section.textField
+            Models.Section.textField,
+            Models.Section.infoView
         ]
         
         sectionRows = [
@@ -35,6 +36,20 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                 TextFieldModel(placeholder: "<name>", hint: "You can write?"),
                 TextFieldModel(title: "This is a title", placeholder: "<name>"),
                 TextFieldModel(placeholder: "<name>")
+            ],
+            
+            Models.Section.infoView: [
+                InfoViewModel(headerTitle: .text("Kaj tu pise?"),
+                              title: .text("Kak lep dan"),
+                              description: .text("za ujeti svoje sanje! sanje ne bezijo marvec zivijo!"),
+                              button: .init(title: "Zapri")),
+                
+                InfoViewModel(title: .text("Kak lep dan"),
+                              description: .text("za ujeti svoje sanje! sanje ne bezijo marvec zivijo!"),
+                              button: .init(title: "Zapri")),
+                
+                InfoViewModel(title: .text("Kak lep dan"),
+                              description: .text("za ujeti svoje sanje! sanje ne bezijo marvec zivijo!"))
             ]
         ]
         
@@ -49,7 +64,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         let cell: UITableViewCell
         switch section {
-        case .demo:
+        case .label:
             cell = self.tableView(tableView, labelCellForRowAt: indexPath)
             
         case .button:
@@ -57,6 +72,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             
         case .textField:
             cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
+            
+        case .infoView:
+            cell = self.tableView(tableView, infoViewCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)

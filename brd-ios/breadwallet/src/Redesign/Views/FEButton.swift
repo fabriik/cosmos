@@ -45,6 +45,15 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         }
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Border
+        configure(border: config?.borderConfiguration)
+        // Shadow
+        configure(shadow: config?.shadowConfiguration)
+    }
+    
     func configure(with config: ButtonConfiguration?) {
         guard let config = config else { return }
 
@@ -55,11 +64,11 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         setTitleColor(config.selectedConfiguration?.tintColor, for: .selected)
         setTitleColor(config.selectedConfiguration?.tintColor, for: .highlighted)
         
-        // Border
-        configure(border: config.borderConfiguration)
-        
-        // Shadow
-        configure(shadow: config.shadowConfiguration)
+//        // Border
+//        configure(border: config.borderConfiguration)
+//
+//        // Shadow
+//        configure(shadow: config.shadowConfiguration)
     }
     
     func setup(with viewModel: ButtonViewModel?) {
