@@ -30,4 +30,9 @@ struct Presets {
                                                    disabledConfiguration: .init(backgroundColor: .white, tintColor: .black),
                                                    shadowConfiguration: .init(color: .blue, opacity: .highest, offset: .init(width: 10, height: 10), cornerRadius: .halfRadius))
     }
+    
+    struct Image {
+        static var primary = ImageViewConfiguration(backgroundColor: .yellow, tintColor: .blue)
+        static var secondary = ImageViewConfiguration(backgroundColor: .blue, tintColor: .yellow)
+    }
 }

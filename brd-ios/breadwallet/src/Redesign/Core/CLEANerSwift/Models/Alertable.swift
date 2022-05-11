@@ -7,12 +7,17 @@
 
 import UIKit
 
-protocol Alertable {
-    var title: String? { get }
-    var description: String? { get }
-    var image: UIImage? { get }
-    var tintColor: UIColor? { get }
-//    var primaryConfiguration: ButtonConfiguration? { get }
-//    var secondaryConfiguration: ButtonConfiguration? { get }
-//    var tertiaryConfigraution: ButtonConfiguration? { get }
+struct AlertViewModel {
+    var title: String?
+    var description: String?
+    var image: UIImage?
+    var buttons: [String]
 }
+
+struct AlertConfiguration: Configurable {
+    var titleConfiguration: LabelConfiguration?
+    var descriptionConfiguration: LabelConfiguration?
+    var imageConfiguration: ImageViewConfiguration?
+    var buttonConfigurations: [ButtonConfiguration]
+}
+
