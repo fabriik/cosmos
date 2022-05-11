@@ -16,7 +16,7 @@ protocol Configurable {}
 ///
 /// - Defines variable backgroundColor of type UIColor
 /// - Defines variable tintColor of type UIColor
-protocol BackgorundConfigurable {
+protocol BackgorundConfigurable: Configurable {
     var backgroundColor: UIColor { get }
     var tintColor: UIColor { get }
 }
@@ -52,7 +52,7 @@ protocol ShadowConfigurable {
 /// - Defines variable textAlignment of type NSTextAlignment
 /// - Defines variable numberOfLines of type Int
 /// - Defines variable lineBreakMode of type NSLineBreakMode
-protocol TextConfigurable {
+protocol TextConfigurable: Configurable {
     var font: UIFont { get }
     var textColor: UIColor { get }
     var textAlignment: NSTextAlignment { get }

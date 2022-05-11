@@ -62,7 +62,7 @@ class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Marginable, R
             wrappedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.layoutMargins.left),
             wrappedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.layoutMargins.top)
         ]
-        setupCustomMargins(vertical: .zero, horizontal: .small)
+        setupCustomMargins(vertical: .extraHuge, horizontal: .small)
         NSLayoutConstraint.activate(constraints)
     }
     

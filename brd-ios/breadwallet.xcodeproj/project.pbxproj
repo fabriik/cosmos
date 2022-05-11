@@ -349,6 +349,13 @@
 		7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */; };
 		7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */; };
 		7E274B0B282A84CF00E336EE /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B0A282A84CF00E336EE /* ThemeManager.swift */; };
+		7E274B0D282A8A6000E336EE /* FEButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B0C282A8A6000E336EE /* FEButton.swift */; };
+		7E274B0F282A9E5000E336EE /* FELabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B0E282A9E5000E336EE /* FELabel.swift */; };
+		7E274B11282B8C1400E336EE /* Shadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B10282B8C1300E336EE /* Shadable.swift */; };
+		7E274B13282B8C2600E336EE /* Borderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B12282B8C2600E336EE /* Borderable.swift */; };
+		7E274B16282B8CE600E336EE /* ShadowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B15282B8CE600E336EE /* ShadowConfiguration.swift */; };
+		7E274B18282B8D0600E336EE /* BorderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B17282B8D0600E336EE /* BorderConfiguration.swift */; };
+		7E274B1A282B8D3600E336EE /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B19282B8D3600E336EE /* Presets.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC37908281C098900028CA1 /* ErrorStruct.swift */; };
 		7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */; };
@@ -369,7 +376,6 @@
 		7EC41BAD282949620090894A /* ErrorVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B89282949610090894A /* ErrorVIP.swift */; };
 		7EC41BAE282949620090894A /* NotificationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B8B282949610090894A /* NotificationModels.swift */; };
 		7EC41BAF282949620090894A /* NotificationVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B8C282949610090894A /* NotificationVIP.swift */; };
-		7EC41BB0282949620090894A /* AlertConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B8E282949610090894A /* AlertConfiguration.swift */; };
 		7EC41BB1282949620090894A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B90282949610090894A /* Controller.swift */; };
 		7EC41BB2282949620090894A /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B91282949610090894A /* Interactor.swift */; };
 		7EC41BB3282949620090894A /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B92282949610090894A /* Presenter.swift */; };
@@ -412,7 +418,7 @@
 		7EF36C16282A357600BB43A7 /* WrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C15282A357600BB43A7 /* WrapperView.swift */; };
 		7EF36C18282A35C000BB43A7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C17282A35C000BB43A7 /* BaseView.swift */; };
 		7EF36C1A282A3DEF00BB43A7 /* WrapperAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C19282A3DEF00BB43A7 /* WrapperAccessoryView.swift */; };
-		7EF36C1C282A541400BB43A7 /* AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C1B282A541400BB43A7 /* AnimationImageView.swift */; };
+		7EF36C1C282A541400BB43A7 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF36C1B282A541400BB43A7 /* ImageView.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -1260,6 +1266,13 @@
 		7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Experiments.swift"; path = "src/Platform/BRAPIClient+Experiments.swift"; sourceTree = "<group>"; };
 		7E09EA4027D60D2100B0268C /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
 		7E274B0A282A84CF00E336EE /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		7E274B0C282A8A6000E336EE /* FEButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEButton.swift; sourceTree = "<group>"; };
+		7E274B0E282A9E5000E336EE /* FELabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FELabel.swift; sourceTree = "<group>"; };
+		7E274B10282B8C1300E336EE /* Shadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadable.swift; sourceTree = "<group>"; };
+		7E274B12282B8C2600E336EE /* Borderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Borderable.swift; sourceTree = "<group>"; };
+		7E274B15282B8CE600E336EE /* ShadowConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowConfiguration.swift; sourceTree = "<group>"; };
+		7E274B17282B8D0600E336EE /* BorderConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderConfiguration.swift; sourceTree = "<group>"; };
+		7E274B19282B8D3600E336EE /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7EC37908281C098900028CA1 /* ErrorStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStruct.swift; sourceTree = "<group>"; };
@@ -1281,7 +1294,6 @@
 		7EC41B89282949610090894A /* ErrorVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorVIP.swift; sourceTree = "<group>"; };
 		7EC41B8B282949610090894A /* NotificationModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModels.swift; sourceTree = "<group>"; };
 		7EC41B8C282949610090894A /* NotificationVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVIP.swift; sourceTree = "<group>"; };
-		7EC41B8E282949610090894A /* AlertConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertConfiguration.swift; sourceTree = "<group>"; };
 		7EC41B90282949610090894A /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		7EC41B91282949610090894A /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		7EC41B92282949610090894A /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
@@ -1312,7 +1324,7 @@
 		7EF36C15282A357600BB43A7 /* WrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperView.swift; sourceTree = "<group>"; };
 		7EF36C17282A35C000BB43A7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7EF36C19282A3DEF00BB43A7 /* WrapperAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperAccessoryView.swift; sourceTree = "<group>"; };
-		7EF36C1B282A541400BB43A7 /* AnimationImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationImageView.swift; sourceTree = "<group>"; };
+		7EF36C1B282A541400BB43A7 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -2716,6 +2728,16 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		7E274B14282B8CD900E336EE /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				7E274B15282B8CE600E336EE /* ShadowConfiguration.swift */,
+				7E274B17282B8D0600E336EE /* BorderConfiguration.swift */,
+				7E274B19282B8D3600E336EE /* Presets.swift */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 		7EC37907281C096F00028CA1 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -2740,6 +2762,7 @@
 		7EC41B5028292F680090894A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7E274B14282B8CD900E336EE /* Configurations */,
 				7EC41B7F282949610090894A /* CLEANerSwift */,
 				7EF36BFF282982D600BB43A7 /* Extensions */,
 				7EC41B72282930A50090894A /* Views */,
@@ -2753,40 +2776,10 @@
 			isa = PBXGroup;
 			children = (
 				7EC41B5228292F680090894A /* Configurable.swift */,
-				7EC41B5328292F680090894A /* Library */,
+				7E274B10282B8C1300E336EE /* Shadable.swift */,
+				7E274B12282B8C2600E336EE /* Borderable.swift */,
 			);
 			path = Configurable;
-			sourceTree = "<group>";
-		};
-		7EC41B5328292F680090894A /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				7EC41B5628292F680090894A /* Bars */,
-				7EC41B5828292F680090894A /* Controls */,
-				7EC41B5C28292F680090894A /* Views */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		7EC41B5628292F680090894A /* Bars */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Bars;
-			sourceTree = "<group>";
-		};
-		7EC41B5828292F680090894A /* Controls */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controls;
-			sourceTree = "<group>";
-		};
-		7EC41B5C28292F680090894A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		7EC41B6B28292FA00090894A /* Constants */ = {
@@ -2815,7 +2808,6 @@
 			isa = PBXGroup;
 			children = (
 				7EC41B80282949610090894A /* Cycles */,
-				7EC41B8D282949610090894A /* Configurations */,
 				7EC41B8F282949610090894A /* VIP */,
 				7EC41BA3282949610090894A /* Models */,
 				7EC41BA5282949610090894A /* Controllers */,
@@ -2868,14 +2860,6 @@
 				7EC41B8C282949610090894A /* NotificationVIP.swift */,
 			);
 			path = Notifications;
-			sourceTree = "<group>";
-		};
-		7EC41B8D282949610090894A /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				7EC41B8E282949610090894A /* AlertConfiguration.swift */,
-			);
-			path = Configurations;
 			sourceTree = "<group>";
 		};
 		7EC41B8F282949610090894A /* VIP */ = {
@@ -2971,9 +2955,11 @@
 		7EF36C0F282A33AE00BB43A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7E274B0C282A8A6000E336EE /* FEButton.swift */,
+				7E274B0E282A9E5000E336EE /* FELabel.swift */,
 				7EF36C10282A33B400BB43A7 /* Wrappers */,
 				7EF36C17282A35C000BB43A7 /* BaseView.swift */,
-				7EF36C1B282A541400BB43A7 /* AnimationImageView.swift */,
+				7EF36C1B282A541400BB43A7 /* ImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4443,9 +4429,11 @@
 				7CBA74E820227D1300FBBFA9 /* MenuCell.swift in Sources */,
 				7EC41BAA282949620090894A /* FetchModels.swift in Sources */,
 				CEE9A2E920AB4F9A00C5CF2F /* BRAPIClient+Metrics.swift in Sources */,
+				7E274B0F282A9E5000E336EE /* FELabel.swift in Sources */,
 				7B54E54227F4A208002DD1E4 /* KYCCompleteModels.swift in Sources */,
 				CEBF32F01DDCD30600348FC6 /* AccountViewController.swift in Sources */,
 				CEE1F5631DF13E5A00D733AD /* ModalHeaderView.swift in Sources */,
+				7E274B11282B8C1400E336EE /* Shadable.swift in Sources */,
 				7BDB49FF2806F3EC0031F015 /* CloudBackup.swift in Sources */,
 				9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */,
 				7B54E59A27F4A2B0002DD1E4 /* UIView+Extensions.swift in Sources */,
@@ -4461,6 +4449,7 @@
 				9F0EA16C25E2904400D4225E /* WidgetDataShareService.swift in Sources */,
 				9FC529D02604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
 				7EF36C12282A33D500BB43A7 /* WrapperTableViewCell.swift in Sources */,
+				7E274B13282B8C2600E336EE /* Borderable.swift in Sources */,
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
 				7B54E53827F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift in Sources */,
 				7B432FBA280448520056B364 /* KYCResetPasswordInteractor.swift in Sources */,
@@ -4542,6 +4531,7 @@
 				CEA2480023DE819D00B18BC6 /* AttributeCell.swift in Sources */,
 				7CBD578F2107EB560042C388 /* PairedWalletData.swift in Sources */,
 				7B54E52E27F4A208002DD1E4 /* KYCSignUpInteractor.swift in Sources */,
+				7E274B0D282A8A6000E336EE /* FEButton.swift in Sources */,
 				7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */,
 				7B432FB9280448520056B364 /* KYCResetPasswordViewController.swift in Sources */,
 				7EF36C18282A35C000BB43A7 /* BaseView.swift in Sources */,
@@ -4568,7 +4558,7 @@
 				7B54E51B27F4A208002DD1E4 /* KYCPersonalInfoRouter.swift in Sources */,
 				3A6FD42F24E4570900068ECE /* KeyStore+CloudBackup.swift in Sources */,
 				7B432FBE280450C30056B364 /* KYCResetPasswordView.swift in Sources */,
-				7EF36C1C282A541400BB43A7 /* AnimationImageView.swift in Sources */,
+				7EF36C1C282A541400BB43A7 /* ImageView.swift in Sources */,
 				7B54E5A627F4A2B0002DD1E4 /* HTTPRequestHelpers.swift in Sources */,
 				CEC4CF091F0C84AB00E5C82E /* UIViewController+Alerts.swift in Sources */,
 				CE12289D20D3695400EC6F81 /* MotionGradientView.swift in Sources */,
@@ -4622,6 +4612,7 @@
 				7B54E54027F4A208002DD1E4 /* KYCCompleteRouter.swift in Sources */,
 				7EC41BCD28294FE60090894A /* DemoStore.swift in Sources */,
 				7B54E5B927F4A2B1002DD1E4 /* CellWrapperView.swift in Sources */,
+				7E274B18282B8D0600E336EE /* BorderConfiguration.swift in Sources */,
 				7B54E54827F4A208002DD1E4 /* KYCAddressPresenter.swift in Sources */,
 				7B54E53A27F4A208002DD1E4 /* KYCTutorialModels.swift in Sources */,
 				7B54E54A27F4A208002DD1E4 /* KYCAddressModels.swift in Sources */,
@@ -4631,7 +4622,6 @@
 				3A93890A22A303800081FCF9 /* CubicCurveAlgorithm.swift in Sources */,
 				7141BB5B2245271800F7ECF2 /* WriteRecoveryKeyViewController.swift in Sources */,
 				CEE65DF01E39056F0002994D /* Rate.swift in Sources */,
-				7EC41BB0282949620090894A /* AlertConfiguration.swift in Sources */,
 				7B54E52627F4A208002DD1E4 /* KYCConfirmEmailView.swift in Sources */,
 				7BDB4A0D2806F54B0031F015 /* StakingCell.swift in Sources */,
 				CEDB09331FEAA21C001AF56A /* TxDetailViewModel.swift in Sources */,
@@ -4741,6 +4731,7 @@
 				CEBF32F21DDCE10D00348FC6 /* AccountHeaderView.swift in Sources */,
 				CECCE5B21E04B00D00D99448 /* SendCell.swift in Sources */,
 				CE6DCC301E6666470044257B /* NonScrollingCollectionView.swift in Sources */,
+				7E274B16282B8CE600E336EE /* ShadowConfiguration.swift in Sources */,
 				7BA83DA4280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift in Sources */,
 				7EC41BD128294FE60090894A /* DemoViewController.swift in Sources */,
 				71C44E90225D135E00EF4459 /* ConfirmRecoveryKeyViewController.swift in Sources */,
@@ -4835,6 +4826,7 @@
 				CE47A8E01F7DA54000FF35BA /* UIScreen+Additions.swift in Sources */,
 				7B54E51327F4A208002DD1E4 /* KYCUploadRouter.swift in Sources */,
 				7EC41BC1282949620090894A /* Alertable.swift in Sources */,
+				7E274B1A282B8D3600E336EE /* Presets.swift in Sources */,
 				7BDB49FD2806F3840031F015 /* WyreReservationRequest.swift in Sources */,
 				7C9BC58D231764030011732F /* WalletConnectionSettingsViewController.swift in Sources */,
 				CEB909F51E5FE63D001804DC /* EnterPhraseViewController.swift in Sources */,
