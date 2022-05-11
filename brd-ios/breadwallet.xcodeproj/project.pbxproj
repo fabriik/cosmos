@@ -351,6 +351,11 @@
 		7E274B0B282A84CF00E336EE /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B0A282A84CF00E336EE /* ThemeManager.swift */; };
 		7E274B0D282A8A6000E336EE /* FEButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B0C282A8A6000E336EE /* FEButton.swift */; };
 		7E274B0F282A9E5000E336EE /* FELabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B0E282A9E5000E336EE /* FELabel.swift */; };
+		7E274B11282B8C1400E336EE /* Shadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B10282B8C1300E336EE /* Shadable.swift */; };
+		7E274B13282B8C2600E336EE /* Borderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B12282B8C2600E336EE /* Borderable.swift */; };
+		7E274B16282B8CE600E336EE /* ShadowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B15282B8CE600E336EE /* ShadowConfiguration.swift */; };
+		7E274B18282B8D0600E336EE /* BorderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B17282B8D0600E336EE /* BorderConfiguration.swift */; };
+		7E274B1A282B8D3600E336EE /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B19282B8D3600E336EE /* Presets.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC37908281C098900028CA1 /* ErrorStruct.swift */; };
 		7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */; };
@@ -1263,6 +1268,11 @@
 		7E274B0A282A84CF00E336EE /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		7E274B0C282A8A6000E336EE /* FEButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEButton.swift; sourceTree = "<group>"; };
 		7E274B0E282A9E5000E336EE /* FELabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FELabel.swift; sourceTree = "<group>"; };
+		7E274B10282B8C1300E336EE /* Shadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadable.swift; sourceTree = "<group>"; };
+		7E274B12282B8C2600E336EE /* Borderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Borderable.swift; sourceTree = "<group>"; };
+		7E274B15282B8CE600E336EE /* ShadowConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowConfiguration.swift; sourceTree = "<group>"; };
+		7E274B17282B8D0600E336EE /* BorderConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderConfiguration.swift; sourceTree = "<group>"; };
+		7E274B19282B8D3600E336EE /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7EC37908281C098900028CA1 /* ErrorStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStruct.swift; sourceTree = "<group>"; };
@@ -2718,6 +2728,16 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		7E274B14282B8CD900E336EE /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				7E274B15282B8CE600E336EE /* ShadowConfiguration.swift */,
+				7E274B17282B8D0600E336EE /* BorderConfiguration.swift */,
+				7E274B19282B8D3600E336EE /* Presets.swift */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 		7EC37907281C096F00028CA1 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -2742,6 +2762,7 @@
 		7EC41B5028292F680090894A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7E274B14282B8CD900E336EE /* Configurations */,
 				7EC41B7F282949610090894A /* CLEANerSwift */,
 				7EF36BFF282982D600BB43A7 /* Extensions */,
 				7EC41B72282930A50090894A /* Views */,
@@ -2755,6 +2776,8 @@
 			isa = PBXGroup;
 			children = (
 				7EC41B5228292F680090894A /* Configurable.swift */,
+				7E274B10282B8C1300E336EE /* Shadable.swift */,
+				7E274B12282B8C2600E336EE /* Borderable.swift */,
 			);
 			path = Configurable;
 			sourceTree = "<group>";
@@ -4410,6 +4433,7 @@
 				7B54E54227F4A208002DD1E4 /* KYCCompleteModels.swift in Sources */,
 				CEBF32F01DDCD30600348FC6 /* AccountViewController.swift in Sources */,
 				CEE1F5631DF13E5A00D733AD /* ModalHeaderView.swift in Sources */,
+				7E274B11282B8C1400E336EE /* Shadable.swift in Sources */,
 				7BDB49FF2806F3EC0031F015 /* CloudBackup.swift in Sources */,
 				9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */,
 				7B54E59A27F4A2B0002DD1E4 /* UIView+Extensions.swift in Sources */,
@@ -4425,6 +4449,7 @@
 				9F0EA16C25E2904400D4225E /* WidgetDataShareService.swift in Sources */,
 				9FC529D02604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
 				7EF36C12282A33D500BB43A7 /* WrapperTableViewCell.swift in Sources */,
+				7E274B13282B8C2600E336EE /* Borderable.swift in Sources */,
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
 				7B54E53827F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift in Sources */,
 				7B432FBA280448520056B364 /* KYCResetPasswordInteractor.swift in Sources */,
@@ -4587,6 +4612,7 @@
 				7B54E54027F4A208002DD1E4 /* KYCCompleteRouter.swift in Sources */,
 				7EC41BCD28294FE60090894A /* DemoStore.swift in Sources */,
 				7B54E5B927F4A2B1002DD1E4 /* CellWrapperView.swift in Sources */,
+				7E274B18282B8D0600E336EE /* BorderConfiguration.swift in Sources */,
 				7B54E54827F4A208002DD1E4 /* KYCAddressPresenter.swift in Sources */,
 				7B54E53A27F4A208002DD1E4 /* KYCTutorialModels.swift in Sources */,
 				7B54E54A27F4A208002DD1E4 /* KYCAddressModels.swift in Sources */,
@@ -4705,6 +4731,7 @@
 				CEBF32F21DDCE10D00348FC6 /* AccountHeaderView.swift in Sources */,
 				CECCE5B21E04B00D00D99448 /* SendCell.swift in Sources */,
 				CE6DCC301E6666470044257B /* NonScrollingCollectionView.swift in Sources */,
+				7E274B16282B8CE600E336EE /* ShadowConfiguration.swift in Sources */,
 				7BA83DA4280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift in Sources */,
 				7EC41BD128294FE60090894A /* DemoViewController.swift in Sources */,
 				71C44E90225D135E00EF4459 /* ConfirmRecoveryKeyViewController.swift in Sources */,
@@ -4799,6 +4826,7 @@
 				CE47A8E01F7DA54000FF35BA /* UIScreen+Additions.swift in Sources */,
 				7B54E51327F4A208002DD1E4 /* KYCUploadRouter.swift in Sources */,
 				7EC41BC1282949620090894A /* Alertable.swift in Sources */,
+				7E274B1A282B8D3600E336EE /* Presets.swift in Sources */,
 				7BDB49FD2806F3840031F015 /* WyreReservationRequest.swift in Sources */,
 				7C9BC58D231764030011732F /* WalletConnectionSettingsViewController.swift in Sources */,
 				CEB909F51E5FE63D001804DC /* EnterPhraseViewController.swift in Sources */,

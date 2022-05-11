@@ -10,55 +10,6 @@
 
 import UIKit
 
-protocol Bordable {
-    func configure(border: BorderConfiguration?)
-}
-
-extension Bordable where Self: Marginable {
-    
-    func configure(border: BorderConfiguration?) {
-        guard let border = border else { return }
-        
-        marginableView.layer.masksToBounds = true
-        marginableView.layer.cornerRadius = border.cornerRadius.rawValue
-        marginableView.layer.borderWidth = border.borderWidth
-        marginableView.layer.borderColor = border.tintColor.cgColor
-    }
-}
-
-protocol Shadable {
-    func configure(shadow: ShadowConfiguration?)
-}
-
-extension Shadable where Self: Marginable {
-    
-    func configure(shadow: ShadowConfiguration?) {
-        guard let shadow = shadow else { return }
-        
-        marginableView.layer.masksToBounds = false
-        marginableView.layer.shadowColor = shadow.color.cgColor
-        marginableView.layer.shadowOpacity = shadow.opacity.rawValue
-        marginableView.layer.shadowOffset = shadow.offset
-        marginableView.layer.shadowRadius = 1
-        marginableView.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
-        marginableView.layer.shouldRasterize = true
-        marginableView.layer.rasterizationScale = UIScreen.main.scale
-    }
-}
-
-struct BorderConfiguration: BorderConfigurable {
-    var tintColor: UIColor
-    var borderWidth: CGFloat
-    var cornerRadius: CornerRadius
-}
-
-struct ShadowConfiguration: ShadowConfigurable {
-    var color: UIColor
-    var opacity: Opacity
-    var offset: CGSize
-    var cornerRadius: CornerRadius
-}
-
 struct ButtonConfiguration: Configurable {
     var backgroundConfiguration: BackgroundConfiguration?
     var selectedConfiguration: BackgroundConfiguration?
@@ -71,7 +22,7 @@ struct ButtonViewModel: ViewModel {
     var title: String?
 }
 
-class FEButton: UIButton, ViewProtocol, StateDisplayable, Bordable, Shadable {
+class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     
     var config: ButtonConfiguration?
     var viewModel: ButtonViewModel?

@@ -59,18 +59,3 @@ protocol TextConfigurable: Configurable {
     var numberOfLines: Int { get }
     var lineBreakMode: NSLineBreakMode { get }
 }
-
-//struct ButtonConfiguration {
-//    var titleConfiguration:
-//    var subtitleConfiguration: NCLabelConfiguration
-//    
-//    var backgroundConfiguration: NCBackgroundConfiguration
-//    var selectedBackgroundConfiguration: NCBackgroundConfiguration
-//    var disabledBackgroundConfiguration: NCBackgroundConfiguration
-//    
-//    var leadingImageConfiguration: NCImageViewConfiguration
-//    var trailingImageConfiguration: NCImageViewConfiguration
-//    
-//    var shadowConfiguration: NCShadowConfiguration?
-//    var borderConfiguration: NCBorderConfiguration?
-//}
