@@ -16,8 +16,17 @@ extension Presenter {
     func presentError(actionResponse: ErrorModels.Errors.ActionResponse) {
         guard let error = actionResponse.error else { return }
 
-        let config = AlertViewModel(title: nil, description: error.localizedDescription, buttons: ["click", "cancel"])
-        viewController?.displayError(responseDisplay: .init(config: config))
+        let model = AlertViewModel(title: nil, description: error.localizedDescription, buttons: ["click", "cancel"])
+        
+        let config = AlertConfiguration(titleConfiguration: Presets.Label.primary,
+                                        descriptionConfiguration: Presets.Label.secondary,
+                                        imageConfiguration: Presets.Image.primary,
+                                        buttonConfigurations: [
+                                            Presets.Button.primary,
+                                            Presets.Button.secondary
+                                        ])
+        
+        viewController?.displayError(responseDisplay: .init(model: model, config: config))
     }
 
     func presentNotification(actionResponse: NotificationModels.Notification.ActionResponse) {
@@ -44,6 +53,6 @@ extension Presenter {
                                             Presets.Button.secondary
                                         ])
         
-        viewController?.displayAlert(responseDisplay: .init(alert: model, config: config))
+        viewController?.displayAlert(responseDisplay: .init(model: model, config: config))
     }
 }

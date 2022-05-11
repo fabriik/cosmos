@@ -36,5 +36,5 @@ protocol CoordinatableRoutes: NSObject,
 }
 
 protocol AlertDisplayable {
-    func showAlertView(with config: Any)
+    func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?)
 }

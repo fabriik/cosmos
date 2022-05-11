@@ -11,24 +11,15 @@ enum ErrorModels {
     typealias ErrorConfiguration = Any
     
     enum Errors {
-        struct ViewAction {
-            init() {}
-        }
+        struct ViewAction {}
         
         struct ActionResponse {
              let error: Error?
-
-            init(error: Error?) {
-                self.error = error
-            }
         }
         
         struct ResponseDisplay {
-            let config: ErrorConfiguration
-            
-            init(config: ErrorConfiguration) {
-                self.config = config
-            }
+            let model: AlertViewModel?
+            let config: AlertConfiguration?
         }
     }
 }
