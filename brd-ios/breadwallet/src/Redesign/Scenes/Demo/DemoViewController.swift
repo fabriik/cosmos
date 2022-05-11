@@ -19,11 +19,19 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
 
     override func setupSubviews() {
         super.setupSubviews()
+        tableView.removeFromSuperview()
         
-        tableView.frame = view.frame
+        let button = FEButton()
+        
+        view.addSubview(button)
+        button.frame = .init(x: 50, y: 50, width: 200, height: 70)
+        
+        button.setup(with: .init(title: "kokoska"))
+        button.configure(with: Presets.Button.primary)
+        
         tableView.register(WrapperTableViewCell<FELabel>.self)
         tableView.register(WrapperTableViewCell<FEButton>.self)
-        
+
         sections = [
             Models.Section.demo,
             Models.Section.button

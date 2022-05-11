@@ -8,8 +8,6 @@
 import Foundation
 
 enum ErrorModels {
-    typealias ErrorConfiguration = Any
-    
     enum Errors {
         struct ViewAction {}
         
