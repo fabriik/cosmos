@@ -1,0 +1,4 @@
+Files in this (build-frameworks) directory are assumed unchanged because Apple Silicon users will change the files and there is no need to commit the changes for everyone. It is a quirk of Cosmos.framework.
+If you NEED to change something here reverse this command:
+
+git update-index --assume-unchanged $(git ls-files | tr '\n' ' ')
