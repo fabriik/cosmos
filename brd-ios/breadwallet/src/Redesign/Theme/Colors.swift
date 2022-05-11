@@ -34,6 +34,6 @@ struct Colors {
         /// Primary text; Body copy; Headers; Hover text color for light-text-02
         static var primary = ThemeManager.shared.color(for: "primary")
         /// Secondary text;Input labels
-//        static var primary = ThemeManager.shared.color(for: "primary")
+        static var secondary = ThemeManager.shared.color(for: "primary")
     }
 }

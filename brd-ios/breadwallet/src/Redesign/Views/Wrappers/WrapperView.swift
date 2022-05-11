@@ -29,24 +29,20 @@ class WrapperView<T: UIView>: UIView,
 
     func setupSubviews() {
         addSubview(content)
+        content.addSubview(wrappedView)
         content.translatesAutoresizingMaskIntoConstraints = false
+        wrappedView.translatesAutoresizingMaskIntoConstraints = false
         
-        var constraints = [
+        let constraints = [
             content.centerXAnchor.constraint(equalTo: centerXAnchor),
             content.centerYAnchor.constraint(equalTo: centerYAnchor),
             content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutMargins.left),
-            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top)
-        ]
-        NSLayoutConstraint.activate(constraints)
-        
-        content.addSubview(wrappedView)
-        wrappedView.translatesAutoresizingMaskIntoConstraints = false
-        
-        constraints = [
+            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top),
+            
             wrappedView.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             wrappedView.centerYAnchor.constraint(equalTo: content.centerYAnchor),
-            wrappedView.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: content.layoutMargins.left),
-            wrappedView.topAnchor.constraint(equalTo: content.topAnchor, constant: content.layoutMargins.top)
+            wrappedView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            wrappedView.topAnchor.constraint(equalTo: content.topAnchor)
         ]
         setupClearMargins()
         NSLayoutConstraint.activate(constraints)
