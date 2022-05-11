@@ -10,29 +10,72 @@
 
 import UIKit
 
-// TODO: unify with designs (and prolly add more presets)
+// TODO: unify with designs and use color / font enums
 struct Presets {
+    
+    struct Background {
+        struct Primary {
+            static var normal = BackgroundConfiguration(backgroundColor: .white, tintColor: .black)
+            static var selected = BackgroundConfiguration(backgroundColor: .gray, tintColor: .black)
+            static var disabled = BackgroundConfiguration(backgroundColor: .lightGray, tintColor: .gray)
+            static var error = BackgroundConfiguration(backgroundColor: .white, tintColor: .red)
+        }
+    }
+    
+    struct Border {
+        static var normal = BorderConfiguration(tintColor: .black, borderWidth: 1, cornerRadius: .halfRadius)
+        static var zero = BorderConfiguration(tintColor: .clear, borderWidth: 0, cornerRadius: .halfRadius)
+    }
+    
+    struct Shadow {
+        static var normal = ShadowConfiguration(color: .cyan, opacity: .highest, offset: .init(width: 30, height: 30), cornerRadius: .halfRadius)
+        static var zero = ShadowConfiguration(color: .clear, opacity: .zero, offset: .zero, cornerRadius: .halfRadius)
+    }
     
     struct Label {
         static var primary = LabelConfiguration(font: .boldSystemFont(ofSize: 15), textColor: .red)
-        static var secondary = LabelConfiguration(font: .boldSystemFont(ofSize: 15), textColor: .red)
-    }
-    
-    struct Button {
-        static var primary = ButtonConfiguration(backgroundConfiguration: .init(backgroundColor: .yellow, tintColor: .black),
-                                                 selectedConfiguration: .init(backgroundColor: .black, tintColor: .yellow),
-                                                 disabledConfiguration: .init(backgroundColor: .red, tintColor: .white),
-                                                 borderConfiguration: .init(tintColor: .pink, borderWidth: 4, cornerRadius: .halfRadius),
-                                                 shadowConfiguration: .init(color: .blue, opacity: .low, offset: .init(width: 10, height: 10), cornerRadius: .halfRadius))
-        
-        static var secondary = ButtonConfiguration(backgroundConfiguration: .init(backgroundColor: .green, tintColor: .white),
-                                                   selectedConfiguration: .init(backgroundColor: .white, tintColor: .green),
-                                                   disabledConfiguration: .init(backgroundColor: .white, tintColor: .black),
-                                                   shadowConfiguration: .init(color: .blue, opacity: .highest, offset: .init(width: 10, height: 10), cornerRadius: .halfRadius))
+        static var secondary = LabelConfiguration(font: .boldSystemFont(ofSize: 10), textColor: .gray)
     }
     
     struct Image {
         static var primary = ImageViewConfiguration(backgroundColor: .yellow, tintColor: .blue)
         static var secondary = ImageViewConfiguration(backgroundColor: .blue, tintColor: .yellow)
+    }
+}
+
+// TODO: unify presets with designs
+extension Presets {
+    struct Button {
+        static var primary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Primary.normal,
+                                                 selectedConfiguration: Presets.Background.Primary.selected,
+                                                 disabledConfiguration: Presets.Background.Primary.disabled,
+                                                 borderConfiguration: Presets.Border.normal,
+                                                 shadowConfiguration: Presets.Shadow.normal)
+        
+        static var secondary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Primary.selected,
+                                                   selectedConfiguration: Presets.Background.Primary.normal,
+                                                   disabledConfiguration: Presets.Background.Primary.disabled)
+    }
+    
+    struct TexxtField {
+        static var primary = TextFieldConfiguration(leadingImageConfiguration: Presets.Image.primary,
+                                                    titleConfiguration: Presets.Label.primary,
+                                                    textConfiguration: Presets.Label.primary,
+                                                    placeholderConfiguration: Presets.Label.secondary,
+                                                    hintConfiguration: Presets.Label.primary,
+                                                    trailingImageConfiguration: Presets.Image.secondary,
+                                                    backgroundConfiguration: Presets.Background.Primary.normal,
+                                                    selectedBackgroundConfiguration: Presets.Background.Primary.selected,
+                                                    disabledBackgroundConfiguration: Presets.Background.Primary.disabled,
+                                                    errorBackgroundConfiguration: Presets.Background.Primary.error,
+                                                    shadowConfiguration: Presets.Shadow.normal,
+                                                    borderConfiguration: Presets.Border.normal)
+        
+        static var secondary = TextFieldConfiguration(leadingImageConfiguration: Presets.Image.primary,
+                                                    textConfiguration: Presets.Label.secondary,
+                                                    placeholderConfiguration: Presets.Label.secondary,
+                                                    backgroundConfiguration: Presets.Background.Primary.normal,
+                                                    selectedBackgroundConfiguration: Presets.Background.Primary.selected,
+                                                    disabledBackgroundConfiguration: Presets.Background.Primary.disabled)
     }
 }

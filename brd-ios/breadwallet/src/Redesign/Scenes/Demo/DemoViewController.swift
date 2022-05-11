@@ -22,9 +22,18 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         tableView.removeFromSuperview()
         
         let button = FEButton()
+        let textField = FETextField()
+        let myView = textField
+        view.addSubview(myView)
+        myView.frame = .init(x: 50, y: 50, width: 200, height: 70)
         
-        view.addSubview(button)
-        button.frame = .init(x: 50, y: 50, width: 200, height: 70)
+        textField.setup(with: .init(leading: .image("test"),
+                                    title: "Enter your name",
+                                    placeholder: "like John or smth...",
+                                    hint: "what your mama named u",
+                                    trailing: .image("test2")))
+        
+        textField.configure(with: Presets.TexxtField.primary)
         
         button.setup(with: .init(title: "kokoska"))
         button.configure(with: Presets.Button.primary)

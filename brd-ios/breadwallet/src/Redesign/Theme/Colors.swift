@@ -10,17 +10,40 @@
 
 import UIKit
 
-struct Colors {
-    /// Default text color
-    static var primary = ThemeManager.shared.color(for: "primary")
-    /// Secondary text color
-    static var secondary = ThemeManager.shared.color(for: "primary")
+protocol InverseColor {
+    var inversed: UIColor { get set }
+}
+
+
+// Option 1
+struct Colorz {
+    struct Normal {
+        // whole color struct
+    }
     
+    struct Inverse {
+        // whole color struct
+    }
+}
+
+// Option 2
+struct LightColors {
+    // whole color struct
+}
+
+struct LightInversedColors {
+    // whole color struct
+}
+
+// Option 4
+struct Colors {
     struct Background {
         /// Default page background
         static var primary = ThemeManager.shared.color(for: "primary")
+        static var primaryInversed = ThemeManager.shared.color(for: "primary")
         /// Secondary background
         static var secondary = ThemeManager.shared.color(for: "primary")
+        static var secondaryInversed = ThemeManager.shared.color(for: "primary")
     }
                                              
     struct Link {
