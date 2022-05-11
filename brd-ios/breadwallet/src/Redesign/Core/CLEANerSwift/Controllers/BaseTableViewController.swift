@@ -69,7 +69,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         }
     }
 
-    // MARK: UITableViewDelegate
+    // MARK: Headers/Footer dequeuing
     func tableView(_ tableView: UITableView, accessoryViewForType type: AccessoryType?, for section: Int, callback: @escaping (() -> Void)) -> UIView? {
         let view: UIView?
         switch type {
@@ -86,30 +86,24 @@ class BaseTableViewController<C: CoordinatableRoutes,
             view = UIView(frame: .zero)
         }
         (view as? Marginable)?.setupCustomMargins(vertical: .small, horizontal: .small)
-        view?.setNeedsUpdateConstraints()
-        view?.backgroundColor = .brown
 
         return view
     }
     
     private func tableView(_ tableView: UITableView, supplementaryViewWith text: String?) -> UIView? {
-        // TODO: custom label
         guard let view: WrapperAccessoryView<FELabel> = tableView.dequeueAccessoryView(),
               let text = text
         else { return UIView(frame: .zero) }
 
         view.setup { view in
             view.setup(with: .text(text))
-            view.configure(with: .init(font: .boldSystemFont(ofSize: 25),
-                                       textColor: .green,
-                                       textAlignment: .right))
+            view.configure(with: Presets.Label.secondary)
         }
 
         return view
     }
 
     private func tableView(_ tableView: UITableView, supplementaryViewWith attributedText: NSAttributedString?) -> UIView? {
-        // TODO: custom label
         guard let view: WrapperAccessoryView<FELabel> = tableView.dequeueAccessoryView(),
               let text = attributedText
         else { return UIView(frame: .zero) }
@@ -117,9 +111,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         view.setup { view in
             // TODO: attributed string support
             view.setup(with: .attributedText(text))
-            view.configure(with: .init(font: .boldSystemFont(ofSize: 25),
-                                       textColor: .cyan,
-                                       textAlignment: .center))
+            view.configure(with: Presets.Label.secondary)
         }
 
         return view
@@ -143,8 +135,40 @@ class BaseTableViewController<C: CoordinatableRoutes,
     func tableView(_ tableView: UITableView, supplementaryViewTapped section: Int) {
         // TODO: override in class to handle suplementary button events
     }
-
-// TODO: add dequeue methos for all standard cells
+    
+    // MARK: Custom cells
+    // TODO: add dequeue methos for other standard cells
+    func tableView(_ tableView: UITableView, labelCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let text = sectionRows[section]?[indexPath.row] as? String,
+              let cell: WrapperTableViewCell<FELabel> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { label in
+            label.setup(with: .text(text))
+            label.configure(with: .init(font: .boldSystemFont(ofSize: 25), textColor: .blue))
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let text = sectionRows[section]?[indexPath.row] as? String,
+              let cell: WrapperTableViewCell<FEButton> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { button in
+            button.setup(with: .init(title: text))
+            button.configure(with: Presets.Button.primary)
+        }
+        
+        return cell
+    }
 
     // MARK: UserInteractions
     func didSelectItem(in section: Int, row: Int) {

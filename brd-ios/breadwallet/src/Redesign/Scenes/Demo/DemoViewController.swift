@@ -57,39 +57,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         cell.layoutIfNeeded()
         
         return cell
-        
-    }
-    func tableView(_ tableView: UITableView, labelCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = sections[indexPath.section] as? Models.Section,
-              let text = sectionRows[section]?[indexPath.row] as? String,
-              let cell: WrapperTableViewCell<FELabel> = tableView.dequeueReusableCell(for: indexPath)
-        else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-        
-        cell.setup { label in
-            label.setup(with: .text(text))
-            label.configure(with: .init(font: .boldSystemFont(ofSize: 25), textColor: .blue))
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = sections[indexPath.section] as? Models.Section,
-              let text = sectionRows[section]?[indexPath.row] as? String,
-              let cell: WrapperTableViewCell<FEButton> = tableView.dequeueReusableCell(for: indexPath)
-        else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-        
-        cell.setup { button in
-            button.setup(with: .init(title: text))
-            button.configure(with: Presets.Button.primary)
-        }
-        
-        return cell
-        
     }
 
     // MARK: - Additional Helpers
