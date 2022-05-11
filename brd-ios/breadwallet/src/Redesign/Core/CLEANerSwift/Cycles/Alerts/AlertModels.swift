@@ -9,15 +9,14 @@ import UIKit
 
 enum AlertModels {
     enum Alerts {
-        struct ViewAction {
-            init() {}
-        }
+        struct ViewAction {}
 
         struct ActionResponse {
-            var alert: Alertable?
+            var alert: AlertViewModel?
         }
 
         struct ResponseDisplay {
+            let model: AlertViewModel
             let config: AlertConfiguration
         }
     }

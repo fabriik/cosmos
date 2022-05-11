@@ -19,36 +19,52 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
 
     override func setupSubviews() {
         super.setupSubviews()
+        tableView.removeFromSuperview()
         
-        tableView.frame = view.frame
-        tableView.register(WrapperTableViewCell<UILabel>.self)
-        tableView.register(WrapperTableViewCell<WrapperView<UILabel>>.self)
+        let button = FEButton()
         
-        sections = [Models.Section.demo]
-        sectionRows = [Models.Section.demo: ["test", "rok"]]
+        view.addSubview(button)
+        button.frame = .init(x: 50, y: 50, width: 200, height: 70)
+        
+        button.setup(with: .init(title: "kokoska"))
+        button.configure(with: Presets.Button.primary)
+        
+        tableView.register(WrapperTableViewCell<FELabel>.self)
+        tableView.register(WrapperTableViewCell<FEButton>.self)
+
+        sections = [
+            Models.Section.demo,
+            Models.Section.button
+        ]
+        sectionRows = [
+            Models.Section.button: [
+                "Click me!!",
+                "Dont Click me please!!"
+            ]]
     }
     
     // MARK: - User Interaction
     // MARK: - DemoResponseDisplay
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = sections[indexPath.section] as? Models.Section,
-              let text = sectionRows[section]?[indexPath.row] as? String,
-              let cell: WrapperTableViewCell<WrapperView<UILabel>> = tableView.dequeueReusableCell(for: indexPath)
-        else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
+        let section = sections[indexPath.section] as? Models.Section
+        
+        let cell: UITableViewCell
+        switch section {
+        case .demo:
+            cell = self.tableView(tableView, labelCellForRowAt: indexPath)
+            
+        case .button:
+            cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
+            
+        default:
+            cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.setup { wrapper in
-            wrapper.setup { label in
-                label.text = text
-                label.textAlignment = .center
-            }
-            wrapper
-        }
+        (cell as? Marginable)?.setupCustomMargins(all: .extraHuge)
+        cell.layoutIfNeeded()
         
         return cell
-        
     }
 
     // MARK: - Additional Helpers

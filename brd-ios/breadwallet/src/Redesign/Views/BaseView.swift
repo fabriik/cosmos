@@ -10,9 +10,14 @@
 
 import UIKit
 
-class BaseView<C: Configurable, M: ViewModel>: UIView,
-                                               ViewProtocol,
-                                               Reusable {
+struct BackgroundConfiguration: BackgorundConfigurable {
+    var backgroundColor: UIColor
+    var tintColor: UIColor
+}
+
+class BaseView<C: BackgorundConfigurable, M: ViewModel>: UIView,
+                                                         ViewProtocol,
+                                                         Reusable {
     // MARK: NCViewProtocol
     var config: C?
     var viewModel: M?
@@ -61,7 +66,8 @@ class BaseView<C: Configurable, M: ViewModel>: UIView,
     
     func configure(with config: C?) {
         self.config = config
-        backgroundColor = .clear
+        backgroundColor = config?.backgroundColor
+        tintColor = config?.tintColor
     }
     
     func prepareForReuse() {
