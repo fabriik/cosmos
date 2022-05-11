@@ -1,5 +1,5 @@
 // 
-//  AnimationImageView.swift
+//  ImageView.swift
 //  breadwallet
 //
 //  Created by Rok on 10/05/2022.
@@ -10,8 +10,9 @@
 
 import UIKit
 
-struct ImageViewConfiguration: Configurable {
-    var tintColor: UIColor?
+struct ImageViewConfiguration: BackgorundConfigurable {
+    var backgroundColor: UIColor = .clear
+    var tintColor: UIColor
 }
 
 enum ImageViewModel: ViewModel {

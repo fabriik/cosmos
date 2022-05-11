@@ -12,7 +12,7 @@ protocol Alertable {
     var description: String? { get }
     var image: UIImage? { get }
     var tintColor: UIColor? { get }
-    var primaryConfiguration: ButtonConfiguration? { get }
-    var secondaryConfiguration: ButtonConfiguration? { get }
-    var tertiaryConfigraution: ButtonConfiguration? { get }
+//    var primaryConfiguration: ButtonConfiguration? { get }
+//    var secondaryConfiguration: ButtonConfiguration? { get }
+//    var tertiaryConfigraution: ButtonConfiguration? { get }
 }

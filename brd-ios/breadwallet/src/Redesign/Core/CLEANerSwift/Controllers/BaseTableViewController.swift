@@ -29,8 +29,8 @@ class BaseTableViewController<C: CoordinatableRoutes,
         super.setupSubviews()
         
         // TODO: register proper accessoryViews
-        tableView.registerAccessoryView(WrapperAccessoryView<UILabel>.self)
-        tableView.registerAccessoryView(WrapperAccessoryView<UIButton>.self)
+        tableView.registerAccessoryView(WrapperAccessoryView<FELabel>.self)
+        tableView.registerAccessoryView(WrapperAccessoryView<FEButton>.self)
         // TODO: register base cells
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -94,15 +94,15 @@ class BaseTableViewController<C: CoordinatableRoutes,
     
     private func tableView(_ tableView: UITableView, supplementaryViewWith text: String?) -> UIView? {
         // TODO: custom label
-        guard let view: WrapperAccessoryView<UILabel> = tableView.dequeueAccessoryView(),
+        guard let view: WrapperAccessoryView<FELabel> = tableView.dequeueAccessoryView(),
               let text = text
         else { return UIView(frame: .zero) }
 
         view.setup { view in
-            view.text = text
-            view.backgroundColor = .green
-            view.font = .systemFont(ofSize: 25)
-            view.textAlignment = .center
+            view.setup(with: .text(text))
+            view.configure(with: .init(font: .boldSystemFont(ofSize: 25),
+                                       textColor: .green,
+                                       textAlignment: .right))
         }
 
         return view
@@ -110,12 +110,16 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
     private func tableView(_ tableView: UITableView, supplementaryViewWith attributedText: NSAttributedString?) -> UIView? {
         // TODO: custom label
-        guard let view: WrapperAccessoryView<UILabel> = tableView.dequeueAccessoryView(),
+        guard let view: WrapperAccessoryView<FELabel> = tableView.dequeueAccessoryView(),
               let text = attributedText
         else { return UIView(frame: .zero) }
 
         view.setup { view in
-            view.attributedText = text
+            // TODO: attributed string support
+            view.setup(with: .attributedText(text))
+            view.configure(with: .init(font: .boldSystemFont(ofSize: 25),
+                                       textColor: .cyan,
+                                       textAlignment: .center))
         }
 
         return view
@@ -123,13 +127,13 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
     private func tableView(_ tableView: UITableView, supplementaryViewWith buttonTitle: String?, for section: Int, callback: @escaping (() -> Void)) -> UIView? {
         // TODO: custom button (actionButton look alike?)
-        guard let view: WrapperAccessoryView<UIButton> = tableView.dequeueAccessoryView(),
+        guard let view: WrapperAccessoryView<FEButton> = tableView.dequeueAccessoryView(),
               let text = buttonTitle
         else { return UIView(frame: .zero) }
 
         view.setup { view in
-            view.setTitle(text, for: .normal)
-            view.backgroundColor = .yellow
+            view.setup(with: .init(title: text))
+            view.configure(with: Presets.Button.secondary)
             // TODO: add callback to suplementaryViewTapped
         }
 

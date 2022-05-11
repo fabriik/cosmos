@@ -12,6 +12,7 @@ enum DemoModels {
     
     enum Section: Sectionable {
         case demo
+        case button
         
         var header: AccessoryType? { return .plain("rok") }
         var footer: AccessoryType? { return .action("CLICK") }

@@ -18,7 +18,7 @@ enum AlertModels {
         }
 
         struct ResponseDisplay {
-            let config: AlertConfiguration
+            let config: Any
         }
     }
 }

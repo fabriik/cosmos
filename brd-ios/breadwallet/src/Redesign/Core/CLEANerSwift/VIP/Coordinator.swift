@@ -94,7 +94,7 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
 
-    func showAlertView(with config: AlertConfiguration) {}
+    func showAlertView(with config: Any) {}
     func showNotification(with configuration: NotificationConfiguration) {}
     func hideNotification(_ view: UIView) {}
 

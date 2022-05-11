@@ -8,7 +8,7 @@
 import Foundation
 
 enum ErrorModels {
-    typealias ErrorConfiguration = AlertConfiguration
+    typealias ErrorConfiguration = Any
     
     enum Errors {
         struct ViewAction {
