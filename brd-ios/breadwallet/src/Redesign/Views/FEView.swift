@@ -8,6 +8,16 @@
 //  See the LICENSE file at the project root for license information.
 //
 
+struct ViewConfiguration: Configurable {
+    var normal: BackgroundConfiguration?
+    var selected: BackgroundConfiguration?
+    var disabled: BackgroundConfiguration?
+    var error: BackgroundConfiguration?
+    
+    var border: BorderConfiguration?
+    var shadow: ShadowConfiguration?
+}
+
 import UIKit
 
 struct BackgroundConfiguration: BackgorundConfigurable {

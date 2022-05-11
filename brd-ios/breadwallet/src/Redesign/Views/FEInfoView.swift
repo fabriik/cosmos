@@ -175,5 +175,12 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         
         trailingButton.setup(with: viewModel.button)
         trailingButton.isHidden = viewModel.button == nil
+        
+        guard headerLeadingView.isHidden,
+              headerTitleLabel.isHidden,
+              headerTrailingView.isHidden else {
+            return
+        }
+        headerStackView.isHidden = true
     }
 }
