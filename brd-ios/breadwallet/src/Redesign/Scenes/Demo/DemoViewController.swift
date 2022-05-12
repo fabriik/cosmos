@@ -19,9 +19,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     override func prepareData() {
         sections = [
-            Models.Section.demo,
+            Models.Section.label,
             Models.Section.button,
-            Models.Section.textField
+            Models.Section.textField,
+            Models.Section.infoView
         ]
         
         sectionRows = [
@@ -35,6 +36,20 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                 TextFieldModel(placeholder: "<name>", hint: "You can write?"),
                 TextFieldModel(title: "This is a title", placeholder: "<name>"),
                 TextFieldModel(placeholder: "<name>")
+            ],
+            
+            Models.Section.infoView: [
+                InfoViewModel(headerTitle: .text("This is a header title"),
+                              title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
+                
+                InfoViewModel(title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
+                
+                InfoViewModel(title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."))
             ]
         ]
         
@@ -50,7 +65,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         let cell: UITableViewCell
         switch section {
-        case .demo:
+        case .label:
             cell = self.tableView(tableView, labelCellForRowAt: indexPath)
             
         case .button:
@@ -58,6 +73,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             
         case .textField:
             cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
+            
+        case .infoView:
+            cell = self.tableView(tableView, infoViewCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)

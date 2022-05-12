@@ -90,11 +90,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         return view
     }()
     
-    private func constraint(constraint: NSLayoutConstraint, with priority: UILayoutPriority) -> NSLayoutConstraint {
-        constraint.priority = priority
-        return constraint
-    }
-    
     override func setupSubviews() {
         super.setupSubviews()
         

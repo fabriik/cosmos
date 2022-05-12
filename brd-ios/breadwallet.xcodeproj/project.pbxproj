@@ -358,6 +358,7 @@
 		7E274B1A282B8D3600E336EE /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B19282B8D3600E336EE /* Presets.swift */; };
 		7E274B1C282BADA000E336EE /* FETextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B1B282BADA000E336EE /* FETextField.swift */; };
 		7E274B1E282BBC9900E336EE /* NSLayoutConstraint+priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B1D282BBC9900E336EE /* NSLayoutConstraint+priority.swift */; };
+		7E274B20282BE18100E336EE /* FEInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B1F282BE18000E336EE /* FEInfoView.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC37908281C098900028CA1 /* ErrorStruct.swift */; };
 		7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */; };
@@ -1277,6 +1278,7 @@
 		7E274B19282B8D3600E336EE /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		7E274B1B282BADA000E336EE /* FETextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FETextField.swift; sourceTree = "<group>"; };
 		7E274B1D282BBC9900E336EE /* NSLayoutConstraint+priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+priority.swift"; sourceTree = "<group>"; };
+		7E274B1F282BE18000E336EE /* FEInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEInfoView.swift; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7EC37908281C098900028CA1 /* ErrorStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStruct.swift; sourceTree = "<group>"; };
@@ -2961,6 +2963,7 @@
 			isa = PBXGroup;
 			children = (
 				7E274B0C282A8A6000E336EE /* FEButton.swift */,
+				7E274B1F282BE18000E336EE /* FEInfoView.swift */,
 				7E274B1B282BADA000E336EE /* FETextField.swift */,
 				7E274B0E282A9E5000E336EE /* FELabel.swift */,
 				7EF36C10282A33B400BB43A7 /* Wrappers */,
@@ -4575,6 +4578,7 @@
 				4F3AB11A25D53F4300B378DC /* ExternalAPIClient.swift in Sources */,
 				CECCE5A91E0378FB00D99448 /* PinPadViewController.swift in Sources */,
 				7B54E5AA27F4A2B0002DD1E4 /* HttpRequestManager.swift in Sources */,
+				7E274B20282BE18100E336EE /* FEInfoView.swift in Sources */,
 				CEF3D2DB1E8B55C80070178E /* UISlider+Gradient.swift in Sources */,
 				CE65C66A207D41BB000C99C4 /* AssetIndex.swift in Sources */,
 				CE4CA7BC1EE3649100373F11 /* BRActivityView.swift in Sources */,

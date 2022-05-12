@@ -40,8 +40,11 @@ struct Presets {
     }
     
     struct Label {
-        static var primary = LabelConfiguration(font: .boldSystemFont(ofSize: 15), textColor: .red)
-        static var secondary = LabelConfiguration(font: .boldSystemFont(ofSize: 10), textColor: .gray)
+        // TODO: fonts
+        static var primary = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Text.primary)
+        static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Text.secondary)
+        static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 14), textColor: .white)
+        static var contrast = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Contrast.secondary)
     }
     
     struct Image {
@@ -67,19 +70,26 @@ extension Presets {
     struct TexxtField {
         static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.secondary),
                                                     // TODO: extract to LabelConfig when fonts are added
-                                                    textConfiguration: .init(font: .systemFont(ofSize: 14),
-                                                                             textColor: LightColors.Text.primary,
-                                                                             textAlignment: .left),
-                                                    placeholderConfiguration: .init(font: .systemFont(ofSize: 14),
-                                                                                    textColor: LightColors.Text.primary,
-                                                                                    textAlignment: .left),
-                                                    hintConfiguration: .init(font: .systemFont(ofSize: 12),
-                                                                             textColor: LightColors.Text.secondary,
-                                                                             textAlignment: .left),
+                                                    textConfiguration: Presets.Label.primary,
+                                                    placeholderConfiguration: Presets.Label.primary,
+                                                    hintConfiguration: Presets.Label.secondary,
                                                     backgroundConfiguration: Presets.Background.Secondary.normal,
                                                     selectedBackgroundConfiguration: Presets.Background.Secondary.selected,
                                                     disabledBackgroundConfiguration: Presets.Background.Secondary.disabled,
                                                     errorBackgroundConfiguration: Presets.Background.Secondary.error,
                                                     borderConfiguration: Presets.Border.normal)
+    }
+    
+    struct InfoView {
+        static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.primary,
+                                                   headerTitle: Presets.Label.tertiary,
+                                                   headerTrailingImage: Presets.Image.primary,
+                                                   title: Presets.Label.tertiary,
+                                                   description: Presets.Label.contrast,
+                                                   button: Presets.Button.primary,
+                                                   background: .init(backgroundColor: LightColors.secondary,
+                                                                     tintColor: LightColors.Contrast.secondary),
+                                                   border: Presets.Border.zero,
+                                                   shadow: Presets.Shadow.normal)
     }
 }
