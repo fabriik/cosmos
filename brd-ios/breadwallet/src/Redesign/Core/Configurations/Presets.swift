@@ -66,20 +66,20 @@ extension Presets {
     
     struct TexxtField {
         static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.secondary),
-                                                    textConfiguration: .init(font: .systemFont(ofSize: 14), textColor: LightColors.Text.primary, textAlignment: .left),
-                                                    placeholderConfiguration: .init(font: .systemFont(ofSize: 14), textColor: LightColors.Text.primary, textAlignment: .left),
-                                                    hintConfiguration: .init(font: .systemFont(ofSize: 12), textColor: LightColors.Text.secondary, textAlignment: .left),
+                                                    // TODO: extract to LabelConfig when fonts are added
+                                                    textConfiguration: .init(font: .systemFont(ofSize: 14),
+                                                                             textColor: LightColors.Text.primary,
+                                                                             textAlignment: .left),
+                                                    placeholderConfiguration: .init(font: .systemFont(ofSize: 14),
+                                                                                    textColor: LightColors.Text.primary,
+                                                                                    textAlignment: .left),
+                                                    hintConfiguration: .init(font: .systemFont(ofSize: 12),
+                                                                             textColor: LightColors.Text.secondary,
+                                                                             textAlignment: .left),
                                                     backgroundConfiguration: Presets.Background.Secondary.normal,
                                                     selectedBackgroundConfiguration: Presets.Background.Secondary.selected,
                                                     disabledBackgroundConfiguration: Presets.Background.Secondary.disabled,
                                                     errorBackgroundConfiguration: Presets.Background.Secondary.error,
                                                     borderConfiguration: Presets.Border.normal)
-        
-//        static var secondary = TextFieldConfiguration(leadingImageConfiguration: Presets.Image.primary,
-//                                                    textConfiguration: Presets.Label.secondary,
-//                                                    placeholderConfiguration: Presets.Label.secondary,
-//                                                    backgroundConfiguration: Presets.Background.Primary.normal,
-//                                                    selectedBackgroundConfiguration: Presets.Background.Primary.selected,
-//                                                    disabledBackgroundConfiguration: Presets.Background.Primary.disabled)
     }
 }
