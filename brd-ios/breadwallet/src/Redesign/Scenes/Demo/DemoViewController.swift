@@ -16,31 +16,30 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     typealias Models = DemoModels
 
     // MARK: - Overrides
-
-    override func setupSubviews() {
-        super.setupSubviews()
-        tableView.removeFromSuperview()
-        
-        let button = FEButton()
-        
-        view.addSubview(button)
-        button.frame = .init(x: 50, y: 50, width: 200, height: 70)
-        
-        button.setup(with: .init(title: "kokoska"))
-        button.configure(with: Presets.Button.primary)
-        
-        tableView.register(WrapperTableViewCell<FELabel>.self)
-        tableView.register(WrapperTableViewCell<FEButton>.self)
-
+    
+    override func prepareData() {
         sections = [
             Models.Section.demo,
-            Models.Section.button
+            Models.Section.button,
+            Models.Section.textField
         ]
+        
         sectionRows = [
             Models.Section.button: [
                 "Click me!!",
                 "Dont Click me please!!"
-            ]]
+            ],
+            
+            Models.Section.textField: [
+                TextFieldModel(title: "This is a title", placeholder: "<name>", hint: "You can write?"),
+                TextFieldModel(placeholder: "<name>", hint: "You can write?"),
+                TextFieldModel(title: "This is a title", placeholder: "<name>"),
+                TextFieldModel(placeholder: "<name>")
+            ]
+        ]
+        
+        tableView.reloadData()
+        view.backgroundColor = .yellow
     }
     
     // MARK: - User Interaction
@@ -56,6 +55,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             
         case .button:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
+            
+        case .textField:
+            cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)

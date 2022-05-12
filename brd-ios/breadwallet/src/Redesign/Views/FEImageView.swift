@@ -20,7 +20,7 @@ enum ImageViewModel: ViewModel {
     case image(String)
 }
 
-class ImageView: BaseView<ImageViewConfiguration, ImageViewModel> {
+class FEImageView: FEView<ImageViewConfiguration, ImageViewModel> {
     
     // MARK: Lazy UI
     private lazy var imageView: UIImageView = {
@@ -77,15 +77,7 @@ class ImageView: BaseView<ImageViewConfiguration, ImageViewModel> {
     }
     
     public override func prepareForReuse() {
-        switch viewModel {
-        case .image:
-            imageView.image = nil
-            imageView.removeFromSuperview()
-
-        default:
-            return
-        }
-
         super.prepareForReuse()
+        imageView.image = nil
     }
 }

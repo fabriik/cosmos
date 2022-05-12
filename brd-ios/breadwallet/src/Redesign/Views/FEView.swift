@@ -1,5 +1,5 @@
 // 
-//  BaseView.swift
+//  FEView.swift
 //  breadwallet
 //
 //  Created by Rok on 10/05/2022.
@@ -15,9 +15,11 @@ struct BackgroundConfiguration: BackgorundConfigurable {
     var tintColor: UIColor
 }
 
-class BaseView<C: BackgorundConfigurable, M: ViewModel>: UIView,
-                                                         ViewProtocol,
-                                                         Reusable {
+class FEView<C: Configurable, M: ViewModel>: UIView,
+                                             ViewProtocol,
+                                             Shadable,
+                                             Borderable,
+                                             Reusable {
     // MARK: NCViewProtocol
     var config: C?
     var viewModel: M?
@@ -66,12 +68,14 @@ class BaseView<C: BackgorundConfigurable, M: ViewModel>: UIView,
     
     func configure(with config: C?) {
         self.config = config
-        backgroundColor = config?.backgroundColor
-        tintColor = config?.tintColor
+        let config = config as? BackgroundConfiguration
+
+        content.backgroundColor = config?.backgroundColor
+        content.tintColor = config?.tintColor
     }
     
     func prepareForReuse() {
-        self.config = nil
-        self.viewModel = nil
+        config = nil
+        viewModel = nil
     }
 }

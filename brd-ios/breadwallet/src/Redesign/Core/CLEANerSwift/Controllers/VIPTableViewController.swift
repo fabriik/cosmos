@@ -23,6 +23,7 @@ class VIPTableViewController<C: CoordinatableRoutes,
     // MARK: LazyUI
     lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
         // this prevents the top offset on tableViews
