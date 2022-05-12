@@ -42,6 +42,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
+        stack.spacing = Margins.small.rawValue
         stack.alignment = .fill
         stack.distribution = .fill
         return stack
@@ -106,8 +107,8 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         constraints.append(contentsOf: [
             verticalStackView.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             verticalStackView.centerYAnchor.constraint(equalTo: content.centerYAnchor),
-            verticalStackView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
-            verticalStackView.topAnchor.constraint(equalTo: content.topAnchor)
+            verticalStackView.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: Margins.large.rawValue),
+            verticalStackView.topAnchor.constraint(equalTo: content.topAnchor, constant: Margins.large.rawValue)
         ])
         
         verticalStackView.addArrangedSubview(headerStackView)
@@ -134,8 +135,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         ])
 
         verticalStackView.addArrangedSubview(trailingButton)
-        constraints.append(trailingButton.heightAnchor.constraint(equalToConstant: Margins.huge.rawValue))
-        
+        constraints.append(trailingButton.heightAnchor.constraint(equalToConstant: Margins.extraHuge.rawValue))
         NSLayoutConstraint.activate(constraints)
     }
     

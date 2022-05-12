@@ -90,14 +90,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         return view
     }()
     
-    override func layoutSubviews() {
-        super.layoutSubviews()    
-        // Border
-        configure(border: config?.borderConfiguration)
-        // Shadow
-        configure(shadow: config?.shadowConfiguration)
-    }
-    
     override func setupSubviews() {
         super.setupSubviews()
         

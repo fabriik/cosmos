@@ -26,13 +26,6 @@ struct Presets {
             static var disabled = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.InteractionPrimary.disabled)
             static var error = BackgroundConfiguration(backgroundColor: .clear, tintColor: .red)
         }
-        
-        struct Blue {
-            static var normal = BackgroundConfiguration(backgroundColor: .blue, tintColor: .black)
-            static var selected = BackgroundConfiguration(backgroundColor: .blue, tintColor: .black)
-            static var disabled = BackgroundConfiguration(backgroundColor: .blue, tintColor: .gray)
-            static var error = BackgroundConfiguration(backgroundColor: .blue, tintColor: .red)
-        }
     }
     
     struct Border {
@@ -47,8 +40,9 @@ struct Presets {
     }
     
     struct Label {
-        static var primary = LabelConfiguration(font: .boldSystemFont(ofSize: 15), textColor: .red)
-        static var secondary = LabelConfiguration(font: .boldSystemFont(ofSize: 10), textColor: .gray)
+        static var primary = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Text.primary)
+        static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Contrast.secondary)
+        static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 14), textColor: .white)
     }
     
     struct Image {
@@ -74,15 +68,9 @@ extension Presets {
     struct TexxtField {
         static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.secondary),
                                                     // TODO: extract to LabelConfig when fonts are added
-                                                    textConfiguration: .init(font: .systemFont(ofSize: 14),
-                                                                             textColor: LightColors.Text.primary,
-                                                                             textAlignment: .left),
-                                                    placeholderConfiguration: .init(font: .systemFont(ofSize: 14),
-                                                                                    textColor: LightColors.Text.primary,
-                                                                                    textAlignment: .left),
-                                                    hintConfiguration: .init(font: .systemFont(ofSize: 12),
-                                                                             textColor: LightColors.Text.secondary,
-                                                                             textAlignment: .left),
+                                                    textConfiguration: Presets.Label.primary,
+                                                    placeholderConfiguration: Presets.Label.primary,
+                                                    hintConfiguration: Presets.Label.secondary,
                                                     backgroundConfiguration: Presets.Background.Secondary.normal,
                                                     selectedBackgroundConfiguration: Presets.Background.Secondary.selected,
                                                     disabledBackgroundConfiguration: Presets.Background.Secondary.disabled,
@@ -92,13 +80,14 @@ extension Presets {
     
     struct InfoView {
         static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.primary,
-                                                   headerTitle: Presets.Label.secondary,
+                                                   headerTitle: Presets.Label.tertiary,
                                                    headerTrailingImage: Presets.Image.primary,
-                                                   title: Presets.Label.primary,
-                                                   description: Presets.Label.primary,
-                                                   button: Presets.Button.secondary,
-                                                   background: Presets.Background.Blue.normal,
-                                                   border: Presets.Border.normal,
+                                                   title: Presets.Label.tertiary,
+                                                   description: Presets.Label.secondary,
+                                                   button: Presets.Button.primary,
+                                                   background: .init(backgroundColor: LightColors.secondary,
+                                                                     tintColor: LightColors.Contrast.secondary),
+                                                   border: Presets.Border.zero,
                                                    shadow: Presets.Shadow.normal)
     }
 }
