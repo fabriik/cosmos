@@ -41,8 +41,9 @@ struct Presets {
     
     struct Label {
         static var primary = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Text.primary)
-        static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Contrast.secondary)
+        static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Text.secondary)
         static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 14), textColor: .white)
+        static var contrast = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Contrast.secondary)
     }
     
     struct Image {
@@ -83,7 +84,7 @@ extension Presets {
                                                    headerTitle: Presets.Label.tertiary,
                                                    headerTrailingImage: Presets.Image.primary,
                                                    title: Presets.Label.tertiary,
-                                                   description: Presets.Label.secondary,
+                                                   description: Presets.Label.contrast,
                                                    button: Presets.Button.primary,
                                                    background: .init(backgroundColor: LightColors.secondary,
                                                                      tintColor: LightColors.Contrast.secondary),
