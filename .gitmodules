@@ -1,8 +1,3 @@
-[submodule "external/walletkit"]
-	path = external/walletkit
-	url = https://github.com/atmcoin/walletkit.git
-	branch = support/fabriik-9.0.0.X
-	fetchRecurseSubmodules = true
 [submodule "external/mobile-font"]
 	path = external/mobile-font
 	url = ../../breadwallet/mobile-font.git
@@ -18,4 +13,8 @@
 [submodule "external/redacted-compiler-plugin"]
 	path = external/redacted-compiler-plugin
 	url = https://github.com/ZacSweers/redacted-compiler-plugin.git
+	fetchRecurseSubmodules = true
+[submodule "external/walletkit"]
+	path = external/walletkit
+	url = https://github.com/fabriik/walletkit
 	fetchRecurseSubmodules = true
