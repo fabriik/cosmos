@@ -39,6 +39,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         ]
         
         tableView.reloadData()
+        view.backgroundColor = .yellow
     }
     
     // MARK: - User Interaction

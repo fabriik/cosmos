@@ -35,7 +35,7 @@ struct TextFieldModel: ViewModel {
     var trailing: ImageViewModel?
 }
 
-class FETextField: FEView<TextFieldConfiguration, TextFieldModel> {
+class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDelegate, StateDisplayable {
     
     // MARK: Lazy UI
     private lazy var verticalStackView: UIStackView = {
@@ -133,6 +133,22 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel> {
         constraints.append(trailingView.widthAnchor.constraint(equalToConstant: Margins.huge.rawValue))
         
         NSLayoutConstraint.activate(constraints)
+        
+        textField.delegate = self
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        var background: BackgroundConfiguration?
+        if textField.isFirstResponder,
+            let bgColor = backgroundColor, let tint = tintColor {
+            background = .init(backgroundColor: bgColor, tintColor: tint)
+        }
+        // Border
+        configure(border: config?.borderConfiguration, backgroundConfiguration: background)
+        // Shadow
+        configure(shadow: config?.shadowConfiguration)
     }
     
     override func configure(with config: TextFieldConfiguration?) {
@@ -151,12 +167,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel> {
         
         leadingView.configure(with: config.leadingImageConfiguration)
         trailingView.configure(with: config.trailingImageConfiguration)
-        
-        // Border
-        configure(border: config.borderConfiguration)
-        
-        // Shadow
-        configure(shadow: config.shadowConfiguration)
     }
     
     public override func setup(with viewModel: TextFieldModel?) {
@@ -207,6 +217,14 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel> {
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        animateTo(state: .selected)
+     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        animateTo(state: .normal)
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         leadingView.prepareForReuse()
@@ -223,5 +241,29 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel> {
         titleLabel.isHidden = false
         leadingView.isHidden = false
         trailingView.isHidden = false
+    }
+    
+    func animateTo(state: DisplayState, withAnimation: Bool = true) {
+        
+        let background: BackgroundConfiguration?
+        
+        switch state {
+        case .normal:
+            background = config?.backgroundConfiguration
+            
+            // TODO: any need to split?
+        case .highlighted, .selected:
+            background = config?.selectedBackgroundConfiguration
+            
+        case .disabled:
+            background = config?.disabledBackgroundConfiguration
+        }
+        
+        // TODO: constant for duration
+        UIView.animate(withDuration: withAnimation ? 0.25 : 0) { [weak self] in
+            self?.backgroundColor = background?.backgroundColor
+            self?.tintColor = background?.tintColor
+            self?.setNeedsLayout()
+        }
     }
 }

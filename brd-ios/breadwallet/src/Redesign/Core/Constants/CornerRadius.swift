@@ -10,9 +10,14 @@ import UIKit
 enum CornerRadius: CGFloat {
     /// Normal square view
     case zero = 0
-    // TODO: rename?
+    /// 8 point radius
+    case extraSmall = 8
+    /// 10 point radius
+    case small = 10
     /// 12 point radius
-    case halfRadius = 12
+    case medium = 12
+    // 24 point radius
+    case large = 24
     /// Rounded view - half height radius (multiply with view height!)
     case fullRadius = 0.5
 }
