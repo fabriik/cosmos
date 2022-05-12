@@ -39,7 +39,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.infoView: [
-                InfoViewModel(headerTitle: .text("This is a header title"),
+                InfoViewModel(headerLeadingImage: .image("ig"),
+                              headerTitle: .text("This is a header title"),
+                              headerTrailingImage: .image("user"),
                               title: .text("This is a title"),
                               description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
                               button: .init(title: "Close")),

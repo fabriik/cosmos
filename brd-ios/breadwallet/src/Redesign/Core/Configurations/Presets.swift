@@ -48,8 +48,9 @@ struct Presets {
     }
     
     struct Image {
-        static var primary = ImageViewConfiguration(backgroundColor: .yellow, tintColor: .blue)
-        static var secondary = ImageViewConfiguration(backgroundColor: .blue, tintColor: .yellow)
+        static var primary = ImageViewConfiguration(tintColor: LightColors.Text.primary)
+        static var secondary = ImageViewConfiguration(tintColor: LightColors.Text.secondary)
+        static var tertiary = ImageViewConfiguration(tintColor: .white)
     }
 }
 
@@ -81,9 +82,9 @@ extension Presets {
     }
     
     struct InfoView {
-        static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.primary,
+        static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
                                                    headerTitle: Presets.Label.tertiary,
-                                                   headerTrailingImage: Presets.Image.primary,
+                                                   headerTrailingImage: Presets.Image.tertiary,
                                                    title: Presets.Label.tertiary,
                                                    description: Presets.Label.contrast,
                                                    button: Presets.Button.primary,

@@ -18,6 +18,8 @@ struct TextFieldConfiguration: Configurable {
     var hintConfiguration: LabelConfiguration?
     var trailingImageConfiguration: ImageViewConfiguration?
     
+    var infoConfiguration: InfoViewConfiguration? = Presets.InfoView.primary
+    
     var backgroundConfiguration: BackgroundConfiguration?
     var selectedBackgroundConfiguration: BackgroundConfiguration?
     var disabledBackgroundConfiguration: BackgroundConfiguration?
@@ -32,6 +34,7 @@ struct TextFieldModel: ViewModel {
     var title: String?
     var placeholder: String?
     var hint: String?
+    var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
 }
 
@@ -42,6 +45,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
+        stack.spacing = Margins.small.rawValue
         stack.alignment = .fill
         stack.distribution = .fill
         return stack
@@ -68,6 +72,12 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         let label = FELabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private lazy var infoView: FEInfoView = {
+        let view = FEInfoView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private lazy var leadingView: FEImageView = {
@@ -118,11 +128,16 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             hintLabel.heightAnchor.constraint(equalToConstant: Margins.large.rawValue)
         ])
 
+        verticalStackView.addArrangedSubview(infoView)
+
         horizontalStackView.addArrangedSubview(leadingView)
         constraints.append(leadingView.widthAnchor.constraint(equalToConstant: Margins.huge.rawValue))
 
         horizontalStackView.addArrangedSubview(textField)
-        constraints.append(textField.widthAnchor.constraint(equalTo: horizontalStackView.widthAnchor).priority(.defaultLow))
+        constraints.append(contentsOf: [
+            textField.widthAnchor.constraint(equalTo: horizontalStackView.widthAnchor).priority(.defaultLow),
+            textField.heightAnchor.constraint(equalToConstant: Margins.huge.rawValue)
+        ])
 
         horizontalStackView.addArrangedSubview(trailingView)
         constraints.append(trailingView.widthAnchor.constraint(equalToConstant: Margins.huge.rawValue))
@@ -152,6 +167,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         titleLabel.configure(with: config.titleConfiguration)
         hintLabel.configure(with: config.hintConfiguration)
+        infoView.configure(with: config.infoConfiguration)
         
         if let textConfig = config.textConfiguration {
             textField.font = textConfig.font
@@ -176,7 +192,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         if let text = viewModel.hint {
             hintLabel.setup(with: .text(text))
         }
-        hintLabel.isHidden = viewModel.hint == nil
+        hintLabel.isHidden = true
+        
+        infoView.setup(with: viewModel.info)
+        infoView.isHidden = viewModel.info == nil
 
         if let placeholder = viewModel.placeholder {
             let config = Presets.Label.secondary
@@ -258,6 +277,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         UIView.animate(withDuration: withAnimation ? 0.25 : 0) { [weak self] in
             self?.backgroundColor = background?.backgroundColor
             self?.tintColor = background?.tintColor
+            
+//            self?.infoView.isHidden = state == .normal
             self?.setNeedsLayout()
         }
     }
