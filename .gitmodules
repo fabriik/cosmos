@@ -17,3 +17,4 @@
 [submodule "external/walletkit"]
 	path = external/walletkit
 	url = https://github.com/fabriik/walletkit
+	fetchRecurseSubmodules = true
