@@ -282,8 +282,9 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             }
             return
         }
-        guard let address = address else { return _ = handleValidationResult(.invalidAddress) }
+        
         guard let amount = amount else { return }
+        guard let address = address, !address.isEmpty else { return _ = handleValidationResult(.invalidAddress) }
         sender.estimateFee(address: address, amount: amount, tier: feeLevel, isStake: false) { self.handleFeeEstimationResult($0) }
         updateLimits()
     }
@@ -504,7 +505,8 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         }
         
         //XRP destination Tag must fit into UInt32
-        if let attribute = attributeCell?.attribute, currency.isXRP {
+        if let attribute = attributeCell?.attribute, currency.isXRP,
+           !attribute.isEmpty {
             if UInt32(attribute) == nil {
                showAlert(title: S.Alert.error, message: "Destination tag is too long.", buttonLabel: S.Button.ok)
                return false
