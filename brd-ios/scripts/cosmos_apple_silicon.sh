@@ -5,7 +5,6 @@ FRAMEWORK_BIN_PATH="$FRAMEWORK_PATH/ios-arm64-simulator/Cosmos.framework/Cosmos"
 FRAMEWORK_PATH_PLIST="$FRAMEWORK_PATH/Info.plist"
 FRAMEWORK_PATH_ARM_PLIST="$FRAMEWORK_PATH/ios-arm64-simulator/Cosmos.framework/Info.plist"
 
-rm -rf "$FRAMEWORK_PATH/ios-x86_64-simulator"
 cp -r "$FRAMEWORK_PATH/ios-arm64" "$FRAMEWORK_PATH/ios-arm64-simulator"
 
 xcrun vtool -arch arm64 \
