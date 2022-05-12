@@ -39,17 +39,17 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.infoView: [
-                InfoViewModel(headerTitle: .text("Kaj tu pise?"),
-                              title: .text("Kak lep dan"),
-                              description: .text("za ujeti svoje sanje! sanje ne bezijo marvec zivijo!"),
-                              button: .init(title: "Zapri")),
+                InfoViewModel(headerTitle: .text("This is a header title"),
+                              title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
                 
-                InfoViewModel(title: .text("Kak lep dan"),
-                              description: .text("za ujeti svoje sanje! sanje ne bezijo marvec zivijo!"),
-                              button: .init(title: "Zapri")),
+                InfoViewModel(title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
                 
-                InfoViewModel(title: .text("Kak lep dan"),
-                              description: .text("za ujeti svoje sanje! sanje ne bezijo marvec zivijo!"))
+                InfoViewModel(title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."))
             ]
         ]
         

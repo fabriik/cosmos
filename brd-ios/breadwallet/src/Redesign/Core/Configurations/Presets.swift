@@ -40,6 +40,7 @@ struct Presets {
     }
     
     struct Label {
+        // TODO: fonts
         static var primary = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Text.primary)
         static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Text.secondary)
         static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 14), textColor: .white)
