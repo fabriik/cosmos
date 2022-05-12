@@ -16,31 +16,45 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     typealias Models = DemoModels
 
     // MARK: - Overrides
-
-    override func setupSubviews() {
-        super.setupSubviews()
-        tableView.removeFromSuperview()
-        
-        let button = FEButton()
-        
-        view.addSubview(button)
-        button.frame = .init(x: 50, y: 50, width: 200, height: 70)
-        
-        button.setup(with: .init(title: "kokoska"))
-        button.configure(with: Presets.Button.primary)
-        
-        tableView.register(WrapperTableViewCell<FELabel>.self)
-        tableView.register(WrapperTableViewCell<FEButton>.self)
-
+    
+    override func prepareData() {
         sections = [
-            Models.Section.demo,
-            Models.Section.button
+            Models.Section.label,
+            Models.Section.button,
+            Models.Section.textField,
+            Models.Section.infoView
         ]
+        
         sectionRows = [
             Models.Section.button: [
                 "Click me!!",
                 "Dont Click me please!!"
-            ]]
+            ],
+            
+            Models.Section.textField: [
+                TextFieldModel(title: "This is a title", placeholder: "<name>", hint: "You can write?"),
+                TextFieldModel(placeholder: "<name>", hint: "You can write?"),
+                TextFieldModel(title: "This is a title", placeholder: "<name>"),
+                TextFieldModel(placeholder: "<name>")
+            ],
+            
+            Models.Section.infoView: [
+                InfoViewModel(headerTitle: .text("This is a header title"),
+                              title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
+                
+                InfoViewModel(title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
+                
+                InfoViewModel(title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."))
+            ]
+        ]
+        
+        tableView.reloadData()
+        view.backgroundColor = .yellow
     }
     
     // MARK: - User Interaction
@@ -51,11 +65,17 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         let cell: UITableViewCell
         switch section {
-        case .demo:
+        case .label:
             cell = self.tableView(tableView, labelCellForRowAt: indexPath)
             
         case .button:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
+            
+        case .textField:
+            cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
+            
+        case .infoView:
+            cell = self.tableView(tableView, infoViewCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)

@@ -11,17 +11,17 @@
 import UIKit
 
 protocol Borderable {
-    func configure(border: BorderConfiguration?)
+    func configure(border: BorderConfiguration?, backgroundConfiguration: BackgroundConfiguration?)
 }
 
 extension Borderable where Self: Marginable {
     
-    func configure(border: BorderConfiguration?) {
+    func configure(border: BorderConfiguration?, backgroundConfiguration: BackgroundConfiguration? = nil) {
         guard let border = border else { return }
         
         marginableView.layer.masksToBounds = true
         marginableView.layer.cornerRadius = border.cornerRadius.rawValue
         marginableView.layer.borderWidth = border.borderWidth
-        marginableView.layer.borderColor = border.tintColor.cgColor
+        marginableView.layer.borderColor = backgroundConfiguration?.tintColor.cgColor ?? border.tintColor.cgColor
     }
 }

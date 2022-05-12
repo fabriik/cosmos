@@ -34,9 +34,9 @@ struct LightColors {
     
     struct Link {
         /// Primary interactive color. Always the 500 value for the corresponding brand color
-        var primary = ThemeManager.shared.color(for: "link-01")
+        static var primary = ThemeManager.shared.color(for: "link-01")
         /// Secondary ui elements such as toast notifications.
-        var secondary = ThemeManager.shared.color(for: "link-02")
+        static var secondary = ThemeManager.shared.color(for: "link-02")
     }
     
     struct Text {
@@ -101,7 +101,7 @@ struct LightInversedColors {
     
     struct Link {
         /// Primary links, ghost button on light-inverse-background-01
-        var primary = ThemeManager.shared.color(for: "inverse-link-01")
+        static var primary = ThemeManager.shared.color(for: "inverse-link-01")
     }
     
     struct Text {

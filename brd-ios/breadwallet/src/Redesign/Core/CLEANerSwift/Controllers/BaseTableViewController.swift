@@ -32,6 +32,11 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.registerAccessoryView(WrapperAccessoryView<FELabel>.self)
         tableView.registerAccessoryView(WrapperAccessoryView<FEButton>.self)
         // TODO: register base cells
+        tableView.register(WrapperTableViewCell<FELabel>.self)
+        tableView.register(WrapperTableViewCell<FEButton>.self)
+        tableView.register(WrapperTableViewCell<FETextField>.self)
+        tableView.register(WrapperTableViewCell<FEInfoView>.self)
+        
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
     }
@@ -50,11 +55,6 @@ class BaseTableViewController<C: CoordinatableRoutes,
     }
 
     // MARK: UITableViewDataSource
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = sections[section]
-        return sectionRows[section]?.count ?? 0
-    }
-
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let type = (sections[section] as? Sectionable)?.header
         return self.tableView(tableView, accessoryViewForType: type, for: section) { [weak self] in
@@ -136,6 +136,10 @@ class BaseTableViewController<C: CoordinatableRoutes,
         // TODO: override in class to handle suplementary button events
     }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return super.tableView(tableView, cellForRowAt: indexPath)
+    }
+    
     // MARK: Custom cells
     // TODO: add dequeue methos for other standard cells
     func tableView(_ tableView: UITableView, labelCellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,6 +169,38 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setup { button in
             button.setup(with: .init(title: text))
             button.configure(with: Presets.Button.primary)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, textFieldCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? TextFieldModel,
+              let cell: WrapperTableViewCell<FETextField> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { button in
+            button.setup(with: model)
+            button.configure(with: Presets.TexxtField.primary)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, infoViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? InfoViewModel,
+              let cell: WrapperTableViewCell<FEInfoView> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { button in
+            button.setup(with: model)
+            button.configure(with: Presets.InfoView.primary)
         }
         
         return cell
