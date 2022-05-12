@@ -14,3 +14,6 @@
 	path = external/redacted-compiler-plugin
 	url = https://github.com/ZacSweers/redacted-compiler-plugin.git
 	fetchRecurseSubmodules = true
+[submodule "external/walletkit"]
+	path = external/walletkit
+	url = https://github.com/fabriik/walletkit
