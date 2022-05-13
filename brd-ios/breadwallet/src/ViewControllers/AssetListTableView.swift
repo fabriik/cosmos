@@ -17,25 +17,15 @@ class AssetListTableView: UITableViewController, Subscriber {
 
     private let assetHeight: CGFloat = 80.0 // rowHeight of 72 plus 8 padding
     
-    private lazy var manageAssetsButton: UIButton = {
-        let manageAssetsButton = UIButton()
-        manageAssetsButton.titleLabel?.font = Theme.body1
-        manageAssetsButton.tintColor = Theme.tertiaryBackground
-        manageAssetsButton.setTitleColor(Theme.blueBackground, for: .normal)
-        manageAssetsButton.setTitleColor(Theme.transparentBlue, for: .highlighted)
-        
-        manageAssetsButton.layer.borderColor = UIColor.gray2.cgColor
-        manageAssetsButton.layer.borderWidth = 0.5
-        manageAssetsButton.layer.cornerRadius = C.Sizes.homeCellCornerRadius
-        
-        manageAssetsButton.contentHorizontalAlignment = .center
-        manageAssetsButton.contentVerticalAlignment = .center
-        
+    private lazy var manageAssetsButton: ManageAssetsButton = {
+        let manageAssetsButton = ManageAssetsButton()
         let manageAssetsButtonTitle = S.MenuButton.manageAssets
-        manageAssetsButton.setTitle(manageAssetsButtonTitle, for: .normal)
+        manageAssetsButton.set(title: manageAssetsButtonTitle)
         manageAssetsButton.accessibilityLabel = manageAssetsButtonTitle
         
-        manageAssetsButton.addTarget(self, action: #selector(addWallet), for: .touchUpInside)
+        manageAssetsButton.didTap = { [weak self] in
+            self?.addWallet()
+        }
         
         return manageAssetsButton
     }()

@@ -273,6 +273,7 @@
 		7BA83DA7280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */; };
 		7BA83DAA28045F94003F73AA /* KYCResetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */; };
 		7BA83DAC28047894003F73AA /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DAB28047894003F73AA /* Validators.swift */; };
+		7BC49D1B282E69A3000BF284 /* ManageAssetsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */; };
 		7BDB49B62805AC780031F015 /* EmailFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */; };
 		7BDB49D62806C03A0031F015 /* BRTarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49D52806C03A0031F015 /* BRTarTests.swift */; };
 		7BDB49E22806CB590031F015 /* ImageStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49E12806CB590031F015 /* ImageStorageService.swift */; };
@@ -1195,6 +1196,7 @@
 		7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessInteractor.swift; sourceTree = "<group>"; };
 		7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetSuccessView.swift; sourceTree = "<group>"; };
 		7BA83DAB28047894003F73AA /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageAssetsButton.swift; path = src/Views/ManageAssetsButton.swift; sourceTree = "<group>"; };
 		7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFeedbackManager.swift; sourceTree = "<group>"; };
 		7BDB49D52806C03A0031F015 /* BRTarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRTarTests.swift; sourceTree = "<group>"; };
 		7BDB49E12806CB590031F015 /* ImageStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorageService.swift; sourceTree = "<group>"; };
@@ -3428,6 +3430,7 @@
 				CEBF292D1EF99E55005C330A /* LightWeightAlert.swift */,
 				CE65C664207B0BEF000C99C4 /* ManageCurrencyCell.swift */,
 				CE1E7A9920938DFD00C86BB7 /* MenuButton.swift */,
+				7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */,
 				7CBA74E720227D1300FBBFA9 /* MenuCell.swift */,
 				CEE1F5621DF13E5A00D733AD /* ModalHeaderView.swift */,
 				CE12289C20D3695400EC6F81 /* MotionGradientView.swift */,
@@ -4668,6 +4671,7 @@
 				7CBD57912107FAFA0042C388 /* PairedWalletIndex.swift in Sources */,
 				7B54E52527F4A208002DD1E4 /* KYCConfirmEmailInteractor.swift in Sources */,
 				CEEC708C1E95461A00EF788E /* AboutViewController.swift in Sources */,
+				7BC49D1B282E69A3000BF284 /* ManageAssetsButton.swift in Sources */,
 				CEEC708A1E945E3B00EF788E /* UnEditableTextView.swift in Sources */,
 				7B54E56727F4A218002DD1E4 /* SwapPickCurrencyPresenter.swift in Sources */,
 				CE3645481E7B424D0079D0CF /* WhiteNumberPad.swift in Sources */,
