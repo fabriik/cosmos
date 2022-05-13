@@ -35,7 +35,10 @@ class ThemeManager {
     }
     
     func font(for key: String, size: CGFloat) -> UIFont {
-        // TODO: return proper font
-        return .systemFont(ofSize: size)
+        guard let fontName = UIFont(name: key, size: size)
+        else {
+            return UIFont.systemFont(ofSize: size, weight: .regular)
+        }
+        return fontName
     }
 }

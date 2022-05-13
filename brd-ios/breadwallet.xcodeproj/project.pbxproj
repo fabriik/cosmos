@@ -660,6 +660,13 @@
 		C469BF1A27F6E6920070ED33 /* SwapConfirmTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */; };
 		C469BF1B27F6E6920070ED33 /* SwapConfirmTradeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1527F6E6920070ED33 /* SwapConfirmTradeInteractor.swift */; };
 		C469BF1F27F6E6B10070ED33 /* SwapConfirmTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */; };
+		C46BFBBF282D339F00C3CEF2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BFBBE282D339F00C3CEF2 /* Fonts.swift */; };
+		C47BD4FD282E3CE600FAA903 /* Degular-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD4FA282E3CE600FAA903 /* Degular-Semibold.otf */; };
+		C47BD4FE282E3CE600FAA903 /* Degular-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD4FB282E3CE600FAA903 /* Degular-Bold.otf */; };
+		C47BD4FF282E3CE600FAA903 /* Degular-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD4FC282E3CE600FAA903 /* Degular-Regular.otf */; };
+		C47BD509282E427300FAA903 /* Roboto-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD506282E427300FAA903 /* Roboto-Bold.otf */; };
+		C47BD50A282E427300FAA903 /* Roboto-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD507282E427300FAA903 /* Roboto-Regular.otf */; };
+		C47BD50B282E427300FAA903 /* Roboto-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD508282E427300FAA903 /* Roboto-Medium.otf */; };
 		CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */; };
 		CE0822661FCE059A00EF371D /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0822651FCE059A00EF371D /* HomeScreenCell.swift */; };
 		CE0BC980215ACBE100E68B2B /* TokenImageNoBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0BC97F215ACBE100E68B2B /* TokenImageNoBackground.swift */; };
@@ -1548,6 +1555,13 @@
 		C469BF1427F6E6920070ED33 /* SwapConfirmTradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeViewController.swift; sourceTree = "<group>"; };
 		C469BF1527F6E6920070ED33 /* SwapConfirmTradeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeInteractor.swift; sourceTree = "<group>"; };
 		C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeView.swift; sourceTree = "<group>"; };
+		C46BFBBE282D339F00C3CEF2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		C47BD4FA282E3CE600FAA903 /* Degular-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Degular-Semibold.otf"; path = "Fonts/Degular-Semibold.otf"; sourceTree = "<group>"; };
+		C47BD4FB282E3CE600FAA903 /* Degular-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Degular-Bold.otf"; path = "Fonts/Degular-Bold.otf"; sourceTree = "<group>"; };
+		C47BD4FC282E3CE600FAA903 /* Degular-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Degular-Regular.otf"; path = "Fonts/Degular-Regular.otf"; sourceTree = "<group>"; };
+		C47BD506282E427300FAA903 /* Roboto-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.otf"; path = "Fonts/Roboto-Bold.otf"; sourceTree = "<group>"; };
+		C47BD507282E427300FAA903 /* Roboto-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.otf"; path = "Fonts/Roboto-Regular.otf"; sourceTree = "<group>"; };
+		C47BD508282E427300FAA903 /* Roboto-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.otf"; path = "Fonts/Roboto-Medium.otf"; sourceTree = "<group>"; };
 		CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenViewController.swift; path = src/ViewControllers/HomeScreenViewController.swift; sourceTree = "<group>"; };
 		CE0822651FCE059A00EF371D /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCell.swift; path = src/Views/HomeScreenCell.swift; sourceTree = "<group>"; };
 		CE0BC97F215ACBE100E68B2B /* TokenImageNoBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TokenImageNoBackground.swift; path = src/Views/TokenImageNoBackground.swift; sourceTree = "<group>"; };
@@ -2947,6 +2961,7 @@
 			children = (
 				7EF36C072829894300BB43A7 /* Colors.swift */,
 				7E274B0A282A84CF00E336EE /* ThemeManager.swift */,
+				C46BFBBE282D339F00C3CEF2 /* Fonts.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -3581,6 +3596,12 @@
 				CEAA9EA11DC2FC700066731D /* Font-Book.otf */,
 				CEAA9EA21DC2FC700066731D /* Font-Medium.otf */,
 				CEAA9E9D1DC2F90C0066731D /* Font-Bold.otf */,
+				C47BD4FB282E3CE600FAA903 /* Degular-Bold.otf */,
+				C47BD4FC282E3CE600FAA903 /* Degular-Regular.otf */,
+				C47BD4FA282E3CE600FAA903 /* Degular-Semibold.otf */,
+				C47BD506282E427300FAA903 /* Roboto-Bold.otf */,
+				C47BD508282E427300FAA903 /* Roboto-Medium.otf */,
+				C47BD507282E427300FAA903 /* Roboto-Regular.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -4013,6 +4034,7 @@
 				E837FD02219D1C0600F59D99 /* onboarding-video-coins-in.mp4 in Resources */,
 				9AE8010E21FFF81F00D5058C /* rewardsIcon-41.gif in Resources */,
 				9A926F9822034B3800CC2263 /* CellHighlight-24.png in Resources */,
+				C47BD509282E427300FAA903 /* Roboto-Bold.otf in Resources */,
 				9AE8010321FFF81F00D5058C /* rewardsIcon-50.gif in Resources */,
 				9A926F7222034B3800CC2263 /* CellHighlight-74.png in Resources */,
 				9A926F5922034B3800CC2263 /* CellHighlight-26.png in Resources */,
@@ -4021,6 +4043,7 @@
 				9A926F8D22034B3800CC2263 /* CellHighlight-55.png in Resources */,
 				9AE800F021FFF81F00D5058C /* rewardsIcon-31.gif in Resources */,
 				9AE800ED21FFF81F00D5058C /* rewardsIcon-60.gif in Resources */,
+				C47BD4FE282E3CE600FAA903 /* Degular-Bold.otf in Resources */,
 				9AE8010121FFF81F00D5058C /* rewardsIcon-1.gif in Resources */,
 				9AE8011221FFF81F00D5058C /* rewardsIcon-51.gif in Resources */,
 				9AE800E521FFF81F00D5058C /* rewardsIcon-15.gif in Resources */,
@@ -4074,6 +4097,7 @@
 				9A926F4622034B3700CC2263 /* CellHighlight-72.png in Resources */,
 				9AE800E121FFF81F00D5058C /* rewardsIcon-2.gif in Resources */,
 				9AE800E321FFF81F00D5058C /* rewardsIcon-55.gif in Resources */,
+				C47BD4FF282E3CE600FAA903 /* Degular-Regular.otf in Resources */,
 				9AE8011421FFF81F00D5058C /* rewardsIcon-63.gif in Resources */,
 				9A926F8622034B3800CC2263 /* CellHighlight-10.png in Resources */,
 				9A926F6F22034B3800CC2263 /* CellHighlight-60.png in Resources */,
@@ -4120,6 +4144,7 @@
 				9A926F4522034B3700CC2263 /* CellHighlight-62.png in Resources */,
 				9A926F9222034B3800CC2263 /* CellHighlight-21.png in Resources */,
 				9A926F8122034B3800CC2263 /* CellHighlight-28.png in Resources */,
+				C47BD50A282E427300FAA903 /* Roboto-Regular.otf in Resources */,
 				9A926F7722034B3800CC2263 /* CellHighlight-44.png in Resources */,
 				9A926F4B22034B3800CC2263 /* CellHighlight-11.png in Resources */,
 				9AE800FD21FFF81F00D5058C /* rewardsIcon-59.gif in Resources */,
@@ -4161,6 +4186,7 @@
 				9A926F5C22034B3800CC2263 /* CellHighlight-16.png in Resources */,
 				9A926F7022034B3800CC2263 /* CellHighlight-1.png in Resources */,
 				9A926F4E22034B3800CC2263 /* CellHighlight-71.png in Resources */,
+				C47BD50B282E427300FAA903 /* Roboto-Medium.otf in Resources */,
 				9AE800E621FFF81F00D5058C /* rewardsIcon-21.gif in Resources */,
 				9A926F5022034B3800CC2263 /* CellHighlight-80.png in Resources */,
 				9A926F5722034B3800CC2263 /* CellHighlight-40.png in Resources */,
@@ -4184,6 +4210,7 @@
 				9A926F7522034B3800CC2263 /* CellHighlight-33.png in Resources */,
 				9A926F6C22034B3800CC2263 /* CellHighlight-61.png in Resources */,
 				9A926F9422034B3800CC2263 /* CellHighlight-56.png in Resources */,
+				C47BD4FD282E3CE600FAA903 /* Degular-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4754,6 +4781,7 @@
 				7CA3BC302006864C00517BF7 /* Currency.swift in Sources */,
 				7C72D134226625130091B185 /* CoreSystem.swift in Sources */,
 				CE3D4C571EF5D5740016B1C8 /* ReachabilityMonitor.swift in Sources */,
+				C46BFBBF282D339F00C3CEF2 /* Fonts.swift in Sources */,
 				7B54E59F27F4A2B0002DD1E4 /* KYCAPI.swift in Sources */,
 				C469BF1B27F6E6920070ED33 /* SwapConfirmTradeInteractor.swift in Sources */,
 				7CBA74E62022784D00FBBFA9 /* HomeScreenAssetViewModel.swift in Sources */,
