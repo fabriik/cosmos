@@ -108,6 +108,7 @@ class PriceChangeView: UIView, Subscriber {
         
         if style == .percentAndAbsolute, let absoluteString = currencyNumberFormatter.string(from: NSNumber(value: abs(priceChange.change24Hrs))) {
             absoluteLabel.text = "(\(absoluteString))"
+            prefixLabel.text = prefixValue
             percentLabel.text = percentText
             textColor = Theme.primaryBackground
             layoutIfNeeded()
@@ -116,11 +117,11 @@ class PriceChangeView: UIView, Subscriber {
                               duration: UIConstants.Animations.duration,
                               options: .curveEaseIn,
                               animations: { [weak self] in
+                self?.prefixLabel.text = self?.prefixValue ?? ""
                 self?.percentLabel.text = percentText
             })
         }
         
-        prefixLabel.text = prefixValue
         prefixLabel.textColor = textColor
         percentLabel.textColor = textColor
         absoluteLabel.textColor = textColor
