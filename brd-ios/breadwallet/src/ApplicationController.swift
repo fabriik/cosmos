@@ -386,13 +386,36 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapBuy = { url, reservationCode in
-            Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
+            
+            let message = "Fabriik is providing Buy functionality through Wyre, a third-party API provider."
+            
+            let alert = UIAlertController(title: "Partnership note",
+                                          message: message,
+                                          preferredStyle: .alert)
+            let continueAction = UIAlertAction(title: S.Button.continueAction, style: .default) { _ in
+                Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
+            }
+            
+            alert.addAction(continueAction)
+            navigationController.present(alert, animated: true, completion: nil)
         }
         
         homeScreen.didTapTrade = { [weak self] in
-            let currencies = self?.coreSystem.assetCollection?.allAssets.compactMap { $0.value.code } ?? []
-            Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
-        }
+                
+                let message = "Fabriik is providing Swap functionality through Changelly, a third-party API provider."
+                
+                let alert = UIAlertController(title: "Partnership note",
+                                              message: message,
+                                              preferredStyle: .alert)
+                let continueAction = UIAlertAction(title: S.Button.continueAction, style: .default) { _ in
+                    let currencies = self?.coreSystem.assetCollection?.allAssets.compactMap { $0.value.code } ?? []
+                    Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
+                }
+                
+                alert.addAction(continueAction)
+                navigationController.present(alert, animated: true, completion: nil)
+            }
+        // }
         
         homeScreen.didTapMenu = { [unowned self] in
             self.modalPresenter?.presentMenu()
