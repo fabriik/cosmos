@@ -16,27 +16,14 @@ class ManageWalletsViewController: UITableViewController {
     private let coreSystem: CoreSystem
     private var displayData = [CurrencyMetaData]()
     
-    private lazy var manageAssetsButton: UIButton = {
-        let manageAssetsButton = UIButton()
-        manageAssetsButton.titleLabel?.font = Theme.body1
-        manageAssetsButton.tintColor = Theme.tertiaryBackground
-        manageAssetsButton.setTitleColor(Theme.blueBackground, for: .normal)
-        manageAssetsButton.setTitleColor(Theme.transparentBlue, for: .highlighted)
-        
-        manageAssetsButton.layer.borderColor = UIColor.gray2.cgColor
-        manageAssetsButton.layer.borderWidth = 0.5
-        manageAssetsButton.layer.cornerRadius = C.Sizes.homeCellCornerRadius
-        
-        manageAssetsButton.contentHorizontalAlignment = .center
-        manageAssetsButton.contentVerticalAlignment = .center
-        
+    private lazy var manageAssetsButton: ManageAssetsButton = {
+        let manageAssetsButton = ManageAssetsButton()
         let manageAssetsButtonTitle = "+ " + S.TokenList.addTitle
-        manageAssetsButton.setTitle(manageAssetsButtonTitle, for: .normal)
+        manageAssetsButton.set(title: manageAssetsButtonTitle)
         manageAssetsButton.accessibilityLabel = manageAssetsButtonTitle
         
-        manageAssetsButton.tap = { [weak self] in
-            guard let self = self else { return }
-            self.pushAddWallets()
+        manageAssetsButton.didTap = { [weak self] in
+            self?.pushAddWallets()
         }
         
         return manageAssetsButton
