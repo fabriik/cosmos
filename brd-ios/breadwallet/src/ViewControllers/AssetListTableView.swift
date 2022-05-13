@@ -54,7 +54,9 @@ class AssetListTableView: UITableViewController, Subscriber {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Store.state.wallets.isEmpty {
-            showLoadingState(true)
+            DispatchQueue.main.async { [weak self] in
+                self?.showLoadingState(true)
+            }
         }
     }
     
@@ -161,9 +163,8 @@ class AssetListTableView: UITableViewController, Subscriber {
         DispatchQueue.main.async { [weak self] in
             self?.pullToRefreshControl.endRefreshing()
             self?.tableView.reloadData()
+            self?.showLoadingState(false)
         }
-        
-        showLoadingState(false)
     }
     
     required init?(coder aDecoder: NSCoder) {
