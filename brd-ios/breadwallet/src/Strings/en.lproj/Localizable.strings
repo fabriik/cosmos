@@ -836,7 +836,7 @@
 /* Description for sending money label */
 "Send.descriptionLabel" = "Memo";
 /* Optional Destination Tag label */
-"Send.destinationTag_optional" = "Destination Tag (Optional)";
+"Send.destinationTag_optional" = "Destination Tag";
 /* Required Destination Tag label */
 "Send.destinationTag_required" = "Destination Tag (Required)";
 "Send.destinationTag_required_error" = "A valid Destination Tag is required for the target address.";
