@@ -17,6 +17,7 @@ struct BackgroundConfiguration: BackgorundConfigurable {
 
 class FEView<C: Configurable, M: ViewModel>: UIView,
                                              ViewProtocol,
+                                             Marginable,
                                              Shadable,
                                              Borderable,
                                              Reusable {
@@ -53,10 +54,10 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
         content.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
-            content.centerXAnchor.constraint(equalTo: centerXAnchor),
-            content.centerYAnchor.constraint(equalTo: centerYAnchor),
-            content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutMargins.left),
-            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top)
+            content.leftAnchor.constraint(equalTo: leftAnchor, constant: layoutMargins.left),
+            content.rightAnchor.constraint(equalTo: rightAnchor, constant: -layoutMargins.right),
+            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top),
+            content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layoutMargins.bottom)
         ]
         setupClearMargins()
         NSLayoutConstraint.activate(constraints)
@@ -77,5 +78,28 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     func prepareForReuse() {
         config = nil
         viewModel = nil
+    }
+    
+    func configure(shadow: ShadowConfiguration?) {
+        guard let shadow = shadow else { return }
+        content.layoutIfNeeded()
+        
+        content.layer.masksToBounds = false
+        content.layer.shadowColor = shadow.color.cgColor
+        content.layer.shadowOpacity = shadow.opacity.rawValue
+        content.layer.shadowOffset = shadow.offset
+        content.layer.shadowRadius = 1
+        content.layer.shadowPath = UIBezierPath(roundedRect: content.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
+        content.layer.shouldRasterize = true
+        content.layer.rasterizationScale = UIScreen.main.scale
+    }
+    
+    func configure(border: BorderConfiguration?, backgroundConfiguration: BackgroundConfiguration? = nil) {
+        guard let border = border else { return }
+        
+        content.layer.masksToBounds = true
+        content.layer.cornerRadius = border.cornerRadius.rawValue
+        content.layer.borderWidth = border.borderWidth
+        content.layer.borderColor = backgroundConfiguration?.tintColor.cgColor ?? border.tintColor.cgColor
     }
 }

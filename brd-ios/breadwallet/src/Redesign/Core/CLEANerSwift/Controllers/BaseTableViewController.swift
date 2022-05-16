@@ -35,7 +35,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.register(WrapperTableViewCell<FELabel>.self)
         tableView.register(WrapperTableViewCell<FEButton>.self)
         tableView.register(WrapperTableViewCell<FETextField>.self)
-        tableView.register(WrapperTableViewCell<FEInfoView>.self)
+        tableView.register(WrapperTableViewCell<WrapperView<FEInfoView>>.self)
         
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -193,15 +193,20 @@ class BaseTableViewController<C: CoordinatableRoutes,
     func tableView(_ tableView: UITableView, infoViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         guard let model = sectionRows[section]?[indexPath.row] as? InfoViewModel,
-              let cell: WrapperTableViewCell<FEInfoView> = tableView.dequeueReusableCell(for: indexPath)
+              let cell: WrapperTableViewCell<WrapperView<FEInfoView>> = tableView.dequeueReusableCell(for: indexPath)
         else {
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.setup { button in
-            button.setup(with: model)
-            button.configure(with: Presets.InfoView.primary)
+        cell.setup { view in
+            view.setup { button in
+                button.setup(with: model)
+                button.configure(with: Presets.InfoView.primary)
+                button.setupCustomMargins(all: .extraHuge)
+            }
+            view.setupCustomMargins(all: .medium)
         }
+        cell.setupCustomMargins(all: .extraSmall)
         
         return cell
     }

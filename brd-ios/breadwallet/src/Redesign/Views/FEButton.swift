@@ -24,6 +24,7 @@ struct ButtonViewModel: ViewModel {
 
 class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     
+    var displayState: DisplayState = .normal
     var config: ButtonConfiguration?
     var viewModel: ButtonViewModel?
     
@@ -63,6 +64,8 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         setTitleColor(config.disabledConfiguration?.tintColor, for: .disabled)
         setTitleColor(config.selectedConfiguration?.tintColor, for: .selected)
         setTitleColor(config.selectedConfiguration?.tintColor, for: .highlighted)
+        configure(border: config.borderConfiguration)
+        configure(shadow: config.shadowConfiguration)
     }
     
     func setup(with viewModel: ButtonViewModel?) {
@@ -85,6 +88,10 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
             
         case .disabled:
             background = config?.disabledConfiguration
+            
+        case .error:
+            // TODO: handle?
+            return
         }
         
         // TODO: constant for duration
@@ -92,5 +99,26 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
             self?.backgroundColor = background?.backgroundColor
             self?.tintColor = background?.tintColor
         }
+    }
+    
+    func configure(shadow: ShadowConfiguration?) {
+        guard let shadow = shadow else { return }
+        
+        marginableView.layer.masksToBounds = false
+        marginableView.layer.shadowColor = shadow.color.cgColor
+        marginableView.layer.shadowOpacity = shadow.opacity.rawValue
+        marginableView.layer.shadowOffset = shadow.offset
+        marginableView.layer.shadowRadius = 1
+        marginableView.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
+        marginableView.layer.shouldRasterize = true
+        marginableView.layer.rasterizationScale = UIScreen.main.scale
+    }
+    
+    func configure(border: BorderConfiguration?, backgroundConfiguration: BackgroundConfiguration? = nil) {
+        guard let border = border else { return }
+        
+        marginableView.layer.cornerRadius = border.cornerRadius.rawValue
+        marginableView.layer.borderWidth = border.borderWidth
+        marginableView.layer.borderColor = backgroundConfiguration?.tintColor.cgColor ?? border.tintColor.cgColor
     }
 }

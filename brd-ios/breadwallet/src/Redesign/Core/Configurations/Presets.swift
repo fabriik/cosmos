@@ -35,7 +35,11 @@ struct Presets {
     
     // TODO: add as needed
     struct Shadow {
-        static var normal = ShadowConfiguration(color: .cyan, opacity: .highest, offset: .init(width: 30, height: 30), cornerRadius: .small)
+        // TODO: the shadow color is not part of our Color config?
+        static var normal = ShadowConfiguration(color: LightColors.Contrast.primary,
+                                                opacity: .low,
+                                                offset: .init(width: 4, height: 10),
+                                                cornerRadius: .small)
         static var zero = ShadowConfiguration(color: .clear, opacity: .zero, offset: .zero, cornerRadius: .small)
     }
     
@@ -43,14 +47,14 @@ struct Presets {
         // TODO: fonts
         static var primary = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Text.primary)
         static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Text.secondary)
-        static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 14), textColor: .white)
+        static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 16), textColor: LightColors.Contrast.secondary)
         static var contrast = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Contrast.secondary)
     }
     
     struct Image {
         static var primary = ImageViewConfiguration(tintColor: LightColors.Text.primary)
         static var secondary = ImageViewConfiguration(tintColor: LightColors.Text.secondary)
-        static var tertiary = ImageViewConfiguration(tintColor: .white)
+        static var tertiary = ImageViewConfiguration(tintColor: LightColors.Contrast.secondary)
     }
 }
 
@@ -70,7 +74,7 @@ extension Presets {
     
     struct TexxtField {
         static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.secondary),
-                                                    // TODO: extract to LabelConfig when fonts are added
+                                                    titleConfiguration: .init(font: Fonts.overline, textColor: LightColors.Text.secondary),
                                                     textConfiguration: Presets.Label.primary,
                                                     placeholderConfiguration: Presets.Label.primary,
                                                     hintConfiguration: Presets.Label.secondary,

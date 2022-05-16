@@ -139,6 +139,12 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         NSLayoutConstraint.activate(constraints)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configure(border: config?.border)
+        configure(shadow: config?.shadow)
+    }
+    
     override func configure(with config: InfoViewConfiguration?) {
         guard let config = config else { return }
         super.configure(with: config)
@@ -150,8 +156,9 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         titleLabel.configure(with: config.title)
         descriptionLabel.configure(with: config.description)
         trailingButton.configure(with: config.button)
-        configure(shadow: config.shadow)
+        
         configure(border: config.border)
+        configure(shadow: config.shadow)
     }
     
     override func setup(with viewModel: InfoViewModel?) {

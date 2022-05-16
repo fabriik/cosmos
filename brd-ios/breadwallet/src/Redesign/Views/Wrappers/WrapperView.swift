@@ -14,10 +14,9 @@ class WrapperView<T: UIView>: UIView,
                               Wrappable,
                               Marginable,
                               Reusable {
-    
-    lazy var content = UIView()
 
     // MARK: Lazy UI
+    lazy var content = UIView()
     lazy var wrappedView = T()
 
     // MARK: - Overrides
@@ -25,6 +24,16 @@ class WrapperView<T: UIView>: UIView,
         didSet {
             wrappedView.tintColor = tintColor
         }
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupSubviews()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupSubviews()
     }
 
     func setupSubviews() {
@@ -34,15 +43,15 @@ class WrapperView<T: UIView>: UIView,
         wrappedView.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
-            content.centerXAnchor.constraint(equalTo: centerXAnchor),
-            content.centerYAnchor.constraint(equalTo: centerYAnchor),
-            content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutMargins.left),
+            content.leftAnchor.constraint(equalTo: leftAnchor, constant: layoutMargins.left),
+            content.rightAnchor.constraint(equalTo: rightAnchor, constant: -layoutMargins.right),
             content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top),
+            content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layoutMargins.bottom),
             
-            wrappedView.centerXAnchor.constraint(equalTo: content.centerXAnchor),
-            wrappedView.centerYAnchor.constraint(equalTo: content.centerYAnchor),
-            wrappedView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
-            wrappedView.topAnchor.constraint(equalTo: content.topAnchor)
+            wrappedView.leftAnchor.constraint(equalTo: content.leftAnchor),
+            wrappedView.rightAnchor.constraint(equalTo: content.rightAnchor),
+            wrappedView.topAnchor.constraint(equalTo: content.topAnchor),
+            wrappedView.bottomAnchor.constraint(equalTo: content.bottomAnchor)
         ]
         setupClearMargins()
         NSLayoutConstraint.activate(constraints)
