@@ -50,7 +50,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         super.layoutSubviews()
         
         // Border
-        configure(border: config?.borderConfiguration)
+        configure(background: config?.backgroundConfiguration)
         // Shadow
         configure(shadow: config?.shadowConfiguration)
     }
@@ -64,7 +64,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         setTitleColor(config.disabledConfiguration?.tintColor, for: .disabled)
         setTitleColor(config.selectedConfiguration?.tintColor, for: .selected)
         setTitleColor(config.selectedConfiguration?.tintColor, for: .highlighted)
-        configure(border: config.borderConfiguration)
+        configure(background: config.backgroundConfiguration)
         configure(shadow: config.shadowConfiguration)
     }
     
@@ -114,11 +114,14 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         marginableView.layer.rasterizationScale = UIScreen.main.scale
     }
     
-    func configure(border: BorderConfiguration?, backgroundConfiguration: BackgroundConfiguration? = nil) {
-        guard let border = border else { return }
+    func configure(background: BackgroundConfiguration? = nil) {
+        backgroundColor = background?.backgroundColor
+        tintColor = background?.borderConfiguration?.tintColor ?? background?.tintColor
+        
+        guard let border = background?.borderConfiguration else { return }
         
         marginableView.layer.cornerRadius = border.cornerRadius.rawValue
         marginableView.layer.borderWidth = border.borderWidth
-        marginableView.layer.borderColor = backgroundConfiguration?.tintColor.cgColor ?? border.tintColor.cgColor
+        marginableView.layer.borderColor = border.tintColor.cgColor
     }
 }

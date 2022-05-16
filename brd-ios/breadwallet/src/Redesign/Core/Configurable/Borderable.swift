@@ -11,5 +11,5 @@
 import UIKit
 
 protocol Borderable {
-    func configure(border: BorderConfiguration?, backgroundConfiguration: BackgroundConfiguration?)
+    func configure(background: BackgroundConfiguration?)
 }

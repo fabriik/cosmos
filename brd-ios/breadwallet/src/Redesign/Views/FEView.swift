@@ -11,8 +11,10 @@
 import UIKit
 
 struct BackgroundConfiguration: BackgorundConfigurable {
-    var backgroundColor: UIColor
+    var backgroundColor: UIColor = .clear
     var tintColor: UIColor
+    
+    var borderConfiguration: BorderConfiguration?
 }
 
 class FEView<C: Configurable, M: ViewModel>: UIView,
@@ -94,12 +96,15 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
         content.layer.rasterizationScale = UIScreen.main.scale
     }
     
-    func configure(border: BorderConfiguration?, backgroundConfiguration: BackgroundConfiguration? = nil) {
-        guard let border = border else { return }
+    func configure(background: BackgroundConfiguration?) {
+        content.backgroundColor = background?.backgroundColor
+        content.tintColor = background?.borderConfiguration?.tintColor ?? background?.tintColor
+        
+        guard let border = background?.borderConfiguration else { return }
         
         content.layer.masksToBounds = true
         content.layer.cornerRadius = border.cornerRadius.rawValue
         content.layer.borderWidth = border.borderWidth
-        content.layer.borderColor = backgroundConfiguration?.tintColor.cgColor ?? border.tintColor.cgColor
+        content.layer.borderColor = border.tintColor.cgColor
     }
 }

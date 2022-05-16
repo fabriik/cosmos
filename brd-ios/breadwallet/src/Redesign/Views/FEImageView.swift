@@ -13,6 +13,8 @@ import UIKit
 struct ImageViewConfiguration: BackgorundConfigurable {
     var backgroundColor: UIColor = .clear
     var tintColor: UIColor
+    
+    var borderConfiguration: BorderConfiguration?
 }
 
 enum ImageViewModel: ViewModel {

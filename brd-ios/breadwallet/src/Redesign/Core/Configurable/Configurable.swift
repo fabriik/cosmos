@@ -19,6 +19,8 @@ protocol Configurable {}
 protocol BackgorundConfigurable: Configurable {
     var backgroundColor: UIColor { get }
     var tintColor: UIColor { get }
+    // optional
+    var borderConfiguration: BorderConfiguration? { get }
 }
 
 /// BorderConfigurable protocol,

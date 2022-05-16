@@ -141,7 +141,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        configure(border: config?.border)
+        configure(background: config?.background)
         configure(shadow: config?.shadow)
     }
     
@@ -157,7 +157,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         descriptionLabel.configure(with: config.description)
         trailingButton.configure(with: config.button)
         
-        configure(border: config.border)
+        configure(background: config.background)
         configure(shadow: config.shadow)
     }
     

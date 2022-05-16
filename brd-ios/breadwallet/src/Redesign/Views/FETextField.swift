@@ -184,12 +184,11 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             background = config?.errorBackgroundConfiguration
         }
         
-        if textField.isFirstResponder,
-            let bgColor = backgroundColor, let tint = tintColor {
-            background = .init(backgroundColor: bgColor, tintColor: tint)
-        }
+//        if textField.isFirstResponder {
+//            background = config?.selectedBackgroundConfiguration
+//        }
         // Border
-        configure(border: config?.borderConfiguration, backgroundConfiguration: background)
+        configure(background: background)
         // Shadow
         configure(shadow: config?.shadowConfiguration)
     }
@@ -244,28 +243,28 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         layoutIfNeeded()
     }
     
-    func displayError(message: String? = nil) {
-        let hideHint = message == nil
-        // TODO: constant
-        UIView.animate(withDuration: 0.25) { [unowned self] in
-            let tintColor: UIColor?
-            if let message = message {
-                hintLabel.setup(with: .text(message))
-                tintColor = config?.errorBackgroundConfiguration?.tintColor
-            } else {
-                tintColor = config?.backgroundConfiguration?.tintColor
-            }
+//    func displayError(message: String? = nil) {
+//        let hideHint = message == nil
+//        // TODO: constant
+//        UIView.animate(withDuration: 0.25) { [unowned self] in
+//            let tintColor: UIColor?
+//            if let message = message {
+//                hintLabel.setup(with: .text(message))
+//                tintColor = config?.errorBackgroundConfiguration?.tintColor
+//            } else {
+//                tintColor = config?.backgroundConfiguration?.tintColor
+//            }
+//
+//            if hideHint != hintLabel.isHidden {
+//                hintLabel.isHidden = hideHint
+//            }
+//
+//            leadingView.tintColor = tintColor
+//            textField.textColor = hideHint ? config?.textConfiguration?.textColor : tintColor
+//
+//        }
+//    }
 
-            if hideHint != hintLabel.isHidden {
-                hintLabel.isHidden = hideHint
-            }
-            
-            leadingView.tintColor = tintColor
-            textField.textColor = hideHint ? config?.textConfiguration?.textColor : tintColor
-            
-        }
-    }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         animateTo(state: .selected)
      }
@@ -328,15 +327,12 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         // TODO: constant for duration
         UIView.animate(withDuration: withAnimation ? 0.25 : 0) { [unowned self] in
-            backgroundColor = background?.backgroundColor
-            tintColor = background?.tintColor
-            
             if hintLabel.isHidden == (state == .error) {
                 hintLabel.isHidden = state != .error
             }
             hintLabel.configure(with: .init(textColor: background?.tintColor))
             // Border
-            configure(border: config?.borderConfiguration, backgroundConfiguration: background)
+            configure(background: background)
             // Shadow
             configure(shadow: config?.shadowConfiguration)
             textField.layoutIfNeeded()
@@ -361,13 +357,13 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         content.layer.rasterizationScale = UIScreen.main.scale
     }
     
-    override func configure(border: BorderConfiguration?, backgroundConfiguration: BackgroundConfiguration? = nil) {
-        guard let border = border else { return }
+    override func configure(background: BackgroundConfiguration? = nil) {
+        guard let border = background?.borderConfiguration else { return }
         let content = verticalStackView
         
         content.layer.masksToBounds = true
         content.layer.cornerRadius = border.cornerRadius.rawValue
         content.layer.borderWidth = border.borderWidth
-        content.layer.borderColor = backgroundConfiguration?.tintColor.cgColor ?? border.tintColor.cgColor
+        content.layer.borderColor = border.tintColor.cgColor
     }
 }

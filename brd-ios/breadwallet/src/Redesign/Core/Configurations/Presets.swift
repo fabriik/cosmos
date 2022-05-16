@@ -18,19 +18,22 @@ struct Presets {
             static var normal = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: LightColors.Contrast.secondary)
             static var selected = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.pressed, tintColor: LightColors.Contrast.secondary)
             static var disabled = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.disabled, tintColor: LightColors.Contrast.secondary)
-            static var error = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: .red)
+            static var error = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: LightColors.error)
         }
         struct Secondary {
-            static var normal = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.Link.primary)
-            static var selected = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.Link.primary)
-            static var disabled = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.InteractionPrimary.disabled)
-            static var error = BackgroundConfiguration(backgroundColor: .clear, tintColor: .red)
+            static var normal = BackgroundConfiguration(tintColor: LightColors.Link.primary)
+            static var normalWithBorder = BackgroundConfiguration(tintColor: LightColors.Link.primary, borderConfiguration: Presets.Border.normal)
+            static var selected = BackgroundConfiguration(tintColor: LightColors.primary, borderConfiguration: Presets.Border.selected)
+            static var disabled = BackgroundConfiguration(tintColor: LightColors.InteractionPrimary.disabled)
+            static var error = BackgroundConfiguration(tintColor: LightColors.error, borderConfiguration: Presets.Border.error)
         }
     }
     
     struct Border {
         static var normal = BorderConfiguration(tintColor: LightColors.Outline.primary, borderWidth: 1, cornerRadius: .small)
-        static var zero = BorderConfiguration(tintColor: .clear, borderWidth: 0, cornerRadius: .small)
+        static var selected = BorderConfiguration(tintColor: LightColors.primary, borderWidth: 1, cornerRadius: .small)
+        static var error = BorderConfiguration(tintColor: LightColors.error, borderWidth: 1, cornerRadius: .small)
+        static var zero = BorderConfiguration(borderWidth: 0, cornerRadius: .small)
     }
     
     // TODO: add as needed
@@ -73,12 +76,12 @@ extension Presets {
     }
     
     struct TexxtField {
-        static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.secondary),
+        static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(tintColor: LightColors.Icons.secondary),
                                                     titleConfiguration: .init(font: Fonts.overline, textColor: LightColors.Text.secondary),
                                                     textConfiguration: Presets.Label.primary,
                                                     placeholderConfiguration: Presets.Label.primary,
                                                     hintConfiguration: Presets.Label.secondary,
-                                                    backgroundConfiguration: Presets.Background.Secondary.normal,
+                                                    backgroundConfiguration: Presets.Background.Secondary.normalWithBorder,
                                                     selectedBackgroundConfiguration: Presets.Background.Secondary.selected,
                                                     disabledBackgroundConfiguration: Presets.Background.Secondary.disabled,
                                                     errorBackgroundConfiguration: Presets.Background.Secondary.error,
