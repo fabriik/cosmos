@@ -97,7 +97,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
         view.setup { view in
             view.setup(with: .text(text))
-            view.configure(with: Presets.Label.secondary)
+            view.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
         }
 
         return view
@@ -111,7 +111,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         view.setup { view in
             // TODO: attributed string support
             view.setup(with: .attributedText(text))
-            view.configure(with: Presets.Label.secondary)
+            view.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
         }
 
         return view
@@ -152,7 +152,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         
         cell.setup { label in
             label.setup(with: .text(text))
-            label.configure(with: .init(font: .boldSystemFont(ofSize: 25), textColor: .blue))
+            label.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
         }
         
         return cell

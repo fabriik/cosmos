@@ -11,9 +11,9 @@
 import UIKit
 
 struct InfoViewConfiguration: Configurable {
-    var headerLeadingImage: ImageViewConfiguration?
+    var headerLeadingImage: BackgroundConfiguration?
     var headerTitle: LabelConfiguration?
-    var headerTrailingImage: ImageViewConfiguration?
+    var headerTrailingImage: BackgroundConfiguration?
     
     var title: LabelConfiguration?
     var description: LabelConfiguration?

@@ -10,13 +10,6 @@
 
 import UIKit
 
-struct BackgroundConfiguration: BackgorundConfigurable {
-    var backgroundColor: UIColor = .clear
-    var tintColor: UIColor
-    
-    var border: BorderConfiguration?
-}
-
 class FEView<C: Configurable, M: ViewModel>: UIView,
                                              ViewProtocol,
                                              Marginable,

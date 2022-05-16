@@ -361,6 +361,7 @@
 		7E274B1E282BBC9900E336EE /* NSLayoutConstraint+priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B1D282BBC9900E336EE /* NSLayoutConstraint+priority.swift */; };
 		7E274B20282BE18100E336EE /* FEInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E274B1F282BE18000E336EE /* FEInfoView.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
+		7EA65BD92832671200725B6F /* BackgroundConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA65BD82832671200725B6F /* BackgroundConfiguration.swift */; };
 		7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC37908281C098900028CA1 /* ErrorStruct.swift */; };
 		7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */; };
 		7EC41B6128292F680090894A /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC41B5228292F680090894A /* Configurable.swift */; };
@@ -1290,6 +1291,7 @@
 		7E274B1F282BE18000E336EE /* FEInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEInfoView.swift; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
+		7EA65BD82832671200725B6F /* BackgroundConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundConfiguration.swift; sourceTree = "<group>"; };
 		7EC37908281C098900028CA1 /* ErrorStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStruct.swift; sourceTree = "<group>"; };
 		7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorRequest.swift; sourceTree = "<group>"; };
 		7EC41B5228292F680090894A /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
@@ -2756,6 +2758,7 @@
 				7E274B15282B8CE600E336EE /* ShadowConfiguration.swift */,
 				7E274B17282B8D0600E336EE /* BorderConfiguration.swift */,
 				7E274B19282B8D3600E336EE /* Presets.swift */,
+				7EA65BD82832671200725B6F /* BackgroundConfiguration.swift */,
 			);
 			path = Configurations;
 			sourceTree = "<group>";
@@ -4388,6 +4391,7 @@
 				7B54E52A27F4A208002DD1E4 /* KYCConfirmEmailPresenter.swift in Sources */,
 				7EF2999127E3B8D200A2238A /* MarketChart.swift in Sources */,
 				7EC41BA9282949620090894A /* AlertVIP.swift in Sources */,
+				7EA65BD92832671200725B6F /* BackgroundConfiguration.swift in Sources */,
 				CEA9178620C07FBB00F29B31 /* SyncingHeaderView.swift in Sources */,
 				7BDB49F92806F1090031F015 /* PlatformAuthResult.swift in Sources */,
 				CEC6AA3B1DEE4EB000EE5AFD /* CGRect+Additions.swift in Sources */,

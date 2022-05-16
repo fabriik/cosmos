@@ -10,19 +10,12 @@
 
 import UIKit
 
-struct ImageViewConfiguration: BackgorundConfigurable {
-    var backgroundColor: UIColor = .clear
-    var tintColor: UIColor
-    
-    var border: BorderConfiguration?
-}
-
 enum ImageViewModel: ViewModel {
     case animation(String)
     case image(String)
 }
 
-class FEImageView: FEView<ImageViewConfiguration, ImageViewModel> {
+class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
     
     // MARK: Lazy UI
     private lazy var imageView: UIImageView = {
@@ -47,7 +40,7 @@ class FEImageView: FEView<ImageViewConfiguration, ImageViewModel> {
     }
     
     // MARK: NCViewProtocol
-    override func configure(with config: ImageViewConfiguration?) {
+    override func configure(with config: BackgroundConfiguration?) {
         super.configure(with: config)
         guard let tintColor = config?.tintColor else { return }
         imageView.tintColor = tintColor

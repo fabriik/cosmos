@@ -19,7 +19,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     override func prepareData() {
         sections = [
-//            Models.Section.infoView,
+            Models.Section.infoView,
 //            Models.Section.label,
             Models.Section.button,
             Models.Section.textField

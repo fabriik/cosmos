@@ -11,12 +11,12 @@
 import UIKit
 
 struct TextFieldConfiguration: Configurable {
-    var leadingImageConfiguration: ImageViewConfiguration?
+    var leadingImageConfiguration: BackgroundConfiguration?
     var titleConfiguration: LabelConfiguration?
     var textConfiguration: LabelConfiguration?
     var placeholderConfiguration: LabelConfiguration?
     var hintConfiguration: LabelConfiguration?
-    var trailingImageConfiguration: ImageViewConfiguration?
+    var trailingImageConfiguration: BackgroundConfiguration?
     
     var infoConfiguration: InfoViewConfiguration? = Presets.InfoView.primary
     
@@ -225,14 +225,14 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         infoView.setup(with: viewModel.info)
         infoView.isHidden = viewModel.info == nil
 
-        if let placeholder = viewModel.placeholder {
-            let config = Presets.Label.secondary
-            let attributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: (config.textColor ?? .black),
-                .font: config.font
-            ]
-            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
-        }
+//        if let placeholder = viewModel.placeholder {
+//            let config = Presets.Label.secondary
+//            let attributes: [NSAttributedString.Key: Any] = [
+//                .foregroundColor: (config.textColor ?? .black),
+//                .font: config.font
+//            ]
+//            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
+//        }
 
         leadingView.isHidden = viewModel.leading == nil
         leadingView.setup(with: viewModel.leading)
