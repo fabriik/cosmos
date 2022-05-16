@@ -129,13 +129,12 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             containerStack.topAnchor.constraint(equalTo: content.topAnchor, constant: Margins.small.rawValue)
         ])
         
-        // TODO: add container for error + vertical stack (only vertical stack needs to be 'bordered')
         containerStack.addArrangedSubview(verticalStackView)
         constraints.append(verticalStackView.heightAnchor.constraint(equalToConstant: 48))
         verticalStackView.setupClearMargins()
         
         containerStack.addArrangedSubview(hintLabel)
-        constraints.append(hintLabel.heightAnchor.constraint(equalToConstant: Margins.large.rawValue))
+        constraints.append(hintLabel.heightAnchor.constraint(equalToConstant: Margins.extraLarge.rawValue))
         
         verticalStackView.wrappedView.addArrangedSubview(titleLabel)
         constraints.append(titleLabel.heightAnchor.constraint(equalToConstant: Margins.large.rawValue))
@@ -225,14 +224,14 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         infoView.setup(with: viewModel.info)
         infoView.isHidden = viewModel.info == nil
 
-//        if let placeholder = viewModel.placeholder {
-//            let config = Presets.Label.secondary
-//            let attributes: [NSAttributedString.Key: Any] = [
-//                .foregroundColor: (config.textColor ?? .black),
-//                .font: config.font
-//            ]
-//            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
-//        }
+        if let placeholder = viewModel.placeholder,
+           let config = config?.placeholderConfiguration {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: (config.textColor ?? .black),
+                .font: config.font
+            ]
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
+        }
 
         leadingView.isHidden = viewModel.leading == nil
         leadingView.setup(with: viewModel.leading)
@@ -241,28 +240,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         trailingView.setup(with: viewModel.trailing)
         layoutIfNeeded()
     }
-    
-//    func displayError(message: String? = nil) {
-//        let hideHint = message == nil
-//        // TODO: constant
-//        UIView.animate(withDuration: 0.25) { [unowned self] in
-//            let tintColor: UIColor?
-//            if let message = message {
-//                hintLabel.setup(with: .text(message))
-//                tintColor = config?.errorBackgroundConfiguration?.tintColor
-//            } else {
-//                tintColor = config?.backgroundConfiguration?.tintColor
-//            }
-//
-//            if hideHint != hintLabel.isHidden {
-//                hintLabel.isHidden = hideHint
-//            }
-//
-//            leadingView.tintColor = tintColor
-//            textField.textColor = hideHint ? config?.textConfiguration?.textColor : tintColor
-//
-//        }
-//    }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         animateTo(state: .selected)
@@ -309,7 +286,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             horizontalStackView.isHidden = textField.text?.isEmpty == true
             textField.resignFirstResponder()
             
-            // TODO: any need to split?
         case .highlighted, .selected:
             horizontalStackView.isHidden = false
             background = config?.selectedBackgroundConfiguration
@@ -334,10 +310,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             configure(background: background)
             // Shadow
             configure(shadow: config?.shadowConfiguration)
-            textField.layoutIfNeeded()
-            titleLabel.layoutIfNeeded()
             horizontalStackView.layoutIfNeeded()
-            verticalStackView.wrappedView.layoutIfNeeded()
+//            verticalStackView.wrappedView.layoutIfNeeded()
             containerStack.layoutIfNeeded()
         }
     }

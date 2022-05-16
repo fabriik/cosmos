@@ -316,6 +316,12 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             return _ = handleValidationResult(.insufficientGas)
         }
         
+        
+        
+        guard currentAmount < balance.cryptoAmount else {
+            return _ = handleValidationResult(.insufficientGas)
+        }
+        
         sender.estimateLimitMaximum(address: address, fee: feeLevel, completion: { [weak self] result in
             guard let `self` = self else { return }
             switch result {
