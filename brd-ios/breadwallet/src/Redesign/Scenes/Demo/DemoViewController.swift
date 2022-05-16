@@ -21,7 +21,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         sections = [
 //            Models.Section.infoView,
 //            Models.Section.label,
-//            Models.Section.button,
+            Models.Section.button,
             Models.Section.textField
         ]
         

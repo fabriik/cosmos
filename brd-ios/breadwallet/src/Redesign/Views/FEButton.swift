@@ -14,7 +14,6 @@ struct ButtonConfiguration: Configurable {
     var backgroundConfiguration: BackgroundConfiguration?
     var selectedConfiguration: BackgroundConfiguration?
     var disabledConfiguration: BackgroundConfiguration?
-    var borderConfiguration: BorderConfiguration?
     var shadowConfiguration: ShadowConfiguration?
 }
 
@@ -115,13 +114,20 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     }
     
     func configure(background: BackgroundConfiguration? = nil) {
-        backgroundColor = background?.backgroundColor
-        tintColor = background?.borderConfiguration?.tintColor ?? background?.tintColor
+        marginableView.backgroundColor = background?.backgroundColor
         
-        guard let border = background?.borderConfiguration else { return }
-        
+        guard let border = background?.border else { return }
         marginableView.layer.cornerRadius = border.cornerRadius.rawValue
         marginableView.layer.borderWidth = border.borderWidth
         marginableView.layer.borderColor = border.tintColor.cgColor
+        
+        marginableView.layer.masksToBounds = false
+        marginableView.layer.shadowColor = UIColor.clear.cgColor
+        marginableView.layer.shadowOpacity = 0
+        marginableView.layer.shadowOffset = .zero
+        marginableView.layer.shadowRadius = 0
+        marginableView.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: border.cornerRadius.rawValue).cgPath
+        marginableView.layer.shouldRasterize = true
+        marginableView.layer.rasterizationScale = UIScreen.main.scale
     }
 }

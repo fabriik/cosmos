@@ -26,7 +26,6 @@ struct TextFieldConfiguration: Configurable {
     var errorBackgroundConfiguration: BackgroundConfiguration?
     
     var shadowConfiguration: ShadowConfiguration?
-    var borderConfiguration: BorderConfiguration?
 }
 
 struct TextFieldModel: ViewModel {
@@ -358,7 +357,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     }
     
     override func configure(background: BackgroundConfiguration? = nil) {
-        guard let border = background?.borderConfiguration else { return }
+        guard let border = background?.border else { return }
         let content = verticalStackView
         
         content.layer.masksToBounds = true

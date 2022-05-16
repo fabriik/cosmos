@@ -20,8 +20,6 @@ struct InfoViewConfiguration: Configurable {
     var button: ButtonConfiguration?
     
     var background: BackgroundConfiguration?
-    
-    var border: BorderConfiguration?
     var shadow: ShadowConfiguration?
 }
 

@@ -14,7 +14,7 @@ struct ImageViewConfiguration: BackgorundConfigurable {
     var backgroundColor: UIColor = .clear
     var tintColor: UIColor
     
-    var borderConfiguration: BorderConfiguration?
+    var border: BorderConfiguration?
 }
 
 enum ImageViewModel: ViewModel {

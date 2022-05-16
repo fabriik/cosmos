@@ -125,7 +125,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
         view.setup { view in
             view.setup(with: .init(title: text))
-            view.configure(with: Presets.Button.secondary)
+            view.configure(with: Presets.Button.primary)
             // TODO: add callback to suplementaryViewTapped
         }
 

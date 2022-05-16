@@ -14,7 +14,7 @@ struct BackgroundConfiguration: BackgorundConfigurable {
     var backgroundColor: UIColor = .clear
     var tintColor: UIColor
     
-    var borderConfiguration: BorderConfiguration?
+    var border: BorderConfiguration?
 }
 
 class FEView<C: Configurable, M: ViewModel>: UIView,
@@ -98,9 +98,9 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     
     func configure(background: BackgroundConfiguration?) {
         content.backgroundColor = background?.backgroundColor
-        content.tintColor = background?.borderConfiguration?.tintColor ?? background?.tintColor
+        content.tintColor = background?.border?.tintColor ?? background?.tintColor
         
-        guard let border = background?.borderConfiguration else { return }
+        guard let border = background?.border else { return }
         
         content.layer.masksToBounds = true
         content.layer.cornerRadius = border.cornerRadius.rawValue
