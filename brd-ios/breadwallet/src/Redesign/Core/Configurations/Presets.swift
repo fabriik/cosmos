@@ -15,53 +15,23 @@ struct Presets {
     // TODO: prolly each BG has to have a "borderConfig"
     struct Background {
         struct Primary {
-            static func normal(withBorder: Bool = false) -> BackgroundConfiguration {
-                var border: BorderConfiguration?
-                if withBorder {
-                    border = Presets.Border.normal
-                }
-                return .init(backgroundColor: LightColors.primary, tintColor: LightColors.Contrast.secondary, border: border)
-            }
-            
-            static func selected(withBorder: Bool = false) -> BackgroundConfiguration {
-                var border: BorderConfiguration?
-                if withBorder {
-                    border = Presets.Border.selected
-                }
-                return .init(backgroundColor: LightColors.InteractionPrimary.pressed, tintColor: LightColors.Contrast.secondary, border: border)
-            }
-            
-            static func disabled(withBorder: Bool = false) -> BackgroundConfiguration {
-                var border: BorderConfiguration?
-                if withBorder {
-                    border = Presets.Border.normal
-                }
-                return .init(backgroundColor: LightColors.InteractionPrimary.disabled, tintColor: LightColors.Contrast.secondary, border: border)
-            }
-            
-            static func error(withBorder: Bool = false) -> BackgroundConfiguration {
-                var border: BorderConfiguration?
-                if withBorder {
-                    border = Presets.Border.error
-                }
-                return .init(backgroundColor: LightColors.primary, tintColor: LightColors.error, border: border)
-            }
+            static var normal = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: LightColors.Contrast.two)
+            static var selected = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.pressed, tintColor: LightColors.Contrast.two)
+            static var disabled = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.disabled, tintColor: LightColors.Contrast.two)
+            static var error = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: .red)
         }
         
         struct Secondary {
-            static var normal = BackgroundConfiguration(tintColor: LightColors.Link.primary)
-            static var normalWithBorder = BackgroundConfiguration(tintColor: LightColors.Link.primary, border: Presets.Border.normal)
-            static var selected = BackgroundConfiguration(tintColor: LightColors.primary, border: Presets.Border.selected)
-            static var disabled = BackgroundConfiguration(tintColor: LightColors.InteractionPrimary.disabled)
-            static var error = BackgroundConfiguration(tintColor: LightColors.error, border: Presets.Border.error)
+            static var normal = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.Link.one)
+            static var selected = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.Link.one)
+            static var disabled = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.InteractionPrimary.disabled)
+            static var error = BackgroundConfiguration(backgroundColor: .clear, tintColor: .red)
         }
     }
     
     struct Border {
-        static var normal = BorderConfiguration(tintColor: LightColors.Outline.primary, borderWidth: 1, cornerRadius: .small)
-        static var selected = BorderConfiguration(tintColor: LightColors.primary, borderWidth: 1, cornerRadius: .small)
-        static var error = BorderConfiguration(tintColor: LightColors.error, borderWidth: 1, cornerRadius: .small)
-        static var zero = BorderConfiguration(borderWidth: 0, cornerRadius: .small)
+        static var normal = BorderConfiguration(tintColor: LightColors.Outline.one, borderWidth: 1, cornerRadius: .small)
+        static var zero = BorderConfiguration(tintColor: .clear, borderWidth: 0, cornerRadius: .small)
     }
     
     // TODO: add as needed
@@ -76,10 +46,10 @@ struct Presets {
     
     struct Label {
         // TODO: fonts
-        static var primary = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Text.primary)
-        static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Text.secondary)
-        static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 16), textColor: LightColors.Contrast.secondary)
-        static var contrast = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Contrast.secondary)
+        static var primary = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Text.one)
+        static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Text.two)
+        static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 14), textColor: .white)
+        static var contrast = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Contrast.two)
     }
     
     struct Image {
@@ -102,8 +72,8 @@ extension Presets {
     }
     
     struct TexxtField {
-        static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(tintColor: LightColors.Icons.secondary),
-                                                    titleConfiguration: .init(font: Fonts.overline, textColor: LightColors.Text.secondary),
+        static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.two),
+                                                    // TODO: extract to LabelConfig when fonts are added
                                                     textConfiguration: Presets.Label.primary,
                                                     placeholderConfiguration: Presets.Label.primary,
                                                     hintConfiguration: Presets.Label.secondary,
@@ -121,7 +91,8 @@ extension Presets {
                                                    description: Presets.Label.contrast,
                                                    button: Presets.Button.primary,
                                                    background: .init(backgroundColor: LightColors.secondary,
-                                                                     tintColor: LightColors.Contrast.secondary),
+                                                                     tintColor: LightColors.Contrast.two),
+                                                   border: Presets.Border.zero,
                                                    shadow: Presets.Shadow.normal)
     }
 }
