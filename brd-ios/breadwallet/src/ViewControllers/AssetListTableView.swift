@@ -16,9 +16,27 @@ class AssetListTableView: UITableViewController, Subscriber {
     let loadingSpinner = UIActivityIndicatorView(style: .white)
 
     private let assetHeight: CGFloat = 80.0 // rowHeight of 72 plus 8 padding
-    private let addWalletButtonHeight: CGFloat = 56.0
-    private let addWalletButton = UIButton()
-
+    
+    private lazy var manageAssetsButton: ManageAssetsButton = {
+        let manageAssetsButton = ManageAssetsButton()
+        let manageAssetsButtonTitle = S.MenuButton.manageAssets
+        manageAssetsButton.set(title: manageAssetsButtonTitle)
+        manageAssetsButton.accessibilityLabel = manageAssetsButtonTitle
+        
+        manageAssetsButton.didTap = { [weak self] in
+            self?.addWallet()
+        }
+        
+        return manageAssetsButton
+    }()
+    
+    private lazy var footerView: UIView = {
+        let footerView = UIView()
+        footerView.backgroundColor = .homeBackground
+        
+        return footerView
+    }()
+    
     // MARK: - Init
     
     init() {
@@ -43,7 +61,7 @@ class AssetListTableView: UITableViewController, Subscriber {
         tableView.register(HomeScreenHiglightableCell.self, forCellReuseIdentifier: HomeScreenCellIds.highlightableCell.rawValue)
         tableView.separatorStyle = .none
         tableView.rowHeight = assetHeight
-        tableView.contentInset = UIEdgeInsets(top: C.padding[1], left: 0, bottom: C.padding[2], right: 0)
+        tableView.contentInset = UIEdgeInsets(top: C.padding[1], left: 0, bottom: 0, right: 0)
 
         setupSubscriptions()
         reload()
@@ -51,35 +69,23 @@ class AssetListTableView: UITableViewController, Subscriber {
     
     private func setupAddWalletButton() {
         guard tableView.tableFooterView == nil else { return }
-        let topInset: CGFloat = 20
+        
+        let manageAssetsButtonHeight: CGFloat = 56.0
+        let topBottomInset: CGFloat = 20
         let leftRightInset: CGFloat = C.padding[2]
-        let width = tableView.frame.width - tableView.contentInset.left - tableView.contentInset.right
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: addWalletButtonHeight))
+        let tableViewWidth = tableView.frame.width - tableView.contentInset.left - tableView.contentInset.right
         
-        addWalletButton.titleLabel?.font = Theme.body1
-        addWalletButton.tintColor = Theme.tertiaryBackground
-        addWalletButton.setTitleColor(Theme.blueBackground, for: .normal)
-        addWalletButton.setTitleColor(Theme.transparentBlue, for: .highlighted)
+        let footerView = UIView(frame: CGRect(x: 0,
+                                              y: 0,
+                                              width: tableViewWidth,
+                                              height: manageAssetsButtonHeight + (topBottomInset * 2)))
         
-        addWalletButton.layer.borderColor = UIColor.gray2.cgColor
-        addWalletButton.layer.borderWidth = 0.5
-        addWalletButton.layer.cornerRadius = C.Sizes.homeCellCornerRadius
+        manageAssetsButton.frame = CGRect(x: leftRightInset,
+                                          y: topBottomInset,
+                                          width: footerView.frame.width - (2 * leftRightInset),
+                                          height: manageAssetsButtonHeight)
         
-        addWalletButton.contentHorizontalAlignment = .center
-        addWalletButton.contentVerticalAlignment = .center
-
-        let buttonTitle = S.MenuButton.manageAssets
-        addWalletButton.setTitle(buttonTitle, for: .normal)
-        addWalletButton.accessibilityLabel = buttonTitle
-
-        addWalletButton.addTarget(self, action: #selector(addWallet), for: .touchUpInside)
-
-        addWalletButton.frame = CGRect(x: leftRightInset, y: topInset,
-                                       width: footerView.frame.width - (2 * leftRightInset),
-                                       height: addWalletButtonHeight)
-        
-        footerView.addSubview(addWalletButton)
-        footerView.backgroundColor = .homeBackground
+        footerView.addSubview(manageAssetsButton)
         tableView.tableFooterView = footerView
     }
     
@@ -190,7 +196,7 @@ extension AssetListTableView {
     }
     
     func showAddWalletsButton(_ show: Bool) {
-        addWalletButton.isHidden = !show
+        manageAssetsButton.isHidden = !show
     }
 }
 

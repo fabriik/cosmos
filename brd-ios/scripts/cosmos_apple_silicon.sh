@@ -1,12 +1,27 @@
 #!/bin/zsh
 
-FRAMEWORK_PATH="${PWD%/*/*}/cosmos-bundled/build-frameworks/Cosmos.xcframework"
-FRAMEWORK_BIN_PATH="$FRAMEWORK_PATH/ios-arm64-simulator/Cosmos.framework/Cosmos"
-FRAMEWORK_PATH_PLIST="$FRAMEWORK_PATH/Info.plist"
-FRAMEWORK_PATH_ARM_PLIST="$FRAMEWORK_PATH/ios-arm64-simulator/Cosmos.framework/Info.plist"
+ARM="ios-arm64"
+COSMOS="Cosmos"
 
-rm -rf "$FRAMEWORK_PATH/ios-x86_64-simulator"
-cp -r "$FRAMEWORK_PATH/ios-arm64" "$FRAMEWORK_PATH/ios-arm64-simulator"
+ARM_SIMULATOR="$ARM-simulator"
+X86_SIMULATOR="ios-x86_64-simulator"
+FAT_SIMULATOR="fat-simulator"
+
+COSMOS_FRAMEWORK="$COSMOS.framework"
+INFO_PLIST="Info.plist"
+
+FRAMEWORK_PATH="${PWD%/*/*}/cosmos-bundled/build-frameworks/$COSMOS.xcframework"
+FRAMEWORK_BIN_PATH="$FRAMEWORK_PATH/$ARM_SIMULATOR/$COSMOS_FRAMEWORK/$COSMOS"
+FRAMEWORK_PATH_PLIST="$FRAMEWORK_PATH/$COSMOS_FRAMEWORK"
+FRAMEWORK_PATH_ARM_PLIST="$FRAMEWORK_PATH/$ARM_SIMULATOR/$COSMOS_FRAMEWORK/$INFO_PLIST"
+
+ARM_SIMULATOR_PATH="$FRAMEWORK_PATH/$ARM_SIMULATOR"
+
+X86_BINARY_PATH="$FRAMEWORK_PATH/$X86_SIMULATOR/$COSMOS_FRAMEWORK/$COSMOS"
+ARM_BINARY_PATH="$FRAMEWORK_PATH/$ARM_SIMULATOR/$COSMOS_FRAMEWORK/$COSMOS"
+FAT_BINARY_PATH="$FRAMEWORK_PATH/$FAT_SIMULATOR/"
+
+cp -r $FRAMEWORK_PATH/$ARM $ARM_SIMULATOR_PATH
 
 xcrun vtool -arch arm64 \
             -set-build-version 7 12.0 12.0 \
@@ -17,26 +32,16 @@ xcrun vtool -arch arm64 \
 rm $FRAMEWORK_BIN_PATH
 mv "$FRAMEWORK_BIN_PATH.updated" $FRAMEWORK_BIN_PATH
 
-plistBuddy="/usr/libexec/PlistBuddy"
-
-x86Idx=""
-
-if [[ $($plistBuddy -c "Print :AvailableLibraries:0:LibraryIdentifier" "$FRAMEWORK_PATH_PLIST") == "ios-x86_64-simulator" ]]; then
-  x86Idx="0"
-fi
-
-if [[ $($plistBuddy -c "Print :AvailableLibraries:1:LibraryIdentifier" "$FRAMEWORK_PATH_PLIST") == "ios-x86_64-simulator" ]]; then
-  x86Idx="1"
-fi
-
-if [[ $x86Idx == "" ]]; then
-  echo "Could not find ios-x86_64-simulator LibraryIdentifier in $FRAMEWORK_PATH_PLIST"
-  exit
-fi
-
-$plistBuddy -c "Set :CFBundleSupportedPlatforms:0 iPhoneSimulator" "$FRAMEWORK_PATH_ARM_PLIST"
-$plistBuddy -c "Set :AvailableLibraries:$x86Idx:SupportedArchitectures:0 arm64" "$FRAMEWORK_PATH_PLIST"
-$plistBuddy -c "Set :AvailableLibraries:$x86Idx:LibraryIdentifier ios-arm64-simulator" "$FRAMEWORK_PATH_PLIST"
-$plistBuddy -c "Set :AvailableLibraries:$x86Idx:SupportedPlatformVariant simulator" "$FRAMEWORK_PATH_PLIST"
-
 xcrun codesign --sign - $FRAMEWORK_BIN_PATH
+
+mkdir -p "$FAT_BINARY_PATH"
+cp -r "$FRAMEWORK_PATH/$X86_SIMULATOR/" "$FAT_BINARY_PATH"
+rm -f "$FRAMEWORK_PATH/$FAT_SIMULATOR/$COSMOS_FRAMEWORK/$COSMOS"
+
+lipo -create -output "$FAT_BINARY_PATH/$COSMOS_FRAMEWORK/$COSMOS" $ARM_BINARY_PATH $X86_BINARY_PATH 
+
+rm -r -f "$FRAMEWORK_PATH/$X86_SIMULATOR/"
+rm -r -f "$ARM_SIMULATOR_PATH"
+mv "$FAT_BINARY_PATH" "$FRAMEWORK_PATH/$X86_SIMULATOR"
+
+
