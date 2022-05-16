@@ -386,7 +386,14 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapBuy = { url, reservationCode in
+            let partnershipAlertShown = UserDefaults.standard.bool(forKey: "ShownBuyAlert")
             
+            guard !partnershipAlertShown else {
+                Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
+                return
+            }
+            
+            UserDefaults.standard.set(true, forKey: "ShownBuyAlert")
             let message = "Fabriik is providing Buy functionality through Wyre, a third-party API provider."
             
             let alert = UIAlertController(title: "Partnership note",
@@ -401,21 +408,26 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapTrade = { [weak self] in
-                
-                let message = "Fabriik is providing Swap functionality through Changelly, a third-party API provider."
-                
-                let alert = UIAlertController(title: "Partnership note",
-                                              message: message,
-                                              preferredStyle: .alert)
-                let continueAction = UIAlertAction(title: S.Button.continueAction, style: .default) { _ in
-                    let currencies = self?.coreSystem.assetCollection?.allAssets.compactMap { $0.value.code } ?? []
-                    Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
-                }
-                
-                alert.addAction(continueAction)
-                navigationController.present(alert, animated: true, completion: nil)
+            let partnershipAlertShown = UserDefaults.standard.bool(forKey: "ShownSwapAlert")
+            
+            guard !partnershipAlertShown else {
+                self?.openSwapScreen()
+                return
             }
-        // }
+            
+            UserDefaults.standard.set(true, forKey: "ShownSwapAlert")
+            let message = "Fabriik is providing Swap functionality through Changelly, a third-party API provider."
+            
+            let alert = UIAlertController(title: "Partnership note",
+                                          message: message,
+                                          preferredStyle: .alert)
+            let continueAction = UIAlertAction(title: S.Button.continueAction, style: .default) { _ in
+                self?.openSwapScreen()
+            }
+            
+            alert.addAction(continueAction)
+            navigationController.present(alert, animated: true, completion: nil)
+        }
         
         homeScreen.didTapMenu = { [unowned self] in
             self.modalPresenter?.presentMenu()
@@ -428,6 +440,11 @@ class ApplicationController: Subscriber, Trackable {
             nc.setDarkStyle()
             navigationController.present(nc, animated: true, completion: nil)
         }
+    }
+    
+    func openSwapScreen() {
+        let currencies = coreSystem.assetCollection?.allAssets.compactMap { $0.value.code } ?? []
+        Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
     }
     
     /// Creates an instance of the home screen. This may be invoked from StartFlowPresenter.presentOnboardingFlow().
