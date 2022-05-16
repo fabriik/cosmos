@@ -168,7 +168,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         
         cell.setup { button in
             button.setup(with: .init(title: text))
-            button.configure(with: Presets.Button.primary)
+            button.configure(with: indexPath.row % 2 == 0 ? Presets.Button.primary : Presets.Button.secondary)
         }
         
         return cell

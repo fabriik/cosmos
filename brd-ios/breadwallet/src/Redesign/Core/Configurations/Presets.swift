@@ -10,6 +10,13 @@
 
 import UIKit
 
+extension BackgroundConfiguration {
+    mutating func withBorder(border: BorderConfiguration?) -> BackgroundConfiguration {
+        self.border = border
+        return self
+    }
+}
+
 // TODO: unify with designs and use color / font enums
 struct Presets {
     // TODO: prolly each BG has to have a "borderConfig"
@@ -22,22 +29,25 @@ struct Presets {
         }
         
         struct Secondary {
-            static var normal = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.Link.one)
-            static var selected = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.Link.one)
-            static var disabled = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.InteractionPrimary.disabled)
-            static var error = BackgroundConfiguration(backgroundColor: .clear, tintColor: .red)
+            static var normal = BackgroundConfiguration(tintColor: LightColors.Link.one)
+            static var selected = BackgroundConfiguration(tintColor: LightColors.Link.one)
+            static var disabled = BackgroundConfiguration(tintColor: LightColors.InteractionPrimary.disabled)
+            static var error = BackgroundConfiguration(tintColor: .red)
         }
     }
     
     struct Border {
         static var normal = BorderConfiguration(tintColor: LightColors.Outline.one, borderWidth: 1, cornerRadius: .small)
-        static var zero = BorderConfiguration(tintColor: .clear, borderWidth: 0, cornerRadius: .small)
+        static var selected = BorderConfiguration(tintColor: LightColors.primary, borderWidth: 1, cornerRadius: .small)
+        static var error = BorderConfiguration(tintColor: LightColors.error, borderWidth: 1, cornerRadius: .small)
+        static var disabled = BorderConfiguration(tintColor: LightColors.InteractionPrimary.disabled, borderWidth: 1, cornerRadius: .small)
+        static var zero = BorderConfiguration(borderWidth: 0, cornerRadius: .small)
     }
     
     // TODO: add as needed
     struct Shadow {
         // TODO: the shadow color is not part of our Color config?
-        static var normal = ShadowConfiguration(color: LightColors.Contrast.primary,
+        static var normal = ShadowConfiguration(color: LightColors.Contrast.one,
                                                 opacity: .low,
                                                 offset: .init(width: 4, height: 10),
                                                 cornerRadius: .small)
@@ -53,22 +63,22 @@ struct Presets {
     }
     
     struct Image {
-        static var primary = ImageViewConfiguration(tintColor: LightColors.Text.primary)
-        static var secondary = ImageViewConfiguration(tintColor: LightColors.Text.secondary)
-        static var tertiary = ImageViewConfiguration(tintColor: LightColors.Contrast.secondary)
+        static var primary = ImageViewConfiguration(tintColor: LightColors.Text.one)
+        static var secondary = ImageViewConfiguration(tintColor: LightColors.Text.two)
+        static var tertiary = ImageViewConfiguration(tintColor: LightColors.Contrast.two)
     }
 }
 
 // TODO: unify presets with designs
 extension Presets {
     struct Button {
-        static var primary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Primary.normal(withBorder: true),
-                                                 selectedConfiguration: Presets.Background.Primary.selected(withBorder: true),
-                                                 disabledConfiguration: Presets.Background.Primary.disabled(withBorder: true))
+        static var primary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Primary.normal,
+                                                 selectedConfiguration: Presets.Background.Primary.selected,
+                                                 disabledConfiguration: Presets.Background.Primary.disabled)
         
-        static var secondary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Secondary.selected,
-                                                   selectedConfiguration: Presets.Background.Secondary.normal,
-                                                   disabledConfiguration: Presets.Background.Secondary.disabled)
+        static var secondary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.normal),
+                                                   selectedConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
+                                                   disabledConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled))
     }
     
     struct TexxtField {
@@ -77,10 +87,10 @@ extension Presets {
                                                     textConfiguration: Presets.Label.primary,
                                                     placeholderConfiguration: Presets.Label.primary,
                                                     hintConfiguration: Presets.Label.secondary,
-                                                    backgroundConfiguration: Presets.Background.Secondary.normalWithBorder,
-                                                    selectedBackgroundConfiguration: Presets.Background.Secondary.selected,
-                                                    disabledBackgroundConfiguration: Presets.Background.Secondary.disabled,
-                                                    errorBackgroundConfiguration: Presets.Background.Secondary.error)
+                                                    backgroundConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
+                                                    selectedBackgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.selected),
+                                                    disabledBackgroundConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled),
+                                                    errorBackgroundConfiguration: Presets.Background.Secondary.error.withBorder(border: Presets.Border.error))
     }
     
     struct InfoView {
@@ -92,7 +102,6 @@ extension Presets {
                                                    button: Presets.Button.primary,
                                                    background: .init(backgroundColor: LightColors.secondary,
                                                                      tintColor: LightColors.Contrast.two),
-                                                   border: Presets.Border.zero,
                                                    shadow: Presets.Shadow.normal)
     }
 }
