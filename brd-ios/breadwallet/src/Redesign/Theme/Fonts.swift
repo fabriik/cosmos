@@ -28,4 +28,9 @@ struct Fonts {
         static var one = ThemeManager.shared.font(for: "Roboto-Regular", size: 16)
         static var two = ThemeManager.shared.font(for: "Roboto-Regular", size: 14)
     }
+    
+    struct AlertActionSheet {
+        static var title = ThemeManager.shared.font(for: "Roboto-Medium", size: 32)
+        static var body = ThemeManager.shared.font(for: "Roboto-Regular", size: 16)
+    }
 }

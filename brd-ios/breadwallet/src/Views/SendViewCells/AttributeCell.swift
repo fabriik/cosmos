@@ -45,6 +45,15 @@ class AttributeCell: UIView {
     fileprivate let gr = UITapGestureRecognizer()
     fileprivate let tapView = UIView()
     private let border = UIView(color: .secondaryShadow)
+    
+    lazy var infoButton: UIButton = {
+        let infoButton = UIButton()
+        infoButton.setImage(UIImage(named: "Faq"), for: .normal)
+        infoButton.tintColor = .gray2
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        
+        return infoButton
+    }()
 
     private func setupViews() {
         addSubviews()
@@ -57,6 +66,7 @@ class AttributeCell: UIView {
         addSubview(contentLabel)
         addSubview(textField)
         addSubview(tapView)
+        addSubview(infoButton)
         addSubview(border)
     }
 
@@ -77,6 +87,9 @@ class AttributeCell: UIView {
             tapView.topAnchor.constraint(equalTo: topAnchor),
             tapView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tapView.trailingAnchor.constraint(equalTo: trailingAnchor) ])
+        infoButton.constrain([
+            infoButton.constraint(.centerY, toView: self),
+            infoButton.constraint(.trailing, toView: self, constant: -C.padding[1])])
         border.constrain([
             border.leadingAnchor.constraint(equalTo: leadingAnchor),
             border.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -114,6 +127,35 @@ class AttributeCell: UIView {
         textField.becomeFirstResponder()
         contentLabel.isHidden = true
         textField.isHidden = false
+    }
+    
+    @objc private func infoButtonTapped() {
+        let alert = UIAlertController(title: "",
+                                      message: "",
+                                      preferredStyle: .actionSheet)
+        
+        let titleAttributes = [NSAttributedString.Key.font: Fonts.AlertActionSheet.title,
+                               NSAttributedString.Key.foregroundColor: UIColor.almostBlack]
+        let titleString = NSAttributedString(string: "What is a destination tag?", attributes: titleAttributes)
+        
+        let messageAttributes = [NSAttributedString.Key.font: Fonts.AlertActionSheet.body,
+                                 NSAttributedString.Key.foregroundColor: UIColor.almostBlack]
+        let message = """
+    
+    Some receiving addresses (exchanges usually) require additional identifying information provided with a Destination Tag.
+    
+    If the recipient's address is accompanied by a destination tag, make sure to include it.
+    Also, we strongly suggest you send a small amount of cryptocurrency as a test before attempting to send a significant amount.
+    """
+        let messageString = NSAttributedString(string: message, attributes: messageAttributes)
+        
+        alert.setValue(titleString, forKey: "attributedTitle")
+        alert.setValue(messageString, forKey: "attributedMessage")
+        
+        let okAction = UIAlertAction(title: S.Button.ok, style: .default, handler: nil)
+        alert.addAction(okAction)
+        
+        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
     }
     
     @objc private func textFieldDidChange() {
