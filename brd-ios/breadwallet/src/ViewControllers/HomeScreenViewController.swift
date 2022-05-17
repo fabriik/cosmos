@@ -11,7 +11,7 @@ import UIKit
 class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let walletAuthenticator: WalletAuthenticator
     private let widgetDataShareService: WidgetDataShareService
-    private let assetList = AssetListTableView()
+    private let assetListTableView = AssetListTableView()
     private let subHeaderView = UIView()
     private let debugLabel = UILabel(font: .customBody(size: 12.0), color: .transparentWhiteText) // debug info
     private let prompt = UIView()
@@ -92,7 +92,15 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         formatter.generatesDecimalNumbers = true
         return formatter
     }()
-
+    
+    private lazy var pullToRefreshControl: UIRefreshControl = {
+        let pullToRefreshControl = UIRefreshControl()
+        pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        pullToRefreshControl.addTarget(self, action: #selector(reload), for: .valueChanged)
+        
+        return pullToRefreshControl
+    }()
+    
     // MARK: -
     
     init(walletAuthenticator: WalletAuthenticator, widgetDataShareService: WidgetDataShareService) {
@@ -105,18 +113,23 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         Store.unsubscribe(self)
     }
     
-    func reload() {
+    @objc func reload() {
         setInitialData()
         setupSubscriptions()
-        assetList.reload()
         attemptShowPrompt()
+        
+        assetListTableView.setupSubscriptionsAndUpdateBundles {}
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        assetList.didSelectCurrency = didSelectCurrency
-        assetList.didTapAddWallet = didTapManageWallets
+        assetListTableView.didSelectCurrency = didSelectCurrency
+        assetListTableView.didTapAddWallet = didTapManageWallets
+        assetListTableView.didReload = { [weak self] in
+            self?.pullToRefreshControl.endRefreshing()
+        }
+        
         addSubviews()
         addConstraints()
         setInitialData()
@@ -150,6 +163,9 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         subHeaderView.addSubview(debugLabel)
         view.addSubview(prompt)
         view.addSubview(toolbar)
+        
+        assetListTableView.refreshControl = pullToRefreshControl
+        pullToRefreshControl.layer.zPosition = assetListTableView.view.layer.zPosition - 1
     }
 
     private func addConstraints() {
@@ -188,12 +204,12 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             prompt.topAnchor.constraint(equalTo: subHeaderView.bottomAnchor),
             promptHiddenConstraint])
         
-        addChildViewController(assetList, layout: {
-            assetList.view.constrain([
-                assetList.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                assetList.view.topAnchor.constraint(equalTo: prompt.bottomAnchor),
-                assetList.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                assetList.view.bottomAnchor.constraint(equalTo: toolbar.topAnchor)])
+        addChildViewController(assetListTableView, layout: {
+            assetListTableView.view.constrain([
+                assetListTableView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                assetListTableView.view.topAnchor.constraint(equalTo: prompt.bottomAnchor),
+                assetListTableView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                assetListTableView.view.bottomAnchor.constraint(equalTo: toolbar.topAnchor)])
         })
         
         toolbar.constrain([

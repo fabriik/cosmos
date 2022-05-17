@@ -12,6 +12,7 @@ class AssetListTableView: UITableViewController, Subscriber {
 
     var didSelectCurrency: ((Currency) -> Void)?
     var didTapAddWallet: (() -> Void)?
+    var didReload: (() -> Void)?
     
     let loadingSpinner = UIActivityIndicatorView(style: .white)
 
@@ -35,14 +36,6 @@ class AssetListTableView: UITableViewController, Subscriber {
         footerView.backgroundColor = .homeBackground
         
         return footerView
-    }()
-    
-    private lazy var pullToRefreshControl: UIRefreshControl = {
-        let pullToRefreshControl = UIRefreshControl()
-        pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        pullToRefreshControl.addTarget(self, action: #selector(setupSubscriptions), for: .valueChanged)
-        
-        return pullToRefreshControl
     }()
     
     // MARK: - Init
@@ -72,12 +65,9 @@ class AssetListTableView: UITableViewController, Subscriber {
         tableView.separatorStyle = .none
         tableView.rowHeight = assetHeight
         tableView.contentInset = UIEdgeInsets(top: C.padding[1], left: 0, bottom: 0, right: 0)
-
-        lazySetupSubscriptions()
-        reload()
         
-        tableView.refreshControl = pullToRefreshControl
-        pullToRefreshControl.layer.zPosition = tableView.layer.zPosition - 1
+        setupSubscriptions()
+        reload()
     }
     
     private func setupAddWalletButton() {
@@ -102,7 +92,7 @@ class AssetListTableView: UITableViewController, Subscriber {
         tableView.tableFooterView = footerView
     }
     
-    private func lazySetupSubscriptions() {
+    private func setupSubscriptions() {
         Store.lazySubscribe(self, selector: {
             self.mapWallets(state: $0, newState: $1)
         }, callback: { _ in
@@ -114,26 +104,6 @@ class AssetListTableView: UITableViewController, Subscriber {
         }, callback: { _ in
             self.reload()
         })
-    }
-    
-    @objc private func setupSubscriptions() {
-        Backend.apiClient.updateBundles { errors in
-            for (n, e) in errors {
-                print("Bundle \(n) ran update. err: \(String(describing: e))")
-            }
-            
-            Store.subscribe(self, selector: {
-                self.mapWallets(state: $0, newState: $1)
-            }, callback: { _ in
-                self.reload()
-            })
-            
-            Store.subscribe(self, selector: {
-                self.mapCurrencies(lhsCurrencies: $0.currencies, rhsCurrencies: $1.currencies)
-            }, callback: { _ in
-                self.reload()
-            })
-        }
     }
     
     private func mapWallets(state: State, newState: State) -> Bool {
@@ -161,9 +131,10 @@ class AssetListTableView: UITableViewController, Subscriber {
     
     func reload() {
         DispatchQueue.main.async { [weak self] in
-            self?.pullToRefreshControl.endRefreshing()
             self?.tableView.reloadData()
             self?.showLoadingState(false)
+            
+            self?.didReload?()
         }
     }
     
