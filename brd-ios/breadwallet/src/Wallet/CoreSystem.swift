@@ -77,6 +77,7 @@ class CoreSystem: Subscriber, Trackable {
         systemClient = BlocksetSystemClient(bdbBaseURL: "https://\(C.bdbHost)",
                                             bdbDataTaskFunc: { session, request, completion -> URLSessionDataTask in
             var req = request
+            req.decorate()
             if let authToken = authToken {
                 req.authorize(withToken: authToken)
             }
@@ -123,7 +124,7 @@ class CoreSystem: Subscriber, Trackable {
         guard let kvStore = Backend.kvStore,
               let account = system?.account else { return assertionFailure() }
         
-        Backend.apiClient.updateBundles { [weak self] errors in
+        Backend.apiClient.updateBundles { [weak self] _ in
             self?.getCurrencyMetaData(kvStore: kvStore,
                                       account: account, completion: {
                 DispatchQueue.main.async {

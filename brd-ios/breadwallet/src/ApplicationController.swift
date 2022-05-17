@@ -221,7 +221,7 @@ class ApplicationController: Subscriber, Trackable {
     private func initializeAssets(completionHandler: @escaping () -> Void) {
         _ = Rate.symbolMap //Initialize currency symbol map
         
-        Backend.apiClient.updateBundles { errors in
+        Backend.apiClient.updateBundles { _ in
             completionHandler()
         }
         
