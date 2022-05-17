@@ -97,7 +97,7 @@ class CoreSystem: Subscriber, Trackable {
         getCurrencyMetaData(kvStore: kvStore, client: systemClient, account: account, completion: completion)
     }
     
-    func getCurrencyMetaData(kvStore: BRReplicatedKVStore, client: SystemClient? = nil, account: Account, completion: @escaping () -> Void) {
+    private func getCurrencyMetaData(kvStore: BRReplicatedKVStore, client: SystemClient? = nil, account: Account, completion: @escaping () -> Void) {
         Backend.apiClient.getCurrencyMetaData { currencyMetaData in
             self.queue.async {
                 self.assetCollection = AssetCollection(kvStore: kvStore,
@@ -116,6 +116,20 @@ class CoreSystem: Subscriber, Trackable {
                 self.system?.configure()
                 completion()
             }
+        }
+    }
+    
+    func refreshWallet(completion: @escaping () -> Void) {
+        guard let kvStore = Backend.kvStore,
+              let account = system?.account else { return assertionFailure() }
+        
+        Backend.apiClient.updateBundles { [weak self] errors in
+            self?.getCurrencyMetaData(kvStore: kvStore,
+                                      account: account, completion: {
+                DispatchQueue.main.async {
+                    completion()
+                }
+            })
         }
     }
     

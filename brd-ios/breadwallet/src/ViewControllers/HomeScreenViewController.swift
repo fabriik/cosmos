@@ -118,30 +118,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         setupSubscriptions()
         attemptShowPrompt()
         
-        Backend.apiClient.updateBundles { [weak self] errors in
-            for (n, e) in errors {
-                print("Bundle \(n) ran update. err: \(String(describing: e))")
-            }
-            
-            switch self?.walletAuthenticator.loadAccount() {
-            case .success(let account):
-                guard let kvStore = Backend.kvStore else { return assertionFailure() }
-                
-                self?.coreSystem.getCurrencyMetaData(kvStore: kvStore,
-                                                     account: account, completion: { [weak self] in
-                    
-                    DispatchQueue.main.async { [weak self] in
-                        self?.assetListTableView.reload()
-                    }
-                })
-                
-            case .failure(let error):
-                print(error)
-                
-            default:
-                break
-                
-            }
+        coreSystem.refreshWallet { [weak self] in
+            self?.assetListTableView.reload()
         }
     }
     

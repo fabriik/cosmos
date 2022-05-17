@@ -222,10 +222,6 @@ class ApplicationController: Subscriber, Trackable {
         _ = Rate.symbolMap //Initialize currency symbol map
         
         Backend.apiClient.updateBundles { errors in
-            for (n, e) in errors {
-                print("Bundle \(n) ran update. err: \(String(describing: e))")
-            }
-            
             completionHandler()
         }
         
