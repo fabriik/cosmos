@@ -311,8 +311,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             return
         }
         
-        guard let suma = currentAmount + fee,
-              suma < balance.cryptoAmount else {
+        guard currentAmount < balance.cryptoAmount else {
             return _ = handleValidationResult(.insufficientGas)
         }
         
