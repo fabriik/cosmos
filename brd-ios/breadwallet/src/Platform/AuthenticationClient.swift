@@ -240,6 +240,18 @@ extension URLRequest {
     mutating func authorize(withToken token: String) {
         setValue(token, forHTTPHeaderField: "Authorization")
     }
+    
+    mutating func decorate() {
+        setValue(UserDefaults.deviceID, forHTTPHeaderField: "X-Device-ID")
+        setValue("\(E.isTestnet ? 1 : 0)", forHTTPHeaderField: "X-Bitcoin-Testnet")
+        setValue("\((E.isTestFlight || E.isDebug) ? 1 : 0)", forHTTPHeaderField: "X-Testflight")
+        setValue(Locale.current.identifier, forHTTPHeaderField: "Accept-Language")
+        setValue(BRUserAgentHeaderGenerator.userAgentHeader, forHTTPHeaderField: "User-Agent")
+        
+        if let walletID = Store.state.walletID {
+            setValue(walletID, forHTTPHeaderField: "X-Wallet-Id")
+        }
+    }
 }
 
 private extension Encodable {
