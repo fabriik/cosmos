@@ -10,7 +10,6 @@ import UIKit
 
 class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let walletAuthenticator: WalletAuthenticator
-    private let widgetDataShareService: WidgetDataShareService
     private let assetListTableView = AssetListTableView()
     private let subHeaderView = UIView()
     private let debugLabel = UILabel(font: .customBody(size: 12.0), color: .transparentWhiteText) // debug info
@@ -19,6 +18,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let toolbar = UIToolbar()
     private var toolbarButtons = [UIButton]()
     private let notificationHandler = NotificationHandler()
+    private let coreSystem: CoreSystem
     
     private lazy var totalAssetsTitleLabel: UILabel = {
         let totalAssetsTitleLabel = UILabel(font: Theme.caption, color: Theme.tertiaryText)
@@ -103,9 +103,9 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     
     // MARK: -
     
-    init(walletAuthenticator: WalletAuthenticator, widgetDataShareService: WidgetDataShareService) {
+    init(walletAuthenticator: WalletAuthenticator, coreSystem: CoreSystem) {
         self.walletAuthenticator = walletAuthenticator
-        self.widgetDataShareService = widgetDataShareService
+        self.coreSystem = coreSystem
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -118,7 +118,31 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         setupSubscriptions()
         attemptShowPrompt()
         
-        assetListTableView.setupSubscriptionsAndUpdateBundles {}
+        Backend.apiClient.updateBundles { [weak self] errors in
+            for (n, e) in errors {
+                print("Bundle \(n) ran update. err: \(String(describing: e))")
+            }
+            
+            switch self?.walletAuthenticator.loadAccount() {
+            case .success(let account):
+                guard let kvStore = Backend.kvStore else { return assertionFailure() }
+                
+                self?.coreSystem.getCurrencyMetaData(kvStore: kvStore,
+                                                     account: account, completion: { [weak self] in
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        self?.assetListTableView.setupSubscriptions()
+                    }
+                })
+                
+            case .failure(let error):
+                print(error)
+                
+            default:
+                break
+                
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -360,8 +384,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
                 }
             }
 
-        widgetDataShareService.updatePortfolio(info: info)
-        widgetDataShareService.quoteCurrencyCode = Store.state.defaultCurrencyCode
+        coreSystem.widgetDataShareService.updatePortfolio(info: info)
+        coreSystem.widgetDataShareService.quoteCurrencyCode = Store.state.defaultCurrencyCode
     }
     
     // MARK: Actions

@@ -17,6 +17,7 @@ class CoreSystem: Subscriber, Trackable {
     private let queue = DispatchQueue(label: "com.fabriik.one.CoreSystem", qos: .utility)
     private let listenerQueue = DispatchQueue(label: "com.fabriik.one.CoreSystem.listener", qos: .utility)
     private let keyStore: KeyStore
+    private var systemClient: SystemClient?
     fileprivate var btcWalletCreationCallback: (() -> Void)?
     
     // MARK: Wallets + Currencies
@@ -72,35 +73,38 @@ class CoreSystem: Subscriber, Trackable {
         guard let kvStore = Backend.kvStore else { return assertionFailure() }
         print("[SYS] create | account timestamp: \(account.timestamp)")
         assert(self.system == nil)
-
-        let backend = BlocksetSystemClient(bdbBaseURL: "https://\(C.bdbHost)",
-            bdbDataTaskFunc: { (session, request, completion) -> URLSessionDataTask in
-                
-                var req = request
-                if let authToken = authToken {
-                    req.authorize(withToken: authToken)
-                }
-                
-                //TODO:CRYPTO does not handle 401, other headers, redirects
-                return session.dataTask(with: req, completionHandler: completion)
-        },
-            apiBaseURL: "https://\(C.backendHost)",
-            apiDataTaskFunc: { (_, req, completion) -> URLSessionDataTask in
-                return Backend.apiClient.dataTaskWithRequest(req,
-                                                             authenticated: Backend.isConnected,
-                                                             retryCount: 0,
-                                                             responseQueue: self.queue,
-                                                             handler: completion)
+        
+        systemClient = BlocksetSystemClient(bdbBaseURL: "https://\(C.bdbHost)",
+                                            bdbDataTaskFunc: { session, request, completion -> URLSessionDataTask in
+            var req = request
+            if let authToken = authToken {
+                req.authorize(withToken: authToken)
+            }
+            
+            //TODO:CRYPTO does not handle 401, other headers, redirects
+            return session.dataTask(with: req, completionHandler: completion)
+        }, apiBaseURL: "https://\(C.backendHost)", apiDataTaskFunc: { _, req, completion -> URLSessionDataTask in
+            return Backend.apiClient.dataTaskWithRequest(req,
+                                                         authenticated: Backend.isConnected,
+                                                         retryCount: 0,
+                                                         responseQueue: self.queue,
+                                                         handler: completion)
         })
 
         try? FileManager.default.createDirectory(atPath: C.coreDataDirURL.path, withIntermediateDirectories: true, attributes: nil)
         
+        guard let systemClient = systemClient else { return }
+        getCurrencyMetaData(kvStore: kvStore, client: systemClient, account: account, completion: completion)
+    }
+    
+    func getCurrencyMetaData(kvStore: BRReplicatedKVStore, client: SystemClient? = nil, account: Account, completion: @escaping () -> Void) {
         Backend.apiClient.getCurrencyMetaData { currencyMetaData in
             self.queue.async {
                 self.assetCollection = AssetCollection(kvStore: kvStore,
                                                        allTokens: currencyMetaData,
                                                        changeHandler: self.updateWalletStates)
-                self.system = System.create(client: backend,
+                let c = client ?? self.systemClient
+                self.system = System.create(client: c!,
                                             listener: self,
                                             account: account,
                                             onMainnet: !E.isTestnet,

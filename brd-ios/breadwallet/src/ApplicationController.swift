@@ -410,7 +410,7 @@ class ApplicationController: Subscriber, Trackable {
     /// Creates an instance of the home screen. This may be invoked from StartFlowPresenter.presentOnboardingFlow().
     private func createHomeScreen(navigationController: UINavigationController) -> HomeScreenViewController {
         let homeScreen = HomeScreenViewController(walletAuthenticator: keyStore as WalletAuthenticator,
-                                                  widgetDataShareService: self.coreSystem.widgetDataShareService)
+                                                  coreSystem: coreSystem)
         
         addHomeScreenHandlers(homeScreen: homeScreen, navigationController: navigationController)
         
