@@ -66,7 +66,7 @@ class AssetListTableView: UITableViewController, Subscriber {
         tableView.rowHeight = assetHeight
         tableView.contentInset = UIEdgeInsets(top: C.padding[1], left: 0, bottom: 0, right: 0)
         
-        lazySetupSubscriptions()
+        setupSubscriptions()
         reload()
     }
     
@@ -92,7 +92,7 @@ class AssetListTableView: UITableViewController, Subscriber {
         tableView.tableFooterView = footerView
     }
     
-    private func lazySetupSubscriptions() {
+    private func setupSubscriptions() {
         Store.lazySubscribe(self, selector: {
             self.mapWallets(state: $0, newState: $1)
         }, callback: { _ in
@@ -100,22 +100,6 @@ class AssetListTableView: UITableViewController, Subscriber {
         })
         
         Store.lazySubscribe(self, selector: {
-            self.mapCurrencies(lhsCurrencies: $0.currencies, rhsCurrencies: $1.currencies)
-        }, callback: { _ in
-            self.reload()
-        })
-    }
-    
-    func setupSubscriptions() {
-        Store.unsubscribe(self)
-        
-        Store.subscribe(self, selector: {
-            self.mapWallets(state: $0, newState: $1)
-        }, callback: { _ in
-            self.reload()
-        })
-        
-        Store.subscribe(self, selector: {
             self.mapCurrencies(lhsCurrencies: $0.currencies, rhsCurrencies: $1.currencies)
         }, callback: { _ in
             self.reload()

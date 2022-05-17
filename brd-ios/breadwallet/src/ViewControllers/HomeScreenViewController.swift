@@ -131,7 +131,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
                                                      account: account, completion: { [weak self] in
                     
                     DispatchQueue.main.async { [weak self] in
-                        self?.assetListTableView.setupSubscriptions()
+                        self?.assetListTableView.reload()
                     }
                 })
                 
