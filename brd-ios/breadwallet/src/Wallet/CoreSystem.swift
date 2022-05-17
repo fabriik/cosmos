@@ -103,8 +103,8 @@ class CoreSystem: Subscriber, Trackable {
                 self.assetCollection = AssetCollection(kvStore: kvStore,
                                                        allTokens: currencyMetaData,
                                                        changeHandler: self.updateWalletStates)
-                let c = client ?? self.systemClient
-                self.system = System.create(client: c!,
+                guard let chosenClient = client ?? self.systemClient else { return }
+                self.system = System.create(client: chosenClient,
                                             listener: self,
                                             account: account,
                                             onMainnet: !E.isTestnet,
