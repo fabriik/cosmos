@@ -510,19 +510,21 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         }
         
         //XRP destination Tag must fit into UInt32
+        var attributeText: String?
         if let attribute = attributeCell?.attribute, currency.isXRP,
            !attribute.isEmpty {
             if UInt32(attribute) == nil {
                showAlert(title: S.Alert.error, message: "Destination tag is too long.", buttonLabel: S.Button.ok)
                return false
             }
+            attributeText = attribute
         }
 
         return handleValidationResult(sender.createTransaction(address: address,
                                                         amount: amount,
                                                         feeBasis: feeBasis,
                                                         comment: memoCell.textView.text,
-                                                        attribute: attributeCell?.attribute))
+                                                        attribute: attributeText))
     }
     
     private func handleValidationResult(_ result: SenderValidationResult, protocolRequest: PaymentProtocolRequest? = nil) -> Bool {
