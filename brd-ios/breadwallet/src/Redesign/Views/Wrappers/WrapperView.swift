@@ -43,10 +43,14 @@ class WrapperView<T: UIView>: UIView,
         wrappedView.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
-            content.leftAnchor.constraint(equalTo: leftAnchor, constant: layoutMargins.left),
-            content.rightAnchor.constraint(equalTo: rightAnchor, constant: -layoutMargins.right),
-            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top),
-            content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layoutMargins.bottom),
+//            content.leftAnchor.constraint(equalTo: leftAnchor, constant: layoutMargins.left),
+//            content.rightAnchor.constraint(equalTo: rightAnchor, constant: -layoutMargins.right),
+//            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top),
+//            content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layoutMargins.bottom),
+            content.leftAnchor.constraint(equalTo: leftAnchor),
+            content.rightAnchor.constraint(equalTo: rightAnchor),
+            content.topAnchor.constraint(equalTo: topAnchor),
+            content.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             wrappedView.leftAnchor.constraint(equalTo: content.leftAnchor),
             wrappedView.rightAnchor.constraint(equalTo: content.rightAnchor),

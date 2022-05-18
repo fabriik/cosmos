@@ -18,8 +18,6 @@ struct TextFieldConfiguration: Configurable {
     var hintConfiguration: LabelConfiguration?
     var trailingImageConfiguration: BackgroundConfiguration?
     
-    var infoConfiguration: InfoViewConfiguration? = Presets.InfoView.primary
-    
     var backgroundConfiguration: BackgroundConfiguration?
     var selectedBackgroundConfiguration: BackgroundConfiguration?
     var disabledBackgroundConfiguration: BackgroundConfiguration?
@@ -33,6 +31,7 @@ struct TextFieldModel: ViewModel {
     var title: String
     var placeholder: String?
     var hint: String?
+    var error: String?
     var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
 }
@@ -42,76 +41,65 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     var displayState: DisplayState = .normal
     
     var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) > 1 }
+    var valueChanged: (() -> Void)?
     
     // MARK: Lazy UI
-    private lazy var containerStack: UIStackView = {
+    
+    private lazy var mainStack: UIStackView = {
         let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.spacing = Margins.small.rawValue
+        return view
+    }()
+    
+    private lazy var textFieldContent: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private lazy var textFieldStack: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = Margins.extraSmall.rawValue
         view.alignment = .fill
         view.distribution = .fill
         return view
     }()
     
-    private lazy var verticalStackView: WrapperView<UIStackView> = {
-        let view = WrapperView<UIStackView>()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setup { view in
-            view.axis = .vertical
-            view.spacing = Margins.zero.rawValue
-            view.alignment = .fill
-            view.distribution = .fill
-        }
-        return view
-    }()
-    
-    private lazy var horizontalStackView: UIStackView = {
+    private lazy var titleStack: UIStackView = {
         let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
         view.alignment = .fill
         view.distribution = .fill
         view.spacing = Margins.small.rawValue
-        view.isHidden = true
         
         return view
     }()
     
     private lazy var titleLabel: FELabel = {
         let view = FELabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var hintLabel: FELabel = {
         let view = FELabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var infoView: FEInfoView = {
-        let view = FEInfoView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var leadingView: FEImageView = {
         let view = FEImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.setupCustomMargins(all: .extraSmall)
         return view
     }()
     
     private lazy var textField: UITextField = {
         let view = UITextField()
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
         return view
     }()
     
     private lazy var trailingView: FEImageView = {
         let view = FEImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.setupCustomMargins(all: .extraSmall)
         return view
     }()
@@ -119,53 +107,47 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     override func setupSubviews() {
         super.setupSubviews()
         
-        var constraints: [NSLayoutConstraint] = []
+        content.addSubview(mainStack)
+        mainStack.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
-        content.addSubview(containerStack)
-        constraints.append(contentsOf: [
-            containerStack.leftAnchor.constraint(equalTo: content.leftAnchor, constant: Margins.small.rawValue),
-            containerStack.rightAnchor.constraint(equalTo: content.rightAnchor, constant: -Margins.small.rawValue),
-            containerStack.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: -Margins.small.rawValue),
-            containerStack.topAnchor.constraint(equalTo: content.topAnchor, constant: Margins.small.rawValue)
-        ])
+        mainStack.addArrangedSubview(textFieldContent)
+        textFieldContent.snp.makeConstraints { make in
+            make.height.equalTo(58)
+        }
+        mainStack.addArrangedSubview(hintLabel)
         
-        containerStack.addArrangedSubview(verticalStackView)
-        constraints.append(verticalStackView.heightAnchor.constraint(equalToConstant: 48))
-        verticalStackView.setupClearMargins()
+        textFieldContent.addSubview(textFieldStack)
+        textFieldStack.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.leading.equalTo(Margins.large.rawValue)
+            make.top.equalTo(Margins.small.rawValue)
+        }
+        textFieldStack.addArrangedSubview(titleStack)
+        titleStack.addArrangedSubview(leadingView)
+        titleStack.addArrangedSubview(titleLabel)
+        titleStack.addArrangedSubview(trailingView)
         
-        containerStack.addArrangedSubview(hintLabel)
-        constraints.append(hintLabel.heightAnchor.constraint(equalToConstant: Margins.extraLarge.rawValue))
+        titleLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview().priority(.low)
+        }
         
-        verticalStackView.wrappedView.addArrangedSubview(titleLabel)
-        constraints.append(titleLabel.heightAnchor.constraint(equalToConstant: Margins.large.rawValue))
-
-        verticalStackView.wrappedView.addArrangedSubview(horizontalStackView)
-        constraints.append(horizontalStackView.heightAnchor.constraint(equalToConstant: Margins.huge.rawValue).priority(.defaultHigh))
-
-        horizontalStackView.addArrangedSubview(leadingView)
-        constraints.append(leadingView.widthAnchor.constraint(equalToConstant: Margins.huge.rawValue))
-
-        horizontalStackView.addArrangedSubview(textField)
-        constraints.append(textField.widthAnchor.constraint(equalTo: horizontalStackView.widthAnchor).priority(.defaultLow))
-
-        horizontalStackView.addArrangedSubview(trailingView)
-        constraints.append(trailingView.widthAnchor.constraint(equalToConstant: Margins.huge.rawValue))
-        
-        NSLayoutConstraint.activate(constraints)
+        textFieldStack.addArrangedSubview(textField)
         
         textField.delegate = self
-        
         let tapped = UITapGestureRecognizer(target: self, action: #selector(tapped))
         addGestureRecognizer(tapped)
     }
     
-    @objc private func tapped() {
-        animateTo(state: .selected, withAnimation: true)
+    @objc func tapped() {
+        let state: DisplayState = textField.isFirstResponder ? .disabled : .selected
+        animateTo(state: state, withAnimation: true)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         var background: BackgroundConfiguration?
         switch displayState {
         case .normal:
@@ -182,9 +164,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             background = config?.errorBackgroundConfiguration
         }
         
-//        if textField.isFirstResponder {
-//            background = config?.selectedBackgroundConfiguration
-//        }
         // Border
         configure(background: background)
         // Shadow
@@ -197,7 +176,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         titleLabel.configure(with: config.titleConfiguration)
         hintLabel.configure(with: config.hintConfiguration)
-        infoView.configure(with: config.infoConfiguration)
         
         if let textConfig = config.textConfiguration {
             textField.font = textConfig.font
@@ -213,16 +191,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     override func setup(with viewModel: TextFieldModel?) {
         guard let viewModel = viewModel else { return }
         super.setup(with: viewModel)
-
-        titleLabel.setup(with: .text(viewModel.title))
-
-        if let text = viewModel.hint {
-            hintLabel.setup(with: .text(text))
-        }
-        hintLabel.isHidden = true
         
-        infoView.setup(with: viewModel.info)
-        infoView.isHidden = viewModel.info == nil
+        titleLabel.setup(with: .text(viewModel.title))
 
         if let placeholder = viewModel.placeholder,
            let config = config?.placeholderConfiguration {
@@ -232,13 +202,17 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             ]
             textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
         }
+        if let hint = viewModel.hint {
+            hintLabel.setup(with: .text(hint))
+        }
+        hintLabel.isHidden = viewModel.hint == nil
 
         leadingView.isHidden = viewModel.leading == nil
         leadingView.setup(with: viewModel.leading)
 
         trailingView.isHidden = viewModel.trailing == nil
         trailingView.setup(with: viewModel.trailing)
-        layoutIfNeeded()
+        layoutSubviews()
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -271,7 +245,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         titleLabel.text = nil
         
         textField.isHidden = false
-        hintLabel.isHidden = false
         titleLabel.isHidden = false
         leadingView.isHidden = false
         trailingView.isHidden = false
@@ -280,15 +253,16 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     func animateTo(state: DisplayState, withAnimation: Bool = true) {
         let background: BackgroundConfiguration?
         
+        var hint = viewModel?.hint
+        var hideTextField = textField.text?.isEmpty == true
+        
         switch state {
         case .normal:
             background = config?.backgroundConfiguration
-            horizontalStackView.isHidden = textField.text?.isEmpty == true
-            textField.resignFirstResponder()
             
         case .highlighted, .selected:
-            horizontalStackView.isHidden = false
             background = config?.selectedBackgroundConfiguration
+            hideTextField = false
             textField.becomeFirstResponder()
             
         case .disabled:
@@ -296,29 +270,37 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             
         case .error:
             background = config?.errorBackgroundConfiguration
+            hideTextField = false
+            hint = "ERROR ERROR"
+        }
+        textField.isHidden = hideTextField
+        hintLabel.isHidden = hint == nil
+        
+        if let text = hint,
+           !text.isEmpty {
+            hintLabel.setup(with: .text(text))
         }
         
         displayState = state
         
-        // TODO: constant for duration
-        UIView.animate(withDuration: withAnimation ? 0.25 : 0) { [unowned self] in
-            if hintLabel.isHidden == (state == .error) {
-                hintLabel.isHidden = state != .error
-            }
-            hintLabel.configure(with: .init(textColor: background?.tintColor))
-            // Border
-            configure(background: background)
-            // Shadow
-            configure(shadow: config?.shadowConfiguration)
-            horizontalStackView.layoutIfNeeded()
-//            verticalStackView.wrappedView.layoutIfNeeded()
-            containerStack.layoutIfNeeded()
-        }
+        hintLabel.configure(with: .init(textColor: background?.tintColor))
+        // Border
+        configure(background: background)
+        // Shadow
+        configure(shadow: config?.shadowConfiguration)
+        
+        valueChanged?()
+        
+        Self.animate(withDuration: 0.25, animations: {
+            self.textFieldContent.layoutIfNeeded()
+        }, completion: { _ in
+            self.valueChanged?()
+        })
     }
     
     override func configure(shadow: ShadowConfiguration?) {
         guard let shadow = shadow else { return }
-        let content = verticalStackView
+        let content = textFieldContent
         
         content.layer.masksToBounds = false
         content.layer.shadowColor = shadow.color.cgColor
@@ -332,7 +314,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     
     override func configure(background: BackgroundConfiguration? = nil) {
         guard let border = background?.border else { return }
-        let content = verticalStackView
+        let content = textFieldContent
         
         content.layer.masksToBounds = true
         content.layer.cornerRadius = border.cornerRadius.rawValue

@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class FEView<C: Configurable, M: ViewModel>: UIView,
                                              ViewProtocol,
@@ -46,16 +47,10 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     // MARK: View setup
     func setupSubviews() {
         addSubview(content)
-        content.translatesAutoresizingMaskIntoConstraints = false
-        
-        let constraints = [
-            content.leftAnchor.constraint(equalTo: leftAnchor, constant: layoutMargins.left),
-            content.rightAnchor.constraint(equalTo: rightAnchor, constant: -layoutMargins.right),
-            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top),
-            content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layoutMargins.bottom)
-        ]
+        content.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(layoutMargins)
+        }
         setupClearMargins()
-        NSLayoutConstraint.activate(constraints)
     }
     
     func setup(with viewModel: M?) {
@@ -78,7 +73,7 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     func configure(shadow: ShadowConfiguration?) {
         guard let shadow = shadow else { return }
         content.layoutIfNeeded()
-        
+
         content.layer.masksToBounds = false
         content.layer.shadowColor = shadow.color.cgColor
         content.layer.shadowOpacity = shadow.opacity.rawValue
@@ -92,9 +87,9 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     func configure(background: BackgroundConfiguration?) {
         content.backgroundColor = background?.backgroundColor
         content.tintColor = background?.border?.tintColor ?? background?.tintColor
-        
+
         guard let border = background?.border else { return }
-        
+
         content.layer.masksToBounds = true
         content.layer.cornerRadius = border.cornerRadius.rawValue
         content.layer.borderWidth = border.borderWidth

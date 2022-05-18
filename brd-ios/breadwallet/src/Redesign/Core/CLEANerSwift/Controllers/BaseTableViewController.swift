@@ -185,6 +185,13 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setup { button in
             button.setup(with: model)
             button.configure(with: Presets.TexxtField.primary)
+            button.valueChanged = {
+                // weirdly animates if not disabled
+                UIView.setAnimationsEnabled(false)
+                tableView.beginUpdates()
+                tableView.endUpdates()
+                UIView.setAnimationsEnabled(true)
+            }
         }
         
         return cell
@@ -209,6 +216,23 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setupCustomMargins(all: .extraSmall)
         
         return cell
+    }
+    
+    func tableView<T: UIView>(_ tableView: UITableView, displayErrorInCell cell: WrapperTableViewCell<T>) {
+        cell.setup { view in
+            guard let view = view as? StateDisplayable else { return }
+            
+            view.animateTo(state: .error, withAnimation: true)
+        }
+    }
+    
+    func textFieldDidFinish(for indexPath: IndexPath, with text: String?) {
+        // override in subclass
+    }
+
+    func textFieldDidUpdate(for indexPath: IndexPath, with text: String?) {
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     // MARK: UserInteractions

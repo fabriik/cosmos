@@ -18,10 +18,11 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     // MARK: - Overrides
     
     override func prepareData() {
+        tableView.register(WrapperTableViewCell<FETest>.self)
         sections = [
-            Models.Section.infoView,
+//            Models.Section.infoView,
 //            Models.Section.label,
-            Models.Section.button,
+//            Models.Section.button,
             Models.Section.textField
         ]
         
@@ -32,7 +33,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.textField: [
-                TextFieldModel(title: "This is a title", hint: "You can write?"),
+                TextFieldModel(title: "This is a title", hint: "This is a hint?"),
                 TextFieldModel(title: "You can write?"),
                 TextFieldModel(title: "This is a title", placeholder: "<name>"),
                 TextFieldModel(title: "<name>")
@@ -67,6 +68,24 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         ]
         
         tableView.reloadData()
+//        textfield.configure(with: Presets.TexxtField.primary)
+//        textfield.setup(with: .init(title: "This is a title"))
+    }
+    
+    let textfield = FETextField()
+    override func setupSubviews() {
+        super.setupSubviews()
+//        tableView.removeFromSuperview()
+//
+//        textfield.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(textfield)
+//
+//        let constraints = [
+//            textfield.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.layoutMargins.left),
+//            textfield.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -view.layoutMargins.right),
+//            textfield.topAnchor.constraint(equalTo: view.centerYAnchor)
+//        ]
+//        NSLayoutConstraint.activate(constraints)
     }
     
     // MARK: - User Interaction
@@ -93,11 +112,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        (cell as? Marginable)?.setupCustomMargins(all: .extraHuge)
-        cell.layoutIfNeeded()
+        (cell as? Marginable)?.setupCustomMargins(all: .small)
         
         return cell
     }
-
+    
     // MARK: - Additional Helpers
 }
