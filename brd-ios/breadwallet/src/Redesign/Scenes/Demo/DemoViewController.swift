@@ -32,10 +32,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.textField: [
-                TextFieldModel(title: "This is a title", hint: "This is a hint?"),
-                TextFieldModel(title: "You can write?"),
-                TextFieldModel(title: "This is a title", placeholder: "<name>"),
-                TextFieldModel(title: "<name>")
+                TextFieldModel(title: "Firs name", hint: "Your mama gave it to you"),
+                TextFieldModel(title: "Last name"),
+                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com"),
+                TextFieldModel(title: "Address")
             ],
             
             Models.Section.infoView: [

@@ -289,8 +289,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         // Shadow
         configure(shadow: config?.shadowConfiguration)
         
-        valueChanged?()
-        
         Self.animate(withDuration: 0.25, animations: {
             self.textFieldContent.layoutIfNeeded()
         }, completion: { _ in

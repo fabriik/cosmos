@@ -359,7 +359,6 @@
 		7E5CB3812835090E00EC787E /* DemoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3362835090D00EC787E /* DemoStore.swift */; };
 		7E5CB3822835090E00EC787E /* DemoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3372835090D00EC787E /* DemoModels.swift */; };
 		7E5CB3832835090E00EC787E /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB33A2835090D00EC787E /* Presets.swift */; };
-		7E5CB3842835090E00EC787E /* Presets.swift.orig in Resources */ = {isa = PBXBuildFile; fileRef = 7E5CB33B2835090D00EC787E /* Presets.swift.orig */; };
 		7E5CB3852835090E00EC787E /* BackgroundConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB33C2835090D00EC787E /* BackgroundConfiguration.swift */; };
 		7E5CB3862835090E00EC787E /* ShadowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB33D2835090D00EC787E /* ShadowConfiguration.swift */; };
 		7E5CB3872835090E00EC787E /* BorderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB33E2835090D00EC787E /* BorderConfiguration.swift */; };
@@ -396,7 +395,6 @@
 		7E5CB3A62835090E00EC787E /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB36B2835090E00EC787E /* ThemeManager.swift */; };
 		7E5CB3A72835090E00EC787E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB36C2835090E00EC787E /* Fonts.swift */; };
 		7E5CB3A82835090E00EC787E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB36D2835090E00EC787E /* Colors.swift */; };
-		7E5CB3A92835090E00EC787E /* Colors.swift.orig in Resources */ = {isa = PBXBuildFile; fileRef = 7E5CB36E2835090E00EC787E /* Colors.swift.orig */; };
 		7E5CB3AA2835090E00EC787E /* WrapperAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3712835090E00EC787E /* WrapperAccessoryView.swift */; };
 		7E5CB3AB2835090E00EC787E /* WrapperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3722835090E00EC787E /* WrapperCollectionViewCell.swift */; };
 		7E5CB3AC2835090E00EC787E /* WrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3732835090E00EC787E /* WrapperView.swift */; };
@@ -1291,7 +1289,6 @@
 		7E5CB3362835090D00EC787E /* DemoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoStore.swift; sourceTree = "<group>"; };
 		7E5CB3372835090D00EC787E /* DemoModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoModels.swift; sourceTree = "<group>"; };
 		7E5CB33A2835090D00EC787E /* Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
-		7E5CB33B2835090D00EC787E /* Presets.swift.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Presets.swift.orig; sourceTree = "<group>"; };
 		7E5CB33C2835090D00EC787E /* BackgroundConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundConfiguration.swift; sourceTree = "<group>"; };
 		7E5CB33D2835090D00EC787E /* ShadowConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowConfiguration.swift; sourceTree = "<group>"; };
 		7E5CB33E2835090D00EC787E /* BorderConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderConfiguration.swift; sourceTree = "<group>"; };
@@ -1328,7 +1325,6 @@
 		7E5CB36B2835090E00EC787E /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		7E5CB36C2835090E00EC787E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		7E5CB36D2835090E00EC787E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		7E5CB36E2835090E00EC787E /* Colors.swift.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Colors.swift.orig; sourceTree = "<group>"; };
 		7E5CB3712835090E00EC787E /* WrapperAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapperAccessoryView.swift; sourceTree = "<group>"; };
 		7E5CB3722835090E00EC787E /* WrapperCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapperCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E5CB3732835090E00EC787E /* WrapperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapperView.swift; sourceTree = "<group>"; };
@@ -2809,7 +2805,6 @@
 			isa = PBXGroup;
 			children = (
 				7E5CB33A2835090D00EC787E /* Presets.swift */,
-				7E5CB33B2835090D00EC787E /* Presets.swift.orig */,
 				7E5CB33C2835090D00EC787E /* BackgroundConfiguration.swift */,
 				7E5CB33D2835090D00EC787E /* ShadowConfiguration.swift */,
 				7E5CB33E2835090D00EC787E /* BorderConfiguration.swift */,
@@ -2952,7 +2947,6 @@
 				7E5CB36B2835090E00EC787E /* ThemeManager.swift */,
 				7E5CB36C2835090E00EC787E /* Fonts.swift */,
 				7E5CB36D2835090E00EC787E /* Colors.swift */,
-				7E5CB36E2835090E00EC787E /* Colors.swift.orig */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -4058,7 +4052,6 @@
 				CEDA9EDC1FDE0C56005E8D1B /* countries.plist in Resources */,
 				9A926F8D22034B3800CC2263 /* CellHighlight-55.png in Resources */,
 				9AE800F021FFF81F00D5058C /* rewardsIcon-31.gif in Resources */,
-				7E5CB3A92835090E00EC787E /* Colors.swift.orig in Resources */,
 				9AE800ED21FFF81F00D5058C /* rewardsIcon-60.gif in Resources */,
 				C47BD4FE282E3CE600FAA903 /* Degular-Bold.otf in Resources */,
 				9AE8010121FFF81F00D5058C /* rewardsIcon-1.gif in Resources */,
@@ -4135,7 +4128,6 @@
 				9A926F5822034B3800CC2263 /* CellHighlight-64.png in Resources */,
 				9A926F8C22034B3800CC2263 /* CellHighlight-75.png in Resources */,
 				9AE800DB21FFF81F00D5058C /* rewardsIcon-18.gif in Resources */,
-				7E5CB3842835090E00EC787E /* Presets.swift.orig in Resources */,
 				9A926F4722034B3700CC2263 /* CellHighlight-14.png in Resources */,
 				9AE800F821FFF81F00D5058C /* rewardsIcon-37.gif in Resources */,
 				9A926F6422034B3800CC2263 /* CellHighlight-86.png in Resources */,
