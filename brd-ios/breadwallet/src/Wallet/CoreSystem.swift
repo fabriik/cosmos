@@ -94,7 +94,6 @@ class CoreSystem: Subscriber, Trackable {
         
         try? FileManager.default.createDirectory(atPath: C.coreDataDirURL.path, withIntermediateDirectories: true, attributes: nil)
         
-        guard let systemClient = systemClient else { return }
         getCurrencyMetaData(kvStore: kvStore, client: systemClient, account: account, completion: completion)
     }
     
@@ -104,17 +103,21 @@ class CoreSystem: Subscriber, Trackable {
                 self.assetCollection = AssetCollection(kvStore: kvStore,
                                                        allTokens: currencyMetaData,
                                                        changeHandler: self.updateWalletStates)
-                guard let chosenClient = client ?? self.systemClient else { return }
-                self.system = System.create(client: chosenClient,
-                                            listener: self,
-                                            account: account,
-                                            onMainnet: !E.isTestnet,
-                                            path: C.coreDataDirURL.path,
-                                            listenerQueue: self.listenerQueue)
+                if let chosenClient = client ?? self.systemClient {
+                    self.system = System.create(client: chosenClient,
+                                                listener: self,
+                                                account: account,
+                                                onMainnet: !E.isTestnet,
+                                                path: C.coreDataDirURL.path,
+                                                listenerQueue: self.listenerQueue)
+                }
+                
                 if let system = self.system {
                     System.wipeAll(atPath: C.coreDataDirURL.path, except: [system])
                 }
+                
                 self.system?.configure()
+                
                 completion()
             }
         }
