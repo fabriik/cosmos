@@ -18,7 +18,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     // MARK: - Overrides
     
     override func prepareData() {
-        tableView.register(WrapperTableViewCell<FETest>.self)
         sections = [
             Models.Section.textField,
             Models.Section.infoView,

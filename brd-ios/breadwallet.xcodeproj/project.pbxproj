@@ -404,7 +404,6 @@
 		7E5CB3AE2835090E00EC787E /* FEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3752835090E00EC787E /* FEView.swift */; };
 		7E5CB3AF2835090E00EC787E /* FELabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3762835090E00EC787E /* FELabel.swift */; };
 		7E5CB3B02835090E00EC787E /* FEInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3772835090E00EC787E /* FEInfoView.swift */; };
-		7E5CB3B12835090E00EC787E /* FETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3782835090E00EC787E /* FETest.swift */; };
 		7E5CB3B22835090E00EC787E /* FETextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3792835090E00EC787E /* FETextField.swift */; };
 		7E5CB3B32835090E00EC787E /* FEImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB37A2835090E00EC787E /* FEImageView.swift */; };
 		7E5CB3B42835090E00EC787E /* FEButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB37B2835090E00EC787E /* FEButton.swift */; };
@@ -1337,7 +1336,6 @@
 		7E5CB3752835090E00EC787E /* FEView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FEView.swift; sourceTree = "<group>"; };
 		7E5CB3762835090E00EC787E /* FELabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FELabel.swift; sourceTree = "<group>"; };
 		7E5CB3772835090E00EC787E /* FEInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FEInfoView.swift; sourceTree = "<group>"; };
-		7E5CB3782835090E00EC787E /* FETest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FETest.swift; sourceTree = "<group>"; };
 		7E5CB3792835090E00EC787E /* FETextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FETextField.swift; sourceTree = "<group>"; };
 		7E5CB37A2835090E00EC787E /* FEImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FEImageView.swift; sourceTree = "<group>"; };
 		7E5CB37B2835090E00EC787E /* FEButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FEButton.swift; sourceTree = "<group>"; };
@@ -2966,7 +2964,6 @@
 				7E5CB3752835090E00EC787E /* FEView.swift */,
 				7E5CB3762835090E00EC787E /* FELabel.swift */,
 				7E5CB3772835090E00EC787E /* FEInfoView.swift */,
-				7E5CB3782835090E00EC787E /* FETest.swift */,
 				7E5CB3792835090E00EC787E /* FETextField.swift */,
 				7E5CB37A2835090E00EC787E /* FEImageView.swift */,
 				7E5CB37B2835090E00EC787E /* FEButton.swift */,
@@ -4645,7 +4642,6 @@
 				7C9BC58F231765190011732F /* WalletConnectionSettings.swift in Sources */,
 				CEE20C2D1EA288FA0086F724 /* UpdatingLabel.swift in Sources */,
 				7B54E53F27F4A208002DD1E4 /* KYCCompleteButtons.swift in Sources */,
-				7E5CB3B12835090E00EC787E /* FETest.swift in Sources */,
 				714F5D6E22037F2400F7CA70 /* EventMonitor.swift in Sources */,
 				CE3D4C591EF743EF0016B1C8 /* Functions.swift in Sources */,
 				7B54E5B327F4A2B0002DD1E4 /* SimpleButton.swift in Sources */,
