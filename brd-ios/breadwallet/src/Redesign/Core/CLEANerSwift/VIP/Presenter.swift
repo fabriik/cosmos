@@ -18,15 +18,16 @@ extension Presenter {
 
         let model = AlertViewModel(title: nil, description: error.localizedDescription, buttons: ["click", "cancel"])
         
-//        let config = AlertConfiguration(titleConfiguration: Presets.Label.primary,
-//                                        descriptionConfiguration: Presets.Label.secondary,
-//                                        imageConfiguration: Presets.Image.primary,
-//                                        buttonConfigurations: [
-//                                            Presets.Button.primary,
-//                                            Presets.Button.secondary
-//                                        ])
-//
-//        viewController?.displayError(responseDisplay: .init(model: model, config: config))
+        // TODO: set proper configs
+        let config = AlertConfiguration(titleConfiguration: .init(),
+                                        descriptionConfiguration: .init(),
+                                        imageConfiguration: Presets.Image.primary,
+                                        buttonConfigurations: [
+                                            Presets.Button.primary,
+                                            Presets.Button.secondary
+                                        ])
+
+        viewController?.displayError(responseDisplay: .init(model: model, config: config))
     }
 
     func presentNotification(actionResponse: NotificationModels.Notification.ActionResponse) {

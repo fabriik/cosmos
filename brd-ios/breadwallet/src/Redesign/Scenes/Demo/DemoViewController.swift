@@ -20,10 +20,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     override func prepareData() {
         tableView.register(WrapperTableViewCell<FETest>.self)
         sections = [
-//            Models.Section.infoView,
-//            Models.Section.label,
-//            Models.Section.button,
-            Models.Section.textField
+            Models.Section.textField,
+            Models.Section.infoView,
+            Models.Section.label,
+            Models.Section.button
         ]
         
         sectionRows = [
@@ -68,24 +68,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         ]
         
         tableView.reloadData()
-//        textfield.configure(with: Presets.TexxtField.primary)
-//        textfield.setup(with: .init(title: "This is a title"))
-    }
-    
-    let textfield = FETextField()
-    override func setupSubviews() {
-        super.setupSubviews()
-//        tableView.removeFromSuperview()
-//
-//        textfield.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(textfield)
-//
-//        let constraints = [
-//            textfield.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.layoutMargins.left),
-//            textfield.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -view.layoutMargins.right),
-//            textfield.topAnchor.constraint(equalTo: view.centerYAnchor)
-//        ]
-//        NSLayoutConstraint.activate(constraints)
     }
     
     // MARK: - User Interaction

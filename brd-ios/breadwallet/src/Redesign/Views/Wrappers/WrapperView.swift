@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class WrapperView<T: UIView>: UIView,
                               Wrappable,
@@ -38,27 +39,15 @@ class WrapperView<T: UIView>: UIView,
 
     func setupSubviews() {
         addSubview(content)
-        content.addSubview(wrappedView)
-        content.translatesAutoresizingMaskIntoConstraints = false
-        wrappedView.translatesAutoresizingMaskIntoConstraints = false
+        content.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(layoutMargins)
+        }
         
-        let constraints = [
-//            content.leftAnchor.constraint(equalTo: leftAnchor, constant: layoutMargins.left),
-//            content.rightAnchor.constraint(equalTo: rightAnchor, constant: -layoutMargins.right),
-//            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top),
-//            content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layoutMargins.bottom),
-            content.leftAnchor.constraint(equalTo: leftAnchor),
-            content.rightAnchor.constraint(equalTo: rightAnchor),
-            content.topAnchor.constraint(equalTo: topAnchor),
-            content.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            wrappedView.leftAnchor.constraint(equalTo: content.leftAnchor),
-            wrappedView.rightAnchor.constraint(equalTo: content.rightAnchor),
-            wrappedView.topAnchor.constraint(equalTo: content.topAnchor),
-            wrappedView.bottomAnchor.constraint(equalTo: content.bottomAnchor)
-        ]
+        content.addSubview(wrappedView)
+        wrappedView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         setupClearMargins()
-        NSLayoutConstraint.activate(constraints)
     }
     
     func setup(_ closure: (T) -> Void) {
