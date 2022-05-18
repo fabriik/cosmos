@@ -93,6 +93,14 @@ class AmountViewController: UIViewController, Trackable {
     //Controlled by SendViewController
     var isSendViewSendingMax = false
     
+    lazy var infoButton: UIButton = {
+        let infoButton = UIButton()
+        infoButton.setImage(UIImage(named: "info"), for: .normal)
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        
+        return infoButton
+    }()
+    
     private var amount: Amount? {
         didSet {
             updateAmountLabel()
@@ -117,6 +125,7 @@ class AmountViewController: UIViewController, Trackable {
         view.addSubview(feeLabel)
         view.addSubview(tapView)
         view.addSubview(balanceLabel)
+        view.addSubview(infoButton)
         view.addSubview(bottomBorder)
     }
 
@@ -153,6 +162,11 @@ class AmountViewController: UIViewController, Trackable {
         balanceLabel.constrain([
             balanceLabel.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor),
             balanceLabel.topAnchor.constraint(equalTo: cursor.bottomAnchor) ])
+        
+        infoButton.constrain([
+            infoButton.topAnchor.constraint(equalTo: cursor.bottomAnchor, constant: 2),
+            infoButton.leadingAnchor.constraint(equalTo: balanceLabel.trailingAnchor, constant: C.padding[1])])
+        
         feeLabel.constrain([
             feeLabel.leadingAnchor.constraint(equalTo: balanceLabel.leadingAnchor),
             feeLabel.topAnchor.constraint(equalTo: balanceLabel.firstBaselineAnchor, constant: 2.0)])
@@ -181,6 +195,7 @@ class AmountViewController: UIViewController, Trackable {
     }
 
     private func setInitialData() {
+        infoButton.isHidden = !currency.isXRP
         cursor.isHidden = true
         cursor.startBlinking()
         amountLabel.text = ""
@@ -215,6 +230,18 @@ class AmountViewController: UIViewController, Trackable {
         
         balanceLabel.addTarget(self, action: #selector(didTapBalance), for: .touchUpInside)
         balanceLabel.isUserInteractionEnabled = false
+    }
+    
+    @objc private func infoButtonTapped() {
+        let message = "Ripple requires each wallet to have a minimum balance of 10 XRP, so the balance displayed here is always 10 XRP less than your actual balance."
+        
+        let alert = UIAlertController(title: "XRP Balance",
+                                      message: message,
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: S.Button.ok, style: .default)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 
     @objc private func didTapBalance() {
@@ -306,9 +333,15 @@ class AmountViewController: UIViewController, Trackable {
             if amount != nil || isSendViewSendingMax {
                 balanceLabel.isHidden = false
                 feeLabel.isHidden = false
+                if currency.isXRP {
+                    infoButton.isHidden = false
+                }
             } else {
-               balanceLabel.isHidden = cursor.isHidden
-               feeLabel.isHidden = cursor.isHidden
+                balanceLabel.isHidden = cursor.isHidden
+                feeLabel.isHidden = cursor.isHidden
+                if currency.isXRP {
+                    infoButton.isHidden = cursor.isHidden
+                }
             }
             balanceLabel.isUserInteractionEnabled = isUserInteractionEnabled
         }

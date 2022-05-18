@@ -20,7 +20,7 @@ class CoreSystem: Subscriber, Trackable {
     fileprivate var btcWalletCreationCallback: (() -> Void)?
     
     // MARK: Wallets + Currencies
-
+    
     private(set) var assetCollection: AssetCollection?
     /// All supported currencies
     private(set) var currencies = [CurrencyId: Currency]()
@@ -28,7 +28,7 @@ class CoreSystem: Subscriber, Trackable {
     private(set) var wallets = [CurrencyId: Wallet]()
     // Service that manages sharing data with widget extension
     private(set) var widgetDataShareService: WidgetDataShareService
-
+    
     func wallet(for currency: Currency) -> Wallet? {
         return wallets[currency.uid]
     }
@@ -36,7 +36,7 @@ class CoreSystem: Subscriber, Trackable {
     private var createWalletCallback: ((Wallet?) -> Void)?
     
     // MARK: Lifecycle
-
+    
     init(keyStore: KeyStore) {
         self.keyStore = keyStore
         self.widgetDataShareService = DefaultWidgetDataShareService()
@@ -44,12 +44,12 @@ class CoreSystem: Subscriber, Trackable {
             guard let `self` = self else { return }
             self.queue.async {
                 guard let btc = Currencies.btc.instance,
-                    let btcWalletManager = self.wallet(for: btc)?.manager else { return }
+                      let btcWalletManager = self.wallet(for: btc)?.manager else { return }
                 btcWalletManager.addressScheme = .btcSegwit
                 print("[SYS] Bitcoin SegWit address scheme enabled")
             }
         }
-
+        
         Reachability.addDidChangeCallback { [weak self] isReachable in
             guard let `self` = self, let system = self.system else { return }
             system.setNetworkReachable(isReachable)
@@ -72,27 +72,28 @@ class CoreSystem: Subscriber, Trackable {
         guard let kvStore = Backend.kvStore else { return assertionFailure() }
         print("[SYS] create | account timestamp: \(account.timestamp)")
         assert(self.system == nil)
-
+        
         let backend = BlocksetSystemClient(bdbBaseURL: "https://\(C.bdbHost)",
-            bdbDataTaskFunc: { (session, request, completion) -> URLSessionDataTask in
-                
-                var req = request
-                if let authToken = authToken {
-                    req.authorize(withToken: authToken)
-                }
-                
-                //TODO:CRYPTO does not handle 401, other headers, redirects
-                return session.dataTask(with: req, completionHandler: completion)
+                                           bdbDataTaskFunc: { (session, request, completion) -> URLSessionDataTask in
+            
+            var req = request
+            req.decorate()
+            if let authToken = authToken {
+                req.authorize(withToken: authToken)
+            }
+            
+            //TODO:CRYPTO does not handle 401, other headers, redirects
+            return session.dataTask(with: req, completionHandler: completion)
         },
-            apiBaseURL: "https://\(C.backendHost)",
-            apiDataTaskFunc: { (_, req, completion) -> URLSessionDataTask in
-                return Backend.apiClient.dataTaskWithRequest(req,
-                                                             authenticated: Backend.isConnected,
-                                                             retryCount: 0,
-                                                             responseQueue: self.queue,
-                                                             handler: completion)
+                                           apiBaseURL: "https://\(C.backendHost)",
+                                           apiDataTaskFunc: { (_, req, completion) -> URLSessionDataTask in
+            return Backend.apiClient.dataTaskWithRequest(req,
+                                                         authenticated: Backend.isConnected,
+                                                         retryCount: 0,
+                                                         responseQueue: self.queue,
+                                                         handler: completion)
         })
-
+        
         try? FileManager.default.createDirectory(atPath: C.coreDataDirURL.path, withIntermediateDirectories: true, attributes: nil)
         
         Backend.apiClient.getCurrencyMetaData { currencyMetaData in
@@ -106,7 +107,7 @@ class CoreSystem: Subscriber, Trackable {
                                             onMainnet: !E.isTestnet,
                                             path: C.coreDataDirURL.path,
                                             listenerQueue: self.listenerQueue)
-
+                
                 if let system = self.system {
                     System.wipeAll(atPath: C.coreDataDirURL.path, except: [system])
                 }
@@ -115,7 +116,7 @@ class CoreSystem: Subscriber, Trackable {
             }
         }
     }
-
+    
     /// Connects all active wallet managers. Used on foreground and when reachability is restored.
     func connect() {
         queue.async {
@@ -134,7 +135,7 @@ class CoreSystem: Subscriber, Trackable {
             system.resume()
         }
     }
-
+    
     /// Disconnects all wallet managers. Used on background and when reachability is lost.
     func pause() {
         queue.async {
@@ -143,7 +144,7 @@ class CoreSystem: Subscriber, Trackable {
             system.pause()
         }
     }
-
+    
     /// Shutdown the system and release resources. Used for account removal.
     func shutdown(completion: (() -> Void)?) {
         queue.async {
@@ -159,7 +160,7 @@ class CoreSystem: Subscriber, Trackable {
             completion?()
         }
     }
-
+    
     /// Fetch network fees from backend
     func updateFees() {
         queue.async {
@@ -174,7 +175,7 @@ class CoreSystem: Subscriber, Trackable {
             }
         }
     }
-
+    
     /// Re-sync blockchain from specified depth
     func rescan(walletManager: WalletManager, fromDepth depth: WalletManagerSyncDepth) {
         queue.async {
@@ -192,9 +193,9 @@ class CoreSystem: Subscriber, Trackable {
         guard let account = system?.account else { return false }
         return system?.accountIsInitialized(account, onNetwork: wallet.currency.network) ?? false
     }
-
+    
     // MARK: - Core Wallet Management
-
+    
     /// Adds Currency models for all currencies supported by the Network and enabled in the asset collection.
     private func addCurrencies(for network: Network) {
         guard let assetCollection = assetCollection else { return assertionFailure() }
@@ -204,24 +205,24 @@ class CoreSystem: Subscriber, Trackable {
                 print("[SYS] unknown currency omitted: \(network.currency.code) / \(coreCurrency.uid)")
                 continue
             }
-
+            
             guard let units = network.unitsFor(currency: coreCurrency),
-                let baseUnit = network.baseUnitFor(currency: coreCurrency),
-                let defaultUnit = network.defaultUnitFor(currency: coreCurrency),
-                let currency = Currency(core: coreCurrency,
-                                        network: network,
-                                        metaData: metaData,
-                                        units: units,
-                                        baseUnit: baseUnit,
-                                        defaultUnit: defaultUnit) else {
-                                            assertionFailure("unable to create view model for \(coreCurrency.code)")
-                                            continue
+                  let baseUnit = network.baseUnitFor(currency: coreCurrency),
+                  let defaultUnit = network.defaultUnitFor(currency: coreCurrency),
+                  let currency = Currency(core: coreCurrency,
+                                          network: network,
+                                          metaData: metaData,
+                                          units: units,
+                                          baseUnit: baseUnit,
+                                          defaultUnit: defaultUnit) else {
+                assertionFailure("unable to create view model for \(coreCurrency.code)")
+                continue
             }
             currencies[coreCurrency.uid] = currency
         }
         print("[SYS] \(network) currencies: \(network.currencies.map { $0.code }.joined(separator: ","))")
     }
-
+    
     /// Creates a wallet manager for the network. Wallets are added asynchronously by Core for all network currencies.
     private func setupWalletManager(for network: Network) {
         guard let system = system, let assetCollection = assetCollection else { return assertionFailure() }
@@ -229,10 +230,10 @@ class CoreSystem: Subscriber, Trackable {
             print("[SYS] \(network) wallet manager not created. \(network.currency.uid) not supported.")
             return
         }
-
+        
         // networks tokens for which wallets are needed
         let requiredTokens = network.currencies.filter { assetCollection.isEnabled($0.uid) }
-
+        
         var addressScheme: AddressScheme
         if currency.isBitcoin {
             addressScheme = UserDefaults.hasOptedInSegwit ? .btcSegwit : .btcLegacy
@@ -263,16 +264,16 @@ class CoreSystem: Subscriber, Trackable {
             }
             assert(success, "failed to create \(network) wallet manager")
         } else {
-                print("[SYS] initializing wallet manager for \(network). active wallets: \(requiredTokens.map { $0.code }.joined(separator: ","))")
-                initialize(network: network, system: system, createIfDoesNotExist: false) { [weak self] data in
-                    guard let data = data else { self?.setRequiresCreation(currency); return }
-                    self?.keyStore.updateAccountSerialization(data)
-                    print("[SYS] hbar initializationData: \(CoreCoder.hex.encode(data: data) ?? "no hex")")
-                    success = system.createWalletManager(network: network,
-                                                         mode: mode,
-                                                         addressScheme: addressScheme,
-                                                         currencies: requiredTokens)
-                    assert(success, "failed to create \(network) wallet manager")
+            print("[SYS] initializing wallet manager for \(network). active wallets: \(requiredTokens.map { $0.code }.joined(separator: ","))")
+            initialize(network: network, system: system, createIfDoesNotExist: false) { [weak self] data in
+                guard let data = data else { self?.setRequiresCreation(currency); return }
+                self?.keyStore.updateAccountSerialization(data)
+                print("[SYS] hbar initializationData: \(CoreCoder.hex.encode(data: data) ?? "no hex")")
+                success = system.createWalletManager(network: network,
+                                                     mode: mode,
+                                                     addressScheme: addressScheme,
+                                                     currencies: requiredTokens)
+                assert(success, "failed to create \(network) wallet manager")
             }
         }
     }
@@ -288,9 +289,9 @@ class CoreSystem: Subscriber, Trackable {
             
             self.createWalletCallback = callback
             let success = system.createWalletManager(network: currency.network,
-                                                 mode: self.connectionMode(for: currency),
-                                                 addressScheme: currency.network.defaultAddressScheme,
-                                                 currencies: currency.network.currencies.filter { assetCollection.isEnabled($0.uid) })
+                                                     mode: self.connectionMode(for: currency),
+                                                     addressScheme: currency.network.defaultAddressScheme,
+                                                     currencies: currency.network.currencies.filter { assetCollection.isEnabled($0.uid) })
             if success {
                 self.saveEvent("hbar.created")
             }
@@ -303,12 +304,12 @@ class CoreSystem: Subscriber, Trackable {
             Store.perform(action: SetRequiresCreation(currency))
         }
     }
-
+    
     /// Migrates the old sqlite persistent storage data to Core, if present.
     /// Deletes old database after successful migration.
     private func migrateLegacyDatabase(network: Network) {
         guard let currency = currencies[network.currency.uid],
-            (currency.isBitcoin || currency.isBitcoinCash) else { return assertionFailure() }
+              (currency.isBitcoin || currency.isBitcoinCash) else { return assertionFailure() }
         let fm = FileManager.default
         let filename = currency.isBitcoin ? "BreadWallet.sqlite" : "BreadWallet-bch.sqlite"
         let docsUrl = try? fm.url(for: .documentDirectory,
@@ -316,40 +317,40 @@ class CoreSystem: Subscriber, Trackable {
                                   appropriateFor: nil,
                                   create: false)
         guard let dbPath = docsUrl?.appendingPathComponent(filename).path,
-            fm.fileExists(atPath: dbPath) else { return }
-
+              fm.fileExists(atPath: dbPath) else { return }
+        
         do {
             let db = CoreDatabase()
             try db.openDatabase(path: dbPath)
             defer { db.close() }
-
+            
             let txBlobs = db.loadTransactions()
             let blockBlobs = db.loadBlocks()
             let peerBlobs = db.loadPeers()
-
+            
             print("[SYS] migrating \(network.currency.code) database: \(txBlobs.count) txns / \(blockBlobs.count) blocks / \(peerBlobs.count) peers")
-
+            
         } catch let error {
             print("[SYS] database migration failed: \(error)")
         }
         // delete the old database to avoid future migration attempts
         try? fm.removeItem(atPath: dbPath)
     }
-
+    
     /// Adds a Wallet model for the Core Wallet if it is enabled in the asset collection.
     private func addWallet(_ coreWallet: WalletKit.Wallet) -> Wallet? {
         guard let assetCollection = assetCollection,
-            let currency = currencies[coreWallet.currency.uid],
-            wallets[coreWallet.currency.uid] == nil else {
-                //assertionFailure()
-                return nil
+              let currency = currencies[coreWallet.currency.uid],
+              wallets[coreWallet.currency.uid] == nil else {
+            //assertionFailure()
+            return nil
         }
-
+        
         guard assetCollection.isEnabled(currency.uid) else {
             print("[SYS] hidden wallet not added: \(currency.code)")
             return nil
         }
-
+        
         let wallet = Wallet(core: coreWallet,
                             currency: currency,
                             system: self)
@@ -375,7 +376,7 @@ class CoreSystem: Subscriber, Trackable {
     /// Wallet creation is asynchronous and triggers a wallet `created` event.
     private func requestCoreWalletCreation() {
         guard let managers = system?.managers,
-            let assetCollection = assetCollection else { return }
+              let assetCollection = assetCollection else { return }
         
         managers.forEach { manager in
             let added = manager.network.currencies
@@ -386,7 +387,7 @@ class CoreSystem: Subscriber, Trackable {
             }
         }
     }
-
+    
     /// Reset the active wallets to match the asset collection by adding/removing wallets
     private func updateActiveWallets() {
         guard let assetCollection = assetCollection else { return }
@@ -400,16 +401,16 @@ class CoreSystem: Subscriber, Trackable {
             .filter { enabledIds.contains($0.key) } // remove disabled wallets
             .merging(newWallets, uniquingKeysWith: { (_, new) in new }) // add enabled wallets
     }
-
+    
     /// Connect wallet managers with any enabled wallets and disconnect those with no enabled wallets.
     private func updateWalletManagerConnections() {
         guard let managers = system?.managers,
-            let assetCollection = assetCollection else { return }
+              let assetCollection = assetCollection else { return }
         let enabledIds = Set(assetCollection.enabledAssets.map { $0.uid })
-
+        
         var activeManagers = [WalletManager]()
         var inactiveManagers = [WalletManager]()
-
+        
         for manager in managers {
             if Set(manager.network.currencies.map { $0.uid }).isDisjoint(with: enabledIds) {
                 inactiveManagers.append(manager)
@@ -417,7 +418,7 @@ class CoreSystem: Subscriber, Trackable {
                 activeManagers.append(manager)
             }
         }
-
+        
         // These connect() and disconnect() calls can block for up to 20 seconds which
         // blocks updating the display currencies when they change.
         // TODO: remove the async call once the disconnect() bug has been fixed.
@@ -426,20 +427,20 @@ class CoreSystem: Subscriber, Trackable {
                 print("[SYS] connecting \($0.network.currency.code) wallet manager")
                 $0.connect(using: $0.customPeer)
             }
-
+            
             inactiveManagers.forEach {
                 print("[SYS] disconnecting \($0.network.currency.code) wallet manager")
                 $0.disconnect()
             }
         }
     }
-
+    
     // MARK: Connection Mode
-
+    
     func isModeSupported(_ mode: WalletConnectionMode, for network: Network) -> Bool {
         return network.supportsMode(mode)
     }
-
+    
     func setConnectionMode(_ mode: WalletConnectionMode, forWalletManager wm: WalletManager) {
         guard wm.network.supportsMode(mode) else { return assertionFailure() }
         queue.async {
@@ -448,7 +449,7 @@ class CoreSystem: Subscriber, Trackable {
             wm.connect(using: wm.customPeer)
         }
     }
-
+    
     func connectionMode(for currency: Currency) -> WalletConnectionMode {
         //Develop menu connection setting override
         if currency.isBitcoin && UserDefaults.debugConnectionModeOverride.mode != nil {
@@ -460,14 +461,14 @@ class CoreSystem: Subscriber, Trackable {
             return .api_only
         }
         guard let kv = Backend.kvStore,
-            let walletInfo = WalletInfo(kvStore: kv) else {
-                assertionFailure()
-                return WalletConnectionSettings.defaultMode(for: currency)
+              let walletInfo = WalletInfo(kvStore: kv) else {
+            assertionFailure()
+            return WalletConnectionSettings.defaultMode(for: currency)
         }
         let settings = WalletConnectionSettings(system: self, kvStore: kv, walletInfo: walletInfo)
         return settings.mode(for: networkCurrency)
     }
-
+    
     // MARK: - AssetCollection / WalletState Management
     
     func resetToDefaultCurrencies() {
@@ -479,8 +480,8 @@ class CoreSystem: Subscriber, Trackable {
     /// Returns true if a wallet for a network native currency is required as a dependency for other active wallets.
     func isWalletRequired(for currencyId: CurrencyId) -> Bool {
         guard let assetCollection = assetCollection,
-            let currency = currencies[currencyId],
-            currency.tokenType == .native else { return false }
+              let currency = currencies[currencyId],
+              currency.tokenType == .native else { return false }
         return !assetCollection.enabledAssets
             .compactMap { self.currencies[$0.uid] }
             .filter { $0.uid != currency.uid && $0.network == currency.network }
@@ -496,7 +497,7 @@ class CoreSystem: Subscriber, Trackable {
             return nil
         }
     }
-
+    
     /// Creates placeholder WalletStates for all enabled currencies which do not have a Wallet yet.
     private var placeholderWalletStates: [CurrencyId: WalletState] {
         guard let assetCollection = assetCollection else { assertionFailure(); return [:] }
@@ -508,7 +509,7 @@ class CoreSystem: Subscriber, Trackable {
                 walletStates[currency.uid] = WalletState.initial(currency, displayOrder: displayOrder).mutate(syncState: .connecting)
             })
     }
-
+    
     /// Adds or replaces WalletState for a Wallet.
     private func addWalletState(for wallet: Wallet) {
         guard let displayOrder = assetCollection?.displayOrder(for: wallet.currency.metaData) else { return assertionFailure("wallet not enabled") }
@@ -564,7 +565,7 @@ class CoreSystem: Subscriber, Trackable {
                 .mutate(syncState: .success, balance: wallet.balance)
         }
     }
-
+    
     /// Returns true of any of the enabled assets in the asset collection are dependent on the wallet manager
     private func isWalletManagerNeeded(_ manager: WalletManager) -> Bool {
         guard let assetCollection = assetCollection else { assertionFailure(); return false }
@@ -579,7 +580,7 @@ class CoreSystem: Subscriber, Trackable {
         UIApplication.shared.isIdleTimerDisabled = true
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
-
+    
     private func endActivity() {
         UIApplication.shared.isIdleTimerDisabled = false
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -602,7 +603,7 @@ class CoreSystem: Subscriber, Trackable {
                 let start = small.index(small.startIndex, offsetBy: $0)
                 let end = small.index(start, offsetBy: 4, limitedBy: small.endIndex) ?? small.endIndex
                 return String(small[start..<end])
-                }.joined(separator: " ")
+            }.joined(separator: " ")
         }
         return nil
     }
@@ -612,17 +613,17 @@ class CoreSystem: Subscriber, Trackable {
 
 // callbacks execute on CoreSystem.queue
 extension CoreSystem: SystemListener {
-
+    
     func handleSystemEvent(system: System, event: SystemEvent) {
         print("[SYS] system event: \(event)")
         switch event {
         case .created:
             break
-
+            
         case .networkAdded:
             break
-
-        // after all networks are added
+            
+            // after all networks are added
         case .discoveredNetworks(let networks):
             guard !E.isRunningTests else { return }
             let filteredNetworks = networks.filter { $0.onMainnet == !E.isTestnet }
@@ -632,7 +633,7 @@ extension CoreSystem: SystemListener {
                 Backend.updateExchangeRates()
             }
             filteredNetworks.forEach { setupWalletManager(for: $0) }
-
+            
         case .managerAdded(let manager):
             if self.isWalletManagerNeeded(manager) {
                 manager.connect(using: manager.customPeer)
@@ -645,7 +646,7 @@ extension CoreSystem: SystemListener {
             break
         }
     }
-
+    
     func handleManagerEvent(system: System, manager: WalletKit.WalletManager, event: WalletManagerEvent) {
         print("[SYS] \(manager.network) manager event: \(event)")
         switch event {
@@ -661,7 +662,7 @@ extension CoreSystem: SystemListener {
             break
         case .walletDeleted: // (let wallet):
             break
-
+            
         case .syncStarted:
             DispatchQueue.main.async {
                 // only show the initial sync for API-mode wallets
@@ -673,7 +674,7 @@ extension CoreSystem: SystemListener {
                     self.startActivity()
                 }
             }
-
+            
         case .syncProgress(let timestamp, let percentComplete):
             guard manager.mode == .p2p_only else { break }
             DispatchQueue.main.async {
@@ -683,7 +684,7 @@ extension CoreSystem: SystemListener {
                     Store.perform(action: WalletChange($0).setProgress(progress: progress, timestamp: seconds))
                 }
             }
-
+            
         case .syncEnded(let reason):
             var syncState: SyncState
             var isComplete: Bool = false
@@ -737,12 +738,12 @@ extension CoreSystem: SystemListener {
             print("[SYS] \(manager.network) rescan recommended from \(depth)")
             rescan(walletManager: manager, fromDepth: depth)
             saveEvent("event.recommendRescan")
-
+            
         case .blockUpdated: // (let height):
             manager.wallets.forEach { self.wallets[$0.currency.uid]?.blockUpdated() }
         }
     }
-
+    
     func handleWalletEvent(system: System, manager: WalletKit.WalletManager, wallet: WalletKit.Wallet, event: WalletEvent) {
         print("[SYS] \(manager.network) wallet event: \(wallet.currency.code) \(event)")
         switch event {
@@ -752,7 +753,7 @@ extension CoreSystem: SystemListener {
             }
             // generate wallet ID from Ethereum address
             if wallet.currency.uid == Currencies.eth.uid,
-                let walletID = self.walletID(address: wallet.target.description) {
+               let walletID = self.walletID(address: wallet.target.description) {
                 DispatchQueue.main.async {
                     Store.perform(action: WalletID.Set(walletID))
                     if #available(iOS 13.6, *) {
@@ -762,21 +763,21 @@ extension CoreSystem: SystemListener {
                     }
                 }
             }
-
+            
         case .deleted:
             self.removeWallet(wallet)
-
+            
         default:
             self.wallets[wallet.currency.uid]?.handleWalletEvent(event)
         }
     }
-
+    
     func handleTransferEvent(system: System, manager: WalletKit.WalletManager, wallet: WalletKit.Wallet, transfer: Transfer, event: TransferEvent) {
         guard let wallet = self.wallets[wallet.currency.uid] else { return }
         print("[SYS] \(manager.network) transfer \(event): \(wallet.currency.code) \(transfer.hash?.description.truncateMiddle() ?? "")")
         wallet.handleTransferEvent(event, transfer: transfer)
     }
-
+    
     func handleNetworkEvent(system: System, network: Network, event: NetworkEvent) {
         print("[SYS] network event: \(event) (\(network))")
     }
@@ -787,7 +788,7 @@ extension CoreSystem: SystemListener {
 extension WalletManager {
     var customPeer: NetworkPeer? {
         guard network.currency.uid == Currencies.btc.uid,
-            let address = UserDefaults.customNodeIP else { return nil }
+              let address = UserDefaults.customNodeIP else { return nil }
         let port = UInt16(UserDefaults.customNodePort ?? C.standardPort)
         return network.createPeer(address: address, port: port, publicKey: nil)
     }
@@ -837,20 +838,20 @@ extension Address {
 //TODO:CRYPTO hook up to notifications?
 // MARK: - Sounds
 /*
-extension WalletManager {
-    func ping() {
-        guard let url = Bundle.main.url(forResource: "coinflip", withExtension: "aiff") else { return }
-        var id: SystemSoundID = 0
-        AudioServicesCreateSystemSoundID(url as CFURL, &id)
-        AudioServicesAddSystemSoundCompletion(id, nil, nil, { soundId, _ in
-            AudioServicesDisposeSystemSoundID(soundId)
-        }, nil)
-        AudioServicesPlaySystemSound(id)
-    }
-
-    func showLocalNotification(message: String) {
-        guard UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .inactive else { return }
-        guard Store.state.isPushNotificationsEnabled else { return }
-    }
-}
-*/
+ extension WalletManager {
+ func ping() {
+ guard let url = Bundle.main.url(forResource: "coinflip", withExtension: "aiff") else { return }
+ var id: SystemSoundID = 0
+ AudioServicesCreateSystemSoundID(url as CFURL, &id)
+ AudioServicesAddSystemSoundCompletion(id, nil, nil, { soundId, _ in
+ AudioServicesDisposeSystemSoundID(soundId)
+ }, nil)
+ AudioServicesPlaySystemSound(id)
+ }
+ 
+ func showLocalNotification(message: String) {
+ guard UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .inactive else { return }
+ guard Store.state.isPushNotificationsEnabled else { return }
+ }
+ }
+ */
