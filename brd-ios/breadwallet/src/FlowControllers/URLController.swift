@@ -104,16 +104,13 @@ class URLController: Trackable, Subscriber {
             }
             
         default:
-            guard let currency = Store.state.currencies.first(where: {
-                var result = false
-                $0.urlSchemes?.forEach {
-                    if $0 == scheme {
-                        result = true
-                    }
-                }
-                return result
-            }) else { return false }
-            return handlePaymentRequestUri(url, currency: currency)
+            let qrCode = QRCode(content: url.absoluteString)
+            
+            guard case .paymentRequest(let request) = qrCode, let request = request else {
+                return false
+            }
+            
+            return handlePaymentRequestUri(url, currency: request.currency)
         }
         
         return false
@@ -131,7 +128,7 @@ class URLController: Trackable, Subscriber {
 
     private func handlePaymentRequestUri(_ uri: URL, currency: Currency) -> Bool {
         if let request = PaymentRequest(string: uri.absoluteString, currency: currency) {
-            Store.trigger(name: .receivedPaymentRequest(request))
+            Store.trigger(name: .paymentRequest(request))
             return true
         } else {
             return false

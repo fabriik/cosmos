@@ -484,46 +484,42 @@ extension CurrencyMetaData: Hashable {
 
 /// Natively supported currencies. Enum maps to ticker code.
 enum Currencies: String, CaseIterable {
-    case btc
-    case bsv
-    case bch
+    case zrx
     case eth
-    case brd
-    case tusd
+    case bsv
+    case lrc
+    case usdt
+    case bch
+    case bat
+    case link
     case xrp
-    case hbar
-    case xtz
-    case usdc
+    case btc
+    case shib
     
-    var code: String { return rawValue }
-    var uid: CurrencyId {
-        var uids = ""
-        switch self {
-        case .btc:
-            uids = "bitcoin-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
-        case .bsv:
-            uids = "bitcoinsv-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
-        case .bch:
-            uids = "bitcoincash-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
-        case .eth:
-            uids = "ethereum-\(E.isTestnet ? "goerli" : "mainnet"):__native__"
-        case .brd:
-            uids = "ethereum-mainnet:0x558ec3152e2eb2174905cd19aea4e34a23de9ad6"
-        case .tusd:
-            uids = "ethereum-mainnet:0x0000000000085d4780B73119b644AE5ecd22b376"
-        case .xrp:
-            uids = "ripple-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
-        case .hbar:
-            uids = "hedera-mainnet:__native__"
-        case .xtz:
-            uids = "tezos-mainnet:__native__"
-        case .usdc:
-            uids = "ethereum-mainnet:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+    // Currently unused.
+    case brd, hbar, xtz, tusd, usdc
+    
+    var uid: CurrencyId? {
+        var uid: CurrencyId?
+        
+        Backend.apiClient.getCurrencyMetaData { currencyMetaData in
+            for value in currencyMetaData.values where rawValue == value.code {
+                uid = value.uid
+            }
         }
-        return CurrencyId(rawValue: uids)
+        
+        return uid
     }
     
-    var state: WalletState? { return Store.state.wallets[uid] }
+    var state: WalletState? {
+        if let uid = uid {
+            return Store.state.wallets[uid]
+        } else {
+            return nil
+        }
+    }
+    
+    var code: String { return rawValue }
     var wallet: Wallet? { return state?.wallet }
     var instance: Currency? { return state?.currency }
 }

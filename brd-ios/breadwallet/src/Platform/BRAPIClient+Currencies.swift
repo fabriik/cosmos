@@ -55,8 +55,13 @@ extension BRAPIClient {
     
     /// Get the list of supported currencies and their metadata from the backend or local cache
     func getCurrencyMetaData(completion: @escaping ([CurrencyId: CurrencyMetaData]) -> Void) {
-        let fm = FileManager.default
-        guard let documentsDir = try? fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return assertionFailure() }
+        let fileManager = FileManager.default
+        guard let documentsDir = try? fileManager.url(for: .documentDirectory,
+                                                      in: .userDomainMask,
+                                                      appropriateFor: nil,
+                                                      create: false) else {
+            return assertionFailure()
+        }
         let cachedFilePath = documentsDir.appendingPathComponent("currencies.json").path
         
         var shouldProcess = true
@@ -84,7 +89,7 @@ extension BRAPIClient {
                 }
             case .error(let error):
                 print("[CurrencyList] error fetching tokens: \(error)")
-                copyEmbeddedCurrencies(path: cachedFilePath, fileManager: fm)
+                copyEmbeddedCurrencies(path: cachedFilePath, fileManager: fileManager)
                 if shouldProcess {
                    let result = processCurrenciesCache(path: cachedFilePath, completion: completion)
                    assert(result, "failed to get currency list from backend or cache")

@@ -42,27 +42,6 @@ class Currency: CurrencyWithIcon {
     var colors: (UIColor, UIColor) { return metaData.colors }
     /// False if a token has been delisted, true otherwise
     var isSupported: Bool { return metaData.isSupported }
-
-    // MARK: URI
-
-    var urlSchemes: [String]? {
-        if isBitcoin {
-            return ["bitcoin"]
-        }
-        if isBitcoinCash {
-            return E.isTestnet ? ["bchtest"] : ["bitcoincash"]
-        }
-        if isEthereumCompatible {
-            return ["ethereum"]
-        }
-        if isXRP {
-            return ["xrpl", "xrp", "ripple"]
-        }
-        if isHBAR {
-            return ["hbar"]
-        }
-        return nil
-    }
     
     init(metaData: CurrencyMetaData) {
         self.metaData = metaData
@@ -72,15 +51,17 @@ class Currency: CurrencyWithIcon {
 // MARK: - Convenience Accessors
 
 extension Currency {
-
     var isBitcoin: Bool { return uid == Currencies.btc.uid }
+    var isBitcoinSV: Bool { return uid == Currencies.bsv.uid }
     var isBitcoinCash: Bool { return uid == Currencies.bch.uid }
     var isEthereum: Bool { return uid == Currencies.eth.uid }
     var isERC20Token: Bool { return metaData.type == "ERC20" }
     var isBRDToken: Bool { return uid == Currencies.brd.uid }
     var isXRP: Bool { return uid == Currencies.xrp.uid }
     var isHBAR: Bool { return uid == Currencies.hbar.uid }
+    var isBitcoinCompatible: Bool { return isBitcoin || isBitcoinCash }
     var isEthereumCompatible: Bool { return isEthereum || isERC20Token }
+    var isTezos: Bool { return uid == Currencies.xtz.uid }
 }
 
 /// Model representing metadata for supported currencies
@@ -180,40 +161,68 @@ extension CurrencyMetaData: Hashable {
     }
 }
 
+/// Unify widget and app code - https://bayes.atlassian.net/browse/W1-349
 /// Natively supported currencies. Enum maps to ticker code.
 enum Currencies: String, CaseIterable {
-    case btc
-    case bch
+    case zrx
     case eth
-    case brd
-    case tusd
+    case bsv
+    case lrc
+    case usdt
+    case bch
+    case bat
+    case link
     case xrp
-    case hbar
-    case xtz
+    case btc
+    case shib
+    
+    // Currently unused.
+    case brd, hbar, xtz, tusd, usdc
+    
+    var uid: CurrencyId? {
+        var uid: CurrencyId?
+        
+        guard let currenciesURL = Bundle.main.url(forResource: "currencies",
+                                                  withExtension: "json") else {
+            return nil
+        }
+        
+        _ = processCurrenciesCache(path: currenciesURL.absoluteString) { currencyMetaData in
+            for value in currencyMetaData.values where rawValue == value.code {
+                uid = value.uid
+            }
+        }
+        
+        return uid
+    }
     
     var code: String { return rawValue }
-    var uid: CurrencyId {
-        var uids = ""
-        switch self {
-        case .btc:
-            uids = "bitcoin-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
-        case .bch:
-            uids = "bitcoincash-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
-        case .eth:
-            uids = "ethereum-\(E.isTestnet ? "goerli" : "mainnet"):__native__"
-        case .brd:
-            uids = "ethereum-mainnet:0x558ec3152e2eb2174905cd19aea4e34a23de9ad6"
-        case .tusd:
-            uids = "ethereum-mainnet:0x0000000000085d4780B73119b644AE5ecd22b376"
-        case .xrp:
-            uids = "ripple-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
-        case .hbar:
-            uids = "hedera-mainnet:__native__"
-        case .xtz:
-            uids = "tezos-mainnet:__native__"
-        }
-        return CurrencyId(rawValue: uids)
+}
+
+// Loads and processes cached currencies
+private func processCurrenciesCache(path: String, completion: ([CurrencyId: CurrencyMetaData]) -> Void) -> Bool {
+    guard FileManager.default.fileExists(atPath: path) else { return false }
+    do {
+        print("[CurrencyList] using cached token list")
+        let cachedData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let currencies = try JSONDecoder().decode([CurrencyMetaData].self, from: cachedData)
+        processCurrencies(currencies, completion: completion)
+        return true
+    } catch let e {
+        print("[CurrencyList] error reading from cache: \(e)")
+        // remove the invalid cached data
+        try? FileManager.default.removeItem(at: URL(fileURLWithPath: path))
+        return false
     }
+}
+
+// Converts an array of CurrencyMetaData to a dictionary keyed on uid
+private func processCurrencies(_ currencies: [CurrencyMetaData], completion: ([CurrencyId: CurrencyMetaData]) -> Void) {
+    let currencyMetaData = currencies.reduce(into: [CurrencyId: CurrencyMetaData](), { (dict, token) in
+        dict[token.uid] = token
+    })
+    print("[CurrencyList] tokens updated: \(currencies.count) tokens")
+    completion(currencyMetaData)
 }
 
 // MARK: - AssetOption

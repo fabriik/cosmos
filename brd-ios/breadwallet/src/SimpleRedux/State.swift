@@ -169,17 +169,17 @@ struct WalletState {
                            fiatPriceInfo: nil)
     }
 
-    func mutate(    wallet: Wallet? = nil,
-                    displayOrder: Int? = nil,
-                    syncProgress: Float? = nil,
-                    syncState: SyncState? = nil,
-                    balance: Amount? = nil,
-                    lastBlockTimestamp: UInt32? = nil,
-                    isRescanning: Bool? = nil,
-                    receiveAddress: String? = nil,
-                    legacyReceiveAddress: String? = nil,
-                    currentRate: Rate? = nil,
-                    fiatPriceInfo: FiatPriceInfo? = nil) -> WalletState {
+    func mutate(wallet: Wallet? = nil,
+                displayOrder: Int? = nil,
+                syncProgress: Float? = nil,
+                syncState: SyncState? = nil,
+                balance: Amount? = nil,
+                lastBlockTimestamp: UInt32? = nil,
+                isRescanning: Bool? = nil,
+                receiveAddress: String? = nil,
+                legacyReceiveAddress: String? = nil,
+                currentRate: Rate? = nil,
+                fiatPriceInfo: FiatPriceInfo? = nil) -> WalletState {
 
         return WalletState(currency: self.currency,
                            wallet: wallet ?? self.wallet,

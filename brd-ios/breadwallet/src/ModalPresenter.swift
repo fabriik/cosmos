@@ -81,9 +81,9 @@ class ModalPresenter: Subscriber, Trackable {
         })
 
         //URLs
-        Store.subscribe(self, name: .receivedPaymentRequest(nil), callback: { [weak self] in
+        Store.subscribe(self, name: .paymentRequest(nil), callback: { [weak self] in
             guard let trigger = $0 else { return }
-            if case let .receivedPaymentRequest(request) = trigger {
+            if case let .paymentRequest(request) = trigger {
                 if let request = request {
                     self?.handlePaymentRequest(request: request)
                 }
@@ -389,6 +389,8 @@ class ModalPresenter: Subscriber, Trackable {
             guard let scanResult = scanResult else { return }
             switch scanResult {
             case .paymentRequest(let request):
+                guard let request = request else { return }
+                
                 let message = String(format: S.Scanner.paymentPromptMessage, request.currency.name)
                 let alert = UIAlertController.confirmationAlert(title: S.Scanner.paymentPrompTitle, message: message) {
                     self.currentRequest = request
@@ -1030,7 +1032,12 @@ class ModalPresenter: Subscriber, Trackable {
 
     private func handlePaymentRequest(request: PaymentRequest) {
         self.currentRequest = request
-        guard !Store.state.isLoginRequired else { presentModal(.send(currency: request.currency)); return }
+        
+        guard !Store.state.isLoginRequired else {
+            presentModal(.send(currency: request.currency))
+            
+            return
+        }
 
         showAccountView(currency: request.currency, animated: false) {
             self.presentModal(.send(currency: request.currency))

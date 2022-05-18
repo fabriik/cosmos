@@ -207,7 +207,9 @@ extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
         
         if let currencyRestriction = paymentRequestCurrencyRestriction {
-            guard case .paymentRequest(let request) = result, request.currency.shouldAcceptQRCodeFrom(currencyRestriction, request: request) else {
+            guard case .paymentRequest(let request) = result,
+                    let request = request,
+                    request.currency.shouldAcceptQRCodeFrom(currencyRestriction, request: request) else {
                 guide.state = .negative
                 return
             }
@@ -231,7 +233,7 @@ extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
     private func saveScanEvent(_ result: QRCode) {
         switch result {
         case .paymentRequest(let request):
-            switch request.currency.code {
+            switch request?.currency.code {
             case Currencies.bch.code:
                 saveEvent("scan.bCashAddr")
             case Currencies.btc.code:
