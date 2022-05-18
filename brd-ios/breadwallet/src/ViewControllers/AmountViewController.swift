@@ -97,8 +97,19 @@ class AmountViewController: UIViewController, Trackable {
         let infoButton = UIButton()
         infoButton.setImage(UIImage(named: "info"), for: .normal)
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        infoButton.isHidden = true
         
         return infoButton
+    }()
+    
+    lazy var errorLabel: UILabel = {
+        let errorLabel = UILabel()
+        errorLabel.textColor = LightColors.error
+        errorLabel.font = ThemeManager.shared.font(for: "Roboto-Regular", size: 12)
+        errorLabel.text = "The minimum required ammount is 10 XRP."
+        errorLabel.isHidden = true
+        
+        return errorLabel
     }()
     
     private var amount: Amount? {
@@ -125,6 +136,7 @@ class AmountViewController: UIViewController, Trackable {
         view.addSubview(feeLabel)
         view.addSubview(tapView)
         view.addSubview(balanceLabel)
+        view.addSubview(errorLabel)
         view.addSubview(infoButton)
         view.addSubview(bottomBorder)
     }
@@ -163,6 +175,10 @@ class AmountViewController: UIViewController, Trackable {
             balanceLabel.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor),
             balanceLabel.topAnchor.constraint(equalTo: cursor.bottomAnchor) ])
         
+        errorLabel.constrain([
+            errorLabel.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor),
+            errorLabel.topAnchor.constraint(equalTo: cursor.bottomAnchor)])
+        
         infoButton.constrain([
             infoButton.topAnchor.constraint(equalTo: cursor.bottomAnchor, constant: 2),
             infoButton.leadingAnchor.constraint(equalTo: balanceLabel.trailingAnchor, constant: C.padding[1])])
@@ -195,7 +211,6 @@ class AmountViewController: UIViewController, Trackable {
     }
 
     private func setInitialData() {
-        infoButton.isHidden = !currency.isXRP
         cursor.isHidden = true
         cursor.startBlinking()
         amountLabel.text = ""
@@ -313,6 +328,10 @@ class AmountViewController: UIViewController, Trackable {
         amountLabel.text = output
         placeholder.isHidden = output.utf8.isEmpty ? false : true
         
+        if currency.isXRP && isRequesting {
+            errorLabel.isHidden = output.count > 1
+        }
+        
         if let max = maximum {
             if amount > max {
                 amountLabel.textColor = UIColor.cameraGuideNegative
@@ -333,13 +352,13 @@ class AmountViewController: UIViewController, Trackable {
             if amount != nil || isSendViewSendingMax {
                 balanceLabel.isHidden = false
                 feeLabel.isHidden = false
-                if currency.isXRP {
+                if currency.isXRP && !isRequesting {
                     infoButton.isHidden = false
                 }
             } else {
                 balanceLabel.isHidden = cursor.isHidden
                 feeLabel.isHidden = cursor.isHidden
-                if currency.isXRP {
+                if currency.isXRP && !isRequesting {
                     infoButton.isHidden = cursor.isHidden
                 }
             }
