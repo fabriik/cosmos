@@ -9,15 +9,15 @@
 //
 
 import UIKit
+import SnapKit
 
 class WrapperView<T: UIView>: UIView,
                               Wrappable,
                               Marginable,
                               Reusable {
-    
-    lazy var content = UIView()
 
     // MARK: Lazy UI
+    lazy var content = UIView()
     lazy var wrappedView = T()
 
     // MARK: - Overrides
@@ -26,26 +26,28 @@ class WrapperView<T: UIView>: UIView,
             wrappedView.tintColor = tintColor
         }
     }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupSubviews()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupSubviews()
+    }
 
     func setupSubviews() {
         addSubview(content)
-        content.addSubview(wrappedView)
-        content.translatesAutoresizingMaskIntoConstraints = false
-        wrappedView.translatesAutoresizingMaskIntoConstraints = false
+        content.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(layoutMargins)
+        }
         
-        let constraints = [
-            content.centerXAnchor.constraint(equalTo: centerXAnchor),
-            content.centerYAnchor.constraint(equalTo: centerYAnchor),
-            content.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutMargins.left),
-            content.topAnchor.constraint(equalTo: topAnchor, constant: layoutMargins.top),
-            
-            wrappedView.centerXAnchor.constraint(equalTo: content.centerXAnchor),
-            wrappedView.centerYAnchor.constraint(equalTo: content.centerYAnchor),
-            wrappedView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
-            wrappedView.topAnchor.constraint(equalTo: content.topAnchor)
-        ]
+        content.addSubview(wrappedView)
+        wrappedView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         setupClearMargins()
-        NSLayoutConstraint.activate(constraints)
     }
     
     func setup(_ closure: (T) -> Void) {

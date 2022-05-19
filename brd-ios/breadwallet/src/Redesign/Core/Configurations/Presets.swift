@@ -12,7 +12,6 @@ import UIKit
 
 // TODO: unify with designs and use color / font enums
 struct Presets {
-    // TODO: prolly each BG has to have a "borderConfig"
     struct Background {
         struct Primary {
             static var normal = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: LightColors.Contrast.two)
@@ -20,76 +19,83 @@ struct Presets {
             static var disabled = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.disabled, tintColor: LightColors.Contrast.two)
             static var error = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: .red)
         }
+        
         struct Secondary {
-            static var normal = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.Link.one)
-            static var selected = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.Link.one)
-            static var disabled = BackgroundConfiguration(backgroundColor: .clear, tintColor: LightColors.InteractionPrimary.disabled)
-            static var error = BackgroundConfiguration(backgroundColor: .clear, tintColor: .red)
+            static var normal = BackgroundConfiguration(tintColor: LightColors.Link.one)
+            static var selected = BackgroundConfiguration(tintColor: LightColors.Link.one)
+            static var disabled = BackgroundConfiguration(tintColor: LightColors.InteractionPrimary.disabled)
+            static var error = BackgroundConfiguration(tintColor: .red)
         }
     }
     
     struct Border {
+        static var zero = BorderConfiguration(borderWidth: 0, cornerRadius: .small)
         static var normal = BorderConfiguration(tintColor: LightColors.Outline.one, borderWidth: 1, cornerRadius: .small)
-        static var zero = BorderConfiguration(tintColor: .clear, borderWidth: 0, cornerRadius: .small)
+        static var selected = BorderConfiguration(tintColor: LightColors.primary, borderWidth: 1, cornerRadius: .small)
+        static var disabled = BorderConfiguration(tintColor: LightColors.InteractionPrimary.disabled, borderWidth: 1, cornerRadius: .small)
+        static var error = BorderConfiguration(tintColor: LightColors.error, borderWidth: 1, cornerRadius: .small)
     }
     
     // TODO: add as needed
     struct Shadow {
-        static var normal = ShadowConfiguration(color: .cyan, opacity: .highest, offset: .init(width: 30, height: 30), cornerRadius: .small)
+        // TODO: the shadow color is not part of our Color config?
+        static var normal = ShadowConfiguration(color: LightColors.Contrast.one,
+                                                opacity: .low,
+                                                offset: .init(width: 4, height: 10),
+                                                cornerRadius: .small)
         static var zero = ShadowConfiguration(color: .clear, opacity: .zero, offset: .zero, cornerRadius: .small)
     }
     
-    struct Label {
-        // TODO: fonts
-        static var primary = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Text.one)
-        static var secondary = LabelConfiguration(font: .systemFont(ofSize: 12), textColor: LightColors.Text.two)
-        static var tertiary = LabelConfiguration(font: .boldSystemFont(ofSize: 14), textColor: .white)
-        static var contrast = LabelConfiguration(font: .systemFont(ofSize: 14), textColor: LightColors.Contrast.two)
-    }
-    
     struct Image {
-        static var primary = ImageViewConfiguration(backgroundColor: .yellow, tintColor: .blue)
-        static var secondary = ImageViewConfiguration(backgroundColor: .blue, tintColor: .yellow)
+        static var primary = BackgroundConfiguration(tintColor: LightColors.Text.one)
+        static var secondary = BackgroundConfiguration(tintColor: LightColors.Text.two)
+        static var tertiary = BackgroundConfiguration(tintColor: LightColors.Contrast.two)
     }
 }
 
-// TODO: unify presets with designs
 extension Presets {
     struct Button {
         static var primary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Primary.normal,
                                                  selectedConfiguration: Presets.Background.Primary.selected,
-                                                 disabledConfiguration: Presets.Background.Primary.disabled,
-                                                 borderConfiguration: Presets.Border.zero)
+                                                 disabledConfiguration: Presets.Background.Primary.disabled)
         
-        static var secondary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Secondary.selected,
-                                                   selectedConfiguration: Presets.Background.Secondary.normal,
-                                                   disabledConfiguration: Presets.Background.Secondary.disabled,
-                                                   borderConfiguration: Presets.Border.normal)
+        static var secondary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.normal),
+                                                   selectedConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
+                                                   disabledConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled))
     }
     
     struct TexxtField {
         static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.two),
-                                                    // TODO: extract to LabelConfig when fonts are added
-                                                    textConfiguration: Presets.Label.primary,
-                                                    placeholderConfiguration: Presets.Label.primary,
-                                                    hintConfiguration: Presets.Label.secondary,
-                                                    backgroundConfiguration: Presets.Background.Secondary.normal,
-                                                    selectedBackgroundConfiguration: Presets.Background.Secondary.selected,
-                                                    disabledBackgroundConfiguration: Presets.Background.Secondary.disabled,
-                                                    errorBackgroundConfiguration: Presets.Background.Secondary.error,
-                                                    borderConfiguration: Presets.Border.normal)
+                                                    titleConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
+                                                    textConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
+                                                    placeholderConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
+                                                    hintConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
+                                                    backgroundConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
+                                                    selectedBackgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.selected),
+                                                    disabledBackgroundConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled),
+                                                    errorBackgroundConfiguration: Presets.Background.Secondary.error.withBorder(border: Presets.Border.error))
     }
     
     struct InfoView {
-        static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.primary,
-                                                   headerTitle: Presets.Label.tertiary,
-                                                   headerTrailingImage: Presets.Image.primary,
-                                                   title: Presets.Label.tertiary,
-                                                   description: Presets.Label.contrast,
+        static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
+                                                   headerTitle: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
+                                                   headerTrailingImage: Presets.Image.tertiary,
+                                                   title: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
+                                                   description: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two),
                                                    button: Presets.Button.primary,
                                                    background: .init(backgroundColor: LightColors.secondary,
                                                                      tintColor: LightColors.Contrast.two),
-                                                   border: Presets.Border.zero,
                                                    shadow: Presets.Shadow.normal)
+    }
+    
+    struct Alert {
+        // TODO: not styled yet
+        static var one = AlertConfiguration(titleConfiguration: .init(font: Fonts.Title.six, textColor: LightColors.Text.one),
+                                            descriptionConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
+                                            imageConfiguration: Presets.Image.primary,
+                                            buttonConfigurations: [
+                                                Presets.Button.primary,
+                                                Presets.Button.secondary
+                                            ])
     }
 }

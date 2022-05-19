@@ -19,6 +19,8 @@ protocol Configurable {}
 protocol BackgorundConfigurable: Configurable {
     var backgroundColor: UIColor { get }
     var tintColor: UIColor { get }
+    // optional
+    var border: BorderConfiguration? { get }
 }
 
 /// BorderConfigurable protocol,
@@ -54,7 +56,7 @@ protocol ShadowConfigurable {
 /// - Defines variable lineBreakMode of type NSLineBreakMode
 protocol TextConfigurable: Configurable {
     var font: UIFont { get }
-    var textColor: UIColor { get }
+    var textColor: UIColor? { get }
     var textAlignment: NSTextAlignment { get }
     var numberOfLines: Int { get }
     var lineBreakMode: NSLineBreakMode { get }
