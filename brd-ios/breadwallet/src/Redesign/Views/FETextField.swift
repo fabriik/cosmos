@@ -1,4 +1,4 @@
-// 
+//
 //  FETextField.swift
 //  breadwallet
 //
@@ -31,7 +31,7 @@ struct TextFieldModel: ViewModel {
     var title: String
     var placeholder: String?
     var hint: String?
-    var error: String?
+    var error: String? = "Text has to be longer than 1 character."
     var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
 }
@@ -143,11 +143,12 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     @objc func tapped() {
         let state: DisplayState = textField.isFirstResponder ? .disabled : .selected
         animateTo(state: state, withAnimation: true)
+        textField.becomeFirstResponder()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         var background: BackgroundConfiguration?
         switch displayState {
         case .normal:
@@ -193,7 +194,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         super.setup(with: viewModel)
         
         titleLabel.setup(with: .text(viewModel.title))
-
+        
         if let placeholder = viewModel.placeholder,
            let config = config?.placeholderConfiguration {
             let attributes: [NSAttributedString.Key: Any] = [
@@ -206,18 +207,18 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             hintLabel.setup(with: .text(hint))
         }
         hintLabel.isHidden = viewModel.hint == nil
-
+        
         leadingView.isHidden = viewModel.leading == nil
         leadingView.setup(with: viewModel.leading)
-
+        
         trailingView.isHidden = viewModel.trailing == nil
         trailingView.setup(with: viewModel.trailing)
         layoutSubviews()
     }
-
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         animateTo(state: .selected)
-     }
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         animateTo(state: .normal)
@@ -225,13 +226,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let isValid = validator?(textField.text) == true
-        if !isValid {
-            hintLabel.text = "Text has to be longer than 1 character."
-        }
         let state: DisplayState = isValid ? .normal : .error
         animateTo(state: state, withAnimation: true)
         
-        return true
+        return isValid
     }
     
     override func prepareForReuse() {
@@ -252,7 +250,12 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     
     func animateTo(state: DisplayState, withAnimation: Bool = true) {
         let background: BackgroundConfiguration?
+        var state = state
         
+        if validator?(textField.text) != true,
+           textField.text?.isEmpty != true {
+            state = .error
+        }
         var hint = viewModel?.hint
         var hideTextField = textField.text?.isEmpty == true
         
@@ -263,7 +266,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         case .highlighted, .selected:
             background = config?.selectedBackgroundConfiguration
             hideTextField = false
-            textField.becomeFirstResponder()
             
         case .disabled:
             background = config?.disabledBackgroundConfiguration
@@ -271,7 +273,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         case .error:
             background = config?.errorBackgroundConfiguration
             hideTextField = false
-            hint = "ERROR ERROR"
+            hint = viewModel?.error
         }
         textField.isHidden = hideTextField
         hintLabel.isHidden = hint == nil
