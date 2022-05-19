@@ -10,7 +10,7 @@ import Foundation
 import WalletKit
 
 enum QRCode: Equatable {
-    case paymentRequest(PaymentRequest)
+    case paymentRequest(PaymentRequest?)
     case privateKey(String)
     case gift(String, TxViewModel?)
     case deepLink(URL)
@@ -55,7 +55,7 @@ enum QRCode: Equatable {
     static func == (lhs: QRCode, rhs: QRCode) -> Bool {
         switch (lhs, rhs) {
         case (.paymentRequest(let a), .paymentRequest(let b)):
-            return a.toAddress == b.toAddress
+            return a?.toAddress == b?.toAddress
         case (.privateKey(let a), .privateKey(let b)):
             return a == b
         case (.deepLink(let a), .deepLink(let b)):

@@ -148,6 +148,7 @@
 		7B432FBA280448520056B364 /* KYCResetPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FB4280448520056B364 /* KYCResetPasswordInteractor.swift */; };
 		7B432FBE280450C30056B364 /* KYCResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FBD280450C30056B364 /* KYCResetPasswordView.swift */; };
 		7B432FC0280455F70056B364 /* KYCResetPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FBF280455F70056B364 /* KYCResetPasswordWorker.swift */; };
+		7B519A932835B506007AC80A /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B519A922835B505007AC80A /* currencies.json */; };
 		7B54E50F27F4A208002DD1E4 /* KYCCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4BD27F4A207002DD1E4 /* KYCCenteredTextView.swift */; };
 		7B54E51027F4A208002DD1E4 /* KYCCameraContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4BE27F4A207002DD1E4 /* KYCCameraContainerView.swift */; };
 		7B54E51127F4A208002DD1E4 /* KYCUploadPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4BF27F4A207002DD1E4 /* KYCUploadPresenter.swift */; };
@@ -309,7 +310,6 @@
 		7C40DE2D20E09207000E289D /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C40DE2C20E09207000E289D /* ToggleButton.swift */; };
 		7C424A6E20FD34F20064557E /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C424A6D20FD34F20064557E /* NotificationHandler.swift */; };
 		7C45481A2187E65B0002E884 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4548192187E65B0002E884 /* AnyCodable.swift */; };
-		7C54FF9E2165866A007BF3EF /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C54FF9D21658669007BF3EF /* currencies.json */; };
 		7C5AC8A6203B93D3001B221E /* TxListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC8A5203B93D3001B221E /* TxListCell.swift */; };
 		7C67B6362056FB13006487BE /* BRAPIClient+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C67B6352056FB13006487BE /* BRAPIClient+Currencies.swift */; };
 		7C6ACCB11FEB21580028ABFA /* TxDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6ACCB01FEB21580028ABFA /* TxDetailDataSource.swift */; };
@@ -605,8 +605,6 @@
 		9F29A99F25D5C605000FEB40 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F29A99E25D5C605000FEB40 /* IntentHandler.swift */; };
 		9F29A9A325D5C605000FEB40 /* breadwalletIntentHandler.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F29A99A25D5C605000FEB40 /* breadwalletIntentHandler.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F29A9BB25D5C75B000FEB40 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F29A9BA25D5C75B000FEB40 /* AssetView.swift */; };
-		9F3C301725DA841100C7C398 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C54FF9D21658669007BF3EF /* currencies.json */; };
-		9F3C301E25DA841100C7C398 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C54FF9D21658669007BF3EF /* currencies.json */; };
 		9F3C302525DA8B2F00C7C398 /* WidgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9FAF7625D5D0140014F729 /* WidgetService.swift */; };
 		9F3C305625DA902E00C7C398 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C305525DA902E00C7C398 /* Currency.swift */; };
 		9F3C305725DA902E00C7C398 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C305525DA902E00C7C398 /* Currency.swift */; };
@@ -1085,6 +1083,7 @@
 		7B432FB4280448520056B364 /* KYCResetPasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordInteractor.swift; sourceTree = "<group>"; };
 		7B432FBD280450C30056B364 /* KYCResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordView.swift; sourceTree = "<group>"; };
 		7B432FBF280455F70056B364 /* KYCResetPasswordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordWorker.swift; sourceTree = "<group>"; };
+		7B519A922835B505007AC80A /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = currencies.json; path = Resources/currencies.json; sourceTree = "<group>"; };
 		7B54E4BD27F4A207002DD1E4 /* KYCCenteredTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCenteredTextView.swift; sourceTree = "<group>"; };
 		7B54E4BE27F4A207002DD1E4 /* KYCCameraContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCameraContainerView.swift; sourceTree = "<group>"; };
 		7B54E4BF27F4A207002DD1E4 /* KYCUploadPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadPresenter.swift; sourceTree = "<group>"; };
@@ -1236,7 +1235,6 @@
 		7C424A6D20FD34F20064557E /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationHandler.swift; path = src/NotificationHandler.swift; sourceTree = "<group>"; };
 		7C4548192187E65B0002E884 /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
 		7C4D64CA222C511900DE2C2B /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		7C54FF9D21658669007BF3EF /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = currencies.json; path = Resources/currencies.json; sourceTree = "<group>"; };
 		7C5AC8A5203B93D3001B221E /* TxListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TxListCell.swift; path = src/Views/TransactionCells/TxListCell.swift; sourceTree = "<group>"; };
 		7C67B6352056FB13006487BE /* BRAPIClient+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Currencies.swift"; path = "src/Platform/BRAPIClient+Currencies.swift"; sourceTree = "<group>"; };
 		7C6ACCB01FEB21580028ABFA /* TxDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxDetailDataSource.swift; sourceTree = "<group>"; };
@@ -2738,7 +2736,7 @@
 				7B8EC63428089729008C6DE5 /* Assets */,
 				E837FCFB219D1BBC00F59D99 /* onboarding-videos */,
 				71014F7B2327E49400DA1373 /* fiatcurrencies.json */,
-				7C54FF9D21658669007BF3EF /* currencies.json */,
+				7B519A922835B505007AC80A /* currencies.json */,
 				CE473D7B1F042F1E00C0ACFD /* coinflip.aiff */,
 				CEDA9EDB1FDE0C56005E8D1B /* countries.plist */,
 				CE4C1CD21ED8BCC70063E184 /* BIP39Words.plist */,
@@ -4062,7 +4060,6 @@
 				9AE800FB21FFF81F00D5058C /* rewardsIcon-32.gif in Resources */,
 				9A926F6A22034B3800CC2263 /* CellHighlight-77.png in Resources */,
 				9A926F8022034B3800CC2263 /* CellHighlight-19.png in Resources */,
-				7C54FF9E2165866A007BF3EF /* currencies.json in Resources */,
 				9A926F9522034B3800CC2263 /* CellHighlight-3.png in Resources */,
 				9A926F6822034B3800CC2263 /* CellHighlight-53.png in Resources */,
 				9A926F6622034B3800CC2263 /* CellHighlight-78.png in Resources */,
@@ -4140,6 +4137,7 @@
 				9AE800D921FFF81F00D5058C /* rewardsIcon-11.gif in Resources */,
 				9AE800FC21FFF81F00D5058C /* rewardsIcon-7.gif in Resources */,
 				9A926F7F22034B3800CC2263 /* CellHighlight-43.png in Resources */,
+				7B519A932835B506007AC80A /* currencies.json in Resources */,
 				9A926F8722034B3800CC2263 /* CellHighlight-52.png in Resources */,
 				9AE800F521FFF81F00D5058C /* rewardsIcon-45.gif in Resources */,
 				9AE8010C21FFF81F00D5058C /* rewardsIcon-70.gif in Resources */,
@@ -4249,7 +4247,6 @@
 				9F13F5D025DDD73B0031AEC7 /* fiatcurrencies.json in Resources */,
 				9FD519E425E3185F00F9D856 /* Localizable.strings in Resources */,
 				7B8EC633280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */,
-				9F3C301E25DA841100C7C398 /* currencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4263,7 +4260,6 @@
 				9FDDE5AC25D5B96000E42BE3 /* mock-candles.json in Resources */,
 				9FB0CA1825D5AD190057DD11 /* Assets.xcassets in Resources */,
 				9F13F5C925DDD73A0031AEC7 /* fiatcurrencies.json in Resources */,
-				9F3C301725DA841100C7C398 /* currencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
