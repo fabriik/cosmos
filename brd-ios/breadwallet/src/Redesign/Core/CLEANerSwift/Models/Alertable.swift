@@ -17,7 +17,6 @@ struct AlertViewModel {
 struct AlertConfiguration: Configurable {
     var titleConfiguration: LabelConfiguration?
     var descriptionConfiguration: LabelConfiguration?
-    var imageConfiguration: ImageViewConfiguration?
+    var imageConfiguration: BackgroundConfiguration?
     var buttonConfigurations: [ButtonConfiguration]
 }
-

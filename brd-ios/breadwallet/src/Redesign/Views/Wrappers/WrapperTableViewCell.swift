@@ -49,21 +49,19 @@ class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Marginable, R
     
     var shouldHighlight: Bool = false
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        wrappedView.layoutSubviews()
+    }
+    
     private func setupViews() {
         selectionStyle = .none
         backgroundColor = .clear
         
         contentView.addSubview(wrappedView)
-        wrappedView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let constraints = [
-            wrappedView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            wrappedView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            wrappedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.layoutMargins.left),
-            wrappedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.layoutMargins.top)
-        ]
-        setupCustomMargins(vertical: .extraHuge, horizontal: .small)
-        NSLayoutConstraint.activate(constraints)
+        wrappedView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func setup(_ closure: (T) -> Void) {

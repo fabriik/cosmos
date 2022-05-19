@@ -12,8 +12,10 @@ enum DisplayState {
     case selected
     case highlighted
     case disabled
+    case error
 }
 
 protocol StateDisplayable {
+    var displayState: DisplayState { get set }
     func animateTo(state: DisplayState, withAnimation: Bool)
 }

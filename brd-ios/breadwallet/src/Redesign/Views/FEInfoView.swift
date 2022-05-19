@@ -11,17 +11,15 @@
 import UIKit
 
 struct InfoViewConfiguration: Configurable {
-    var headerLeadingImage: ImageViewConfiguration?
+    var headerLeadingImage: BackgroundConfiguration?
     var headerTitle: LabelConfiguration?
-    var headerTrailingImage: ImageViewConfiguration?
+    var headerTrailingImage: BackgroundConfiguration?
     
     var title: LabelConfiguration?
     var description: LabelConfiguration?
     var button: ButtonConfiguration?
     
     var background: BackgroundConfiguration?
-    
-    var border: BorderConfiguration?
     var shadow: ShadowConfiguration?
 }
 
@@ -139,6 +137,12 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         NSLayoutConstraint.activate(constraints)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configure(background: config?.background)
+        configure(shadow: config?.shadow)
+    }
+    
     override func configure(with config: InfoViewConfiguration?) {
         guard let config = config else { return }
         super.configure(with: config)
@@ -150,8 +154,9 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         titleLabel.configure(with: config.title)
         descriptionLabel.configure(with: config.description)
         trailingButton.configure(with: config.button)
+        
+        configure(background: config.background)
         configure(shadow: config.shadow)
-        configure(border: config.border)
     }
     
     override func setup(with viewModel: InfoViewModel?) {

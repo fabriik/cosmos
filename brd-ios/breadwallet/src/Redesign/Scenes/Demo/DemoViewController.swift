@@ -19,10 +19,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     override func prepareData() {
         sections = [
-            Models.Section.label,
-            Models.Section.button,
             Models.Section.textField,
-            Models.Section.infoView
+            Models.Section.infoView,
+            Models.Section.label,
+            Models.Section.button
         ]
         
         sectionRows = [
@@ -32,29 +32,41 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.textField: [
-                TextFieldModel(title: "This is a title", placeholder: "<name>", hint: "You can write?"),
-                TextFieldModel(placeholder: "<name>", hint: "You can write?"),
-                TextFieldModel(title: "This is a title", placeholder: "<name>"),
-                TextFieldModel(placeholder: "<name>")
+                TextFieldModel(title: "Firs name", hint: "Your mama gave it to you"),
+                TextFieldModel(title: "Last name"),
+                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com"),
+                TextFieldModel(title: "Address")
             ],
             
             Models.Section.infoView: [
-                InfoViewModel(headerTitle: .text("This is a header title"),
+                InfoViewModel(headerLeadingImage: .image("ig"),
+                              headerTitle: .text("This is a header title"),
+                              headerTrailingImage: .image("user"),
                               title: .text("This is a title"),
                               description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
                               button: .init(title: "Close")),
                 
-                InfoViewModel(title: .text("This is a title"),
+                InfoViewModel(headerTitle: .text("This is a header title"),
+                              headerTrailingImage: .image("user"),
+                              title: .text("This is a title"),
                               description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
                               button: .init(title: "Close")),
                 
-                InfoViewModel(title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."))
+                InfoViewModel(headerLeadingImage: .image("ig"),
+                              headerTrailingImage: .image("user"),
+                              title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
+                
+                InfoViewModel(headerLeadingImage: .image("ig"),
+                              headerTitle: .text("This is a header title"),
+                              headerTrailingImage: .image("user"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close"))
             ]
         ]
         
         tableView.reloadData()
-        view.backgroundColor = .yellow
     }
     
     // MARK: - User Interaction
@@ -81,11 +93,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        (cell as? Marginable)?.setupCustomMargins(all: .extraHuge)
-        cell.layoutIfNeeded()
+        (cell as? Marginable)?.setupCustomMargins(all: .small)
         
         return cell
     }
-
+    
     // MARK: - Additional Helpers
 }

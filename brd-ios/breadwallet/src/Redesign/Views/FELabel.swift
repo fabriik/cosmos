@@ -11,8 +11,8 @@
 import UIKit
 
 struct LabelConfiguration: TextConfigurable {
-    var font: UIFont
-    var textColor: UIColor
+    var font: UIFont = Fonts.caption
+    var textColor: UIColor? = LightColors.primary
     var textAlignment: NSTextAlignment = .left
     var numberOfLines: Int = 0
     var lineBreakMode: NSLineBreakMode = .byWordWrapping

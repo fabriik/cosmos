@@ -48,10 +48,10 @@ class VIPTableViewController<C: CoordinatableRoutes,
 
         view.addSubview(tableView)
         let constraints = [
-            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.layoutMargins.left),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.layoutMargins.top)
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.layoutMargins.left),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -view.layoutMargins.right),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.layoutMargins.top),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.layoutMargins.bottom)
         ]
         NSLayoutConstraint.activate(constraints)
     }

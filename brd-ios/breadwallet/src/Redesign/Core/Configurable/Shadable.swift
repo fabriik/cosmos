@@ -13,19 +13,3 @@ import UIKit
 protocol Shadable {
     func configure(shadow: ShadowConfiguration?)
 }
-
-extension Shadable where Self: Marginable {
-    
-    func configure(shadow: ShadowConfiguration?) {
-        guard let shadow = shadow else { return }
-        
-        marginableView.layer.masksToBounds = false
-        marginableView.layer.shadowColor = shadow.color.cgColor
-        marginableView.layer.shadowOpacity = shadow.opacity.rawValue
-        marginableView.layer.shadowOffset = shadow.offset
-        marginableView.layer.shadowRadius = 1
-        marginableView.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
-        marginableView.layer.shouldRasterize = true
-        marginableView.layer.rasterizationScale = UIScreen.main.scale
-    }
-}
