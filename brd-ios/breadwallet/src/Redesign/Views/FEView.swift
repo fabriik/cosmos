@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class FEView<C: Configurable, M: ViewModel>: UIView,
                                              ViewProtocol,

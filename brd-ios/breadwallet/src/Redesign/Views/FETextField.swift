@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import SnapKit
 
 struct TextFieldConfiguration: Configurable {
     var leadingImageConfiguration: BackgroundConfiguration?
@@ -34,13 +35,14 @@ struct TextFieldModel: ViewModel {
     var error: String? = "Text has to be longer than 1 character."
     var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
+    var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) > 1 }
 }
 
 class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDelegate, StateDisplayable {
     
     var displayState: DisplayState = .normal
     
-    var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) > 1 }
+    private var validator: ((String?) -> Bool)?
     var valueChanged: (() -> Void)?
     
     // MARK: Lazy UI
@@ -109,12 +111,13 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         content.addSubview(mainStack)
         mainStack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().priority(.low)
         }
         
         mainStack.addArrangedSubview(textFieldContent)
         textFieldContent.snp.makeConstraints { make in
-            make.height.equalTo(58)
+            make.height.equalTo(58).priority(.required)
         }
         mainStack.addArrangedSubview(hintLabel)
         
@@ -193,6 +196,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         guard let viewModel = viewModel else { return }
         super.setup(with: viewModel)
         
+        validator = viewModel.validator
         titleLabel.setup(with: .text(viewModel.title))
         
         if let placeholder = viewModel.placeholder,

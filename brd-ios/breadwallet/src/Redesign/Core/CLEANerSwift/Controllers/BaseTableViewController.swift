@@ -188,10 +188,10 @@ class BaseTableViewController<C: CoordinatableRoutes,
             view.configure(with: Presets.TexxtField.primary)
             view.valueChanged = {
                 // weirdly animates if not disabled
-                UIView.setAnimationsEnabled(false)
+//                UIView.setAnimationsEnabled(false)
                 tableView.beginUpdates()
                 tableView.endUpdates()
-                UIView.setAnimationsEnabled(true)
+//                UIView.setAnimationsEnabled(true)
             }
         }
         

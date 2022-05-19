@@ -32,10 +32,12 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.textField: [
-                TextFieldModel(title: "First name", hint: "Your mama gave it to you"),
+                TextFieldModel(title: "First name", hint: "Your mama gave it to you", validator: { string in
+                    return (string ?? "").count > 3
+                }),
                 TextFieldModel(title: "Last name"),
-                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com"),
-                TextFieldModel(title: "Address")
+                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com", error: "cant be empty"),
+                TextFieldModel(title: "Address", validator: { _ in return true })
             ],
             
             Models.Section.infoView: [
