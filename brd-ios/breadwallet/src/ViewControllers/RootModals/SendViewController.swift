@@ -301,12 +301,6 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             return _ = handleValidationResult(.invalidAddress)
         }
         
-        guard let currentAmount = amount?.cryptoAmount else { return }
-        
-        guard currentAmount < balance.cryptoAmount else {
-            return _ = handleValidationResult(.insufficientFunds)
-        }
-        
         sender.estimateLimitMaximum(address: address, fee: feeLevel, completion: { [weak self] result in
             guard let `self` = self else { return }
             switch result {
