@@ -17,6 +17,7 @@ class CoreSystem: Subscriber, Trackable {
     private let queue = DispatchQueue(label: "com.fabriik.one.CoreSystem", qos: .utility)
     private let listenerQueue = DispatchQueue(label: "com.fabriik.one.CoreSystem.listener", qos: .utility)
     private let keyStore: KeyStore
+    private var systemClient: SystemClient?
     fileprivate var btcWalletCreationCallback: (() -> Void)?
     
     // MARK: Wallets + Currencies
@@ -73,9 +74,8 @@ class CoreSystem: Subscriber, Trackable {
         print("[SYS] create | account timestamp: \(account.timestamp)")
         assert(self.system == nil)
         
-        let backend = BlocksetSystemClient(bdbBaseURL: "https://\(C.bdbHost)",
-                                           bdbDataTaskFunc: { (session, request, completion) -> URLSessionDataTask in
-            
+        systemClient = BlocksetSystemClient(bdbBaseURL: "https://\(C.bdbHost)",
+                                            bdbDataTaskFunc: { session, request, completion -> URLSessionDataTask in
             var req = request
             req.decorate()
             if let authToken = authToken {
@@ -84,9 +84,7 @@ class CoreSystem: Subscriber, Trackable {
             
             //TODO:CRYPTO does not handle 401, other headers, redirects
             return session.dataTask(with: req, completionHandler: completion)
-        },
-                                           apiBaseURL: "https://\(C.backendHost)",
-                                           apiDataTaskFunc: { (_, req, completion) -> URLSessionDataTask in
+        }, apiBaseURL: "https://\(C.backendHost)", apiDataTaskFunc: { _, req, completion -> URLSessionDataTask in
             return Backend.apiClient.dataTaskWithRequest(req,
                                                          authenticated: Backend.isConnected,
                                                          retryCount: 0,
@@ -96,24 +94,46 @@ class CoreSystem: Subscriber, Trackable {
         
         try? FileManager.default.createDirectory(atPath: C.coreDataDirURL.path, withIntermediateDirectories: true, attributes: nil)
         
+        getCurrencyMetaData(kvStore: kvStore, client: systemClient, account: account, completion: completion)
+    }
+    
+    private func getCurrencyMetaData(kvStore: BRReplicatedKVStore, client: SystemClient? = nil, account: Account, completion: @escaping () -> Void) {
         Backend.apiClient.getCurrencyMetaData { currencyMetaData in
             self.queue.async {
                 self.assetCollection = AssetCollection(kvStore: kvStore,
                                                        allTokens: currencyMetaData,
                                                        changeHandler: self.updateWalletStates)
-                self.system = System.create(client: backend,
-                                            listener: self,
-                                            account: account,
-                                            onMainnet: !E.isTestnet,
-                                            path: C.coreDataDirURL.path,
-                                            listenerQueue: self.listenerQueue)
+                if let chosenClient = client ?? self.systemClient {
+                    self.system = System.create(client: chosenClient,
+                                                listener: self,
+                                                account: account,
+                                                onMainnet: !E.isTestnet,
+                                                path: C.coreDataDirURL.path,
+                                                listenerQueue: self.listenerQueue)
+                }
                 
                 if let system = self.system {
                     System.wipeAll(atPath: C.coreDataDirURL.path, except: [system])
                 }
+                
                 self.system?.configure()
+                
                 completion()
             }
+        }
+    }
+    
+    func refreshWallet(completion: @escaping () -> Void) {
+        guard let kvStore = Backend.kvStore,
+              let account = system?.account else { return assertionFailure() }
+        
+        Backend.apiClient.updateBundles { [weak self] _ in
+            self?.getCurrencyMetaData(kvStore: kvStore,
+                                      account: account, completion: {
+                DispatchQueue.main.async {
+                    completion()
+                }
+            })
         }
     }
     
@@ -838,20 +858,20 @@ extension Address {
 //TODO:CRYPTO hook up to notifications?
 // MARK: - Sounds
 /*
- extension WalletManager {
- func ping() {
- guard let url = Bundle.main.url(forResource: "coinflip", withExtension: "aiff") else { return }
- var id: SystemSoundID = 0
- AudioServicesCreateSystemSoundID(url as CFURL, &id)
- AudioServicesAddSystemSoundCompletion(id, nil, nil, { soundId, _ in
- AudioServicesDisposeSystemSoundID(soundId)
- }, nil)
- AudioServicesPlaySystemSound(id)
- }
- 
- func showLocalNotification(message: String) {
- guard UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .inactive else { return }
- guard Store.state.isPushNotificationsEnabled else { return }
- }
- }
- */
+extension WalletManager {
+    func ping() {
+        guard let url = Bundle.main.url(forResource: "coinflip", withExtension: "aiff") else { return }
+        var id: SystemSoundID = 0
+        AudioServicesCreateSystemSoundID(url as CFURL, &id)
+        AudioServicesAddSystemSoundCompletion(id, nil, nil, { soundId, _ in
+            AudioServicesDisposeSystemSoundID(soundId)
+        }, nil)
+        AudioServicesPlaySystemSound(id)
+    }
+    
+    func showLocalNotification(message: String) {
+        guard UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .inactive else { return }
+        guard Store.state.isPushNotificationsEnabled else { return }
+    }
+}
+*/

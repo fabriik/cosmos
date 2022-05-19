@@ -46,6 +46,11 @@ extension BRAPIClient {
                 }
             }
             grp.wait()
+            
+            for (n, e) in results {
+                print("Bundle \(n) ran update. err: \(String(describing: e))")
+            }
+            
             completionHandler(results)
         }
     }

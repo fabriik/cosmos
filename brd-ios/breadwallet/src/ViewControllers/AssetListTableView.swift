@@ -12,6 +12,7 @@ class AssetListTableView: UITableViewController, Subscriber {
 
     var didSelectCurrency: ((Currency) -> Void)?
     var didTapAddWallet: (() -> Void)?
+    var didReload: (() -> Void)?
     
     let loadingSpinner = UIActivityIndicatorView(style: .white)
 
@@ -46,7 +47,9 @@ class AssetListTableView: UITableViewController, Subscriber {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Store.state.wallets.isEmpty {
-            showLoadingState(true)
+            DispatchQueue.main.async { [weak self] in
+                self?.showLoadingState(true)
+            }
         }
     }
     
@@ -62,7 +65,7 @@ class AssetListTableView: UITableViewController, Subscriber {
         tableView.separatorStyle = .none
         tableView.rowHeight = assetHeight
         tableView.contentInset = UIEdgeInsets(top: C.padding[1], left: 0, bottom: 0, right: 0)
-
+        
         setupSubscriptions()
         reload()
     }
@@ -91,25 +94,35 @@ class AssetListTableView: UITableViewController, Subscriber {
     
     private func setupSubscriptions() {
         Store.lazySubscribe(self, selector: {
-            var result = false
-            let oldState = $0
-            let newState = $1
-            $0.wallets.values.map { $0.currency }.forEach { currency in
-                if oldState[currency]?.balance != newState[currency]?.balance
-                    || oldState[currency]?.currentRate?.rate != newState[currency]?.currentRate?.rate {
-                    result = true
-                }
-            }
-            return result
+            self.mapWallets(state: $0, newState: $1)
         }, callback: { _ in
             self.reload()
         })
         
         Store.lazySubscribe(self, selector: {
-            $0.currencies.map { $0.code } != $1.currencies.map { $0.code }
+            self.mapCurrencies(lhsCurrencies: $0.currencies, rhsCurrencies: $1.currencies)
         }, callback: { _ in
             self.reload()
         })
+    }
+    
+    private func mapWallets(state: State, newState: State) -> Bool {
+        var result = false
+        let oldState = state
+        let newState = newState
+        
+        state.wallets.values.map { $0.currency }.forEach { currency in
+            if oldState[currency]?.balance != newState[currency]?.balance
+                || oldState[currency]?.currentRate?.rate != newState[currency]?.currentRate?.rate {
+                result = true
+            }
+        }
+        
+        return result
+    }
+    
+    private func mapCurrencies(lhsCurrencies: [Currency], rhsCurrencies: [Currency]) -> Bool {
+        return lhsCurrencies.map { $0.code } != rhsCurrencies.map { $0.code }
     }
     
     @objc func addWallet() {
@@ -117,8 +130,12 @@ class AssetListTableView: UITableViewController, Subscriber {
     }
     
     func reload() {
-        tableView.reloadData()
-        showLoadingState(false)
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+            self?.showLoadingState(false)
+            
+            self?.didReload?()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

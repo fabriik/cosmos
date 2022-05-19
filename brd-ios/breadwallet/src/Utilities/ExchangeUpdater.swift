@@ -17,24 +17,16 @@ enum FiatPriceInfoResult {
 class ExchangeUpdater: Subscriber {
     
     // MARK: - Public
-    private static var period: Double = 60
-    private var timer: Timer?
-
+    
     init() {
         Store.lazySubscribe(self,
-                        selector: { $0.defaultCurrencyCode != $1.defaultCurrencyCode },
-                        callback: { _ in
-                            self.refresh()
-                        })
-        
-        timer = Timer.scheduledTimer(timeInterval: Self.period,
-                                     target: self,
-                                     selector: #selector(refresh),
-                                     userInfo: nil,
-                                     repeats: true)
+                            selector: { $0.defaultCurrencyCode != $1.defaultCurrencyCode },
+                            callback: { _ in
+            self.refresh()
+        })
     }
-
-    @objc func refresh() {
+    
+    func refresh() {
         guard !Store.state.currencies.isEmpty else { return }
         fetchPriceInfo(currencies: Store.state.currencies) { result in
             guard case .success(let priceInfo) = result else { return }

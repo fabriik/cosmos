@@ -104,19 +104,24 @@ class PriceChangeView: UIView, Subscriber {
         guard let priceChange = priceInfo else { return }
         
         let percentText = String(format: "%.2f%%", fabs(priceChange.changePercentage24Hrs))
-        
         var textColor = valueColor
         
         if style == .percentAndAbsolute, let absoluteString = currencyNumberFormatter.string(from: NSNumber(value: abs(priceChange.change24Hrs))) {
             absoluteLabel.text = "(\(absoluteString))"
+            prefixLabel.text = prefixValue
             percentLabel.text = percentText
             textColor = Theme.primaryBackground
             layoutIfNeeded()
         } else if style == .percentOnly {
-            percentLabel.fadeToText(percentText)
+            UIView.transition(with: percentLabel,
+                              duration: UIConstants.Animations.duration,
+                              options: .curveEaseIn,
+                              animations: { [weak self] in
+                self?.prefixLabel.text = self?.prefixValue ?? ""
+                self?.percentLabel.text = percentText
+            })
         }
         
-        prefixLabel.text = prefixValue
         prefixLabel.textColor = textColor
         percentLabel.textColor = textColor
         absoluteLabel.textColor = textColor
@@ -133,20 +138,4 @@ class PriceChangeView: UIView, Subscriber {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-private extension UILabel {
-    func fadeToText(_ text: String) {
-        fadeTransition(C.animationDuration)
-        self.text = text
-    }
-    
-    func fadeTransition(_ duration: CFTimeInterval) {
-        let animation = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name:
-            CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = .fade
-        animation.duration = duration
-        layer.add(animation, forKey: animation.type.rawValue)
-    }
 }
