@@ -10,7 +10,7 @@
 
 import UIKit
 
-class WrapperAccessoryView<V: UIView>: UITableViewHeaderFooterView, Wrappable, Identifiable, Reusable, Marginable {
+class WrapperAccessoryView<V: UIView>: UITableViewHeaderFooterView, Wrappable, Identifiable, Reusable {
     
     // MARK: Wrappable
     public lazy var wrappedView = V()
@@ -28,17 +28,11 @@ class WrapperAccessoryView<V: UIView>: UITableViewHeaderFooterView, Wrappable, I
     
     func setupSubviews() {
         contentView.addSubview(wrappedView)
-        wrappedView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let constraints = [
-            wrappedView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            wrappedView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            wrappedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.layoutMargins.left),
-            wrappedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.layoutMargins.top)
-        ]
+        wrappedView.snp.makeConstraints { make in
+            make.edges.equalTo(contentView.snp.margins)
+        }
         
         setupCustomMargins(vertical: .large, horizontal: .small)
-        NSLayoutConstraint.activate(constraints)
     }
     
     func setup(_ closure: (V) -> Void) {

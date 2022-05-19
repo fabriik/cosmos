@@ -32,10 +32,12 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.textField: [
-                TextFieldModel(title: "Firs name", hint: "Your mama gave it to you"),
+                TextFieldModel(title: "First name", hint: "Your mama gave it to you", validator: { string in
+                    return (string ?? "").count > 3
+                }),
                 TextFieldModel(title: "Last name"),
-                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com"),
-                TextFieldModel(title: "Address")
+                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com", error: "cant be empty"),
+                TextFieldModel(title: "Address", validator: { _ in return true })
             ],
             
             Models.Section.infoView: [
@@ -92,8 +94,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
-        
-        (cell as? Marginable)?.setupCustomMargins(all: .small)
         
         return cell
     }

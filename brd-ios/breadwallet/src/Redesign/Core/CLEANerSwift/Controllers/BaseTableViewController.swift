@@ -85,7 +85,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         default:
             view = UIView(frame: .zero)
         }
-        (view as? Marginable)?.setupCustomMargins(vertical: .small, horizontal: .small)
+        view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         return view
     }
@@ -150,9 +150,9 @@ class BaseTableViewController<C: CoordinatableRoutes,
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.setup { label in
-            label.setup(with: .text(text))
-            label.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
+        cell.setup { view in
+            view.setup(with: .text(text))
+            view.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
         }
         
         return cell
@@ -166,9 +166,10 @@ class BaseTableViewController<C: CoordinatableRoutes,
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.setup { button in
-            button.setup(with: .init(title: text))
-            button.configure(with: indexPath.row % 2 == 0 ? Presets.Button.primary : Presets.Button.secondary)
+        cell.setup { view in
+            view.setup(with: .init(title: text))
+            view.configure(with: indexPath.row % 2 == 0 ? Presets.Button.primary : Presets.Button.secondary)
+            view.setupCustomMargins(all: .zero)
         }
         
         return cell
@@ -182,15 +183,15 @@ class BaseTableViewController<C: CoordinatableRoutes,
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.setup { button in
-            button.setup(with: model)
-            button.configure(with: Presets.TexxtField.primary)
-            button.valueChanged = {
+        cell.setup { view in
+            view.setup(with: model)
+            view.configure(with: Presets.TexxtField.primary)
+            view.valueChanged = {
                 // weirdly animates if not disabled
-                UIView.setAnimationsEnabled(false)
+//                UIView.setAnimationsEnabled(false)
                 tableView.beginUpdates()
                 tableView.endUpdates()
-                UIView.setAnimationsEnabled(true)
+//                UIView.setAnimationsEnabled(true)
             }
         }
         
@@ -206,10 +207,10 @@ class BaseTableViewController<C: CoordinatableRoutes,
         }
         
         cell.setup { view in
-            view.setup { button in
-                button.setup(with: model)
-                button.configure(with: Presets.InfoView.primary)
-                button.setupCustomMargins(all: .extraHuge)
+            view.setup { view in
+                view.setup(with: model)
+                view.configure(with: Presets.InfoView.primary)
+                view.setupCustomMargins(all: .extraHuge)
             }
             view.setupCustomMargins(all: .medium)
         }

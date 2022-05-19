@@ -13,7 +13,6 @@ import SnapKit
 
 class WrapperView<T: UIView>: UIView,
                               Wrappable,
-                              Marginable,
                               Reusable {
 
     // MARK: Lazy UI
@@ -40,14 +39,15 @@ class WrapperView<T: UIView>: UIView,
     func setupSubviews() {
         addSubview(content)
         content.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(layoutMargins)
+            make.edges.equalTo(snp.margins)
         }
         
         content.addSubview(wrappedView)
         wrappedView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(content.snp.margins)
         }
-        setupClearMargins()
+        content.setupCustomMargins(all: .zero)
+        setupCustomMargins(all: .zero)
     }
     
     func setup(_ closure: (T) -> Void) {

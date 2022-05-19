@@ -38,7 +38,6 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     // MARK: Lazy UI
     private lazy var verticalStackView: UIStackView = {
         let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.spacing = Margins.small.rawValue
         stack.alignment = .fill
@@ -48,7 +47,6 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     
     private lazy var headerStackView: UIStackView = {
         let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.alignment = .fill
         stack.distribution = .fill
@@ -59,39 +57,33 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     
     private lazy var headerLeadingView: FEImageView = {
         let view = FEImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.setupCustomMargins(all: .extraSmall)
         return view
     }()
     
     private lazy var headerTitleLabel: FELabel = {
         let label = FELabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var headerTrailingView: FEImageView = {
         let view = FEImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.setupCustomMargins(all: .extraSmall)
         return view
     }()
     
     private lazy var titleLabel: FELabel = {
         let label = FELabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var descriptionLabel: FELabel = {
         let label = FELabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var trailingButton: FEButton = {
         let view = FEButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -99,42 +91,42 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     override func setupSubviews() {
         super.setupSubviews()
         
-        var constraints: [NSLayoutConstraint] = []
-        
         content.addSubview(verticalStackView)
-        constraints.append(contentsOf: [
-            verticalStackView.centerXAnchor.constraint(equalTo: content.centerXAnchor),
-            verticalStackView.centerYAnchor.constraint(equalTo: content.centerYAnchor),
-            verticalStackView.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: Margins.large.rawValue),
-            verticalStackView.topAnchor.constraint(equalTo: content.topAnchor, constant: Margins.large.rawValue)
-        ])
+        verticalStackView.snp.makeConstraints { make in
+            make.edges.equalTo(content.snp.margins)
+        }
         
         verticalStackView.addArrangedSubview(headerStackView)
-        constraints.append(headerStackView.heightAnchor.constraint(equalToConstant: Margins.huge.rawValue).priority(.defaultHigh))
+        headerStackView.snp.makeConstraints { make in
+            make.height.equalTo(Margins.huge.rawValue)
+        }
         
         headerStackView.addArrangedSubview(headerLeadingView)
+        headerLeadingView.snp.makeConstraints { make in
+            make.width.equalTo(Margins.huge.rawValue)
+        }
+        
         headerStackView.addArrangedSubview(headerTitleLabel)
+        headerTitleLabel.snp.makeConstraints { make in
+            make.height.equalToSuperview().priority(.low)
+        }
+        
         headerStackView.addArrangedSubview(headerTrailingView)
-        constraints.append(contentsOf: [
-            headerLeadingView.widthAnchor.constraint(equalToConstant: Margins.huge.rawValue),
-            headerTitleLabel.widthAnchor.constraint(equalTo: headerStackView.widthAnchor).priority(.defaultLow),
-            headerTrailingView.widthAnchor.constraint(equalToConstant: Margins.huge.rawValue)
-        ])
+        headerTrailingView.snp.makeConstraints { make in
+            make.width.equalTo(Margins.huge.rawValue)
+        }
         
         verticalStackView.addArrangedSubview(titleLabel)
-        constraints.append(contentsOf: [
-            titleLabel.heightAnchor.constraint(equalToConstant: Margins.large.rawValue),
-            titleLabel.widthAnchor.constraint(equalTo: verticalStackView.widthAnchor).priority(.defaultLow)
-        ])
+        titleLabel.snp.makeConstraints { make in
+            make.height.equalTo(Margins.large.rawValue)
+        }
 
         verticalStackView.addArrangedSubview(descriptionLabel)
-        constraints.append(contentsOf: [
-            descriptionLabel.widthAnchor.constraint(equalTo: verticalStackView.widthAnchor).priority(.defaultLow)
-        ])
 
         verticalStackView.addArrangedSubview(trailingButton)
-        constraints.append(trailingButton.heightAnchor.constraint(equalToConstant: Margins.extraHuge.rawValue))
-        NSLayoutConstraint.activate(constraints)
+        trailingButton.snp.makeConstraints { make in
+            make.height.equalTo(Margins.extraHuge.rawValue)
+        }
     }
     
     override func layoutSubviews() {

@@ -10,7 +10,7 @@
 
 import UIKit
 
-class WrapperCollectionCell<T: UIView>: UICollectionViewCell, Marginable, Reusable {
+class WrapperCollectionCell<T: UIView>: UICollectionViewCell, Reusable {
     static var identifier: String {
         return (String(describing: T.self))
     }
@@ -21,12 +21,12 @@ class WrapperCollectionCell<T: UIView>: UICollectionViewCell, Marginable, Reusab
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupViews()
+        setupSubviews()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupViews()
+        setupSubviews()
     }
     
     var shouldHighlight: Bool = false
@@ -36,19 +36,12 @@ class WrapperCollectionCell<T: UIView>: UICollectionViewCell, Marginable, Reusab
         (wrappedView as? Reusable)?.prepareForReuse()
     }
     
-    private func setupViews() {
-        backgroundColor = .clear
-        
+    func setupSubviews() {
         contentView.addSubview(wrappedView)
-        wrappedView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let constraints = [
-            wrappedView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            wrappedView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            wrappedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.layoutMargins.left),
-            wrappedView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.layoutMargins.top)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        wrappedView.snp.makeConstraints { make in
+            make.edges.equalTo(contentView.snp.margins)
+        }
+
         setupCustomMargins(vertical: .zero, horizontal: .small)
     }
     

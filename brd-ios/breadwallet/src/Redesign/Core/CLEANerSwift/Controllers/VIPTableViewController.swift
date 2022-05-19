@@ -23,7 +23,6 @@ class VIPTableViewController<C: CoordinatableRoutes,
     // MARK: LazyUI
     lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
         // this prevents the top offset on tableViews
@@ -47,13 +46,9 @@ class VIPTableViewController<C: CoordinatableRoutes,
         super.setupSubviews()
 
         view.addSubview(tableView)
-        let constraints = [
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.layoutMargins.left),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -view.layoutMargins.right),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.layoutMargins.top),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.layoutMargins.bottom)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     // MARK: ResponseDisplay
