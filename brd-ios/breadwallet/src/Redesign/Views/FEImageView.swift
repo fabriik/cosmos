@@ -10,21 +10,17 @@
 
 import UIKit
 
-struct ImageViewConfiguration: BackgorundConfigurable {
-    var backgroundColor: UIColor = .clear
-    var tintColor: UIColor
-}
-
 enum ImageViewModel: ViewModel {
     case animation(String)
     case image(String)
 }
 
-class FEImageView: FEView<ImageViewConfiguration, ImageViewModel> {
+class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
     
     // MARK: Lazy UI
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -32,31 +28,22 @@ class FEImageView: FEView<ImageViewConfiguration, ImageViewModel> {
     // MARK: - View setup
     override func setupSubviews() {
         super.setupSubviews()
-
-        let accessoryView: UIView
-        switch viewModel {
-        case .image:
-            accessoryView = imageView
-
-        default:
-            return
-        }
-
-        setupClearMargins()
+        
+        content.addSubview(imageView)
+        let constraints = [
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     // MARK: NCViewProtocol
-    override func configure(with config: ImageViewConfiguration?) {
+    override func configure(with config: BackgroundConfiguration?) {
         super.configure(with: config)
         guard let tintColor = config?.tintColor else { return }
-        
-        switch viewModel {
-        case .image:
-            imageView.tintColor = tintColor
-            
-        default:
-            return
-        }
+        imageView.tintColor = tintColor
     }
     
     // MARK: ViewModelable

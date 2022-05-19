@@ -11,7 +11,7 @@
 import UIKit
 
 struct BorderConfiguration: BorderConfigurable {
-    var tintColor: UIColor
+    var tintColor: UIColor = .clear
     var borderWidth: CGFloat
     var cornerRadius: CornerRadius
 }

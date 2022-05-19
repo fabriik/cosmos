@@ -35,7 +35,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.register(WrapperTableViewCell<FELabel>.self)
         tableView.register(WrapperTableViewCell<FEButton>.self)
         tableView.register(WrapperTableViewCell<FETextField>.self)
-        tableView.register(WrapperTableViewCell<FEInfoView>.self)
+        tableView.register(WrapperTableViewCell<WrapperView<FEInfoView>>.self)
         
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -97,7 +97,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
         view.setup { view in
             view.setup(with: .text(text))
-            view.configure(with: Presets.Label.secondary)
+            view.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
         }
 
         return view
@@ -111,7 +111,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         view.setup { view in
             // TODO: attributed string support
             view.setup(with: .attributedText(text))
-            view.configure(with: Presets.Label.secondary)
+            view.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
         }
 
         return view
@@ -125,7 +125,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
         view.setup { view in
             view.setup(with: .init(title: text))
-            view.configure(with: Presets.Button.secondary)
+            view.configure(with: Presets.Button.primary)
             // TODO: add callback to suplementaryViewTapped
         }
 
@@ -152,7 +152,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         
         cell.setup { label in
             label.setup(with: .text(text))
-            label.configure(with: .init(font: .boldSystemFont(ofSize: 25), textColor: .blue))
+            label.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
         }
         
         return cell
@@ -168,7 +168,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         
         cell.setup { button in
             button.setup(with: .init(title: text))
-            button.configure(with: Presets.Button.primary)
+            button.configure(with: indexPath.row % 2 == 0 ? Presets.Button.primary : Presets.Button.secondary)
         }
         
         return cell
@@ -185,6 +185,13 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setup { button in
             button.setup(with: model)
             button.configure(with: Presets.TexxtField.primary)
+            button.valueChanged = {
+                // weirdly animates if not disabled
+                UIView.setAnimationsEnabled(false)
+                tableView.beginUpdates()
+                tableView.endUpdates()
+                UIView.setAnimationsEnabled(true)
+            }
         }
         
         return cell
@@ -193,17 +200,39 @@ class BaseTableViewController<C: CoordinatableRoutes,
     func tableView(_ tableView: UITableView, infoViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         guard let model = sectionRows[section]?[indexPath.row] as? InfoViewModel,
-              let cell: WrapperTableViewCell<FEInfoView> = tableView.dequeueReusableCell(for: indexPath)
+              let cell: WrapperTableViewCell<WrapperView<FEInfoView>> = tableView.dequeueReusableCell(for: indexPath)
         else {
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.setup { button in
-            button.setup(with: model)
-            button.configure(with: Presets.InfoView.primary)
+        cell.setup { view in
+            view.setup { button in
+                button.setup(with: model)
+                button.configure(with: Presets.InfoView.primary)
+                button.setupCustomMargins(all: .extraHuge)
+            }
+            view.setupCustomMargins(all: .medium)
         }
+        cell.setupCustomMargins(all: .extraSmall)
         
         return cell
+    }
+    
+    func tableView<T: UIView>(_ tableView: UITableView, displayErrorInCell cell: WrapperTableViewCell<T>) {
+        cell.setup { view in
+            guard let view = view as? StateDisplayable else { return }
+            
+            view.animateTo(state: .error, withAnimation: true)
+        }
+    }
+    
+    func textFieldDidFinish(for indexPath: IndexPath, with text: String?) {
+        // override in subclass
+    }
+
+    func textFieldDidUpdate(for indexPath: IndexPath, with text: String?) {
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     // MARK: UserInteractions

@@ -18,14 +18,15 @@ extension Presenter {
 
         let model = AlertViewModel(title: nil, description: error.localizedDescription, buttons: ["click", "cancel"])
         
-        let config = AlertConfiguration(titleConfiguration: Presets.Label.primary,
-                                        descriptionConfiguration: Presets.Label.secondary,
+        // TODO: set proper configs
+        let config = AlertConfiguration(titleConfiguration: .init(),
+                                        descriptionConfiguration: .init(),
                                         imageConfiguration: Presets.Image.primary,
                                         buttonConfigurations: [
                                             Presets.Button.primary,
                                             Presets.Button.secondary
                                         ])
-        
+
         viewController?.displayError(responseDisplay: .init(model: model, config: config))
     }
 
@@ -45,14 +46,6 @@ extension Presenter {
                                    image: actionResponse.alert?.image,
                                    buttons: actionResponse.alert?.buttons ?? [])
         
-        let config = AlertConfiguration(titleConfiguration: Presets.Label.primary,
-                                        descriptionConfiguration: Presets.Label.secondary,
-                                        imageConfiguration: Presets.Image.primary,
-                                        buttonConfigurations: [
-                                            Presets.Button.primary,
-                                            Presets.Button.secondary
-                                        ])
-        
-        viewController?.displayAlert(responseDisplay: .init(model: model, config: config))
+        viewController?.displayAlert(responseDisplay: .init(model: model, config: Presets.Alert.one))
     }
 }
