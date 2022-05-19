@@ -22,6 +22,8 @@ protocol Marginable {
     var marginableView: UIView { get }
 }
 
+extension UIView: Marginable {}
+
 extension Marginable where Self: UITableViewCell {
     var marginableView: UIView { return contentView }
 }

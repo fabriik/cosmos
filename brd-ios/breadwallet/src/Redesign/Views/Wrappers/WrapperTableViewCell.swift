@@ -16,7 +16,7 @@ protocol Wrappable: UIView {
     var wrappedView: WrappedView { get set }
 }
 
-class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Marginable, Reusable, Identifiable {
+class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Reusable, Identifiable {
     
     // MARK: Variables
     var wrappedView = T()
@@ -56,12 +56,12 @@ class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Marginable, R
     
     private func setupViews() {
         selectionStyle = .none
-        backgroundColor = .clear
-        
+
         contentView.addSubview(wrappedView)
         wrappedView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(contentView.snp.margins)
         }
+        setupCustomMargins(all: .zero)
     }
     
     func setup(_ closure: (T) -> Void) {

@@ -232,14 +232,34 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         return isValid
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        leadingView.prepareForReuse()
+        trailingView.prepareForReuse()
+        
+        textField.text = nil
+        textField.placeholder = nil
+        hintLabel.text = nil
+        titleLabel.text = nil
+        
+        textField.isHidden = false
+        titleLabel.isHidden = false
+        leadingView.isHidden = false
+        trailingView.isHidden = false
+    }
+    
     func animateTo(state: DisplayState, withAnimation: Bool = true) {
         let background: BackgroundConfiguration?
         var state = state
         
+<<<<<<< Updated upstream
         if validator?(textField.text) != true,
            textField.text?.isEmpty != true {
             state = .error
         }
+=======
+        let prevhint = hintLabel.text
+>>>>>>> Stashed changes
         var hint = viewModel?.hint
         var hideTextField = textField.text?.isEmpty == true
         
@@ -275,10 +295,29 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         // Shadow
         configure(shadow: config?.shadowConfiguration)
         
+        var isExpanding: Bool?
+        if prevhint == nil, hint != nil {
+            // expanding
+            isExpanding = true
+        } else if hint == nil, prevhint != nil {
+            // contracting
+            isExpanding = false
+        }
+        
         Self.animate(withDuration: 0.25, animations: {
-            self.textFieldContent.layoutIfNeeded()
+            if isExpanding == false {
+                self.textFieldContent.layoutIfNeeded()
+            } else {
+                self.valueChanged?()
+            }
+                
         }, completion: { _ in
-            self.valueChanged?()
+            if isExpanding == true {
+                self.valueChanged?()
+            } else {
+                self.textFieldContent.layoutIfNeeded()
+            }
+            }
         })
     }
     

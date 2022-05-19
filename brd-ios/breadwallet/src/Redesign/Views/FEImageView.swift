@@ -20,7 +20,6 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
     // MARK: Lazy UI
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -30,13 +29,10 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
         super.setupSubviews()
         
         content.addSubview(imageView)
-        let constraints = [
-            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: topAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        
+        imageView.snp.makeConstraints { make in
+            make.edges.equalTo(content.snp.margins)
+        }
     }
     
     // MARK: NCViewProtocol

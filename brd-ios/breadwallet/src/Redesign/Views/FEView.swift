@@ -9,11 +9,9 @@
 //
 
 import UIKit
-import SnapKit
 
 class FEView<C: Configurable, M: ViewModel>: UIView,
                                              ViewProtocol,
-                                             Marginable,
                                              Shadable,
                                              Borderable,
                                              Reusable {
@@ -48,9 +46,9 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     func setupSubviews() {
         addSubview(content)
         content.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(layoutMargins)
+            make.edges.equalTo(snp.margins)
         }
-        setupClearMargins()
+        setupCustomMargins(all: .zero)
     }
     
     func setup(with viewModel: M?) {
