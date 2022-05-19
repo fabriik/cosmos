@@ -17,6 +17,7 @@ struct SwapRequestData: RequestModelData {
     var paymentId: String?
     // not sure what this does
     var version: Int = 3
+    var referalId = "qo738lc61vwk"
     
     init(currencies: [String] = [], amount: Double = 1, merchantId: String) {
         currencyCodes = currencies.compactMap { $0.lowercased() }
@@ -41,7 +42,8 @@ struct SwapRequestData: RequestModelData {
             "theme": theme,
             "merchantId": merchantId,
             "payment_id": paymentId,
-            "v": version
+            "v": version,
+            "ref_id": referalId
         ]
 
         return params.compactMapValues { $0 }
