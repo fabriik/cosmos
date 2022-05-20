@@ -48,6 +48,7 @@ enum S {
         static let noInternet = NSLocalizedString("Alert.noInternet", value: "No internet connection found. Check your connection and try again.", comment: "No internet alert message")
         static let timedOut = NSLocalizedString("Alert.timedOut", value: "Request timed out. Check your connection and try again.", comment: "Request timed out error message")
         static let somethingWentWrong = NSLocalizedString("Alert.somethingWentWrong", value: "Something went wrong. Please try again.", comment: "General error message with 'Try again'")
+        static let ethBalanceLow = NSLocalizedString("Alert.ethBalance", value: "Insufficient Ethereum Balance", comment: "Error title when balance to low")
     }
 
     enum Scanner {
@@ -143,6 +144,7 @@ enum S {
         static let messagingUnavailableTitle = NSLocalizedString("ErrorMessages.messagingUnavailableTitle", value:"Messaging Unavailable", comment: "Messaging unavailable alert title")
         static let messagingUnavailableMessage = NSLocalizedString("ErrorMessages.messagingUnavailableMessage", value:"This device isn't configured to send messages.", comment: "Messaging unavailable alert title")
         static let noLogsFound = NSLocalizedString("Settings.noLogsFound", value: "No Log files found. Please try again later.", comment: "No log files found error message")
+        static let notEnouthBalanceForFee = NSLocalizedString("ErrorMessages.ethBalanceLow", value: "Insufficient Ethereum balance in your wallet to transfer this type of token.", comment: "Not enough ETH for transaction fee")
     }
 
     enum UnlockScreen {

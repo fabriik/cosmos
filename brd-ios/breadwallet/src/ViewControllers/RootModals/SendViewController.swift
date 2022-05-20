@@ -275,25 +275,40 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
     }
     
     @objc private func updateFees() {
+        let handleResult: (Result<TransferFeeBasis, Error>) -> Void = { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let fee):
+                    self?.currentFeeBasis = fee
+                    self?.amountView.updateBalanceLabel()
+                    
+                case .failure:
+                    self?.showAlert(title: S.Alert.ethBalanceLow,
+                                    message: S.ErrorMessages.notEnouthBalanceForFee,
+                                    buttonLabel: S.Button.ok)
+                }
+            }
+        }
+        
         guard paymentProtocolRequest == nil else {
-            self.estimateFeeForRequest(paymentProtocolRequest!) {
-                guard case .success(let feeBasis) = $0 else { return }
-                self.handleFeeEstimationResult(feeBasis)
+            self.estimateFeeForRequest(paymentProtocolRequest!) { result in
+                switch result {
+                case .success(let item):
+                    handleResult(.success(item))
+                    
+                case .failure(let error):
+                    handleResult(.failure(error))
+                }
             }
             return
         }
         
         guard let amount = amount else { return }
         guard let address = address, !address.isEmpty else { return _ = handleValidationResult(.invalidAddress) }
-        sender.estimateFee(address: address, amount: amount, tier: feeLevel, isStake: false) { self.handleFeeEstimationResult($0) }
-        updateLimits()
-    }
-    
-    private func handleFeeEstimationResult(_ basis: TransferFeeBasis?) {
-        DispatchQueue.main.async {
-            self.currentFeeBasis = basis
-            self.amountView.updateBalanceLabel()
+        sender.estimateFee(address: address, amount: amount, tier: feeLevel, isStake: false) { result in
+            handleResult(result)
         }
+        updateLimits()
     }
     
     private func updateLimits() {
@@ -302,27 +317,27 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         }
         
         sender.estimateLimitMaximum(address: address, fee: feeLevel, completion: { [weak self] result in
-            guard let `self` = self else { return }
-            switch result {
-            case .success(let maximumAmount):
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                guard let `self` = self else { return }
+                switch result {
+                case .success(let maximumAmount):
                     self.maximum = Amount(cryptoAmount: maximumAmount, currency: self.currency)
                     self.amountView.updateBalanceLabel()
+                case .failure(let error):
+                    print("[LIMIT] error: \(error)")
                 }
-            case .failure(let error):
-                print("[LIMIT] error: \(error)")
             }
         })
         
         sender.estimateLimitMinimum(address: address, fee: feeLevel) { [weak self] result in
-            guard let `self` = self else { return }
-            switch result {
-            case .success(let minimumAmount):
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                guard let `self` = self else { return }
+                switch result {
+                case .success(let minimumAmount):
                     self.minimum = Amount(cryptoAmount: minimumAmount, currency: self.currency)
+                case .failure(let error):
+                    print("[LIMIT] error: \(error)")
                 }
-            case .failure(let error):
-                print("[LIMIT] error: \(error)")
             }
         }
     }

@@ -92,7 +92,7 @@ class Sender: Subscriber {
 
     // MARK: Create
 
-    func estimateFee(address: String, amount: Amount, tier: FeeLevel, isStake: Bool, completion: @escaping (TransferFeeBasis?) -> Void) {
+    func estimateFee(address: String, amount: Amount, tier: FeeLevel, isStake: Bool, completion: @escaping (Result<TransferFeeBasis, Error>) -> Void) {
         wallet.estimateFee(address: address, amount: amount, fee: tier, isStake: isStake, completion: completion)
     }
     
@@ -205,10 +205,10 @@ class Sender: Subscriber {
                            amount: Amount.zero(wallet.currency),
                            fee: .regular,
                            isStake: true,
-                           completion: { basis in
-            DispatchQueue.main.async {
-                guard let basis = basis else { return }
-                let result = self.wallet.currency.wallet?.stake(address: address, feeBasis: basis)
+                           completion: { result in
+            switch result {
+            case .success(let fee):
+                let result = self.wallet.currency.wallet?.stake(address: address, feeBasis: fee)
                 guard case .success(let transfer) = result else {
                     return completion(.creationError(message: "no tx")) }
                 pinVerifier { pin in
@@ -217,6 +217,8 @@ class Sender: Subscriber {
                     }
                     self.waitForSubmission(of: transfer, completion: completion)
                 }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         })
     }
