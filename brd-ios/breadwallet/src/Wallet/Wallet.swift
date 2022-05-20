@@ -101,7 +101,7 @@ class Wallet {
                              amount: Amount,
                              fee: FeeLevel,
                              isStake: Bool,
-                             completion: @escaping (TransferFeeBasis?) -> Void) {
+                             completion: @escaping (Result<TransferFeeBasis, Error>) -> Void) {
         guard let target = WalletKit.Address.create(string: address, network: core.manager.network) else { return }
         let networkFee = feeForLevel(level: fee)
         
@@ -115,13 +115,15 @@ class Wallet {
             }
         }
         
-        core.estimateFee(target: target, amount: amount.cryptoAmount, fee: networkFee, attributes: attributes, completion: { result in
-            guard case let .success(feeBasis) = result else {
-                completion(nil)
-                return
+        core.estimateFee(target: target, amount: amount.cryptoAmount, fee: networkFee, attributes: attributes) { result in
+            switch result {
+            case .success(let item):
+                completion(.success(item))
+                
+            case .failure(let error):
+                completion(.failure(error))
             }
-            completion(feeBasis)
-        })
+        }
     }
     
     public func estimateLimitMaximum (address: String,

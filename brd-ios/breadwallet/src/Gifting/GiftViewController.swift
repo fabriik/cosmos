@@ -305,46 +305,50 @@ class GiftViewController: UIViewController, Trackable {
 
         guard let amount = extraSwitch.isOn ? totalWithExtra : selectedAmount else { return }
 
-        sender.estimateFee(address: address.description, amount: amount, tier: .regular, isStake: false, completion: { [weak self] feeBasis in
-            guard let `self` = self else { return }
-            guard let feeBasis = feeBasis else { return }
-            let feeCurrency = self.sender.wallet.feeCurrency
-            let fee = Amount(cryptoAmount: feeBasis.fee, currency: feeCurrency)
-            let rate = Rate(code: "USD", name: "USD", rate: rate.price, reciprocalCode: "BTC")
-            let displayAmount = Amount(amount: amount,
-                                      rate: rate,
-                                      maximumFractionDigits: Amount.highPrecisionDigits)
-            let feeAmount = Amount(amount: fee,
-                                   rate: rate,
-                                   maximumFractionDigits: Amount.highPrecisionDigits)
-            let gift = Gift.create(key: privKey,
-                                   hash: nil,
-                                   name: self.recipientName!,
-                                   rate: rate.rate,
-                                   amount: self.rawAmount!)
-            self.gift = gift
-            
-            _ = self.sender.createTransaction(address: address.description,
-                                              amount: amount,
-                                              feeBasis: feeBasis,
-                                              comment: comment,
-                                              gift: gift)
+        sender.estimateFee(address: address.description, amount: amount, tier: .regular, isStake: false) { [weak self] result in
+            switch result {
+            case .success(let feeBasis):
+                guard let `self` = self else { return }
+                let feeCurrency = self.sender.wallet.feeCurrency
+                let fee = Amount(cryptoAmount: feeBasis.fee, currency: feeCurrency)
+                let rate = Rate(code: "USD", name: "USD", rate: rate.price, reciprocalCode: "BTC")
+                let displayAmount = Amount(amount: amount,
+                                          rate: rate,
+                                          maximumFractionDigits: Amount.highPrecisionDigits)
+                let feeAmount = Amount(amount: fee,
+                                       rate: rate,
+                                       maximumFractionDigits: Amount.highPrecisionDigits)
+                let gift = Gift.create(key: privKey,
+                                       hash: nil,
+                                       name: self.recipientName!,
+                                       rate: rate.rate,
+                                       amount: self.rawAmount!)
+                self.gift = gift
+                
+                _ = self.sender.createTransaction(address: address.description,
+                                                  amount: amount,
+                                                  feeBasis: feeBasis,
+                                                  comment: comment,
+                                                  gift: gift)
 
-            DispatchQueue.main.async {
-                let confirm = ConfirmationViewController(amount: displayAmount,
-                                                         fee: feeAmount,
-                                                         displayFeeLevel: .regular,
-                                                         address: "Gift to \(self.recipientName!)",
-                                                         isUsingBiometrics: self.sender.canUseBiometrics,
-                                                         currency: self.currency,
-                                                         resolvedAddress: nil,
-                                                         shouldShowMaskView: false)
-                confirm.successCallback = self.send
-                confirm.cancelCallback = self.sender.reset
-                self.present(confirm, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    let confirm = ConfirmationViewController(amount: displayAmount,
+                                                             fee: feeAmount,
+                                                             displayFeeLevel: .regular,
+                                                             address: "Gift to \(self.recipientName!)",
+                                                             isUsingBiometrics: self.sender.canUseBiometrics,
+                                                             currency: self.currency,
+                                                             resolvedAddress: nil,
+                                                             shouldShowMaskView: false)
+                    confirm.successCallback = self.send
+                    confirm.cancelCallback = self.sender.reset
+                    self.present(confirm, animated: true, completion: nil)
+                }
+
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        })
-        
+        }
     }
     
     private func send() {
