@@ -145,7 +145,12 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         cell.setup { view in
             view.setup(with: model)
-            let config = [Presets.VerificationView.none, Presets.VerificationView.limited][indexPath.row % 2]
+            let config = [
+                Presets.VerificationView.none,
+                Presets.VerificationView.limited,
+                Presets.VerificationView.pending,
+                Presets.VerificationView.verified
+            ][indexPath.row % 4]
             view.configure(with: config)
         }
         cell.setupCustomMargins(all: .extraSmall)
