@@ -19,6 +19,7 @@ struct ButtonConfiguration: Configurable {
 
 struct ButtonViewModel: ViewModel {
     var title: String?
+    var image: UIImage?
 }
 
 class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
@@ -72,6 +73,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
 
         self.viewModel = viewModel
         setTitle(viewModel.title, for: .normal)
+        setImage(viewModel.image, for: .normal)
     }
     
     func animateTo(state: DisplayState, withAnimation: Bool = true) {
@@ -115,6 +117,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     
     func configure(background: BackgroundConfiguration? = nil) {
         marginableView.backgroundColor = background?.backgroundColor
+        tintColor = background?.tintColor
         
         guard let border = background?.border else { return }
         marginableView.layer.cornerRadius = border.cornerRadius.rawValue

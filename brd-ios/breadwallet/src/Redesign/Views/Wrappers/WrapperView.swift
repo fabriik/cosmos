@@ -13,11 +13,12 @@ import SnapKit
 
 class WrapperView<T: UIView>: UIView,
                               Wrappable,
-                              Reusable {
+                              Reusable,
+                              Borderable {
 
     // MARK: Lazy UI
-    lazy var content = UIView()
     lazy var wrappedView = T()
+    private var config: BackgroundConfiguration?
 
     // MARK: - Overrides
     override var tintColor: UIColor! {
@@ -35,19 +36,18 @@ class WrapperView<T: UIView>: UIView,
         super.init(frame: frame)
         setupSubviews()
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        configure(background: config)
+    }
 
     func setupSubviews() {
-        addSubview(content)
-        content.snp.makeConstraints { make in
+        addSubview(wrappedView)
+        wrappedView.snp.makeConstraints { make in
             make.edges.equalTo(snp.margins)
         }
-        
-        content.addSubview(wrappedView)
-        wrappedView.snp.makeConstraints { make in
-            make.edges.equalTo(content.snp.margins)
-        }
-        content.setupCustomMargins(all: .zero)
-        setupCustomMargins(all: .zero)
     }
     
     func setup(_ closure: (T) -> Void) {
@@ -57,5 +57,17 @@ class WrapperView<T: UIView>: UIView,
     func prepareForReuse() {
         guard let reusable = wrappedView as? Reusable else { return }
         reusable.prepareForReuse()
+    }
+    
+    func configure(background: BackgroundConfiguration?) {
+        
+        guard let border = background?.border else { return }
+        config = background
+        backgroundColor = background?.backgroundColor
+        tintColor = background?.tintColor
+        layer.masksToBounds = true
+        layer.cornerRadius = border.cornerRadius.rawValue
+        layer.borderWidth = border.borderWidth
+        layer.borderColor = border.tintColor.cgColor
     }
 }

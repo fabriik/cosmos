@@ -98,4 +98,33 @@ extension Presets {
                                                 Presets.Button.secondary
                                             ])
     }
+    
+    struct VerificationView {
+        static var none = VerificationConfiguration(background: .init(backgroundColor: LightColors.secondary,
+                                                                      tintColor: LightColors.Contrast.two,
+                                                                      border: Presets.Border.zero),
+                                                    title: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                    infoButton: .init(backgroundConfiguration: .init(tintColor: LightColors.Contrast.two),
+                                                                      selectedConfiguration: Presets.Background.Secondary.normal,
+                                                                      disabledConfiguration: Presets.Background.Secondary.disabled),
+                                                    description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
+                                                    bottomButton: Presets.Button.primary)
+        
+        static var limited = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
+                                                                         tintColor: LightColors.Outline.two,
+                                                                         border: .init(tintColor: LightColors.Outline.two,
+                                                                                       borderWidth: 1,
+                                                                                       cornerRadius: .small)),
+                                                       title: .init(font: Fonts.overline, textColor: LightColors.Text.one),
+                                                       status: .init(title: .init(font: Fonts.Body.two,
+                                                                                  textColor: LightColors.Contrast.two),
+                                                                     background: .init(backgroundColor: LightInversedColors.success,
+                                                                                       tintColor: LightColors.Contrast.two,
+                                                                                       border: Presets.Border.zero)),
+                                                       infoButton: .init(backgroundConfiguration: Presets.Background.Secondary.normal,
+                                                                         selectedConfiguration: Presets.Background.Secondary.selected,
+                                                                         disabledConfiguration: Presets.Background.Secondary.disabled),
+                                                       description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Text.one),
+                                                       bottomButton: Presets.Button.primary)
+    }
 }
