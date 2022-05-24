@@ -42,7 +42,7 @@ class Currency: SharedCurrency, CurrencyWithIcon {
     
     override var tokenType: TokenType {
         guard let type = TokenType(rawValue: core.type.lowercased()) else { assertionFailure("unknown token type"); return .unknown }
-            return type
+        return type
     }
     
     // MARK: Units
