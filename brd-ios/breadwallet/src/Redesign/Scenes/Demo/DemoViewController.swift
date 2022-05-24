@@ -114,13 +114,14 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     }
     
     func showInfo() {
+        // TODO: this is demo code.. no review required XD
         toggleBlur(animated: true)
         guard let blur = blurView else { return }
         let popup = FEPopupView()
         view.insertSubview(popup, aboveSubview: blur)
         popup.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.top.greaterThanOrEqualTo(view.snp.topMargin).inset(30)
+            make.top.greaterThanOrEqualTo(view.snp.topMargin)
             make.leading.greaterThanOrEqualTo(view.snp.leadingMargin)
             make.trailing.greaterThanOrEqualTo(view.snp.trailingMargin)
         }
@@ -146,8 +147,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                                 .init(title: "Donate")
                                ]))
         popup.buttonCallbacks = [
-            hideInfo,
-            { print("Donated 10$! Thanks!") }
+            hideInfo, { print("Donated 10$! Thanks!") }
         ]
         
         UIView.animate(withDuration: 0.25) {

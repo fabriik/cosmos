@@ -81,7 +81,7 @@ extension Presets {
                                                    headerTitle: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
                                                    headerTrailingImage: Presets.Image.tertiary,
                                                    title: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
-                                                   description: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, numberOfLines: 0),
+                                                   description: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two),
                                                    button: Presets.Button.primary,
                                                    background: .init(backgroundColor: LightColors.secondary,
                                                                      tintColor: LightColors.Contrast.two),
