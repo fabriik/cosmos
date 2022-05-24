@@ -11,20 +11,6 @@
 import UIKit
 import SnapKit
 
-extension Presets {
-    
-    struct Popup {
-        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
-                                                                 tintColor: LightColors.Text.one,
-                                                                 border: Presets.Border.normal),
-                                               buttons: [
-                                                Presets.Button.primary,
-                                                Presets.Button.secondary
-                                               ]
-        )
-    }
-}
-
 struct PopupConfiguration: Configurable {
     var background: BackgroundConfiguration?
     var title: LabelConfiguration?
@@ -73,6 +59,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
     }()
     
     private lazy var buttons: [FEButton] = []
+    var buttonCallbacks: [() -> Void] = []
     
     override func setupSubviews() {
         super.setupSubviews()
@@ -114,8 +101,10 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
             return
         }
         
+        // remove previous ones, if exist
         buttons.forEach { $0.removeFromSuperview() }
         buttons = []
+        
         for config in config.buttons {
             let button = FEButton()
             button.configure(with: config)
@@ -124,10 +113,6 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
             }
             scrollingStack.addArrangedSubview(button)
             buttons.append(button)
-        }
-        
-        buttons.last?.snp.makeConstraints { make in
-            make.bottom.equalTo(scrollView)
         }
     }
     
@@ -145,6 +130,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         guard buttons.count == viewModel.buttons.count else { return }
         for (button, model) in zip(buttons, viewModel.buttons) {
             button.setup(with: model)
+            button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
         }
         
         textView.sizeToFit()
@@ -166,5 +152,13 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         content.layer.cornerRadius = border.cornerRadius.rawValue
         content.layer.borderWidth = border.borderWidth
         content.layer.borderColor = border.tintColor.cgColor
+    }
+    
+    @objc private func buttonTapped(sender: FEButton) {
+        guard let index = buttons.firstIndex(where: { $0 == sender }),
+              index < buttonCallbacks.count
+        else { return }
+        
+        buttonCallbacks[index]()
     }
 }

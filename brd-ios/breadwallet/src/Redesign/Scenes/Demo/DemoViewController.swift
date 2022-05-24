@@ -127,9 +127,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         popup.layoutIfNeeded()
         popup.alpha = 0
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hideInfo))
-        popup.addGestureRecognizer(tap)
-        
         var text = "Tole se skucamo pa gremo... "
         text += text
         text += text
@@ -148,6 +145,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                                 .init(title: "Close button"),
                                 .init(title: "Donate")
                                ]))
+        popup.buttonCallbacks = [
+            hideInfo,
+            { print("Donated 10$! Thanks!") }
+        ]
         
         UIView.animate(withDuration: 0.25) {
             popup.alpha = 1
