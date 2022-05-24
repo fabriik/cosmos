@@ -14,7 +14,9 @@ import SnapKit
 extension Presets {
     
     struct Popup {
-        static var normal = PopupConfiguration(background: .init(backgroundColor: .yellow, tintColor: .blue, border: Presets.Border.normal),
+        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
+                                                                 tintColor: LightColors.Text.one,
+                                                                 border: Presets.Border.normal),
                                                buttons: [
                                                 Presets.Button.primary,
                                                 Presets.Button.secondary
@@ -37,7 +39,7 @@ struct PopupViewModel: ViewModel {
 
 class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
     
-    private lazy var stack: UIStackView = {
+    private lazy var mainStack: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = Margins.small.rawValue
@@ -75,27 +77,27 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
     override func setupSubviews() {
         super.setupSubviews()
         
-        content.addSubview(stack)
-        stack.snp.makeConstraints { make in
+        content.addSubview(mainStack)
+        mainStack.snp.makeConstraints { make in
             make.edges.equalTo(content.snp.margins)
         }
+        content.setupCustomMargins(all: .huge)
         
-        stack.addArrangedSubview(titleLabel)
+        mainStack.addArrangedSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.height.equalTo(Margins.medium.rawValue)
         }
         
-        stack.addArrangedSubview(scrollView)
+        mainStack.addArrangedSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.height.equalTo(Margins.zero.rawValue)
+            make.height.equalTo(Int.max).priority(.low)
         }
-        
         scrollView.addSubview(scrollingStack)
         scrollingStack.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(mainStack).inset(Margins.extraSmall.rawValue)
             make.top.bottom.equalToSuperview()
-            make.leading.equalTo(content.snp.leadingMargin)
-            make.trailing.equalTo(content.snp.trailingMargin)
         }
+        
         scrollingStack.addArrangedSubview(textView)
     }
     
@@ -123,6 +125,10 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
             scrollingStack.addArrangedSubview(button)
             buttons.append(button)
         }
+        
+        buttons.last?.snp.makeConstraints { make in
+            make.bottom.equalTo(scrollView)
+        }
     }
     
     override func setup(with viewModel: PopupViewModel?) {
@@ -133,17 +139,21 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         titleLabel.isHidden = viewModel.title == nil
         
         textView.text = viewModel.body
-        textView.sizeToFit()
         textView.isHidden = viewModel.body == nil
         
-        // if this happens.. its a hooman mistake :D
+        // if this happens.. its a human mistake :D
         guard buttons.count == viewModel.buttons.count else { return }
         for (button, model) in zip(buttons, viewModel.buttons) {
             button.setup(with: model)
         }
         
-        scrollView.snp.updateConstraints { make in
-            make.height.equalTo(textView.contentSize.height)
+        textView.sizeToFit()
+        let count = Double(buttons.count)
+        var newHeight = textView.contentSize.height
+        newHeight += count * (Margins.extraHuge.rawValue + Margins.extraSmall.rawValue)
+        
+        scrollView.snp.makeConstraints { make in
+            make.height.equalTo(newHeight)
         }
     }
     

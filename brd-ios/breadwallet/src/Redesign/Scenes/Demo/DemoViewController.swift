@@ -120,9 +120,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         view.insertSubview(popup, aboveSubview: blur)
         popup.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.width.equalTo(250)
             make.top.greaterThanOrEqualTo(view.snp.topMargin).inset(30)
             make.leading.greaterThanOrEqualTo(view.snp.leadingMargin)
+            make.trailing.greaterThanOrEqualTo(view.snp.trailingMargin)
         }
         popup.layoutIfNeeded()
         popup.alpha = 0
@@ -130,17 +130,23 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideInfo))
         popup.addGestureRecognizer(tap)
         
-        var text = "super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper"
-//        text += text
-//        text += text
-//        text += text
+        var text = "Tole se skucamo pa gremo... "
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
         
         popup.configure(with: Presets.Popup.normal)
         popup.setup(with: .init(title: .text("This is a title"),
                                 body: text,
                                buttons: [
-                                .init(title: "  "),
-                                .init(title: "say hi")
+                                .init(title: "Close button"),
+                                .init(title: "Donate")
                                ]))
         
         UIView.animate(withDuration: 0.25) {
