@@ -322,6 +322,7 @@ class AmountViewController: UIViewController, Trackable {
                                    rate: selectedRate,
                                    minimumFractionDigits: minimumFractionDigits)
         var output = (selectedRate == nil) ? displayAmount.tokenFormattedString : displayAmount.fiatDescription
+        let sendingAmount = (NumberFormatter().number(from: output)?.doubleValue ?? 0)
         if hasTrailingDecimal {
             output = output.appending(NumberFormatter().currencyDecimalSeparator)
         }
@@ -329,7 +330,7 @@ class AmountViewController: UIViewController, Trackable {
         placeholder.isHidden = output.utf8.isEmpty ? false : true
         
         if currency.isXRP && isRequesting {
-            errorLabel.isHidden = output.count > 1
+            errorLabel.isHidden = sendingAmount >= 10
         }
         
         if let max = maximum {
