@@ -94,7 +94,19 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
 
-    func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?) {}
+    func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?) {
+        let blur = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blur)
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        blurView.alpha = 0
+        blurView.frame = navigationController.view.bounds
+        navigationController.view.addSubview(blurView)
+        UIView.animate(withDuration: 0.25) {
+            blurView.alpha = 1
+        }
+    }
+    
     func showNotification(with configuration: NotificationConfiguration) {}
     func hideNotification(_ view: UIView) {}
 

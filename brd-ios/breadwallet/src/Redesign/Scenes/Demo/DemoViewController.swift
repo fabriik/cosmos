@@ -99,4 +99,57 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     }
     
     // MARK: - Additional Helpers
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        toggleInfo()
+    }
+    
+    func toggleInfo() {
+        guard blurView?.superview == nil else {
+            hideInfo()
+            return
+        }
+        
+        showInfo()
+    }
+    
+    func showInfo() {
+        toggleBlur(animated: true)
+        guard let blur = blurView else { return }
+        let popup = FEPopupView()
+        view.insertSubview(popup, aboveSubview: blur)
+        popup.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(250)
+            make.top.greaterThanOrEqualTo(view.snp.topMargin).inset(30)
+            make.leading.greaterThanOrEqualTo(view.snp.leadingMargin)
+        }
+        popup.layoutIfNeeded()
+        
+        popup.backgroundColor = .cyan
+        popup.alpha = 0
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideInfo))
+        popup.addGestureRecognizer(tap)
+        
+        let text = "super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper"
+        
+        popup.setup(with: .init(title: .text("haha"), body: text + text + text + text + text))
+        
+        UIView.animate(withDuration: 0.25) {
+            popup.alpha = 1
+        }
+    }
+    
+    @objc func hideInfo() {
+        guard let popup = view.subviews.first(where: { $0 is FEPopupView }) else { return }
+        
+        toggleBlur(animated: true)
+        
+        UIView.animate(withDuration: 0.25) {
+            popup.alpha = 0
+        } completion: { _ in
+            popup.removeFromSuperview()
+        }
+    }
 }
