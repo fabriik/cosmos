@@ -6,44 +6,33 @@
 //  Copyright © 2018-2019 Breadwinner AG. All rights reserved.
 //
 
-import Foundation
 import WalletKit
 import UIKit
-// import CoinGecko
-
-protocol CurrencyWithIcon {
-    var code: String { get }
-    var colors: (UIColor, UIColor) { get }
-}
 
 typealias CurrencyUnit = WalletKit.Unit
-typealias CurrencyId = Identifier<Currency>
 
 /// Combination of the Core Currency model and its metadata properties
-class Currency: CurrencyWithIcon {
-    public enum TokenType: String {
-        case native
-        case erc20
-        case unknown
-    }
-
+class Currency: SharedCurrency, CurrencyWithIcon {
     private let core: WalletKit.Currency
     let network: WalletKit.Network
 
     /// Unique identifier from BlockchainDB
-    var uid: CurrencyId { assert(core.uid == metaData.uid); return metaData.uid }
+    override var uid: CurrencyId {
+        assert(core.uid == metaData.uid)
+        
+        return metaData.uid
+    }
+    
     /// Ticker code (e.g. BTC)
-    var code: String { return core.code.uppercased() }
+    override var code: String { return core.code.uppercased() }
     /// Display name (e.g. Bitcoin)
-    var name: String { return metaData.name }
+    override var name: String { return metaData.name }
 
     var cryptoCompareCode: String {
         return metaData.alternateCode?.uppercased() ?? core.code.uppercased()
     }
     
-    var coinGeckoId: String? {
-        return metaData.coinGeckoId
-    }
+    override var coinGeckoId: String? { return metaData.coinGeckoId }
     
     // Number of confirmations needed until a transaction is considered complete
     // eg. For bitcoin, a txn is considered complete when it has 6 confirmations
@@ -51,9 +40,9 @@ class Currency: CurrencyWithIcon {
         return Int(network.confirmationsUntilFinal)
     }
     
-    var tokenType: TokenType {
+    override var tokenType: TokenType {
         guard let type = TokenType(rawValue: core.type.lowercased()) else { assertionFailure("unknown token type"); return .unknown }
-        return type
+            return type
     }
     
     // MARK: Units
@@ -95,14 +84,12 @@ class Currency: CurrencyWithIcon {
         return name(forUnit: unit)
     }
 
-    // MARK: Metadata
-
     let metaData: CurrencyMetaData
 
     /// Primary + secondary color
-    var colors: (UIColor, UIColor) { return metaData.colors }
+    override var colors: (UIColor, UIColor) { return metaData.colors }
     /// False if a token has been delisted, true otherwise
-    var isSupported: Bool { return metaData.isSupported }
+    override var isSupported: Bool { return metaData.isSupported }
     var tokenAddress: String? { return metaData.tokenAddress }
     
     // MARK: URI
@@ -252,7 +239,6 @@ extension Currency: Hashable {
 // MARK: - Convenience Accessors
 
 extension Currency {
-    
     func isValidAddress(_ address: String) -> Bool {
         return Address.create(string: address, network: network) != nil
     }
@@ -265,18 +251,6 @@ extension Currency {
             return code.lowercased()
         }
     }
-
-    var isBitcoin: Bool { return uid == Currencies.btc.uid }
-    var isBitcoinSV: Bool { return uid == Currencies.bsv.uid }
-    var isBitcoinCash: Bool { return uid == Currencies.bch.uid }
-    var isEthereum: Bool { return uid == Currencies.eth.uid }
-    var isERC20Token: Bool { return tokenType == .erc20 }
-    var isBRDToken: Bool { return uid == Currencies.brd.uid }
-    var isXRP: Bool { return uid == Currencies.xrp.uid }
-    var isHBAR: Bool { return uid == Currencies.hbar.uid }
-    var isBitcoinCompatible: Bool { return isBitcoin || isBitcoinCash }
-    var isEthereumCompatible: Bool { return isEthereum || isERC20Token }
-    var isTezos: Bool { return uid == Currencies.xtz.uid }
 }
 
 // MARK: - Confirmation times

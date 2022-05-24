@@ -8,60 +8,29 @@
 //  See the LICENSE file at the project root for license information.
 //
 
-import Foundation
-// import CoinGecko
 import UIKit
 
-protocol CurrencyWithIcon {
-    var code: String { get }
-    var colors: (UIColor, UIColor) { get }
-}
-
-typealias CurrencyId = Identifier<Currency>
-
-class Currency: CurrencyWithIcon {
-
+class Currency: SharedCurrency, CurrencyWithIcon {
     /// Unique identifier from BlockchainDB
-    var uid: CurrencyId { return metaData.uid }
-    /// Display name (e.g. Bitcoin)
-    var name: String { return metaData.name }
-
-    var coinGeckoId: String? {
-        return metaData.coinGeckoId
-    }
+    override var uid: CurrencyId { return metaData.uid }
     
-    var code: String {
-        return metaData.code.uppercased()
-    }
-
-    // MARK: Metadata
-
+    /// Display name (e.g. Bitcoin)
+    override var name: String { return metaData.name }
+    
+    override var coinGeckoId: String? { return metaData.coinGeckoId }
+    
+    override var code: String { return metaData.code.uppercased() }
+    
     let metaData: CurrencyMetaData
-
+    
     /// Primary + secondary color
-    var colors: (UIColor, UIColor) { return metaData.colors }
+    override var colors: (UIColor, UIColor) { return metaData.colors }
     /// False if a token has been delisted, true otherwise
-    var isSupported: Bool { return metaData.isSupported }
+    override var isSupported: Bool { return metaData.isSupported }
     
     init(metaData: CurrencyMetaData) {
         self.metaData = metaData
     }
-}
-
-// MARK: - Convenience Accessors
-
-extension Currency {
-    var isBitcoin: Bool { return uid == Currencies.btc.uid }
-    var isBitcoinSV: Bool { return uid == Currencies.bsv.uid }
-    var isBitcoinCash: Bool { return uid == Currencies.bch.uid }
-    var isEthereum: Bool { return uid == Currencies.eth.uid }
-    var isERC20Token: Bool { return metaData.type == "ERC20" }
-    var isBRDToken: Bool { return uid == Currencies.brd.uid }
-    var isXRP: Bool { return uid == Currencies.xrp.uid }
-    var isHBAR: Bool { return uid == Currencies.hbar.uid }
-    var isBitcoinCompatible: Bool { return isBitcoin || isBitcoinCash }
-    var isEthereumCompatible: Bool { return isEthereum || isERC20Token }
-    var isTezos: Bool { return uid == Currencies.xtz.uid }
 }
 
 /// Model representing metadata for supported currencies
