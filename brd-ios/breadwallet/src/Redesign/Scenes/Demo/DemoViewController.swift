@@ -125,16 +125,23 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             make.leading.greaterThanOrEqualTo(view.snp.leadingMargin)
         }
         popup.layoutIfNeeded()
-        
-        popup.backgroundColor = .cyan
         popup.alpha = 0
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideInfo))
         popup.addGestureRecognizer(tap)
         
-        let text = "super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper"
+        var text = "super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper truooper!super duper"
+//        text += text
+//        text += text
+//        text += text
         
-        popup.setup(with: .init(title: .text("haha"), body: text + text + text + text + text))
+        popup.configure(with: Presets.Popup.normal)
+        popup.setup(with: .init(title: .text("This is a title"),
+                                body: text,
+                               buttons: [
+                                .init(title: "  "),
+                                .init(title: "say hi")
+                               ]))
         
         UIView.animate(withDuration: 0.25) {
             popup.alpha = 1

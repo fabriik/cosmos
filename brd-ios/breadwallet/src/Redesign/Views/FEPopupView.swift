@@ -14,7 +14,12 @@ import SnapKit
 extension Presets {
     
     struct Popup {
-        static var normal = PopupConfiguration(background: Presets.Background.Primary.normal)
+        static var normal = PopupConfiguration(background: .init(backgroundColor: .yellow, tintColor: .blue, border: Presets.Border.normal),
+                                               buttons: [
+                                                Presets.Button.primary,
+                                                Presets.Button.secondary
+                                               ]
+        )
     }
 }
 
@@ -32,15 +37,22 @@ struct PopupViewModel: ViewModel {
 
 class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
     
+    private lazy var stack: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = Margins.small.rawValue
+        return view
+    }()
+    
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         return view
     }()
     
-    private lazy var stack: UIStackView = {
+    private lazy var scrollingStack: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.spacing = Margins.small.rawValue
+        view.spacing = Margins.extraSmall.rawValue
         return view
     }()
     
@@ -54,17 +66,11 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         view.isEditable = false
         view.isSelectable = false
         view.isScrollEnabled = false
-        
+        view.backgroundColor = .clear
         return view
     }()
     
-    private lazy var buttonStack: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = Margins.extraSmall.rawValue
-        
-        return view
-    }()
+    private lazy var buttons: [FEButton] = []
     
     override func setupSubviews() {
         super.setupSubviews()
@@ -84,30 +90,58 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
             make.height.equalTo(Margins.zero.rawValue)
         }
         
-        scrollView.addSubview(textView)
-        textView.snp.makeConstraints { make in
+        scrollView.addSubview(scrollingStack)
+        scrollingStack.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalTo(stack)
+            make.leading.equalTo(content.snp.leadingMargin)
+            make.trailing.equalTo(content.snp.trailingMargin)
         }
-//        scrollView.addSubview(buttonStack)
+        scrollingStack.addArrangedSubview(textView)
     }
     
     override func configure(with config: PopupConfiguration?) {
+        guard let config = config else { return }
         super.configure(with: config)
-        titleLabel.configure(with: config?.title)
-        configure(background: config?.background)
+        
+        titleLabel.configure(with: config.title)
+        configure(background: config.background)
+        
+        // create buttons if missing
+        guard buttons.count != config.buttons.count else {
+            // reconfig?
+            return
+        }
+        
+        buttons.forEach { $0.removeFromSuperview() }
+        buttons = []
+        for config in config.buttons {
+            let button = FEButton()
+            button.configure(with: config)
+            button.snp.makeConstraints { make in
+                make.height.equalTo(Margins.extraHuge.rawValue)
+            }
+            scrollingStack.addArrangedSubview(button)
+            buttons.append(button)
+        }
     }
     
     override func setup(with viewModel: PopupViewModel?) {
-        guard let viewModel = viewModel,
-        let text = viewModel.body else { return }
+        guard let viewModel = viewModel else { return }
 
         super.setup(with: viewModel)
         titleLabel.setup(with: viewModel.title)
         titleLabel.isHidden = viewModel.title == nil
         
-        textView.text = text + text + text + text + text + text + text + text
+        textView.text = viewModel.body
         textView.sizeToFit()
+        textView.isHidden = viewModel.body == nil
+        
+        // if this happens.. its a hooman mistake :D
+        guard buttons.count == viewModel.buttons.count else { return }
+        for (button, model) in zip(buttons, viewModel.buttons) {
+            button.setup(with: model)
+        }
+        
         scrollView.snp.updateConstraints { make in
             make.height.equalTo(textView.contentSize.height)
         }
@@ -117,6 +151,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         guard let border = background?.border else { return }
         let content = content
         
+        content.backgroundColor = background?.backgroundColor
         content.layer.masksToBounds = true
         content.layer.cornerRadius = border.cornerRadius.rawValue
         content.layer.borderWidth = border.borderWidth
