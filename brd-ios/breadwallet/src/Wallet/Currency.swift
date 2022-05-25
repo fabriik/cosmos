@@ -17,11 +17,7 @@ class Currency: SharedCurrency, CurrencyWithIcon {
     let network: WalletKit.Network
 
     /// Unique identifier from BlockchainDB
-    override var uid: CurrencyId {
-        assert(core.uid == metaData.uid)
-        
-        return metaData.uid
-    }
+    override var uid: CurrencyId { assert(core.uid == metaData.uid); return metaData.uid }
     
     /// Ticker code (e.g. BTC)
     override var code: String { return core.code.uppercased() }

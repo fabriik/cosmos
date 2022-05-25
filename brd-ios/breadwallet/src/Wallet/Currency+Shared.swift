@@ -16,8 +16,7 @@ public enum AppGroup: String {
     public var containerURL: URL? {
         switch self {
         case .fabriikOne:
-            return FileManager.default.containerURL(
-                forSecurityApplicationGroupIdentifier: self.rawValue)
+            return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: rawValue)
         }
     }
 }
@@ -95,7 +94,6 @@ class SharedCurrency: CurrencyUID {
 
 /// Model representing metadata for supported currencies
 public struct CurrencyMetaData: CurrencyWithIcon {
-    
     let uid: CurrencyId
     let code: String
     let isSupported: Bool
@@ -107,12 +105,7 @@ public struct CurrencyMetaData: CurrencyWithIcon {
     var isPreferred: Bool {
         return Currencies.allCases.map { $0.uid }.contains(uid)
     }
-
-    /// token type string in format expected by System.asBlockChainDBModelCurrency
-    var type: String {
-        return uid.rawValue.contains("__native__") ? "NATIVE" : "ERC20"
-    }
-
+    
     var alternateCode: String?
     var coinGeckoId: String?
     
