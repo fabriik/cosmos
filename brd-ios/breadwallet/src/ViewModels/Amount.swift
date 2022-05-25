@@ -145,7 +145,9 @@ public struct Amount {
             formatter.maximumFractionDigits = Int(unit.decimals)
             formattedValue = cryptoAmount.string(as: unit, formatter: formatter) ?? formattedValue
         }
-        return formattedValue
+        // we re removing trailing space, that appeared on real devices (simulators worked fine)
+        // the bug comes from walletKit
+        return formattedValue.trimmingCharacters(in: .whitespaces)
     }
 
     /// Token value in specified units as unformatted string without symbol (used API/internal use)
