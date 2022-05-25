@@ -213,7 +213,6 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             guard let text = text else { return }
             guard self.currency.isValidAddress(text) else { return }
             self.updateFees()
-            self.updateLimits()
         }
     }
 
@@ -229,8 +228,8 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         memoCell.didBeginEditing = { [weak self] in
             self?.amountView.closePinPad()
         }
-        addressCell.didBeginEditing = strongify(self) { myself in
-            myself.amountView.closePinPad()
+        addressCell.didBeginEditing = { [weak self] in
+            self?.amountView.closePinPad()
         }
         addressCell.didReceivePaymentRequest = { [weak self] request in
             self?.handleRequest(request)
@@ -246,8 +245,8 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         amountView.didUpdateAmount = { [weak self] amount in
             self?.amount = amount
         }
-        amountView.didUpdateFee = strongify(self) { myself, feeLevel in
-            myself.feeLevel = feeLevel
+        amountView.didUpdateFee = { [weak self] fee in
+            self?.feeLevel = fee
         }
         
         amountView.didChangeFirstResponder = { [weak self] isFirstResponder in
@@ -262,73 +261,59 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             self?.amountView.closePinPad()
         }
         
-        amountView.didTapMax = strongify(self) { myself in
-            guard let max = myself.maximum else {
+        amountView.didTapMax = { [weak self] in
+            guard let max = self?.maximum else {
                 //This is highly unlikely to be reached because the button should be disabled
                 //if a maximum doesn't exist
-                myself.showErrorMessage(S.Send.Error.maxError)
+                self?.showErrorMessage(S.Send.Error.maxError)
                 return
             }
-            myself.isSendingMax = true
-            myself.amountView.forceUpdateAmount(amount: max)
+            self?.isSendingMax = true
+            self?.amountView.forceUpdateAmount(amount: max)
         }
     }
     
+    var group: DispatchGroup?
+    
     @objc private func updateFees() {
-        let handleResult: (Result<TransferFeeBasis, Error>) -> Void = { [weak self] result in
+        guard let amount = amount else { return }
+        guard let address = address, !address.isEmpty else { return _ = handleValidationResult(.invalidAddress) }
+        
+        // already fetching
+        guard group == nil else { return }
+        group = DispatchGroup()
+        group?.enter()
+        sender.estimateFee(address: address, amount: amount, tier: feeLevel, isStake: false) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fee):
                     self?.currentFeeBasis = fee
-                    self?.amountView.updateBalanceLabel()
                     
                 case .failure:
                     self?.showAlert(title: S.Alert.ethBalanceLow,
                                     message: S.ErrorMessages.notEnouthBalanceForFee,
                                     buttonLabel: S.Button.ok)
                 }
+                self?.group?.leave()
             }
         }
         
-        guard paymentProtocolRequest == nil else {
-            self.estimateFeeForRequest(paymentProtocolRequest!) { result in
-                switch result {
-                case .success(let item):
-                    handleResult(.success(item))
-                    
-                case .failure(let error):
-                    handleResult(.failure(error))
-                }
-            }
-            return
-        }
-        
-        guard let amount = amount else { return }
-        guard let address = address, !address.isEmpty else { return _ = handleValidationResult(.invalidAddress) }
-        sender.estimateFee(address: address, amount: amount, tier: feeLevel, isStake: false) { result in
-            handleResult(result)
-        }
-        updateLimits()
-    }
-    
-    private func updateLimits() {
-        guard let address = address ?? currency.placeHolderAddress else {
-            return _ = handleValidationResult(.invalidAddress)
-        }
-        
+        group?.enter()
         sender.estimateLimitMaximum(address: address, fee: feeLevel, completion: { [weak self] result in
             DispatchQueue.main.async {
                 guard let `self` = self else { return }
                 switch result {
                 case .success(let maximumAmount):
                     self.maximum = Amount(cryptoAmount: maximumAmount, currency: self.currency)
-                    self.amountView.updateBalanceLabel()
+//                    self.amountView.updateBalanceLabel()
                 case .failure(let error):
                     print("[LIMIT] error: \(error)")
                 }
+                self.group?.leave()
             }
         })
         
+        group?.enter()
         sender.estimateLimitMinimum(address: address, fee: feeLevel) { [weak self] result in
             DispatchQueue.main.async {
                 guard let `self` = self else { return }
@@ -338,10 +323,18 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
                 case .failure(let error):
                     print("[LIMIT] error: \(error)")
                 }
+                self.group?.leave()
+            }
+        }
+        
+        group?.notify(queue: .global()) { [weak self] in
+            DispatchQueue.main.async {
+                self?.group = nil
+                self?.amountView.updateBalanceLabel()
             }
         }
     }
-    
+
     // returns Balance Text, Fee Text and isUserInteractionEnabled for balanceLabel
     private func balanceTextForAmount(_ amount: Amount?, rate: Rate?) -> (NSAttributedString?, NSAttributedString?, Bool) {
         //Use maximum if available, otherwise use balance
