@@ -44,8 +44,8 @@ class UpdatePinViewController: UIViewController, Subscriber {
     }
 
     // MARK: - Private
-    private let header = UILabel.wrapping(font: Theme.h2Title, color: Theme.primaryText)
-    private let instruction = UILabel.wrapping(font: Theme.body1, color: Theme.secondaryText)
+    private let header = UILabel.wrapping(font: Fonts.Title.four, color: Theme.primaryText)
+    private let instruction = UILabel.wrapping(font: Fonts.Body.two, color: Theme.secondaryText)
     private let caption = UILabel.wrapping(font: .customBody(size: 13.0), color: .almostBlack)
     private let warning = UILabel.wrapping(font: Theme.body1, color: Theme.blueBackground)
     private var pinView: PinView
@@ -76,10 +76,10 @@ class UpdatePinViewController: UIViewController, Subscriber {
                 caption.isHidden = true
             case .new:
                 let instructionText = isCreatingPin ? S.UpdatePin.createInstruction : S.UpdatePin.enterNew
+                header.text = isCreatingPin ? S.UpdatePin.setNewPinTitle : S.UpdatePin.createTitle
                 if instruction.text != instructionText {
                     instruction.pushNewText(instructionText)
                 }
-                header.text = S.UpdatePin.createTitle
                 caption.isHidden = false
             case .confirmNew:
                 caption.isHidden = true
@@ -208,7 +208,7 @@ class UpdatePinViewController: UIViewController, Subscriber {
             caption.text = ""
         } else {
             caption.text = S.UpdatePin.caption
-            header.text = isCreatingPin ? S.UpdatePin.createTitle : S.UpdatePin.updateTitle
+            header.text = isCreatingPin ? S.UpdatePin.setNewPinTitle : S.UpdatePin.updateTitle
             instruction.text = isCreatingPin ? S.UpdatePin.createInstruction : S.UpdatePin.enterCurrent
             if isCreatingPin {
                 step = .new

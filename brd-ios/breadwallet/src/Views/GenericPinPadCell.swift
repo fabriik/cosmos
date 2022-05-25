@@ -35,7 +35,7 @@ class GenericPinPadCell: UICollectionViewCell {
         setup()
     }
 
-    internal var label = UILabel(font: .customBody(size: 28.0))
+    internal var label = UILabel(font: Fonts.Title.two)
     internal let imageView = UIImageView()
     let masks: [UIView] = (0..<4).map { _ in UIView(color: .darkBackground) }
     var style: PinPadStyle = .clear
