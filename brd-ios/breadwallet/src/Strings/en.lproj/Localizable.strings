@@ -1290,11 +1290,13 @@ eg. 182930 (45061 confirmations) */
 /* Update PIN caption text */
 "UpdatePin.caption" = "Remember this PIN. If you forget it, you won't be able to access your assets.";
 /* PIN creation info. */
-"UpdatePin.createInstruction" = "Your PIN will be used to unlock your Fabriik and send money.";
+"UpdatePin.createInstruction" = "Your PIN will be used to unlock your Fabriik Wallet and send money";
 /* Update PIN title */
 "UpdatePin.createTitle" = "Set PIN";
 /* Update PIN title */
-"UpdatePin.createTitleConfirm" = "Re-Enter PIN";
+"UpdatePin.setNewPinTitle" = "Set your new PIN";
+/* Update PIN title */
+"UpdatePin.createTitleConfirm" = "Confirm your new PIN";
 /* Enter current PIN instruction */
 "UpdatePin.enterCurrent" = "Enter your current PIN.";
 /* Enter new PIN instruction */
