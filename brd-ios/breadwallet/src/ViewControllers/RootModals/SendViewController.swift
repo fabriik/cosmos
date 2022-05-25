@@ -305,7 +305,6 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
                 switch result {
                 case .success(let maximumAmount):
                     self.maximum = Amount(cryptoAmount: maximumAmount, currency: self.currency)
-//                    self.amountView.updateBalanceLabel()
                 case .failure(let error):
                     print("[LIMIT] error: \(error)")
                 }
