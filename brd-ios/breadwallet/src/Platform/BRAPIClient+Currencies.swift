@@ -50,24 +50,14 @@ struct FiatCurrency: Decodable {
 }
 
 extension BRAPIClient {
-    
-    // MARK: Currency List
-    
     /// Get the list of supported currencies and their metadata from the backend or local cache
     func getCurrencyMetaData(completion: @escaping ([CurrencyId: CurrencyMetaData]) -> Void) {
-        let fileManager = FileManager.default
-        guard let documentsDir = try? fileManager.url(for: .documentDirectory,
-                                                      in: .userDomainMask,
-                                                      appropriateFor: nil,
-                                                      create: false) else {
-            return assertionFailure()
-        }
-        let cachedFilePath = documentsDir.appendingPathComponent("currencies.json").path
+        guard let sharedCachedFilePath = CurrencyFileManager.sharedCachedFilePath else { return }
         
         var shouldProcess = true
         // If cache isn't expired, use cached data and return before the network call
-        if !isCacheExpired(path: cachedFilePath, timeout: C.secondsInMinute*60*24) &&
-            processCurrenciesCache(path: cachedFilePath, completion: completion) {
+        if !CurrencyFileManager.isCacheExpired(path: sharedCachedFilePath, timeout: C.secondsInMinute*60*24) &&
+            CurrencyFileManager.processCurrenciesCache(path: sharedCachedFilePath, completion: completion) {
             //Even if cache is used, we still want to update the local version
             shouldProcess = false
         }
@@ -80,23 +70,24 @@ extension BRAPIClient {
                 // update cache
                 do {
                     let data = try JSONEncoder().encode(currencies)
-                    try data.write(to: URL(fileURLWithPath: cachedFilePath))
+                    try data.write(to: URL(fileURLWithPath: sharedCachedFilePath))
                 } catch let e {
                     print("[CurrencyList] failed to write to cache: \(e.localizedDescription)")
                 }
                 if shouldProcess {
-                    processCurrencies(currencies, completion: completion)
+                    CurrencyFileManager.processCurrencies(currencies, completion: completion)
                 }
             case .error(let error):
                 print("[CurrencyList] error fetching tokens: \(error)")
-                copyEmbeddedCurrencies(path: cachedFilePath, fileManager: fileManager)
+                CurrencyFileManager.copyEmbeddedCurrencies(path: sharedCachedFilePath)
                 if shouldProcess {
-                   let result = processCurrenciesCache(path: cachedFilePath, completion: completion)
-                   assert(result, "failed to get currency list from backend or cache")
+                    let result = CurrencyFileManager.processCurrenciesCache(path: sharedCachedFilePath, completion: completion)
+                    assert(result, "failed to get currency list from backend or cache")
                 }
             }
         })
-        cleanupOldTokensFile()
+        
+        CurrencyFileManager.cleanupOldTokensFile()
     }
     
     private func send<ResultType>(request: URLRequest, handler: @escaping (APIResult<ResultType>) -> Void) {
@@ -118,96 +109,4 @@ extension BRAPIClient {
             }
         }).resume()
     }
-    
-    private func cleanupOldTokensFile() {
-        DispatchQueue.global(qos: .utility).async {
-            let fm = FileManager.default
-            guard let documentsDir = try? fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return assertionFailure() }
-            let oldTokensFile = documentsDir.appendingPathComponent("tokens.json").path
-            if fm.fileExists(atPath: oldTokensFile) {
-                try? fm.removeItem(atPath: oldTokensFile)
-            }
-        }
-    }
-}
-
-// MARK: - File Manager Helpers
-
-// Converts an array of CurrencyMetaData to a dictionary keyed on uid
-private func processCurrencies(_ currencies: [CurrencyMetaData], completion: ([CurrencyId: CurrencyMetaData]) -> Void) {
-    let currencyMetaData = currencies.reduce(into: [CurrencyId: CurrencyMetaData](), { (dict, token) in
-        dict[token.uid] = token
-    })
-    //Change currencyMetaData to var and uncomment the currencies below for testing
-//    let tst = CurrencyMetaData(uid: "ethereum-testnet:0x722dd3f80bac40c951b51bdd28dd19d435762180",
-//                               code: "TST",
-//                               isSupported: true,
-//                               colors: (.blue, .blue),
-//                               name: "Test Standard Token",
-//                               tokenAddress: "0x722dd3f80bac40c951b51bdd28dd19d435762180",
-//                               decimals: 18,
-//                               alternateCode: nil,
-//                               coinGeckoId: nil)
-//
-//    let bsv = CurrencyMetaData(uid: "bitcoinsv-mainnet:__native__",
-//                               code: "BSV",
-//                               isSupported: true,
-//                               colors: (.yellow, .blue),
-//                               name: "BSV",
-//                               tokenAddress: nil,
-//                               decimals: 8,
-//                               alternateCode: nil,
-//                               coinGeckoId: nil)
-//    let xtz = CurrencyMetaData(uid: "tezos-mainnet:__native__",
-//                               code: "XTZ",
-//                               isSupported: true,
-//                               colors: (.blue, .blue),
-//                               name: "Tezos",
-//                               tokenAddress: nil,
-//                               decimals: 8,
-//                               alternateCode: nil,
-//                               coinGeckoId: "tezos")
-    
-//    currencyMetaData[tst.uid] = tst
-//    currencyMetaData[bsv.uid] = bsv
-//    currencyMetaData[xtz.uid] = xtz
-    print("[CurrencyList] tokens updated: \(currencies.count) tokens")
-    completion(currencyMetaData)
-}
-
-// Loads and processes cached currencies
-private func processCurrenciesCache(path: String, completion: ([CurrencyId: CurrencyMetaData]) -> Void) -> Bool {
-    guard FileManager.default.fileExists(atPath: path) else { return false }
-    do {
-        print("[CurrencyList] using cached token list")
-        let cachedData = try Data(contentsOf: URL(fileURLWithPath: path))
-        let currencies = try JSONDecoder().decode([CurrencyMetaData].self, from: cachedData)
-        processCurrencies(currencies, completion: completion)
-        return true
-    } catch let e {
-        print("[CurrencyList] error reading from cache: \(e)")
-        // remove the invalid cached data
-        try? FileManager.default.removeItem(at: URL(fileURLWithPath: path))
-        return false
-    }
-}
-
-// Copies currencies embedded in bundle if cached file doesn't exist
-private func copyEmbeddedCurrencies(path: String, fileManager fm: FileManager) {
-    if let embeddedFilePath = Bundle.main.path(forResource: "currencies", ofType: "json"), !fm.fileExists(atPath: path) {
-        do {
-            try fm.copyItem(atPath: embeddedFilePath, toPath: path)
-            print("[CurrencyList] copied bundle tokens list to cache")
-        } catch let e {
-            print("[CurrencyList] unable to copy bundled \(embeddedFilePath) -> \(path): \(e)")
-        }
-    }
-}
-
-// Checks if file modification time has happened within a timeout
-private func isCacheExpired(path: String, timeout: TimeInterval) -> Bool {
-    guard let attr = try? FileManager.default.attributesOfItem(atPath: path) else { return true }
-    guard let modificationDate = attr[FileAttributeKey.modificationDate] as? Date  else { return true }
-    let difference = Date().timeIntervalSince(modificationDate)
-    return difference > timeout
 }
