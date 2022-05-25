@@ -52,12 +52,12 @@ struct FiatCurrency: Decodable {
 extension BRAPIClient {
     /// Get the list of supported currencies and their metadata from the backend or local cache
     func getCurrencyMetaData(completion: @escaping ([CurrencyId: CurrencyMetaData]) -> Void) {
-        guard let sharedCachedFilePath = CurrencyFileManager.sharedCachedFilePath else { return }
+        guard let cachedFilePath = CurrencyFileManager.sharedCurrenciesFilePath else { return }
         
         var shouldProcess = true
         // If cache isn't expired, use cached data and return before the network call
-        if !CurrencyFileManager.isCacheExpired(path: sharedCachedFilePath, timeout: C.secondsInMinute*60*24) &&
-            CurrencyFileManager.processCurrenciesCache(path: sharedCachedFilePath, completion: completion) {
+        if !CurrencyFileManager.isCacheExpired(path: cachedFilePath, timeout: C.secondsInMinute*60*24) &&
+            CurrencyFileManager.processCurrenciesCache(path: cachedFilePath, completion: completion) {
             //Even if cache is used, we still want to update the local version
             shouldProcess = false
         }
@@ -70,7 +70,7 @@ extension BRAPIClient {
                 // update cache
                 do {
                     let data = try JSONEncoder().encode(currencies)
-                    try data.write(to: URL(fileURLWithPath: sharedCachedFilePath))
+                    try data.write(to: URL(fileURLWithPath: cachedFilePath))
                 } catch let e {
                     print("[CurrencyList] failed to write to cache: \(e.localizedDescription)")
                 }
@@ -79,9 +79,9 @@ extension BRAPIClient {
                 }
             case .error(let error):
                 print("[CurrencyList] error fetching tokens: \(error)")
-                CurrencyFileManager.copyEmbeddedCurrencies(path: sharedCachedFilePath)
+                CurrencyFileManager.copyEmbeddedCurrencies(path: cachedFilePath)
                 if shouldProcess {
-                    let result = CurrencyFileManager.processCurrenciesCache(path: sharedCachedFilePath, completion: completion)
+                    let result = CurrencyFileManager.processCurrenciesCache(path: cachedFilePath, completion: completion)
                     assert(result, "failed to get currency list from backend or cache")
                 }
             }

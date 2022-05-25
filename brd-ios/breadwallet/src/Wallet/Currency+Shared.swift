@@ -230,7 +230,6 @@ enum Currencies: String, CaseIterable {
     // Currently unused.
     case brd, hbar, xtz, tusd, usdc
     
-    
     var uid: CurrencyId? {
         var uid: CurrencyId?
         
@@ -246,16 +245,26 @@ enum Currencies: String, CaseIterable {
     }
     
     var code: String { return rawValue }
-    
 }
 
 struct CurrencyFileManager {
-    static var sharedCachedFilePath =  AppGroup.fabriikOne.containerURL?.appendingPathComponent("currencies.json").path
+    static var sharedCurrenciesFilePath: String? = AppGroup.fabriikOne.containerURL?.appendingPathComponent("currencies.json").path
+    static var bundledCurrenciesFilePath: String? = Bundle.main.path(forResource: "currencies", ofType: "json")
+    static var cachedCurrenciesFilePath: String? {
+        guard let sharedFilePath = sharedCurrenciesFilePath,
+              let bundleFilePath = bundledCurrenciesFilePath else { return nil }
+        
+        if FileManager.default.fileExists(atPath: sharedFilePath) {
+            return sharedFilePath
+        } else {
+            return bundleFilePath
+        }
+    }
     
     static func getCurrencyMetaDataFromCache(completion: @escaping ([CurrencyId: CurrencyMetaData]) -> Void) {
-        guard let sharedCachedFilePath = CurrencyFileManager.sharedCachedFilePath else { return }
+        guard let sharedFilePath = CurrencyFileManager.cachedCurrenciesFilePath else { return }
         
-        _ = processCurrenciesCache(path: sharedCachedFilePath, completion: completion)
+        _ = processCurrenciesCache(path: sharedFilePath, completion: completion)
     }
     
     // Converts an array of CurrencyMetaData to a dictionary keyed on uid

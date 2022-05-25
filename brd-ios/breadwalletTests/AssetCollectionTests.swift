@@ -163,7 +163,7 @@ class AssetCollectionTests: XCTestCase {
     }
     
     private func clearCurrenciesCache() {
-        if  let currenciesPath = CurrencyFileManager.sharedCachedFilePath, FileManager.default.fileExists(atPath: currenciesPath) {
+        if  let currenciesPath = CurrencyFileManager.cachedCurrenciesFilePath, FileManager.default.fileExists(atPath: currenciesPath) {
             try? fm.removeItem(atPath: currenciesPath)
         }
     }
