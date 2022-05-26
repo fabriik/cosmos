@@ -48,12 +48,11 @@ class NavigationItemView: FEView<ImageLabelConfiguration, ImageLabelModel> {
     
     override func setupSubviews() {
         super.setupSubviews()
+        setupCustomMargins(all: .large)
         
         content.addSubview(verticalStack)
         verticalStack.snp.makeConstraints { make in
             make.edges.equalTo(content.snp.margins)
-            // TODO: constan
-            make.height.equalTo(56)
         }
         verticalStack.addArrangedSubview(leading)
         leading.snp.makeConstraints { make in

@@ -151,6 +151,26 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         configure(shadow: config.shadow)
     }
     
+    override func configure(background: BackgroundConfiguration?) {
+        super.configure(background: background)
+        guard let border = background?.border else { return }
+        let content = self
+        
+        let radius = border.cornerRadius == .fullRadius ? content.bounds.width / 2 : border.cornerRadius.rawValue
+        content.layer.cornerRadius = radius
+        content.layer.borderWidth = border.borderWidth
+        content.layer.borderColor = border.tintColor.cgColor
+        
+        content.layer.masksToBounds = false
+        content.layer.shadowColor = UIColor.clear.cgColor
+        content.layer.shadowOpacity = 0
+        content.layer.shadowOffset = .zero
+        content.layer.shadowRadius = 0
+        content.layer.shadowPath = UIBezierPath(roundedRect: content.bounds, cornerRadius: radius).cgPath
+        content.layer.shouldRasterize = true
+        content.layer.rasterizationScale = UIScreen.main.scale
+    }
+    
     override func setup(with viewModel: InfoViewModel?) {
         guard let viewModel = viewModel else { return }
         super.setup(with: viewModel)

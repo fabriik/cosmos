@@ -73,6 +73,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         setTitleColor(config.selectedConfiguration?.tintColor, for: .highlighted)
         configure(background: config.backgroundConfiguration)
         configure(shadow: config.shadowConfiguration)
+        layoutIfNeeded()
     }
     
     func setup(with viewModel: ButtonViewModel?) {
@@ -130,6 +131,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     func configure(background: BackgroundConfiguration? = nil) {
         marginableView.backgroundColor = background?.backgroundColor
         
+        imageView?.tintColor = background?.tintColor
         guard let border = background?.border else { return }
         marginableView.layer.cornerRadius = border.cornerRadius.rawValue
         marginableView.layer.borderWidth = border.borderWidth

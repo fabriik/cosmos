@@ -11,6 +11,7 @@ import UIKit
 enum DemoModels {
     
     enum Section: Sectionable {
+        case profile
         case navigation
         case label
         case button
@@ -18,9 +19,12 @@ enum DemoModels {
         case infoView
         
         var header: AccessoryType? {
+            return nil
             switch self {
+            case .profile:
+                return .plain("Profile")
             case .navigation:
-                return .plain("navigation")
+                return .plain("Navigation")
             case .label:
                 return .plain("Labels")
             case .button:
@@ -30,10 +34,12 @@ enum DemoModels {
             case .infoView:
                 return .plain("Info view")
             }
-            
         }
         
-        var footer: AccessoryType? { return .plain("End of section") }
+        var footer: AccessoryType? {
+            return nil
+            return .plain("End of section")
+        }
     }
     
 }

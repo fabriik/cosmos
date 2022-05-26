@@ -41,13 +41,13 @@ class WrapperView<T: UIView>: UIView,
         content.snp.makeConstraints { make in
             make.edges.equalTo(snp.margins)
         }
+        setupCustomMargins(all: .zero)
         
         content.addSubview(wrappedView)
         wrappedView.snp.makeConstraints { make in
             make.edges.equalTo(content.snp.margins)
         }
         content.setupCustomMargins(all: .zero)
-        setupCustomMargins(all: .zero)
     }
     
     func setup(_ closure: (T) -> Void) {
