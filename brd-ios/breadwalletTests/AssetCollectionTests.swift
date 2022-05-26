@@ -163,10 +163,7 @@ class AssetCollectionTests: XCTestCase {
     }
     
     private func clearCurrenciesCache() {
-        let fm = FileManager.default
-        guard let documentsDir = try? fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return assertionFailure() }
-        let currenciesPath = documentsDir.appendingPathComponent("currencies.json").path
-        if fm.fileExists(atPath: currenciesPath) {
+        if  let currenciesPath = CurrencyFileManager.cachedCurrenciesFilePath, FileManager.default.fileExists(atPath: currenciesPath) {
             try? fm.removeItem(atPath: currenciesPath)
         }
     }
