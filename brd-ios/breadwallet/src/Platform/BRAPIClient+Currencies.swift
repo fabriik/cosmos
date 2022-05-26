@@ -60,7 +60,6 @@ extension BRAPIClient {
             CurrencyFileManager.processCurrenciesCache(path: cachedFilePath, completion: completion) {
             //Even if cache is used, we still want to update the local version
             shouldProcess = false
-            return
         }
         
         var req = URLRequest(url: url("/currencies"))
