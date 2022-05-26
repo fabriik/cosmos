@@ -31,7 +31,7 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
         content.addSubview(imageView)
         
         imageView.snp.makeConstraints { make in
-            make.edges.equalTo(content.snp.margins)
+            make.edges.equalToSuperview()
         }
     }
     

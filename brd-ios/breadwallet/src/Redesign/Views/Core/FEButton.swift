@@ -15,10 +15,18 @@ struct ButtonConfiguration: Configurable {
     var selectedConfiguration: BackgroundConfiguration?
     var disabledConfiguration: BackgroundConfiguration?
     var shadowConfiguration: ShadowConfiguration?
+    
+    mutating func hideBorder() -> ButtonConfiguration {
+        backgroundConfiguration?.border = nil
+        selectedConfiguration?.border = nil
+        disabledConfiguration?.border = nil
+        return self
+    }
 }
 
 struct ButtonViewModel: ViewModel {
     var title: String?
+    var image: String?
 }
 
 class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
@@ -71,7 +79,13 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         guard let viewModel = viewModel else { return }
 
         self.viewModel = viewModel
-        setTitle(viewModel.title, for: .normal)
+        if let title = viewModel.title {
+            setTitle(title, for: .normal)
+        }
+        
+        if let image = viewModel.image {
+            setImage(.init(named: image), for: .normal)
+        }
     }
     
     func animateTo(state: DisplayState, withAnimation: Bool = true) {

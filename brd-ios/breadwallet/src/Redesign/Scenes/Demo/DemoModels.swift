@@ -11,6 +11,7 @@ import UIKit
 enum DemoModels {
     
     enum Section: Sectionable {
+        case navigation
         case label
         case button
         case textField
@@ -18,6 +19,8 @@ enum DemoModels {
         
         var header: AccessoryType? {
             switch self {
+            case .navigation:
+                return .plain("navigation")
             case .label:
                 return .plain("Labels")
             case .button:
