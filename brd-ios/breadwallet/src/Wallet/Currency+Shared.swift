@@ -224,17 +224,37 @@ enum Currencies: String, CaseIterable {
     case brd, hbar, xtz, tusd, usdc
     
     var uid: CurrencyId? {
-        var uid: CurrencyId?
+        var uid = ""
         
-        CurrencyFileManager.getCurrencyMetaDataFromCache { currency in
-            let metaDatas = currency.values.compactMap { $0 } as? [CurrencyMetaData]
-            let metaData = metaDatas?.first(where: { metaData in
-                return metaData.code == rawValue
-            })
-            uid = metaData?.uid
+        switch self {
+        case .zrx:
+            uid = "ethereum-mainnet:0xE41d2489571d322189246DaFA5ebDe1F4699F498"
+        case .eth:
+            uid = "ethereum-\(E.isTestnet ? "goerli" : "mainnet"):__native__"
+        case .bsv:
+            uid = "bitcoinsv-mainnet:__native__"
+        case .lrc:
+            uid = "ethereum-mainnet:0xbbbbca6a901c926f240b89eacb641d8aec7aeafd"
+        case .usdt:
+            uid = "ethereum-mainnet:0xdac17f958d2ee523a2206206994597c13d831ec7"
+        case .bch:
+            uid = "bitcoincash-mainnet:__native__"
+        case .bat:
+            uid = "ethereum-mainnet:0x0D8775F648430679A709E98d2b0Cb6250d2887EF"
+        case .link:
+            uid = "ethereum-mainnet:0x514910771af9ca656af840dff83e8264ecf986ca"
+        case .xrp:
+            uid = "ripple-mainnet:__native__"
+        case .btc:
+            uid = "bitcoin-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
+        case .shib:
+            uid = "ethereum-mainnet:0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE"
+        case .brd, .hbar, .xtz, .tusd, .usdc:
+            break
         }
         
-        return uid
+        return CurrencyId(rawValue: uid)
+        
     }
     
     var code: String { return rawValue }
