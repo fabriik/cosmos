@@ -263,6 +263,11 @@
 		7B54E5BF27F4A2B1002DD1E4 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */; };
 		7B8140BA27FD6DBB00662724 /* Currency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */; };
 		7B8140BB27FD6DBB00662724 /* Currency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */; };
+		7B88C4852837B8710089CFBE /* Currency+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B88C4842837B8710089CFBE /* Currency+Shared.swift */; };
+		7B88C4862837B8760089CFBE /* Currency+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B88C4842837B8710089CFBE /* Currency+Shared.swift */; };
+		7B88C4872837B8E70089CFBE /* Currency+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B88C4842837B8710089CFBE /* Currency+Shared.swift */; };
+		7B88C48A283CD2D80089CFBE /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B519A922835B505007AC80A /* currencies.json */; };
+		7B88C48B283CD2D80089CFBE /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B519A922835B505007AC80A /* currencies.json */; };
 		7B8EC630280896F0008C6DE5 /* brd-tokens.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0F2806FA190031F015 /* brd-tokens.tar */; };
 		7B8EC631280896F1008C6DE5 /* brd-tokens.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0F2806FA190031F015 /* brd-tokens.tar */; };
 		7B8EC632280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */; };
@@ -349,6 +354,7 @@
 		7CF5319D231EE01300E61F12 /* Base32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5319C231EE01300E61F12 /* Base32.swift */; };
 		7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */; };
 		7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */; };
+		7E2B227B283B92FE000CA81C /* FEPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2B227A283B92FE000CA81C /* FEPopupView.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7E5CB32D2834E63400EC787E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5CB32C2834E63400EC787E /* SnapKit */; };
 		7E5CB37C2835090E00EC787E /* DemoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3312835090D00EC787E /* DemoPresenter.swift */; };
@@ -1197,6 +1203,7 @@
 		7B54E59827F4A2B0002DD1E4 /* KYCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCViewController.swift; sourceTree = "<group>"; };
 		7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Extensions.swift"; sourceTree = "<group>"; };
+		7B88C4842837B8710089CFBE /* Currency+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Shared.swift"; sourceTree = "<group>"; };
 		7BA83D9C280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessPresenter.swift; sourceTree = "<group>"; };
 		7BA83D9E280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessRouter.swift; sourceTree = "<group>"; };
 		7BA83D9F280459F3003F73AA /* KYCResetPasswordSuccessModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessModels.swift; sourceTree = "<group>"; };
@@ -1277,6 +1284,7 @@
 		7CF913BD1FFC7DC30085CB70 /* TxMemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TxMemoCell.swift; path = src/Views/TransactionCells/TxMemoCell.swift; sourceTree = "<group>"; };
 		7CF9988C23202C75004AEC17 /* BRAPIClient+Experiments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Experiments.swift"; path = "src/Platform/BRAPIClient+Experiments.swift"; sourceTree = "<group>"; };
 		7E09EA4027D60D2100B0268C /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
+		7E2B227A283B92FE000CA81C /* FEPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEPopupView.swift; sourceTree = "<group>"; };
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7E5CB3312835090D00EC787E /* DemoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPresenter.swift; sourceTree = "<group>"; };
@@ -2959,6 +2967,7 @@
 				7E5CB3792835090E00EC787E /* FETextField.swift */,
 				7E5CB37A2835090E00EC787E /* FEImageView.swift */,
 				7E5CB37B2835090E00EC787E /* FEButton.swift */,
+				7E2B227A283B92FE000CA81C /* FEPopupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3578,6 +3587,7 @@
 				7C1931CC2327371A0061DE20 /* CoreDatabase.swift */,
 				7C72D133226625120091B185 /* CoreSystem.swift */,
 				7CA3BC2F2006864C00517BF7 /* Currency.swift */,
+				7B88C4842837B8710089CFBE /* Currency+Shared.swift */,
 				7C72D13522662BB40091B185 /* Wallet.swift */,
 				3A6CA702244239FD001833CA /* WalletInitializer.swift */,
 				3A69885D24591F890084953D /* PayId.swift */,
@@ -4246,6 +4256,7 @@
 				7B8EC631280896F1008C6DE5 /* brd-tokens.tar in Resources */,
 				9F13F5D025DDD73B0031AEC7 /* fiatcurrencies.json in Resources */,
 				9FD519E425E3185F00F9D856 /* Localizable.strings in Resources */,
+				7B88C48B283CD2D80089CFBE /* currencies.json in Resources */,
 				7B8EC633280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4257,6 +4268,7 @@
 				7B8EC630280896F0008C6DE5 /* brd-tokens.tar in Resources */,
 				7B8EC632280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */,
 				9FD519E325E3185F00F9D856 /* Localizable.strings in Resources */,
+				7B88C48A283CD2D80089CFBE /* currencies.json in Resources */,
 				9FDDE5AC25D5B96000E42BE3 /* mock-candles.json in Resources */,
 				9FB0CA1825D5AD190057DD11 /* Assets.xcassets in Resources */,
 				9F13F5C925DDD73A0031AEC7 /* fiatcurrencies.json in Resources */,
@@ -4722,6 +4734,7 @@
 				3AEA2CAB24D3219200DA4C3A /* SelectBackupView.swift in Sources */,
 				C469BF1F27F6E6B10070ED33 /* SwapConfirmTradeView.swift in Sources */,
 				7B54E54B27F4A208002DD1E4 /* KYCAddressRouter.swift in Sources */,
+				7E2B227B283B92FE000CA81C /* FEPopupView.swift in Sources */,
 				7B54E53727F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift in Sources */,
 				CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */,
 				CEB909FA1E5FF242001804DC /* RecoverWalletIntroViewController.swift in Sources */,
@@ -4845,6 +4858,7 @@
 				7C0F3DC42124A81100531E54 /* Backend.swift in Sources */,
 				CEBF32F41DDCE12900348FC6 /* AccountFooterView.swift in Sources */,
 				710B036421F8C208007E8A2A /* AppRatingManager.swift in Sources */,
+				7B88C4852837B8710089CFBE /* Currency+Shared.swift in Sources */,
 				7B54E56027F4A218002DD1E4 /* SwapMainViewController.swift in Sources */,
 				7BDB4A072806F4720031F015 /* LinkStatusCircle.swift in Sources */,
 				CE9057181DFF0FA8006BA848 /* String+Additions.swift in Sources */,
@@ -4938,6 +4952,7 @@
 				9F3C307825DA926800C7C398 /* Environment.swift in Sources */,
 				9F9FAF7725D5D0140014F729 /* WidgetService.swift in Sources */,
 				9F00EAD725DDF28F00A99218 /* Bundle+Extensions.swift in Sources */,
+				7B88C4872837B8E70089CFBE /* Currency+Shared.swift in Sources */,
 				7EF2999827E3B9C700A2238A /* ApiClient.swift in Sources */,
 				7EF2999627E3B9C700A2238A /* Models.swift in Sources */,
 				7BDB49FA2806F23E0031F015 /* BRTar.swift in Sources */,
@@ -4990,6 +5005,7 @@
 				9FDDE58C25D5B88F00E42BE3 /* PortfolioWidget.swift in Sources */,
 				7EF2999E27E3B9DA00A2238A /* SimplePrice.swift in Sources */,
 				7BDB49E22806CB590031F015 /* ImageStorageService.swift in Sources */,
+				7B88C4862837B8760089CFBE /* Currency+Shared.swift in Sources */,
 				9FDDE55925D5B79D00E42BE3 /* CGTypes+Extensions.swift in Sources */,
 				7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */,
 				9FDDE57925D5B85000E42BE3 /* AssetListWidget.swift in Sources */,

@@ -74,6 +74,40 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         return self.keyMaster.isBiometricsEnabledForUnlocking
     }
     
+    lazy var header: UILabel = {
+        let header = UILabel()
+        header.textColor = Theme.primaryText
+        header.font = Fonts.Title.four
+        header.textAlignment = .center
+        header.text = S.UpdatePin.securedWallet
+        
+        return header
+    }()
+    
+    lazy var instruction: UILabel = {
+        let instruction = UILabel()
+        instruction.textColor = Theme.secondaryText
+        instruction.font = Fonts.Body.two
+        instruction.textAlignment = .center
+        instruction.text = S.UpdatePin.enterYourPin
+        
+        return instruction
+    }()
+    
+    lazy var resetPinButton: UIButton = {
+        let resetPinButton = UIButton()
+        let attributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key.underlineStyle: 1,
+        NSAttributedString.Key.font: Fonts.Subtitle.two,
+        NSAttributedString.Key.foregroundColor: Theme.primaryText]
+
+        let attributedString = NSMutableAttributedString(string: S.RecoverWallet.headerResetPin, attributes: attributes)
+        resetPinButton.setAttributedTitle(attributedString, for: .normal)
+        resetPinButton.addTarget(self, action: #selector(resetPinTapped), for: .touchUpInside)
+        
+        return resetPinButton
+    }()
+    
     override func viewDidLoad() {
         addSubviews()
         addConstraints()
@@ -164,6 +198,9 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         view.addSubview(backgroundView)
         view.addSubview(pinViewContainer)
         view.addSubview(logo)
+        view.addSubview(header)
+        view.addSubview(instruction)
+        view.addSubview(resetPinButton)
         view.addSubview(pinPadBackground)
         view.addSubview(debugLabel)
     }
@@ -177,23 +214,60 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             debugLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2])
         ])
         topControlTop = logo.topAnchor.constraint(equalTo: view.topAnchor,
-                                                            constant: C.Sizes.brdLogoHeight * 2 + C.Sizes.brdLogoTopMargin)
+                                                  constant: C.Sizes.brdLogoHeight * 2 + C.Sizes.brdLogoTopMargin)
         logo.constrain([
             topControlTop,
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logo.widthAnchor.constraint(equalToConstant: 104),
+            logo.widthAnchor.constraint(equalToConstant: 40),
             logo.heightAnchor.constraint(equalTo: logo.widthAnchor)])
-
+        
+        header.constrain([
+            header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            header.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: C.padding[3])])
+        
+        instruction.constrain([
+            instruction.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instruction.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2])])
+        
         pinPadPottom = pinPadBackground.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         pinPadBackground.constrain([
             pinPadBackground.widthAnchor.constraint(equalToConstant: floor(UIScreen.main.safeWidth/3.0)*3.0),
             pinPadBackground.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pinPadBackground.heightAnchor.constraint(equalToConstant: pinPad.height),
-            pinPadPottom ])
+            pinPadPottom])
+        
+        resetPinButton.constrain([
+            resetPinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resetPinButton.bottomAnchor.constraint(equalTo: pinPadBackground.topAnchor, constant: -C.padding[10])])
+        
         addChild(pinPad)
         pinPadBackground.addSubview(pinPad.view)
         pinPad.view.constrain(toSuperviewEdges: nil)
         pinPad.didMove(toParent: self)
+    }
+    
+    @objc private func resetPinTapped() {
+        isResetting = true
+        
+        RecoveryKeyFlowController.enterResetPinFlow(from: self,
+                                                    keyMaster: self.keyMaster,
+                                                    callback: { (phrase, navController) in
+            let updatePin = UpdatePinViewController(keyMaster: self.keyMaster,
+                                                    type: .creationWithPhrase,
+                                                    showsBackButton: true,
+                                                    phrase: phrase)
+            
+            navController.pushViewController(updatePin, animated: true)
+            
+            updatePin.resetFromDisabledSuccess = { pin in
+                if case .initialLaunch = self.context {
+                    guard let account = self.keyMaster.createAccount(withPin: pin) else { return assertionFailure() }
+                    self.authenticationSucceded(forLoginWithAccount: account)
+                } else {
+                    self.authenticationSucceded()
+                }
+            }
+        })
     }
 
     private func addPinPadCallbacks() {

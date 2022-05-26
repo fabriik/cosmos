@@ -91,22 +91,27 @@ class FeeSelector: UIView {
             control.topAnchor.constraint(equalTo: subheader.bottomAnchor, constant: 4.0),
             control.widthAnchor.constraint(equalTo: widthAnchor, constant: -C.padding[4]) ])
         control.valueChanged = strongify(self) { myself in
+            let fee: FeeLevel
+            let subheader: String
+            let warning: String
             switch myself.control.selectedSegmentIndex {
-            case 0:
-                myself.didUpdateFee?(.economy)
-                myself.subheader.text = self.currency.feeText(forIndex: 0)
-                myself.warning.text = S.FeeSelector.economyWarning
             case 1:
-                myself.didUpdateFee?(.regular)
-                myself.subheader.text = self.currency.feeText(forIndex: 1)
-                myself.warning.text = ""
+                fee = .regular
+                subheader = self.currency.feeText(forIndex: 1)
+                warning = ""
             case 2:
-                myself.didUpdateFee?(.priority)
-                myself.subheader.text = self.currency.feeText(forIndex: 2)
-                myself.warning.text = ""
+                fee = .priority
+                subheader = self.currency.feeText(forIndex: 2)
+                warning = ""
             default:
-                assertionFailure("Undefined fee selection index")
+                fee = .economy
+                subheader = self.currency.feeText(forIndex: 0)
+                warning = S.FeeSelector.economyWarning
+                
             }
+            myself.didUpdateFee?(fee)
+            myself.subheader.text = subheader
+            myself.warning.text = warning
         }
 
         control.selectedSegmentIndex = 1

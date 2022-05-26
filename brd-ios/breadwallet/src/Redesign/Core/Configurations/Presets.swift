@@ -104,3 +104,16 @@ extension Presets {
                                             ])
     }
 }
+
+extension Presets {
+    struct Popup {
+        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
+                                                                 tintColor: LightColors.Text.one,
+                                                                 border: Presets.Border.normal),
+                                               buttons: [
+                                                Presets.Button.primary,
+                                                Presets.Button.secondary
+                                               ]
+        )
+    }
+}

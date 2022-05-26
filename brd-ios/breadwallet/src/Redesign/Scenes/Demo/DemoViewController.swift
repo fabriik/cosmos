@@ -135,4 +135,71 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     }
     
     // MARK: - Additional Helpers
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        toggleInfo()
+    }
+    
+    func toggleInfo() {
+        guard blurView?.superview == nil else {
+            hideInfo()
+            return
+        }
+        
+        showInfo()
+    }
+    
+    func showInfo() {
+        // TODO: this is demo code.. no review required XD
+        toggleBlur(animated: true)
+        guard let blur = blurView else { return }
+        let popup = FEPopupView()
+        view.insertSubview(popup, aboveSubview: blur)
+        popup.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.top.greaterThanOrEqualTo(view.snp.topMargin)
+            make.leading.greaterThanOrEqualTo(view.snp.leadingMargin)
+            make.trailing.greaterThanOrEqualTo(view.snp.trailingMargin)
+        }
+        popup.layoutIfNeeded()
+        popup.alpha = 0
+        
+        var text = "Tole se skucamo pa gremo... "
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        
+        popup.configure(with: Presets.Popup.normal)
+        popup.setup(with: .init(title: .text("This is a title"),
+                                body: text,
+                               buttons: [
+                                .init(title: "Close button"),
+                                .init(title: "Donate")
+                               ]))
+        popup.buttonCallbacks = [
+            hideInfo, { print("Donated 10$! Thanks!") }
+        ]
+        
+        UIView.animate(withDuration: 0.25) {
+            popup.alpha = 1
+        }
+    }
+    
+    @objc func hideInfo() {
+        guard let popup = view.subviews.first(where: { $0 is FEPopupView }) else { return }
+        
+        toggleBlur(animated: true)
+        
+        UIView.animate(withDuration: 0.25) {
+            popup.alpha = 0
+        } completion: { _ in
+            popup.removeFromSuperview()
+        }
+    }
 }
