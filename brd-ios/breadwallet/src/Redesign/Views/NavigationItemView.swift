@@ -11,19 +11,19 @@
 import UIKit
 import SnapKit
 
-struct ImageLabelConfiguration: Configurable {
+struct NavigationConfiguration: Configurable {
     var image: BackgroundConfiguration?
     var label: LabelConfiguration?
     var button: ButtonConfiguration?
 }
 
-struct ImageLabelModel: ViewModel {
+struct NavigationViewModel: ViewModel {
     var image: ImageViewModel?
     var label: LabelViewModel?
     var button: ButtonViewModel?
 }
 
-class NavigationItemView: FEView<ImageLabelConfiguration, ImageLabelModel> {
+class NavigationItemView: FEView<NavigationConfiguration, NavigationViewModel> {
     
     private lazy var verticalStack: UIStackView = {
         let view = UIStackView()
@@ -69,7 +69,7 @@ class NavigationItemView: FEView<ImageLabelConfiguration, ImageLabelModel> {
         }
     }
     
-    override func configure(with config: ImageLabelConfiguration?) {
+    override func configure(with config: NavigationConfiguration?) {
         guard let config = config else { return }
         super.configure(with: config)
         leading.configure(with: config.image)
@@ -77,7 +77,7 @@ class NavigationItemView: FEView<ImageLabelConfiguration, ImageLabelModel> {
         trailing.configure(with: config.button)
     }
     
-    override func setup(with viewModel: ImageLabelModel?) {
+    override func setup(with viewModel: NavigationViewModel?) {
         guard let viewModel = viewModel else { return }
 
         super.setup(with: viewModel)

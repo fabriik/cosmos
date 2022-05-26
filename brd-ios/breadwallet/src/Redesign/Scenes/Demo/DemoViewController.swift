@@ -27,15 +27,40 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             Models.Section.profile,
             Models.Section.infoView,
             Models.Section.navigation,
-            //            Models.Section.textField,
-            //            Models.Section.label,
-            //            Models.Section.button
+            Models.Section.textField,
+            Models.Section.label,
+            Models.Section.button
         ]
         
         sectionRows = [
             Models.Section.profile: [
                 ProfileViewModel(name: "Rok", image: "stars")
             ],
+            Models.Section.navigation: [
+                NavigationViewModel(image: .imageName("lock_closed"),
+                                    label: .text("Security settings"),
+                                    button: .init(image: "arrow_right")),
+                NavigationViewModel(image: .imageName("settings"),
+                                    label: .text("Security settings"),
+                                    button: .init(image: "arrow_right")),
+                NavigationViewModel(image: .imageName("withdrawal"),
+                                    label: .text("Export transaction history to csv"),
+                                    button: .init(image: "arrow_right")),
+            ],
+            Models.Section.button: [
+                "Click me!!",
+                "Dont Click me please!!"
+            ],
+            
+            Models.Section.textField: [
+                TextFieldModel(title: "First name", hint: "Your mama gave it to you", validator: { string in
+                    return (string ?? "").count > 3
+                }),
+                TextFieldModel(title: "Last name"),
+                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com", error: "cant be empty"),
+                TextFieldModel(title: "Address", validator: { _ in return true })
+            ],
+            
             Models.Section.infoView: [
                 InfoViewModel(headerLeadingImage: .imageName("ig"),
                               headerTitle: .text("This is a header title"),
@@ -43,60 +68,26 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                               title: .text("This is a title"),
                               description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
                               button: .init(title: "Close")),
-            ],
-            Models.Section.navigation: [
-                ImageLabelModel(image: .imageName("lock_closed"),
-                                label: .text("Security settings"),
-                                button: .init(image: "arrow_right")),
-                ImageLabelModel(image: .imageName("settings"),
-                                label: .text("Security settings"),
-                                button: .init(image: "arrow_right")),
-                ImageLabelModel(image: .imageName("withdrawal"),
-                                label: .text("Export transaction history to csv"),
-                                button: .init(image: "arrow_right")),
-            ],
+                
+                InfoViewModel(headerTitle: .text("This is a header title"),
+                              headerTrailingImage: .imageName("user"),
+                              title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
+                
+                InfoViewModel(headerLeadingImage: .imageName("ig"),
+                              headerTrailingImage: .imageName("user"),
+                              title: .text("This is a title"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close")),
+                
+                InfoViewModel(headerLeadingImage: .imageName("ig"),
+                              headerTitle: .text("This is a header title"),
+                              headerTrailingImage: .imageName("user"),
+                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
+                              button: .init(title: "Close"))
+            ]
         ]
-        //            Models.Section.button: [
-        //                "Click me!!",
-        //                "Dont Click me please!!"
-        //            ],
-        //
-        //            Models.Section.textField: [
-        //                TextFieldModel(title: "First name", hint: "Your mama gave it to you", validator: { string in
-        //                    return (string ?? "").count > 3
-        //                }),
-        //                TextFieldModel(title: "Last name"),
-        //                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com", error: "cant be empty"),
-        //                TextFieldModel(title: "Address", validator: { _ in return true })
-        //            ],
-        //
-        //            Models.Section.infoView: [
-        //                InfoViewModel(headerLeadingImage: .image("ig"),
-        //                              headerTitle: .text("This is a header title"),
-        //                              headerTrailingImage: .image("user"),
-        //                              title: .text("This is a title"),
-        //                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-        //                              button: .init(title: "Close")),
-        //
-        //                InfoViewModel(headerTitle: .text("This is a header title"),
-        //                              headerTrailingImage: .image("user"),
-        //                              title: .text("This is a title"),
-        //                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-        //                              button: .init(title: "Close")),
-        //
-        //                InfoViewModel(headerLeadingImage: .image("ig"),
-        //                              headerTrailingImage: .image("user"),
-        //                              title: .text("This is a title"),
-        //                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-        //                              button: .init(title: "Close")),
-        //
-        //                InfoViewModel(headerLeadingImage: .image("ig"),
-        //                              headerTitle: .text("This is a header title"),
-        //                              headerTrailingImage: .image("user"),
-        //                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-        //                              button: .init(title: "Close"))
-        //            ]
-        //        ]
         
         tableView.reloadData()
     }
@@ -164,13 +155,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         popup.layoutIfNeeded()
         popup.alpha = 0
         
-        var text = "Tole se skucamo pa gremo... "
-        text += text
-        text += text
-        text += text
-        text += text
-        text += text
-        text += text
+        var text = "almost done... "
         text += text
         text += text
         text += text
@@ -178,10 +163,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         popup.configure(with: Presets.Popup.normal)
         popup.setup(with: .init(title: .text("This is a title"),
                                 body: text,
-                               buttons: [
-                                .init(title: "Close button"),
-                                .init(title: "Donate")
-                               ]))
+                                buttons: [
+                                    .init(title: "Close button"),
+                                    .init(title: "Donate")
+                                ]))
         popup.buttonCallbacks = [
             hideInfo, { print("Donated 10$! Thanks!") }
         ]

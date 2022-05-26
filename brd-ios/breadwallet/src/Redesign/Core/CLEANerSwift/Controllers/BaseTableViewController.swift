@@ -77,17 +77,19 @@ class BaseTableViewController<C: CoordinatableRoutes,
         switch type {
         case .plain(let string):
             view = self.tableView(tableView, supplementaryViewWith: string)
+            view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         case .attributed(let attributedString):
             view = self.tableView(tableView, supplementaryViewWith: attributedString)
+            view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         case .action(let title):
             view = self.tableView(tableView, supplementaryViewWith: title, for: section, callback: callback)
+            view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         default:
             view = UIView(frame: .zero)
         }
-        view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         return view
     }
@@ -223,7 +225,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
     func tableView(_ tableView: UITableView, navigationCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         guard let cell: WrapperTableViewCell<NavigationItemView> = tableView.dequeueReusableCell(for: indexPath),
-              let model = sectionRows[section]?[indexPath.row] as? ImageLabelModel
+              let model = sectionRows[section]?[indexPath.row] as? NavigationViewModel
         else { return UITableViewCell() }
         
         cell.setup { view in

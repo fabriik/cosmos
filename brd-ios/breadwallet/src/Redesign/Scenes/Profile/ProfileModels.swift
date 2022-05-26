@@ -10,4 +10,14 @@ import UIKit
 
 enum ProfileModels {
     
+    typealias Item = (title: String, image: String)
+    
+    enum Section: Sectionable {
+        case profile
+        case verification
+        case navigation
+        
+        var header: AccessoryType? { return nil }
+        var footer: AccessoryType? { return nil }
+    }
 }
