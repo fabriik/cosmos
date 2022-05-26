@@ -58,7 +58,7 @@ class WalletDisabledView: UIView {
         header.textColor = Theme.primaryText
         header.font = Fonts.Title.four
         header.textAlignment = .center
-        header.text = "Wallet disabled"
+        header.text = S.UnlockScreen.walletDisabled
         
         return header
     }()
@@ -75,7 +75,7 @@ class WalletDisabledView: UIView {
         descriptionLabel.textColor = Theme.secondaryText
         descriptionLabel.font = Fonts.caption
         descriptionLabel.textAlignment = .center
-        descriptionLabel.text = "You will need your recovery phrases to reset PIN."
+        descriptionLabel.text = S.UnlockScreen.walletDisabledDescription
         
         return descriptionLabel
     }()
