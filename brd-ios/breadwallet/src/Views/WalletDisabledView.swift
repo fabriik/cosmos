@@ -44,7 +44,7 @@ class WalletDisabledView: UIView {
     
     var didCompleteWipeGesture: (() -> Void)?
 
-    private let label = UILabel(font: Theme.body1, color: Theme.primaryText)
+    private let label = UILabel(font: Fonts.Title.five, color: Theme.primaryText)
     private let faq: UIButton
     private let blur: UIVisualEffectView
     private let reset = BRDButton(title: S.UnlockScreen.resetPin, type: .primary)
