@@ -53,6 +53,33 @@ class WalletDisabledView: UIView {
     private var tapCount = 0
     private let tapWipeCount = 12
     
+    private lazy var header: UILabel = {
+        let header = UILabel()
+        header.textColor = Theme.primaryText
+        header.font = Fonts.Title.four
+        header.textAlignment = .center
+        header.text = "Wallet disabled"
+        
+        return header
+    }()
+    
+    private lazy var unlockWalletImage: UIImageView = {
+        let unlockWalletImage = UIImageView(image: UIImage(named: "unlock-wallet"))
+        unlockWalletImage.contentMode = .scaleAspectFit
+        
+        return unlockWalletImage
+    }()
+    
+    private lazy var descriptionLabel: UILabel = {
+        let descriptionLabel = UILabel()
+        descriptionLabel.textColor = Theme.secondaryText
+        descriptionLabel.font = Fonts.caption
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.text = "You will need your recovery phrases to reset PIN."
+        
+        return descriptionLabel
+    }()
+    
     private func setup() {
         addSubviews()
         addConstraints()
@@ -61,22 +88,40 @@ class WalletDisabledView: UIView {
 
     private func addSubviews() {
         addSubview(blur)
+        addSubview(header)
         addSubview(label)
+        addSubview(unlockWalletImage)
         addSubview(reset)
+        addSubview(descriptionLabel)
     }
 
     private func addConstraints() {
         blur.constrain(toSuperviewEdges: nil)
+        
+        header.constrain([
+            header.topAnchor.constraint(equalTo: blur.topAnchor, constant: 170),
+            header.centerXAnchor.constraint(equalTo: blur.centerXAnchor)])
+        
         label.constrain([
-            label.centerYAnchor.constraint(equalTo: blur.centerYAnchor),
-            label.centerXAnchor.constraint(equalTo: blur.centerXAnchor) ])
+            label.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]),
+            label.centerXAnchor.constraint(equalTo: blur.centerXAnchor)])
+        
+        unlockWalletImage.constrain([
+            unlockWalletImage.topAnchor.constraint(equalTo: label.bottomAnchor, constant: C.padding[8]),
+            unlockWalletImage.centerXAnchor.constraint(equalTo: blur.centerXAnchor),
+            unlockWalletImage.centerYAnchor.constraint(equalTo: blur.centerYAnchor),
+            unlockWalletImage.widthAnchor.constraint(equalToConstant: 190),
+            unlockWalletImage.heightAnchor.constraint(equalToConstant: 240)])
+        
         reset.constrain([
             reset.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
             reset.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
-            reset.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight),
-            reset.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[4])
-            ])
-
+            reset.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight)])
+        
+        descriptionLabel.constrain([
+            descriptionLabel.topAnchor.constraint(equalTo: reset.bottomAnchor, constant: C.padding[1]),
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[4]),
+            descriptionLabel.centerXAnchor.constraint(equalTo: blur.centerXAnchor)])
     }
 
     private func setData() {
