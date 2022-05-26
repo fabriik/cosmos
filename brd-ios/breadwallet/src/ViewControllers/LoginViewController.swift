@@ -79,7 +79,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         header.textColor = Theme.primaryText
         header.font = Fonts.Title.four
         header.textAlignment = .center
-        header.text = "Secured wallet"
+        header.text = S.UpdatePin.securedWallet
         
         return header
     }()
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         instruction.textColor = Theme.secondaryText
         instruction.font = Fonts.Body.two
         instruction.textAlignment = .center
-        instruction.text = "Enter your PIN"
+        instruction.text = S.UpdatePin.enterYourPin
         
         return instruction
     }()
@@ -101,7 +101,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         NSAttributedString.Key.font: Fonts.Subtitle.two,
         NSAttributedString.Key.foregroundColor: Theme.primaryText]
 
-        let attributedString = NSMutableAttributedString(string: "Reset PIN", attributes: attributes)
+        let attributedString = NSMutableAttributedString(string: S.RecoverWallet.headerResetPin, attributes: attributes)
         resetPinButton.setAttributedTitle(attributedString, for: .normal)
         resetPinButton.addTarget(self, action: #selector(resetPinTapped), for: .touchUpInside)
         
@@ -238,7 +238,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         
         resetPinButton.constrain([
             resetPinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            resetPinButton.topAnchor.constraint(equalTo: instruction.bottomAnchor, constant: C.padding[6])])
+            resetPinButton.bottomAnchor.constraint(equalTo: pinPadBackground.topAnchor, constant: -C.padding[10])])
         
         addChild(pinPad)
         pinPadBackground.addSubview(pinPad.view)
@@ -247,6 +247,27 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     }
     
     @objc private func resetPinTapped() {
+        isResetting = true
+        
+        RecoveryKeyFlowController.enterResetPinFlow(from: self,
+                                                    keyMaster: self.keyMaster,
+                                                    callback: { (phrase, navController) in
+            let updatePin = UpdatePinViewController(keyMaster: self.keyMaster,
+                                                    type: .creationWithPhrase,
+                                                    showsBackButton: true,
+                                                    phrase: phrase)
+            
+            navController.pushViewController(updatePin, animated: true)
+            
+            updatePin.resetFromDisabledSuccess = { pin in
+                if case .initialLaunch = self.context {
+                    guard let account = self.keyMaster.createAccount(withPin: pin) else { return assertionFailure() }
+                    self.authenticationSucceded(forLoginWithAccount: account)
+                } else {
+                    self.authenticationSucceded()
+                }
+            }
+        })
     }
 
     private func addPinPadCallbacks() {
