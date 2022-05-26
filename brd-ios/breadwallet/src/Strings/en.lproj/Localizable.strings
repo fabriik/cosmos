@@ -1297,6 +1297,10 @@ eg. 182930 (45061 confirmations) */
 "UpdatePin.setNewPinTitle" = "Set your new PIN";
 /* Update PIN title */
 "UpdatePin.createTitleConfirm" = "Confirm your new PIN";
+/* Enter PIN header */
+"UpdatePin.securedWallet" = "Secured wallet";
+/* Enter PIN instruction */
+"UpdatePin.enterYourPin" = "Enter your PIN";
 /* Enter current PIN instruction */
 "UpdatePin.enterCurrent" = "Enter your current PIN.";
 /* Enter new PIN instruction */

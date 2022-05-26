@@ -243,6 +243,8 @@ enum S {
         static let caption = NSLocalizedString("UpdatePin.caption", value:"Remember this PIN. If you forget it, you won't be able to access your bitcoin.", comment: "Update PIN caption text")
         static let setPinErrorTitle = NSLocalizedString("UpdatePin.setPinErrorTitle", value:"Update PIN Error", comment: "Update PIN failure alert view title")
         static let setPinError = NSLocalizedString("UpdatePin.setPinError", value:"Sorry, could not update PIN.", comment: "Update PIN failure error message.")
+        static let securedWallet = NSLocalizedString("UpdatePin.securedWallet", value:"Secured wallet", comment: "Enter PIN header.")
+        static let enterYourPin = NSLocalizedString("UpdatePin.enterYourPin", value:"Enter your PIN", comment: "Enter PIN instruction.")
     }
 
     enum RecoverWallet {
