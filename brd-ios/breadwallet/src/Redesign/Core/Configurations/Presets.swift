@@ -62,6 +62,10 @@ extension Presets {
         static var secondary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.normal),
                                                    selectedConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
                                                    disabledConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled))
+        
+        static var icon = ButtonConfiguration(backgroundConfiguration: .init(tintColor: LightColors.Icons.two),
+                                              selectedConfiguration: .init(tintColor: LightColors.Icons.one),
+                                              disabledConfiguration: .init(tintColor: LightColors.InteractionPrimary.disabled))
     }
     
     struct TexxtField {
@@ -84,7 +88,8 @@ extension Presets {
                                                    description: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two),
                                                    button: Presets.Button.primary,
                                                    background: .init(backgroundColor: LightColors.secondary,
-                                                                     tintColor: LightColors.Contrast.two),
+                                                                     tintColor: LightColors.Contrast.two,
+                                                                     border: Presets.Border.zero),
                                                    shadow: Presets.Shadow.normal)
     }
     

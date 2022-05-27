@@ -12,7 +12,9 @@ import UIKit
 
 enum ImageViewModel: ViewModel {
     case animation(String)
-    case image(String)
+    case imageName(String)
+    case image(UIImage)
+    case url(String)
 }
 
 class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
@@ -25,21 +27,41 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
     }()
     
     // MARK: - View setup
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    
+        // Border
+        configure(with: config)
+    }
     override func setupSubviews() {
         super.setupSubviews()
         
         content.addSubview(imageView)
-        
         imageView.snp.makeConstraints { make in
             make.edges.equalTo(content.snp.margins)
         }
+        content.setupClearMargins()
     }
     
     // MARK: NCViewProtocol
     override func configure(with config: BackgroundConfiguration?) {
         super.configure(with: config)
-        guard let tintColor = config?.tintColor else { return }
-        imageView.tintColor = tintColor
+        guard let border = config?.border else { return }
+        
+        let radius = border.cornerRadius == .fullRadius ? content.bounds.width / 2 : border.cornerRadius.rawValue
+        content.layer.cornerRadius = radius
+        content.layer.borderWidth = border.borderWidth
+        content.layer.borderColor = border.tintColor.cgColor
+        
+        content.layer.masksToBounds = false
+        content.layer.shadowColor = UIColor.clear.cgColor
+        content.layer.shadowOpacity = 0
+        content.layer.shadowOffset = .zero
+        content.layer.shadowRadius = 0
+        content.layer.shadowPath = UIBezierPath(roundedRect: content.bounds, cornerRadius: radius).cgPath
+        content.layer.shouldRasterize = true
+        content.layer.rasterizationScale = UIScreen.main.scale
     }
     
     // MARK: ViewModelable
@@ -49,7 +71,10 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
         
         switch viewModel {
         case .image(let image):
-            imageView.image = .init(named: image)
+            imageView.image = image
+            
+        case .imageName(let name):
+            imageView.image = .init(named: name)
             
         default:
             return

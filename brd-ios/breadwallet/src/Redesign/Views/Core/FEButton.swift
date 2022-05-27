@@ -15,10 +15,18 @@ struct ButtonConfiguration: Configurable {
     var selectedConfiguration: BackgroundConfiguration?
     var disabledConfiguration: BackgroundConfiguration?
     var shadowConfiguration: ShadowConfiguration?
+    
+    mutating func hideBorder() -> ButtonConfiguration {
+        backgroundConfiguration?.border = nil
+        selectedConfiguration?.border = nil
+        disabledConfiguration?.border = nil
+        return self
+    }
 }
 
 struct ButtonViewModel: ViewModel {
     var title: String?
+    var image: String?
 }
 
 class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
@@ -65,13 +73,20 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         setTitleColor(config.selectedConfiguration?.tintColor, for: .highlighted)
         configure(background: config.backgroundConfiguration)
         configure(shadow: config.shadowConfiguration)
+        layoutIfNeeded()
     }
     
     func setup(with viewModel: ButtonViewModel?) {
         guard let viewModel = viewModel else { return }
 
         self.viewModel = viewModel
-        setTitle(viewModel.title, for: .normal)
+        if let title = viewModel.title {
+            setTitle(title, for: .normal)
+        }
+        
+        if let image = viewModel.image {
+            setImage(.init(named: image), for: .normal)
+        }
     }
     
     func animateTo(state: DisplayState, withAnimation: Bool = true) {
@@ -116,6 +131,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     func configure(background: BackgroundConfiguration? = nil) {
         marginableView.backgroundColor = background?.backgroundColor
         
+        imageView?.tintColor = background?.tintColor
         guard let border = background?.border else { return }
         marginableView.layer.cornerRadius = border.cornerRadius.rawValue
         marginableView.layer.borderWidth = border.borderWidth

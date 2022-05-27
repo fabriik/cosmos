@@ -1,25 +1,23 @@
 //
-//  DemoModels.swift
+//  ProfileModels.swift
 //  breadwallet
 //
-//  Created by Rok on 09/05/2022.
+//  Created by Rok on 26/05/2022.
 //
 //
 
 import UIKit
 
-enum DemoModels {
+enum ProfileModels {
+    
+    typealias Item = (title: String, image: String)
     
     enum Section: Sectionable {
         case profile
+        case verification
         case navigation
-        case label
-        case button
-        case textField
-        case infoView
         
         var header: AccessoryType? { return nil }
         var footer: AccessoryType? { return nil }
     }
-    
 }
