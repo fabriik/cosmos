@@ -80,9 +80,9 @@ class WalletConnectionSettings {
 
     /// clean up any invalid modes stored in KV-store
     private func sanitizeAll() {
-        [Currencies.shared.walletState(for: "btc")?.currency,
-         Currencies.shared.walletState(for: "bch")?.currency,
-         Currencies.shared.walletState(for: "eth")?.currency]
+        [Currencies.shared.btc,
+         Currencies.shared.bch,
+         Currencies.shared.eth]
             .compactMap { $0 }
             .forEach { sanitize(currency: $0) }
     }

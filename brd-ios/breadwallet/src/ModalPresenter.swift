@@ -176,7 +176,7 @@ class ModalPresenter: Subscriber, Trackable {
             if case let .reImportGift(viewModel) = trigger {
                 guard let gift = viewModel?.gift else { return assertionFailure() }
                 let code = QRCode(url: URL(string: gift.url!)!, viewModel: viewModel)
-                guard let wallet = Currencies.shared.walletState(for: "btc")?.currency.wallet else { return assertionFailure() }
+                guard let wallet = Currencies.shared.btc?.wallet else { return assertionFailure() }
                 let eventName = self.makeEventName([EventContext.gift.name, Event.redeem.name])
                 self.saveEvent(eventName, attributes: ["\(eventName).method": "reclaim"])
                 self.presentKeyImport(wallet: wallet, scanResult: code)
@@ -185,7 +185,7 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     private func handleGift(qrCode: QRCode) {
-        guard let wallet = Currencies.shared.walletState(for: "btc")?.currency.wallet else { return }
+        guard let wallet = Currencies.shared.btc?.wallet else { return }
         guard case .gift(let key, _) = qrCode else { return }
         guard let privKey = Key.createFromString(asPrivate: key) else { return }
         wallet.createSweeper(forKey: privKey) { result in
@@ -273,10 +273,10 @@ class ModalPresenter: Subscriber, Trackable {
             return nil
             
         case .receiveLegacy:
-            guard let btc = Currencies.shared.walletState(for: "btc")?.currency else { return nil }
+            guard let btc = Currencies.shared.btc else { return nil }
             return makeReceiveView(currency: btc, isRequestAmountVisible: false, isBTCLegacy: true)
         case .gift :
-            guard let currency = Currencies.shared.walletState(for: "btc")?.currency else { return nil }
+            guard let currency = Currencies.shared.btc else { return nil }
             guard let wallet = system.wallet(for: currency),
                 let kvStore = Backend.kvStore else { assertionFailure(); return nil }
             let sender = Sender(wallet: wallet, authenticator: keyStore, kvStore: kvStore)
@@ -401,12 +401,12 @@ class ModalPresenter: Subscriber, Trackable {
             case .privateKey:
                 let alert = UIAlertController(title: S.Settings.importTile, message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "BTC", style: .default, handler: { _ in
-                    if let wallet = Currencies.shared.walletState(for: "btc")?.currency.wallet {
+                    if let wallet = Currencies.shared.btc?.wallet {
                         self.presentKeyImport(wallet: wallet, scanResult: scanResult)
                     }
                 }))
                 alert.addAction(UIAlertAction(title: "BCH", style: .default, handler: { _ in
-                    if let wallet = Currencies.shared.walletState(for: "bch")?.currency.wallet {
+                    if let wallet = Currencies.shared.bch?.wallet {
                         self.presentKeyImport(wallet: wallet, scanResult: scanResult)
                     }
                 }))
@@ -439,7 +439,7 @@ class ModalPresenter: Subscriber, Trackable {
         
         // MARK: Bitcoin Menu
         var btcItems: [MenuItem] = []
-        if let btc = Currencies.shared.walletState(for: "btc")?.currency, let btcWallet = btc.wallet {
+        if let btc = Currencies.shared.btc, let btcWallet = btc.wallet {
             
             // Rescan
             var rescan = MenuItem(title: S.Settings.sync, callback: { [unowned self] in
@@ -481,12 +481,12 @@ class ModalPresenter: Subscriber, Trackable {
             btcItems.append(enableSegwit)
             btcItems.append(viewLegacyAddress)
         }
-        var btcMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.walletState(for: "btc")?.currency.name ?? "Bitcoin"), subMenu: btcItems, rootNav: menuNav)
+        var btcMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.btc?.name ?? "Bitcoin"), subMenu: btcItems, rootNav: menuNav)
         btcMenu.shouldShow = { return !btcItems.isEmpty }
         
         // MARK: Bitcoin Cash Menu
         var bchItems: [MenuItem] = []
-        if let bch = Currencies.shared.walletState(for: "bch")?.currency, let bchWallet = bch.wallet {
+        if let bch = Currencies.shared.bch, let bchWallet = bch.wallet {
             if system.connectionMode(for: bch) == .p2p_only {
                 // Rescan
                 bchItems.append(MenuItem(title: S.Settings.sync, callback: { [weak self] in
@@ -501,12 +501,12 @@ class ModalPresenter: Subscriber, Trackable {
             }))
             
         }
-        var bchMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.walletState(for: "bch")?.currency.name ?? "Bitcoin Cash"), subMenu: bchItems, rootNav: menuNav)
+        var bchMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.bch?.name ?? "Bitcoin Cash"), subMenu: bchItems, rootNav: menuNav)
         bchMenu.shouldShow = { return !bchItems.isEmpty }
         
         // MARK: Ethereum Menu
         var ethItems: [MenuItem] = []
-        if let eth = Currencies.shared.walletState(for: "eth")?.currency, let ethWallet = eth.wallet {
+        if let eth = Currencies.shared.eth, let ethWallet = eth.wallet {
             if system.connectionMode(for: eth) == .p2p_only {
                 // Rescan
                 ethItems.append(MenuItem(title: S.Settings.sync, callback: { [weak self] in
@@ -515,7 +515,7 @@ class ModalPresenter: Subscriber, Trackable {
                 }))
             }
         }
-        var ethMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.walletState(for: "eth")?.currency.name ?? "Ethereum"), subMenu: ethItems, rootNav: menuNav)
+        var ethMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.eth?.name ?? "Ethereum"), subMenu: ethItems, rootNav: menuNav)
         ethMenu.shouldShow = { return !ethItems.isEmpty }
 
         // MARK: Preferences

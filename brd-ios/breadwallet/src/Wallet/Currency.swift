@@ -185,7 +185,7 @@ class Currency: SharedCurrency, CurrencyWithIcon {
         }
         
         //Allows sending erc20 tokens to an Eth receive uri, but not the other way around
-        if self == Currencies.shared.walletState(for: "eth")?.currency
+        if self == Currencies.shared.eth
             && currency.isERC20Token
             && request.amount == nil //We shouldn't send tokens to an Eth request amount uri
         {
@@ -324,6 +324,18 @@ extension CurrencyWithIcon {
 
 /// Natively supported currencies. Enum maps to ticker code.
 extension Currencies {
+    var btc: Currency? {
+        return Currencies.shared.walletState(for: "btc")?.currency
+    }
+    
+    var bch: Currency? {
+        return Currencies.shared.walletState(for: "bch")?.currency
+    }
+    
+    var eth: Currency? {
+        return Currencies.shared.walletState(for: "eth")?.currency
+    }
+    
     func walletState(for code: String) -> WalletState? {
         guard let uid = getUID(from: code),
               currencies.first(where: { $0.uid == uid }) != nil else { return nil }

@@ -205,11 +205,11 @@ class AssetCollection: Subscriber {
             } else {
                 var newKey: CurrencyId?
                 switch oldKey.lowercased() {
-                case Currencies.shared.walletState(for: "btc")?.currency.code.lowercased():
+                case Currencies.shared.btc?.code.lowercased():
                     newKey = Currencies.shared.getUID(from: "btc")
-                case Currencies.shared.walletState(for: "bch")?.currency.code.lowercased():
+                case Currencies.shared.bch?.code.lowercased():
                     newKey = Currencies.shared.getUID(from: "bch")
-                case Currencies.shared.walletState(for: "eth")?.currency.code.lowercased():
+                case Currencies.shared.eth?.code.lowercased():
                     newKey = Currencies.shared.getUID(from: "eth")
                 default:
                     break
