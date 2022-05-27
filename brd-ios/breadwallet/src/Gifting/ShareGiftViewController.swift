@@ -171,7 +171,7 @@ class ShareGiftView: UIView {
         name.textAlignment = .center
         subHeader.text = "Someone gifted you Bitcoin"
         
-        if let btc = Currencies.btc.instance {
+        if let btc = Currencies.shared.state(for: "btc")?.currency {
             let displayAmount = Amount(tokenString: "\(gift.amount ?? 0)", currency: btc)
             total.text = displayAmount.tokenDescription
         }

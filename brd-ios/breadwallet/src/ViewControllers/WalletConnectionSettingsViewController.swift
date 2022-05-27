@@ -16,7 +16,7 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
 
     private let walletConnectionSettings: WalletConnectionSettings
     private var currency: Currency {
-        return Currencies.btc.instance!
+        return Currencies.shared.state(for: "btc")!.currency
     }
     private let modeChangeCallback: (WalletConnectionMode) -> Void
 

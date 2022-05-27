@@ -65,9 +65,9 @@ class AssetIndex: BRKVStoreObject, Codable {
     }
     
     static var defaultCurrencyIds: [CurrencyId] {
-        return [Currencies.bsv.uid,
-                Currencies.btc.uid,
-                Currencies.eth.uid].compactMap { $0 }
+        return [Currencies.shared.getUID(from: "bsv"),
+                Currencies.shared.getUID(from: "btc"),
+                Currencies.shared.getUID(from: "eth")].compactMap { $0 }
     }
 }
 
