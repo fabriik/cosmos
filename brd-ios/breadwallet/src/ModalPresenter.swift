@@ -481,7 +481,7 @@ class ModalPresenter: Subscriber, Trackable {
             btcItems.append(enableSegwit)
             btcItems.append(viewLegacyAddress)
         }
-        var btcMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.btc?.name ?? "Bitcoin"), subMenu: btcItems, rootNav: menuNav)
+        var btcMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.btc?.name ?? ""), subMenu: btcItems, rootNav: menuNav)
         btcMenu.shouldShow = { return !btcItems.isEmpty }
         
         // MARK: Bitcoin Cash Menu
@@ -501,7 +501,7 @@ class ModalPresenter: Subscriber, Trackable {
             }))
             
         }
-        var bchMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.bch?.name ?? "Bitcoin Cash"), subMenu: bchItems, rootNav: menuNav)
+        var bchMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.bch?.name ?? ""), subMenu: bchItems, rootNav: menuNav)
         bchMenu.shouldShow = { return !bchItems.isEmpty }
         
         // MARK: Ethereum Menu
@@ -515,7 +515,7 @@ class ModalPresenter: Subscriber, Trackable {
                 }))
             }
         }
-        var ethMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.eth?.name ?? "Ethereum"), subMenu: ethItems, rootNav: menuNav)
+        var ethMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.eth?.name ?? ""), subMenu: ethItems, rootNav: menuNav)
         ethMenu.shouldShow = { return !ethItems.isEmpty }
 
         // MARK: Preferences
