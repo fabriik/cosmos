@@ -50,6 +50,25 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
         
         viewController?.displayData(responseDisplay: .init(sections: sections, sectionRows: sectionRows))
     }
+    
+    func presentVerificationInfo(actionResponse: ProfileModels.VerificationInfo.ActionResponse) {
+        // TODO: localize
+        let text = """
+If you verify your account, you are given acces to:
+  - Unlimited deposits/withdraws
+  - Enhanced security
+  - Full asset support
+  - Buy crypto with card
+  - 24/7/365 live customer support
+"""
+        let model = PopupViewModel(title: .text("Why should I verify my account?"),
+                                   body: text,
+                                   buttons: [
+                                    .init(title: "Verify my account", image: "profile")
+                                   ])
+        
+        viewController?.displayVerificationInfo(responseDisplay: .init(model: model))
+    }
     // MARK: - Additional Helpers
 
 }

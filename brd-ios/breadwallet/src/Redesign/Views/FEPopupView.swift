@@ -136,6 +136,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
             button.snp.makeConstraints { make in
                 make.height.equalTo(Margins.extraHuge.rawValue)
             }
+            button.isHidden = true
             scrollingStack.addArrangedSubview(button)
             buttons.append(button)
         }
@@ -150,15 +151,21 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         
         textView.text = viewModel.body
         textView.isHidden = viewModel.body == nil
+        textView.sizeToFit()
         
         // if this happens.. its a human mistake :D
-        guard buttons.count == viewModel.buttons.count else { return }
+        guard buttons.count == viewModel.buttons.count else {
+            scrollView.snp.makeConstraints { make in
+                make.height.equalTo(textView.contentSize.height)
+            }
+            return
+        }
         for (button, model) in zip(buttons, viewModel.buttons) {
             button.setup(with: model)
+            button.isHidden = false
             button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
         }
         
-        textView.sizeToFit()
         let count = Double(buttons.count)
         var newHeight = textView.contentSize.height
         newHeight += count * (Margins.extraHuge.rawValue + Margins.extraSmall.rawValue)

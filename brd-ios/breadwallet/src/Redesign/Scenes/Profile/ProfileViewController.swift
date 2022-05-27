@@ -50,70 +50,41 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
         
         cell.setup { view in
             view.wrappedView.headerButtonCallback = { [weak self] in
-                self?.showInfo()
+                self?.interactor?.showVerificationInfo(viewAction: .init())
             }
         }
         
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, profileViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, profileViewCellForRowAt: indexPath)
+        guard let cell = cell as? WrapperTableViewCell<ProfileView>
+        else { return cell }
+        
+        cell.setup { view in
+            view.editImageCallback = { [weak self] in
+                self?.coordinator?.showAvatarSelection()
+            }
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = sections[indexPath.section] as? Models.Section
+        
+        guard section == .navigation else { return }
+        
+        coordinator?.showUnderConstruction("navigation")
+    }
+    
     // MARK: - User Interaction
     
     // MARK: - ProfileResponseDisplay
+    func displayVerificationInfo(responseDisplay: ProfileModels.VerificationInfo.ResponseDisplay) {
+        coordinator?.showPopup(with: responseDisplay.model)
+    }
     
     // MARK: - Additional Helpers
-    func showInfo() {
-        // TODO: this is demo code.. no review required XD
-        toggleBlur(animated: true)
-        guard let blur = blurView else { return }
-        let popup = FEPopupView()
-        view.insertSubview(popup, aboveSubview: blur)
-        popup.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.leading.greaterThanOrEqualTo(view.snp.leadingMargin)
-            make.trailing.greaterThanOrEqualTo(view.snp.trailingMargin)
-        }
-        popup.layoutIfNeeded()
-        popup.alpha = 0
-        
-        let text = """
-If you verify your account, you are given acces to:
-  - Unlimited deposits/withdraws
-  - Enhanced security
-  - Full asset support
-  - Buy crypto with card
-  - 24/7/365 live customer support
-"""
-        
-        popup.configure(with: Presets.Popup.normal)
-        popup.setup(with: .init(title: .text("Why should I verify my account?"),
-                                body: text,
-                                buttons: [
-                                    .init(title: "Verify my account", image: "profile")
-                                ]))
-        
-        popup.closeCallback = { [weak self] in
-            self?.hideInfo()
-        }
-        
-        popup.buttonCallbacks = [
-            {print("Donated 10$! Thanks!")}
-        ]
-        
-        UIView.animate(withDuration: 0.25) {
-            popup.alpha = 1
-        }
-    }
-    
-    @objc func hideInfo() {
-        guard let popup = view.subviews.first(where: { $0 is FEPopupView }) else { return }
-        
-        toggleBlur(animated: true)
-        
-        UIView.animate(withDuration: 0.25) {
-            popup.alpha = 0
-        } completion: { _ in
-            popup.removeFromSuperview()
-        }
-    }
 }

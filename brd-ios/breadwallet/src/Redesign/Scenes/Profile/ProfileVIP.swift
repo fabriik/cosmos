@@ -13,12 +13,15 @@ extension Scenes {
 }
 
 protocol ProfileViewActions: BaseViewActions, FetchViewActions {
+    func showVerificationInfo(viewAction: ProfileModels.VerificationInfo.ViewAction)
 }
 
 protocol ProfileActionResponses: BaseActionResponses, FetchActionResponses {
+    func presentVerificationInfo(actionResponse: ProfileModels.VerificationInfo.ActionResponse)
 }
 
 protocol ProfileResponseDisplays: AnyObject, BaseResponseDisplays, FetchResponseDisplays {
+    func displayVerificationInfo(responseDisplay: ProfileModels.VerificationInfo.ResponseDisplay)
 }
 
 protocol ProfileDataStore: BaseDataStore, FetchDataStore {
@@ -29,4 +32,5 @@ protocol ProfileDataPassing {
 }
 
 protocol ProfileRoutes: CoordinatableRoutes {
+    func showAvatarSelection()
 }

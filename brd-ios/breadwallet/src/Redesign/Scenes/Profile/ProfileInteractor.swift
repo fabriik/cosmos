@@ -21,5 +21,9 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
         presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Alucard la'Fleur", image: "saturn")))
     }
     
+    func showVerificationInfo(viewAction: ProfileModels.VerificationInfo.ViewAction) {
+        presenter?.presentVerificationInfo(actionResponse: .init())
+    }
+    
     // MARK: - Aditional helpers
 }
