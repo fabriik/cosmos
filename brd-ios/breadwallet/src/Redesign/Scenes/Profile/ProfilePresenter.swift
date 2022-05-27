@@ -31,7 +31,7 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
             // TODO: localize!
             .verification: [
                 InfoViewModel(headerTitle: .text("ACCOUNT VERIFICATION"),
-                              headerTrailingImage: .imageName("infoIcon"),
+                              headerTrailing: .init(image: "infoIcon"),
                               description: .text("Upgrade your limits and get full access!"),
                               button: .init(title: "Verify your account"))
             ],

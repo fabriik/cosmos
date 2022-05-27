@@ -13,7 +13,7 @@ import UIKit
 struct InfoViewConfiguration: Configurable {
     var headerLeadingImage: BackgroundConfiguration?
     var headerTitle: LabelConfiguration?
-    var headerTrailingImage: BackgroundConfiguration?
+    var headerTrailing: ButtonConfiguration?
     
     var title: LabelConfiguration?
     var description: LabelConfiguration?
@@ -26,7 +26,7 @@ struct InfoViewConfiguration: Configurable {
 struct InfoViewModel: ViewModel {
     var headerLeadingImage: ImageViewModel?
     var headerTitle: LabelViewModel?
-    var headerTrailingImage: ImageViewModel?
+    var headerTrailing: ButtonViewModel?
     
     var title: LabelViewModel?
     var description: LabelViewModel?
@@ -35,6 +35,8 @@ struct InfoViewModel: ViewModel {
 
 class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     
+    // MARK: public properties
+    var headerButtonCallback: (() -> Void)?
     // MARK: Lazy UI
     private lazy var verticalStackView: UIStackView = {
         let stack = UIStackView()
@@ -66,9 +68,9 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         return label
     }()
     
-    private lazy var headerTrailingView: FEImageView = {
-        let view = FEImageView()
-        view.setupCustomMargins(all: .extraSmall)
+    private lazy var headerTrailingView: FEButton = {
+        let view = FEButton()
+        view.addTarget(self, action: #selector(trailingButtonTapped), for: .touchUpInside)
         return view
     }()
     
@@ -84,6 +86,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     
     private lazy var trailingButton: FEButton = {
         let view = FEButton()
+        view.addTarget(self, action: #selector(trailingButtonTapped), for: .touchUpInside)
         return view
     }()
     
@@ -142,7 +145,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         backgroundColor = config.background?.backgroundColor
         headerLeadingView.configure(with: config.headerLeadingImage)
         headerTitleLabel.configure(with: config.headerTitle)
-        headerTrailingView.configure(with: config.headerTrailingImage)
+        headerTrailingView.configure(with: config.headerTrailing)
         titleLabel.configure(with: config.title)
         descriptionLabel.configure(with: config.description)
         trailingButton.configure(with: config.button)
@@ -181,8 +184,8 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         headerTitleLabel.setup(with: viewModel.headerTitle)
         headerTitleLabel.isHidden = viewModel.headerTitle == nil
         
-        headerTrailingView.setup(with: viewModel.headerTrailingImage)
-        headerTrailingView.isHidden = viewModel.headerTrailingImage == nil
+        headerTrailingView.setup(with: viewModel.headerTrailing)
+        headerTrailingView.isHidden = viewModel.headerTrailing == nil
         
         titleLabel.setup(with: viewModel.title)
         titleLabel.isHidden = viewModel.title == nil
@@ -199,5 +202,9 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
             return
         }
         headerStackView.isHidden = true
+    }
+    
+    @objc private func trailingButtonTapped(_ sender: UIButton?) {
+        headerButtonCallback?()
     }
 }

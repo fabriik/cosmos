@@ -64,8 +64,8 @@ class BaseCoordinator: NSObject,
 
     // only call from coordinator subclasses
     func open<T: BaseControllable>(scene: T.Type,
-                                        presentationStyle: UIModalPresentationStyle = .fullScreen,
-                                        configure: ((T) -> Void)? = nil) {
+                                   presentationStyle: UIModalPresentationStyle = .fullScreen,
+                                   configure: ((T) -> Void)? = nil) {
         let controller = T()
         controller.coordinator = (self as? T.CoordinatorType)
         configure?(controller)

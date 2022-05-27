@@ -59,6 +59,10 @@ extension Presets {
                                                  selectedConfiguration: Presets.Background.Primary.selected,
                                                  disabledConfiguration: Presets.Background.Primary.disabled)
         
+        static var primaryWithBorder = ButtonConfiguration(backgroundConfiguration: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal),
+                                                           selectedConfiguration: Presets.Background.Primary.selected.withBorder(border: Presets.Border.selected),
+                                                           disabledConfiguration: Presets.Background.Primary.disabled.withBorder(border: Presets.Border.disabled))
+        
         static var secondary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.normal),
                                                    selectedConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
                                                    disabledConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled))
@@ -83,7 +87,7 @@ extension Presets {
     struct InfoView {
         static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
                                                    headerTitle: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
-                                                   headerTrailingImage: Presets.Image.tertiary,
+                                                   headerTrailing: Presets.Button.icon,
                                                    title: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
                                                    description: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two),
                                                    button: Presets.Button.primary,
@@ -110,10 +114,7 @@ extension Presets {
         static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
                                                                  tintColor: LightColors.Text.one,
                                                                  border: Presets.Border.normal),
-                                               buttons: [
-                                                Presets.Button.primary,
-                                                Presets.Button.secondary
-                                               ]
+                                               buttons: [ Presets.Button.primaryWithBorder ]
         )
     }
 }

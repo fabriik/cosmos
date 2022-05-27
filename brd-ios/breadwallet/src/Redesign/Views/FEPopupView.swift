@@ -32,6 +32,12 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         return view
     }()
     
+    private lazy var titleStack: UIStackView = {
+        let view = UIStackView()
+        view.spacing = Margins.small.rawValue
+        return view
+    }()
+    
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         return view
@@ -48,6 +54,13 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         let view = FELabel()
         return view
     }()
+    
+    private lazy var closeButton: WrapperView<FEButton> = {
+        let view = WrapperView<FEButton>()
+        view.wrappedView.setup(with: .init(image: "cancel"))
+        view.wrappedView.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
+        return view
+    }()
 
     private lazy var textView: UITextView = {
         let view = UITextView()
@@ -59,6 +72,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
     }()
     
     private lazy var buttons: [FEButton] = []
+    var closeCallback: (() -> Void)?
     var buttonCallbacks: [() -> Void] = []
     
     override func setupSubviews() {
@@ -70,10 +84,20 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         }
         content.setupCustomMargins(all: .huge)
         
-        mainStack.addArrangedSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.height.equalTo(Margins.medium.rawValue)
+        mainStack.addArrangedSubview(titleStack)
+        titleStack.snp.makeConstraints { make in
+            make.height.equalTo(Margins.huge.rawValue)
         }
+        titleStack.addArrangedSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview().priority(.low)
+        }
+        
+        titleStack.addArrangedSubview(closeButton)
+        closeButton.snp.makeConstraints { make in
+            make.width.equalTo(closeButton.snp.height)
+        }
+        closeButton.content.setupCustomMargins(all: .extraSmall)
         
         mainStack.addArrangedSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -95,6 +119,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         titleLabel.configure(with: config.title)
         configure(background: config.background)
         
+        closeButton.wrappedView.configure(with: Presets.Button.icon)
         // create buttons if missing
         guard buttons.count != config.buttons.count else {
             // reconfig?
@@ -152,6 +177,10 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         content.layer.cornerRadius = border.cornerRadius.rawValue
         content.layer.borderWidth = border.borderWidth
         content.layer.borderColor = border.tintColor.cgColor
+    }
+    
+    @objc private func closeTapped() {
+        closeCallback?()
     }
     
     @objc private func buttonTapped(sender: FEButton) {
