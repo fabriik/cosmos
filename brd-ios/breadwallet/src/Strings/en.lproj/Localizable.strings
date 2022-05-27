@@ -1453,3 +1453,7 @@ Wallet connection settings menu item title. */
 "WritePaperPhrase.previous" = "Previous";
 /* 1 of 3 */
 "WritePaperPhrase.step" = "%1$d of %2$d";
+/* Wallet disabled header */
+"UnlockScreen.walletDisabled" = "Wallet disabled";
+/* Wallet disabled description */
+"UnlockScreen.walletDisabledDescription" = "You will need your recovery phrases to reset PIN.";
