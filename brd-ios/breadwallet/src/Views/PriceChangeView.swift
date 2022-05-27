@@ -114,7 +114,7 @@ class PriceChangeView: UIView, Subscriber {
             layoutIfNeeded()
         } else if style == .percentOnly {
             UIView.transition(with: percentLabel,
-                              duration: UIConstants.Animations.duration,
+                              duration: Presets.Animation.duration,
                               options: .curveEaseIn,
                               animations: { [weak self] in
                 self?.prefixLabel.text = self?.prefixValue ?? ""

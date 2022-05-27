@@ -14,18 +14,39 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                           DemoStore>,
                           DemoResponseDisplays {
     typealias Models = DemoModels
-
+    
     // MARK: - Overrides
+    
+    override func setupSubviews() {
+        super.setupSubviews()
+        
+    }
     
     override func prepareData() {
         sections = [
-            Models.Section.textField,
+            Models.Section.profile,
             Models.Section.infoView,
+            Models.Section.navigation,
+            Models.Section.textField,
             Models.Section.label,
             Models.Section.button
         ]
         
         sectionRows = [
+            Models.Section.profile: [
+                ProfileViewModel(name: "Rok", image: "stars")
+            ],
+            Models.Section.navigation: [
+                NavigationViewModel(image: .imageName("lock_closed"),
+                                    label: .text("Security settings"),
+                                    button: .init(image: "arrow_right")),
+                NavigationViewModel(image: .imageName("settings"),
+                                    label: .text("Security settings"),
+                                    button: .init(image: "arrow_right")),
+                NavigationViewModel(image: .imageName("withdrawal"),
+                                    label: .text("Export transaction history to csv"),
+                                    button: .init(image: "arrow_right")),
+            ],
             Models.Section.button: [
                 "Click me!!",
                 "Dont Click me please!!"
@@ -41,28 +62,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.infoView: [
-                InfoViewModel(headerLeadingImage: .image("ig"),
+                InfoViewModel(headerLeadingImage: .imageName("ig"),
                               headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .image("user"),
+                              headerTrailing: .init(image: "info"),
                               title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .image("user"),
-                              title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerLeadingImage: .image("ig"),
-                              headerTrailingImage: .image("user"),
-                              title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerLeadingImage: .image("ig"),
-                              headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .image("user"),
                               description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
                               button: .init(title: "Close"))
             ]
@@ -90,6 +93,12 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             
         case .infoView:
             cell = self.tableView(tableView, infoViewCellForRowAt: indexPath)
+            
+        case .navigation:
+            cell = self.tableView(tableView, navigationCellForRowAt: indexPath)
+            
+        case .profile:
+            cell = self.tableView(tableView, profileViewCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
@@ -128,13 +137,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         popup.layoutIfNeeded()
         popup.alpha = 0
         
-        var text = "Tole se skucamo pa gremo... "
-        text += text
-        text += text
-        text += text
-        text += text
-        text += text
-        text += text
+        var text = "almost done... "
         text += text
         text += text
         text += text
@@ -142,15 +145,15 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         popup.configure(with: Presets.Popup.normal)
         popup.setup(with: .init(title: .text("This is a title"),
                                 body: text,
-                               buttons: [
-                                .init(title: "Close button"),
-                                .init(title: "Donate")
-                               ]))
+                                buttons: [
+                                    .init(title: "Close button"),
+                                    .init(title: "Donate")
+                                ]))
         popup.buttonCallbacks = [
             hideInfo, { print("Donated 10$! Thanks!") }
         ]
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 1
         }
     }
@@ -160,7 +163,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         toggleBlur(animated: true)
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 0
         } completion: { _ in
             popup.removeFromSuperview()

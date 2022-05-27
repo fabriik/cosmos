@@ -61,12 +61,12 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let menuButtonIndex = 2
     
     private var buyButton: UIButton? {
-        guard toolbarButtons.count == 3 else { return nil }
+        guard toolbarButtons.count == 4 else { return nil }
         return toolbarButtons[buyButtonIndex]
     }
     
     private var tradeButton: UIButton? {
-        guard toolbarButtons.count == 3 else { return nil }
+        guard toolbarButtons.count == 4 else { return nil }
         return toolbarButtons[tradeButtonIndex]
     }
     
@@ -74,6 +74,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     var didTapManageWallets: (() -> Void)?
     var didTapBuy: ((String, String) -> Void)?
     var didTapTrade: (() -> Void)?
+    var didTapProfile: (() -> Void)?
     var didTapMenu: (() -> Void)?
     
     var okToShowPrompts: Bool {
@@ -250,6 +251,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private func setupToolbar() {
         let buttons = [(buyButtonTitle, #imageLiteral(resourceName: "buy"), #selector(buy)),
                        (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
+                       ("Profile", #imageLiteral(resourceName: "user"), #selector(profile)),
                        (S.HomeScreen.menu, #imageLiteral(resourceName: "menu"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
                         let button = UIButton.vertical(title: title, image: image)
                         button.tintColor = .gray1
@@ -269,6 +271,13 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             buttons[2],
             flexibleSpace
         ]
+        
+#if DEBUG
+        toolbar.items?.append(contentsOf: [
+            buttons[3],
+            flexibleSpace
+        ])
+#endif
         
         let buttonWidth = (view.bounds.width - (paddingWidth * CGFloat(buttons.count+1))) / CGFloat(buttons.count)
         let buttonHeight = CGFloat(44.0)
@@ -393,6 +402,10 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     @objc private func trade() {
         saveEvent("currency.didTapTrade", attributes: [:])
         didTapTrade?()
+    }
+    
+    @objc private func profile() {
+        didTapProfile?()
     }
     
     @objc private func menu() { didTapMenu?() }

@@ -36,6 +36,8 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.register(WrapperTableViewCell<FEButton>.self)
         tableView.register(WrapperTableViewCell<FETextField>.self)
         tableView.register(WrapperTableViewCell<WrapperView<FEInfoView>>.self)
+        tableView.register(WrapperTableViewCell<NavigationItemView>.self)
+        tableView.register(WrapperTableViewCell<ProfileView>.self)
         
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -75,17 +77,19 @@ class BaseTableViewController<C: CoordinatableRoutes,
         switch type {
         case .plain(let string):
             view = self.tableView(tableView, supplementaryViewWith: string)
+            view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         case .attributed(let attributedString):
             view = self.tableView(tableView, supplementaryViewWith: attributedString)
+            view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         case .action(let title):
             view = self.tableView(tableView, supplementaryViewWith: title, for: section, callback: callback)
+            view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         default:
             view = UIView(frame: .zero)
         }
-        view?.setupCustomMargins(vertical: .small, horizontal: .small)
 
         return view
     }
@@ -210,11 +214,40 @@ class BaseTableViewController<C: CoordinatableRoutes,
             view.setup { view in
                 view.setup(with: model)
                 view.configure(with: Presets.InfoView.primary)
-                view.setupCustomMargins(all: .extraHuge)
+                view.setupCustomMargins(all: .large)
             }
-            view.setupCustomMargins(all: .medium)
+            view.setupCustomMargins(all: .large)
         }
-        cell.setupCustomMargins(all: .extraSmall)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, navigationCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<NavigationItemView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? NavigationViewModel
+        else { return UITableViewCell() }
+        
+        cell.setup { view in
+            view.configure(with: .init(image: Presets.Image.primary,
+                                       label: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.one),
+                                       button: Presets.Button.icon))
+            view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, profileViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<ProfileView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? ProfileViewModel
+        else { return UITableViewCell() }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+        }
         
         return cell
     }
