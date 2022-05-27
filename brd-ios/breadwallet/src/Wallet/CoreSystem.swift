@@ -44,7 +44,7 @@ class CoreSystem: Subscriber, Trackable {
         Store.subscribe(self, name: .optInSegWit) { [weak self] _ in
             guard let `self` = self else { return }
             self.queue.async {
-                guard let btc = Currencies.shared.state(for: "btc")?.currency,
+                guard let btc = Currencies.shared.walletState(for: "btc")?.currency,
                       let btcWalletManager = self.wallet(for: btc)?.manager else { return }
                 btcWalletManager.addressScheme = .btcSegwit
                 print("[SYS] Bitcoin SegWit address scheme enabled")

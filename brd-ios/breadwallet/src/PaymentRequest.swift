@@ -172,7 +172,7 @@ struct PaymentRequest {
             guard let response = response else { return completion(nil) }
 
             if response.mimeType?.lowercased() == PaymentRequest.bip70header {
-                guard let btc = Currencies.shared.state(for: "btc")?.currency else { return completion(nil) }
+                guard let btc = Currencies.shared.walletState(for: "btc")?.currency else { return completion(nil) }
                 completion(PaymentRequest(data: data, currency: btc))
             } else if response.mimeType?.lowercased() == PaymentRequest.jsonHeader {
                 let req = PaymentRequest(jsonData: data, currency: self.currency)
