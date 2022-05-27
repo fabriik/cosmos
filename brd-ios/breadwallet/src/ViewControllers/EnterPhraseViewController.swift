@@ -52,6 +52,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = S.UnlockScreen.resetPin
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faq)
         navigationController?.navigationBar.tintColor = Theme.blueBackground
         
