@@ -48,6 +48,9 @@ class WrapperView<T: UIView>: UIView,
             make.edges.equalTo(content.snp.margins)
         }
         content.setupCustomMargins(all: .zero)
+        isUserInteractionEnabled = true
+        content.isUserInteractionEnabled = true
+        wrappedView.isUserInteractionEnabled = true
     }
     
     func setup(_ closure: (T) -> Void) {

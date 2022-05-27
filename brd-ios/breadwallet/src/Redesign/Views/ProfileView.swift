@@ -22,6 +22,8 @@ struct ProfileViewModel: ViewModel {
 
 class ProfileView: FEView<ProfileConfiguration, ProfileViewModel> {
     
+    // MARK: callbacks:
+    var editImageCallback: (() -> Void)?
     private lazy var stack: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
@@ -34,8 +36,8 @@ class ProfileView: FEView<ProfileConfiguration, ProfileViewModel> {
         return view
     }()
     
-    private lazy var imageView: FEImageView = {
-        let view = FEImageView()
+    private lazy var imageView: WrapperView<FEImageView> = {
+        let view = WrapperView<FEImageView>()
         return view
     }()
     
@@ -47,6 +49,7 @@ class ProfileView: FEView<ProfileConfiguration, ProfileViewModel> {
     private lazy var editImageView: WrapperView<FEImageView> = {
         let view = WrapperView<FEImageView>()
         view.wrappedView.setup(with: .init(.imageName("edit")))
+        view.isUserInteractionEnabled = false
         return view
     }()
     
@@ -68,6 +71,7 @@ class ProfileView: FEView<ProfileConfiguration, ProfileViewModel> {
         imageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.top.equalToSuperview()
+            make.height.equalTo(60)
             make.width.equalTo(imageView.snp.height)
         }
         imageView.content.setupClearMargins()
@@ -85,13 +89,16 @@ class ProfileView: FEView<ProfileConfiguration, ProfileViewModel> {
             }
         }
         editImageView.wrappedView.content.setupCustomMargins(all: .extraSmall)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(changeImageTapped))
+        imageView.addGestureRecognizer(tap)
     }
     
     override func configure(with config: ProfileConfiguration?) {
         super.configure(with: config)
 
         let zeroBorder = BorderConfiguration(borderWidth: 0, cornerRadius: .fullRadius)
-        imageView.configure(with: .init(backgroundColor: .red, tintColor: LightColors.primary, border: zeroBorder))
+        imageView.wrappedView.configure(with: .init(backgroundColor: .red, tintColor: LightColors.primary, border: zeroBorder))
         editImageView.wrappedView.configure(with: Presets.Background.Primary.normal.withBorder(border: zeroBorder))
         nameLabel.configure(with: .init(font: Fonts.Title.three,
                                         textColor: LightColors.Text.one,
@@ -103,6 +110,11 @@ class ProfileView: FEView<ProfileConfiguration, ProfileViewModel> {
         guard let viewModel = viewModel else { return }
 
         nameLabel.setup(with: .text(viewModel.name))
-        imageView.setup(with: .imageName(viewModel.image))
+        imageView.wrappedView.setup(with: .imageName(viewModel.image))
+    }
+    
+    // MARK: - User interaction
+    @objc private func changeImageTapped() {
+        editImageCallback?()
     }
 }

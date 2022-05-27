@@ -43,10 +43,55 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, infoViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, infoViewCellForRowAt: indexPath)
+        guard let cell = cell as? WrapperTableViewCell<WrapperView<FEInfoView>>
+        else { return cell }
+        
+        cell.setup { view in
+            view.setup { view in
+                view.headerButtonCallback = { [weak self] in
+                    self?.interactor?.showVerificationInfo(viewAction: .init())
+                }
+                
+                view.trailingButtonCallback = { [weak self] in
+                    // TODO: start verification
+                    self?.coordinator?.showUnderConstruction("verification process")
+                }
+            }
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, profileViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, profileViewCellForRowAt: indexPath)
+        guard let cell = cell as? WrapperTableViewCell<ProfileView>
+        else { return cell }
+        
+        cell.setup { view in
+            view.editImageCallback = { [weak self] in
+                self?.coordinator?.showAvatarSelection()
+            }
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = sections[indexPath.section] as? Models.Section
+        
+        guard section == .navigation else { return }
+        
+        coordinator?.showUnderConstruction("navigation")
+    }
+    
     // MARK: - User Interaction
     
     // MARK: - ProfileResponseDisplay
+    func displayVerificationInfo(responseDisplay: ProfileModels.VerificationInfo.ResponseDisplay) {
+        coordinator?.showPopup(with: responseDisplay.model)
+    }
     
     // MARK: - Additional Helpers
-    
 }

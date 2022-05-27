@@ -20,4 +20,18 @@ enum ProfileModels {
         var header: AccessoryType? { return nil }
         var footer: AccessoryType? { return nil }
     }
+    
+    struct ChangeAvatar {
+        struct ViewAction {}
+        struct ActionResponse {}
+        struct ResponseDisplay {}
+    }
+    
+    struct VerificationInfo {
+        struct ViewAction {}
+        struct ActionResponse {}
+        struct ResponseDisplay {
+            var model: PopupViewModel
+        }
+    }
 }

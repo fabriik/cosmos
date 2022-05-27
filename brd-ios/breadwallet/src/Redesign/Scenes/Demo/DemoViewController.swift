@@ -64,26 +64,8 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             Models.Section.infoView: [
                 InfoViewModel(headerLeadingImage: .imageName("ig"),
                               headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .imageName("user"),
+                              headerTrailing: .init(image: "info"),
                               title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .imageName("user"),
-                              title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerLeadingImage: .imageName("ig"),
-                              headerTrailingImage: .imageName("user"),
-                              title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerLeadingImage: .imageName("ig"),
-                              headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .imageName("user"),
                               description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
                               button: .init(title: "Close"))
             ]
@@ -171,7 +153,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             hideInfo, { print("Donated 10$! Thanks!") }
         ]
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 1
         }
     }
@@ -181,7 +163,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         toggleBlur(animated: true)
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 0
         } completion: { _ in
             popup.removeFromSuperview()
