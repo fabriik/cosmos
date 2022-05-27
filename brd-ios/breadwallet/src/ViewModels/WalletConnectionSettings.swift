@@ -30,11 +30,11 @@ class WalletConnectionSettings {
     static func defaultMode(for currency: Currency) -> WalletConnectionMode {
         assert(currency.tokenType == .native)
         switch currency.uid {
-        case Currencies.shared.getUID(from: "btc"):
+        case Currencies.shared.btc?.uid:
             return .api_only
-        case Currencies.shared.getUID(from: "bch"):
+        case Currencies.shared.bch?.uid:
             return .api_only
-        case Currencies.shared.getUID(from: "eth"):
+        case Currencies.shared.eth?.uid:
             return .api_only
         default:
             return .api_only
@@ -43,7 +43,7 @@ class WalletConnectionSettings {
 
     func mode(for currency: Currency) -> WalletConnectionMode {
         //Force bch to always be api_only mode
-        guard currency.uid != Currencies.shared.getUID(from: "bch") else { return .api_only }
+        guard currency.uid != Currencies.shared.bch?.uid else { return .api_only }
         assert(currency.tokenType == .native)
         if let serialization = walletInfo.connectionModes[currency.uid],
             let mode = WalletManagerMode(serialization: serialization) {

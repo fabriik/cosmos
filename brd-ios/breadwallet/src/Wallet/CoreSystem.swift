@@ -772,7 +772,7 @@ extension CoreSystem: SystemListener {
                 addWalletState(for: wallet)
             }
             // generate wallet ID from Ethereum address
-            if wallet.currency.uid == Currencies.shared.getUID(from: "eth"),
+            if wallet.currency.uid == Currencies.shared.eth?.uid,
                let walletID = self.walletID(address: wallet.target.description) {
                 DispatchQueue.main.async {
                     Store.perform(action: WalletID.Set(walletID))
@@ -807,7 +807,7 @@ extension CoreSystem: SystemListener {
 
 extension WalletManager {
     var customPeer: NetworkPeer? {
-        guard network.currency.uid == Currencies.shared.getUID(from: "btc"),
+        guard network.currency.uid == Currencies.shared.btc?.uid,
               let address = UserDefaults.customNodeIP else { return nil }
         let port = UInt16(UserDefaults.customNodePort ?? C.standardPort)
         return network.createPeer(address: address, port: port, publicKey: nil)

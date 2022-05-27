@@ -336,6 +336,10 @@ extension Currencies {
         return Currencies.shared.walletState(for: "eth")?.currency
     }
     
+    var bsv: Currency? {
+        return Currencies.shared.walletState(for: "bsv")?.currency
+    }
+    
     func walletState(for code: String) -> WalletState? {
         guard let uid = getUID(from: code),
               currencies.first(where: { $0.uid == uid }) != nil else { return nil }

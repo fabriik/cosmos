@@ -17,7 +17,7 @@ enum FeeLevel: Int {
     //Time in millis
     func preferredTime(forCurrency currency: Currency) -> Int {
         
-        if currency.uid == Currencies.shared.getUID(from: "btc") {
+        if currency.uid == Currencies.shared.btc?.uid {
             switch self {
             case .economy:
                 return Int(C.secondsInMinute) * 60 * 7 * 1000 //7 hrs
