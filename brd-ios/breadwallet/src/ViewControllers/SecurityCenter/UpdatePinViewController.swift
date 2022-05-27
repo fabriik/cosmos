@@ -114,6 +114,10 @@ class UpdatePinViewController: UIViewController, Subscriber {
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faq)
         }
         
+        if isCreatingPin {
+            navigationItem.title = S.UnlockScreen.resetPin
+        }
+        
         header.textAlignment = .center
         instruction.textAlignment = .center
         
