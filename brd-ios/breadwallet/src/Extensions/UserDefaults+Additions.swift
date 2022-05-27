@@ -389,7 +389,7 @@ extension UserDefaults {
             if UserDefaults.hasSetSelectedCurrency {
                 return defaults.string(forKey: selectedCurrencyCodeKey)
             } else {
-                return Currencies.btc.code
+                return Currencies.shared.btc?.code.lowercased()
             }
         }
         set {
@@ -405,7 +405,7 @@ extension UserDefaults {
 
     static var mostRecentSelectedCurrencyCode: String {
         get {
-            return defaults.string(forKey: mostRecentSelectedCurrencyCodeKey) ?? Currencies.btc.code
+            return defaults.string(forKey: mostRecentSelectedCurrencyCodeKey) ?? (Currencies.shared.btc?.code.lowercased() ?? "")
         }
         set {
             defaults.setValue(newValue, forKey: mostRecentSelectedCurrencyCodeKey)

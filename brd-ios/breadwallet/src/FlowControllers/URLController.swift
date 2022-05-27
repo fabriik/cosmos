@@ -70,8 +70,7 @@ class URLController: Trackable, Subscriber {
 
             if url.host == "scanqr" || url.path == "/scanqr" {
                 Store.trigger(name: .scanQr)
-            } else if let uri = isBitcoinUri(url: url, uri: uri),
-                let btc = Currencies.btc.instance {
+            } else if let uri = isBitcoinUri(url: url, uri: uri), let btc = Currencies.shared.btc {
                 return handlePaymentRequestUri(uri, currency: btc)
             } else if url.host == "debug" {
                 handleDebugLink(url)

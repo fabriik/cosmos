@@ -169,8 +169,8 @@ class RedeemGiftViewController: UIViewController, Subscriber, Trackable {
     }
     
     private func handleGetBalance(amount: WalletKit.Amount?) {
-        guard let amount = amount else { return }
-        let fiatAmount = Amount(cryptoAmount: amount, currency: Currencies.btc.instance!)
+        guard let amount = amount, let btc = Currencies.shared.btc else { return }
+        let fiatAmount = Amount(cryptoAmount: amount, currency: btc)
         UIView.animate(withDuration: 0.2, animations: {
             self.body.text = "You have been gifted \(fiatAmount.fiatDescription) worth of Bitcoin. Tap below to redeem it."
             self.icon.isHidden = false
