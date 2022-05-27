@@ -367,7 +367,6 @@
 		7E5CB3852835090E00EC787E /* BackgroundConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB33C2835090D00EC787E /* BackgroundConfiguration.swift */; };
 		7E5CB3862835090E00EC787E /* ShadowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB33D2835090D00EC787E /* ShadowConfiguration.swift */; };
 		7E5CB3872835090E00EC787E /* BorderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB33E2835090D00EC787E /* BorderConfiguration.swift */; };
-		7E5CB3882835090E00EC787E /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3402835090D00EC787E /* UIConstants.swift */; };
 		7E5CB3892835090E00EC787E /* Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3412835090D00EC787E /* Margins.swift */; };
 		7E5CB38A2835090E00EC787E /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3422835090D00EC787E /* CornerRadius.swift */; };
 		7E5CB38B2835090E00EC787E /* Shadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3442835090D00EC787E /* Shadable.swift */; };
@@ -1306,7 +1305,6 @@
 		7E5CB33C2835090D00EC787E /* BackgroundConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundConfiguration.swift; sourceTree = "<group>"; };
 		7E5CB33D2835090D00EC787E /* ShadowConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowConfiguration.swift; sourceTree = "<group>"; };
 		7E5CB33E2835090D00EC787E /* BorderConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderConfiguration.swift; sourceTree = "<group>"; };
-		7E5CB3402835090D00EC787E /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		7E5CB3412835090D00EC787E /* Margins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Margins.swift; sourceTree = "<group>"; };
 		7E5CB3422835090D00EC787E /* CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		7E5CB3442835090D00EC787E /* Shadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadable.swift; sourceTree = "<group>"; };
@@ -2841,7 +2839,6 @@
 		7E5CB33F2835090D00EC787E /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				7E5CB3402835090D00EC787E /* UIConstants.swift */,
 				7E5CB3412835090D00EC787E /* Margins.swift */,
 				7E5CB3422835090D00EC787E /* CornerRadius.swift */,
 			);
@@ -4914,7 +4911,6 @@
 				CE760EDD1E561DF900EFAC2B /* UpdatePinViewController.swift in Sources */,
 				22A9A9481DF61945000F0016 /* BRBitID.swift in Sources */,
 				CE0BC980215ACBE100E68B2B /* TokenImageNoBackground.swift in Sources */,
-				7E5CB3882835090E00EC787E /* UIConstants.swift in Sources */,
 				7C0F3DC42124A81100531E54 /* Backend.swift in Sources */,
 				CEBF32F41DDCE12900348FC6 /* AccountFooterView.swift in Sources */,
 				710B036421F8C208007E8A2A /* AppRatingManager.swift in Sources */,

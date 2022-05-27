@@ -118,3 +118,11 @@ extension Presets {
         )
     }
 }
+
+
+extension Presets {
+    
+    struct Animation {
+        static var duration = 0.25
+    }
+}

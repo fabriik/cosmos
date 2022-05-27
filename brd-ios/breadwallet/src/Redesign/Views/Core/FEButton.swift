@@ -108,8 +108,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
             return
         }
         
-        // TODO: constant for duration
-        UIView.animate(withDuration: withAnimation ? 0.25 : 0) { [weak self] in
+        UIView.animate(withDuration: withAnimation ? Presets.Animation.duration : 0) { [weak self] in
             self?.backgroundColor = background?.backgroundColor
             self?.tintColor = background?.tintColor
         }

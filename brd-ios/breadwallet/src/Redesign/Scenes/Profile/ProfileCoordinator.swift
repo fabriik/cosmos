@@ -55,7 +55,7 @@ extension BaseCoordinator {
             self?.hidePopup()
         }
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 1
             blurView.alpha = 1
         }
@@ -68,7 +68,7 @@ extension BaseCoordinator {
         else { return }
         let blur = view.subviews.first(where: { $0 is UIVisualEffectView })
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 0
             blur?.alpha = 0
         } completion: { _ in

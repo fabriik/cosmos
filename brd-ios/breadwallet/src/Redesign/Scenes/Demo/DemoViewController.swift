@@ -153,7 +153,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             hideInfo, { print("Donated 10$! Thanks!") }
         ]
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 1
         }
     }
@@ -163,7 +163,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         toggleBlur(animated: true)
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 0
         } completion: { _ in
             popup.removeFromSuperview()
