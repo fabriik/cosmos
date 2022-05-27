@@ -49,8 +49,15 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
         else { return cell }
         
         cell.setup { view in
-            view.wrappedView.headerButtonCallback = { [weak self] in
-                self?.interactor?.showVerificationInfo(viewAction: .init())
+            view.setup { view in
+                view.headerButtonCallback = { [weak self] in
+                    self?.interactor?.showVerificationInfo(viewAction: .init())
+                }
+                
+                view.trailingButtonCallback = { [weak self] in
+                    // TODO: start verification
+                    self?.coordinator?.showUnderConstruction("verification process")
+                }
             }
         }
         

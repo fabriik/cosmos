@@ -37,6 +37,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     
     // MARK: public properties
     var headerButtonCallback: (() -> Void)?
+    var trailingButtonCallback: (() -> Void)?
     // MARK: Lazy UI
     private lazy var verticalStackView: UIStackView = {
         let stack = UIStackView()
@@ -70,7 +71,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     
     private lazy var headerTrailingView: FEButton = {
         let view = FEButton()
-        view.addTarget(self, action: #selector(trailingButtonTapped), for: .touchUpInside)
+        view.addTarget(self, action: #selector(headerButtonTapped), for: .touchUpInside)
         return view
     }()
     
@@ -204,7 +205,11 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         headerStackView.isHidden = true
     }
     
-    @objc private func trailingButtonTapped(_ sender: UIButton?) {
+    @objc private func headerButtonTapped(_ sender: UIButton?) {
         headerButtonCallback?()
+    }
+    
+    @objc private func trailingButtonTapped(_ sender: UIButton?) {
+        trailingButtonCallback?()
     }
 }
