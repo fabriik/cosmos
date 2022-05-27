@@ -221,6 +221,7 @@ class Currencies {
         CurrencyFileManager.getCurrencyMetaDataFromCache { currecy in
             let metaDatas = currecy.values.compactMap { $0 } as? [CurrencyMetaData]
             metaDatas?.forEach({ metaData in
+                self.currencies.removeAll()
                 self.currencies.append(.init(code: metaData.code, uid: metaData.uid))
             })
         }
