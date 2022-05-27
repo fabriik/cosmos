@@ -120,26 +120,6 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         configure(background: config.background)
         
         closeButton.wrappedView.configure(with: Presets.Button.icon)
-        // create buttons if missing
-        guard buttons.count != config.buttons.count else {
-            // reconfig?
-            return
-        }
-        
-        // remove previous ones, if exist
-        buttons.forEach { $0.removeFromSuperview() }
-        buttons = []
-        
-        for config in config.buttons {
-            let button = FEButton()
-            button.configure(with: config)
-            button.snp.makeConstraints { make in
-                make.height.equalTo(Margins.extraHuge.rawValue)
-            }
-            button.isHidden = true
-            scrollingStack.addArrangedSubview(button)
-            buttons.append(button)
-        }
     }
     
     override func setup(with viewModel: PopupViewModel?) {
@@ -153,16 +133,26 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         textView.isHidden = viewModel.body == nil
         textView.sizeToFit()
         
+        layoutIfNeeded()
         // if this happens.. its a human mistake :D
-        guard buttons.count == viewModel.buttons.count else {
-            scrollView.snp.makeConstraints { make in
-                make.height.equalTo(textView.contentSize.height)
+        
+        // remove previous ones, if exist
+        buttons.forEach { $0.removeFromSuperview() }
+        buttons = []
+        
+        for i in (0...viewModel.buttons.count - 1) {
+            guard let buttonConfigs = config?.buttons else { return }
+            let model = viewModel.buttons[i]
+            let config = buttonConfigs.count <= i ? config?.buttons.last : buttonConfigs[i]
+            
+            let button = FEButton()
+            button.configure(with: config)
+            button.snp.makeConstraints { make in
+                make.height.equalTo(Margins.extraHuge.rawValue)
             }
-            return
-        }
-        for (button, model) in zip(buttons, viewModel.buttons) {
             button.setup(with: model)
-            button.isHidden = false
+            scrollingStack.addArrangedSubview(button)
+            buttons.append(button)
             button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
         }
         

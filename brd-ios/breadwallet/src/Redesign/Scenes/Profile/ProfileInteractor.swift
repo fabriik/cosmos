@@ -25,5 +25,9 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
         presenter?.presentVerificationInfo(actionResponse: .init())
     }
     
+    func navigate(viewAction: ProfileModels.Navigate.ViewAction) {
+        presenter?.presentNavigation(actionResponse: .init(index: viewAction.index))
+    }
+    
     // MARK: - Aditional helpers
 }

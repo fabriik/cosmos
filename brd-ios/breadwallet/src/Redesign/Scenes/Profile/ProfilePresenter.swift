@@ -8,6 +8,28 @@
 
 import UIKit
 
+extension ProfileModels.NavigationItems {
+    
+    var model: NavigationViewModel {
+        switch self {
+        case .security:
+            return .init(image: .imageName("lock_closed"),
+                         label: .text("Security settings"),
+                         button: .init(image: "arrow_right"))
+            
+        case .preferences:
+            return .init(image: .imageName("settings"),
+                         label: .text("Preferences"),
+                         button: .init(image: "arrow_right"))
+            
+        case .export:
+            return .init(image: .imageName("withdrawal"),
+                         label: .text("Export transaction history to csv"),
+                         button: .init(image: "arrow_right"))
+        }
+    }
+}
+
 final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
     
     typealias Models = ProfileModels
@@ -35,17 +57,7 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
                               description: .text("Upgrade your limits and get full access!"),
                               button: .init(title: "Verify your account"))
             ],
-            .navigation: [
-                NavigationViewModel(image: .imageName("lock_closed"),
-                                label: .text("Security settings"),
-                                button: .init(image: "arrow_right")),
-                NavigationViewModel(image: .imageName("settings"),
-                                label: .text("Preferences"),
-                                button: .init(image: "arrow_right")),
-                NavigationViewModel(image: .imageName("withdrawal"),
-                                label: .text("Export transaction history to csv"),
-                                button: .init(image: "arrow_right"))
-            ]
+            .navigation: Models.NavigationItems.allCases.compactMap { $0.model }
         ]
         
         viewController?.displayData(responseDisplay: .init(sections: sections, sectionRows: sectionRows))
@@ -68,6 +80,11 @@ If you verify your account, you are given acces to:
                                    ])
         
         viewController?.displayVerificationInfo(responseDisplay: .init(model: model))
+    }
+    
+    func presentNavigation(actionResponse: ProfileModels.Navigate.ActionResponse) {
+        let item = Models.NavigationItems.allCases[actionResponse.index]
+        viewController?.displayNavigation(responseDisplay: .init(item: item))
     }
     // MARK: - Additional Helpers
 

@@ -141,16 +141,26 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         text += text
         text += text
         text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
         
         popup.configure(with: Presets.Popup.normal)
         popup.setup(with: .init(title: .text("This is a title"),
                                 body: text,
                                 buttons: [
-                                    .init(title: "Close button"),
-                                    .init(title: "Donate")
+                                    .init(title: "Donate"),
+                                    .init(title: "Donate", image: "close"),
+                                    .init(image: "close"),
                                 ]))
+        popup.closeCallback = { [weak self] in
+            self?.hideInfo()
+        }
+        
         popup.buttonCallbacks = [
-            hideInfo, { print("Donated 10$! Thanks!") }
+            { print("Donated 10$! Thanks!") }
         ]
         
         UIView.animate(withDuration: Presets.Animation.duration) {
