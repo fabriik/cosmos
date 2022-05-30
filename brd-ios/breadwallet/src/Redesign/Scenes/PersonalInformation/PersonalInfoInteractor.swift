@@ -16,10 +16,10 @@ class PersonalInfoInteractor: NSObject, Interactor, PersonalInfoViewActions {
 
     // MARK: - PersonalInfoViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        presenter?.presentData(actionResponse: .init(item: Models.Item(firstName: "Rok",
-                                                                       lastName: "Cresnik",
-                                                                       country: "Somewhere over the rainbow",
-                                                                       birthdate: Date())))
+        presenter?.presentData(actionResponse: .init(item: Models.Item(firstName: nil,
+                                                                       lastName: nil,
+                                                                       country: nil,
+                                                                       birthdate: nil)))
     }
 
     // MARK: - Aditional helpers

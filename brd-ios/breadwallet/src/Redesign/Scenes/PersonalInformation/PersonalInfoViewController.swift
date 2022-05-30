@@ -19,17 +19,17 @@ class PersonalInfoViewController: BaseTableViewController<PersonalInfoCoordinato
     
     override func setupSubviews() {
         super.setupSubviews()
-        
+        tableView.register(WrapperTableViewCell<NameView>.self)
         navigationItem.title = "bla bla again"
         title = "bla bla"
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch sections[indexPath.section] as? Models.Section {
-        case .instructions:
-            cell = super.tableView(tableView, labelCellForRowAt: indexPath)
+        case .name:
+            cell = self.tableView(tableView, nameCellForRowAt: indexPath)
             
-        case .name, .country, .birthdate:
+        case .country, .birthdate:
             cell = super.tableView(tableView, textFieldCellForRowAt: indexPath)
             
         case .confirm:
@@ -44,6 +44,24 @@ class PersonalInfoViewController: BaseTableViewController<PersonalInfoCoordinato
         return cell
     }
 
+    func tableView(_ tableView: UITableView, nameCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<NameView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? NameViewModel else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+            view.contentSizeChanged = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+        }
+        
+        return cell
+    }
     // MARK: - User Interaction
 
     // MARK: - PersonalInfoResponseDisplay

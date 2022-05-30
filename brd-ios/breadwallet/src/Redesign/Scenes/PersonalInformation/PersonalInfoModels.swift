@@ -13,7 +13,6 @@ enum PersonalInfoModels {
     typealias Item = (firstName: String?, lastName: String?, country: String?, birthdate: Date?)
  
     enum Section: Sectionable {
-        case instructions
         case name
         case country
         case birthdate

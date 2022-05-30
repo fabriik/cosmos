@@ -19,20 +19,26 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     override func setupSubviews() {
         super.setupSubviews()
-        
+        tableView.register(WrapperTableViewCell<NameView>.self)
     }
     
     override func prepareData() {
         sections = [
-            Models.Section.profile,
-            Models.Section.infoView,
-            Models.Section.navigation,
-            Models.Section.textField,
-            Models.Section.label,
-            Models.Section.button
+            Models.Section.name
+//            Models.Section.profile,
+//            Models.Section.infoView,
+//            Models.Section.navigation,
+//            Models.Section.textField,
+//            Models.Section.label,
+//            Models.Section.button
         ]
         
         sectionRows = [
+            Models.Section.name: [
+                NameViewModel(title: .text("You got it at birth"),
+                              firstName: .init(title: "First name"),
+                              lastName: .init(title: "Last name"))
+            ],
             Models.Section.profile: [
                 ProfileViewModel(name: "Rok", image: "stars")
             ],
@@ -45,7 +51,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                                     button: .init(image: "arrow_right")),
                 NavigationViewModel(image: .imageName("withdrawal"),
                                     label: .text("Export transaction history to csv"),
-                                    button: .init(image: "arrow_right")),
+                                    button: .init(image: "arrow_right"))
             ],
             Models.Section.button: [
                 "Click me!!",
@@ -100,6 +106,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         case .profile:
             cell = self.tableView(tableView, profileViewCellForRowAt: indexPath)
             
+        case .name:
+            cell = self.tableView(tableView, nameCellForRowAt: indexPath)
+            
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
@@ -108,10 +117,29 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     }
     
     // MARK: - Additional Helpers
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        toggleInfo()
+
+    func tableView(_ tableView: UITableView, nameCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<NameView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? NameViewModel else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+            view.contentSizeChanged = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+        }
+        
+        return cell
     }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        toggleInfo()
+//    }
     
     func toggleInfo() {
         guard blurView?.superview == nil else {
@@ -153,7 +181,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                                 buttons: [
                                     .init(title: "Donate"),
                                     .init(title: "Donate", image: "close"),
-                                    .init(image: "close"),
+                                    .init(image: "close")
                                 ]))
         popup.closeCallback = { [weak self] in
             self?.hideInfo()

@@ -194,7 +194,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setup { view in
             view.setup(with: model)
             view.configure(with: Presets.TexxtField.primary)
-            view.valueChanged = {
+            view.contentSizeChanged = {
                 tableView.beginUpdates()
                 tableView.endUpdates()
             }
