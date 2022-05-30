@@ -30,6 +30,9 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
     private var isValid: Bool {
         guard firstNameValidator?(firstName) == true,
               lastNameValidator?(lastName) == true else {
+            if firstName == nil, lastName == nil {
+                return true
+            }
             return false
         }
         
@@ -127,10 +130,11 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
     
     private func stateChanged(firstName: String? = nil, lastName: String? = nil) {
         if let first = firstName {
-            self.firstName = first
-        } else if let last = lastName {
-            self.lastName = last
+            self.firstName = first.isEmpty ? nil : first
+        } else if let last = lastName, !last.isEmpty {
+            self.lastName = last.isEmpty ? nil : last
         }
+        
         let isValid = isValid
         errorLabel.snp.remakeConstraints { make in
             make.height.equalTo(isValid ? 0 : 20)
