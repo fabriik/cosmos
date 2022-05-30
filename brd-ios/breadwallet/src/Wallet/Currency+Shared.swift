@@ -49,6 +49,7 @@ protocol CurrencyUID {
 }
 
 typealias CurrencyId = Identifier<Currency>
+typealias AssetCodes = Currencies.AssetCodes
 
 class SharedCurrency: CurrencyUID {
     public enum TokenType: String {
@@ -75,16 +76,18 @@ class SharedCurrency: CurrencyUID {
     /// False if a token has been delisted, true otherwise
     var isSupported: Bool { return false }
     
-    var isBitcoin: Bool { return uid == Currencies.shared.getUID(from: "btc") }
-    var isBitcoinSV: Bool { return uid == Currencies.shared.getUID(from: "bsv") }
-    var isBitcoinCash: Bool { return uid == Currencies.shared.getUID(from: "bch") }
-    var isEthereum: Bool { return uid == Currencies.shared.getUID(from: "eth") }
+    var isBitcoin: Bool { return uid == Currencies.shared.getUID(from: AssetCodes.btc.value) }
+    var isBitcoinSV: Bool { return uid == Currencies.shared.getUID(from: AssetCodes.bsv.value) }
+    var isBitcoinCash: Bool { return uid == Currencies.shared.getUID(from: AssetCodes.bch.value) }
+    var isEthereum: Bool { return uid == Currencies.shared.getUID(from: AssetCodes.eth.value) }
+    var isXRP: Bool { return uid == Currencies.shared.getUID(from: AssetCodes.xrp.value) }
     var isERC20Token: Bool { return tokenType == .erc20 }
-    var isBRDToken: Bool { return uid == Currencies.shared.getUID(from: "brd") }
-    var isXRP: Bool { return uid == Currencies.shared.getUID(from: "xrp") }
-    var isHBAR: Bool { return uid == Currencies.shared.getUID(from: "hbar")}
     var isBitcoinCompatible: Bool { return isBitcoin || isBitcoinCash }
     var isEthereumCompatible: Bool { return isEthereum || isERC20Token }
+    
+    // Unused
+    var isBRDToken: Bool { return uid == Currencies.shared.getUID(from: "brd") }
+    var isHBAR: Bool { return uid == Currencies.shared.getUID(from: "hbar")}
     var isTezos: Bool { return uid == Currencies.shared.getUID(from: "xtz") }
     
     init() {}
@@ -221,12 +224,22 @@ class Currencies {
         let uid: CurrencyId?
     }
     
+    enum AssetCodes: String {
+        case bsv
+        case btc
+        case bch
+        case eth
+        case xrp
+        
+        var value: String { return rawValue }
+    }
+    
     var currencies = [CurrencyMetadata]()
     
     var defaultCurrencyIds: [CurrencyId] {
-        return [getUID(from: "bsv"),
-                getUID(from: "btc"),
-                getUID(from: "eth")].compactMap { $0 }
+        return [getUID(from: AssetCodes.bsv.value),
+                getUID(from: AssetCodes.btc.value),
+                getUID(from: AssetCodes.eth.value)].compactMap { $0 }
     }
     
     init() {
