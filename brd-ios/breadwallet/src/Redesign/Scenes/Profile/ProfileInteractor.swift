@@ -18,7 +18,7 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
     // MARK: - ProfileViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
         // TODO: fetch/pass user info
-        presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Alucard la'Fleur", image: "saturn")))
+        presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Under construction", image: "earth")))
     }
     
     func showVerificationInfo(viewAction: ProfileModels.VerificationInfo.ViewAction) {
