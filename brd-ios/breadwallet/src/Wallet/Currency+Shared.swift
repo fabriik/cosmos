@@ -101,6 +101,7 @@ public struct CurrencyMetaData: CurrencyWithIcon {
     let name: String
     var tokenAddress: String?
     var decimals: UInt8
+    var type: String
     
     var isPreferred: Bool {
         return Currencies.shared.currencies.map { $0.uid }.contains(uid)
@@ -118,6 +119,7 @@ public struct CurrencyMetaData: CurrencyWithIcon {
         case name
         case decimals = "scale"
         case alternateNames = "alternate_names"
+        case type
     }
 }
 
@@ -146,6 +148,7 @@ extension CurrencyMetaData: Codable {
         name = try container.decode(String.self, forKey: .name)
         tokenAddress = try container.decode(String.self, forKey: .tokenAddress)
         decimals = try container.decode(UInt8.self, forKey: .decimals)
+        type = try container.decode(String.self, forKey: .type)
         
         var didFindCoinGeckoID = false
         if let alternateNames = try? container.decode([String: String].self, forKey: .alternateNames) {
@@ -182,6 +185,7 @@ extension CurrencyMetaData: Codable {
         try container.encode(isSupported, forKey: .isSupported)
         try container.encode(name, forKey: .name)
         try container.encode(tokenAddress, forKey: .tokenAddress)
+        try container.encode(type, forKey: .type)
         try container.encode(decimals, forKey: .decimals)
         
         var alternateNames = [String: String]()

@@ -37,7 +37,17 @@ class Currency: SharedCurrency, CurrencyWithIcon {
     }
     
     override var tokenType: TokenType {
-        guard let type = TokenType(rawValue: core.type.lowercased()) else { assertionFailure("unknown token type"); return .unknown }
+        var type: TokenType = .unknown
+        
+        switch core.type.lowercased() {
+        case TokenType.erc20.rawValue:
+            type = .erc20
+        case "", TokenType.native.rawValue:
+            type = .native
+        default:
+            type = .unknown
+        }
+        
         return type
     }
     
