@@ -172,8 +172,12 @@ class BaseTableViewController<C: CoordinatableRoutes,
         
         cell.setup { view in
             view.setup(with: .init(title: text))
-            view.configure(with: indexPath.row % 2 == 0 ? Presets.Button.primary : Presets.Button.secondary)
-            view.setupCustomMargins(all: .zero)
+            view.configure(with: Presets.Button.primaryWithBorder)
+            view.setupCustomMargins(vertical: .large, horizontal: .large)
+            view.snp.makeConstraints { make in
+                // TODO: constants for view heights
+                make.height.equalTo(48)
+            }
         }
         
         return cell

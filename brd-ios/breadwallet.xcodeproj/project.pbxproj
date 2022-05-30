@@ -440,6 +440,13 @@
 		7EF2999F27E3B9DA00A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
 		7EF36C062829893700BB43A7 /* theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EF36C052829893600BB43A7 /* theme.plist */; };
+		7EF45F3C2844F1B500D1F7B0 /* PersonalInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F352844F1B400D1F7B0 /* PersonalInfoCoordinator.swift */; };
+		7EF45F3D2844F1B500D1F7B0 /* PersonalInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F362844F1B400D1F7B0 /* PersonalInfoStore.swift */; };
+		7EF45F3E2844F1B500D1F7B0 /* PersonalInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F372844F1B400D1F7B0 /* PersonalInfoPresenter.swift */; };
+		7EF45F3F2844F1B500D1F7B0 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F382844F1B400D1F7B0 /* PersonalInfoModels.swift */; };
+		7EF45F402844F1B500D1F7B0 /* PersonalInfoVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F392844F1B400D1F7B0 /* PersonalInfoVIP.swift */; };
+		7EF45F412844F1B500D1F7B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F3A2844F1B400D1F7B0 /* PersonalInfoViewController.swift */; };
+		7EF45F422844F1B500D1F7B0 /* PersonalInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F3B2844F1B400D1F7B0 /* PersonalInfoInteractor.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -1366,6 +1373,13 @@
 		7EF2998E27E3B8D200A2238A /* SimplePrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimplePrice.swift; path = CoinGecko/Models/SimplePrice.swift; sourceTree = "<group>"; };
 		7EF2998F27E3B8D200A2238A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = CoinGecko/Models/Models.swift; sourceTree = "<group>"; };
 		7EF36C052829893600BB43A7 /* theme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
+		7EF45F352844F1B400D1F7B0 /* PersonalInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoCoordinator.swift; sourceTree = "<group>"; };
+		7EF45F362844F1B400D1F7B0 /* PersonalInfoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoStore.swift; sourceTree = "<group>"; };
+		7EF45F372844F1B400D1F7B0 /* PersonalInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoPresenter.swift; sourceTree = "<group>"; };
+		7EF45F382844F1B400D1F7B0 /* PersonalInfoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoModels.swift; sourceTree = "<group>"; };
+		7EF45F392844F1B400D1F7B0 /* PersonalInfoVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoVIP.swift; sourceTree = "<group>"; };
+		7EF45F3A2844F1B400D1F7B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
+		7EF45F3B2844F1B400D1F7B0 /* PersonalInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoInteractor.swift; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -2792,6 +2806,7 @@
 		7E5CB32F2835090D00EC787E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7EF45F342844F19F00D1F7B0 /* PersonalInformation */,
 				7E8E978F283F4817008606B0 /* Profile */,
 				7E5CB3302835090D00EC787E /* Demo */,
 			);
@@ -3059,6 +3074,20 @@
 				7EF2998E27E3B8D200A2238A /* SimplePrice.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		7EF45F342844F19F00D1F7B0 /* PersonalInformation */ = {
+			isa = PBXGroup;
+			children = (
+				7EF45F352844F1B400D1F7B0 /* PersonalInfoCoordinator.swift */,
+				7EF45F362844F1B400D1F7B0 /* PersonalInfoStore.swift */,
+				7EF45F372844F1B400D1F7B0 /* PersonalInfoPresenter.swift */,
+				7EF45F382844F1B400D1F7B0 /* PersonalInfoModels.swift */,
+				7EF45F392844F1B400D1F7B0 /* PersonalInfoVIP.swift */,
+				7EF45F3A2844F1B400D1F7B0 /* PersonalInfoViewController.swift */,
+				7EF45F3B2844F1B400D1F7B0 /* PersonalInfoInteractor.swift */,
+			);
+			path = PersonalInformation;
 			sourceTree = "<group>";
 		};
 		9A39B0752202A96500E5018B /* Cell Highlight View Frames */ = {
@@ -4596,6 +4625,7 @@
 				CEEC70941E96A24F00EF788E /* DefaultCurrencyViewController.swift in Sources */,
 				7CAF4EDF22CE80D100326168 /* AssetCollection.swift in Sources */,
 				CEE6282A1EA98B6D001035AA /* DispatchQueue+Additions.swift in Sources */,
+				7EF45F3F2844F1B500D1F7B0 /* PersonalInfoModels.swift in Sources */,
 				CEC6AA3D1DEE687000EE5AFD /* RadialGradientView.swift in Sources */,
 				7B54E53227F4A208002DD1E4 /* KYCSignUpWorker.swift in Sources */,
 				CEEC70921E95DA4400EF788E /* GradientSwitch.swift in Sources */,
@@ -4624,6 +4654,7 @@
 				CEBF32EE1DDBC30000348FC6 /* BRDButton.swift in Sources */,
 				7CBF4B6B2008899100E003AA /* TxAddressCell.swift in Sources */,
 				7C35E717200ADF450064808F /* Transaction.swift in Sources */,
+				7EF45F412844F1B500D1F7B0 /* PersonalInfoViewController.swift in Sources */,
 				7B54E53427F4A208002DD1E4 /* KYCSessionModel.swift in Sources */,
 				7B54E52927F4A208002DD1E4 /* KYCConfirmEmailViewController.swift in Sources */,
 				7B54E5B627F4A2B1002DD1E4 /* UIViewConfigurable.swift in Sources */,
@@ -4666,6 +4697,7 @@
 				CEAA9E9B1DC2B9320066731D /* ConfirmPhraseView.swift in Sources */,
 				75A2A7941DA5934300A983D8 /* AppDelegate.swift in Sources */,
 				711730572204FDFB001931B3 /* HomeScreenHiglightableCell.swift in Sources */,
+				7EF45F3D2844F1B500D1F7B0 /* PersonalInfoStore.swift in Sources */,
 				CEEC70901E95D5C100EF788E /* PushNotificationsViewController.swift in Sources */,
 				3AFB571524E2E0BA00087527 /* UIHelpers.swift in Sources */,
 				4F3AB11B25D53F4300B378DC /* ExternalAPIRequest.swift in Sources */,
@@ -4736,6 +4768,7 @@
 				71173059220CCC91001931B3 /* PromptView.swift in Sources */,
 				7B54E54327F4A208002DD1E4 /* KYCCompleteInteractor.swift in Sources */,
 				7B54E5AF27F4A2B0002DD1E4 /* KYCCameraView.swift in Sources */,
+				7EF45F3E2844F1B500D1F7B0 /* PersonalInfoPresenter.swift in Sources */,
 				CE8CD8DD1E2D9EF200785E02 /* Sender.swift in Sources */,
 				7BA83DA6280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift in Sources */,
 				3AFAD94825698A74005853E8 /* Gift.swift in Sources */,
@@ -4791,6 +4824,7 @@
 				CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */,
 				CEB909FA1E5FF242001804DC /* RecoverWalletIntroViewController.swift in Sources */,
 				CE25BF911DF9ADE700BC67B6 /* UIImage+Utils.swift in Sources */,
+				7EF45F402844F1B500D1F7B0 /* PersonalInfoVIP.swift in Sources */,
 				7B54E5AD27F4A2B0002DD1E4 /* KYCNavigationController.swift in Sources */,
 				7B54E54627F4A208002DD1E4 /* KYCProgressView.swift in Sources */,
 				7C7F18ED1FED9A3B0030230E /* TxStatusIndicator.swift in Sources */,
@@ -4854,6 +4888,7 @@
 				7E5CB3A32835090E00EC787E /* Reusable.swift in Sources */,
 				7E5CB37F2835090E00EC787E /* DemoViewController.swift in Sources */,
 				7CA3BC302006864C00517BF7 /* Currency.swift in Sources */,
+				7EF45F3C2844F1B500D1F7B0 /* PersonalInfoCoordinator.swift in Sources */,
 				7C72D134226625130091B185 /* CoreSystem.swift in Sources */,
 				CE3D4C571EF5D5740016B1C8 /* ReachabilityMonitor.swift in Sources */,
 				7B54E59F27F4A2B0002DD1E4 /* KYCAPI.swift in Sources */,
@@ -4905,6 +4940,7 @@
 				7BA83DA5280459F3003F73AA /* KYCResetPasswordSuccessModels.swift in Sources */,
 				3A3D63DC22F10B4F000DE920 /* AddWalletsViewController.swift in Sources */,
 				7B54E52827F4A208002DD1E4 /* KYCConfirmEmailModels.swift in Sources */,
+				7EF45F422844F1B500D1F7B0 /* PersonalInfoInteractor.swift in Sources */,
 				7B54E5BB27F4A2B1002DD1E4 /* LoadingView.swift in Sources */,
 				7E8E979A283F4830008606B0 /* ProfileModels.swift in Sources */,
 				CE6DCC271E6108D50044257B /* EnterPhraseCell.swift in Sources */,

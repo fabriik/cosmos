@@ -1,0 +1,25 @@
+//
+//  PersonalInfoModels.swift
+//  breadwallet
+//
+//  Created by Rok on 30/05/2022.
+//
+//
+
+import UIKit
+
+enum PersonalInfoModels {
+    
+    typealias Item = (firstName: String?, lastName: String?, country: String?, birthdate: Date?)
+ 
+    enum Section: Sectionable {
+        case instructions
+        case name
+        case country
+        case birthdate
+        case confirm
+        
+        var header: AccessoryType? { nil }
+        var footer: AccessoryType? { nil }
+    }
+}

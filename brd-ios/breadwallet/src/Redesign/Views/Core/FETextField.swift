@@ -30,6 +30,7 @@ struct TextFieldConfiguration: Configurable {
 struct TextFieldModel: ViewModel {
     var leading: ImageViewModel?
     var title: String
+    var value: String?
     var placeholder: String?
     var hint: String?
     var error: String? = "Text has to be longer than 1 character."
@@ -198,6 +199,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         validator = viewModel.validator
         titleLabel.setup(with: .text(viewModel.title))
+        textField.text = viewModel.value
         
         if let placeholder = viewModel.placeholder,
            let config = config?.placeholderConfiguration {
