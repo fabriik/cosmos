@@ -19,8 +19,8 @@ struct LabelConfiguration: TextConfigurable {
 }
 
 enum LabelViewModel: ViewModel {
-    case text(String)
-    case attributedText(NSAttributedString)
+    case text(String?)
+    case attributedText(NSAttributedString?)
 }
 
 class FELabel: UILabel, ViewProtocol {

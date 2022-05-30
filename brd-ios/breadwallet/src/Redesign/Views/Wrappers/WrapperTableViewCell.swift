@@ -59,7 +59,7 @@ class WrapperTableViewCell<T: UIView>: UITableViewCell, Wrappable, Reusable, Ide
 
         contentView.addSubview(wrappedView)
         wrappedView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(contentView.snp.margins)
         }
         setupCustomMargins(all: .zero)
     }

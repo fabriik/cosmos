@@ -78,13 +78,12 @@ class ApplicationController: Subscriber, Trackable {
 
     /// didFinishLaunchingWithOptions
     func launch(application: UIApplication, options: [UIApplication.LaunchOptionsKey: Any]?) {
-        self.application = application
         handleLaunchOptions(options)
         application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalNever)
-        
+
         UNUserNotificationCenter.current().delegate = notificationHandler
         EventMonitor.shared.register(.pushNotifications)
-        
+
         mainSetup()
         setupKeyboard()
         Reachability.addDidChangeCallback({ isReachable in
