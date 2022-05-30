@@ -24,13 +24,13 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     override func prepareData() {
         sections = [
-            Models.Section.name
-//            Models.Section.profile,
-//            Models.Section.infoView,
-//            Models.Section.navigation,
-//            Models.Section.textField,
-//            Models.Section.label,
-//            Models.Section.button
+            Models.Section.name,
+            Models.Section.profile,
+            Models.Section.infoView,
+            Models.Section.navigation,
+            Models.Section.textField,
+            Models.Section.label,
+            Models.Section.button
         ]
         
         sectionRows = [
@@ -137,9 +137,11 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        toggleInfo()
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard sections[indexPath.section].hashValue == Models.Section.label.hashValue else { return }
+        
+        toggleInfo()
+    }
     
     func toggleInfo() {
         guard blurView?.superview == nil else {

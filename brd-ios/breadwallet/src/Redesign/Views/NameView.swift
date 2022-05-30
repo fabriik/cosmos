@@ -92,7 +92,7 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         
         errorLabel.snp.makeConstraints { make in
             // TODO: constant
-            make.height.equalTo(20)
+            make.height.equalTo(0)
         }
     }
     
@@ -136,13 +136,9 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
             make.height.equalTo(isValid ? 0 : 20)
         }
         
-        Self.animate(withDuration: Presets.Animation.duration, animations: { [weak self] in
+        Self.animate(withDuration: Presets.Animation.duration) { [weak self] in
             self?.content.layoutIfNeeded()
             self?.contentSizeChanged?()
-        }, completion: { [weak self] _ in
-//            if !isValid {
-//                self?.contentSizeChanged?()
-//            }
-        })
+        }
     }
 }
