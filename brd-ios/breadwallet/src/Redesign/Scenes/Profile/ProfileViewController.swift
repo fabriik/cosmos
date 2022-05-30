@@ -79,7 +79,6 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = sections[indexPath.section] as? Models.Section
         interactor?.navigate(viewAction: .init(index: indexPath.row))
     }
     
@@ -91,13 +90,7 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     func displayNavigation(responseDisplay: ProfileModels.Navigate.ResponseDisplay) {
-//        switch responseDisplay.item {
-//        case .security:
-//            
-//        case .preferences:
-//            
-//        case .export:
-//        }
+        coordinator?.showUnderConstruction(responseDisplay.item.rawValue)
     }
     
     // MARK: - Additional Helpers

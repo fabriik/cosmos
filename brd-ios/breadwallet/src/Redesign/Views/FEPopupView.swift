@@ -140,20 +140,22 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         buttons.forEach { $0.removeFromSuperview() }
         buttons = []
         
-        for i in (0...viewModel.buttons.count - 1) {
-            guard let buttonConfigs = config?.buttons else { return }
-            let model = viewModel.buttons[i]
-            let config = buttonConfigs.count <= i ? config?.buttons.last : buttonConfigs[i]
-            
-            let button = FEButton()
-            button.configure(with: config)
-            button.snp.makeConstraints { make in
-                make.height.equalTo(Margins.extraHuge.rawValue)
+        if viewModel.buttons.isEmpty == false {
+            for i in (0...viewModel.buttons.count - 1) {
+                guard let buttonConfigs = config?.buttons else { return }
+                let model = viewModel.buttons[i]
+                let config = buttonConfigs.count <= i ? config?.buttons.last : buttonConfigs[i]
+                
+                let button = FEButton()
+                button.configure(with: config)
+                button.snp.makeConstraints { make in
+                    make.height.equalTo(Margins.extraHuge.rawValue)
+                }
+                button.setup(with: model)
+                scrollingStack.addArrangedSubview(button)
+                buttons.append(button)
+                button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
             }
-            button.setup(with: model)
-            scrollingStack.addArrangedSubview(button)
-            buttons.append(button)
-            button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
         }
         
         let count = Double(buttons.count)

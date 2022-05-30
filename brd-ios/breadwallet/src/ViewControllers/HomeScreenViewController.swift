@@ -250,7 +250,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     
     private func setupToolbar() {
         let buttons = [
-            ("Balance", #imageLiteral(resourceName: "lock_closed").withRenderingMode(.alwaysTemplate), #selector(showBalance)),
             (buyButtonTitle, #imageLiteral(resourceName: "buy"), #selector(buy)),
             (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
             ("Profile", #imageLiteral(resourceName: "user"), #selector(profile)),
@@ -271,14 +270,12 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             buttons[1],
             flexibleSpace,
             buttons[2],
-            flexibleSpace,
-            buttons[3],
             flexibleSpace
         ]
         
 #if DEBUG
         toolbar.items?.append(contentsOf: [
-            buttons[4],
+            buttons[3],
             flexibleSpace
         ])
 #endif
@@ -293,7 +290,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
                 self.toolbarButtons.append(button)
             }
         }
-        buttons.first?.customView?.tintColor = LightColors.primary
 
         toolbar.isTranslucent = false
         toolbar.layer.borderWidth = 1
