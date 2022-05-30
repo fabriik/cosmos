@@ -261,10 +261,6 @@ class Currencies {
     func getUID(from code: String) -> CurrencyId? {
         return currencies.first(where: { $0.code == code })?.uid
     }
-    
-    func getCode(from uid: CurrencyId) -> String {
-        return currencies.first(where: { $0.uid == uid })?.code ?? ""
-    }
 }
 
 struct CurrencyFileManager {
