@@ -70,7 +70,7 @@ extension BRAPIClient {
                 CurrencyFileManager.processCurrencies(currencies, completion: completion)
                 
             case .error(let error):
-                print("[CurrencyList] Rrror fetching tokens: \(error)")
+                print("[CurrencyList] Error fetching tokens: \(error)")
                 CurrencyFileManager.copyEmbeddedCurrencies(path: cachedFilePath)
                 
                 let result = CurrencyFileManager.processCurrenciesCache(path: cachedFilePath, completion: completion)
