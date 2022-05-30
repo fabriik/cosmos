@@ -131,7 +131,7 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
     private func stateChanged(firstName: String? = nil, lastName: String? = nil) {
         if let first = firstName {
             self.firstName = first.isEmpty ? nil : first
-        } else if let last = lastName, !last.isEmpty {
+        } else if let last = lastName {
             self.lastName = last.isEmpty ? nil : last
         }
         

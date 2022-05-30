@@ -16,10 +16,10 @@ struct ButtonConfiguration: Configurable {
     var disabledConfiguration: BackgroundConfiguration?
     var shadowConfiguration: ShadowConfiguration?
     
-    mutating func hideBorder() -> ButtonConfiguration {
-        backgroundConfiguration?.border = nil
-        selectedConfiguration?.border = nil
-        disabledConfiguration?.border = nil
+    mutating func with(border: BorderConfiguration) -> Self {
+        backgroundConfiguration?.border = border
+        selectedConfiguration?.border = border
+        disabledConfiguration?.border = border
         return self
     }
     
@@ -126,32 +126,33 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     func configure(shadow: ShadowConfiguration?) {
         guard let shadow = shadow else { return }
         
-        marginableView.layer.masksToBounds = false
-        marginableView.layer.shadowColor = shadow.color.cgColor
-        marginableView.layer.shadowOpacity = shadow.opacity.rawValue
-        marginableView.layer.shadowOffset = shadow.offset
-        marginableView.layer.shadowRadius = 1
-        marginableView.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
-        marginableView.layer.shouldRasterize = true
-        marginableView.layer.rasterizationScale = UIScreen.main.scale
+        layer.masksToBounds = false
+        layer.shadowColor = shadow.color.cgColor
+        layer.shadowOpacity = shadow.opacity.rawValue
+        layer.shadowOffset = shadow.offset
+        layer.shadowRadius = 1
+        layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
     
     func configure(background: BackgroundConfiguration? = nil) {
         marginableView.backgroundColor = background?.backgroundColor
+        tintColor = background?.tintColor
         
         imageView?.tintColor = background?.tintColor
         guard let border = background?.border else { return }
-        marginableView.layer.cornerRadius = border.cornerRadius.rawValue
-        marginableView.layer.borderWidth = border.borderWidth
-        marginableView.layer.borderColor = border.tintColor.cgColor
+        layer.cornerRadius = border.cornerRadius.rawValue
+        layer.borderWidth = border.borderWidth
+        layer.borderColor = border.tintColor.cgColor
         
-        marginableView.layer.masksToBounds = false
-        marginableView.layer.shadowColor = UIColor.clear.cgColor
-        marginableView.layer.shadowOpacity = 0
-        marginableView.layer.shadowOffset = .zero
-        marginableView.layer.shadowRadius = 0
-        marginableView.layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: border.cornerRadius.rawValue).cgPath
-        marginableView.layer.shouldRasterize = true
-        marginableView.layer.rasterizationScale = UIScreen.main.scale
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.clear.cgColor
+        layer.shadowOpacity = 0
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 0
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: border.cornerRadius.rawValue).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
 }

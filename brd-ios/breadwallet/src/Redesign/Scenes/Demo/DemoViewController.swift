@@ -16,10 +16,15 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     typealias Models = DemoModels
     
     // MARK: - Overrides
+    override func setupSubviews() {
+        super.setupSubviews()
+        
+        tableView.register(WrapperTableViewCell<VerificationView>.self)
+    }
     
     override func prepareData() {
         sections = [
-            Models.Section.name,
+            Models.Section.verification,
             Models.Section.profile,
             Models.Section.infoView,
             Models.Section.navigation,
@@ -33,6 +38,33 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                 NameViewModel(title: .text("You got it at birth"),
                               firstName: .init(title: "First name"),
                               lastName: .init(title: "Last name"))
+            ],
+            Models.Section.verification: [
+                VerificationViewModel(title: .text("ACCOUNT VERIFICATION"),
+                                      status: .none,
+//                                      status: .init(),
+                                      infoButton: .init(image: "infoIcon"),
+                                      description: .text("Upgrade your limits and get full access!"),
+                                      bottomButton: .init(title: "Verify your account")),
+                
+                VerificationViewModel(title: .text("ACCOUNT LIMITS"),
+                                      status: .limited,
+//                                      status: .init(),
+                                      infoButton: .init(image: "infoIcon"),
+                                      description: .text("Basic ($1,000/day)"),
+                                      bottomButton: .init(title: "Upgrade your limits")),
+                
+                VerificationViewModel(title: .text("ACCOUNT LIMITS"),
+                                      status: .pending,
+//                                      status: .init(),
+                                      infoButton: .init(image: "infoIcon"),
+                                      description: .text("Unlimited (Unlimited transaction amounts)")),
+                
+                VerificationViewModel(title: .text("ACCOUNT LIMITS"),
+                                      status: .verified,
+//                                      status: .init(),
+                                      infoButton: .init(image: "infoIcon"),
+                                      description: .text("Unlimited (Unlimited transaction amounts)"))
             ],
             Models.Section.profile: [
                 ProfileViewModel(name: "Rok", image: "stars")
@@ -83,6 +115,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         let cell: UITableViewCell
         switch section {
+        case .verification:
+            cell = self.tableView(tableView, verificationCellForRowAt: indexPath)
+            
         case .label:
             cell = self.tableView(tableView, labelCellForRowAt: indexPath)
             
@@ -107,6 +142,31 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
+        
+        cell.setupCustomMargins(vertical: .small, horizontal: .large)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, verificationCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? VerificationViewModel,
+              let cell: WrapperTableViewCell<VerificationView> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { view in
+            view.setup(with: model)
+            let config = [
+                Presets.VerificationView.none,
+                Presets.VerificationView.limited,
+                Presets.VerificationView.pending,
+                Presets.VerificationView.verified
+            ][indexPath.row % 4]
+            view.configure(with: config)
+        }
+        cell.setupCustomMargins(all: .extraSmall)
         
         return cell
     }

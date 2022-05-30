@@ -37,7 +37,16 @@ class Currency: SharedCurrency, CurrencyWithIcon {
     }
     
     override var tokenType: TokenType {
-        guard let type = TokenType(rawValue: core.type.lowercased()) else { assertionFailure("unknown token type"); return .unknown }
+        var type: TokenType = .unknown
+        
+        // This is a band aid. Backend should be updated. Backend should never return wrong values. 
+        switch metaData.type.lowercased() {
+        case TokenType.erc20.rawValue:
+            type = .erc20
+        default:
+            type = .native
+        }
+        
         return type
     }
     
