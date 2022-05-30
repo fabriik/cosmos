@@ -120,6 +120,12 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         configure(background: config.background)
         
         closeButton.wrappedView.configure(with: Presets.Button.icon)
+        
+        guard let body = config.body else { return }
+        textView.font = body.font
+        textView.textColor = body.textColor
+        textView.textAlignment = body.textAlignment
+        textView.textContainer.lineBreakMode = body.lineBreakMode
     }
     
     override func setup(with viewModel: PopupViewModel?) {
