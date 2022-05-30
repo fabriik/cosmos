@@ -21,7 +21,7 @@ enum ProfileModels {
         var footer: AccessoryType? { return nil }
     }
     
-    enum NavigationItems: CaseIterable {
+    enum NavigationItems: String, CaseIterable {
         case security
         case preferences
         case export
