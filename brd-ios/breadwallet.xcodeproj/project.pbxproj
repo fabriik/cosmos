@@ -440,6 +440,7 @@
 		7EF2999F27E3B9DA00A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF299A027E3B9DA00A2238A /* MarketChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998D27E3B8D200A2238A /* MarketChart.swift */; };
 		7EF36C062829893700BB43A7 /* theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EF36C052829893600BB43A7 /* theme.plist */; };
+		7EF45F332844D26E00D1F7B0 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F322844D26E00D1F7B0 /* VerificationView.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -1366,6 +1367,7 @@
 		7EF2998E27E3B8D200A2238A /* SimplePrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimplePrice.swift; path = CoinGecko/Models/SimplePrice.swift; sourceTree = "<group>"; };
 		7EF2998F27E3B8D200A2238A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = CoinGecko/Models/Models.swift; sourceTree = "<group>"; };
 		7EF36C052829893600BB43A7 /* theme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = theme.plist; sourceTree = "<group>"; };
+		7EF45F322844D26E00D1F7B0 /* VerificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -2980,6 +2982,7 @@
 				7E5CB3702835090E00EC787E /* Wrappers */,
 				7E8E979E283F4851008606B0 /* Core */,
 				7E8E979F283F48EE008606B0 /* NavigationItemView.swift */,
+				7EF45F322844D26E00D1F7B0 /* VerificationView.swift */,
 				7E8E97A4283F9803008606B0 /* FEPopupView.swift */,
 				7E8E97A1283F78B0008606B0 /* ProfileView.swift */,
 			);
@@ -4593,6 +4596,7 @@
 				7E5CB3852835090E00EC787E /* BackgroundConfiguration.swift in Sources */,
 				CE92F9F41DED59E80046B516 /* UIView+AnimationAdditions.swift in Sources */,
 				CEDB0B0522D4354C00331FFC /* LineLoadingView.swift in Sources */,
+				7EF45F332844D26E00D1F7B0 /* VerificationView.swift in Sources */,
 				CEEC70941E96A24F00EF788E /* DefaultCurrencyViewController.swift in Sources */,
 				7CAF4EDF22CE80D100326168 /* AssetCollection.swift in Sources */,
 				CEE6282A1EA98B6D001035AA /* DispatchQueue+Additions.swift in Sources */,

@@ -22,6 +22,8 @@ struct LightColors {
     static var error = ThemeManager.shared.color(for: "error")
     /// Success message text, icons & backgrounds
     static var success = ThemeManager.shared.color(for: "success")
+    /// Pending message text, icons & backgrounds
+    static var pending = ThemeManager.shared.color(for: "pending")
     
     struct Background {
         /// Default page background
