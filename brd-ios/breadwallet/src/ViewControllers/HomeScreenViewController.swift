@@ -271,14 +271,12 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             buttons[1],
             flexibleSpace,
             buttons[2],
-            flexibleSpace,
-            buttons[3],
             flexibleSpace
         ]
         
 #if DEBUG
         toolbar.items?.append(contentsOf: [
-            buttons[4],
+            buttons[3],
             flexibleSpace
         ])
 #endif
