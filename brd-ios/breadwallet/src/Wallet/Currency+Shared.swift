@@ -236,10 +236,12 @@ class Currencies {
     
     var currencies = [CurrencyMetadata]()
     
+    static let defaultCurrencyCodes = [AssetCodes.bsv.value,
+                                       AssetCodes.btc.value,
+                                       AssetCodes.eth.value]
+    
     var defaultCurrencyIds: [CurrencyId] {
-        return [getUID(from: AssetCodes.bsv.value),
-                getUID(from: AssetCodes.btc.value),
-                getUID(from: AssetCodes.eth.value)].compactMap { $0 }
+        return Currencies.defaultCurrencyCodes.compactMap { getUID(from: $0) }
     }
     
     init() {

@@ -120,7 +120,7 @@ class DefaultWidgetService: WidgetService {
     
     func defaultAssetOptions() -> [AssetOption] {
         return ((try? defaultCurrencies()) ?? [])
-            .filter { Constant.defaultCurrencyCodes.contains($0.code.uppercased()) }
+            .filter { Currencies.defaultCurrencyCodes.compactMap { $0.uppercased() }.contains($0.code.uppercased()) }
             .map { $0.assetOption() }
     }
 
@@ -368,6 +368,5 @@ private extension DefaultWidgetService {
         static let cachePriceListKey = "cachePriceList"
         static let cacheChartKey = "cacheChart"
         static let refreshedKey = "refreshed"
-        static let defaultCurrencyCodes = Currencies.shared.defaultCurrencyIds.compactMap { Currencies.shared.getCode(from: $0) }
     }
 }
