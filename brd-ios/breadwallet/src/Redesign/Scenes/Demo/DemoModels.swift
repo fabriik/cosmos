@@ -12,6 +12,7 @@ enum DemoModels {
     
     enum Section: Sectionable {
         case profile
+        case verification
         case navigation
         case label
         case button
