@@ -174,17 +174,18 @@ class DefaultWidgetService: WidgetService {
     func defaultChartDownOptions() -> ColorOption {
         return ColorOption.red
     }
-
+    
     func defaultCurrencies() throws -> [Currency] {
         guard currenciesCache.isEmpty else {
             return currenciesCache
         }
-        guard let url = Constant.currenciesURL else {
+        
+        guard let path = CurrencyFileManager.bundledCurrenciesFilePath else {
             throw WidgetServiceError.failedToLoadCurrenciesFile
         }
-
+        
         do {
-            let data = try Data(contentsOf: url)
+            let data = try Data(contentsOf: URL(fileURLWithPath: path))
             let decoder = JSONDecoder()
             let meta = try decoder.decode([CurrencyMetaData].self, from: data)
             let currencies = meta
@@ -367,9 +368,6 @@ private extension DefaultWidgetService {
         static let cachePriceListKey = "cachePriceList"
         static let cacheChartKey = "cacheChart"
         static let refreshedKey = "refreshed"
-        static let defaultCurrencyCodes = ["BTC", "ETH", "BRD"]
-        static let currenciesURL = Bundle.main.url(forResource: "currencies",
-                                                   withExtension: "json")
-
+        static let defaultCurrencyCodes = Currencies.shared.defaultCurrencyIds.compactMap { Currencies.shared.getCode(from: $0) }
     }
 }

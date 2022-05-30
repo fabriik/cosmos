@@ -223,19 +223,32 @@ class Currencies {
     
     var currencies = [CurrencyMetadata]()
     
+    var defaultCurrencyIds: [CurrencyId] {
+        return [getUID(from: "bsv"),
+                getUID(from: "btc"),
+                getUID(from: "eth")].compactMap { $0 }
+    }
+    
     init() {
-        CurrencyFileManager.getCurrencyMetaDataFromCache { currecy in
-            let metaDatas = currecy.values.compactMap { $0 } as? [CurrencyMetaData]
+        CurrencyFileManager.getCurrencyMetaDataFromCache { currency in
+            let metaDatas = currency.values.compactMap { $0 } as? [CurrencyMetaData]
             self.currencies.removeAll()
             
             metaDatas?.forEach({ metaData in
-                self.currencies.append(.init(code: metaData.code, uid: metaData.uid))
+                let metaData: Currencies.CurrencyMetadata = .init(code: metaData.code,
+                                                                  uid: metaData.uid)
+                
+                self.currencies.append(metaData)
             })
         }
     }
     
     func getUID(from code: String) -> CurrencyId? {
         return currencies.first(where: { $0.code == code })?.uid
+    }
+    
+    func getCode(from uid: CurrencyId) -> String {
+        return currencies.first(where: { $0.uid == uid })?.code ?? ""
     }
 }
 
@@ -297,25 +310,6 @@ struct CurrencyFileManager {
                 print("[CurrencyList] copied bundle tokens list to cache")
             } catch let e {
                 print("[CurrencyList] unable to copy bundled \(embeddedFilePath) -> \(path): \(e)")
-            }
-        }
-    }
-
-    // Checks if file modification time has happened within a timeout
-    static func isCacheExpired(path: String, timeout: TimeInterval) -> Bool {
-        guard let attr = try? FileManager.default.attributesOfItem(atPath: path) else { return true }
-        guard let modificationDate = attr[FileAttributeKey.modificationDate] as? Date  else { return true }
-        let difference = Date().timeIntervalSince(modificationDate)
-        return difference > timeout
-    }
-    
-    static func cleanupOldTokensFile() {
-        DispatchQueue.global(qos: .utility).async {
-            let fm = FileManager.default
-            guard let documentsDir = try? fm.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return assertionFailure() }
-            let oldTokensFile = documentsDir.appendingPathComponent("tokens.json").path
-            if fm.fileExists(atPath: oldTokensFile) {
-                try? fm.removeItem(atPath: oldTokensFile)
             }
         }
     }
