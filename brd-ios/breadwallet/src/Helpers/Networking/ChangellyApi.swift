@@ -13,16 +13,15 @@ struct SwapRequestData: RequestModelData {
     var preselectedToCurrency: String?
     
     var theme: String = "default"
-    var merchantId: String
+    var merchantId = "LQKofuqAUxW87eKx"
     var paymentId: String?
     // not sure what this does
     var version: Int = 3
     var referalId = "m3RudWCT8RWVKSrp"
     
-    init(currencies: [String] = [], amount: Double = 1, merchantId: String) {
+    init(currencies: [String] = [], amount: Double = 1) {
         currencyCodes = currencies.compactMap { $0.lowercased() }
         self.amount = amount
-        self.merchantId = merchantId
     }
     
     func getParameters() -> [String: Any] {
@@ -52,14 +51,13 @@ struct SwapRequestData: RequestModelData {
 
 enum ChangellyApi {
     static var baseUrl = "https://widget.changelly.com"
-    static var merchantId = "NGVQYXnFp13iKtj1"
     
     case swap(currencies: [String], amount: Double)
     
     var requestData: SwapRequestData? {
         switch self {
         case .swap(let currencies, let amount):
-            return .init(currencies: currencies, amount: amount, merchantId: Self.merchantId)
+            return .init(currencies: currencies, amount: amount)
         }
     }
     

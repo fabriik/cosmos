@@ -14,7 +14,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                           DemoStore>,
                           DemoResponseDisplays {
     typealias Models = DemoModels
-
+    
     // MARK: - Overrides
     override func setupSubviews() {
         super.setupSubviews()
@@ -25,8 +25,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     override func prepareData() {
         sections = [
             Models.Section.verification,
-            Models.Section.textField,
+            Models.Section.profile,
             Models.Section.infoView,
+            Models.Section.navigation,
+            Models.Section.textField,
             Models.Section.label,
             Models.Section.button
         ]
@@ -36,30 +38,43 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                 VerificationViewModel(title: .text("ACCOUNT VERIFICATION"),
                                       status: .none,
 //                                      status: .init(),
-                                      infoButton: .init(image: .init(named: "infoIcon")),
+                                      infoButton: .init(image: "infoIcon"),
                                       description: .text("Upgrade your limits and get full access!"),
                                       bottomButton: .init(title: "Verify your account")),
                 
                 VerificationViewModel(title: .text("ACCOUNT LIMITS"),
                                       status: .limited,
 //                                      status: .init(),
-                                      infoButton: .init(image: .init(named: "infoIcon")),
+                                      infoButton: .init(image: "infoIcon"),
                                       description: .text("Basic ($1,000/day)"),
                                       bottomButton: .init(title: "Upgrade your limits")),
                 
                 VerificationViewModel(title: .text("ACCOUNT LIMITS"),
                                       status: .pending,
 //                                      status: .init(),
-                                      infoButton: .init(image: .init(named: "infoIcon")),
+                                      infoButton: .init(image: "infoIcon"),
                                       description: .text("Unlimited (Unlimited transaction amounts)")),
                 
                 VerificationViewModel(title: .text("ACCOUNT LIMITS"),
                                       status: .verified,
 //                                      status: .init(),
-                                      infoButton: .init(image: .init(named: "infoIcon")),
+                                      infoButton: .init(image: "infoIcon"),
                                       description: .text("Unlimited (Unlimited transaction amounts)"))
             ],
-            
+            Models.Section.profile: [
+                ProfileViewModel(name: "Rok", image: "stars")
+            ],
+            Models.Section.navigation: [
+                NavigationViewModel(image: .imageName("lock_closed"),
+                                    label: .text("Security settings"),
+                                    button: .init(image: "arrow_right")),
+                NavigationViewModel(image: .imageName("settings"),
+                                    label: .text("Security settings"),
+                                    button: .init(image: "arrow_right")),
+                NavigationViewModel(image: .imageName("withdrawal"),
+                                    label: .text("Export transaction history to csv"),
+                                    button: .init(image: "arrow_right"))
+            ],
             Models.Section.button: [
                 "Click me!!",
                 "Dont Click me please!!"
@@ -75,28 +90,10 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             ],
             
             Models.Section.infoView: [
-                InfoViewModel(headerLeadingImage: .image("ig"),
+                InfoViewModel(headerLeadingImage: .imageName("ig"),
                               headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .image("user"),
+                              headerTrailing: .init(image: "info"),
                               title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .image("user"),
-                              title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerLeadingImage: .image("ig"),
-                              headerTrailingImage: .image("user"),
-                              title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close")),
-                
-                InfoViewModel(headerLeadingImage: .image("ig"),
-                              headerTitle: .text("This is a header title"),
-                              headerTrailingImage: .image("user"),
                               description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
                               button: .init(title: "Close"))
             ]
@@ -128,9 +125,17 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         case .infoView:
             cell = self.tableView(tableView, infoViewCellForRowAt: indexPath)
             
+        case .navigation:
+            cell = self.tableView(tableView, navigationCellForRowAt: indexPath)
+            
+        case .profile:
+            cell = self.tableView(tableView, profileViewCellForRowAt: indexPath)
+            
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
+        
+        cell.setupCustomMargins(vertical: .small, horizontal: .large)
         
         return cell
     }
@@ -159,4 +164,75 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     }
     
     // MARK: - Additional Helpers
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        toggleInfo()
+    }
+    
+    func toggleInfo() {
+        guard blurView?.superview == nil else {
+            hideInfo()
+            return
+        }
+        
+        showInfo()
+    }
+    
+    func showInfo() {
+        // TODO: this is demo code.. no review required XD
+        toggleBlur(animated: true)
+        guard let blur = blurView else { return }
+        let popup = FEPopupView()
+        view.insertSubview(popup, aboveSubview: blur)
+        popup.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.top.greaterThanOrEqualTo(view.snp.topMargin)
+            make.leading.greaterThanOrEqualTo(view.snp.leadingMargin)
+            make.trailing.greaterThanOrEqualTo(view.snp.trailingMargin)
+        }
+        popup.layoutIfNeeded()
+        popup.alpha = 0
+        
+        var text = "almost done... "
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        text += text
+        
+        popup.configure(with: Presets.Popup.normal)
+        popup.setup(with: .init(title: .text("This is a title"),
+                                body: text,
+                                buttons: [
+                                    .init(title: "Donate"),
+                                    .init(title: "Donate", image: "close"),
+                                    .init(image: "close"),
+                                ]))
+        popup.closeCallback = { [weak self] in
+            self?.hideInfo()
+        }
+        
+        popup.buttonCallbacks = [
+            { print("Donated 10$! Thanks!") }
+        ]
+        
+        UIView.animate(withDuration: Presets.Animation.duration) {
+            popup.alpha = 1
+        }
+    }
+    
+    @objc func hideInfo() {
+        guard let popup = view.subviews.first(where: { $0 is FEPopupView }) else { return }
+        
+        toggleBlur(animated: true)
+        
+        UIView.animate(withDuration: Presets.Animation.duration) {
+            popup.alpha = 0
+        } completion: { _ in
+            popup.removeFromSuperview()
+        }
+    }
 }

@@ -52,6 +52,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = S.UnlockScreen.resetPin
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faq)
         navigationController?.navigationBar.tintColor = Theme.blueBackground
         
@@ -59,6 +60,20 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         addSubviews()
         addConstraints()
         setInitialData()
+        showBackButton()
+    }
+    
+    func showBackButton() {
+        let back = UIBarButtonItem(image: UIImage(named: "BackArrowWhite"),
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(onBackButton))
+        back.tintColor = Theme.blueBackground
+        navigationItem.leftBarButtonItem = back
+    }
+    
+    @objc func onBackButton() {
+        navigationController?.dismiss(animated: true)
     }
     
     private func setUpHeadings() {

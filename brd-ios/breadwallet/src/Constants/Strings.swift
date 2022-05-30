@@ -156,6 +156,8 @@ enum S {
         static let resetPin = NSLocalizedString("UnlockScreen.resetPin", value:"Reset PIN", comment: "Reset PIN with Paper Key button label.")
         static let faceIdText = NSLocalizedString("UnlockScreen.faceIdText", value:"Unlock with FaceID", comment: "Unlock with FaceID accessibility label")
         static let wipePrompt = NSLocalizedString("UnlockScreen.wipePrompt", value:"Are you sure you would like to wipe this wallet?", comment: "Wipe wallet prompt")
+        static let walletDisabled = NSLocalizedString("UnlockScreen.walletDisabled", value:"Wallet disabled", comment: "Wallet disabled header")
+        static let walletDisabledDescription = NSLocalizedString("UnlockScreen.walletDisabledDescription", value:"You will need your recovery phrases to reset PIN.", comment: "Wallet disabled description")
     }
 
     enum Transaction {
@@ -234,14 +236,17 @@ enum S {
     enum UpdatePin {
         static let updateTitle = NSLocalizedString("UpdatePin.updateTitle", value:"Update PIN", comment: "Update PIN title")
         static let createTitle = NSLocalizedString("UpdatePin.createTitle", value:"Set PIN", comment: "Update PIN title")
-        static let createTitleConfirm = NSLocalizedString("UpdatePin.createTitleConfirm", value:"Re-Enter PIN", comment: "Update PIN title")
-        static let createInstruction = NSLocalizedString("UpdatePin.createInstruction", value:"Your PIN will be used to unlock your Fabriik and send money.", comment: "PIN creation info.")
+        static let setNewPinTitle = NSLocalizedString("UpdatePin.setNewPinTitle", value:"Set your new PIN", comment: "New PIN title")
+        static let createTitleConfirm = NSLocalizedString("UpdatePin.createTitleConfirm", value:"Confirm your new PIN", comment: "Update PIN title")
+        static let createInstruction = NSLocalizedString("UpdatePin.createInstruction", value:"Your PIN will be used to unlock your Fabriik Wallet and send money", comment: "PIN creation info.")
         static let enterCurrent = NSLocalizedString("UpdatePin.enterCurrent", value:"Enter your current PIN.", comment: "Enter current PIN instruction")
         static let enterNew = NSLocalizedString("UpdatePin.enterNew", value:"Enter your new PIN.", comment: "Enter new PIN instruction")
         static let reEnterNew = NSLocalizedString("UpdatePin.reEnterNew", value:"Re-Enter your new PIN.", comment: "Re-Enter new PIN instruction")
         static let caption = NSLocalizedString("UpdatePin.caption", value:"Remember this PIN. If you forget it, you won't be able to access your bitcoin.", comment: "Update PIN caption text")
         static let setPinErrorTitle = NSLocalizedString("UpdatePin.setPinErrorTitle", value:"Update PIN Error", comment: "Update PIN failure alert view title")
         static let setPinError = NSLocalizedString("UpdatePin.setPinError", value:"Sorry, could not update PIN.", comment: "Update PIN failure error message.")
+        static let securedWallet = NSLocalizedString("UpdatePin.securedWallet", value:"Secured wallet", comment: "Enter PIN header.")
+        static let enterYourPin = NSLocalizedString("UpdatePin.enterYourPin", value:"Enter your PIN", comment: "Enter PIN instruction.")
     }
 
     enum RecoverWallet {

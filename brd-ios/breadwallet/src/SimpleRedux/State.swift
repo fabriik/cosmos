@@ -34,7 +34,7 @@ struct State {
     }
     
     var currencies: [Currency] {
-        return orderedWallets.map { $0.currency }.sorted(by: { $0.name < $1.name })
+        return orderedWallets.map { $0.currency }
     }
     
     var shouldShowBuyNotificationForDefaultCurrency: Bool {

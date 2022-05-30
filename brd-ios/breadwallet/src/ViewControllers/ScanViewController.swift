@@ -234,11 +234,11 @@ extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
         switch result {
         case .paymentRequest(let request):
             switch request?.currency.code {
-            case Currencies.bch.code:
+            case Currencies.shared.bch?.code:
                 saveEvent("scan.bCashAddr")
-            case Currencies.btc.code:
+            case Currencies.shared.btc?.code:
                 saveEvent("scan.bitcoinUri")
-            case Currencies.eth.code:
+            case Currencies.shared.eth?.code:
                 saveEvent("scan.ethAddress")
             default:
                 saveEvent("scan.otherCurrency")

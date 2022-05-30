@@ -13,7 +13,7 @@ struct MarketChart: Codable {
     var dataPoints: [PriceDataPoint] {
         prices.compactMap {
             guard $0.count == 2 else { return nil }
-            return PriceDataPoint(time: Date(timeIntervalSince1970: $0[0]), close: $0[1])
+            return PriceDataPoint(time: Date(timeIntervalSince1970: $0[0] / 1000.0), close: $0[1])
         }
     }
 }

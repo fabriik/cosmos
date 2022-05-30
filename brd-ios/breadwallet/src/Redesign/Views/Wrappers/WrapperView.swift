@@ -17,6 +17,7 @@ class WrapperView<T: UIView>: UIView,
                               Borderable {
 
     // MARK: Lazy UI
+    lazy var content = UIView()
     lazy var wrappedView = T()
     private var config: BackgroundConfiguration?
 
@@ -44,10 +45,20 @@ class WrapperView<T: UIView>: UIView,
     }
 
     func setupSubviews() {
-        addSubview(wrappedView)
+        addSubview(content)
+        content.snp.makeConstraints { make in
+            make.edges.equalTo(snp.margins)
+        }
+        setupCustomMargins(all: .zero)
+        
+        content.addSubview(wrappedView)
         wrappedView.snp.makeConstraints { make in
             make.edges.equalTo(snp.margins)
         }
+        content.setupCustomMargins(all: .zero)
+        isUserInteractionEnabled = true
+        content.isUserInteractionEnabled = true
+        wrappedView.isUserInteractionEnabled = true
     }
     
     func setup(_ closure: (T) -> Void) {
@@ -60,14 +71,13 @@ class WrapperView<T: UIView>: UIView,
     }
     
     func configure(background: BackgroundConfiguration?) {
-        
         guard let border = background?.border else { return }
         config = background
-        backgroundColor = background?.backgroundColor
+        content.backgroundColor = background?.backgroundColor
         tintColor = background?.tintColor
-        layer.masksToBounds = true
-        layer.cornerRadius = border.cornerRadius.rawValue
-        layer.borderWidth = border.borderWidth
-        layer.borderColor = border.tintColor.cgColor
+        content.layer.masksToBounds = true
+        content.layer.cornerRadius = border.cornerRadius.rawValue
+        content.layer.borderWidth = border.borderWidth
+        content.layer.borderColor = border.tintColor.cgColor
     }
 }

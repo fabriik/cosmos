@@ -12,7 +12,7 @@ import UIKit
 
 class GiftCurrencyCell: UIView {
     
-    private let currency = Currencies.btc.instance!
+    private let currency = Currencies.shared.btc
     private let iconContainer = UIView(color: .transparentIconBackground)
     private let icon = UIImageView()
     private let currencyName = UILabel(font: Theme.body1Accent, color: Theme.primaryText)
@@ -71,21 +71,24 @@ class GiftCurrencyCell: UIView {
     }
     
     private func setInitialData() {
-        backgroundColor = currency.colors.0
-        layer.cornerRadius = 8.0
-        
-        icon.image = currency.imageNoBackground
-        iconContainer.layer.cornerRadius = C.Sizes.homeCellCornerRadius
-        iconContainer.clipsToBounds = true
-        icon.tintColor = .white
-        
-        let rateAmount = Amount(tokenString: "1", currency: currency)
-        price.text = rateAmount.fiatDescription
-        currencyName.text = "Bitcoin"
-        
-        let displayAmount = Amount(tokenString: "\(amount)", currency: currency)
-        fiatBalance.text = displayAmount.fiatDescription
-        tokenBalance.text = displayAmount.tokenDescription
+        // TODO: We don't support GIFT functionality. Figure it out.
+        /*
+         backgroundColor = currency.colors.0
+         layer.cornerRadius = 8.0
+         
+         icon.image = currency.imageNoBackground
+         iconContainer.layer.cornerRadius = C.Sizes.homeCellCornerRadius
+         iconContainer.clipsToBounds = true
+         icon.tintColor = .white
+         
+         let rateAmount = Amount(tokenString: "1", currency: currency)
+         price.text = rateAmount.fiatDescription
+         currencyName.text = "Bitcoin"
+         
+         let displayAmount = Amount(tokenString: "\(amount)", currency: currency)
+         fiatBalance.text = displayAmount.fiatDescription
+         tokenBalance.text = displayAmount.tokenDescription
+         */
     }
     
 }

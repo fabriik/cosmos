@@ -30,11 +30,11 @@ class WalletConnectionSettings {
     static func defaultMode(for currency: Currency) -> WalletConnectionMode {
         assert(currency.tokenType == .native)
         switch currency.uid {
-        case Currencies.btc.uid:
+        case Currencies.shared.btc?.uid:
             return .api_only
-        case Currencies.bch.uid:
+        case Currencies.shared.bch?.uid:
             return .api_only
-        case Currencies.eth.uid:
+        case Currencies.shared.eth?.uid:
             return .api_only
         default:
             return .api_only
@@ -43,7 +43,7 @@ class WalletConnectionSettings {
 
     func mode(for currency: Currency) -> WalletConnectionMode {
         //Force bch to always be api_only mode
-        guard currency.uid != Currencies.bch.uid else { return .api_only }
+        guard currency.uid != Currencies.shared.bch?.uid else { return .api_only }
         assert(currency.tokenType == .native)
         if let serialization = walletInfo.connectionModes[currency.uid],
             let mode = WalletManagerMode(serialization: serialization) {
@@ -80,9 +80,9 @@ class WalletConnectionSettings {
 
     /// clean up any invalid modes stored in KV-store
     private func sanitizeAll() {
-        [Currencies.btc.instance,
-         Currencies.bch.instance,
-         Currencies.eth.instance]
+        [Currencies.shared.btc,
+         Currencies.shared.bch,
+         Currencies.shared.eth]
             .compactMap { $0 }
             .forEach { sanitize(currency: $0) }
     }

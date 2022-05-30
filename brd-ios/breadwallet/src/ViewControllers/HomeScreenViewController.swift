@@ -61,12 +61,12 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let menuButtonIndex = 2
     
     private var buyButton: UIButton? {
-        guard toolbarButtons.count == 3 else { return nil }
+        guard toolbarButtons.count == 4 else { return nil }
         return toolbarButtons[buyButtonIndex]
     }
     
     private var tradeButton: UIButton? {
-        guard toolbarButtons.count == 3 else { return nil }
+        guard toolbarButtons.count == 4 else { return nil }
         return toolbarButtons[tradeButtonIndex]
     }
     
@@ -74,6 +74,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     var didTapManageWallets: (() -> Void)?
     var didTapBuy: ((String, String) -> Void)?
     var didTapTrade: (() -> Void)?
+    var didTapProfile: (() -> Void)?
     var didTapMenu: (() -> Void)?
     
     var okToShowPrompts: Bool {
@@ -248,15 +249,18 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     private func setupToolbar() {
-        let buttons = [(buyButtonTitle, #imageLiteral(resourceName: "buy"), #selector(buy)),
-                       (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
-                       (S.HomeScreen.menu, #imageLiteral(resourceName: "menu"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
-                        let button = UIButton.vertical(title: title, image: image)
-                        button.tintColor = .gray1
-                        button.addTarget(self, action: selector, for: .touchUpInside)
-                        return UIBarButtonItem(customView: button)
-        }
-                
+        let buttons = [
+            ("Balance", #imageLiteral(resourceName: "balance"), #selector(showBalance)),
+            (buyButtonTitle, #imageLiteral(resourceName: "buy"), #selector(buy)),
+            (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
+            ("Profile", #imageLiteral(resourceName: "user"), #selector(profile)),
+            (S.HomeScreen.menu, #imageLiteral(resourceName: "menu"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
+                let button = UIButton.vertical(title: title, image: image)
+                button.tintColor = .gray1
+                button.addTarget(self, action: selector, for: .touchUpInside)
+                return UIBarButtonItem(customView: button)
+            }
+        
         let paddingWidth = C.padding[2]
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbarButtons = []
@@ -267,22 +271,30 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             buttons[1],
             flexibleSpace,
             buttons[2],
+            flexibleSpace,
+            buttons[3],
             flexibleSpace
         ]
         
-        let buttonWidth = (view.bounds.width - (paddingWidth * CGFloat(buttons.count+1))) / CGFloat(buttons.count)
+#if DEBUG
+        toolbar.items?.append(contentsOf: [
+            buttons[4],
+            flexibleSpace
+        ])
+#endif
+        
+        let buttonWidth = (view.bounds.width - (paddingWidth * CGFloat(buttons.count + 1))) / CGFloat(buttons.count)
         let buttonHeight = CGFloat(44.0)
         buttons.forEach {
             $0.customView?.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
-        }
-        
-        // Stash the UIButton's wrapped by the toolbar items in case we need add a badge later.
-        buttons.forEach { (toolbarButtonItem) in
-            if let button = toolbarButtonItem.customView as? UIButton {
+            
+            // Stash the UIButton's wrapped by the toolbar items in case we need add a badge later.
+            if let button = $0.customView as? UIButton {
                 self.toolbarButtons.append(button)
             }
         }
-
+        buttons.first?.customView?.tintColor = LightColors.primary
+        
         toolbar.isTranslucent = false
         toolbar.layer.borderWidth = 1
         toolbar.layer.borderColor = UIColor.gray1.cgColor
@@ -367,6 +379,9 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     // MARK: Actions
+    @objc private func showBalance() {
+        print("does nothing")
+    }
     
     @objc private func buy() {
         // TODO: move worker out of VC
@@ -393,6 +408,10 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     @objc private func trade() {
         saveEvent("currency.didTapTrade", attributes: [:])
         didTapTrade?()
+    }
+    
+    @objc private func profile() {
+        didTapProfile?()
     }
     
     @objc private func menu() { didTapMenu?() }

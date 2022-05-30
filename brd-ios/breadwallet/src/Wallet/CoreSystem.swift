@@ -44,7 +44,7 @@ class CoreSystem: Subscriber, Trackable {
         Store.subscribe(self, name: .optInSegWit) { [weak self] _ in
             guard let `self` = self else { return }
             self.queue.async {
-                guard let btc = Currencies.btc.instance,
+                guard let btc = Currencies.shared.btc,
                       let btcWalletManager = self.wallet(for: btc)?.manager else { return }
                 btcWalletManager.addressScheme = .btcSegwit
                 print("[SYS] Bitcoin SegWit address scheme enabled")
@@ -772,7 +772,7 @@ extension CoreSystem: SystemListener {
                 addWalletState(for: wallet)
             }
             // generate wallet ID from Ethereum address
-            if wallet.currency.uid == Currencies.eth.uid,
+            if wallet.currency.uid == Currencies.shared.eth?.uid,
                let walletID = self.walletID(address: wallet.target.description) {
                 DispatchQueue.main.async {
                     Store.perform(action: WalletID.Set(walletID))
@@ -807,7 +807,7 @@ extension CoreSystem: SystemListener {
 
 extension WalletManager {
     var customPeer: NetworkPeer? {
-        guard network.currency.uid == Currencies.btc.uid,
+        guard network.currency.uid == Currencies.shared.btc?.uid,
               let address = UserDefaults.customNodeIP else { return nil }
         let port = UInt16(UserDefaults.customNodePort ?? C.standardPort)
         return network.createPeer(address: address, port: port, publicKey: nil)
