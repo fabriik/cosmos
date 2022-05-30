@@ -254,7 +254,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             (buyButtonTitle, #imageLiteral(resourceName: "buy"), #selector(buy)),
             (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
             ("Profile", #imageLiteral(resourceName: "user"), #selector(profile)),
-            (S.HomeScreen.menu, #imageLiteral(resourceName: "menu"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
+            (S.HomeScreen.menu, #imageLiteral(resourceName: "more"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
                 let button = UIButton.vertical(title: title, image: image)
                 button.tintColor = .gray1
                 button.addTarget(self, action: selector, for: .touchUpInside)
