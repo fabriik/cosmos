@@ -15,8 +15,8 @@ import SafariServices
 class WalletConnectionSettingsViewController: UIViewController, Trackable {
 
     private let walletConnectionSettings: WalletConnectionSettings
-    private var currency: Currency {
-        return Currencies.btc.instance!
+    private var currency: Currency? {
+        return Currencies.shared.btc
     }
     private let modeChangeCallback: (WalletConnectionMode) -> Void
 
@@ -122,6 +122,8 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
     }
 
     private func bindData() {
+        guard let currency = currency else { return }
+        
         title = S.WalletConnectionSettings.viewTitle
         header.text = S.WalletConnectionSettings.header
         footerLabel.text = S.WalletConnectionSettings.footerTitle
@@ -153,6 +155,8 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
     }
     
     private func setMode() {
+        guard let currency = currency else { return }
+        
         let newMode = toggleSwitch.isOn
             ? WalletConnectionMode.api_only
             : WalletConnectionMode.p2p_only
@@ -196,6 +200,8 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
     }
     
     private func makeToggleEvent() -> String {
+        guard let currency = currency else { return "" }
+        
         let event = toggleSwitch.isOn ? Event.enable.name : Event.disable.name
         return makeEventName([EventContext.fastSync.name, currency.code.uppercased(), event])
     }

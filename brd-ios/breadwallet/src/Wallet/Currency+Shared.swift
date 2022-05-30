@@ -75,17 +75,17 @@ class SharedCurrency: CurrencyUID {
     /// False if a token has been delisted, true otherwise
     var isSupported: Bool { return false }
     
-    var isBitcoin: Bool { return uid == Currencies.btc.uid }
-    var isBitcoinSV: Bool { return uid == Currencies.bsv.uid }
-    var isBitcoinCash: Bool { return uid == Currencies.bch.uid }
-    var isEthereum: Bool { return uid == Currencies.eth.uid }
+    var isBitcoin: Bool { return uid == Currencies.shared.getUID(from: "btc") }
+    var isBitcoinSV: Bool { return uid == Currencies.shared.getUID(from: "bsv") }
+    var isBitcoinCash: Bool { return uid == Currencies.shared.getUID(from: "bch") }
+    var isEthereum: Bool { return uid == Currencies.shared.getUID(from: "eth") }
     var isERC20Token: Bool { return tokenType == .erc20 }
-    var isBRDToken: Bool { return uid == Currencies.brd.uid }
-    var isXRP: Bool { return uid == Currencies.xrp.uid }
-    var isHBAR: Bool { return uid == Currencies.hbar.uid }
+    var isBRDToken: Bool { return uid == Currencies.shared.getUID(from: "brd") }
+    var isXRP: Bool { return uid == Currencies.shared.getUID(from: "xrp") }
+    var isHBAR: Bool { return uid == Currencies.shared.getUID(from: "hbar")}
     var isBitcoinCompatible: Bool { return isBitcoin || isBitcoinCash }
     var isEthereumCompatible: Bool { return isEthereum || isERC20Token }
-    var isTezos: Bool { return uid == Currencies.xtz.uid }
+    var isTezos: Bool { return uid == Currencies.shared.getUID(from: "xtz") }
     
     init() {}
 }
@@ -103,7 +103,7 @@ public struct CurrencyMetaData: CurrencyWithIcon {
     var decimals: UInt8
     
     var isPreferred: Bool {
-        return Currencies.allCases.map { $0.uid }.contains(uid)
+        return Currencies.shared.currencies.map { $0.uid }.contains(uid)
     }
     
     var alternateCode: String?
@@ -207,57 +207,30 @@ extension CurrencyMetaData: Hashable {
     }
 }
 
-enum Currencies: String, CaseIterable {
-    case zrx
-    case eth
-    case bsv
-    case lrc
-    case usdt
-    case bch
-    case bat
-    case link
-    case xrp
-    case btc
-    case shib
+class Currencies {
+    static var shared = Currencies()
     
-    // Currently unused.
-    case brd, hbar, xtz, tusd, usdc
-    
-    var uid: CurrencyId? {
-        var uid = ""
-        
-        switch self {
-        case .zrx:
-            uid = "ethereum-mainnet:0xE41d2489571d322189246DaFA5ebDe1F4699F498"
-        case .eth:
-            uid = "ethereum-\(E.isTestnet ? "goerli" : "mainnet"):__native__"
-        case .bsv:
-            uid = "bitcoinsv-mainnet:__native__"
-        case .lrc:
-            uid = "ethereum-mainnet:0xbbbbca6a901c926f240b89eacb641d8aec7aeafd"
-        case .usdt:
-            uid = "ethereum-mainnet:0xdac17f958d2ee523a2206206994597c13d831ec7"
-        case .bch:
-            uid = "bitcoincash-mainnet:__native__"
-        case .bat:
-            uid = "ethereum-mainnet:0x0D8775F648430679A709E98d2b0Cb6250d2887EF"
-        case .link:
-            uid = "ethereum-mainnet:0x514910771af9ca656af840dff83e8264ecf986ca"
-        case .xrp:
-            uid = "ripple-mainnet:__native__"
-        case .btc:
-            uid = "bitcoin-\(E.isTestnet ? "testnet" : "mainnet"):__native__"
-        case .shib:
-            uid = "ethereum-mainnet:0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE"
-        case .brd, .hbar, .xtz, .tusd, .usdc:
-            break
-        }
-        
-        return CurrencyId(rawValue: uid)
-        
+    struct CurrencyMetadata {
+        let code: String?
+        let uid: CurrencyId?
     }
     
-    var code: String { return rawValue }
+    var currencies = [CurrencyMetadata]()
+    
+    init() {
+        CurrencyFileManager.getCurrencyMetaDataFromCache { currecy in
+            let metaDatas = currecy.values.compactMap { $0 } as? [CurrencyMetaData]
+            self.currencies.removeAll()
+            
+            metaDatas?.forEach({ metaData in
+                self.currencies.append(.init(code: metaData.code, uid: metaData.uid))
+            })
+        }
+    }
+    
+    func getUID(from code: String) -> CurrencyId? {
+        return currencies.first(where: { $0.code == code })?.uid
+    }
 }
 
 struct CurrencyFileManager {
