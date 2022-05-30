@@ -23,6 +23,8 @@ class AssetIndex: BRKVStoreObject, Codable {
     
     /// Create new
     init() {
+        enabledAssetIds = Currencies.shared.defaultCurrencyIds
+        
         super.init(key: AssetIndex.key, version: 0, lastModified: Date(), deleted: false, data: Data())
     }
     
