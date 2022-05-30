@@ -22,6 +22,15 @@ struct ButtonConfiguration: Configurable {
         disabledConfiguration?.border = border
         return self
     }
+    
+    mutating func withBorder(normal: BorderConfiguration? = nil,
+                             selected: BorderConfiguration? = nil,
+                             disabled: BorderConfiguration? = nil) -> ButtonConfiguration {
+        backgroundConfiguration?.border = normal
+        selectedConfiguration?.border = selected
+        disabledConfiguration?.border = disabled
+        return self
+    }
 }
 
 struct ButtonViewModel: ViewModel {

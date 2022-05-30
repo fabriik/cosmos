@@ -67,7 +67,7 @@ extension Presets {
                                                    selectedConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
                                                    disabledConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled))
         
-        static var icon = ButtonConfiguration(backgroundConfiguration: .init(tintColor: LightColors.Icons.two),
+        static var icon = ButtonConfiguration(backgroundConfiguration: .init(tintColor: LightColors.Contrast.two),
                                               selectedConfiguration: .init(tintColor: LightColors.Icons.one),
                                               disabledConfiguration: .init(tintColor: LightColors.InteractionPrimary.disabled))
     }
@@ -89,6 +89,19 @@ extension Presets {
  
 extension Presets {
     struct InfoView {
+        static var verification = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
+                                                        headerTitle: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                        headerTrailing: Presets.Button.icon,
+                                                        title: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                        description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
+                                                        button: Presets.Button.primary.withBorder(normal: Presets.Border.zero,
+                                                                                                  selected: Presets.Border.selected,
+                                                                                                  disabled: Presets.Border.disabled),
+                                                        background: .init(backgroundColor: LightColors.secondary,
+                                                                          tintColor: LightColors.Contrast.two,
+                                                                          border: Presets.Border.zero),
+                                                        shadow: Presets.Shadow.normal)
+        
         static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
                                                    headerTitle: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
                                                    headerTrailing: Presets.Button.icon,
@@ -118,15 +131,18 @@ extension Presets {
 
 extension Presets {
     struct Popup {
-        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
-                                                                 tintColor: LightColors.Text.one,
-                                                                 border: Presets.Border.normal),
-                                               buttons: [ Presets.Button.primaryWithBorder,
+        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.secondary,
+                                                                 tintColor: LightColors.Contrast.two,
+                                                                 border: Presets.Border.zero),
+                                               title: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
+                                               body: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two),
+                                               buttons: [ Presets.Button.primary.withBorder(normal: Presets.Border.zero,
+                                                                                            selected: Presets.Border.selected,
+                                                                                            disabled: Presets.Border.disabled),
                                                           Presets.Button.secondary ]
         )
     }
 }
-
 
 extension Presets {
     

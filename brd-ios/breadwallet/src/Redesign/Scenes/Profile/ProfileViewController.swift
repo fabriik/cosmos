@@ -91,7 +91,6 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
     
     func displayNavigation(responseDisplay: ProfileModels.Navigate.ResponseDisplay) {
         coordinator?.showUnderConstruction(responseDisplay.item.rawValue)
-        
     }
     
     // MARK: - Additional Helpers

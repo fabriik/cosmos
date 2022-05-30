@@ -54,7 +54,7 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
             .verification: [
                 InfoViewModel(headerTitle: .text("ACCOUNT VERIFICATION"),
                               headerTrailing: .init(image: "infoIcon"),
-                              description: .text("Upgrade your limits and get full access!"),
+                              description: .text("Get full access to your Fabriik wallet"),
                               button: .init(title: "Verify your account"))
             ],
             .navigation: Models.NavigationItems.allCases.compactMap { $0.model }
@@ -74,10 +74,7 @@ If you verify your account, you are given acces to:
   - 24/7/365 live customer support
 """
         let model = PopupViewModel(title: .text("Why should I verify my account?"),
-                                   body: text,
-                                   buttons: [
-                                    .init(title: "Verify my account", image: "profile")
-                                   ])
+                                   body: text)
         
         viewController?.displayVerificationInfo(responseDisplay: .init(model: model))
     }

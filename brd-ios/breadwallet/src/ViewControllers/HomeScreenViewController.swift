@@ -254,7 +254,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             (buyButtonTitle, #imageLiteral(resourceName: "buy"), #selector(buy)),
             (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
             ("Profile", #imageLiteral(resourceName: "user"), #selector(profile)),
-            (S.HomeScreen.menu, #imageLiteral(resourceName: "menu"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
+            (S.HomeScreen.menu, #imageLiteral(resourceName: "more"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
                 let button = UIButton.vertical(title: title, image: image)
                 button.tintColor = .gray1
                 button.addTarget(self, action: selector, for: .touchUpInside)
@@ -273,15 +273,10 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             buttons[2],
             flexibleSpace,
             buttons[3],
-            flexibleSpace
-        ]
-        
-#if DEBUG
-        toolbar.items?.append(contentsOf: [
+            flexibleSpace,
             buttons[4],
             flexibleSpace
-        ])
-#endif
+        ]
         
         let buttonWidth = (view.bounds.width - (paddingWidth * CGFloat(buttons.count + 1))) / CGFloat(buttons.count)
         let buttonHeight = CGFloat(44.0)

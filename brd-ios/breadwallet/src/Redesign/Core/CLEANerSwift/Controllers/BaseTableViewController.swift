@@ -191,11 +191,8 @@ class BaseTableViewController<C: CoordinatableRoutes,
             view.setup(with: model)
             view.configure(with: Presets.TexxtField.primary)
             view.valueChanged = {
-                // weirdly animates if not disabled
-//                UIView.setAnimationsEnabled(false)
                 tableView.beginUpdates()
                 tableView.endUpdates()
-//                UIView.setAnimationsEnabled(true)
             }
         }
         
@@ -213,7 +210,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setup { view in
             view.setup { view in
                 view.setup(with: model)
-                view.configure(with: Presets.InfoView.primary)
+                view.configure(with: Presets.InfoView.verification)
                 view.setupCustomMargins(all: .large)
             }
             view.setupCustomMargins(all: .large)
