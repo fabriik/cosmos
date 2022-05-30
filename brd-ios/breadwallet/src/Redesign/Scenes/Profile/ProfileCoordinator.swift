@@ -16,10 +16,22 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
         showUnderConstruction("avatar selection")
     }
     
+    func showSecuirtySettings() {
+        
+    }
+    
+    func showPreferences() {
+        
+    }
+    
+    func showExport() {
+        
+    }
+    
     func showUnderConstruction(_ feat: String) {
         // TODO: navigate on
         showPopup(with: .init(title: .text("Under construction"),
-                              body: "The \(feat) functionality is being developed for You by the awesome Fabriik team. Stay tuned!"))
+                              body: "The \(feat.uppercased()) functionality is being developed for You by the awesome Fabriik team. Stay tuned!"))
     }
     // MARK: - Aditional helpers
 }

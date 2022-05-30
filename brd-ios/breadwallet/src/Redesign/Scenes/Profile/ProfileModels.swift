@@ -21,10 +21,22 @@ enum ProfileModels {
         var footer: AccessoryType? { return nil }
     }
     
-    struct ChangeAvatar {
-        struct ViewAction {}
-        struct ActionResponse {}
-        struct ResponseDisplay {}
+    enum NavigationItems: String, CaseIterable {
+        case security
+        case preferences
+        case export
+    }
+    
+    struct Navigate {
+        struct ViewAction {
+            var index: Int
+        }
+        struct ActionResponse {
+            var index: Int
+        }
+        struct ResponseDisplay {
+            var item: NavigationItems
+        }
     }
     
     struct VerificationInfo {

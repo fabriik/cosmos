@@ -79,11 +79,7 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = sections[indexPath.section] as? Models.Section
-        
-        guard section == .navigation else { return }
-        
-        coordinator?.showUnderConstruction("navigation")
+        interactor?.navigate(viewAction: .init(index: indexPath.row))
     }
     
     // MARK: - User Interaction
@@ -91,6 +87,11 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
     // MARK: - ProfileResponseDisplay
     func displayVerificationInfo(responseDisplay: ProfileModels.VerificationInfo.ResponseDisplay) {
         coordinator?.showPopup(with: responseDisplay.model)
+    }
+    
+    func displayNavigation(responseDisplay: ProfileModels.Navigate.ResponseDisplay) {
+        coordinator?.showUnderConstruction(responseDisplay.item.rawValue)
+        
     }
     
     // MARK: - Additional Helpers
