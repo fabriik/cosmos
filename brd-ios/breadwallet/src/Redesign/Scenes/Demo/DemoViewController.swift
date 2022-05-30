@@ -17,11 +17,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     // MARK: - Overrides
     
-    override func setupSubviews() {
-        super.setupSubviews()
-        tableView.register(WrapperTableViewCell<NameView>.self)
-    }
-    
     override func prepareData() {
         sections = [
             Models.Section.name,
@@ -117,25 +112,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     }
     
     // MARK: - Additional Helpers
-
-    func tableView(_ tableView: UITableView, nameCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
-        guard let cell: WrapperTableViewCell<NameView> = tableView.dequeueReusableCell(for: indexPath),
-              let model = sectionRows[section]?[indexPath.row] as? NameViewModel else {
-            return UITableViewCell()
-        }
-        
-        cell.setup { view in
-            view.configure(with: .init())
-            view.setup(with: model)
-            view.contentSizeChanged = {
-                tableView.beginUpdates()
-                tableView.endUpdates()
-            }
-        }
-        
-        return cell
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard sections[indexPath.section].hashValue == Models.Section.label.hashValue else { return }

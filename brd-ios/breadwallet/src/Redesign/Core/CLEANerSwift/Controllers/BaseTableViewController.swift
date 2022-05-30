@@ -38,6 +38,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.register(WrapperTableViewCell<WrapperView<FEInfoView>>.self)
         tableView.register(WrapperTableViewCell<NavigationItemView>.self)
         tableView.register(WrapperTableViewCell<ProfileView>.self)
+        tableView.register(WrapperTableViewCell<NameView>.self)
         
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -259,6 +260,25 @@ class BaseTableViewController<C: CoordinatableRoutes,
             
             view.animateTo(state: .error, withAnimation: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, nameCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<NameView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? NameViewModel else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+            view.contentSizeChanged = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+        }
+        
+        return cell
     }
     
     func textFieldDidFinish(for indexPath: IndexPath, with text: String?) {

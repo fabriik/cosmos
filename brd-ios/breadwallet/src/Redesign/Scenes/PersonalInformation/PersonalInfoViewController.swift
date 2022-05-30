@@ -30,35 +30,16 @@ class PersonalInfoViewController: BaseTableViewController<PersonalInfoCoordinato
             cell = self.tableView(tableView, nameCellForRowAt: indexPath)
             
         case .country, .birthdate:
-            cell = super.tableView(tableView, textFieldCellForRowAt: indexPath)
+            cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
             
         case .confirm:
-            cell = super.tableView(tableView, buttonCellForRowAt: indexPath)
+            cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
             
         default:
             cell = UITableViewCell()
         }
         
         cell.contentView.setupCustomMargins(vertical: .small, horizontal: .small)
-        
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, nameCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
-        guard let cell: WrapperTableViewCell<NameView> = tableView.dequeueReusableCell(for: indexPath),
-              let model = sectionRows[section]?[indexPath.row] as? NameViewModel else {
-            return UITableViewCell()
-        }
-        
-        cell.setup { view in
-            view.configure(with: .init())
-            view.setup(with: model)
-            view.contentSizeChanged = {
-                tableView.beginUpdates()
-                tableView.endUpdates()
-            }
-        }
         
         return cell
     }
