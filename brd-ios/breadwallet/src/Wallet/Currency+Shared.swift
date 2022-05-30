@@ -61,7 +61,7 @@ class SharedCurrency: CurrencyUID {
     var uid: CurrencyId { return .init(rawValue: "") }
     
     /// Display name (e.g. Bitcoin)
-    var name: String { return ""}
+    var name: String { return "" }
     
     var tokenType: TokenType { return .unknown }
     
@@ -101,7 +101,7 @@ public struct CurrencyMetaData: CurrencyWithIcon {
     let name: String
     var tokenAddress: String?
     var decimals: UInt8
-    var type: String
+    let type: String
     
     var isPreferred: Bool {
         return Currencies.shared.currencies.map { $0.uid }.contains(uid)
@@ -148,7 +148,9 @@ extension CurrencyMetaData: Codable {
         name = try container.decode(String.self, forKey: .name)
         tokenAddress = try container.decode(String.self, forKey: .tokenAddress)
         decimals = try container.decode(UInt8.self, forKey: .decimals)
-        type = try container.decode(String.self, forKey: .type)
+        
+        let type = try container.decode(String.self, forKey: .type)
+        self.type = type != SharedCurrency.TokenType.erc20.rawValue ? SharedCurrency.TokenType.native.rawValue : SharedCurrency.TokenType.erc20.rawValue
         
         var didFindCoinGeckoID = false
         if let alternateNames = try? container.decode([String: String].self, forKey: .alternateNames) {

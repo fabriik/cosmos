@@ -39,13 +39,12 @@ class Currency: SharedCurrency, CurrencyWithIcon {
     override var tokenType: TokenType {
         var type: TokenType = .unknown
         
-        switch core.type.lowercased() {
+        // This is a band aid. Backend should be updated. Backend should never return wrong values. 
+        switch metaData.type.lowercased() {
         case TokenType.erc20.rawValue:
             type = .erc20
-        case "", TokenType.native.rawValue:
-            type = .native
         default:
-            type = .unknown
+            type = .native
         }
         
         return type
