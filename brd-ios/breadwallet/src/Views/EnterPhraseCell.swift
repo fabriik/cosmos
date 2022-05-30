@@ -216,8 +216,7 @@ extension EnterPhraseCell: UITextFieldDelegate {
             textField.textColor = Theme.primaryText
             focusBar.backgroundColor = Theme.accent
         } else {
-            textField.textColor = Theme.error
-            focusBar.backgroundColor = Theme.error
+            contentView.layer.borderColor = Theme.error.cgColor
             hasDisplayedInvalidState = true
         }
     }
