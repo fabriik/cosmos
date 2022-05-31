@@ -30,12 +30,13 @@ struct TextFieldConfiguration: Configurable {
 struct TextFieldModel: ViewModel {
     var leading: ImageViewModel?
     var title: String
+    var value: String?
     var placeholder: String?
     var hint: String?
-    var error: String? = "Text has to be longer than 1 character."
+    var error: String?
     var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
-    var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) > 1 }
+    var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) >= 1 }
 }
 
 class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDelegate, StateDisplayable {
@@ -43,7 +44,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     var displayState: DisplayState = .normal
     
     private var validator: ((String?) -> Bool)?
-    var valueChanged: (() -> Void)?
+    var contentSizeChanged: (() -> Void)?
+    var stateChanged: ((String?) -> Void)?
     
     // MARK: Lazy UI
     
@@ -198,6 +200,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         validator = viewModel.validator
         titleLabel.setup(with: .text(viewModel.title))
+        textField.text = viewModel.value
         
         if let placeholder = viewModel.placeholder,
            let config = config?.placeholderConfiguration {
@@ -272,6 +275,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         }
         
         displayState = state
+        stateChanged?(textField.text)
         
         hintLabel.configure(with: .init(textColor: background?.tintColor))
         // Border
@@ -282,7 +286,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         Self.animate(withDuration: Presets.Animation.duration, animations: {
             self.textFieldContent.layoutIfNeeded()
         }, completion: { _ in
-            self.valueChanged?()
+            self.contentSizeChanged?()
         })
     }
     

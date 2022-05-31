@@ -38,6 +38,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.register(WrapperTableViewCell<WrapperView<FEInfoView>>.self)
         tableView.register(WrapperTableViewCell<NavigationItemView>.self)
         tableView.register(WrapperTableViewCell<ProfileView>.self)
+        tableView.register(WrapperTableViewCell<NameView>.self)
         
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -172,8 +173,12 @@ class BaseTableViewController<C: CoordinatableRoutes,
         
         cell.setup { view in
             view.setup(with: .init(title: text))
-            view.configure(with: indexPath.row % 2 == 0 ? Presets.Button.primary : Presets.Button.secondary)
-            view.setupCustomMargins(all: .zero)
+            view.configure(with: Presets.Button.primaryWithBorder)
+            view.setupCustomMargins(vertical: .large, horizontal: .large)
+            view.snp.makeConstraints { make in
+                // TODO: constants for view heights
+                make.height.equalTo(48)
+            }
         }
         
         return cell
@@ -190,7 +195,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setup { view in
             view.setup(with: model)
             view.configure(with: Presets.TexxtField.primary)
-            view.valueChanged = {
+            view.contentSizeChanged = {
                 tableView.beginUpdates()
                 tableView.endUpdates()
             }
@@ -255,6 +260,25 @@ class BaseTableViewController<C: CoordinatableRoutes,
             
             view.animateTo(state: .error, withAnimation: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, nameCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<NameView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? NameViewModel else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+            view.contentSizeChanged = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+        }
+        
+        return cell
     }
     
     func textFieldDidFinish(for indexPath: IndexPath, with text: String?) {

@@ -18,6 +18,7 @@ enum DemoModels {
         case button
         case textField
         case infoView
+        case name
         
         var header: AccessoryType? { return nil }
         var footer: AccessoryType? { return nil }

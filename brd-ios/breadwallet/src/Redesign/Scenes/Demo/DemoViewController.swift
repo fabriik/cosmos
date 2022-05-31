@@ -34,6 +34,11 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         ]
         
         sectionRows = [
+            Models.Section.name: [
+                NameViewModel(title: .text("You got it at birth"),
+                              firstName: .init(title: "First name"),
+                              lastName: .init(title: "Last name"))
+            ],
             Models.Section.verification: [
                 VerificationViewModel(title: .text("ACCOUNT VERIFICATION"),
                                       status: .none,
@@ -131,6 +136,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         case .profile:
             cell = self.tableView(tableView, profileViewCellForRowAt: indexPath)
             
+        case .name:
+            cell = self.tableView(tableView, nameCellForRowAt: indexPath)
+            
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
@@ -166,6 +174,8 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     // MARK: - Additional Helpers
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard sections[indexPath.section].hashValue == Models.Section.label.hashValue else { return }
+        
         toggleInfo()
     }
     
@@ -209,7 +219,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                                 buttons: [
                                     .init(title: "Donate"),
                                     .init(title: "Donate", image: "close"),
-                                    .init(image: "close"),
+                                    .init(image: "close")
                                 ]))
         popup.closeCallback = { [weak self] in
             self?.hideInfo()
