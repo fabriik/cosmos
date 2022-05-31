@@ -14,13 +14,18 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
                                   PersonalInfoStore>,
                                   PersonalInfoResponseDisplays {
     typealias Models = PersonalInfoModels
+    
+    override var sceneTitle: String? {
+        // TODO: localize
+        return "Personal Information"
+    }
 
     // MARK: - Overrides
     
     override func setupSubviews() {
         super.setupSubviews()
         tableView.register(WrapperTableViewCell<NameView>.self)
-        navigationItem.title = "bla bla again"
+        tableView.register(WrapperTableViewCell<DateView>.self)
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
@@ -28,8 +33,11 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         case .name:
             cell = self.tableView(tableView, nameCellForRowAt: indexPath)
             
-        case .country, .birthdate:
+        case .country:
             cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
+            
+        case .birthdate:
+            cell = self.tableView(tableView, dateCellForRowAt: indexPath)
             
         case .confirm:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
@@ -39,6 +47,19 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         }
         
         cell.contentView.setupCustomMargins(vertical: .small, horizontal: .small)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: .init())
+        }
         
         return cell
     }

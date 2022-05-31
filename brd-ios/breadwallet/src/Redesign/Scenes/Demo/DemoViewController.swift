@@ -20,20 +20,25 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         super.setupSubviews()
         
         tableView.register(WrapperTableViewCell<VerificationView>.self)
+        tableView.register(WrapperTableViewCell<DateView>.self)
     }
     
     override func prepareData() {
         sections = [
+            Models.Section.date,
             Models.Section.verification,
-            Models.Section.profile,
-            Models.Section.infoView,
-            Models.Section.navigation,
-            Models.Section.textField,
-            Models.Section.label,
-            Models.Section.button
+//            Models.Section.profile,
+//            Models.Section.infoView,
+//            Models.Section.navigation,
+//            Models.Section.textField,
+//            Models.Section.label,
+//            Models.Section.button
         ]
         
         sectionRows = [
+            Models.Section.date: [
+                DateViewModel()
+            ],
             Models.Section.name: [
                 NameViewModel(title: .text("You got it at birth"),
                               firstName: .init(title: "First name"),
@@ -139,11 +144,29 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         case .name:
             cell = self.tableView(tableView, nameCellForRowAt: indexPath)
             
+        case .date:
+            cell = self.tableView(tableView, dateCellForRowAt: indexPath)
+            
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
         
         cell.setupCustomMargins(vertical: .small, horizontal: .large)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: .init())
+        }
         
         return cell
     }

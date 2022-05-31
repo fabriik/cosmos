@@ -59,6 +59,13 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     }
     
     // MARK: Lazy UI
+    var value: String? {
+        get { return textField.text }
+        set {
+            textField.text = newValue
+            animateTo(state: newValue?.isEmpty == true ? .error : .filled)
+        }
+    }
     
     private lazy var mainStack: UIStackView = {
         let view = UIStackView()
