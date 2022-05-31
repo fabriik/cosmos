@@ -163,7 +163,7 @@ extension Presets {
                                                     description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
                                                     bottomButton: Presets.Button.primary.with(border: Presets.Border.zero))
         
-        static var limited = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
+        static var resubmit = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
                                                                          tintColor: LightColors.Outline.two,
                                                                          border: .init(tintColor: LightColors.Outline.two,
                                                                                        borderWidth: 1,

@@ -13,7 +13,7 @@ import SnapKit
 
 enum VerificationStatus: String {
     case none
-    case limited
+    case resubmit
     case pending
     case verified
 }
