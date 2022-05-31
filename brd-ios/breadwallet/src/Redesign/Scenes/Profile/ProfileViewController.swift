@@ -55,8 +55,7 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
                 }
                 
                 view.trailingButtonCallback = { [weak self] in
-                    // TODO: start verification
-                    self?.coordinator?.showUnderConstruction("verification process")
+                    self?.coordinator?.openModally(coordinator: AccountVerificationCoordinator.self, scene: Scenes.AccountVerification)
                 }
             }
         }

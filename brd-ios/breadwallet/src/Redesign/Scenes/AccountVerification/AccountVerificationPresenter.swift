@@ -4,23 +4,6 @@
 
 import UIKit
 
-extension AccountVerificationModels.LevelItems {
-    
-    var model: NavigationViewModel {
-        switch self {
-        case .level1:
-            return .init(image: .imageName("lock_closed"),
-                         label: .text("Security settings"),
-                         button: .init(image: "arrow_right"))
-            
-        case .level2:
-            return .init(image: .imageName("settings"),
-                         label: .text("Preferences"),
-                         button: .init(image: "arrow_right"))
-        }
-    }
-}
-
 final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificationActionResponses {
     
     typealias Models = AccountVerificationModels
@@ -43,18 +26,17 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
             .verificationLevel: [
                 VerificationViewModel(title: .text("Level 1"),
                                       status: .verified,
-                                      description: .text("ID Verification"),
+                                      description: .text("Personal information"),
                                       bottomButton: .init(title: "Account limit: Unlimited", image: nil)),
                 VerificationViewModel(title: .text("Level 1"),
                                       status: .pending,
                                       description: .text("Personal information"),
-                                      bottomButton: .init(title: "Verify your account")),
+                                      bottomButton: .init(title: "Higher swap limits")),
                
                 VerificationViewModel(title: .text("Level 2"),
                                       status: .resubmit,
-                                      infoButton: .init(image: "infoIcon"),
                                       description: .text("ID Verification"),
-                                      bottomButton: .init(title: "Account limit: Unlimited", image: nil))
+                                      bottomButton: .init(title: "Account limit: Unlimited"))
             ]
         ]
         
