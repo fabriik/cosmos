@@ -54,14 +54,6 @@ extension BRAPIClient {
     func getCurrencyMetaData(completion: @escaping ([CurrencyId: CurrencyMetaData]) -> Void) {
         guard let cachedFilePath = CurrencyFileManager.sharedCurrenciesFilePath else { return }
         
-        var shouldProcess = true
-        // If cache isn't expired, use cached data and return before the network call
-        if !CurrencyFileManager.isCacheExpired(path: cachedFilePath, timeout: C.secondsInMinute*60*24) &&
-            CurrencyFileManager.processCurrenciesCache(path: cachedFilePath, completion: completion) {
-            //Even if cache is used, we still want to update the local version
-            shouldProcess = false
-        }
-        
         var req = URLRequest(url: url("/currencies"))
         req.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         send(request: req, handler: { (result: APIResult<[CurrencyMetaData]>) in
@@ -72,22 +64,19 @@ extension BRAPIClient {
                     let data = try JSONEncoder().encode(currencies)
                     try data.write(to: URL(fileURLWithPath: cachedFilePath))
                 } catch let e {
-                    print("[CurrencyList] failed to write to cache: \(e.localizedDescription)")
+                    print("[CurrencyList] Failed to write to cache: \(e.localizedDescription)")
                 }
-                if shouldProcess {
-                    CurrencyFileManager.processCurrencies(currencies, completion: completion)
-                }
+                
+                CurrencyFileManager.processCurrencies(currencies, completion: completion)
+                
             case .error(let error):
-                print("[CurrencyList] error fetching tokens: \(error)")
+                print("[CurrencyList] Error fetching tokens: \(error)")
                 CurrencyFileManager.copyEmbeddedCurrencies(path: cachedFilePath)
-                if shouldProcess {
-                    let result = CurrencyFileManager.processCurrenciesCache(path: cachedFilePath, completion: completion)
-                    assert(result, "failed to get currency list from backend or cache")
-                }
+                
+                let result = CurrencyFileManager.processCurrenciesCache(path: cachedFilePath, completion: completion)
+                assert(result, "[CurrencyList] Failed to get currency list from backend or cache")
             }
         })
-        
-        CurrencyFileManager.cleanupOldTokensFile()
     }
     
     private func send<ResultType>(request: URLRequest, handler: @escaping (APIResult<ResultType>) -> Void) {

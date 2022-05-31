@@ -23,7 +23,8 @@ class AssetIndex: BRKVStoreObject, Codable {
     
     /// Create new
     init() {
-        enabledAssetIds = AssetIndex.defaultCurrencyIds
+        enabledAssetIds = Currencies.shared.defaultCurrencyIds
+        
         super.init(key: AssetIndex.key, version: 0, lastModified: Date(), deleted: false, data: Data())
     }
     
@@ -61,13 +62,7 @@ class AssetIndex: BRKVStoreObject, Codable {
     }
     
     func resetToDefault() {
-        enabledAssetIds = AssetIndex.defaultCurrencyIds
-    }
-    
-    static var defaultCurrencyIds: [CurrencyId] {
-        return [Currencies.shared.bsv?.uid,
-                Currencies.shared.btc?.uid,
-                Currencies.shared.eth?.uid].compactMap { $0 }
+        enabledAssetIds = Currencies.shared.defaultCurrencyIds
     }
 }
 

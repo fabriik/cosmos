@@ -334,19 +334,19 @@ extension CurrencyWithIcon {
 /// Natively supported currencies. Enum maps to ticker code.
 extension Currencies {
     var btc: Currency? {
-        return Currencies.shared.walletState(for: "btc")?.currency
+        return walletState(for: AssetCodes.btc.value)?.currency
     }
     
     var bch: Currency? {
-        return Currencies.shared.walletState(for: "bch")?.currency
+        return walletState(for: AssetCodes.bch.value)?.currency
     }
     
     var eth: Currency? {
-        return Currencies.shared.walletState(for: "eth")?.currency
+        return walletState(for: AssetCodes.eth.value)?.currency
     }
     
     var bsv: Currency? {
-        return Currencies.shared.walletState(for: "bsv")?.currency
+        return walletState(for: AssetCodes.bsv.value)?.currency
     }
     
     func walletState(for code: String) -> WalletState? {
