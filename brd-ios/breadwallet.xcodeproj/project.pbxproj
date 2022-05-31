@@ -447,9 +447,16 @@
 		7EF45F522845352400D1F7B0 /* PersonalInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4B2845352400D1F7B0 /* PersonalInfoStore.swift */; };
 		7EF45F532845352400D1F7B0 /* PersonalInfoVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4C2845352400D1F7B0 /* PersonalInfoVIP.swift */; };
 		7EF45F542845352400D1F7B0 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4D2845352400D1F7B0 /* PersonalInfoModels.swift */; };
-		7EF45F552845352400D1F7B0 /* PersonalInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4E2845352400D1F7B0 /* PersonalInfoCoordinator.swift */; };
 		7EF45F582845353100D1F7B0 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F562845353000D1F7B0 /* DateView.swift */; };
 		7EF45F592845353100D1F7B0 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F572845353100D1F7B0 /* NameView.swift */; };
+		7EF45F732846243700D1F7B0 /* ItemSelectionVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F6C2846243700D1F7B0 /* ItemSelectionVIP.swift */; };
+		7EF45F742846243700D1F7B0 /* ItemSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F6D2846243700D1F7B0 /* ItemSelectionInteractor.swift */; };
+		7EF45F752846243700D1F7B0 /* ItemSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F6E2846243700D1F7B0 /* ItemSelectionPresenter.swift */; };
+		7EF45F762846243700D1F7B0 /* ItemSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F6F2846243700D1F7B0 /* ItemSelectionStore.swift */; };
+		7EF45F772846243700D1F7B0 /* ItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F702846243700D1F7B0 /* ItemSelectionViewController.swift */; };
+		7EF45F782846243700D1F7B0 /* ItemSelectionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F712846243700D1F7B0 /* ItemSelectionModels.swift */; };
+		7EF45F792846243700D1F7B0 /* ItemSelectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F722846243700D1F7B0 /* ItemSelectionCoordinator.swift */; };
+		7EF45F7B2846244F00D1F7B0 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F7A2846244F00D1F7B0 /* ItemView.swift */; };
 		9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */; };
 		9A39B1252202AE9E00E5018B /* MultiframeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */; };
 		9A926F4422034B3700CC2263 /* CellHighlight-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */; };
@@ -1383,9 +1390,16 @@
 		7EF45F4B2845352400D1F7B0 /* PersonalInfoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoStore.swift; sourceTree = "<group>"; };
 		7EF45F4C2845352400D1F7B0 /* PersonalInfoVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoVIP.swift; sourceTree = "<group>"; };
 		7EF45F4D2845352400D1F7B0 /* PersonalInfoModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoModels.swift; sourceTree = "<group>"; };
-		7EF45F4E2845352400D1F7B0 /* PersonalInfoCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoCoordinator.swift; sourceTree = "<group>"; };
 		7EF45F562845353000D1F7B0 /* DateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		7EF45F572845353100D1F7B0 /* NameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		7EF45F6C2846243700D1F7B0 /* ItemSelectionVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionVIP.swift; sourceTree = "<group>"; };
+		7EF45F6D2846243700D1F7B0 /* ItemSelectionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionInteractor.swift; sourceTree = "<group>"; };
+		7EF45F6E2846243700D1F7B0 /* ItemSelectionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionPresenter.swift; sourceTree = "<group>"; };
+		7EF45F6F2846243700D1F7B0 /* ItemSelectionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionStore.swift; sourceTree = "<group>"; };
+		7EF45F702846243700D1F7B0 /* ItemSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionViewController.swift; sourceTree = "<group>"; };
+		7EF45F712846243700D1F7B0 /* ItemSelectionModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionModels.swift; sourceTree = "<group>"; };
+		7EF45F722846243700D1F7B0 /* ItemSelectionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionCoordinator.swift; sourceTree = "<group>"; };
+		7EF45F7A2846244F00D1F7B0 /* ItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		9A39B1222202AA3400E5018B /* HomeScreenCellHighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCellHighlightView.swift; path = src/Views/AnimatedIcons/HomeScreenCellHighlightView.swift; sourceTree = "<group>"; };
 		9A39B1242202AE9E00E5018B /* MultiframeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiframeAnimation.swift; path = src/Views/AnimatedIcons/MultiframeAnimation.swift; sourceTree = "<group>"; };
 		9A926EEE22034B2E00CC2263 /* CellHighlight-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellHighlight-29.png"; path = "src/Views/AnimatedIcons/Cell Highlight View Frames/CellHighlight-29.png"; sourceTree = "<group>"; };
@@ -2812,6 +2826,7 @@
 		7E5CB32F2835090D00EC787E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7EF45F6B2846243700D1F7B0 /* ItemSelection */,
 				7EF45F342844F19F00D1F7B0 /* PersonalInformation */,
 				7EF45F472845352400D1F7B0 /* PersonalInformation */,
 				7E8E978F283F4817008606B0 /* Profile */,
@@ -3002,6 +3017,7 @@
 				7E5CB3702835090E00EC787E /* Wrappers */,
 				7E8E979E283F4851008606B0 /* Core */,
 				7E8E979F283F48EE008606B0 /* NavigationItemView.swift */,
+				7EF45F7A2846244F00D1F7B0 /* ItemView.swift */,
 				7EF45F562845353000D1F7B0 /* DateView.swift */,
 				7EF45F572845353100D1F7B0 /* NameView.swift */,
 				7EF45F322844D26E00D1F7B0 /* VerificationView.swift */,
@@ -3102,9 +3118,22 @@
 				7EF45F4B2845352400D1F7B0 /* PersonalInfoStore.swift */,
 				7EF45F4C2845352400D1F7B0 /* PersonalInfoVIP.swift */,
 				7EF45F4D2845352400D1F7B0 /* PersonalInfoModels.swift */,
-				7EF45F4E2845352400D1F7B0 /* PersonalInfoCoordinator.swift */,
 			);
 			path = PersonalInformation;
+			sourceTree = "<group>";
+		};
+		7EF45F6B2846243700D1F7B0 /* ItemSelection */ = {
+			isa = PBXGroup;
+			children = (
+				7EF45F6C2846243700D1F7B0 /* ItemSelectionVIP.swift */,
+				7EF45F6D2846243700D1F7B0 /* ItemSelectionInteractor.swift */,
+				7EF45F6E2846243700D1F7B0 /* ItemSelectionPresenter.swift */,
+				7EF45F6F2846243700D1F7B0 /* ItemSelectionStore.swift */,
+				7EF45F702846243700D1F7B0 /* ItemSelectionViewController.swift */,
+				7EF45F712846243700D1F7B0 /* ItemSelectionModels.swift */,
+				7EF45F722846243700D1F7B0 /* ItemSelectionCoordinator.swift */,
+			);
+			path = ItemSelection;
 			sourceTree = "<group>";
 		};
 		9A39B0752202A96500E5018B /* Cell Highlight View Frames */ = {
@@ -4492,6 +4521,7 @@
 				7B432FC0280455F70056B364 /* KYCResetPasswordWorker.swift in Sources */,
 				3A5C9B2B22A5676F00C907C1 /* PriceChange.swift in Sources */,
 				7B54E51527F4A208002DD1E4 /* KYCUploadSelfieWorker.swift in Sources */,
+				7EF45F782846243700D1F7B0 /* ItemSelectionModels.swift in Sources */,
 				7B54E5AC27F4A2B0002DD1E4 /* SimpleTextField.swift in Sources */,
 				7E5CB3AC2835090E00EC787E /* WrapperView.swift in Sources */,
 				7B54E52A27F4A208002DD1E4 /* KYCConfirmEmailPresenter.swift in Sources */,
@@ -4503,6 +4533,7 @@
 				4F3AB12A25D58AB400B378DC /* SelectBakerViewController.swift in Sources */,
 				E843C1172188D19000F46672 /* OnboardingViewController.swift in Sources */,
 				7B54E51227F4A208002DD1E4 /* KYCUploadModels.swift in Sources */,
+				7EF45F772846243700D1F7B0 /* ItemSelectionViewController.swift in Sources */,
 				7B432FA528040EB90056B364 /* KYCForgotPasswordModels.swift in Sources */,
 				7E5CB38B2835090E00EC787E /* Shadable.swift in Sources */,
 				7B54E52127F4A208002DD1E4 /* KYCSignInViewController.swift in Sources */,
@@ -4526,6 +4557,8 @@
 				222319B01F27985A00008F20 /* BRBrowserViewController.swift in Sources */,
 				7BDB4A092806F4A60031F015 /* HistoryFetcher.swift in Sources */,
 				3A611A0F2325738C004B8E36 /* AnimatedBlockSetLogo.swift in Sources */,
+				7EF45F7B2846244F00D1F7B0 /* ItemView.swift in Sources */,
+				7EF45F762846243700D1F7B0 /* ItemSelectionStore.swift in Sources */,
 				71C44E92225F95B100EF4459 /* RecoveryKeyCompleteViewController.swift in Sources */,
 				7BDB4A0B2806F5260031F015 /* RedeemGiftViewController.swift in Sources */,
 				CE6DCC251E6001E50044257B /* UIControl+Callback.swift in Sources */,
@@ -4667,6 +4700,7 @@
 				7E5CB38C2835090E00EC787E /* Borderable.swift in Sources */,
 				7B432FB9280448520056B364 /* KYCResetPasswordViewController.swift in Sources */,
 				7EF45F592845353100D1F7B0 /* NameView.swift in Sources */,
+				7EF45F742846243700D1F7B0 /* ItemSelectionInteractor.swift in Sources */,
 				CEAA9E951DC1659F0066731D /* UILabel+BRWAdditions.swift in Sources */,
 				7C6FD3F4213F205400EFF35F /* InboxMetaData.swift in Sources */,
 				CEBF292E1EF99E55005C330A /* LightWeightAlert.swift in Sources */,
@@ -4752,6 +4786,7 @@
 				7B54E54827F4A208002DD1E4 /* KYCAddressPresenter.swift in Sources */,
 				7B54E53A27F4A208002DD1E4 /* KYCTutorialModels.swift in Sources */,
 				7B54E54A27F4A208002DD1E4 /* KYCAddressModels.swift in Sources */,
+				7EF45F732846243700D1F7B0 /* ItemSelectionVIP.swift in Sources */,
 				C469BF1627F6E6920070ED33 /* SwapConfirmTradePresenter.swift in Sources */,
 				CEE20C341EA5B4550086F724 /* ArticleIds.swift in Sources */,
 				7E8E97A2283F78B0008606B0 /* ProfileView.swift in Sources */,
@@ -4843,6 +4878,7 @@
 				7B54E53727F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift in Sources */,
 				CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */,
 				CEB909FA1E5FF242001804DC /* RecoverWalletIntroViewController.swift in Sources */,
+				7EF45F792846243700D1F7B0 /* ItemSelectionCoordinator.swift in Sources */,
 				CE25BF911DF9ADE700BC67B6 /* UIImage+Utils.swift in Sources */,
 				7B54E5AD27F4A2B0002DD1E4 /* KYCNavigationController.swift in Sources */,
 				7B54E54627F4A208002DD1E4 /* KYCProgressView.swift in Sources */,
@@ -4945,7 +4981,6 @@
 				7E5CB3932835090E00EC787E /* FetchVIP.swift in Sources */,
 				7EF2999327E3B8D200A2238A /* Models.swift in Sources */,
 				71249916221F466800BEA491 /* Prompt.swift in Sources */,
-				7EF45F552845352400D1F7B0 /* PersonalInfoCoordinator.swift in Sources */,
 				CE6B6B4A1E54C0CB00B31405 /* SecurityCenterCell.swift in Sources */,
 				7B54E54127F4A208002DD1E4 /* KYCCompletePresenter.swift in Sources */,
 				7EF45F522845352400D1F7B0 /* PersonalInfoStore.swift in Sources */,
@@ -4965,6 +5000,7 @@
 				7E8E979A283F4830008606B0 /* ProfileModels.swift in Sources */,
 				CE6DCC271E6108D50044257B /* EnterPhraseCell.swift in Sources */,
 				CE760EDD1E561DF900EFAC2B /* UpdatePinViewController.swift in Sources */,
+				7EF45F752846243700D1F7B0 /* ItemSelectionPresenter.swift in Sources */,
 				22A9A9481DF61945000F0016 /* BRBitID.swift in Sources */,
 				CE0BC980215ACBE100E68B2B /* TokenImageNoBackground.swift in Sources */,
 				7C0F3DC42124A81100531E54 /* Backend.swift in Sources */,
