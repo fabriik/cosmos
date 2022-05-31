@@ -13,6 +13,7 @@ extension Scenes {
 }
 
 protocol PersonalInfoViewActions: BaseViewActions, FetchViewActions {
+    func countrySelected(viewAction: PersonalInfoModels.Country.ViewAction)
 }
 
 protocol PersonalInfoActionResponses: BaseActionResponses, FetchActionResponses {
@@ -22,6 +23,10 @@ protocol PersonalInfoResponseDisplays: AnyObject, BaseResponseDisplays, FetchRes
 }
 
 protocol PersonalInfoDataStore: BaseDataStore, FetchDataStore {
+    var firstName: String? { get set }
+    var lastName: String? { get set }
+    var country: String? { get set }
+    var birthdate: Date? { get set }
 }
 
 protocol PersonalInfoDataPassing {
@@ -29,4 +34,5 @@ protocol PersonalInfoDataPassing {
 }
 
 protocol PersonalInfoRoutes: CoordinatableRoutes {
+    func showCountrySelector(selected: ((String) -> Void)?)
 }

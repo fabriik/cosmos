@@ -21,6 +21,16 @@ class PersonalInfoInteractor: NSObject, Interactor, PersonalInfoViewActions {
                                                                        country: nil,
                                                                        birthdate: nil)))
     }
+    
+    func countrySelected(viewAction: PersonalInfoModels.Country.ViewAction) {
+        guard  let country = viewAction.code else { return }
+        dataStore?.country = country
+        
+        presenter?.presentData(actionResponse: .init(item: Models.Item(firstName: dataStore?.firstName,
+                                                                       lastName: dataStore?.lastName,
+                                                                       country: dataStore?.country,
+                                                                       birthdate: dataStore?.birthdate)))
+    }
 
     // MARK: - Aditional helpers
 }
