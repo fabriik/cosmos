@@ -91,7 +91,6 @@ class BaseCoordinator: NSObject,
         childCoordinators.append(coordinator)
         
         navigationController.show(nvc, sender: nil)
-        coordinator.start()
     }
 
     func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?) {}

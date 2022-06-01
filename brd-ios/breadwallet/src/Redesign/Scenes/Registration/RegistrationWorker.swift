@@ -54,7 +54,7 @@ class RegistrationWorker: KYCBasePlainResponseWorker {
         // TODO: extract?
         let formatter = DateFormatter()
         formatter.locale = .init(identifier: "US")
-        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss"
+        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
         let dateString = formatter.string(from: Date())
         
         return [
