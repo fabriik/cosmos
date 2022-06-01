@@ -20,7 +20,6 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     override func setupSubviews() {
         super.setupSubviews()
         tableView.register(WrapperTableViewCell<NameView>.self)
-        navigationItem.title = "bla bla again"
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
