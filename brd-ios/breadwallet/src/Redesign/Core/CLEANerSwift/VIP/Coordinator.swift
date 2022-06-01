@@ -84,7 +84,6 @@ class BaseCoordinator: NSObject,
         nvc.modalPresentationStyle = presentationStyle
 
         let coordinator = C(navigationController: nvc)
-//        coordinator.start()
         controller.coordinator = coordinator as? VC.CoordinatorType
         configure?(controller)
 
@@ -92,6 +91,7 @@ class BaseCoordinator: NSObject,
         childCoordinators.append(coordinator)
         
         navigationController.show(nvc, sender: nil)
+        coordinator.start()
     }
 
     func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?) {}

@@ -47,6 +47,17 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     var contentSizeChanged: (() -> Void)?
     var stateChanged: ((String?) -> Void)?
     
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return textField.isUserInteractionEnabled
+        }
+        
+        set {
+            content.isUserInteractionEnabled = newValue
+            textField.isUserInteractionEnabled = newValue
+        }
+    }
+    
     // MARK: Lazy UI
     
     private lazy var mainStack: UIStackView = {
@@ -156,7 +167,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         var background: BackgroundConfiguration?
         switch displayState {
-        case .normal:
+        case .normal, .filled:
             background = config?.backgroundConfiguration
             
             // TODO: any need to split?
@@ -221,6 +232,11 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         trailingView.isHidden = viewModel.trailing == nil
         trailingView.setup(with: viewModel.trailing)
         layoutSubviews()
+        
+        guard textField.text?.isEmpty == false else {
+            return
+        }
+        animateTo(state: .filled, withAnimation: false)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -233,7 +249,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let isValid = validator?(textField.text) == true
-        let state: DisplayState = isValid ? .normal : .error
+        let state: DisplayState = isValid ? .filled : .error
         animateTo(state: state, withAnimation: true)
         
         return isValid
@@ -253,6 +269,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         switch state {
         case .normal:
             background = config?.backgroundConfiguration
+            
+        case .filled:
+            background = config?.backgroundConfiguration
+            hideTextField = false
             
         case .highlighted, .selected:
             background = config?.selectedBackgroundConfiguration

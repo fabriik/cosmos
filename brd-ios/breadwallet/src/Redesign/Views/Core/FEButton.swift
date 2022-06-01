@@ -102,7 +102,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         let background: BackgroundConfiguration?
         
         switch state {
-        case .normal:
+        case .normal, .filled:
             background = config?.backgroundConfiguration
             
             // TODO: any need to split?

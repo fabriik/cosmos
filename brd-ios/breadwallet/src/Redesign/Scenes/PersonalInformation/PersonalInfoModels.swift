@@ -21,4 +21,10 @@ enum PersonalInfoModels {
         var header: AccessoryType? { nil }
         var footer: AccessoryType? { nil }
     }
+    
+    struct Country {
+        struct ViewAction {
+            var code: String?
+        }
+    }
 }
