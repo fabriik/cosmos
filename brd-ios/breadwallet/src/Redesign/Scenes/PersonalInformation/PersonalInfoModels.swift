@@ -10,7 +10,7 @@ import UIKit
 
 enum PersonalInfoModels {
     
-    typealias Item = (firstName: String?, lastName: String?, country: String?, birthdate: Date?)
+    typealias Item = PersonalInfoStore
  
     enum Section: Sectionable {
         case name
@@ -22,9 +22,34 @@ enum PersonalInfoModels {
         var footer: AccessoryType? { nil }
     }
     
+    struct Name {
+        struct ViewAction {
+            var first: String?
+            var last: String?
+        }
+    }
+    
     struct Country {
         struct ViewAction {
             var code: String?
+        }
+    }
+    
+    struct BirthDate {
+        struct ViewAction {
+            var date: Date?
+        }
+    }
+    
+    struct Validate {
+        struct ViewAction {}
+        
+        struct ActionResponse {
+            var item: Item?
+        }
+        
+        struct ResponseDisplay{
+            var isValid: Bool
         }
     }
 }

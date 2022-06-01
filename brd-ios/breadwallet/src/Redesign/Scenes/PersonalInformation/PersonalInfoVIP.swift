@@ -14,12 +14,17 @@ extension Scenes {
 
 protocol PersonalInfoViewActions: BaseViewActions, FetchViewActions {
     func countrySelected(viewAction: PersonalInfoModels.Country.ViewAction)
+    func birthDateSet(viewAction: PersonalInfoModels.BirthDate.ViewAction)
+    func nameSet(viewAction: PersonalInfoModels.Name.ViewAction)
+    func validate(viewACtion: PersonalInfoModels.Validate.ViewAction)
 }
 
 protocol PersonalInfoActionResponses: BaseActionResponses, FetchActionResponses {
+    func presentValidate(actionResponse: PersonalInfoModels.Validate.ActionResponse)
 }
 
 protocol PersonalInfoResponseDisplays: AnyObject, BaseResponseDisplays, FetchResponseDisplays {
+    func displayValidate(responseDisplay: PersonalInfoModels.Validate.ResponseDisplay)
 }
 
 protocol PersonalInfoDataStore: BaseDataStore, FetchDataStore {

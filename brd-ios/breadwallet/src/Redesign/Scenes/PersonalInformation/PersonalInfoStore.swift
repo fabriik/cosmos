@@ -16,6 +16,14 @@ class PersonalInfoStore: NSObject, BaseDataStore, PersonalInfoDataStore {
     var lastName: String?
     var country: String?
     var birthdate: Date?
+    
+    var isValid: Bool {
+        guard firstName?.isEmpty == false else { return false }
+        guard lastName?.isEmpty == false else { return false }
+        guard country?.isEmpty == false else { return false }
+        guard birthdate != nil else { return false }
+        return true
+    }
 
     // MARK: - Aditional helpers
 }

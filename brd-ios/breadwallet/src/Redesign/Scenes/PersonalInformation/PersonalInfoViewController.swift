@@ -14,21 +14,32 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
                                   PersonalInfoStore>,
                                   PersonalInfoResponseDisplays {
     typealias Models = PersonalInfoModels
+    
+    override var sceneTitle: String? {
+        // TODO: localize
+        return "Personal Information"
+    }
+    private var isValid = false
 
     // MARK: - Overrides
     
     override func setupSubviews() {
         super.setupSubviews()
         tableView.register(WrapperTableViewCell<NameView>.self)
+        tableView.register(WrapperTableViewCell<DateView>.self)
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch sections[indexPath.section] as? Models.Section {
         case .name:
             cell = self.tableView(tableView, nameCellForRowAt: indexPath)
             
-        case .country, .birthdate:
+        case .country:
             cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
+            
+        case .birthdate:
+            cell = self.tableView(tableView, dateCellForRowAt: indexPath)
             
         case .confirm:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
@@ -38,6 +49,44 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         }
         
         cell.contentView.setupCustomMargins(vertical: .small, horizontal: .small)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, nameCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<NameView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? NameViewModel else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+            view.contentSizeChanged = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+            view.valueChanged = { [weak self] first, last in
+                self?.interactor?.nameSet(viewAction: .init(first: first, last: last))
+            }
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath) else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: .init())
+            view.valueChanged = { [weak self] date in
+                self?.interactor?.birthDateSet(viewAction: .init(date: date))
+            }
+        }
         
         return cell
     }
@@ -58,11 +107,37 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard var model = sectionRows[section]?[indexPath.row] as? ButtonViewModel,
+              let cell: WrapperTableViewCell<FEButton> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        model.enabled = isValid
+        cell.setup { view in
+            view.configure(with: Presets.Button.primary)
+            view.setup(with: model)
+            view.setupCustomMargins(vertical: .large, horizontal: .large)
+            view.snp.makeConstraints { make in
+                // TODO: constants for view heights
+                make.height.equalTo(48)
+            }
+            view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        }
+        
+        return cell
+    }
+    
+    @objc func buttonTapped() {
+        coordinator?.showUnderConstruction("FORM SUBMISSION")
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section] as? Models.Section {
         case .country:
             coordinator?.showCountrySelector() { [weak self] code in
-                print("selected \(code)")
                 self?.interactor?.countrySelected(viewAction: .init(code: code))
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             }
@@ -75,6 +150,12 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     // MARK: - User Interaction
 
     // MARK: - PersonalInfoResponseDisplay
-
+    func displayValidate(responseDisplay: PersonalInfoModels.Validate.ResponseDisplay) {
+        guard let section = sections.firstIndex(of: Models.Section.confirm),
+              let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else {
+            return
+        }
+        cell.wrappedView.isEnabled = responseDisplay.isValid
+    }
     // MARK: - Additional Helpers
 }

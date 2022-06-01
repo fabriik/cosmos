@@ -45,7 +45,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     
     private var validator: ((String?) -> Bool)?
     var contentSizeChanged: (() -> Void)?
-    var stateChanged: ((String?) -> Void)?
+    var valueChanged: ((String?) -> Void)?
     
     override var isUserInteractionEnabled: Bool {
         get {
@@ -59,6 +59,13 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     }
     
     // MARK: Lazy UI
+    var value: String? {
+        get { return textField.text }
+        set {
+            textField.text = newValue
+            animateTo(state: newValue?.isEmpty == true ? .error : .filled)
+        }
+    }
     
     private lazy var mainStack: UIStackView = {
         let view = UIStackView()
@@ -247,6 +254,20 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         animateTo(state: .normal)
     }
     
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        guard let text = textField.text,
+//              let textRange = Range(range, in: text) else {
+//            return false
+//        }
+//        let updatedText = text.replacingCharacters(in: textRange, with: string)
+//
+//        let isValid = validator?(updatedText) == true
+//        let state: DisplayState = isValid ? .filled : .error
+//        animateTo(state: state, withAnimation: true)
+//
+//        return true
+//    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let isValid = validator?(textField.text) == true
         let state: DisplayState = isValid ? .filled : .error
@@ -288,6 +309,9 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         }
         textField.isHidden = hideTextField
         hintLabel.isHidden = hint == nil
+        if textField.text?.isEmpty == false {
+            valueChanged?(textField.text)
+        }
         
         if let text = hint,
            !text.isEmpty {
@@ -295,7 +319,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         }
         
         displayState = state
-        stateChanged?(textField.text)
         
         hintLabel.configure(with: .init(textColor: background?.tintColor))
         // Border
