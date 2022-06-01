@@ -11,13 +11,28 @@
 import Foundation
 import WalletKit
 
-struct RegistrationModelData: UrlModelData {
-    func urlParameters() -> [String] {
-        return []
+class RegistrationMapper: ModelMapper<RegistrationResponseData, RegistrationData> {
+    
+    override func getModel(from response: RegistrationResponseData) -> RegistrationData? {
+        guard let key = response.sessionKey else {
+            return nil
+        }
+        return .init(sessionKey: key)
     }
 }
 
-struct RegistrationWorkerRequest: RequestModelData {
+struct RegistrationResponseData: ModelResponse {
+    var data: [String: String]?
+    var sessionKey: String? {
+        return data?["sessionKey"]
+    }
+}
+
+struct RegistrationData: Model {
+    var sessionKey: String?
+}
+
+struct RegistrationRequestData: RequestModelData {
     let email: String?
     let token: String?
     
@@ -29,20 +44,15 @@ struct RegistrationWorkerRequest: RequestModelData {
     }
 }
 
-struct RegistrationWorkerData: RequestModelData, UrlModelData {
-    let workerRequest: RegistrationWorkerRequest
-    let workerUrlModelData: RegistrationModelData
-    
-    func getParameters() -> [String: Any] {
-        return workerRequest.getParameters()
-    }
-    
+struct RegistrationModelData: UrlModelData {
     func urlParameters() -> [String] {
-        return workerUrlModelData.urlParameters()
+        return []
     }
 }
 
-class RegistrationWorker: KYCBasePlainResponseWorker {
+class RegistrationWorker: BaseResponseWorker<RegistrationResponseData,
+                          RegistrationData,
+                          RegistrationMapper> {
     override func getHeaders() -> [String: String] {
         guard let email = (getParameters()["email"] as? String),
               let token = (getParameters()["token"] as? String),
@@ -64,9 +74,7 @@ class RegistrationWorker: KYCBasePlainResponseWorker {
     }
     
     override func getUrl() -> String {
-        guard let urlParams = (requestData as? RegistrationWorkerData)?.urlParameters() else { return "" }
-        
-        return APIURLHandler.getUrl(KYCAuthEndpoints.register, parameters: urlParams)
+        return APIURLHandler.getUrl(KYCAuthEndpoints.register)
     }
     
     override func getParameters() -> [String: Any] {

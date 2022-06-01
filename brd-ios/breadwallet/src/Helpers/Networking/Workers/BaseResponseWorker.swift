@@ -13,6 +13,18 @@ class BaseResponseWorker<T: ModelResponse, U: Model, V: ModelMapper<T, U>>: APIC
     var completion: Completion?
     var result: U?
     
+    override func getHeaders() -> [String: String] {
+        var key = UserDefaults.kycSessionKeyValue
+        
+        if key.isEmpty,
+           let tokenData: [AnyHashable: Any] = try? keychainItem(key: KeychainKey.apiUserAccount),
+           let token = tokenData["token"] as? String {
+            key = "Bread \(token)"
+        }
+        
+        return ["Authorization": key]
+    }
+    
     func execute(requestData: RequestModelData? = nil, completion: Completion?) {
         self.requestData = requestData
         self.completion = completion

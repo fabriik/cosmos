@@ -17,22 +17,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     typealias Models = DemoModels
     
     // MARK: - Overrides
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        guard let tokenData: [AnyHashable: Any] = try? keychainItem(key: KeychainKey.apiUserAccount),
-              let token = tokenData["token"] as? String
-        else { return }
-        
-        let workerUrlModelData = RegistrationModelData()
-        let workerRequest = RegistrationWorkerRequest(email: "r.cresnik@nchain.com", token: token)
-        let workerData = RegistrationWorkerData(workerRequest: workerRequest, workerUrlModelData: workerUrlModelData)
-        
-        RegistrationWorker().execute(requestData: workerData) { error in
-            print(error?.localizedDescription)
-        }
-    }
-    
     override func setupSubviews() {
         super.setupSubviews()
         

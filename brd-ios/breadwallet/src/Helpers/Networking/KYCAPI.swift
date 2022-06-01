@@ -22,8 +22,8 @@ enum KYCAuthEndpoints: String, URLType {
     
     case register = "associate"
     case login
-    case confirm = "register/confirm?%@&confirmation_code=%@"
-    case resend = "register/confirm/resend?%@"
+    case confirm = "associate/confirm"
+    case resend = "associate/resend"
     case startResetPassword = "password/start"
     case acceptResetPassword = "password/accept"
 
