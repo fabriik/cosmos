@@ -48,7 +48,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                 
                 VerificationViewModel(title: .text("ACCOUNT LIMITS"),
                                       status: .resubmit,
-//                                      status: .init(),
                                       infoButton: .init(image: "infoIcon"),
                                       description: .text("Basic ($1,000/day)"),
                                       bottomButton: .init(title: "Upgrade your limits")),
