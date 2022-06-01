@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WalletKit
 
 class DemoViewController: BaseTableViewController<DemoCoordinator,
                           DemoInteractor,

@@ -28,6 +28,7 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         tableView.register(WrapperTableViewCell<NameView>.self)
         tableView.register(WrapperTableViewCell<DateView>.self)
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch sections[indexPath.section] as? Models.Section {
