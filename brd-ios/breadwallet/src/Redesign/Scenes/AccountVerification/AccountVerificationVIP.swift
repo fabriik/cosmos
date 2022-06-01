@@ -18,6 +18,9 @@ protocol AccountVerificationResponseDisplays: AnyObject, BaseResponseDisplays, F
 }
 
 protocol AccountVerificationDataStore: BaseDataStore, FetchDataStore {
+    var verified: VerificationStatus? { get set }
+    var pending: VerificationStatus? { get set }
+    var resubmit: VerificationStatus? { get set }
 }
 
 protocol AccountVerificationDataPassing {

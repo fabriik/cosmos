@@ -12,23 +12,11 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
 
     // MARK: - AccountVerificationActionResponses
     func presentData(actionResponse: FetchModels.Get.ActionResponse) {
+        guard let item = actionResponse.item as? Models.Item else { return }
         
-        let sections: [Models.Section] = [
-            .verificationLevel
-        ]
-        
-        let sectionRows: [Models.Section: [Any]] = [
-            // TODO: localize!
-            .verificationLevel: [
-                VerificationViewModel(title: .text("Level 1"),
-                                      status: .verified,
-                                      description: .text("Personal information"),
-                                      bottomButton: .init(title: "Account limit: $1,000/day ($10,000 lifetime)", image: nil)),
-                VerificationViewModel(title: .text("Level 2"),
-                                      status: .pending,
-                                      description: .text("ID Verification"),
-                                      bottomButton: .init(title: "Account limit: Unlimited"))
-            ]
+        let sections = [ Models.Section.verificationLevel ]
+        let sectionRows = [
+            Models.Section.verificationLevel: item
         ]
         
         viewController?.displayData(responseDisplay: .init(sections: sections, sectionRows: sectionRows))
