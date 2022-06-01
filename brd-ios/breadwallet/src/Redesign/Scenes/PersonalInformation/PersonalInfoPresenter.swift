@@ -39,10 +39,33 @@ final class PersonalInfoPresenter: NSObject, Presenter, PersonalInfoActionRespon
             
             .birthdate: [ TextFieldModel(title: "Date of birth", value: "\(item.birthdate ?? Date())", error: "to short", validator: { $0?.isEmpty == false }) ],
             .confirm: [
-                "Confirm"
+                ButtonViewModel(title: "Confirm")
             ]
         ]
         
         viewController?.displayData(responseDisplay: .init(sections: sections, sectionRows: sectionRows))
+    }
+    
+    func presentValidate(actionResponse: PersonalInfoModels.Validate.ActionResponse) {
+        var isValid = true
+        if let value = actionResponse.item?.firstName,
+           value.count < 1 {
+            isValid = false
+        }
+        if let value = actionResponse.item?.lastName,
+           value.count < 1 {
+            isValid = false
+        }
+        
+        if let value = actionResponse.item?.country,
+           value.count < 1 {
+            isValid = false
+        }
+        
+        if actionResponse.item?.birthdate == nil {
+            isValid = false
+        }
+        
+        viewController?.displayValidate(responseDisplay: .init(isValid: isValid))
     }
 }

@@ -16,20 +16,34 @@ class PersonalInfoInteractor: NSObject, Interactor, PersonalInfoViewActions {
 
     // MARK: - PersonalInfoViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        presenter?.presentData(actionResponse: .init(item: Models.Item(firstName: nil,
-                                                                       lastName: nil,
-                                                                       country: nil,
-                                                                       birthdate: nil)))
+        presenter?.presentData(actionResponse: .init(item: dataStore))
+        validate(viewACtion: .init())
+    }
+    
+    func nameSet(viewAction: PersonalInfoModels.Name.ViewAction) {
+        if let value = viewAction.first {
+            dataStore?.firstName = value
+        }
+        if let value = viewAction.last {
+            dataStore?.lastName = value
+        }
+        validate(viewACtion: .init())
     }
     
     func countrySelected(viewAction: PersonalInfoModels.Country.ViewAction) {
         guard  let country = viewAction.code else { return }
         dataStore?.country = country
-        
-        presenter?.presentData(actionResponse: .init(item: Models.Item(firstName: dataStore?.firstName,
-                                                                       lastName: dataStore?.lastName,
-                                                                       country: dataStore?.country,
-                                                                       birthdate: dataStore?.birthdate)))
+        getData(viewAction: .init())
+    }
+    
+    func birthDateSet(viewAction: PersonalInfoModels.BirthDate.ViewAction) {
+        guard  let date = viewAction.date else { return }
+        dataStore?.birthdate = date
+        validate(viewACtion: .init())
+    }
+    
+    func validate(viewACtion: PersonalInfoModels.Validate.ViewAction) {
+        presenter?.presentValidate(actionResponse: .init(item: dataStore))
     }
 
     // MARK: - Aditional helpers

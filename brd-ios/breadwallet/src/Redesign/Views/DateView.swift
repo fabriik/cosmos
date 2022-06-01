@@ -22,8 +22,7 @@ struct DateViewModel: ViewModel {
 class DateView: FEView<DateConfiguration, DateViewModel> {
     
     var contentSizeChanged: (() -> Void)?
-    var firstNameValidator: ((String?) -> Bool)? = { return ($0?.count ?? 0) >= 1 }
-    var lastNameValidator: ((String?) -> Bool)? = { return ($0?.count ?? 0) >= 1 }
+    var valueChanged: ((Date?) -> Void)?
     
     private lazy var stack: UIStackView = {
         let view = UIStackView()
@@ -132,7 +131,7 @@ class DateView: FEView<DateConfiguration, DateViewModel> {
               let day = components.day,
               let year = components.year
         else { return }
-        
+        valueChanged?(datePicker.date)
         monthTextfield.value = "\(month)"
         dayTextField.value = "\(day)"
         yearTextField.value = "\(year)"

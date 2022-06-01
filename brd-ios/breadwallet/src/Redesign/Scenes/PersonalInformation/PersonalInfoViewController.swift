@@ -19,6 +19,7 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         // TODO: localize
         return "Personal Information"
     }
+    private var isValid = false
 
     // MARK: - Overrides
     
@@ -51,6 +52,28 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         return cell
     }
     
+    func tableView(_ tableView: UITableView, nameCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<NameView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? NameViewModel else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+            view.contentSizeChanged = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+            view.valueChanged = { [weak self] first, last in
+                self?.interactor?.nameSet(viewAction: .init(first: first, last: last))
+            }
+        }
+        
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath) else {
             return UITableViewCell()
@@ -59,6 +82,9 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         cell.setup { view in
             view.configure(with: .init())
             view.setup(with: .init())
+            view.valueChanged = { [weak self] date in
+                self?.interactor?.birthDateSet(viewAction: .init(date: date))
+            }
         }
         
         return cell
@@ -80,11 +106,46 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard var model = sectionRows[section]?[indexPath.row] as? ButtonViewModel,
+              let cell: WrapperTableViewCell<FEButton> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        model.enabled = isValid
+        cell.setup { view in
+            view.configure(with: Presets.Button.primary)
+            view.setup(with: model)
+            view.setupCustomMargins(vertical: .large, horizontal: .large)
+            view.snp.makeConstraints { make in
+                // TODO: constants for view heights
+                make.height.equalTo(48)
+            }
+            view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        }
+        
+        return cell
+    }
+//    override func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = super.tableView(tableView, buttonCellForRowAt: indexPath)
+//        guard let cell = cell as? WrapperTableViewCell<FEButton> else { return cell }
+//
+//        cell.setup { view in
+//        }
+//
+//        return cell
+//    }
+    
+    @objc func buttonTapped() {
+        print("Tap tap \(isValid)")
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section] as? Models.Section {
         case .country:
             coordinator?.showCountrySelector() { [weak self] code in
-                print("selected \(code)")
                 self?.interactor?.countrySelected(viewAction: .init(code: code))
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             }
@@ -97,6 +158,12 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     // MARK: - User Interaction
 
     // MARK: - PersonalInfoResponseDisplay
-
+    func displayValidate(responseDisplay: PersonalInfoModels.Validate.ResponseDisplay) {
+        guard let section = sections.firstIndex(of: Models.Section.confirm),
+              let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else {
+            return
+        }
+        cell.wrappedView.isEnabled = responseDisplay.isValid
+    }
     // MARK: - Additional Helpers
 }

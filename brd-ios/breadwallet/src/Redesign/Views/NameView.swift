@@ -26,6 +26,7 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
     var contentSizeChanged: (() -> Void)?
     var firstNameValidator: ((String?) -> Bool)? = { return ($0?.count ?? 0) >= 1 }
     var lastNameValidator: ((String?) -> Bool)? = { return ($0?.count ?? 0) >= 1 }
+    var valueChanged: ((_ first: String?, _ last: String?) -> Void)?
     
     private var isValid: Bool {
         guard firstNameValidator?(firstName) == true,
@@ -115,11 +116,11 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         firstNameTextField.setup(with: viewModel?.firstName)
         lastNameTextfield.setup(with: viewModel?.lastName)
         
-        firstNameTextField.stateChanged = { [weak self] in
+        firstNameTextField.valueChanged = { [weak self] in
             self?.stateChanged(firstName: $0)
         }
         
-        lastNameTextfield.stateChanged = { [weak self] in
+        lastNameTextfield.valueChanged = { [weak self] in
             self?.stateChanged(lastName: $0)
         }
         stack.layoutIfNeeded()
@@ -129,11 +130,13 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
     var lastName: String?
     
     private func stateChanged(firstName: String? = nil, lastName: String? = nil) {
+        // TODO: clean up this logic
         if let first = firstName {
             self.firstName = first.isEmpty ? nil : first
         } else if let last = lastName {
             self.lastName = last.isEmpty ? nil : last
         }
+        valueChanged?(self.firstName, self.lastName)
         
         let isValid = isValid
         errorLabel.snp.remakeConstraints { make in

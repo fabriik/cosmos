@@ -25,14 +25,14 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     override func prepareData() {
         sections = [
-            Models.Section.date,
-            Models.Section.verification,
+//            Models.Section.date,
+//            Models.Section.verification,
 //            Models.Section.profile,
 //            Models.Section.infoView,
 //            Models.Section.navigation,
 //            Models.Section.textField,
 //            Models.Section.label,
-//            Models.Section.button
+            Models.Section.button
         ]
         
         sectionRows = [
@@ -141,8 +141,8 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         case .profile:
             cell = self.tableView(tableView, profileViewCellForRowAt: indexPath)
             
-        case .name:
-            cell = self.tableView(tableView, nameCellForRowAt: indexPath)
+//        case .name:
+//            cell = self.tableView(tableView, nameCellForRowAt: indexPath)
             
         case .date:
             cell = self.tableView(tableView, dateCellForRowAt: indexPath)
@@ -158,8 +158,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
-        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath),
-              let model = sectionRows[section]?[indexPath.row] else {
+        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath) else {
             return UITableViewCell()
         }
         
