@@ -39,5 +39,5 @@ protocol PersonalInfoDataPassing {
 }
 
 protocol PersonalInfoRoutes: CoordinatableRoutes {
-    func showCountrySelector(selected: ((String) -> Void)?)
+    func showCountrySelector(selected: ((String?) -> Void)?)
 }

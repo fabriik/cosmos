@@ -42,7 +42,7 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes, PersonalInfoRoutes {
                               body: "The \(feat.uppercased()) functionality is being developed for You by the awesome Fabriik team. Stay tuned!"))
     }
     
-    func showCountrySelector(selected: ((String) -> Void)? = nil) {
+    func showCountrySelector(selected: ((String?) -> Void)? = nil) {
         let nvc = UINavigationController()
         let coordinator = ItemSelectionCoordinator(navigationController: nvc)
         coordinator.start()
