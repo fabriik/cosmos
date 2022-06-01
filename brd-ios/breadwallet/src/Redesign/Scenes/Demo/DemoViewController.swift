@@ -25,13 +25,13 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     override func prepareData() {
         sections = [
-//            Models.Section.date,
-//            Models.Section.verification,
-//            Models.Section.profile,
-//            Models.Section.infoView,
-//            Models.Section.navigation,
-//            Models.Section.textField,
-//            Models.Section.label,
+            Models.Section.date,
+            Models.Section.verification,
+            Models.Section.profile,
+            Models.Section.infoView,
+            Models.Section.navigation,
+            Models.Section.textField,
+            Models.Section.label,
             Models.Section.button
         ]
         
@@ -39,35 +39,26 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             Models.Section.date: [
                 DateViewModel()
             ],
-            Models.Section.name: [
-                NameViewModel(title: .text("You got it at birth"),
-                              firstName: .init(title: "First name"),
-                              lastName: .init(title: "Last name"))
-            ],
             Models.Section.verification: [
                 VerificationViewModel(title: .text("ACCOUNT VERIFICATION"),
                                       status: .none,
-//                                      status: .init(),
                                       infoButton: .init(image: "infoIcon"),
                                       description: .text("Upgrade your limits and get full access!"),
                                       bottomButton: .init(title: "Verify your account")),
                 
                 VerificationViewModel(title: .text("ACCOUNT LIMITS"),
                                       status: .limited,
-//                                      status: .init(),
                                       infoButton: .init(image: "infoIcon"),
                                       description: .text("Basic ($1,000/day)"),
                                       bottomButton: .init(title: "Upgrade your limits")),
                 
                 VerificationViewModel(title: .text("ACCOUNT LIMITS"),
                                       status: .pending,
-//                                      status: .init(),
                                       infoButton: .init(image: "infoIcon"),
                                       description: .text("Unlimited (Unlimited transaction amounts)")),
                 
                 VerificationViewModel(title: .text("ACCOUNT LIMITS"),
                                       status: .verified,
-//                                      status: .init(),
                                       infoButton: .init(image: "infoIcon"),
                                       description: .text("Unlimited (Unlimited transaction amounts)"))
             ],
@@ -141,9 +132,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         case .profile:
             cell = self.tableView(tableView, profileViewCellForRowAt: indexPath)
             
-//        case .name:
-//            cell = self.tableView(tableView, nameCellForRowAt: indexPath)
-            
         case .date:
             cell = self.tableView(tableView, dateCellForRowAt: indexPath)
             
@@ -157,7 +145,6 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     }
     
     func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
         guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath) else {
             return UITableViewCell()
         }

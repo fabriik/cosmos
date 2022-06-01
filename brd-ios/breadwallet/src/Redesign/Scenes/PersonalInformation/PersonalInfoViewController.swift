@@ -128,18 +128,9 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         
         return cell
     }
-//    override func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = super.tableView(tableView, buttonCellForRowAt: indexPath)
-//        guard let cell = cell as? WrapperTableViewCell<FEButton> else { return cell }
-//
-//        cell.setup { view in
-//        }
-//
-//        return cell
-//    }
     
     @objc func buttonTapped() {
-        print("Tap tap \(isValid)")
+        coordinator?.showUnderConstruction("FORM SUBMISSION")
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
