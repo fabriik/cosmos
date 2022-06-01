@@ -7,9 +7,8 @@ import UIKit
 class AccountVerificationStore: NSObject, BaseDataStore, AccountVerificationDataStore {
     
     var itemId: String?
-    var verified: VerificationStatus?
-    var pending: VerificationStatus?
-    var resubmit: VerificationStatus?
+    var verificationStatus: VerificationStatus?
+    
     
     // MARK: - AccountVerificationDataStore
 
