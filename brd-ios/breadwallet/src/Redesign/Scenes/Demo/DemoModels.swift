@@ -11,6 +11,7 @@ import UIKit
 enum DemoModels {
     
     enum Section: Sectionable {
+        case date
         case profile
         case verification
         case navigation
@@ -18,7 +19,6 @@ enum DemoModels {
         case button
         case textField
         case infoView
-        case name
         
         var header: AccessoryType? { return nil }
         var footer: AccessoryType? { return nil }

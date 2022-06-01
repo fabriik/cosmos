@@ -14,6 +14,6 @@ class DemoCoordinator: BaseCoordinator, DemoRoutes {
 
     // MARK: - Aditional helpers
     override func start() {
-        open(scene: Scenes.PersonalInfo)
+        open(scene: Scenes.Demo)
     }
 }
