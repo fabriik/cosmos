@@ -171,7 +171,7 @@ extension Presets {
                                                        title: .init(font: Fonts.overline, textColor: LightColors.Text.one),
                                                        status: .init(title: .init(font: Fonts.Body.two,
                                                                                   textColor: LightColors.Contrast.two),
-                                                                     background: .init(backgroundColor: LightInversedColors.success,
+                                                                     background: .init(backgroundColor: LightColors.error,
                                                                                        tintColor: LightColors.Contrast.two,
                                                                                        border: Presets.Border.zero)),
                                                        infoButton: .init(backgroundConfiguration: Presets.Background.Secondary.normal,

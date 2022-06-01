@@ -15,18 +15,15 @@ class AccountVerificationViewController: BaseTableViewController<AccountVerifica
     
     override func setupSubviews() {
         super.setupSubviews()
-        tableView.register(WrapperTableViewCell<VerificationView>.self)
         
-        tableView.separatorInset = .zero
-        tableView.separatorStyle = .singleLine
+        navigationItem.title = "Account Verification"
+        tableView.register(WrapperTableViewCell<VerificationView>.self)
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section] as? Models.Section
         
         let cell: UITableViewCell
         switch section {
-        case .title:
-            cell = self.tableView(tableView, labelCellForRowAt: indexPath)
             
         case .verificationLevel:
             cell = self.tableView(tableView, verificationCellForRowAt: indexPath)
@@ -51,7 +48,7 @@ class AccountVerificationViewController: BaseTableViewController<AccountVerifica
                 Presets.VerificationView.verified,
                 Presets.VerificationView.pending,
                 Presets.VerificationView.resubmit
-            ][indexPath.row % 3]
+            ][indexPath.row]
             view.configure(with: config)
         }
         cell.setupCustomMargins(all: .extraSmall)

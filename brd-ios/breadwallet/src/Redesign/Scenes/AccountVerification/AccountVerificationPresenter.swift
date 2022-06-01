@@ -14,27 +14,18 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
     func presentData(actionResponse: FetchModels.Get.ActionResponse) {
         
         let sections: [Models.Section] = [
-            .title,
             .verificationLevel
         ]
         
         let sectionRows: [Models.Section: [Any]] = [
-            .title: [
-                
-            ],
             // TODO: localize!
             .verificationLevel: [
                 VerificationViewModel(title: .text("Level 1"),
                                       status: .verified,
                                       description: .text("Personal information"),
-                                      bottomButton: .init(title: "Account limit: Unlimited", image: nil)),
-                VerificationViewModel(title: .text("Level 1"),
-                                      status: .pending,
-                                      description: .text("Personal information"),
-                                      bottomButton: .init(title: "Higher swap limits")),
-               
+                                      bottomButton: .init(title: "Account limit: $1,000/day ($10,000 lifetime)", image: nil)),
                 VerificationViewModel(title: .text("Level 2"),
-                                      status: .resubmit,
+                                      status: .pending,
                                       description: .text("ID Verification"),
                                       bottomButton: .init(title: "Account limit: Unlimited"))
             ]

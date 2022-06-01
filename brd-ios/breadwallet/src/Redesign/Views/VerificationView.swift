@@ -82,7 +82,7 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         return stack
     }()
     
-    private lazy var checkmarkImageView: WrapperView<FEImageView> = {
+    private lazy var statusImageView: WrapperView<FEImageView> = {
         let view = WrapperView<FEImageView>()
         view.wrappedView.setup(with: .init(.imageName("CircleCheckSolid")))
         return view
@@ -129,7 +129,7 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         }
         
         mainStack.addArrangedSubview(descriptionStackView)
-        descriptionStackView.addArrangedSubview(checkmarkImageView)
+        descriptionStackView.addArrangedSubview(statusImageView)
         descriptionStackView.addArrangedSubview(descriptionLabel)
         descriptionStackView.addArrangedSubview(arrowImageView)
         descriptionLabel.snp.makeConstraints { make in
@@ -160,7 +160,7 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         headerLabel.setup(with: viewModel?.title)
         headerInfoButton.setup(with: viewModel?.infoButton)
         headerInfoButton.isHidden = viewModel?.infoButton == nil
-        checkmarkImageView.isHidden = viewModel?.infoButton != nil
+        statusImageView.isHidden = viewModel?.infoButton != nil
         arrowImageView.isHidden = viewModel?.infoButton != nil
 //        statusView.setup(with: viewModel?.status)
         statusView.setup { view in
