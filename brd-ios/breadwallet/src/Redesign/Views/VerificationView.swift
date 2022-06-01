@@ -85,6 +85,7 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
     private lazy var statusImageView: WrapperView<FEImageView> = {
         let view = WrapperView<FEImageView>()
         view.wrappedView.setup(with: .init(.imageName("CircleCheckSolid")))
+        view.tintColor = LightColors.primary
         return view
     }()
     
