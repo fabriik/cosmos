@@ -30,12 +30,13 @@ struct TextFieldConfiguration: Configurable {
 struct TextFieldModel: ViewModel {
     var leading: ImageViewModel?
     var title: String
+    var value: String?
     var placeholder: String?
     var hint: String?
-    var error: String? = "Text has to be longer than 1 character."
+    var error: String?
     var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
-    var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) > 1 }
+    var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) >= 1 }
 }
 
 class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDelegate, StateDisplayable {
@@ -43,9 +44,28 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     var displayState: DisplayState = .normal
     
     private var validator: ((String?) -> Bool)?
-    var valueChanged: (() -> Void)?
+    var contentSizeChanged: (() -> Void)?
+    var valueChanged: ((String?) -> Void)?
+    
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return textField.isUserInteractionEnabled
+        }
+        
+        set {
+            content.isUserInteractionEnabled = newValue
+            textField.isUserInteractionEnabled = newValue
+        }
+    }
     
     // MARK: Lazy UI
+    var value: String? {
+        get { return textField.text }
+        set {
+            textField.text = newValue
+            animateTo(state: newValue?.isEmpty == true ? .error : .filled)
+        }
+    }
     
     private lazy var mainStack: UIStackView = {
         let view = UIStackView()
@@ -154,7 +174,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         var background: BackgroundConfiguration?
         switch displayState {
-        case .normal:
+        case .normal, .filled:
             background = config?.backgroundConfiguration
             
             // TODO: any need to split?
@@ -198,6 +218,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         validator = viewModel.validator
         titleLabel.setup(with: .text(viewModel.title))
+        textField.text = viewModel.value
         
         if let placeholder = viewModel.placeholder,
            let config = config?.placeholderConfiguration {
@@ -218,6 +239,11 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         trailingView.isHidden = viewModel.trailing == nil
         trailingView.setup(with: viewModel.trailing)
         layoutSubviews()
+        
+        guard textField.text?.isEmpty == false else {
+            return
+        }
+        animateTo(state: .filled, withAnimation: false)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -228,9 +254,23 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         animateTo(state: .normal)
     }
     
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        guard let text = textField.text,
+//              let textRange = Range(range, in: text) else {
+//            return false
+//        }
+//        let updatedText = text.replacingCharacters(in: textRange, with: string)
+//
+//        let isValid = validator?(updatedText) == true
+//        let state: DisplayState = isValid ? .filled : .error
+//        animateTo(state: state, withAnimation: true)
+//
+//        return true
+//    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let isValid = validator?(textField.text) == true
-        let state: DisplayState = isValid ? .normal : .error
+        let state: DisplayState = isValid ? .filled : .error
         animateTo(state: state, withAnimation: true)
         
         return isValid
@@ -251,6 +291,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         case .normal:
             background = config?.backgroundConfiguration
             
+        case .filled:
+            background = config?.backgroundConfiguration
+            hideTextField = false
+            
         case .highlighted, .selected:
             background = config?.selectedBackgroundConfiguration
             hideTextField = false
@@ -265,6 +309,9 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         }
         textField.isHidden = hideTextField
         hintLabel.isHidden = hint == nil
+        if textField.text?.isEmpty == false {
+            valueChanged?(textField.text)
+        }
         
         if let text = hint,
            !text.isEmpty {
@@ -282,7 +329,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         Self.animate(withDuration: Presets.Animation.duration, animations: {
             self.textFieldContent.layoutIfNeeded()
         }, completion: { _ in
-            self.valueChanged?()
+            self.contentSizeChanged?()
         })
     }
     

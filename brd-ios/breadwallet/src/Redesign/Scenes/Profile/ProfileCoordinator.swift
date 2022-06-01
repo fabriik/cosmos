@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
+class ProfileCoordinator: BaseCoordinator, ProfileRoutes, PersonalInfoRoutes {
     // MARK: - ProfileRoutes
     
     func showAccountVerification() {
@@ -36,6 +36,16 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
         // TODO: navigate on
         showPopup(with: .init(title: .text("Under construction"),
                               body: "The \(feat.uppercased()) functionality is being developed for You by the awesome Fabriik team. Stay tuned!"))
+    }
+    
+    func showCountrySelector(selected: ((String) -> Void)? = nil) {
+        let nvc = UINavigationController()
+        let coordinator = ItemSelectionCoordinator(navigationController: nvc)
+        coordinator.start()
+        coordinator.parentCoordinator = self
+        (nvc.topViewController as? ItemSelectionViewController)?.itemSelected = selected
+        childCoordinators.append(coordinator)
+        navigationController.show(nvc, sender: nil)
     }
     // MARK: - Aditional helpers
 }

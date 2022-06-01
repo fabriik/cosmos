@@ -9,6 +9,7 @@ import UIKit
 
 enum DisplayState {
     case normal
+    case filled
     case selected
     case highlighted
     case disabled

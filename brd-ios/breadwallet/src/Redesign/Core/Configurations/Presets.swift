@@ -14,10 +14,21 @@ import UIKit
 struct Presets {
     struct Background {
         struct Primary {
-            static var normal = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: LightColors.Contrast.two)
-            static var selected = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.pressed, tintColor: LightColors.Contrast.two)
-            static var disabled = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.disabled, tintColor: LightColors.Contrast.two)
-            static var error = BackgroundConfiguration(backgroundColor: LightColors.primary, tintColor: .red)
+            static var normal = BackgroundConfiguration(backgroundColor: LightColors.primary,
+                                                        tintColor: LightColors.Contrast.two,
+                                                        border: Presets.Border.normal)
+            
+            static var selected = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.pressed,
+                                                          tintColor: LightColors.Contrast.two,
+                                                          border: Presets.Border.selected)
+            
+            static var disabled = BackgroundConfiguration(backgroundColor: LightColors.InteractionPrimary.disabled,
+                                                          tintColor: LightColors.Contrast.two,
+                                                          border: Presets.Border.disabled)
+            
+            static var error = BackgroundConfiguration(backgroundColor: LightColors.primary,
+                                                       tintColor: .red,
+                                                       border: Presets.Border.error)
         }
         
         struct Secondary {
@@ -32,7 +43,7 @@ struct Presets {
         static var zero = BorderConfiguration(borderWidth: 0, cornerRadius: .small)
         static var normal = BorderConfiguration(tintColor: LightColors.Outline.one, borderWidth: 1, cornerRadius: .small)
         static var selected = BorderConfiguration(tintColor: LightColors.primary, borderWidth: 1, cornerRadius: .small)
-        static var disabled = BorderConfiguration(tintColor: LightColors.InteractionPrimary.disabled, borderWidth: 1, cornerRadius: .small)
+        static var disabled = BorderConfiguration(tintColor: .lightGray, borderWidth: 1, cornerRadius: .small)
         static var error = BorderConfiguration(tintColor: LightColors.error, borderWidth: 1, cornerRadius: .small)
     }
     
@@ -59,10 +70,6 @@ extension Presets {
                                                  selectedConfiguration: Presets.Background.Primary.selected,
                                                  disabledConfiguration: Presets.Background.Primary.disabled)
         
-        static var primaryWithBorder = ButtonConfiguration(backgroundConfiguration: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal),
-                                                           selectedConfiguration: Presets.Background.Primary.selected.withBorder(border: Presets.Border.selected),
-                                                           disabledConfiguration: Presets.Background.Primary.disabled.withBorder(border: Presets.Border.disabled))
-        
         static var secondary = ButtonConfiguration(backgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.normal),
                                                    selectedConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
                                                    disabledConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled))
@@ -84,6 +91,16 @@ extension Presets {
                                                     selectedBackgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.selected),
                                                     disabledBackgroundConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled),
                                                     errorBackgroundConfiguration: Presets.Background.Secondary.error.withBorder(border: Presets.Border.error))
+        
+        static var two = TextFieldConfiguration(titleConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
+                                                textConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
+                                                placeholderConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
+                                                hintConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
+                                                trailingImageConfiguration: .init(tintColor: LightColors.Text.two),
+                                                backgroundConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
+                                                selectedBackgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.selected),
+                                                disabledBackgroundConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled),
+                                                errorBackgroundConfiguration: Presets.Background.Secondary.error.withBorder(border: Presets.Border.error))
     }
 }
  

@@ -36,6 +36,7 @@ struct ButtonConfiguration: Configurable {
 struct ButtonViewModel: ViewModel {
     var title: String?
     var image: String?
+    var enabled = true
 }
 
 class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
@@ -46,42 +47,40 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     
     override var isSelected: Bool {
         didSet {
+            guard isEnabled else { return }
             animateTo(state: isSelected ? .selected : .normal)
         }
     }
     
     override var isHighlighted: Bool {
         didSet {
+            guard isEnabled else { return }
             animateTo(state: isHighlighted ? .highlighted : .normal)
         }   
     }
     
     override var isEnabled: Bool {
         didSet {
-            animateTo(state: isEnabled ? .normal : .disabled)
+            animateTo(state: isEnabled ? .normal : .disabled, withAnimation: false)
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // Border
-        configure(background: config?.backgroundConfiguration)
-        // Shadow
-        configure(shadow: config?.shadowConfiguration)
+        animateTo(state: displayState, withAnimation: false)
     }
     
     func configure(with config: ButtonConfiguration?) {
         guard let config = config else { return }
 
         self.config = config
-        backgroundColor = config.backgroundConfiguration?.backgroundColor
         setTitleColor(config.backgroundConfiguration?.tintColor, for: .normal)
         setTitleColor(config.disabledConfiguration?.tintColor, for: .disabled)
         setTitleColor(config.selectedConfiguration?.tintColor, for: .selected)
         setTitleColor(config.selectedConfiguration?.tintColor, for: .highlighted)
-        configure(background: config.backgroundConfiguration)
-        configure(shadow: config.shadowConfiguration)
+//        configure(background: config.backgroundConfiguration)
+//        configure(shadow: config.shadowConfiguration)
         layoutIfNeeded()
     }
     
@@ -96,6 +95,8 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         if let image = viewModel.image {
             setImage(.init(named: image), for: .normal)
         }
+        
+        isEnabled = viewModel.enabled
     }
     
     func animateTo(state: DisplayState, withAnimation: Bool = true) {
@@ -104,22 +105,23 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         switch state {
         case .normal:
             background = config?.backgroundConfiguration
-            
-            // TODO: any need to split?
+
         case .highlighted, .selected:
             background = config?.selectedConfiguration
-            
+
         case .disabled:
             background = config?.disabledConfiguration
-            
-        case .error:
+
+        case .error, .filled:
             // TODO: handle?
             return
         }
+        displayState = state
+        let shadow = config?.shadowConfiguration
         
-        UIView.animate(withDuration: withAnimation ? Presets.Animation.duration : 0) { [weak self] in
-            self?.backgroundColor = background?.backgroundColor
-            self?.tintColor = background?.tintColor
+        Self.animate(withDuration: withAnimation ? Presets.Animation.duration : 0) { [weak self] in
+            self?.configure(background: background)
+            self?.configure(shadow: shadow)
         }
     }
     
@@ -137,7 +139,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     }
     
     func configure(background: BackgroundConfiguration? = nil) {
-        marginableView.backgroundColor = background?.backgroundColor
+        backgroundColor = background?.backgroundColor
         tintColor = background?.tintColor
         
         imageView?.tintColor = background?.tintColor

@@ -11,6 +11,7 @@ import UIKit
 enum DemoModels {
     
     enum Section: Sectionable {
+        case date
         case profile
         case verification
         case navigation
