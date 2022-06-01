@@ -449,14 +449,6 @@
 		7EF45F542845352400D1F7B0 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4D2845352400D1F7B0 /* PersonalInfoModels.swift */; };
 		7EF45F582845353100D1F7B0 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F562845353000D1F7B0 /* DateView.swift */; };
 		7EF45F592845353100D1F7B0 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F572845353100D1F7B0 /* NameView.swift */; };
-		7EF45F622845ECF600D1F7B0 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7EF45F632845ECF600D1F7B0 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7EF45F642845ECF600D1F7B0 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7EF45F652845ECF600D1F7B0 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7EF45F662845ECF600D1F7B0 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7EF45F672845ECF600D1F7B0 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7EF45F682845ECF600D1F7B0 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7EF45F6A2845FAC600D1F7B0 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7EF45F87284768C100D1F7B0 /* ItemSelectionVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F80284768C100D1F7B0 /* ItemSelectionVIP.swift */; };
 		7EF45F88284768C100D1F7B0 /* ItemSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F81284768C100D1F7B0 /* ItemSelectionInteractor.swift */; };
 		7EF45F89284768C100D1F7B0 /* ItemSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F82284768C100D1F7B0 /* ItemSelectionPresenter.swift */; };
@@ -4543,7 +4535,6 @@
 				4F3AB12A25D58AB400B378DC /* SelectBakerViewController.swift in Sources */,
 				E843C1172188D19000F46672 /* OnboardingViewController.swift in Sources */,
 				7B54E51227F4A208002DD1E4 /* KYCUploadModels.swift in Sources */,
-				7EF45F672845ECF600D1F7B0 /* (null) in Sources */,
 				7B432FA528040EB90056B364 /* KYCForgotPasswordModels.swift in Sources */,
 				7E5CB38B2835090E00EC787E /* Shadable.swift in Sources */,
 				7B54E52127F4A208002DD1E4 /* KYCSignInViewController.swift in Sources */,
@@ -4712,10 +4703,8 @@
 				7B432FB9280448520056B364 /* KYCResetPasswordViewController.swift in Sources */,
 				7EF45F592845353100D1F7B0 /* NameView.swift in Sources */,
 				CEAA9E951DC1659F0066731D /* UILabel+BRWAdditions.swift in Sources */,
-				7EF45F662845ECF600D1F7B0 /* (null) in Sources */,
 				7C6FD3F4213F205400EFF35F /* InboxMetaData.swift in Sources */,
 				CEBF292E1EF99E55005C330A /* LightWeightAlert.swift in Sources */,
-				7EF45F632845ECF600D1F7B0 /* (null) in Sources */,
 				7E5CB3B22835090E00EC787E /* FETextField.swift in Sources */,
 				CEBF32EE1DDBC30000348FC6 /* BRDButton.swift in Sources */,
 				7CBF4B6B2008899100E003AA /* TxAddressCell.swift in Sources */,
@@ -4808,7 +4797,6 @@
 				C469BF1927F6E6920070ED33 /* SwapConfirmTradeModels.swift in Sources */,
 				3A93890A22A303800081FCF9 /* CubicCurveAlgorithm.swift in Sources */,
 				7141BB5B2245271800F7ECF2 /* WriteRecoveryKeyViewController.swift in Sources */,
-				7EF45F652845ECF600D1F7B0 /* (null) in Sources */,
 				CEE65DF01E39056F0002994D /* Rate.swift in Sources */,
 				7B54E52627F4A208002DD1E4 /* KYCConfirmEmailView.swift in Sources */,
 				7BDB4A0D2806F54B0031F015 /* StakingCell.swift in Sources */,
@@ -4954,7 +4942,6 @@
 				7B54E53C27F4A208002DD1E4 /* KYCTutorialInteractor.swift in Sources */,
 				CE1E7A9A20938DFD00C86BB7 /* MenuButton.swift in Sources */,
 				7B54E59E27F4A2B0002DD1E4 /* DatePickerViewController.swift in Sources */,
-				7EF45F642845ECF600D1F7B0 /* (null) in Sources */,
 				7B54E56627F4A218002DD1E4 /* SwapPickCurrencyRouter.swift in Sources */,
 				7C0A3ACE210A0E1D006C2783 /* NotificationAuthorizer.swift in Sources */,
 				7B54E51627F4A208002DD1E4 /* KYCUploadInteractor.swift in Sources */,
@@ -4964,7 +4951,6 @@
 				7C72D134226625130091B185 /* CoreSystem.swift in Sources */,
 				CE3D4C571EF5D5740016B1C8 /* ReachabilityMonitor.swift in Sources */,
 				7B54E59F27F4A2B0002DD1E4 /* KYCAPI.swift in Sources */,
-				7EF45F622845ECF600D1F7B0 /* (null) in Sources */,
 				C469BF1B27F6E6920070ED33 /* SwapConfirmTradeInteractor.swift in Sources */,
 				7CBA74E62022784D00FBBFA9 /* HomeScreenAssetViewModel.swift in Sources */,
 				7CA1C47420EC25B9002E9E68 /* QRCode.swift in Sources */,
@@ -5024,7 +5010,6 @@
 				7C0F3DC42124A81100531E54 /* Backend.swift in Sources */,
 				CEBF32F41DDCE12900348FC6 /* AccountFooterView.swift in Sources */,
 				710B036421F8C208007E8A2A /* AppRatingManager.swift in Sources */,
-				7EF45F682845ECF600D1F7B0 /* (null) in Sources */,
 				7B88C4852837B8710089CFBE /* Currency+Shared.swift in Sources */,
 				7B54E56027F4A218002DD1E4 /* SwapMainViewController.swift in Sources */,
 				7BDB4A072806F4720031F015 /* LinkStatusCircle.swift in Sources */,
@@ -5032,7 +5017,6 @@
 				7BDB4A032806F4290031F015 /* CsvExporter.swift in Sources */,
 				713CD8872240117A004657D4 /* RecoveryKeyFlowController.swift in Sources */,
 				CED341331EF5A5C00014912A /* InAppAlert.swift in Sources */,
-				7EF45F6A2845FAC600D1F7B0 /* (null) in Sources */,
 				CE47A8E01F7DA54000FF35BA /* UIScreen+Additions.swift in Sources */,
 				7B54E51327F4A208002DD1E4 /* KYCUploadRouter.swift in Sources */,
 				7BDB49FD2806F3840031F015 /* WyreReservationRequest.swift in Sources */,
