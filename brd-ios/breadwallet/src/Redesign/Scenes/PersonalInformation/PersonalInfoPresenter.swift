@@ -31,13 +31,16 @@ final class PersonalInfoPresenter: NSObject, Presenter, PersonalInfoActionRespon
                               firstName: .init(title: "First Name", value: item.firstName, validator: { $0?.isEmpty == false }),
                               lastName: .init(title: "Last Name", value: item.lastName, validator: { $0?.isEmpty == false }))
             ],
-            .country: [ TextFieldModel(title: "Country",
-                                       value: item.country,
-                                       error: "to short",
-                                       trailing: .imageName("chevrondown"),
-                                       validator: { $0?.isEmpty == false }) ],
-            
-            .birthdate: [ TextFieldModel(title: "Date of birth", value: "\(item.birthdate ?? Date())", error: "to short", validator: { $0?.isEmpty == false }) ],
+            .country: [
+                TextFieldModel(title: "Country",
+                               value: item.country,
+                               error: "to short",
+                               trailing: .imageName("chevrondown"),
+                               validator: { $0?.isEmpty == false })
+            ],
+            .birthdate: [
+                DateViewModel(date: item.birthdate)
+            ],
             .confirm: [
                 ButtonViewModel(title: "Confirm")
             ]

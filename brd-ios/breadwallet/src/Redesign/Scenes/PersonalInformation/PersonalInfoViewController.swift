@@ -76,13 +76,15 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath) else {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? DateViewModel else {
             return UITableViewCell()
         }
         
         cell.setup { view in
             view.configure(with: .init())
-            view.setup(with: .init())
+            view.setup(with: model)
             view.valueChanged = { [weak self] date in
                 self?.interactor?.birthDateSet(viewAction: .init(date: date))
             }

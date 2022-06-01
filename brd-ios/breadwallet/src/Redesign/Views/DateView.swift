@@ -10,19 +10,24 @@
 
 import UIKit
 
-struct DateConfiguration: Configurable {}
+struct DateConfiguration: Configurable {
+    var normal = Presets.Background.Primary.normal
+    var selected = Presets.Background.Primary.selected
+}
 
 struct DateViewModel: ViewModel {
+    var date: Date?
     var title: LabelViewModel? = .text("Date of birth")
     var month: TextFieldModel? = .init(title: "MM")
     var day: TextFieldModel? = .init(title: "DD")
     var year: TextFieldModel? = .init(title: "YYYY")
 }
 
-class DateView: FEView<DateConfiguration, DateViewModel> {
+class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
     
     var contentSizeChanged: (() -> Void)?
     var valueChanged: ((Date?) -> Void)?
+    var displayState: DisplayState = .normal
     
     private lazy var stack: UIStackView = {
         let view = UIStackView()
@@ -73,10 +78,15 @@ class DateView: FEView<DateConfiguration, DateViewModel> {
         if #available(iOS 13.4, *) {
             view.preferredDatePickerStyle = .wheels
         } else {
+            // TODO: how to handle?
             // Fallback on earlier versions
         }
         return view
     }()
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func setupSubviews() {
         super.setupSubviews()
@@ -104,6 +114,12 @@ class DateView: FEView<DateConfiguration, DateViewModel> {
         addGestureRecognizer(tap)
         
         datePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
+        
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
     override func configure(with config: DateConfiguration?) {
@@ -123,6 +139,10 @@ class DateView: FEView<DateConfiguration, DateViewModel> {
         dayTextField.setup(with: viewModel?.day)
         yearTextField.setup(with: viewModel?.year)
         stack.layoutIfNeeded()
+        
+        guard let date = viewModel?.date else { return }
+        datePicker.date = date
+        dateChanged(datePicker: datePicker)
     }
     
     @objc private func dateChanged(datePicker: UIDatePicker) {
@@ -139,5 +159,34 @@ class DateView: FEView<DateConfiguration, DateViewModel> {
     
     @objc private func tapped() {
         hiddenTextField.becomeFirstResponder()
+        animateTo(state: .selected)
+    }
+    
+    @objc func keyboardWillHide() {
+        animateTo(state: .normal)
+    }
+    
+    func animateTo(state: DisplayState, withAnimation: Bool = true) {
+        guard let config = config else { return }
+        let background: BackgroundConfiguration?
+        switch state {
+        case .selected:
+            background = config.selected
+        default:
+            background = config.normal
+        }
+        displayState = state
+        configure(background: background)
+    }
+    
+    override func configure(background: BackgroundConfiguration? = nil) {
+        guard let border = background?.border else { return }
+        
+        for textField in [monthTextfield, dayTextField, yearTextField] {
+            textField.layer.masksToBounds = true
+            textField.layer.cornerRadius = border.cornerRadius.rawValue
+            textField.layer.borderWidth = border.borderWidth
+            textField.layer.borderColor = border.tintColor.cgColor
+        }
     }
 }
