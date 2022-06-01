@@ -11,6 +11,10 @@ import UIKit
 class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
     // MARK: - ProfileRoutes
     
+    func showAccountVerification() {
+        open(scene: Scenes.AccountVerification)
+    }
+    
     func showAvatarSelection() {
         // TODO: navigate on
         showUnderConstruction("avatar selection")
