@@ -21,11 +21,6 @@ extension ProfileModels.NavigationItems {
             return .init(image: .imageName("settings"),
                          label: .text("Preferences"),
                          button: .init(image: "arrow_right"))
-            
-        case .export:
-            return .init(image: .imageName("withdrawal"),
-                         label: .text("Export transaction history to csv"),
-                         button: .init(image: "arrow_right"))
         }
     }
 }
@@ -52,7 +47,7 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
             ],
             // TODO: localize!
             .verification: [
-                InfoViewModel(headerTitle: .text("ACCOUNT VERIFICATION"),
+                InfoViewModel(headerTitle: .text("ACCOUNT LIMITS"),
                               headerTrailing: .init(image: "infoIcon"),
                               description: .text("Get full access to your Fabriik wallet"),
                               button: .init(title: "Verify your account"))

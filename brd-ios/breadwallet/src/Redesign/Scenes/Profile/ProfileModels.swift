@@ -24,7 +24,6 @@ enum ProfileModels {
     enum NavigationItems: String, CaseIterable {
         case security
         case preferences
-        case export
     }
     
     struct Navigate {

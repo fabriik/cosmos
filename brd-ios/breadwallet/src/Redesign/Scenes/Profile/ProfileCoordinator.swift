@@ -19,6 +19,10 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes, PersonalInfoRoutes {
         open(scene: Scenes.PersonalInfo)
     }
     
+    func showAccountVerification() {
+        openModally(coordinator: AccountVerificationCoordinator.self, scene: Scenes.AccountVerification)
+    }
+    
     func showAvatarSelection() {
         // TODO: navigate on
         showUnderConstruction("avatar selection")

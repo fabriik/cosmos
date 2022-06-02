@@ -55,7 +55,7 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
                 }
                 
                 view.trailingButtonCallback = { [weak self] in
-                    self?.coordinator?.showPersonalInfo()
+                    self?.coordinator?.showAccountVerification()
                 }
             }
         }
