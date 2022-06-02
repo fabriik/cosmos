@@ -6,7 +6,7 @@ import UIKit
 
 enum AccountVerificationModels {
     
-    typealias Item = [Any]
+    typealias Item = AccountVerificationStore
     
     enum Section: Sectionable {
         case verificationLevel

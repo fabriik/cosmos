@@ -12,19 +12,9 @@ class AccountVerificationInteractor: NSObject, Interactor, AccountVerificationVi
     var dataStore: AccountVerificationStore?
 
     // MARK: - AccountVerificationViewActions
+    
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        let verificationItems = [
-            VerificationViewModel(title: .text("Level 1"),
-                                  status: .verified,
-                                  description: .text("Personal information"),
-                                  bottomButton: .init(title: "Account limit: $1,000/day ($10,000 lifetime)", image: nil)),
-            VerificationViewModel(title: .text("Level 2"),
-                                  status: .pending,
-                                  description: .text("ID Verification"),
-                                  bottomButton: .init(title: "Account limit: Unlimited"))
-        ]
-        
-        presenter?.presentData(actionResponse: .init(item: Models.Item(verificationItems)))
+        presenter?.presentData(actionResponse: .init(item: dataStore))
     }
 
     // MARK: - Aditional helpers

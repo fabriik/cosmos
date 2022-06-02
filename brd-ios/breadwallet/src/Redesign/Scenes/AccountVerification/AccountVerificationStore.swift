@@ -9,7 +9,6 @@ class AccountVerificationStore: NSObject, BaseDataStore, AccountVerificationData
     var itemId: String?
     var verificationStatus: VerificationStatus?
     
-    
     // MARK: - AccountVerificationDataStore
 
     // MARK: - Aditional helpers
