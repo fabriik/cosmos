@@ -31,7 +31,6 @@ class ItemView: FEView<ItemViewConfiguration, ItemViewModel> {
         return view
     }()
     
-    
     override func setupSubviews() {
         super.setupSubviews()
         content.addSubview(imageView)

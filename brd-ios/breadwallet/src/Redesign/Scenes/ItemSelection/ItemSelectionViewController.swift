@@ -12,17 +12,27 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
                                    ItemSelectionInteractor,
                                    ItemSelectionPresenter,
                                    ItemSelectionStore>,
-                                   ItemSelectionResponseDisplays {
-    
+                                   ItemSelectionResponseDisplays,
+                                   UISearchResultsUpdating,
+                                   UISearchBarDelegate {
+   
     typealias Models = ItemSelectionModels
     var itemSelected: ((String?) -> Void)?
-
+    private var sssss: String?
+    
     // MARK: - Overrides
     override func setupSubviews() {
         super.setupSubviews()
+        
         tableView.separatorInset = .zero
         tableView.separatorStyle = .singleLine
         tableView.register(WrapperTableViewCell<ItemView>.self)
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
     }
     
     @objc override func dismissModal() {
@@ -35,6 +45,8 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
         guard let cell: WrapperTableViewCell<ItemView> = tableView.dequeueReusableCell(for: indexPath),
               let model = sectionRows[section]?[indexPath.row] as? String
         else { return UITableViewCell() }
+        
+        sssss = model
         
         cell.setup { view in
             view.setup(with: .init(title: model, imageName: model))
@@ -50,6 +62,25 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
         itemSelected?(code)
         coordinator?.goBack()
     }
+    
+    // MARK: - Search View Delegate
+    var searchController = UISearchController()
+    
+    func updateSearchResults(for searchController: UISearchController) {}
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            interactor?.getData(viewAction: .init())
+            return
+        }
+        
+        search(searchText)
+    }
+    
+    func search(_ text: String) {
+        interactor?.search(viewAction: .init(text: text))
+    }
+    
     // MARK: - User Interaction
 
     // MARK: - ItemSelectionResponseDisplay
