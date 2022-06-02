@@ -100,11 +100,13 @@ class WalletDisabledView: UIView {
         
         header.constrain([
             header.topAnchor.constraint(equalTo: blur.topAnchor, constant: 170),
-            header.centerXAnchor.constraint(equalTo: blur.centerXAnchor)])
+            header.centerXAnchor.constraint(equalTo: blur.centerXAnchor),
+            header.heightAnchor.constraint(equalToConstant: C.padding[3])])
         
         label.constrain([
             label.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]),
-            label.centerXAnchor.constraint(equalTo: blur.centerXAnchor)])
+            label.centerXAnchor.constraint(equalTo: blur.centerXAnchor),
+            label.heightAnchor.constraint(equalToConstant: C.padding[3])])
         
         unlockWalletImage.constrain([
             unlockWalletImage.topAnchor.constraint(equalTo: label.bottomAnchor, constant: C.padding[8]),

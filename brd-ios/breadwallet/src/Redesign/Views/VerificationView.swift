@@ -13,7 +13,7 @@ import SnapKit
 
 enum VerificationStatus: String {
     case none
-    case limited
+    case resubmit
     case pending
     case verified
 }
@@ -72,8 +72,31 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         return view
     }()
     
+    private lazy var descriptionStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .fill
+        stack.distribution = .fill
+        stack.spacing = Margins.small.rawValue
+        
+        return stack
+    }()
+    
+    private lazy var statusImageView: WrapperView<FEImageView> = {
+        let view = WrapperView<FEImageView>()
+        view.wrappedView.setup(with: .init(.imageName("CircleCheckSolid")))
+        view.tintColor = LightColors.primary
+        return view
+    }()
+    
     private lazy var descriptionLabel: FELabel = {
         let view = FELabel()
+        return view
+    }()
+    
+    private lazy var arrowImageView: WrapperView<FEImageView> = {
+        let view = WrapperView<FEImageView>()
+        view.wrappedView.setup(with: .init(.imageName("forward")))
         return view
     }()
     
@@ -95,6 +118,7 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         headerStack.addArrangedSubview(headerLabel)
         headerLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().priority(.low)
+            make.height.equalTo(40)
         }
         
         headerStack.addArrangedSubview(statusView)
@@ -105,7 +129,10 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
             make.width.equalTo(headerInfoButton.snp.height)
         }
         
-        mainStack.addArrangedSubview(descriptionLabel)
+        mainStack.addArrangedSubview(descriptionStackView)
+        descriptionStackView.addArrangedSubview(statusImageView)
+        descriptionStackView.addArrangedSubview(descriptionLabel)
+        descriptionStackView.addArrangedSubview(arrowImageView)
         descriptionLabel.snp.makeConstraints { make in
             make.height.equalTo(Margins.extraLarge.rawValue)
         }
@@ -134,6 +161,8 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         headerLabel.setup(with: viewModel?.title)
         headerInfoButton.setup(with: viewModel?.infoButton)
         headerInfoButton.isHidden = viewModel?.infoButton == nil
+        statusImageView.isHidden = viewModel?.infoButton != nil
+        arrowImageView.isHidden = viewModel?.infoButton != nil
 //        statusView.setup(with: viewModel?.status)
         statusView.setup { view in
             let title = viewModel?.status.rawValue.uppercased()

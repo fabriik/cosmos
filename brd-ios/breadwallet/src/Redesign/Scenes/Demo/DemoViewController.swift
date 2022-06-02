@@ -48,7 +48,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                                       bottomButton: .init(title: "Verify your account")),
                 
                 VerificationViewModel(title: .text("ACCOUNT LIMITS"),
-                                      status: .limited,
+                                      status: .resubmit,
                                       infoButton: .init(image: "infoIcon"),
                                       description: .text("Basic ($1,000/day)"),
                                       bottomButton: .init(title: "Upgrade your limits")),
@@ -170,7 +170,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             view.setup(with: model)
             let config = [
                 Presets.VerificationView.none,
-                Presets.VerificationView.limited,
+                Presets.VerificationView.resubmit,
                 Presets.VerificationView.pending,
                 Presets.VerificationView.verified
             ][indexPath.row % 4]

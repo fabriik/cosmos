@@ -690,6 +690,13 @@
 		A243978083345DAFD36DA7A4 /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24399A172C828ECD708E17D /* MarketInfo.swift */; };
 		A2439D019C08106D6E14D70A /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24399A172C828ECD708E17D /* MarketInfo.swift */; };
 		A2439D7BB746E6CFC3F9B64A /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2439F5D8263945E73EFF4A3 /* CacheService.swift */; };
+		C45E0BA62845F4C40083F028 /* AccountVerificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0B9F2845F4C40083F028 /* AccountVerificationCoordinator.swift */; };
+		C45E0BA72845F4C40083F028 /* AccountVerificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0BA02845F4C40083F028 /* AccountVerificationStore.swift */; };
+		C45E0BA82845F4C40083F028 /* AccountVerificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0BA12845F4C40083F028 /* AccountVerificationPresenter.swift */; };
+		C45E0BA92845F4C40083F028 /* AccountVerificationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0BA22845F4C40083F028 /* AccountVerificationModels.swift */; };
+		C45E0BAA2845F4C40083F028 /* AccountVerificationVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0BA32845F4C40083F028 /* AccountVerificationVIP.swift */; };
+		C45E0BAB2845F4C40083F028 /* AccountVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0BA42845F4C40083F028 /* AccountVerificationViewController.swift */; };
+		C45E0BAC2845F4C40083F028 /* AccountVerificationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0BA52845F4C40083F028 /* AccountVerificationInteractor.swift */; };
 		C469BF1627F6E6920070ED33 /* SwapConfirmTradePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1027F6E6920070ED33 /* SwapConfirmTradePresenter.swift */; };
 		C469BF1827F6E6920070ED33 /* SwapConfirmTradeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1227F6E6920070ED33 /* SwapConfirmTradeRouter.swift */; };
 		C469BF1927F6E6920070ED33 /* SwapConfirmTradeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469BF1327F6E6920070ED33 /* SwapConfirmTradeModels.swift */; };
@@ -1617,6 +1624,13 @@
 		A243988A5DA12A405BFEB9F6 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A24399A172C828ECD708E17D /* MarketInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfo.swift; sourceTree = "<group>"; };
 		A2439F5D8263945E73EFF4A3 /* CacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		C45E0B9F2845F4C40083F028 /* AccountVerificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationCoordinator.swift; sourceTree = "<group>"; };
+		C45E0BA02845F4C40083F028 /* AccountVerificationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationStore.swift; sourceTree = "<group>"; };
+		C45E0BA12845F4C40083F028 /* AccountVerificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationPresenter.swift; sourceTree = "<group>"; };
+		C45E0BA22845F4C40083F028 /* AccountVerificationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationModels.swift; sourceTree = "<group>"; };
+		C45E0BA32845F4C40083F028 /* AccountVerificationVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationVIP.swift; sourceTree = "<group>"; };
+		C45E0BA42845F4C40083F028 /* AccountVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationViewController.swift; sourceTree = "<group>"; };
+		C45E0BA52845F4C40083F028 /* AccountVerificationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationInteractor.swift; sourceTree = "<group>"; };
 		C469BF1027F6E6920070ED33 /* SwapConfirmTradePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradePresenter.swift; sourceTree = "<group>"; };
 		C469BF1227F6E6920070ED33 /* SwapConfirmTradeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeRouter.swift; sourceTree = "<group>"; };
 		C469BF1327F6E6920070ED33 /* SwapConfirmTradeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapConfirmTradeModels.swift; sourceTree = "<group>"; };
@@ -2835,6 +2849,7 @@
 				7EF45F7F284768C100D1F7B0 /* ItemSelection */,
 				7EF45F7C2847671F00D1F7B0 /* Registration */,
 				7EF45F472845352400D1F7B0 /* PersonalInformation */,
+				C4C0CA542845F2F400B6ED79 /* AccountVerification */,
 				7E8E978F283F4817008606B0 /* Profile */,
 				7E5CB3302835090D00EC787E /* Demo */,
 			);
@@ -3442,6 +3457,20 @@
 				C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		C4C0CA542845F2F400B6ED79 /* AccountVerification */ = {
+			isa = PBXGroup;
+			children = (
+				C45E0B9F2845F4C40083F028 /* AccountVerificationCoordinator.swift */,
+				C45E0BA02845F4C40083F028 /* AccountVerificationStore.swift */,
+				C45E0BA12845F4C40083F028 /* AccountVerificationPresenter.swift */,
+				C45E0BA22845F4C40083F028 /* AccountVerificationModels.swift */,
+				C45E0BA32845F4C40083F028 /* AccountVerificationVIP.swift */,
+				C45E0BA42845F4C40083F028 /* AccountVerificationViewController.swift */,
+				C45E0BA52845F4C40083F028 /* AccountVerificationInteractor.swift */,
+			);
+			path = AccountVerification;
 			sourceTree = "<group>";
 		};
 		CE1E5F241EF081F300BD0F72 /* Import */ = {
@@ -4617,6 +4646,7 @@
 				9FC529D02604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
 				7B54E53827F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift in Sources */,
+				C45E0BA72845F4C40083F028 /* AccountVerificationStore.swift in Sources */,
 				7E5CB3B32835090E00EC787E /* FEImageView.swift in Sources */,
 				7B432FBA280448520056B364 /* KYCResetPasswordInteractor.swift in Sources */,
 				7EF45F532845352400D1F7B0 /* PersonalInfoVIP.swift in Sources */,
@@ -4636,6 +4666,7 @@
 				7E5CB37D2835090E00EC787E /* DemoCoordinator.swift in Sources */,
 				CEBF32F61DDCEAF900348FC6 /* TransactionsTableViewController.swift in Sources */,
 				CEE20C381EA5B4680086F724 /* Strings.swift in Sources */,
+				C45E0BA82845F4C40083F028 /* AccountVerificationPresenter.swift in Sources */,
 				3ADE270C248F35B80023B770 /* ResolvedAddressLabel.swift in Sources */,
 				7E5CB37E2835090E00EC787E /* DemoVIP.swift in Sources */,
 				7B54E51D27F4A208002DD1E4 /* KYCPersonalInfoViewController.swift in Sources */,
@@ -4651,6 +4682,7 @@
 				CECCE5AB1E038C9900D99448 /* GenericPinPadCell.swift in Sources */,
 				7B54E5A427F4A2B0002DD1E4 /* RequestModels.swift in Sources */,
 				7B54E53027F4A208002DD1E4 /* KYCSignUpRouter.swift in Sources */,
+				C45E0BA92845F4C40083F028 /* AccountVerificationModels.swift in Sources */,
 				CECCE5B01E04AD7600D99448 /* DescriptionSendCell.swift in Sources */,
 				7E5CB38F2835090E00EC787E /* NSLayoutConstraint+priority.swift in Sources */,
 				7B54E5A127F4A2B0002DD1E4 /* APIURLHandler.swift in Sources */,
@@ -4793,6 +4825,7 @@
 				7E8E979B283F4830008606B0 /* ProfileVIP.swift in Sources */,
 				7B54E5B327F4A2B0002DD1E4 /* SimpleButton.swift in Sources */,
 				7B54E54027F4A208002DD1E4 /* KYCCompleteRouter.swift in Sources */,
+				C45E0BAA2845F4C40083F028 /* AccountVerificationVIP.swift in Sources */,
 				7B54E5B927F4A2B1002DD1E4 /* CellWrapperView.swift in Sources */,
 				7B54E54827F4A208002DD1E4 /* KYCAddressPresenter.swift in Sources */,
 				7B54E53A27F4A208002DD1E4 /* KYCTutorialModels.swift in Sources */,
@@ -4899,6 +4932,7 @@
 				7E5CB3992835090E00EC787E /* Interactor.swift in Sources */,
 				7B54E51C27F4A208002DD1E4 /* KYCPersonalInfoModels.swift in Sources */,
 				7B54E5A927F4A2B0002DD1E4 /* BaseResponseWorker.swift in Sources */,
+				C45E0BA62845F4C40083F028 /* AccountVerificationCoordinator.swift in Sources */,
 				7C787AE221ED89510017EA7E /* KeyStore.swift in Sources */,
 				CEAA9E911DC0FDFE0066731D /* UIViewPropertyAnimator+BRWAdditions.swift in Sources */,
 				7B54E51027F4A208002DD1E4 /* KYCCameraContainerView.swift in Sources */,
@@ -4966,6 +5000,7 @@
 				7B54E53927F4A208002DD1E4 /* KYCTutorialViewController.swift in Sources */,
 				7E5CB3AA2835090E00EC787E /* WrapperAccessoryView.swift in Sources */,
 				7B54E54727F4A208002DD1E4 /* KYCAddressFieldsView.swift in Sources */,
+				C45E0BAC2845F4C40083F028 /* AccountVerificationInteractor.swift in Sources */,
 				7E5CB3942835090E00EC787E /* ErrorModels.swift in Sources */,
 				7E8E9798283F4830008606B0 /* ProfileStore.swift in Sources */,
 				CE4DFB2E1E9C26DA0014009E /* ShareDataViewController.swift in Sources */,
@@ -5033,6 +5068,7 @@
 				7B432FB5280448520056B364 /* KYCResetPasswordPresenter.swift in Sources */,
 				7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */,
 				7B54E52F27F4A208002DD1E4 /* KYCSignUpViewController.swift in Sources */,
+				C45E0BAB2845F4C40083F028 /* AccountVerificationViewController.swift in Sources */,
 				713CD88A2240198A004657D4 /* RecoveryKeyIntroViewController.swift in Sources */,
 				CE6D0F971DE8B73A00BD4BCF /* ModalTransitionDelegate.swift in Sources */,
 				7E5CB3A72835090E00EC787E /* Fonts.swift in Sources */,
