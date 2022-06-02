@@ -57,7 +57,7 @@ class AccountVerificationViewController: BaseTableViewController<AccountVerifica
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // interactor?.navigate(viewAction: .init(index: indexPath.row))
+        coordinator?.showPersonalInfo()
     }
 
     // MARK: - User Interaction
