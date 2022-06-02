@@ -57,6 +57,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.register(WrapperTableViewCell<NavigationItemView>.self)
         tableView.register(WrapperTableViewCell<ProfileView>.self)
         tableView.register(WrapperTableViewCell<NameView>.self)
+        tableView.register(WrapperTableViewCell<FEImageView>.self)
         
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -167,15 +168,15 @@ class BaseTableViewController<C: CoordinatableRoutes,
     // TODO: add dequeue methos for other standard cells
     func tableView(_ tableView: UITableView, labelCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
-        guard let text = sectionRows[section]?[indexPath.row] as? String,
+        guard let model = sectionRows[section]?[indexPath.row] as? LabelViewModel,
               let cell: WrapperTableViewCell<FELabel> = tableView.dequeueReusableCell(for: indexPath)
         else {
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         
         cell.setup { view in
-            view.setup(with: .text(text))
             view.configure(with: .init(font: Fonts.caption, textColor: LightColors.Text.one))
+            view.setup(with: model)
         }
         
         return cell
@@ -197,6 +198,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
                 // TODO: constants for view heights
                 make.height.equalTo(48)
             }
+            view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
         
         return cell
@@ -211,8 +213,11 @@ class BaseTableViewController<C: CoordinatableRoutes,
         }
         
         cell.setup { view in
-            view.setup(with: model)
             view.configure(with: Presets.TexxtField.primary)
+            view.setup(with: model)
+            view.valueChanged = { [weak self] text in
+                self?.textFieldDidFinish(for: indexPath, with: text)
+            }
             view.contentSizeChanged = {
                 tableView.beginUpdates()
                 tableView.endUpdates()
@@ -280,6 +285,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         }
     }
     
+    // MARK: UserInteractions
     func textFieldDidFinish(for indexPath: IndexPath, with text: String?) {
         // override in subclass
     }
@@ -288,8 +294,11 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.beginUpdates()
         tableView.endUpdates()
     }
+    
+    @objc func buttonTapped() {
+        // override in subclass
+    }
 
-    // MARK: UserInteractions
     func didSelectItem(in section: Int, row: Int) {
     }
 
