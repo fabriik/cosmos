@@ -16,7 +16,7 @@ struct RegistrationConfirmationResponseData: ModelResponse {
 struct RegistrationConfirmationData: Model {
 }
 
-struct RegistrationConfirmationWorkerRequest: RequestModelData {
+struct RegistrationConfirmationRequestData: RequestModelData {
     let code: String?
     
     func getParameters() -> [String: Any] {

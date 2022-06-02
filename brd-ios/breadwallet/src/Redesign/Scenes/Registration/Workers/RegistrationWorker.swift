@@ -12,7 +12,6 @@ import Foundation
 import WalletKit
 
 class RegistrationMapper: ModelMapper<RegistrationResponseData, RegistrationData> {
-    
     override func getModel(from response: RegistrationResponseData) -> RegistrationData? {
         guard let key = response.sessionKey else {
             return nil
@@ -41,12 +40,6 @@ struct RegistrationRequestData: RequestModelData {
             "email": email ?? "",
             "token": token ?? ""
         ]
-    }
-}
-
-struct RegistrationModelData: UrlModelData {
-    func urlParameters() -> [String] {
-        return []
     }
 }
 

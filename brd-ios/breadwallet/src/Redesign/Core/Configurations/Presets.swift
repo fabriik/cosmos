@@ -37,6 +37,9 @@ struct Presets {
             static var disabled = BackgroundConfiguration(tintColor: LightColors.InteractionPrimary.disabled)
             static var error = BackgroundConfiguration(tintColor: .red)
         }
+        
+        static var transparent = BackgroundConfiguration(backgroundColor: .clear,
+                                                         tintColor: LightColors.primary)
     }
     
     struct Border {
