@@ -53,7 +53,7 @@ echo "Download currencies and bundles"
 echo
 
 if [ ! -f ~/.env ]; then
-	echo ".env file not found or configured properlly."
+	echo ".env file not found or configured properly."
 	exit 1
 fi
 
