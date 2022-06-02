@@ -11,6 +11,14 @@ import UIKit
 class ProfileCoordinator: BaseCoordinator, ProfileRoutes, PersonalInfoRoutes {
     // MARK: - ProfileRoutes
     
+    override func start() {
+        open(scene: Scenes.Profile)
+    }
+    
+    func showPersonalInfo() {
+        open(scene: Scenes.PersonalInfo)
+    }
+    
     func showAccountVerification() {
         open(scene: Scenes.AccountVerification)
     }
