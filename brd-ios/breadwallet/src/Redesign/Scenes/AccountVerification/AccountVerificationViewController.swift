@@ -4,7 +4,7 @@
 
 import UIKit
 
-class AccountVerificationViewController: BaseTableViewController<AccountVerificationCoordinator,
+class AccountVerificationViewController: BaseTableViewController<ProfileCoordinator,
                                          AccountVerificationInteractor,
                                          AccountVerificationPresenter,
                                          AccountVerificationStore>,

@@ -24,7 +24,7 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
                 VerificationViewModel(title: .text("Level 2"),
                                       status: item.verificationStatus ?? .pending,
                                       description: .text("ID Verification"),
-                                      bottomButton: .init(title: "Account limit: Unlimited"))
+                                      bottomButton: .init(title: "Swap limit: $10,000 per Swap, no lifetime limit"))
             ]
         ]
         
