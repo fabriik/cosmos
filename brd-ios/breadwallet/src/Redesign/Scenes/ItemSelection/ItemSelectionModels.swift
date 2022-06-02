@@ -20,7 +20,7 @@ enum ItemSelectionModels {
     
     enum Search {
         struct ViewAction {
-            let text: String
+            let text: String?
         }
     }
 }

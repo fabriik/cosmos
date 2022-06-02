@@ -18,7 +18,6 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
    
     typealias Models = ItemSelectionModels
     var itemSelected: ((String?) -> Void)?
-    private var sssss: String?
     
     // MARK: - Overrides
     override func setupSubviews() {
@@ -45,8 +44,6 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
         guard let cell: WrapperTableViewCell<ItemView> = tableView.dequeueReusableCell(for: indexPath),
               let model = sectionRows[section]?[indexPath.row] as? String
         else { return UITableViewCell() }
-        
-        sssss = model
         
         cell.setup { view in
             view.setup(with: .init(title: model, imageName: model))

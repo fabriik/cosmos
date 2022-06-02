@@ -21,7 +21,7 @@ class ItemSelectionInteractor: NSObject, Interactor, ItemSelectionViewActions {
     }
     
     func search(viewAction: ItemSelectionModels.Search.ViewAction) {
-        let searchCountries = countries.filter { $0.contains(viewAction.text.localizedUppercase) }
+        let searchCountries = countries.filter { $0.contains(viewAction.text?.localizedUppercase ?? "") }
         
         presenter?.presentData(actionResponse: .init(item: Models.Item(searchCountries)))
     }
