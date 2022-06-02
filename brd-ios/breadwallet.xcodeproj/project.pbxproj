@@ -716,6 +716,13 @@
 		C47BD509282E427300FAA903 /* Roboto-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD506282E427300FAA903 /* Roboto-Bold.otf */; };
 		C47BD50A282E427300FAA903 /* Roboto-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD507282E427300FAA903 /* Roboto-Regular.otf */; };
 		C47BD50B282E427300FAA903 /* Roboto-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD508282E427300FAA903 /* Roboto-Medium.otf */; };
+		C4D5E7FE284951DD000BEE6F /* VerifyAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7F7284951DD000BEE6F /* VerifyAccountCoordinator.swift */; };
+		C4D5E7FF284951DD000BEE6F /* VerifyAccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7F8284951DD000BEE6F /* VerifyAccountStore.swift */; };
+		C4D5E800284951DD000BEE6F /* VerifyAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7F9284951DD000BEE6F /* VerifyAccountPresenter.swift */; };
+		C4D5E801284951DD000BEE6F /* VerifyAccountModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7FA284951DD000BEE6F /* VerifyAccountModels.swift */; };
+		C4D5E802284951DD000BEE6F /* VerifyAccountVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7FB284951DD000BEE6F /* VerifyAccountVIP.swift */; };
+		C4D5E803284951DD000BEE6F /* VerifyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7FC284951DD000BEE6F /* VerifyAccountViewController.swift */; };
+		C4D5E804284951DD000BEE6F /* VerifyAccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7FD284951DD000BEE6F /* VerifyAccountInteractor.swift */; };
 		CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */; };
 		CE0822661FCE059A00EF371D /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0822651FCE059A00EF371D /* HomeScreenCell.swift */; };
 		CE0BC980215ACBE100E68B2B /* TokenImageNoBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0BC97F215ACBE100E68B2B /* TokenImageNoBackground.swift */; };
@@ -1657,6 +1664,13 @@
 		C47BD506282E427300FAA903 /* Roboto-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.otf"; path = "Fonts/Roboto-Bold.otf"; sourceTree = "<group>"; };
 		C47BD507282E427300FAA903 /* Roboto-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.otf"; path = "Fonts/Roboto-Regular.otf"; sourceTree = "<group>"; };
 		C47BD508282E427300FAA903 /* Roboto-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.otf"; path = "Fonts/Roboto-Medium.otf"; sourceTree = "<group>"; };
+		C4D5E7F7284951DD000BEE6F /* VerifyAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountCoordinator.swift; sourceTree = "<group>"; };
+		C4D5E7F8284951DD000BEE6F /* VerifyAccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountStore.swift; sourceTree = "<group>"; };
+		C4D5E7F9284951DD000BEE6F /* VerifyAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountPresenter.swift; sourceTree = "<group>"; };
+		C4D5E7FA284951DD000BEE6F /* VerifyAccountModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountModels.swift; sourceTree = "<group>"; };
+		C4D5E7FB284951DD000BEE6F /* VerifyAccountVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountVIP.swift; sourceTree = "<group>"; };
+		C4D5E7FC284951DD000BEE6F /* VerifyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountViewController.swift; sourceTree = "<group>"; };
+		C4D5E7FD284951DD000BEE6F /* VerifyAccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountInteractor.swift; sourceTree = "<group>"; };
 		CE0822631FCD1BD100EF371D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenViewController.swift; path = src/ViewControllers/HomeScreenViewController.swift; sourceTree = "<group>"; };
 		CE0822651FCE059A00EF371D /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenCell.swift; path = src/Views/HomeScreenCell.swift; sourceTree = "<group>"; };
 		CE0BC97F215ACBE100E68B2B /* TokenImageNoBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TokenImageNoBackground.swift; path = src/Views/TokenImageNoBackground.swift; sourceTree = "<group>"; };
@@ -2865,6 +2879,7 @@
 				7EF45F472845352400D1F7B0 /* PersonalInformation */,
 				C4C0CA542845F2F400B6ED79 /* AccountVerification */,
 				7E8E978F283F4817008606B0 /* Profile */,
+				C4D5E7F6284951B3000BEE6F /* VerifyAccount */,
 				7E5CB3302835090D00EC787E /* Demo */,
 			);
 			path = Scenes;
@@ -3500,6 +3515,20 @@
 				C45E0BA52845F4C40083F028 /* AccountVerificationInteractor.swift */,
 			);
 			path = AccountVerification;
+			sourceTree = "<group>";
+		};
+		C4D5E7F6284951B3000BEE6F /* VerifyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				C4D5E7F7284951DD000BEE6F /* VerifyAccountCoordinator.swift */,
+				C4D5E7F8284951DD000BEE6F /* VerifyAccountStore.swift */,
+				C4D5E7F9284951DD000BEE6F /* VerifyAccountPresenter.swift */,
+				C4D5E7FA284951DD000BEE6F /* VerifyAccountModels.swift */,
+				C4D5E7FB284951DD000BEE6F /* VerifyAccountVIP.swift */,
+				C4D5E7FC284951DD000BEE6F /* VerifyAccountViewController.swift */,
+				C4D5E7FD284951DD000BEE6F /* VerifyAccountInteractor.swift */,
+			);
+			path = VerifyAccount;
 			sourceTree = "<group>";
 		};
 		CE1E5F241EF081F300BD0F72 /* Import */ = {
@@ -4644,6 +4673,7 @@
 				3AEA2C9C24D122EA00DA4C3A /* CloudBackupView.swift in Sources */,
 				7B54E51127F4A208002DD1E4 /* KYCUploadPresenter.swift in Sources */,
 				7B432FA228040EB90056B364 /* KYCForgotPasswordPresenter.swift in Sources */,
+				C4D5E802284951DD000BEE6F /* VerifyAccountVIP.swift in Sources */,
 				7B54E5BC27F4A2B1002DD1E4 /* GenericSettable.swift in Sources */,
 				3A188FEC257FF1A300957819 /* GiftCurrencyCell.swift in Sources */,
 				CE8644251F2C160200033129 /* ConfirmationViewController.swift in Sources */,
@@ -4750,6 +4780,7 @@
 				CEC6AA3D1DEE687000EE5AFD /* RadialGradientView.swift in Sources */,
 				7B54E53227F4A208002DD1E4 /* KYCSignUpWorker.swift in Sources */,
 				CEEC70921E95DA4400EF788E /* GradientSwitch.swift in Sources */,
+				C4D5E801284951DD000BEE6F /* VerifyAccountModels.swift in Sources */,
 				CE0CD1591DBFBCF5004023DA /* ModalPresenter.swift in Sources */,
 				7CEA35D5232A9D1200FB58C4 /* Identifier.swift in Sources */,
 				CEE20C2F1EA3E5820086F724 /* BlinkingView.swift in Sources */,
@@ -4760,6 +4791,7 @@
 				CEEC70831E90C07C00EF788E /* MenuItem.swift in Sources */,
 				7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */,
 				7EBC6AFA28488B10000A301F /* RegistrationViewController.swift in Sources */,
+				C4D5E804284951DD000BEE6F /* VerifyAccountInteractor.swift in Sources */,
 				CE92F9F01DED0C790046B516 /* PresentModalAnimator.swift in Sources */,
 				7E5CB3812835090E00EC787E /* DemoStore.swift in Sources */,
 				7B54E53127F4A208002DD1E4 /* KYCSignUpModels.swift in Sources */,
@@ -4880,6 +4912,7 @@
 				CEE20C361EA5B4620086F724 /* Constants.swift in Sources */,
 				7BDB49F72806F0BA0031F015 /* BRTar.swift in Sources */,
 				E821D4CC21C16B2E00B0907B /* BRAnalyticsEvent.swift in Sources */,
+				C4D5E7FE284951DD000BEE6F /* VerifyAccountCoordinator.swift in Sources */,
 				7EBC6AF528488B10000A301F /* RegistrationCoordinator.swift in Sources */,
 				CEEC707F1E8D6B4100EF788E /* MenuViewController.swift in Sources */,
 				7E5CB3A52835090E00EC787E /* SubviewConfigurable.swift in Sources */,
@@ -4955,6 +4988,7 @@
 				C469BF1F27F6E6B10070ED33 /* SwapConfirmTradeView.swift in Sources */,
 				7B54E54B27F4A208002DD1E4 /* KYCAddressRouter.swift in Sources */,
 				7B54E53727F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift in Sources */,
+				C4D5E800284951DD000BEE6F /* VerifyAccountPresenter.swift in Sources */,
 				CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */,
 				CEB909FA1E5FF242001804DC /* RecoverWalletIntroViewController.swift in Sources */,
 				CE25BF911DF9ADE700BC67B6 /* UIImage+Utils.swift in Sources */,
@@ -5051,6 +5085,7 @@
 				CE20C8FC1DBB0F3A00C8397A /* UIColor+BRWAdditions.swift in Sources */,
 				7E5CB3832835090E00EC787E /* Presets.swift in Sources */,
 				7B54E5A327F4A2B0002DD1E4 /* HttpRequest.swift in Sources */,
+				C4D5E7FF284951DD000BEE6F /* VerifyAccountStore.swift in Sources */,
 				7B54E53B27F4A208002DD1E4 /* KYCTutorialRouter.swift in Sources */,
 				9AE8FFF821FE64E200D5058C /* RewardsView.swift in Sources */,
 				7E8E9799283F4830008606B0 /* ProfilePresenter.swift in Sources */,
@@ -5100,6 +5135,7 @@
 				7BDB49FD2806F3840031F015 /* WyreReservationRequest.swift in Sources */,
 				7C9BC58D231764030011732F /* WalletConnectionSettingsViewController.swift in Sources */,
 				CEB909F51E5FE63D001804DC /* EnterPhraseViewController.swift in Sources */,
+				C4D5E803284951DD000BEE6F /* VerifyAccountViewController.swift in Sources */,
 				7B432FB5280448520056B364 /* KYCResetPasswordPresenter.swift in Sources */,
 				7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */,
 				7B54E52F27F4A208002DD1E4 /* KYCSignUpViewController.swift in Sources */,
