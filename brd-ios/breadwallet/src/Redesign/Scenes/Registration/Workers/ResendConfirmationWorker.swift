@@ -10,25 +10,13 @@
 
 import Foundation
 
-struct ResendConfirmationResponseData: ModelResponse {
-}
+struct ResendConfirmationResponseData: ModelResponse {}
 
-struct ResendConfirmationData: Model {
-}
-
-struct ResendConfirmationWorkerRequest: RequestModelData {
-    let code: String?
-    
-    func getParameters() -> [String: Any] {
-        return [
-            "confirmation_code": code ?? ""
-        ]
-    }
-}
+struct ResendConfirmationData: Model {}
 
 class ResendConfirmationWorker: BaseResponseWorker<ResendConfirmationResponseData,
-                                      ResendConfirmationData,
-                                      ModelMapper<ResendConfirmationResponseData, ResendConfirmationData>> {
+                                ResendConfirmationData,
+                                ModelMapper<ResendConfirmationResponseData, ResendConfirmationData>> {
 
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.resend)

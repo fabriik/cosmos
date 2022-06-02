@@ -137,7 +137,7 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         return cell
     }
     
-    @objc func buttonTapped() {
+    @objc override func buttonTapped() {
         coordinator?.showUnderConstruction("FORM SUBMISSION")
     }
     

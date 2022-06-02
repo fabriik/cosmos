@@ -48,7 +48,7 @@ enum PersonalInfoModels {
             var item: Item?
         }
         
-        struct ResponseDisplay{
+        struct ResponseDisplay {
             var isValid: Bool
         }
     }

@@ -108,4 +108,10 @@ class BaseCoordinator: NSObject,
         }
         parentCoordinator?.childDidFinish(child: self)
     }
+    
+    func showUnderConstruction(_ feat: String) {
+        // TODO: navigate on
+        showPopup(with: .init(title: .text("Under construction"),
+                              body: "The \(feat.uppercased()) functionality is being developed for You by the awesome Fabriik team. Stay tuned!"))
+    }
 }
