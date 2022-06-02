@@ -76,13 +76,15 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath) else {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? DateViewModel else {
             return UITableViewCell()
         }
         
         cell.setup { view in
             view.configure(with: .init())
-            view.setup(with: .init())
+            view.setup(with: model)
             view.valueChanged = { [weak self] date in
                 self?.interactor?.birthDateSet(viewAction: .init(date: date))
             }
@@ -92,15 +94,20 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     override func tableView(_ tableView: UITableView, textFieldCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, textFieldCellForRowAt: indexPath)
-        let section = sections[indexPath.section] as? Models.Section
-        
-        guard let cell = cell as? WrapperTableViewCell<FETextField>,
-              section == .country
-        else { return cell }
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? TextFieldModel,
+              let cell: WrapperTableViewCell<FETextField> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
         
         cell.setup { view in
             view.configure(with: Presets.TexxtField.two)
+            view.setup(with: model)
+            view.contentSizeChanged = {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
             view.isUserInteractionEnabled = false
         }
         
@@ -135,11 +142,18 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: move to cell tap callback
         switch sections[indexPath.section] as? Models.Section {
         case .country:
+            guard let index = sections.firstIndex(of: Models.Section.country),
+                  let cell = tableView.cellForRow(at: .init(row: 0, section: index)) as? WrapperTableViewCell<FETextField> else {
+                return
+            }
+            
+            cell.wrappedView.animateTo(state: .selected)
             coordinator?.showCountrySelector() { [weak self] code in
+                cell.wrappedView.animateTo(state: .normal, withAnimation: false)
                 self?.interactor?.countrySelected(viewAction: .init(code: code))
-                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
             
         default:

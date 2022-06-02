@@ -15,7 +15,7 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
                                    ItemSelectionResponseDisplays {
     
     typealias Models = ItemSelectionModels
-    var itemSelected: ((String) -> Void)?
+    var itemSelected: ((String?) -> Void)?
 
     // MARK: - Overrides
     override func setupSubviews() {
@@ -23,6 +23,11 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
         tableView.separatorInset = .zero
         tableView.separatorStyle = .singleLine
         tableView.register(WrapperTableViewCell<ItemView>.self)
+    }
+    
+    @objc override func dismissModal() {
+        itemSelected?(nil)
+        super.dismissModal()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
