@@ -137,4 +137,22 @@ class BaseCoordinator: NSObject,
         showPopup(with: .init(title: .text("Under construction"),
                               body: "The \(feat.uppercased()) functionality is being developed for You by the awesome Fabriik team. Stay tuned!"))
     }
+    
+    func showOverlay(with viewModel: TransparentViewModel) {
+        guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow == true }),
+              let parent = window.rootViewController?.view
+        else { return }
+        
+        let view = TransparentView()
+        view.configure(with: .init())
+        view.setup(with: viewModel)
+        
+        parent.addSubview(view)
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        view.layoutIfNeeded()
+        view.show()
+    }
 }

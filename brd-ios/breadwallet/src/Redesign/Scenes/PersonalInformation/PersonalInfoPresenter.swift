@@ -51,17 +51,14 @@ final class PersonalInfoPresenter: NSObject, Presenter, PersonalInfoActionRespon
     
     func presentValidate(actionResponse: PersonalInfoModels.Validate.ActionResponse) {
         var isValid = true
-        if let value = actionResponse.item?.firstName,
-           value.count < 1 {
+        if (actionResponse.item?.firstName?.count ?? 0) < 1 {
             isValid = false
         }
-        if let value = actionResponse.item?.lastName,
-           value.count < 1 {
+        if (actionResponse.item?.lastName?.count ?? 0) < 1 {
             isValid = false
         }
         
-        if let value = actionResponse.item?.country,
-           value.count < 1 {
+        if (actionResponse.item?.country?.count ?? 0) < 1 {
             isValid = false
         }
         
