@@ -31,6 +31,16 @@ enum TransparentViewModel: ViewModel {
         }
     }
     
+    var duration: Double {
+        switch self {
+        case .success:
+            return 2.0
+            
+        default:
+            return 0.0
+        }
+    }
+    
     var title: String? { return nil }
 }
 
@@ -92,5 +102,27 @@ class TransparentView: FEView<TransparentViewConfiguration, TransparentViewModel
         
         titleLabel.setup(with: .text(viewModel?.title))
         titleLabel.isHidden = viewModel?.title == nil
+    }
+    
+    func show() {
+        alpha = 0
+        Self.animate(withDuration: Presets.Animation.duration) { [weak self] in
+            self?.alpha = 1
+        }
+        
+        // autodismiss
+        guard let delay = viewModel?.duration else { return }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+            self?.hide()
+        }
+    }
+    
+    func hide() {
+        Self.animate(withDuration: Presets.Animation.duration, animations: { [weak self] in
+            self?.alpha = 0
+        }, completion: { [weak self] _ in
+            self?.removeFromSuperview()
+        })
     }
 }

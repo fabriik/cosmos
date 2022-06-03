@@ -139,7 +139,9 @@ class BaseCoordinator: NSObject,
     }
     
     func showOverlay(with viewModel: TransparentViewModel) {
-        guard let parent = navigationController.topViewController?.view else { return }
+        guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow == true }),
+              let parent = window.rootViewController?.view
+        else { return }
         
         let view = TransparentView()
         view.configure(with: .init())
@@ -151,10 +153,6 @@ class BaseCoordinator: NSObject,
         }
         
         view.layoutIfNeeded()
-        view.alpha = 0
-        
-        UIView.animate(withDuration: Presets.Animation.duration) {
-            view.alpha = 1
-        }
+        view.show()
     }
 }
