@@ -139,8 +139,7 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     
     @objc override func buttonTapped() {
         view.endEditing(true)
-        coordinator?.showOverlay(with: .success)
-//        coordinator?.showUnderConstruction("FORM SUBMISSION")
+        interactor?.submit(vieAction: .init())
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -173,5 +172,14 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         }
         cell.wrappedView.isEnabled = responseDisplay.isValid
     }
+    
+    func displaySubmit(responseDisplay: PersonalInfoModels.Submit.ResponseDisplay) {
+        guard responseDisplay.error == nil else {
+            // TODO: handle error
+            return
+        }
+        coordinator?.goBack()
+    }
+    
     // MARK: - Additional Helpers
 }
