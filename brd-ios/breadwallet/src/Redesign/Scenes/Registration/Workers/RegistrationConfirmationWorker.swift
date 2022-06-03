@@ -10,12 +10,6 @@
 
 import Foundation
 
-struct RegistrationConfirmationResponseData: ModelResponse {
-}
-
-struct RegistrationConfirmationData: Model {
-}
-
 struct RegistrationConfirmationRequestData: RequestModelData {
     let code: String?
     
@@ -26,9 +20,7 @@ struct RegistrationConfirmationRequestData: RequestModelData {
     }
 }
 
-class RegistrationConfirmationWorker: BaseResponseWorker<RegistrationConfirmationResponseData,
-                                      RegistrationConfirmationData,
-                                      ModelMapper<RegistrationConfirmationResponseData, RegistrationConfirmationData>> {
+class RegistrationConfirmationWorker: BasePlainResponseWorker {
 
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.confirm)

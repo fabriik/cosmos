@@ -17,6 +17,15 @@ class PersonalInfoStore: NSObject, BaseDataStore, PersonalInfoDataStore {
     var country: String?
     var birthdate: Date?
     
+    var birthDateString: String? {
+        guard let birthdate = birthdate else { return nil }
+
+        let formatter = DateFormatter()
+        formatter.timeStyle = .none
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: birthdate)
+    }
+    
     var isValid: Bool {
         guard firstName?.isEmpty == false else { return false }
         guard lastName?.isEmpty == false else { return false }

@@ -16,7 +16,10 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes, PersonalInfoRoutes {
     }
     
     func showPersonalInfo() {
-        open(scene: Scenes.PersonalInfo)
+        let controller = PersonalInfoViewController()
+        controller.coordinator = self
+        navigationController.show(controller, sender: nil)
+//        open(scene: Scenes.PersonalInfo)
     }
     
     func showAccountVerification() {

@@ -71,4 +71,8 @@ final class PersonalInfoPresenter: NSObject, Presenter, PersonalInfoActionRespon
         
         viewController?.displayValidate(responseDisplay: .init(isValid: isValid))
     }
+    
+    func presentSubmit(actionResponse: PersonalInfoModels.Submit.ActionResponse) {
+        viewController?.displaySubmit(responseDisplay: .init(error: actionResponse.error))
+    }
 }
