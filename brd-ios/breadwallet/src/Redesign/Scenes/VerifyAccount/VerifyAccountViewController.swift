@@ -49,7 +49,7 @@ class VerifyAccountViewController: BaseTableViewController<VerifyAccountCoordina
     // MARK: - User Interaction
     
     override func buttonTapped() {
-     //   interactor?.next(viewACtion: .init())
+        coordinator?.showRegistration()
     }
 
     // MARK: - VerifyAccountResponseDisplay
