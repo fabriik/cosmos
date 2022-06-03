@@ -31,20 +31,6 @@ class VerifyAccountViewController: BaseTableViewController<VerifyAccountCoordina
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, coverCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
-        guard let cell: WrapperTableViewCell<FEImageView> = tableView.dequeueReusableCell(for: indexPath),
-              let model = sectionRows[section]?[indexPath.row] as? ImageViewModel
-        else { return UITableViewCell() }
-        
-        cell.setup { view in
-            view.configure(with: Presets.Background.transparent)
-            view.setup(with: model)
-        }
-        
-        return cell
-    }
 
     // MARK: - User Interaction
     
