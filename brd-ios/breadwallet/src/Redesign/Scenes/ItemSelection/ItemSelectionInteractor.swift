@@ -18,6 +18,12 @@ class ItemSelectionInteractor: NSObject, Interactor, ItemSelectionViewActions {
     func getData(viewAction: FetchModels.Get.ViewAction) {
         guard let countries = dataStore?.countries else { return }
         
+        let data = CountriesRequestData()
+        
+        CountriesWorker().execute(requestData: data) { [weak self] data, error in
+            
+        }
+        
         presenter?.presentData(actionResponse: .init(item: Models.Item(countries)))
     }
     

@@ -726,6 +726,7 @@
 		C47BD509282E427300FAA903 /* Roboto-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD506282E427300FAA903 /* Roboto-Bold.otf */; };
 		C47BD50A282E427300FAA903 /* Roboto-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD507282E427300FAA903 /* Roboto-Regular.otf */; };
 		C47BD50B282E427300FAA903 /* Roboto-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C47BD508282E427300FAA903 /* Roboto-Medium.otf */; };
+		C4BD1C69284A16E000AFA2A6 /* CountriesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD1C68284A16E000AFA2A6 /* CountriesWorker.swift */; };
 		C4D5E7FE284951DD000BEE6F /* VerifyAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7F7284951DD000BEE6F /* VerifyAccountCoordinator.swift */; };
 		C4D5E7FF284951DD000BEE6F /* VerifyAccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7F8284951DD000BEE6F /* VerifyAccountStore.swift */; };
 		C4D5E800284951DD000BEE6F /* VerifyAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7F9284951DD000BEE6F /* VerifyAccountPresenter.swift */; };
@@ -1684,6 +1685,7 @@
 		C47BD506282E427300FAA903 /* Roboto-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.otf"; path = "Fonts/Roboto-Bold.otf"; sourceTree = "<group>"; };
 		C47BD507282E427300FAA903 /* Roboto-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.otf"; path = "Fonts/Roboto-Regular.otf"; sourceTree = "<group>"; };
 		C47BD508282E427300FAA903 /* Roboto-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.otf"; path = "Fonts/Roboto-Medium.otf"; sourceTree = "<group>"; };
+		C4BD1C68284A16E000AFA2A6 /* CountriesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesWorker.swift; sourceTree = "<group>"; };
 		C4D5E7F7284951DD000BEE6F /* VerifyAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountCoordinator.swift; sourceTree = "<group>"; };
 		C4D5E7F8284951DD000BEE6F /* VerifyAccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountStore.swift; sourceTree = "<group>"; };
 		C4D5E7F9284951DD000BEE6F /* VerifyAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountPresenter.swift; sourceTree = "<group>"; };
@@ -3231,6 +3233,7 @@
 		7EF45F7F284768C100D1F7B0 /* ItemSelection */ = {
 			isa = PBXGroup;
 			children = (
+				C4BD1C67284A16BE00AFA2A6 /* Workers */,
 				7EF45F80284768C100D1F7B0 /* ItemSelectionVIP.swift */,
 				7EF45F81284768C100D1F7B0 /* ItemSelectionInteractor.swift */,
 				7EF45F82284768C100D1F7B0 /* ItemSelectionPresenter.swift */,
@@ -3539,6 +3542,14 @@
 				C469BF1D27F6E6B10070ED33 /* SwapConfirmTradeView.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		C4BD1C67284A16BE00AFA2A6 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				C4BD1C68284A16E000AFA2A6 /* CountriesWorker.swift */,
+			);
+			path = Workers;
 			sourceTree = "<group>";
 		};
 		C4C0CA542845F2F400B6ED79 /* AccountVerification */ = {
@@ -4787,6 +4798,7 @@
 				C45E0BA92845F4C40083F028 /* AccountVerificationModels.swift in Sources */,
 				CECCE5B01E04AD7600D99448 /* DescriptionSendCell.swift in Sources */,
 				7E5CB38F2835090E00EC787E /* NSLayoutConstraint+priority.swift in Sources */,
+				C4BD1C69284A16E000AFA2A6 /* CountriesWorker.swift in Sources */,
 				7B54E5A127F4A2B0002DD1E4 /* APIURLHandler.swift in Sources */,
 				CE0822661FCE059A00EF371D /* HomeScreenCell.swift in Sources */,
 				CE44BA1B1F33BFC500392A1A /* NodeSelectorViewController.swift in Sources */,
