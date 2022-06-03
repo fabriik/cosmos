@@ -61,6 +61,7 @@ enum PersonalInfoModels {
         }
         
         struct ResponseDisplay {
+            // TODO: should be replaced with error VM
             var error: Error?
         }
     }
