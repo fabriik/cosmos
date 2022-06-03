@@ -57,7 +57,7 @@ class RegistrationViewController: BaseTableViewController<RegistrationCoordinato
     }
     
     func displayNext(responseDisplay: RegistrationModels.Next.ResponseDisplay) {
-        coordinator?.showRegistrationConfirmation()
+        coordinator?.showRegistrationConfirmation(for: responseDisplay.email)
     }
 
     // MARK: - Additional Helpers

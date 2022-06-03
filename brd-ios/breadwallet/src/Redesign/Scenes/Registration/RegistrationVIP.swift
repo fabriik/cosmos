@@ -37,6 +37,6 @@ protocol RegistrationDataPassing {
 }
 
 protocol RegistrationRoutes: CoordinatableRoutes {
-    func showRegistrationConfirmation()
+    func showRegistrationConfirmation(for email: String?)
     func showChangeEmail()
 }

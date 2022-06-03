@@ -138,7 +138,7 @@ class BaseCoordinator: NSObject,
                               body: "The \(feat.uppercased()) functionality is being developed for You by the awesome Fabriik team. Stay tuned!"))
     }
     
-    func showOverlay(with viewModel: TransparentViewModel) {
+    func showOverlay(with viewModel: TransparentViewModel, completion: (() -> Void)? = nil) {
         guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow == true }),
               let parent = window.rootViewController?.view
         else { return }
@@ -146,6 +146,7 @@ class BaseCoordinator: NSObject,
         let view = TransparentView()
         view.configure(with: .init())
         view.setup(with: viewModel)
+        view.didHide = completion
         
         parent.addSubview(view)
         view.snp.makeConstraints { make in

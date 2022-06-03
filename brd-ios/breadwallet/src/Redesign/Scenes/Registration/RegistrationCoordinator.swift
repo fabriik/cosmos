@@ -14,9 +14,10 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
         open(scene: Scenes.Registration)
     }
     
-    func showRegistrationConfirmation() {
+    func showRegistrationConfirmation(for email: String?) {
         let controller = RegistrationConfirmationViewController()
         controller.coordinator = self
+        controller.dataStore?.email = email
         navigationController.show(controller, sender: nil)
     }
     

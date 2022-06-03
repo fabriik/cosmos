@@ -49,7 +49,6 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
     }
     
     func tableView(_ tableView: UITableView, codeInputCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let section = sections[indexPath.section]
         guard let cell: WrapperTableViewCell<CodeInputView> = tableView.dequeueReusableCell(for: indexPath)
         else {
             return super.tableView(tableView, cellForRowAt: indexPath)
@@ -57,7 +56,6 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
         
         cell.setup { view in
             view.configure(with: .init())
-//            view.setup(with: model)
             view.valueChanged = { [weak self] text in
                 self?.textFieldDidFinish(for: indexPath, with: text)
             }
@@ -112,7 +110,9 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
     }
     
     func displayConfirm(responseDisplay: RegistrationConfirmationModels.Confirm.ResponseDisplay) {
-        
+        coordinator?.showOverlay(with: .success) { [weak self] in
+            self?.coordinator?.goBack()
+        }
     }
     
     func displayResend(responseDisplay: RegistrationConfirmationModels.Resend.ResponseDisplay) {
