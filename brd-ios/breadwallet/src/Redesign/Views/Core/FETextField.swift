@@ -29,7 +29,7 @@ struct TextFieldConfiguration: Configurable {
 
 struct TextFieldModel: ViewModel {
     var leading: ImageViewModel?
-    var title: String
+    var title: String?
     var value: String?
     var placeholder: String?
     var hint: String?
@@ -158,6 +158,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         textFieldStack.addArrangedSubview(textField)
         
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
         textField.delegate = self
         let tapped = UITapGestureRecognizer(target: self, action: #selector(tapped))
         addGestureRecognizer(tapped)
@@ -218,6 +220,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         validator = viewModel.validator
         titleLabel.setup(with: .text(viewModel.title))
+        titleLabel.isHidden = viewModel.title == nil
         textField.text = viewModel.value
         
         if let placeholder = viewModel.placeholder,
@@ -238,6 +241,9 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         trailingView.isHidden = viewModel.trailing == nil
         trailingView.setup(with: viewModel.trailing)
+        
+        titleStack.isHidden = leadingView.isHidden && trailingView.isHidden && titleLabel.isHidden
+        
         layoutSubviews()
         
         guard textField.text?.isEmpty == false else {
@@ -254,19 +260,9 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         animateTo(state: .normal)
     }
     
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        guard let text = textField.text,
-//              let textRange = Range(range, in: text) else {
-//            return false
-//        }
-//        let updatedText = text.replacingCharacters(in: textRange, with: string)
-//
-//        let isValid = validator?(updatedText) == true
-//        let state: DisplayState = isValid ? .filled : .error
-//        animateTo(state: state, withAnimation: true)
-//
-//        return true
-//    }
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        valueChanged?(textField.text)//?.lowercased())
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let isValid = validator?(textField.text) == true
@@ -309,9 +305,9 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         }
         textField.isHidden = hideTextField
         hintLabel.isHidden = hint == nil
-        if textField.text?.isEmpty == false {
-            valueChanged?(textField.text)
-        }
+//        if textField.text?.isEmpty == false {
+//            valueChanged?(textField.text)
+//        }
         
         if let text = hint,
            !text.isEmpty {

@@ -94,7 +94,30 @@ class BaseCoordinator: NSObject,
     }
 
     func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?) {}
-    func showNotification(with configuration: NotificationConfiguration) {}
+    
+    func showNotification(with configuration: NotificationConfiguration) {
+        let notification = FEInfoView()
+        notification.setupCustomMargins(all: .large)
+        notification.configure(with: Presets.InfoView.primary)
+        notification.setup(with: .init(description: .text(configuration.text)))
+        
+        guard let superview = navigationController.topViewController?.view else {
+            return
+        }
+        superview.addSubview(notification)
+        notification.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(100)
+            make.leading.equalToSuperview().offset(Margins.medium.rawValue)
+            make.trailing.equalToSuperview().offset(-Margins.medium.rawValue)
+        }
+        notification.layoutIfNeeded()
+        notification.alpha = 0
+        	
+        UIView.animate(withDuration: Presets.Animation.duration) {
+            notification.alpha = 1
+        }
+    }
+    
     func hideNotification(_ view: UIView) {}
 
     func goBack(completion: (() -> Void)? = nil) {

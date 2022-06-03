@@ -20,84 +20,33 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     override func setupSubviews() {
         super.setupSubviews()
         
-        tableView.register(WrapperTableViewCell<VerificationView>.self)
-        tableView.register(WrapperTableViewCell<DateView>.self)
+        tableView.register(WrapperTableViewCell<ScrollableButtonsView>.self)
     }
     
     override func prepareData() {
         sections = [
-            Models.Section.date,
-            Models.Section.verification,
-            Models.Section.profile,
-            Models.Section.infoView,
-            Models.Section.navigation,
-            Models.Section.textField,
-            Models.Section.label,
             Models.Section.button
         ]
         
         sectionRows = [
-            Models.Section.date: [
-                DateViewModel()
-            ],
-            Models.Section.verification: [
-                VerificationViewModel(title: .text("ACCOUNT VERIFICATION"),
-                                      status: .none,
-                                      infoButton: .init(image: "infoIcon"),
-                                      description: .text("Upgrade your limits and get full access!"),
-                                      bottomButton: .init(title: "Verify your account")),
-                
-                VerificationViewModel(title: .text("ACCOUNT LIMITS"),
-                                      status: .resubmit,
-                                      infoButton: .init(image: "infoIcon"),
-                                      description: .text("Basic ($1,000/day)"),
-                                      bottomButton: .init(title: "Upgrade your limits")),
-                
-                VerificationViewModel(title: .text("ACCOUNT LIMITS"),
-                                      status: .pending,
-                                      infoButton: .init(image: "infoIcon"),
-                                      description: .text("Unlimited (Unlimited transaction amounts)")),
-                
-                VerificationViewModel(title: .text("ACCOUNT LIMITS"),
-                                      status: .verified,
-                                      infoButton: .init(image: "infoIcon"),
-                                      description: .text("Unlimited (Unlimited transaction amounts)"))
-            ],
-            Models.Section.profile: [
-                ProfileViewModel(name: "Rok", image: "stars")
-            ],
-            Models.Section.navigation: [
-                NavigationViewModel(image: .imageName("lock_closed"),
-                                    label: .text("Security settings"),
-                                    button: .init(image: "arrow_right")),
-                NavigationViewModel(image: .imageName("settings"),
-                                    label: .text("Security settings"),
-                                    button: .init(image: "arrow_right")),
-                NavigationViewModel(image: .imageName("withdrawal"),
-                                    label: .text("Export transaction history to csv"),
-                                    button: .init(image: "arrow_right"))
-            ],
             Models.Section.button: [
-                "Click me!!",
-                "Dont Click me please!!"
-            ],
-            
-            Models.Section.textField: [
-                TextFieldModel(title: "First name", hint: "Your mama gave it to you", validator: { string in
-                    return (string ?? "").count > 3
-                }),
-                TextFieldModel(title: "Last name"),
-                TextFieldModel(title: "Email", placeholder: "smth@smth_else.com", error: "cant be empty"),
-                TextFieldModel(title: "Address", validator: { _ in return true })
-            ],
-            
-            Models.Section.infoView: [
-                InfoViewModel(headerLeadingImage: .imageName("ig"),
-                              headerTitle: .text("This is a header title"),
-                              headerTrailing: .init(image: "info"),
-                              title: .text("This is a title"),
-                              description: .text("This is a description. It can be long and should break up in multiple lines by word wrapping."),
-                              button: .init(title: "Close"))
+                ScrollableButtonsViewModel(buttons: [
+                    .init(title: "Tap", isUnderlined: true),
+                    .init(image: "close"),
+                    .init(title: "tap", isUnderlined: true, image: "close"),
+                    .init(title: "Tap"),
+                    .init(image: "close"),
+                    .init(title: "tap", image: "close"),
+                    .init(title: "Tap"),
+                    .init(image: "close"),
+                    .init(title: "tap", image: "close"),
+                    .init(title: "Tap"),
+                    .init(image: "close"),
+                    .init(title: "tap", image: "close"),
+                    .init(title: "Tap"),
+                    .init(image: "close"),
+                    .init(title: "tap", image: "close")
+                ])
             ]
         ]
         
@@ -112,29 +61,8 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         let cell: UITableViewCell
         switch section {
-        case .verification:
-            cell = self.tableView(tableView, verificationCellForRowAt: indexPath)
-            
-        case .label:
-            cell = self.tableView(tableView, labelCellForRowAt: indexPath)
-            
         case .button:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
-            
-        case .textField:
-            cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
-            
-        case .infoView:
-            cell = self.tableView(tableView, infoViewCellForRowAt: indexPath)
-            
-        case .navigation:
-            cell = self.tableView(tableView, navigationCellForRowAt: indexPath)
-            
-        case .profile:
-            cell = self.tableView(tableView, profileViewCellForRowAt: indexPath)
-            
-        case .date:
-            cell = self.tableView(tableView, dateCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
@@ -145,38 +73,22 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         return cell
     }
     
-    func tableView(_ tableView: UITableView, dateCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: WrapperTableViewCell<DateView> = tableView.dequeueReusableCell(for: indexPath) else {
+    override func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<ScrollableButtonsView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? ScrollableButtonsViewModel
+        else {
             return UITableViewCell()
         }
         
         cell.setup { view in
-            view.configure(with: .init())
-            view.setup(with: .init())
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, verificationCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
-        guard let model = sectionRows[section]?[indexPath.row] as? VerificationViewModel,
-              let cell: WrapperTableViewCell<VerificationView> = tableView.dequeueReusableCell(for: indexPath)
-        else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-        
-        cell.setup { view in
+            view.configure(with: .init(background: Presets.Background.Primary.normal,
+                                       buttons: [
+                                        Presets.Button.icon
+                                       ]
+                                      ))
             view.setup(with: model)
-            let config = [
-                Presets.VerificationView.none,
-                Presets.VerificationView.resubmit,
-                Presets.VerificationView.pending,
-                Presets.VerificationView.verified
-            ][indexPath.row % 4]
-            view.configure(with: config)
         }
-        cell.setupCustomMargins(all: .extraSmall)
         
         return cell
     }

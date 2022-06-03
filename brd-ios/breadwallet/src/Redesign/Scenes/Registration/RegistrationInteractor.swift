@@ -16,16 +16,21 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
 
     // MARK: - RegistrationViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        presenter?.presentData(actionResponse: .init(item: dataStore?.email))
+        let item = Models.Item(dataStore?.email, dataStore?.type)
+        presenter?.presentData(actionResponse: .init(item: item))
     }
     
     func validate(viewAction: RegistrationModels.Validate.ViewAction) {
         dataStore?.email = viewAction.item
         
-        presenter?.presentValidate(actionResponse: .init(item: viewAction.item))
+        presenter?.presentValidate(actionResponse: .init(item: dataStore?.email))
     }
     
     func next(viewACtion: RegistrationModels.Next.ViewAction) {
+        presenter?.presentNext(actionResponse: .init())
+        
+        return
+        
         guard let email = dataStore?.email,
               let tokenData = try? KeyStore.create().apiUserAccount,
               let token = tokenData["token"] as? String

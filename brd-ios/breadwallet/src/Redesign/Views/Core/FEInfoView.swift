@@ -153,6 +153,9 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         
         configure(background: config.background)
         configure(shadow: config.shadow)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
+        addGestureRecognizer(tap)
     }
     
     override func configure(background: BackgroundConfiguration?) {
@@ -211,5 +214,13 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     
     @objc private func trailingButtonTapped(_ sender: UIButton?) {
         trailingButtonCallback?()
+    }
+    
+    @objc private func viewTapped(_ sender: Any?) {
+        Self.animate(withDuration: Presets.Animation.duration) { [weak self] in
+            self?.alpha = 0
+        } completion: { [weak self] _ in
+            self?.removeFromSuperview()
+        }
     }
 }

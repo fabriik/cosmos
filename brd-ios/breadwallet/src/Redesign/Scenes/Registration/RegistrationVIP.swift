@@ -29,6 +29,7 @@ protocol RegistrationResponseDisplays: AnyObject, BaseResponseDisplays, FetchRes
 
 protocol RegistrationDataStore: BaseDataStore, FetchDataStore {
     var email: String? { get set }
+    var type: RegistrationModels.ViewType { get set }
 }
 
 protocol RegistrationDataPassing {
@@ -37,4 +38,5 @@ protocol RegistrationDataPassing {
 
 protocol RegistrationRoutes: CoordinatableRoutes {
     func showRegistrationConfirmation()
+    func showChangeEmail()
 }

@@ -53,6 +53,7 @@ private let savedChartHistoryPeriodKey = "savedHistoryPeriodKey"
 private let balanceKey = "balanceKey"
 private let kycSessionKey = "kycSessionKey"
 private let cachedErrors = "cachedErrors"
+private let userEmail = "registrationEmail"
 
 typealias ResettableBooleanSetting = [String: Bool]
 typealias ResettableObjectSetting = String
@@ -113,7 +114,7 @@ extension UserDefaults {
 }
 
 extension UserDefaults {
-
+    
     /// A UUID unique to the installation, generated on first use
     /// Used for BlockchainDB subscription, tx metadata, backend auth
     static var deviceID: String {
@@ -123,6 +124,16 @@ extension UserDefaults {
         let s = UUID().uuidString
         defaults.set(s, forKey: deviceIdKey)
         return s
+    }
+    
+    /// After the user goes through the registration flow, we
+    /// save his email in local storage
+    static var email: String? {
+        get {
+            return defaults.string(forKey: userEmail)
+        }
+        
+        set { defaults.set(newValue, forKey: userEmail) }
     }
     
     // Legacy setting for biometrics allowing unlocking the app. This is checked when migrating from

@@ -11,6 +11,7 @@
 import UIKit
 
 struct ButtonConfiguration: Configurable {
+    var titleConfiguration: LabelConfiguration?
     var backgroundConfiguration: BackgroundConfiguration?
     var selectedConfiguration: BackgroundConfiguration?
     var disabledConfiguration: BackgroundConfiguration?
@@ -35,6 +36,7 @@ struct ButtonConfiguration: Configurable {
 
 struct ButtonViewModel: ViewModel {
     var title: String?
+    var isUnderlined = false
     var image: String?
     var enabled = true
 }
@@ -89,7 +91,17 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
 
         self.viewModel = viewModel
         if let title = viewModel.title {
-            setTitle(title, for: .normal)
+            if viewModel.isUnderlined {
+                let attributeString = NSMutableAttributedString(
+                    string: title,
+                    attributes: [
+                        NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+                    ]
+                )
+                setAttributedTitle(attributeString, for: .normal)
+            } else {
+                setTitle(title, for: .normal)
+            }
         }
         
         if let image = viewModel.image {
@@ -119,6 +131,9 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         displayState = state
         let shadow = config?.shadowConfiguration
         
+        tintColor = background?.tintColor
+        titleLabel?.textColor = background?.tintColor
+        
         Self.animate(withDuration: withAnimation ? Presets.Animation.duration : 0) { [weak self] in
             self?.configure(background: background)
             self?.configure(shadow: shadow)
@@ -140,9 +155,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     
     func configure(background: BackgroundConfiguration? = nil) {
         backgroundColor = background?.backgroundColor
-        tintColor = background?.tintColor
         
-        imageView?.tintColor = background?.tintColor
         guard let border = background?.border else { return }
         layer.cornerRadius = border.cornerRadius.rawValue
         layer.borderWidth = border.borderWidth

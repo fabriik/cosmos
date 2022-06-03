@@ -15,7 +15,8 @@ final class RegistrationPresenter: NSObject, Presenter, RegistrationActionRespon
 
     // MARK: - RegistrationActionResponses
     func presentData(actionResponse: FetchModels.Get.ActionResponse) {
-        let email = actionResponse.item as? String
+        guard let item = actionResponse.item as? Models.Item else { return }
+        
         let sections: [Models.Section] = [
             .image,
             .title,
@@ -29,14 +30,14 @@ final class RegistrationPresenter: NSObject, Presenter, RegistrationActionRespon
                 ImageViewModel.imageName("registration")
             ],
             .title: [
-                LabelViewModel.text("Welcome!")
+                LabelViewModel.text(item.type?.title)
             ],
             .instructions: [
-                LabelViewModel.text("Create a Fabriik account by entering your email address.")
+                LabelViewModel.text(item.type?.instructions)
             ],
             .email: [
                 // TODO: validator?
-                TextFieldModel(title: "Email", value: email)
+                TextFieldModel(title: "Email", value: item.email)
             ],
             .confirm: [
                 ButtonViewModel(title: "Next", enabled: false)

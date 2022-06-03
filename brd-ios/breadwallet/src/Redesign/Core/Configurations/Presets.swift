@@ -80,6 +80,10 @@ extension Presets {
         static var icon = ButtonConfiguration(backgroundConfiguration: .init(tintColor: LightColors.Contrast.two),
                                               selectedConfiguration: .init(tintColor: LightColors.Icons.one),
                                               disabledConfiguration: .init(tintColor: LightColors.InteractionPrimary.disabled))
+        
+        static var link = ButtonConfiguration(backgroundConfiguration: .init(tintColor: LightColors.Link.one),
+                                              selectedConfiguration: .init(tintColor: LightColors.Link.two),
+                                              disabledConfiguration: .init(tintColor: LightColors.InteractionPrimary.disabled))
     }
 }
     

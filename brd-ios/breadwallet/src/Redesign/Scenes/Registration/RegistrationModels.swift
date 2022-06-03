@@ -9,7 +9,33 @@
 import UIKit
 
 enum RegistrationModels {
-    typealias Item = String?
+    
+    enum ViewType {
+        case registration
+        case resend
+        
+        var title: String {
+            switch self {
+            case .registration:
+                return "Welcome!"
+                
+            case .resend:
+                return "Change your email"
+            }
+        }
+        
+        var instructions: String {
+            switch self {
+            case .registration:
+                return "Create a Fabriik account by entering your email address."
+                
+            case .resend:
+                return "Enter and verify your new email address for your Fabriik account."
+            }
+        }
+    }
+    
+    typealias Item = (email: String?, type: ViewType?)
     
     enum Section: Sectionable {
         case image
@@ -24,11 +50,11 @@ enum RegistrationModels {
     
     struct Validate {
         struct ViewAction {
-            var item: Item
+            var item: String?
         }
         
         struct ActionResponse {
-            var item: Item
+            var item: String?
         }
         
         struct ResponseDisplay {
