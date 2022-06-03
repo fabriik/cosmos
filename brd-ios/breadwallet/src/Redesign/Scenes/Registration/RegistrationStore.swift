@@ -12,6 +12,7 @@ class RegistrationStore: NSObject, BaseDataStore, RegistrationDataStore {
     // MARK: - RegistrationDataStore
     var itemId: String?
     var email: String?
+    var type: RegistrationModels.ViewType = .registration
 
     // MARK: - Aditional helpers
 }

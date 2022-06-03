@@ -58,6 +58,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.register(WrapperTableViewCell<ProfileView>.self)
         tableView.register(WrapperTableViewCell<NameView>.self)
         tableView.register(WrapperTableViewCell<FEImageView>.self)
+        tableView.register(WrapperTableViewCell<ScrollableButtonsView>.self)
         
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -160,11 +161,21 @@ class BaseTableViewController<C: CoordinatableRoutes,
         // TODO: override in class to handle suplementary button events
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return super.tableView(tableView, cellForRowAt: indexPath)
+    // MARK: Custom cells
+    func tableView(_ tableView: UITableView, coverCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<FEImageView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? ImageViewModel
+        else { return UITableViewCell() }
+        
+        cell.setup { view in
+            view.configure(with: Presets.Background.transparent)
+            view.setup(with: model)
+        }
+        
+        return cell
     }
     
-    // MARK: Custom cells
     // TODO: add dequeue methos for other standard cells
     func tableView(_ tableView: UITableView, labelCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
@@ -204,6 +215,23 @@ class BaseTableViewController<C: CoordinatableRoutes,
         return cell
     }
     
+    func tableView(_ tableView: UITableView, buttonsCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? ScrollableButtonsViewModel,
+              let cell: WrapperTableViewCell<ScrollableButtonsView> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init(background: Presets.Background.transparent,
+                                       buttons: [Presets.Button.link]))
+            view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, textFieldCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         guard let model = sectionRows[section]?[indexPath.row] as? TextFieldModel,
@@ -216,7 +244,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
             view.configure(with: Presets.TexxtField.primary)
             view.setup(with: model)
             view.valueChanged = { [weak self] text in
-                self?.textFieldDidFinish(for: indexPath, with: text)
+                self?.textFieldDidUpdate(for: indexPath, with: text)
             }
             view.contentSizeChanged = {
                 tableView.beginUpdates()

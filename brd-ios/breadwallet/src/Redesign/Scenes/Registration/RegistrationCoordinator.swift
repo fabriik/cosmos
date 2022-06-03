@@ -15,7 +15,17 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     }
     
     func showRegistrationConfirmation() {
-        showUnderConstruction("email confirmation")
+        let controller = RegistrationConfirmationViewController()
+        controller.coordinator = self
+        navigationController.show(controller, sender: nil)
+    }
+    
+    func showChangeEmail() {
+        let controller = RegistrationViewController()
+        controller.dataStore?.type = .resend
+        controller.prepareData()
+        controller.coordinator = self
+        navigationController.show(controller, sender: nil)
     }
 
     // MARK: - Aditional helpers

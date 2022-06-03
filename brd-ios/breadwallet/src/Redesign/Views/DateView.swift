@@ -115,7 +115,6 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         
         datePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
         
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
