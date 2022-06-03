@@ -64,7 +64,10 @@ enum RegistrationModels {
     
     struct Next {
         struct ViewAction {}
-        struct ActionResponse {}
-        struct ResponseDisplay {}
+        struct ActionResponse {
+            var email: String?
+        }
+        struct ResponseDisplay {
+            var email: String?}
     }
 }

@@ -40,7 +40,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
                 return
             }
             UserDefaults.kycSessionKeyValue = sessionKey
-            self?.presenter?.presentNext(actionResponse: .init())
+            self?.presenter?.presentNext(actionResponse: .init(email: email))
         }
     }
     
