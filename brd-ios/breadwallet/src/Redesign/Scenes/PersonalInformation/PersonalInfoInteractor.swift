@@ -50,7 +50,7 @@ class PersonalInfoInteractor: NSObject, Interactor, PersonalInfoViewActions {
         guard let firstName = dataStore?.firstName,
               let lastName = dataStore?.lastName,
               let country = dataStore?.country,
-              let birthDate = dataStore?.birthdate else {
+              let birthDate = dataStore?.birthDateString else {
             // should not happen
             return
         }
@@ -73,7 +73,7 @@ struct PersonalInfoRequestData: RequestModelData {
     var country: String
     var birthDate: String
     
-    func getParameters() -> [String : Any] {
+    func getParameters() -> [String: Any] {
         return [
             "first_name": firstName,
             "last_name": lastName,

@@ -137,12 +137,6 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         return cell
     }
     
-    @objc override func buttonTapped() {
-        coordinator?.showUnderConstruction("FORM SUBMISSION")
-        
-        interactor?.con
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: move to cell tap callback
         switch sections[indexPath.section] as? Models.Section {
@@ -164,6 +158,9 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     // MARK: - User Interaction
+    @objc override func buttonTapped() {
+        interactor?.submit(vieAction: .init())
+    }
 
     // MARK: - PersonalInfoResponseDisplay
     func displayValidate(responseDisplay: PersonalInfoModels.Validate.ResponseDisplay) {
