@@ -18,7 +18,7 @@ protocol Configurable {}
 /// - Defines variable tintColor of type UIColor
 protocol BackgorundConfigurable: Configurable {
     var backgroundColor: UIColor { get }
-    var tintColor: UIColor { get }
+    var tintColor: UIColor? { get }
     // optional
     var border: BorderConfiguration? { get }
 }

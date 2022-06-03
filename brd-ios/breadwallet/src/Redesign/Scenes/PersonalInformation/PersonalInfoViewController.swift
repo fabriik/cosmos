@@ -138,7 +138,9 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     @objc override func buttonTapped() {
-        coordinator?.showUnderConstruction("FORM SUBMISSION")
+        view.endEditing(true)
+        coordinator?.showOverlay(with: .success)
+//        coordinator?.showUnderConstruction("FORM SUBMISSION")
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
