@@ -46,6 +46,8 @@ enum TransparentViewModel: ViewModel {
 
 class TransparentView: FEView<TransparentViewConfiguration, TransparentViewModel> {
     
+    var didHide: (() -> Void)?
+    
     private lazy var stack: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
@@ -123,6 +125,7 @@ class TransparentView: FEView<TransparentViewConfiguration, TransparentViewModel
             self?.alpha = 0
         }, completion: { [weak self] _ in
             self?.removeFromSuperview()
+            self?.didHide?()
         })
     }
 }

@@ -11,3 +11,9 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 #include ".env"
+
+//API_TOKEN=2njbmnabvci9hmt8nbs97cuhol09bvqavujbp1ec
+//API_URL=2a78-86-58-117-49.eu.ngrok.io/
+
+API_TOKEN = $(DEBUG_TOKEN)
+API_URL = $(DEBUG_URL)
