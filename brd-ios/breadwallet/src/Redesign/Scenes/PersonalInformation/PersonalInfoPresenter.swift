@@ -66,7 +66,6 @@ final class PersonalInfoPresenter: NSObject, Presenter, PersonalInfoActionRespon
             isValid = false
         }
         
-        // TODO: remove!
-        viewController?.displayValidate(responseDisplay: .init(isValid: true))
+        viewController?.displayValidate(responseDisplay: .init(isValid: isValid))
     }
 }
