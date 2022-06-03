@@ -52,4 +52,16 @@ enum PersonalInfoModels {
             var isValid: Bool
         }
     }
+    
+    struct Submit {
+        struct ViewAction {}
+        
+        struct ActionResponse {
+            var error: Error?
+        }
+        
+        struct ResponseDisplay {
+            var error: Error?
+        }
+    }
 }

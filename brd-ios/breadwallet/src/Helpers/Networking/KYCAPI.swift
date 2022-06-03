@@ -26,6 +26,7 @@ enum KYCAuthEndpoints: String, URLType {
     case resend = "associate/resend"
     case startResetPassword = "password/start"
     case acceptResetPassword = "password/accept"
+    case basic = "one/kyc/basic"
 
     var url: String {
         return String(format: Self.baseURL, rawValue)

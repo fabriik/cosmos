@@ -139,6 +139,8 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
     
     @objc override func buttonTapped() {
         coordinator?.showUnderConstruction("FORM SUBMISSION")
+        
+        interactor?.con
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -171,5 +173,14 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         }
         cell.wrappedView.isEnabled = responseDisplay.isValid
     }
+    
+    func displaySubmit(responseDisplay: PersonalInfoModels.Submit.ResponseDisplay) {
+        guard responseDisplay.error == nil else {
+            // TODO: handle error
+            return
+        }
+        coordinator?.goBack()
+    }
+    
     // MARK: - Additional Helpers
 }
