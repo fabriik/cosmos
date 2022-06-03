@@ -11,7 +11,11 @@ import UIKit
 class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     // MARK: - RegistrationRoutes
     override func start() {
-        open(scene: Scenes.Registration)
+        guard let email = UserDefaults.email else {
+            return open(scene: Scenes.Registration)
+        }
+        
+        showRegistrationConfirmation(for: email)
     }
     
     func showRegistrationConfirmation(for email: String?) {
