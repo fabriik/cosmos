@@ -430,14 +430,7 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapProfile = { [unowned self] in
-            guard UserDefaults.email != nil else {
-                coordinator?.openModally(coordinator: RegistrationCoordinator.self,
-                                         scene: Scenes.Registration)
-                return
-            }
-            
-            coordinator?.openModally(coordinator: ProfileCoordinator.self,
-                                     scene: Scenes.Profile)
+            coordinator?.start()
         }
         
         homeScreen.didTapMenu = { [unowned self] in

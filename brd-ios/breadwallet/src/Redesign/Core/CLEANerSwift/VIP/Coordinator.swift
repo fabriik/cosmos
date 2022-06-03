@@ -42,7 +42,19 @@ class BaseCoordinator: NSObject,
         self.navigationController = navigationController
     }
 
-    func start() {}
+    func start() {
+        let nvc = UINavigationController()
+        let coordinator: Coordinatable
+        if UserDefaults.kycSessionKeyValue.isEmpty {
+            coordinator = RegistrationCoordinator(navigationController: nvc)
+        } else {
+            coordinator = ProfileCoordinator(navigationController: nvc)
+        }
+        coordinator.start()
+        coordinator.parentCoordinator = self
+        childCoordinators.append(coordinator)
+        navigationController.show(nvc, sender: nil)
+    }
 
     /// Determines whether the viewcontroller or navigation stack are being dismissed
     func goBack() {

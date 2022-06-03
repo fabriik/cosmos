@@ -10,13 +10,7 @@
 
 import Foundation
 
-struct ResendConfirmationResponseData: ModelResponse {}
-
-struct ResendConfirmationData: Model {}
-
-class ResendConfirmationWorker: BaseResponseWorker<ResendConfirmationResponseData,
-                                ResendConfirmationData,
-                                ModelMapper<ResendConfirmationResponseData, ResendConfirmationData>> {
+class ResendConfirmationWorker: BasePlainResponseWorker {
 
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.resend)

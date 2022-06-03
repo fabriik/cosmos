@@ -37,8 +37,8 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
     }
     
     func resend(viewAction: RegistrationConfirmationModels.Resend.ViewAction) {
-        ResendConfirmationWorker().execute { [weak self] data, error in
-            guard data != nil, error == nil else {
+        ResendConfirmationWorker().execute { [weak self] error in
+            guard error == nil else {
                 // TODO: error handling
                 return
             }
