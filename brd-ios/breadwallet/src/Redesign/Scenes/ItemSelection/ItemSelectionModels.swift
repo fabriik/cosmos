@@ -17,4 +17,10 @@ enum ItemSelectionModels {
         var header: AccessoryType? { nil }
         var footer: AccessoryType? { nil }
     }
+    
+    enum Search {
+        struct ViewAction {
+            let text: String?
+        }
+    }
 }

@@ -16,9 +16,17 @@ class ItemSelectionInteractor: NSObject, Interactor, ItemSelectionViewActions {
 
     // MARK: - ItemSelectionViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        let countries = ["AD", "AE", "AF"]
+        guard let countries = dataStore?.countries else { return }
         
         presenter?.presentData(actionResponse: .init(item: Models.Item(countries)))
+    }
+    
+    func search(viewAction: ItemSelectionModels.Search.ViewAction) {
+        guard let countries = dataStore?.countries else { return }
+        
+        let searchCountries = countries.filter { $0.contains(viewAction.text?.localizedUppercase ?? "") }
+        
+        presenter?.presentData(actionResponse: .init(item: Models.Item(searchCountries)))
     }
     // MARK: - Aditional helpers
 }

@@ -20,7 +20,7 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes, PersonalInfoRoutes {
     }
     
     func showAccountVerification() {
-        openModally(coordinator: AccountVerificationCoordinator.self, scene: Scenes.AccountVerification)
+        open(scene: Scenes.AccountVerification)
     }
     
     func showAvatarSelection() {
