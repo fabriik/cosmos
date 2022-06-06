@@ -169,19 +169,3 @@ class BaseCoordinator: NSObject,
         view.show()
     }
 }
-
-struct ProfileResponseData: ModelResponse {}
-
-struct Profile: Model {}
-
-struct ProfileRequestData: RequestModelData {
-    func getParameters() -> [String: Any] {
-        return [:]
-    }
-}
-
-class ProfileWorker: BaseResponseWorker<ProfileResponseData, Profile, ModelMapper<ProfileResponseData, Profile>> {
-    override func getUrl() -> String {
-        return APIURLHandler.getUrl(KYCAuthEndpoints.profile)
-    }
-}
