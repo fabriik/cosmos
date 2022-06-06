@@ -1,5 +1,5 @@
 //
-//  PersonalInfoModels.swift
+//  KYCBasicModels.swift
 //  breadwallet
 //
 //  Created by Rok on 30/05/2022.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-enum PersonalInfoModels {
+enum KYCBasicModels {
     
-    typealias Item = PersonalInfoStore
+    typealias Item = KYCBasicStore
  
     enum Section: Sectionable {
         case name

@@ -7,7 +7,7 @@ import Foundation
 enum KYCEndpoints: String, URLType {
     static var baseURL: String = "https://" + E.apiUrl + "blocksatoshi/one/kyc/%@"
     
-    case personalInformation = "pi?%@"
+    case KYCBasicrmation = "pi?%@"
     case uploadSelfieImage = "upload?type=SELFIE&%@"
     case uploadFrontBackImage = "upload?type=ID&%@"
     case login = "auth/login%@"
@@ -20,13 +20,17 @@ enum KYCEndpoints: String, URLType {
 enum KYCAuthEndpoints: String, URLType {
     static var baseURL: String = "https://"  + E.apiUrl + "blocksatoshi/one/%@"
     
+    case profile = "auth/profile"
+    
     case register = "auth/associate"
-    case login
     case confirm = "auth/associate/confirm"
     case resend = "auth/associate/resend"
+    case basic = "kyc/basic"
+    
+    // TODO: @Kenan deprecated?
+    case login
     case startResetPassword = "password/start"
     case acceptResetPassword = "password/accept"
-    case basic = "kyc/basic"
 
     var url: String {
         return String(format: Self.baseURL, rawValue)

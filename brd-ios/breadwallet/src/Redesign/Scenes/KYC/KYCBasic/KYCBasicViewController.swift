@@ -1,5 +1,5 @@
 //
-//  PersonalInfoViewController.swift
+//  KYCBasicViewController.swift
 //  breadwallet
 //
 //  Created by Rok on 30/05/2022.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
-                                  PersonalInfoInteractor,
-                                  PersonalInfoPresenter,
-                                  PersonalInfoStore>,
-                                  PersonalInfoResponseDisplays {
-    typealias Models = PersonalInfoModels
+class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
+                                  KYCBasicInteractor,
+                                  KYCBasicPresenter,
+                                  KYCBasicStore>,
+                                  KYCBasicResponseDisplays {
+    typealias Models = KYCBasicModels
     
     override var sceneTitle: String? {
         // TODO: localize
@@ -163,8 +163,8 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         interactor?.submit(vieAction: .init())
     }
 
-    // MARK: - PersonalInfoResponseDisplay
-    func displayValidate(responseDisplay: PersonalInfoModels.Validate.ResponseDisplay) {
+    // MARK: - KYCBasicResponseDisplay
+    func displayValidate(responseDisplay: KYCBasicModels.Validate.ResponseDisplay) {
         guard let section = sections.firstIndex(of: Models.Section.confirm),
               let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else {
             return
@@ -172,12 +172,15 @@ class PersonalInfoViewController: BaseTableViewController<ProfileCoordinator,
         cell.wrappedView.isEnabled = responseDisplay.isValid
     }
     
-    func displaySubmit(responseDisplay: PersonalInfoModels.Submit.ResponseDisplay) {
+    func displaySubmit(responseDisplay: KYCBasicModels.Submit.ResponseDisplay) {
         guard responseDisplay.error == nil else {
             // TODO: handle error
             return
         }
-        coordinator?.goBack()
+        
+        coordinator?.showOverlay(with: .success) { [weak self] in
+            self?.coordinator?.goBack()
+        }
     }
     
     // MARK: - Additional Helpers

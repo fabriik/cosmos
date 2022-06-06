@@ -27,6 +27,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
     }
     
     func next(viewACtion: RegistrationModels.Next.ViewAction) {
+        
         guard let email = dataStore?.email,
               let tokenData = try? KeyStore.create().apiUserAccount,
               let token = tokenData["token"] as? String
@@ -39,6 +40,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
                 // TODO: handle error
                 return
             }
+            UserDefaults.email = email
             UserDefaults.kycSessionKeyValue = sessionKey
             self?.presenter?.presentNext(actionResponse: .init(email: email))
         }
