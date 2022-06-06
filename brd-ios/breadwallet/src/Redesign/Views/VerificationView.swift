@@ -17,6 +17,25 @@ enum VerificationStatus: String {
     case pending
     case levelTwo
     case error
+    
+    init(rawValue: String?) {
+        switch rawValue?.lowercased() {
+        case "kyc_basic":
+            self = .levelOne
+            
+        case "kyc_unlimited_submitted":
+            self = .pending
+    
+        case "kyc_unlimited":
+            self = .levelTwo
+            
+        case "kyc_unlimited_declined":
+            self = .error
+            
+        default:
+            self = .none
+        }
+    }
 }
 
 struct StatusViewConfiguration: Configurable {

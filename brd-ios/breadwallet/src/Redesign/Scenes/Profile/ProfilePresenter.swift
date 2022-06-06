@@ -43,9 +43,9 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
         
         let sectionRows: [Models.Section: [Any]] = [
             .profile: [
-                ProfileViewModel(name: item.title, image: item.image)
+                ProfileViewModel(name: item.title ?? "<unknown", image: item.image)
             ],
-            // TODO: localize!
+            // TODO: localize! + set text according to kyc status
             .verification: [
                 InfoViewModel(headerTitle: .text("ACCOUNT LIMITS"),
                               headerTrailing: .init(image: "infoIcon"),
