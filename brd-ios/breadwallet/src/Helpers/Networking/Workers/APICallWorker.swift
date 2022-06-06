@@ -77,7 +77,7 @@ class APICallWorker: APICallWorkerProperties {
         var key = UserDefaults.kycSessionKeyValue
         
         if key.isEmpty,
-           let tokenData: [AnyHashable: Any] = try? keychainItem(key: KeychainKey.apiUserAccount),
+           let tokenData = try? KeyStore.create().apiUserAccount,
            let token = tokenData["token"] as? String {
             key = "Bread \(token)"
         }

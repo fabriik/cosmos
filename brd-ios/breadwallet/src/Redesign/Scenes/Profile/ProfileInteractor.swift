@@ -18,8 +18,10 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
     // MARK: - ProfileViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
         ProfileWorker().execute { [weak self] profile, error in
+            // TODO: BE throwing errors.. try again later
             guard let profile = profile, error == nil else {
                 self?.presenter?.presentError(actionResponse: .init(error: error))
+                self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Under construction", image: "earth")))
                 return
             }
             
