@@ -357,6 +357,12 @@
 		7E0968B8284A29CE006B4FC2 /* TransparentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0968B7284A29CE006B4FC2 /* TransparentView.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7E2E1A2B284E097900E56E69 /* KYCCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */; };
+		7E2E1A38284E16AF00E56E69 /* CheckListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A31284E16AF00E56E69 /* CheckListStore.swift */; };
+		7E2E1A39284E16AF00E56E69 /* CheckListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A32284E16AF00E56E69 /* CheckListPresenter.swift */; };
+		7E2E1A3A284E16AF00E56E69 /* CheckListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A33284E16AF00E56E69 /* CheckListModels.swift */; };
+		7E2E1A3B284E16AF00E56E69 /* CheckListVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A34284E16AF00E56E69 /* CheckListVIP.swift */; };
+		7E2E1A3C284E16AF00E56E69 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A35284E16AF00E56E69 /* CheckListViewController.swift */; };
+		7E2E1A3D284E16AF00E56E69 /* CheckListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A36284E16AF00E56E69 /* CheckListInteractor.swift */; };
 		7E5CB32D2834E63400EC787E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5CB32C2834E63400EC787E /* SnapKit */; };
 		7E5CB37C2835090E00EC787E /* DemoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3312835090D00EC787E /* DemoPresenter.swift */; };
 		7E5CB37D2835090E00EC787E /* DemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3322835090D00EC787E /* DemoCoordinator.swift */; };
@@ -1348,6 +1354,12 @@
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCCoordinator.swift; sourceTree = "<group>"; };
+		7E2E1A31284E16AF00E56E69 /* CheckListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListStore.swift; sourceTree = "<group>"; };
+		7E2E1A32284E16AF00E56E69 /* CheckListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListPresenter.swift; sourceTree = "<group>"; };
+		7E2E1A33284E16AF00E56E69 /* CheckListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListModels.swift; sourceTree = "<group>"; };
+		7E2E1A34284E16AF00E56E69 /* CheckListVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListVIP.swift; sourceTree = "<group>"; };
+		7E2E1A35284E16AF00E56E69 /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
+		7E2E1A36284E16AF00E56E69 /* CheckListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListInteractor.swift; sourceTree = "<group>"; };
 		7E5CB3312835090D00EC787E /* DemoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPresenter.swift; sourceTree = "<group>"; };
 		7E5CB3322835090D00EC787E /* DemoCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoCoordinator.swift; sourceTree = "<group>"; };
 		7E5CB3332835090D00EC787E /* DemoVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoVIP.swift; sourceTree = "<group>"; };
@@ -2896,6 +2908,19 @@
 			path = Registration;
 			sourceTree = "<group>";
 		};
+		7E2E1A2F284E169E00E56E69 /* CheckList */ = {
+			isa = PBXGroup;
+			children = (
+				7E2E1A31284E16AF00E56E69 /* CheckListStore.swift */,
+				7E2E1A32284E16AF00E56E69 /* CheckListPresenter.swift */,
+				7E2E1A33284E16AF00E56E69 /* CheckListModels.swift */,
+				7E2E1A34284E16AF00E56E69 /* CheckListVIP.swift */,
+				7E2E1A35284E16AF00E56E69 /* CheckListViewController.swift */,
+				7E2E1A36284E16AF00E56E69 /* CheckListInteractor.swift */,
+			);
+			path = CheckList;
+			sourceTree = "<group>";
+		};
 		7E5CB32E2835090D00EC787E /* Redesign */ = {
 			isa = PBXGroup;
 			children = (
@@ -2911,6 +2936,7 @@
 		7E5CB32F2835090D00EC787E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7E2E1A2F284E169E00E56E69 /* CheckList */,
 				7EF45F7F284768C100D1F7B0 /* ItemSelection */,
 				7EBC6AFD2848ABAB000A301F /* RegistrationConfirmation */,
 				7EF45F7C2847671F00D1F7B0 /* KYC */,
@@ -4686,6 +4712,7 @@
 				7C5AC8A6203B93D3001B221E /* TxListCell.swift in Sources */,
 				7B54E52D27F4A208002DD1E4 /* KYCSignUpView.swift in Sources */,
 				7B432FB8280448520056B364 /* KYCResetPasswordModels.swift in Sources */,
+				7E2E1A38284E16AF00E56E69 /* CheckListStore.swift in Sources */,
 				7EBC6B0A2848ABC5000A301F /* RegistrationConfirmationViewController.swift in Sources */,
 				71A3171222A6E5F10088F97C /* BRAPIClient+Messages.swift in Sources */,
 				CE45C1FB1E74F89C002C3847 /* WalletInfo.swift in Sources */,
@@ -4804,6 +4831,7 @@
 				7B54E5AE27F4A2B0002DD1E4 /* PickerViewViewController.swift in Sources */,
 				CE36454A1E7B426B0079D0CF /* ClearNumberPad.swift in Sources */,
 				3A93890922A303800081FCF9 /* BezierView.swift in Sources */,
+				7E2E1A3A284E16AF00E56E69 /* CheckListModels.swift in Sources */,
 				CE124D001E69170900DFA146 /* SyncingView.swift in Sources */,
 				CE20C90E1DBE52B000C8397A /* UIView+BRWAdditions.swift in Sources */,
 				7B54E56527F4A218002DD1E4 /* SwapCryptoView.swift in Sources */,
@@ -4984,6 +5012,7 @@
 				7E67680328479765007EC155 /* ResendConfirmationWorker.swift in Sources */,
 				7EF2999227E3B8D200A2238A /* SimplePrice.swift in Sources */,
 				7B54E5B227F4A2B0002DD1E4 /* PaddedTextField.swift in Sources */,
+				7E2E1A3C284E16AF00E56E69 /* CheckListViewController.swift in Sources */,
 				7E8E97A5283F9804008606B0 /* FEPopupView.swift in Sources */,
 				CE977109216FA16300B9F621 /* SegwitViewController.swift in Sources */,
 				71173059220CCC91001931B3 /* PromptView.swift in Sources */,
@@ -4995,7 +5024,9 @@
 				CE8CD8DD1E2D9EF200785E02 /* Sender.swift in Sources */,
 				7BA83DA6280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift in Sources */,
 				3AFAD94825698A74005853E8 /* Gift.swift in Sources */,
+				7E2E1A3D284E16AF00E56E69 /* CheckListInteractor.swift in Sources */,
 				CE4DFB2C1E9BE5880014009E /* ReScanViewController.swift in Sources */,
+				7E2E1A39284E16AF00E56E69 /* CheckListPresenter.swift in Sources */,
 				7E5CB3A22835090E00EC787E /* Marginable.swift in Sources */,
 				7B54E55F27F4A218002DD1E4 /* SwapMainPresenter.swift in Sources */,
 				7B54E5BA27F4A2B1002DD1E4 /* KYCFooterView.swift in Sources */,
@@ -5096,6 +5127,7 @@
 				CE20C9191DBE7B8200C8397A /* State.swift in Sources */,
 				CEEC70811E90C04700EF788E /* SeparatorCell.swift in Sources */,
 				CE97710D216FF20F00B9F621 /* SegwitEnabledView.swift in Sources */,
+				7E2E1A3B284E16AF00E56E69 /* CheckListVIP.swift in Sources */,
 				7B54E56827F4A218002DD1E4 /* SwapPickCurrencyInteractor.swift in Sources */,
 				7C230E752037AD52002F0FF1 /* SyncingIndicator.swift in Sources */,
 				7E5CB39C2835090E00EC787E /* Coordinator.swift in Sources */,
