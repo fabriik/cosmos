@@ -357,6 +357,7 @@
 		7E0968B8284A29CE006B4FC2 /* TransparentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0968B7284A29CE006B4FC2 /* TransparentView.swift */; };
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7E2E1A2B284E097900E56E69 /* KYCCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */; };
+		7E2E1A41284E267000E56E69 /* ProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A40284E267000E56E69 /* ProfileWorker.swift */; };
 		7E5CB32D2834E63400EC787E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5CB32C2834E63400EC787E /* SnapKit */; };
 		7E5CB37C2835090E00EC787E /* DemoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3312835090D00EC787E /* DemoPresenter.swift */; };
 		7E5CB37D2835090E00EC787E /* DemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3322835090D00EC787E /* DemoCoordinator.swift */; };
@@ -1348,6 +1349,7 @@
 		7E2C2F8327D7BE7A00114923 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCCoordinator.swift; sourceTree = "<group>"; };
+		7E2E1A40284E267000E56E69 /* ProfileWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWorker.swift; sourceTree = "<group>"; };
 		7E5CB3312835090D00EC787E /* DemoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPresenter.swift; sourceTree = "<group>"; };
 		7E5CB3322835090D00EC787E /* DemoCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoCoordinator.swift; sourceTree = "<group>"; };
 		7E5CB3332835090D00EC787E /* DemoVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoVIP.swift; sourceTree = "<group>"; };
@@ -3132,6 +3134,7 @@
 		7E8E978F283F4817008606B0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				7E2E1A40284E267000E56E69 /* ProfileWorker.swift */,
 				7E8E9790283F4830008606B0 /* ProfileCoordinator.swift */,
 				7E8E9791283F4830008606B0 /* ProfileStore.swift */,
 				7E8E9792283F4830008606B0 /* ProfilePresenter.swift */,
@@ -4811,6 +4814,7 @@
 				7B54E5B727F4A2B1002DD1E4 /* RoundedView.swift in Sources */,
 				7E5CB3862835090E00EC787E /* ShadowConfiguration.swift in Sources */,
 				7C35E719200AF3940064808F /* TxListViewModel.swift in Sources */,
+				7E2E1A41284E267000E56E69 /* ProfileWorker.swift in Sources */,
 				CE6314831E08E5BB00D4AFE0 /* UIView+InitAdditions.swift in Sources */,
 				CEC6AA401DEFC87300EE5AFD /* SendViewController.swift in Sources */,
 				7C72D13622662BB40091B185 /* Wallet.swift in Sources */,
