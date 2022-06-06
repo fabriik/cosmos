@@ -57,7 +57,7 @@ class AccountVerificationViewController: BaseTableViewController<ProfileCoordina
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.showPersonalInfo()
+        coordinator?.showKYCBasic()
     }
 
     // MARK: - User Interaction

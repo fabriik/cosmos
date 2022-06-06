@@ -39,6 +39,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
                 // TODO: handle error
                 return
             }
+            UserDefaults.email = email
             UserDefaults.kycSessionKeyValue = sessionKey
             self?.presenter?.presentNext(actionResponse: .init(email: email))
         }

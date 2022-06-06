@@ -31,7 +31,8 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
                 // TODO: error handling
                 return
             }
-            UserDefaults.email = self?.dataStore?.email
+            // TODO: confirmed
+            UserDefaults.emailConfirmed = true
             self?.presenter?.presentConfirm(actionResponse: .init())
         }
     }

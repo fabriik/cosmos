@@ -54,6 +54,7 @@ private let balanceKey = "balanceKey"
 private let kycSessionKey = "kycSessionKey"
 private let cachedErrors = "cachedErrors"
 private let userEmail = "registrationEmail"
+private let isEmailConfirmed = "isEmailConfirmed"
 
 typealias ResettableBooleanSetting = [String: Bool]
 typealias ResettableObjectSetting = String
@@ -134,6 +135,15 @@ extension UserDefaults {
         }
         
         set { defaults.set(newValue, forKey: userEmail) }
+    }
+    
+    /// Has the user confirmed his email?
+    static var emailConfirmed: Bool {
+        get {
+            return defaults.bool(forKey: isEmailConfirmed)
+        }
+        
+        set { defaults.set(newValue, forKey: isEmailConfirmed) }
     }
     
     // Legacy setting for biometrics allowing unlocking the app. This is checked when migrating from

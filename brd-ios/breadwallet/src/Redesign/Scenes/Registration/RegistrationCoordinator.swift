@@ -32,6 +32,10 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
         controller.coordinator = self
         navigationController.show(controller, sender: nil)
     }
-
+    
+    override func goBack() {
+        navigationController.dismiss(animated: true)
+        parentCoordinator?.childDidFinish(child: self)
+    }
     // MARK: - Aditional helpers
 }

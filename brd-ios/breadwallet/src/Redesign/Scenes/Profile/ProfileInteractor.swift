@@ -17,8 +17,14 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
 
     // MARK: - ProfileViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        // TODO: fetch/pass user info
-        presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Under construction", image: "earth")))
+        ProfileWorker().execute { [weak self] profile, error in
+            guard let profile = profile, error == nil else {
+                self?.presenter?.presentError(actionResponse: .init(error: error))
+                return
+            }
+            
+            self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Under construction", image: "earth")))
+        }
     }
     
     func showVerificationInfo(viewAction: ProfileModels.VerificationInfo.ViewAction) {
