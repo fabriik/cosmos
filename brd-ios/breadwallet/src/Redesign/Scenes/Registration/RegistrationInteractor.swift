@@ -27,6 +27,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
     }
     
     func next(viewACtion: RegistrationModels.Next.ViewAction) {
+        
         guard let email = dataStore?.email,
               let tokenData = try? KeyStore.create().apiUserAccount,
               let token = tokenData["token"] as? String
