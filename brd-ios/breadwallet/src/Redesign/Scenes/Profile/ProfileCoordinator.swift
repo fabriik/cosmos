@@ -8,29 +8,6 @@
 
 import UIKit
 
-class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
-    
-    
-    override func start() {
-        open(scene: Scenes.KYCBasic)
-    }
-    
-    func showCountrySelector(selected: ((String?) -> Void)?) {
-        let nvc = UINavigationController()
-        let coordinator = ItemSelectionCoordinator(navigationController: nvc)
-        coordinator.start()
-        coordinator.parentCoordinator = self
-        (nvc.topViewController as? ItemSelectionViewController)?.itemSelected = selected
-        childCoordinators.append(coordinator)
-        navigationController.show(nvc, sender: nil)
-    }
-    
-    override func goBack() {
-        navigationController.dismiss(animated: true)
-        parentCoordinator?.childDidFinish(child: self)
-    }
-}
-
 class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
     // MARK: - ProfileRoutes
     

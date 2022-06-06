@@ -48,12 +48,6 @@ struct KYCPostPersonalInformationWorkerData: RequestModelData, UrlModelData {
 }
 
 class KYCPostPersonalInformationWorker: KYCBasePlainResponseWorker {
-    override func getUrl() -> String {
-        guard let urlParams = (requestData as? KYCPostPersonalInformationWorkerData)?.urlParameters() else { return "" }
-        
-        return APIURLHandler.getUrl(KYCEndpoints.personalInformation, parameters: urlParams)
-    }
-    
     override func getMethod() -> EQHTTPMethod {
         return .post
     }
