@@ -1,5 +1,5 @@
 //
-//  PersonalInfoPresenter.swift
+//  KYCBasicPresenter.swift
 //  breadwallet
 //
 //  Created by Rok on 30/05/2022.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class PersonalInfoPresenter: NSObject, Presenter, PersonalInfoActionResponses {
-    typealias Models = PersonalInfoModels
+final class KYCBasicPresenter: NSObject, Presenter, KYCBasicActionResponses {
+    typealias Models = KYCBasicModels
 
-    weak var viewController: PersonalInfoViewController?
+    weak var viewController: KYCBasicViewController?
 
-    // MARK: - PersonalInfoActionResponses
+    // MARK: - KYCBasicActionResponses
 
     // MARK: - Additional Helpers
     func presentData(actionResponse: FetchModels.Get.ActionResponse) {
@@ -49,7 +49,7 @@ final class PersonalInfoPresenter: NSObject, Presenter, PersonalInfoActionRespon
         viewController?.displayData(responseDisplay: .init(sections: sections, sectionRows: sectionRows))
     }
     
-    func presentValidate(actionResponse: PersonalInfoModels.Validate.ActionResponse) {
+    func presentValidate(actionResponse: KYCBasicModels.Validate.ActionResponse) {
         var isValid = true
         if (actionResponse.item?.firstName?.count ?? 0) < 1 {
             isValid = false
@@ -69,7 +69,7 @@ final class PersonalInfoPresenter: NSObject, Presenter, PersonalInfoActionRespon
         viewController?.displayValidate(responseDisplay: .init(isValid: isValid))
     }
     
-    func presentSubmit(actionResponse: PersonalInfoModels.Submit.ActionResponse) {
+    func presentSubmit(actionResponse: KYCBasicModels.Submit.ActionResponse) {
         viewController?.displaySubmit(responseDisplay: .init(error: actionResponse.error))
     }
 }

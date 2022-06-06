@@ -461,7 +461,7 @@
 		7EF45F332844D26E00D1F7B0 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F322844D26E00D1F7B0 /* VerificationView.swift */; };
 		7EF45F4F2845352400D1F7B0 /* PersonalInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F482845352400D1F7B0 /* PersonalInfoInteractor.swift */; };
 		7EF45F502845352400D1F7B0 /* PersonalInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F492845352400D1F7B0 /* PersonalInfoPresenter.swift */; };
-		7EF45F512845352400D1F7B0 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4A2845352400D1F7B0 /* PersonalInfoViewController.swift */; };
+		7EF45F512845352400D1F7B0 /* KYCBasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4A2845352400D1F7B0 /* KYCBasicViewController.swift */; };
 		7EF45F522845352400D1F7B0 /* PersonalInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4B2845352400D1F7B0 /* PersonalInfoStore.swift */; };
 		7EF45F532845352400D1F7B0 /* PersonalInfoVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4C2845352400D1F7B0 /* PersonalInfoVIP.swift */; };
 		7EF45F542845352400D1F7B0 /* PersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF45F4D2845352400D1F7B0 /* PersonalInfoModels.swift */; };
@@ -1438,7 +1438,7 @@
 		7EF45F322844D26E00D1F7B0 /* VerificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		7EF45F482845352400D1F7B0 /* PersonalInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoInteractor.swift; sourceTree = "<group>"; };
 		7EF45F492845352400D1F7B0 /* PersonalInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoPresenter.swift; sourceTree = "<group>"; };
-		7EF45F4A2845352400D1F7B0 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
+		7EF45F4A2845352400D1F7B0 /* KYCBasicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCBasicViewController.swift; sourceTree = "<group>"; };
 		7EF45F4B2845352400D1F7B0 /* PersonalInfoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoStore.swift; sourceTree = "<group>"; };
 		7EF45F4C2845352400D1F7B0 /* PersonalInfoVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoVIP.swift; sourceTree = "<group>"; };
 		7EF45F4D2845352400D1F7B0 /* PersonalInfoModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoModels.swift; sourceTree = "<group>"; };
@@ -3205,7 +3205,7 @@
 			children = (
 				7EF45F482845352400D1F7B0 /* PersonalInfoInteractor.swift */,
 				7EF45F492845352400D1F7B0 /* PersonalInfoPresenter.swift */,
-				7EF45F4A2845352400D1F7B0 /* PersonalInfoViewController.swift */,
+				7EF45F4A2845352400D1F7B0 /* KYCBasicViewController.swift */,
 				7EF45F4B2845352400D1F7B0 /* PersonalInfoStore.swift */,
 				7EF45F4C2845352400D1F7B0 /* PersonalInfoVIP.swift */,
 				7EF45F4D2845352400D1F7B0 /* PersonalInfoModels.swift */,
@@ -4658,7 +4658,7 @@
 				7B54E5AC27F4A2B0002DD1E4 /* SimpleTextField.swift in Sources */,
 				7E5CB3AC2835090E00EC787E /* WrapperView.swift in Sources */,
 				7B54E52A27F4A208002DD1E4 /* KYCConfirmEmailPresenter.swift in Sources */,
-				7EF45F512845352400D1F7B0 /* PersonalInfoViewController.swift in Sources */,
+				7EF45F512845352400D1F7B0 /* KYCBasicViewController.swift in Sources */,
 				7EF2999127E3B8D200A2238A /* MarketChart.swift in Sources */,
 				CEA9178620C07FBB00F29B31 /* SyncingHeaderView.swift in Sources */,
 				7BDB49F92806F1090031F015 /* PlatformAuthResult.swift in Sources */,

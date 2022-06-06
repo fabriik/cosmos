@@ -8,18 +8,38 @@
 
 import UIKit
 
-class ProfileCoordinator: BaseCoordinator, ProfileRoutes, PersonalInfoRoutes {
+class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
+    
+    
+    override func start() {
+        open(scene: Scenes.KYCBasic)
+    }
+    
+    func showCountrySelector(selected: ((String?) -> Void)?) {
+        let nvc = UINavigationController()
+        let coordinator = ItemSelectionCoordinator(navigationController: nvc)
+        coordinator.start()
+        coordinator.parentCoordinator = self
+        (nvc.topViewController as? ItemSelectionViewController)?.itemSelected = selected
+        childCoordinators.append(coordinator)
+        navigationController.show(nvc, sender: nil)
+    }
+    
+    override func goBack() {
+        navigationController.dismiss(animated: true)
+        parentCoordinator?.childDidFinish(child: self)
+    }
+}
+
+class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
     // MARK: - ProfileRoutes
     
     override func start() {
         open(scene: Scenes.Profile)
     }
     
-    func showPersonalInfo() {
-        let controller = PersonalInfoViewController()
-        controller.coordinator = self
-        navigationController.show(controller, sender: nil)
-//        open(scene: Scenes.PersonalInfo)
+    func showKYCBasic() {
+        openModally(coordinator: KYCCoordinator.self, scene: Scenes.KYCBasic)
     }
     
     func showAccountVerification() {
@@ -42,17 +62,11 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes, PersonalInfoRoutes {
     func showExport() {
         
     }
-    
-    func showCountrySelector(selected: ((String?) -> Void)? = nil) {
-        let nvc = UINavigationController()
-        let coordinator = ItemSelectionCoordinator(navigationController: nvc)
-        coordinator.start()
-        coordinator.parentCoordinator = self
-        (nvc.topViewController as? ItemSelectionViewController)?.itemSelected = selected
-        childCoordinators.append(coordinator)
-        navigationController.show(nvc, sender: nil)
-    }
+
     // MARK: - Aditional helpers
+    override func goBack() {
+        navigationController.popViewController(animated: true)
+    }
 }
 
 extension BaseCoordinator {

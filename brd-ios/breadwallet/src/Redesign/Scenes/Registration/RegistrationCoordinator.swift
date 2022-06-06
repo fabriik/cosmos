@@ -11,10 +11,10 @@ import UIKit
 class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     // MARK: - RegistrationRoutes
     override func start() {
-        guard let email = UserDefaults.email else {
+            guard let email = UserDefaults.email else {
             return open(scene: Scenes.Registration)
         }
-        
+            
         showRegistrationConfirmation(for: email)
     }
     
@@ -33,5 +33,9 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
         navigationController.show(controller, sender: nil)
     }
 
+    override func goBack() {
+        navigationController.dismiss(animated: true)
+        parentCoordinator?.childDidFinish(child: self)
+    }
     // MARK: - Aditional helpers
 }

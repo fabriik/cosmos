@@ -72,7 +72,18 @@ class APICallWorker: APICallWorkerProperties {
     func getUrl() -> String { return "" }
     func getMethod() -> EQHTTPMethod { return .get }
     func getParameters() -> [String: Any] { return [:] }
-    func getHeaders() -> [String: String] { return [:] }
+    
+    func getHeaders() -> [String: String] {
+        var key = UserDefaults.kycSessionKeyValue
+        
+        if key.isEmpty,
+           let tokenData: [AnyHashable: Any] = try? keychainItem(key: KeychainKey.apiUserAccount),
+           let token = tokenData["token"] as? String {
+            key = "Bread \(token)"
+        }
+        
+        return ["Authorization": key]
+    }
     
     var data = [MultiPart]()
 }

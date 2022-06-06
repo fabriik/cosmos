@@ -45,11 +45,12 @@ class BaseCoordinator: NSObject,
     func start() {
         let nvc = UINavigationController()
         let coordinator: Coordinatable
-        if UserDefaults.kycSessionKeyValue.isEmpty {
-            coordinator = RegistrationCoordinator(navigationController: nvc)
-        } else {
+        if UserDefaults.emailConfirmed {
             coordinator = ProfileCoordinator(navigationController: nvc)
+        } else {
+            coordinator = RegistrationCoordinator(navigationController: nvc)
         }
+        
         coordinator.start()
         coordinator.parentCoordinator = self
         childCoordinators.append(coordinator)
@@ -151,8 +152,7 @@ class BaseCoordinator: NSObject,
     }
     
     func showOverlay(with viewModel: TransparentViewModel, completion: (() -> Void)? = nil) {
-        guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow == true }),
-              let parent = window.rootViewController?.view
+        guard let parent = navigationController.view
         else { return }
         
         let view = TransparentView()
@@ -167,5 +167,26 @@ class BaseCoordinator: NSObject,
         
         view.layoutIfNeeded()
         view.show()
+    }
+}
+
+struct ProfileResponseData: ModelResponse {
+}
+
+struct Profile: Model {
+    
+}
+
+struct ProfileRequestData: RequestModelData {
+    func getParameters() -> [String : Any] {
+        return [:]
+    }
+}
+
+
+class ProfileWorker: BaseResponseWorker<ProfileResponseData, Profile, ModelMapper<ProfileResponseData, Profile>> {
+    
+    override func getUrl() -> String {
+        return APIURLHandler.getUrl(KYCAuthEndpoints.profile)
     }
 }
