@@ -26,6 +26,14 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
         navigationController.show(nvc, sender: nil)
     }
     
+    func showKYCLevelOne() {
+        open(scene: Scenes.KYCBasic)
+    }
+    
+    func showKYCLevelTwo() {
+        showUnderConstruction("KYC Level 2")
+    }
+    
     override func goBack() {
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)

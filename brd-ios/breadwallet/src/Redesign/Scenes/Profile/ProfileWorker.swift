@@ -13,7 +13,9 @@ import Foundation
 // TODO: BE bug.. currently the EP returns nil
 struct ProfileResponseData: ModelResponse {}
 
-struct Profile: Model {}
+struct Profile: Model {
+    var status: VerificationStatus = .none
+}
 
 struct ProfileRequestData: RequestModelData {
     func getParameters() -> [String: Any] {

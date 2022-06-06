@@ -13,9 +13,10 @@ import SnapKit
 
 enum VerificationStatus: String {
     case none
-    case resubmit
+    case levelOne
     case pending
-    case verified
+    case levelTwo
+    case error
 }
 
 struct StatusViewConfiguration: Configurable {
