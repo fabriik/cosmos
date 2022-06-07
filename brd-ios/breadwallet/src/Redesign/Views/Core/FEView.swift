@@ -88,10 +88,18 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
         content.tintColor = background?.border?.tintColor ?? background?.tintColor
 
         guard let border = background?.border else { return }
-
-        content.layer.masksToBounds = true
+        
         content.layer.cornerRadius = border.cornerRadius.rawValue
         content.layer.borderWidth = border.borderWidth
         content.layer.borderColor = border.tintColor.cgColor
+        
+        content.layer.masksToBounds = false
+        content.layer.shadowColor = UIColor.clear.cgColor
+        content.layer.shadowOpacity = 0
+        content.layer.shadowOffset = .zero
+        content.layer.shadowRadius = 0
+        content.layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: border.cornerRadius.rawValue).cgPath
+        content.layer.shouldRasterize = true
+        content.layer.rasterizationScale = UIScreen.main.scale
     }
 }
