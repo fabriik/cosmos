@@ -4,28 +4,35 @@
 
 import Foundation
 
-struct CountriesResponseData: ModelResponse {
-    var data: [String: String]?
+struct CountryResponseData: ModelResponse {
+    var iso2: String?
+    var localizedName: String?
 }
 
-struct CountriesData: Model {
+struct CountriesResponseData: ModelResponse {
+    // TODO: replace "countries" with the actual key that the BE will return
+    var countries: [CountryResponseData]
+}
+
+class CountriesMapper: ModelMapper<CountriesResponseData, [String]> {
+    override func getModel(from response: CountriesResponseData) -> [String]? {
+        return response.countries.compactMap { $0.iso2 }
+    }
 }
 
 struct CountriesRequestData: RequestModelData {
     let locale: String = Locale.current.identifier
-    let sessionKey: String = UserDefaults.kycSessionKeyValue
     
     func getParameters() -> [String: Any] {
         return [
-            "_locale": locale,
-            "sessionKey": sessionKey
+            "_locale": locale
         ]
     }
 }
 
 class CountriesWorker: BaseResponseWorker<CountriesResponseData,
-                       CountriesData,
-                       ModelMapper<CountriesResponseData, CountriesData>> {
+                       [String],
+                       CountriesMapper> {
     
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCEndpoints.countries)

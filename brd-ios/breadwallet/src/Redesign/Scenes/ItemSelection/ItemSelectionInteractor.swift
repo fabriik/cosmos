@@ -16,15 +16,15 @@ class ItemSelectionInteractor: NSObject, Interactor, ItemSelectionViewActions {
 
     // MARK: - ItemSelectionViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        guard let countries = dataStore?.countries else { return }
-        
         let data = CountriesRequestData()
-        
-        CountriesWorker().execute(requestData: data) { [weak self] data, error in
-            
+        CountriesWorker().execute(requestData: data) { [weak self] countries, error in
+            guard let countries = countries, error == nil else {
+                self?.presenter?.presentError(actionResponse: .init(error: error))
+                return
+            }
+            self?.dataStore?.countries = countries
+            self?.presenter?.presentData(actionResponse: .init(item: countries))
         }
-        
-        presenter?.presentData(actionResponse: .init(item: Models.Item(countries)))
     }
     
     func search(viewAction: ItemSelectionModels.Search.ViewAction) {
