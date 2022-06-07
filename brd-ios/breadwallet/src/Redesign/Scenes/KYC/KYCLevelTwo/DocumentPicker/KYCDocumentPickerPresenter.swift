@@ -34,6 +34,10 @@ final class KYCDocumentPickerPresenter: NSObject, Presenter, KYCDocumentPickerAc
         guard let doc = actionResponse.document else { return }
         viewController?.displayVerify(responseDisplay: .init(document: doc))
     }
+    
+    func presentPhoto(actionResponse: KYCDocumentPickerModels.Photo.ActionResponse) {
+        viewController?.displayPhoto(responseDisplay: .init())
+    }
 
     // MARK: - Additional Helpers
 

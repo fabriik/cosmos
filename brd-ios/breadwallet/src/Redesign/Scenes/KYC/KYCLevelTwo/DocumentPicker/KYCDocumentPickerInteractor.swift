@@ -31,7 +31,34 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
               index < (dataStore?.documents?.count ?? 0) else {
             return
         }
-        presenter?.presentVerify(actionResponse: .init(document: dataStore?.documents?[index]))
+        dataStore?.document = dataStore?.documents?[index]
+        presenter?.presentVerify(actionResponse: .init(document: dataStore?.document))
+    }
+    
+    func photo(viewAction: KYCDocumentPickerModels.Photo.ViewAction) {
+        if dataStore?.front == nil {
+            presenter?.presentPhoto(actionResponse: .init(isFront: true))
+        } else if dataStore?.document != .passport,
+                  dataStore?.back == nil {
+            presenter?.presentPhoto(actionResponse: .init(isBack: true))
+        } else if dataStore?.selfie == nil {
+            presenter?.presentPhoto(actionResponse: .init(isSelfie: true))
+        } else { // finish flow! }
+    }
+    
+    func confirmPhoto(viewAction: KYCDocumentPickerModels.ConfirmPhoto.ViewAction) {
+        if !viewAction.isConfirmed {
+          // nothing happens here :D 
+        } else if dataStore?.front == nil {
+            dataStore?.front = dataStore?.photo
+        } else if dataStore?.document != .passport,
+                  dataStore?.back == nil {
+            dataStore?.back = dataStore?.photo
+        } else if dataStore?.selfie == nil {
+            dataStore?.selfie = dataStore?.photo
+        }
+        dataStore?.photo = nil
+        photo(viewAction: .init())
     }
 
     // MARK: - Aditional helpers

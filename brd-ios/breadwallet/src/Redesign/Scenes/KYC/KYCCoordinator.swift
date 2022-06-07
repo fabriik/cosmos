@@ -10,7 +10,9 @@
 
 import UIKit
 
-class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes {
+class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, ImagePickable {
+    
+    var photoSelected: ((UIImage) -> Void)?
     
     override func start() {
         open(scene: Scenes.KYCBasic)

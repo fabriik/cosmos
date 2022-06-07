@@ -12,5 +12,12 @@ class KYCDocumentPickerStore: NSObject, BaseDataStore, KYCDocumentPickerDataStor
     // MARK: - KYCDocumentPickerDataStore
     var itemId: String?
     var documents: [Document]?
+    var document: Document?
+    var front: UIImage?
+    var back: UIImage?
+    var selfie: UIImage?
+    
+    // photo in 'review'
+    var photo: UIImage?
     // MARK: - Aditional helpers
 }

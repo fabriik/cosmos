@@ -16,12 +16,15 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     
     typealias Models = KYCDocumentPickerModels
     
+    private var imagePicker: UIImagePickerController!
+    
     override var sceneTitle: String? {
          // TODO: localize
         return "Proof of Identity"
     }
 
     // MARK: - Overrides
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch sections[indexPath.section] as? Models.Sections {
@@ -60,8 +63,33 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
 
     // MARK: - KYCDocumentPickerResponseDisplay
     func displayVerify(responseDisplay: KYCDocumentPickerModels.Documents.ResponseDisplay) {
-        coordinator?.showDocumentVerification(for: responseDisplay.document)
+        interactor?.photo(viewAction: .init())
+    }
+    
+    func displayPhoto(responseDisplay: KYCDocumentPickerModels.Photo.ResponseDisplay) {
+        coordinator?.showNotification(with: .init(text: "is the image ok?", autoDismissable: false, tapCallback: { [weak self] _ in
+            self?.interactor?.confirmPhoto(viewAction: .init(isConfirmed: true))
+        }))
     }
     
     // MARK: - Additional Helpers
+}
+
+protocol ImagePickable: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func showImagePicker(sourceType: UIImagePickerController.SourceType, completion: ((UIImage) -> Void)?)
+    var photoSelected: ((UIImage) -> Void)? { get set }
+}
+
+extension ImagePickable where Self: KYCCoordinator {
+    func showImagePicker(sourceType: UIImagePickerController.SourceType, completion: ((UIImage) -> Void)?) {
+        guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
+        
+        let controller = UIImagePickerController()
+        controller.sourceType = sourceType
+        controller.delegate = self
+        
+        photoSelected = completion
+        navigationController.present(controller, animated: true)
+    }
 }

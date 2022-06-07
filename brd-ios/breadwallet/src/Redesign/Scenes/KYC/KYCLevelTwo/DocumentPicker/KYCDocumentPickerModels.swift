@@ -32,4 +32,22 @@ enum KYCDocumentPickerModels {
             var document: Document
         }
     }
+    
+    struct Photo {
+        struct ViewAction {}
+        
+        struct ActionResponse {
+            var isFront: Bool = false
+            var isBack: Bool = false
+            var isSelfie: Bool = false
+        }
+        
+        struct ResponseDisplay {}
+    }
+    
+    struct ConfirmPhoto {
+        struct ViewAction {
+            var isConfirmed: Bool
+        }
+    }
 }

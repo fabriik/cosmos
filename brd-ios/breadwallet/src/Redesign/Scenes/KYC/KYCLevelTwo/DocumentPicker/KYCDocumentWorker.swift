@@ -56,6 +56,14 @@ enum Document: String, Model {
         case .residencePermit: return "Residence permit"
         }
     }
+    
+    /// Do we need to take a pic of the back of the document?
+    var isTwosided: Bool {
+        switch self {
+        case .passport: return false
+        default: return true
+        }
+    }
 }
 
 struct KYCDocumentResponseData: ModelResponse {
