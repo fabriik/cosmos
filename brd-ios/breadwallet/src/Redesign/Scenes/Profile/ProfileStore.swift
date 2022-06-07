@@ -11,5 +11,6 @@ import UIKit
 class ProfileStore: NSObject, BaseDataStore, ProfileDataStore {
     // MARK: - ProfileDataStore
     var itemId: String?
+    var profile: Profile?
     // MARK: - Aditional helpers
 }

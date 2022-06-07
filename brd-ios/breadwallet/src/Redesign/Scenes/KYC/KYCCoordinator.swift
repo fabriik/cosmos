@@ -26,6 +26,18 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
         navigationController.show(nvc, sender: nil)
     }
     
+    func showKYCLevelOne() {
+        open(scene: Scenes.KYCBasic)
+    }
+    
+    func showKYCLevelTwo() {
+        open(scene: Scenes.KYCLevelTwo)
+    }
+    
+    func showIdentitySelector() {
+        open(scene: Scenes.KYCDocumentPicker)
+    }
+    
     override func goBack() {
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)

@@ -441,6 +441,21 @@
 		7EBC6B0D2848B81A000A301F /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC6B0C2848B81A000A301F /* CodeInputView.swift */; };
 		7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC37908281C098900028CA1 /* ErrorStruct.swift */; };
 		7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */; };
+		7ED83ACE284F373200261565 /* KYCLevelTwoEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */; };
+		7ED83AE7284F384F00261565 /* KYCDocumentPickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE0284F384F00261565 /* KYCDocumentPickerCoordinator.swift */; };
+		7ED83AE8284F384F00261565 /* KYCDocumentPickerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE1284F384F00261565 /* KYCDocumentPickerStore.swift */; };
+		7ED83AE9284F384F00261565 /* KYCDocumentPickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE2284F384F00261565 /* KYCDocumentPickerPresenter.swift */; };
+		7ED83AEA284F384F00261565 /* KYCDocumentPickerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE3284F384F00261565 /* KYCDocumentPickerModels.swift */; };
+		7ED83AEB284F384F00261565 /* KYCDocumentPickerVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE4284F384F00261565 /* KYCDocumentPickerVIP.swift */; };
+		7ED83AEC284F384F00261565 /* KYCDocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE5284F384F00261565 /* KYCDocumentPickerViewController.swift */; };
+		7ED83AED284F384F00261565 /* KYCDocumentPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE6284F384F00261565 /* KYCDocumentPickerInteractor.swift */; };
+		7ED83AF5284F40EB00261565 /* CheckListVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AEE284F40EA00261565 /* CheckListVIP.swift */; };
+		7ED83AF6284F40EB00261565 /* ChecklistItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AEF284F40EA00261565 /* ChecklistItemView.swift */; };
+		7ED83AF7284F40EB00261565 /* CheckListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AF0284F40EA00261565 /* CheckListPresenter.swift */; };
+		7ED83AF8284F40EB00261565 /* CheckListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AF1284F40EA00261565 /* CheckListStore.swift */; };
+		7ED83AF9284F40EB00261565 /* CheckListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AF2284F40EA00261565 /* CheckListModels.swift */; };
+		7ED83AFA284F40EB00261565 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AF3284F40EB00261565 /* CheckListViewController.swift */; };
+		7ED83AFB284F40EB00261565 /* CheckListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AF4284F40EB00261565 /* CheckListInteractor.swift */; };
 		7EF2998A27E3B8C400A2238A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998827E3B8C400A2238A /* ApiClient.swift */; };
 		7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF2999027E3B8D200A2238A /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998C27E3B8D200A2238A /* MarketData.swift */; };
@@ -1432,6 +1447,21 @@
 		7EBC6B0C2848B81A000A301F /* CodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
 		7EC37908281C098900028CA1 /* ErrorStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStruct.swift; sourceTree = "<group>"; };
 		7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorRequest.swift; sourceTree = "<group>"; };
+		7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCLevelTwoEntryViewController.swift; sourceTree = "<group>"; };
+		7ED83AE0284F384F00261565 /* KYCDocumentPickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerCoordinator.swift; sourceTree = "<group>"; };
+		7ED83AE1284F384F00261565 /* KYCDocumentPickerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerStore.swift; sourceTree = "<group>"; };
+		7ED83AE2284F384F00261565 /* KYCDocumentPickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerPresenter.swift; sourceTree = "<group>"; };
+		7ED83AE3284F384F00261565 /* KYCDocumentPickerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerModels.swift; sourceTree = "<group>"; };
+		7ED83AE4284F384F00261565 /* KYCDocumentPickerVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerVIP.swift; sourceTree = "<group>"; };
+		7ED83AE5284F384F00261565 /* KYCDocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerViewController.swift; sourceTree = "<group>"; };
+		7ED83AE6284F384F00261565 /* KYCDocumentPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerInteractor.swift; sourceTree = "<group>"; };
+		7ED83AEE284F40EA00261565 /* CheckListVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListVIP.swift; sourceTree = "<group>"; };
+		7ED83AEF284F40EA00261565 /* ChecklistItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemView.swift; sourceTree = "<group>"; };
+		7ED83AF0284F40EA00261565 /* CheckListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListPresenter.swift; sourceTree = "<group>"; };
+		7ED83AF1284F40EA00261565 /* CheckListStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListStore.swift; sourceTree = "<group>"; };
+		7ED83AF2284F40EA00261565 /* CheckListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListModels.swift; sourceTree = "<group>"; };
+		7ED83AF3284F40EB00261565 /* CheckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
+		7ED83AF4284F40EB00261565 /* CheckListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListInteractor.swift; sourceTree = "<group>"; };
 		7EF2998827E3B8C400A2238A /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiClient.swift; path = CoinGecko/ApiClient.swift; sourceTree = "<group>"; };
 		7EF2998927E3B8C400A2238A /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resources.swift; path = CoinGecko/Resources.swift; sourceTree = "<group>"; };
 		7EF2998C27E3B8D200A2238A /* MarketData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketData.swift; path = CoinGecko/Models/MarketData.swift; sourceTree = "<group>"; };
@@ -2898,6 +2928,20 @@
 			path = Registration;
 			sourceTree = "<group>";
 		};
+		7E2E1A2F284E169E00E56E69 /* CheckList */ = {
+			isa = PBXGroup;
+			children = (
+				7ED83AF4284F40EB00261565 /* CheckListInteractor.swift */,
+				7ED83AEF284F40EA00261565 /* ChecklistItemView.swift */,
+				7ED83AF2284F40EA00261565 /* CheckListModels.swift */,
+				7ED83AF0284F40EA00261565 /* CheckListPresenter.swift */,
+				7ED83AF1284F40EA00261565 /* CheckListStore.swift */,
+				7ED83AF3284F40EB00261565 /* CheckListViewController.swift */,
+				7ED83AEE284F40EA00261565 /* CheckListVIP.swift */,
+			);
+			path = CheckList;
+			sourceTree = "<group>";
+		};
 		7E5CB32E2835090D00EC787E /* Redesign */ = {
 			isa = PBXGroup;
 			children = (
@@ -2913,6 +2957,7 @@
 		7E5CB32F2835090D00EC787E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7E2E1A2F284E169E00E56E69 /* CheckList */,
 				7EF45F7F284768C100D1F7B0 /* ItemSelection */,
 				7EBC6AFD2848ABAB000A301F /* RegistrationConfirmation */,
 				7EF45F7C2847671F00D1F7B0 /* KYC */,
@@ -3199,6 +3244,29 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
+		7ED83ACC284F372000261565 /* KYCLevelTwo */ = {
+			isa = PBXGroup;
+			children = (
+				7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */,
+				7ED83ADF284F37E200261565 /* DocumentPicker */,
+			);
+			path = KYCLevelTwo;
+			sourceTree = "<group>";
+		};
+		7ED83ADF284F37E200261565 /* DocumentPicker */ = {
+			isa = PBXGroup;
+			children = (
+				7ED83AE0284F384F00261565 /* KYCDocumentPickerCoordinator.swift */,
+				7ED83AE1284F384F00261565 /* KYCDocumentPickerStore.swift */,
+				7ED83AE2284F384F00261565 /* KYCDocumentPickerPresenter.swift */,
+				7ED83AE3284F384F00261565 /* KYCDocumentPickerModels.swift */,
+				7ED83AE4284F384F00261565 /* KYCDocumentPickerVIP.swift */,
+				7ED83AE5284F384F00261565 /* KYCDocumentPickerViewController.swift */,
+				7ED83AE6284F384F00261565 /* KYCDocumentPickerInteractor.swift */,
+			);
+			path = DocumentPicker;
+			sourceTree = "<group>";
+		};
 		7EF2998727E3B8AA00A2238A /* CoinGecko */ = {
 			isa = PBXGroup;
 			children = (
@@ -3220,7 +3288,7 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		7EF45F472845352400D1F7B0 /* KYCBasic */ = {
+		7EF45F472845352400D1F7B0 /* KYCLevelOne */ = {
 			isa = PBXGroup;
 			children = (
 				7EF45F482845352400D1F7B0 /* KYCBasicInteractor.swift */,
@@ -3230,14 +3298,15 @@
 				7EF45F4C2845352400D1F7B0 /* KYCBasicVIP.swift */,
 				7EF45F4D2845352400D1F7B0 /* KYCBasicModels.swift */,
 			);
-			path = KYCBasic;
+			path = KYCLevelOne;
 			sourceTree = "<group>";
 		};
 		7EF45F7C2847671F00D1F7B0 /* KYC */ = {
 			isa = PBXGroup;
 			children = (
 				7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */,
-				7EF45F472845352400D1F7B0 /* KYCBasic */,
+				7ED83ACC284F372000261565 /* KYCLevelTwo */,
+				7EF45F472845352400D1F7B0 /* KYCLevelOne */,
 			);
 			path = KYC;
 			sourceTree = "<group>";
@@ -4660,6 +4729,7 @@
 				C469BF1827F6E6920070ED33 /* SwapConfirmTradeRouter.swift in Sources */,
 				7EBC6B062848ABC5000A301F /* RegistrationConfirmationStore.swift in Sources */,
 				7CF9988D23202C75004AEC17 /* BRAPIClient+Experiments.swift in Sources */,
+				7ED83AFB284F40EB00261565 /* CheckListInteractor.swift in Sources */,
 				CEE0EF521EBD14B60018DB36 /* PinTransitioningDelegate.swift in Sources */,
 				7B54E53527F4A208002DD1E4 /* KYCSessionModelMapper.swift in Sources */,
 				9AE8FFFA21FE6FE000D5058C /* RewardsIconView.swift in Sources */,
@@ -4710,10 +4780,12 @@
 				7BDB4A0B2806F5260031F015 /* RedeemGiftViewController.swift in Sources */,
 				CE6DCC251E6001E50044257B /* UIControl+Callback.swift in Sources */,
 				7B54E51A27F4A208002DD1E4 /* KYCPersonalInfoInteractor.swift in Sources */,
+				7ED83ACE284F373200261565 /* KYCLevelTwoEntryViewController.swift in Sources */,
 				71904FB92225AB3900A6D027 /* AnnouncementPromptView.swift in Sources */,
 				71999FDD22147CD90024271F /* Events.swift in Sources */,
 				CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */,
 				7B54E56127F4A218002DD1E4 /* SwapMainModels.swift in Sources */,
+				7ED83AFA284F40EB00261565 /* CheckListViewController.swift in Sources */,
 				223DB2191DF691260076A151 /* BRSocketHelpers.c in Sources */,
 				3A1D4180250965730089FE63 /* MarketDataPublisher.swift in Sources */,
 				7EBC6AF628488B10000A301F /* RegistrationStore.swift in Sources */,
@@ -4732,6 +4804,7 @@
 				7B54E5BC27F4A2B1002DD1E4 /* GenericSettable.swift in Sources */,
 				3A188FEC257FF1A300957819 /* GiftCurrencyCell.swift in Sources */,
 				CE8644251F2C160200033129 /* ConfirmationViewController.swift in Sources */,
+				7ED83AEC284F384F00261565 /* KYCDocumentPickerViewController.swift in Sources */,
 				7CBA74E820227D1300FBBFA9 /* MenuCell.swift in Sources */,
 				7E5CB39D2835090E00EC787E /* Alertable.swift in Sources */,
 				CEE9A2E920AB4F9A00C5CF2F /* BRAPIClient+Metrics.swift in Sources */,
@@ -4779,6 +4852,7 @@
 				CEDB0B0722D445DB00331FFC /* ChartView.swift in Sources */,
 				7E5CB3822835090E00EC787E /* DemoModels.swift in Sources */,
 				7E5CB37D2835090E00EC787E /* DemoCoordinator.swift in Sources */,
+				7ED83AE9284F384F00261565 /* KYCDocumentPickerPresenter.swift in Sources */,
 				CEBF32F61DDCEAF900348FC6 /* TransactionsTableViewController.swift in Sources */,
 				CEE20C381EA5B4680086F724 /* Strings.swift in Sources */,
 				C45E0BA82845F4C40083F028 /* AccountVerificationPresenter.swift in Sources */,
@@ -4858,13 +4932,16 @@
 				7B54E52E27F4A208002DD1E4 /* KYCSignUpInteractor.swift in Sources */,
 				7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */,
 				7E5CB38C2835090E00EC787E /* Borderable.swift in Sources */,
+				7ED83AE7284F384F00261565 /* KYCDocumentPickerCoordinator.swift in Sources */,
 				7B432FB9280448520056B364 /* KYCResetPasswordViewController.swift in Sources */,
+				7ED83AF5284F40EB00261565 /* CheckListVIP.swift in Sources */,
 				7EF45F592845353100D1F7B0 /* NameView.swift in Sources */,
 				CEAA9E951DC1659F0066731D /* UILabel+BRWAdditions.swift in Sources */,
 				7C6FD3F4213F205400EFF35F /* InboxMetaData.swift in Sources */,
 				CEBF292E1EF99E55005C330A /* LightWeightAlert.swift in Sources */,
 				7E5CB3B22835090E00EC787E /* FETextField.swift in Sources */,
 				CEBF32EE1DDBC30000348FC6 /* BRDButton.swift in Sources */,
+				7ED83AEB284F384F00261565 /* KYCDocumentPickerVIP.swift in Sources */,
 				7CBF4B6B2008899100E003AA /* TxAddressCell.swift in Sources */,
 				7EF45F8E284768EC00D1F7B0 /* ItemView.swift in Sources */,
 				7C35E717200ADF450064808F /* Transaction.swift in Sources */,
@@ -4879,6 +4956,7 @@
 				9A39B1232202AA3400E5018B /* HomeScreenCellHighlightView.swift in Sources */,
 				7C377EC220F6C29E00E8CF1C /* UIAlertController+Additions.swift in Sources */,
 				7B54E56427F4A218002DD1E4 /* SwapPickCurrencyModels.swift in Sources */,
+				7ED83AF8284F40EB00261565 /* CheckListStore.swift in Sources */,
 				CEAFC8611E5D5B0500E4FD06 /* SegmentedButton.swift in Sources */,
 				7E5CB3972835090E00EC787E /* NotificationVIP.swift in Sources */,
 				7B432FA628040EB90056B364 /* KYCForgotPasswordViewController.swift in Sources */,
@@ -4899,6 +4977,7 @@
 				CE1E69312423D34000DF8177 /* CreateAccountFooterView.swift in Sources */,
 				7C787AE421ED8BB40017EA7E /* SimpleRedux.swift in Sources */,
 				7EF45F8F284768FE00D1F7B0 /* RegistrationWorker.swift in Sources */,
+				7ED83AEA284F384F00261565 /* KYCDocumentPickerModels.swift in Sources */,
 				CE27F9591E2C8EA300F7F7F2 /* Amount.swift in Sources */,
 				CE1280F61EEA855C00D27649 /* Date+Additions.swift in Sources */,
 				CED82D4E1E575A5500507A9B /* main.swift in Sources */,
@@ -4965,6 +5044,7 @@
 				CEDB09331FEAA21C001AF56A /* TxDetailViewModel.swift in Sources */,
 				7BDB49E42806CB980031F015 /* ImageStorageService.swift in Sources */,
 				7E5CB38A2835090E00EC787E /* CornerRadius.swift in Sources */,
+				7ED83AF9284F40EB00261565 /* CheckListModels.swift in Sources */,
 				7CB593E122F8C8FE005A230A /* AuthenticationClient.swift in Sources */,
 				4F3AB12425D53F5D00B378DC /* Baker.swift in Sources */,
 				7EBC6B072848ABC5000A301F /* RegistrationConfirmationPresenter.swift in Sources */,
@@ -4985,6 +5065,7 @@
 				CE20C9111DBE5B6F00C8397A /* Circle.swift in Sources */,
 				CE65C665207B0BEF000C99C4 /* ManageCurrencyCell.swift in Sources */,
 				7B54E5AB27F4A2B0002DD1E4 /* SpinnerView.swift in Sources */,
+				7ED83AF7284F40EB00261565 /* CheckListPresenter.swift in Sources */,
 				7E67680328479765007EC155 /* ResendConfirmationWorker.swift in Sources */,
 				7EF2999227E3B8D200A2238A /* SimplePrice.swift in Sources */,
 				7B54E5B227F4A2B0002DD1E4 /* PaddedTextField.swift in Sources */,
@@ -5009,6 +5090,7 @@
 				7BA83DAC28047894003F73AA /* Validators.swift in Sources */,
 				7C35E712200AC2080064808F /* TxViewModel.swift in Sources */,
 				71249913221F44FE00BEA491 /* Announcement.swift in Sources */,
+				7ED83AED284F384F00261565 /* KYCDocumentPickerInteractor.swift in Sources */,
 				71F829422321953F00B3C76E /* AlertPresenter.swift in Sources */,
 				7E5CB3AF2835090E00EC787E /* FELabel.swift in Sources */,
 				CE8F0AE31EB91BB500AA7642 /* SearchHeaderView.swift in Sources */,
@@ -5070,6 +5152,7 @@
 				7B54E59C27F4A2B0002DD1E4 /* KYCConstants.swift in Sources */,
 				7B54E50F27F4A208002DD1E4 /* KYCCenteredTextView.swift in Sources */,
 				7B54E51727F4A208002DD1E4 /* KYCUploadViewController.swift in Sources */,
+				7ED83AF6284F40EB00261565 /* ChecklistItemView.swift in Sources */,
 				7EF2998A27E3B8C400A2238A /* ApiClient.swift in Sources */,
 				7EF45F8D284768C100D1F7B0 /* ItemSelectionCoordinator.swift in Sources */,
 				7B54E52027F4A208002DD1E4 /* KYCSignInPresenter.swift in Sources */,
@@ -5205,6 +5288,7 @@
 				7B54E52F27F4A208002DD1E4 /* KYCSignUpViewController.swift in Sources */,
 				C45E0BAB2845F4C40083F028 /* AccountVerificationViewController.swift in Sources */,
 				713CD88A2240198A004657D4 /* RecoveryKeyIntroViewController.swift in Sources */,
+				7ED83AE8284F384F00261565 /* KYCDocumentPickerStore.swift in Sources */,
 				CE6D0F971DE8B73A00BD4BCF /* ModalTransitionDelegate.swift in Sources */,
 				7E5CB3A72835090E00EC787E /* Fonts.swift in Sources */,
 				7B54E52427F4A208002DD1E4 /* KYCSignInRouter.swift in Sources */,

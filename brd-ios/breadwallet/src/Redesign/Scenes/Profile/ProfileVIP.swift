@@ -28,6 +28,7 @@ protocol ProfileResponseDisplays: AnyObject, BaseResponseDisplays, FetchResponse
 }
 
 protocol ProfileDataStore: BaseDataStore, FetchDataStore {
+    var profile: Profile? { get set }
 }
 
 protocol ProfileDataPassing {

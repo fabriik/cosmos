@@ -17,5 +17,8 @@ class AccountVerificationInteractor: NSObject, Interactor, AccountVerificationVi
         presenter?.presentData(actionResponse: .init(item: dataStore))
     }
 
+    func startVerification(viewAction: AccountVerificationModels.Start.ViewAction) {
+        presenter?.presentStartVerification(actionResponse: .init(level: Models.KYCLevel(rawValue: viewAction.level) ?? .one))
+    }
     // MARK: - Aditional helpers
 }
