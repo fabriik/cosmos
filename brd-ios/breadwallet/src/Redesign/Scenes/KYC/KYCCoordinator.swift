@@ -31,7 +31,11 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
     }
     
     func showKYCLevelTwo() {
-        showUnderConstruction("KYC Level 2")
+        open(scene: Scenes.KYCLevelTwo)
+    }
+    
+    func showIdentitySelector() {
+        open(scene: Scenes.KYCDocumentPicker)
     }
     
     override func goBack() {

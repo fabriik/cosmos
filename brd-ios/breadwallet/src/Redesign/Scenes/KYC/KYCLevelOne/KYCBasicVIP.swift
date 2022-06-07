@@ -43,6 +43,7 @@ protocol KYCBasicDataPassing {
 
 protocol KYCBasicRoutes: CoordinatableRoutes {
     func showKYCLevelOne()
-    func showKYCLevelTwo()
     func showCountrySelector(selected: ((String?) -> Void)?)
+    func showKYCLevelTwo()
+    func showIdentitySelector()
 }

@@ -45,6 +45,8 @@ class BaseTableViewController<C: CoordinatableRoutes,
     
     override func setupSubviews() {
         super.setupSubviews()
+        view.backgroundColor = LightColors.Background.one
+        tableView.backgroundColor = .clear
         
         // TODO: register proper accessoryViews
         tableView.registerAccessoryView(WrapperAccessoryView<FELabel>.self)

@@ -34,7 +34,7 @@ class FELabel: UILabel, ViewProtocol {
         self.viewModel = viewModel
         switch viewModel {
         case .text(let value):
-            text = value?.localizedCapitalized
+            text = value
             
         case .attributedText(let value):
             attributedText = value
