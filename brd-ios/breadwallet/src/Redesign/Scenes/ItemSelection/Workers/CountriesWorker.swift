@@ -10,13 +10,12 @@ struct CountryResponseData: ModelResponse {
 }
 
 struct CountriesResponseData: ModelResponse {
-    // TODO: replace "countries" with the actual key that the BE will return
     var countries: [CountryResponseData]
 }
 
-class CountriesMapper: ModelMapper<CountriesResponseData, [String]> {
-    override func getModel(from response: CountriesResponseData) -> [String]? {
-        return response.countries.compactMap { $0.iso2 }
+class CountriesMapper: ModelMapper<CountriesResponseData, [CountryResponseData]> {
+    override func getModel(from response: CountriesResponseData) -> [CountryResponseData]? {
+        return response.countries
     }
 }
 
@@ -31,7 +30,7 @@ struct CountriesRequestData: RequestModelData {
 }
 
 class CountriesWorker: BaseResponseWorker<CountriesResponseData,
-                       [String],
+                       [CountryResponseData],
                        CountriesMapper> {
     
     override func getUrl() -> String {

@@ -42,11 +42,11 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         guard let cell: WrapperTableViewCell<ItemView> = tableView.dequeueReusableCell(for: indexPath),
-              let model = sectionRows[section]?[indexPath.row] as? String
+              let model = sectionRows[section]?[indexPath.row] as? CountryResponseData
         else { return UITableViewCell() }
         
         cell.setup { view in
-            view.setup(with: .init(title: model, imageName: model))
+            view.setup(with: .init(title: model.localizedName ?? "", imageName: model.iso2 ?? ""))
             view.setupCustomMargins(all: .large)
         }
         
@@ -55,8 +55,8 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
-        guard let code = sectionRows[section]?[indexPath.row] as? String else { return }
-        itemSelected?(code)
+        guard let model = sectionRows[section]?[indexPath.row] as? CountryResponseData else { return }
+        itemSelected?(model.localizedName)
         coordinator?.goBack()
     }
     

@@ -30,9 +30,9 @@ class ItemSelectionInteractor: NSObject, Interactor, ItemSelectionViewActions {
     func search(viewAction: ItemSelectionModels.Search.ViewAction) {
         guard let countries = dataStore?.countries else { return }
         
-        let searchCountries = countries.filter { $0.contains(viewAction.text?.localizedUppercase ?? "") }
-        
-        presenter?.presentData(actionResponse: .init(item: Models.Item(searchCountries)))
+//        let searchCountries = countries.filter { $0.contains(viewAction.text?.localizedUppercase ?? "") }
+//        
+//        presenter?.presentData(actionResponse: .init(item: Models.Item(searchCountries)))
     }
     // MARK: - Aditional helpers
 }
