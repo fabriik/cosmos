@@ -42,7 +42,20 @@ class BaseCoordinator: NSObject,
         self.navigationController = navigationController
     }
 
-    func start() {}
+    func start() {
+        let nvc = UINavigationController()
+        let coordinator: Coordinatable
+        if UserDefaults.emailConfirmed {
+            coordinator = ProfileCoordinator(navigationController: nvc)
+        } else {
+            coordinator = RegistrationCoordinator(navigationController: nvc)
+        }
+        
+        coordinator.start()
+        coordinator.parentCoordinator = self
+        childCoordinators.append(coordinator)
+        navigationController.show(nvc, sender: nil)
+    }
 
     /// Determines whether the viewcontroller or navigation stack are being dismissed
     func goBack() {
@@ -139,8 +152,7 @@ class BaseCoordinator: NSObject,
     }
     
     func showOverlay(with viewModel: TransparentViewModel, completion: (() -> Void)? = nil) {
-        guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow == true }),
-              let parent = window.rootViewController?.view
+        guard let parent = navigationController.view
         else { return }
         
         let view = TransparentView()

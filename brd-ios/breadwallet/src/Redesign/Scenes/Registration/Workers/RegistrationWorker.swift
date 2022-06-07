@@ -46,6 +46,7 @@ struct RegistrationRequestData: RequestModelData {
 class RegistrationWorker: BaseResponseWorker<RegistrationResponseData,
                           RegistrationData,
                           RegistrationMapper> {
+    
     override func getHeaders() -> [String: String] {
         guard let email = (getParameters()["email"] as? String),
               let token = (getParameters()["token"] as? String),

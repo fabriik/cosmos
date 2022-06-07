@@ -1,5 +1,5 @@
 //
-//  PersonalInfoInteractor.swift
+//  KYCBasicInteractor.swift
 //  breadwallet
 //
 //  Created by Rok on 30/05/2022.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-class PersonalInfoInteractor: NSObject, Interactor, PersonalInfoViewActions {
-    typealias Models = PersonalInfoModels
+class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
+    typealias Models = KYCBasicModels
 
-    var presenter: PersonalInfoPresenter?
-    var dataStore: PersonalInfoStore?
+    var presenter: KYCBasicPresenter?
+    var dataStore: KYCBasicStore?
 
-    // MARK: - PersonalInfoViewActions
+    // MARK: - KYCBasicViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
         presenter?.presentData(actionResponse: .init(item: dataStore))
         validate(viewAction: .init())
     }
     
-    func nameSet(viewAction: PersonalInfoModels.Name.ViewAction) {
+    func nameSet(viewAction: KYCBasicModels.Name.ViewAction) {
         if let value = viewAction.first {
             dataStore?.firstName = value
         }
@@ -30,23 +30,23 @@ class PersonalInfoInteractor: NSObject, Interactor, PersonalInfoViewActions {
         validate(viewAction: .init())
     }
     
-    func countrySelected(viewAction: PersonalInfoModels.Country.ViewAction) {
+    func countrySelected(viewAction: KYCBasicModels.Country.ViewAction) {
         guard  let country = viewAction.code else { return }
         dataStore?.country = country
         getData(viewAction: .init())
     }
     
-    func birthDateSet(viewAction: PersonalInfoModels.BirthDate.ViewAction) {
+    func birthDateSet(viewAction: KYCBasicModels.BirthDate.ViewAction) {
         guard  let date = viewAction.date else { return }
         dataStore?.birthdate = date
         validate(viewAction: .init())
     }
     
-    func validate(viewAction: PersonalInfoModels.Validate.ViewAction) {
+    func validate(viewAction: KYCBasicModels.Validate.ViewAction) {
         presenter?.presentValidate(actionResponse: .init(item: dataStore))
     }
     
-    func submit(vieAction: PersonalInfoModels.Submit.ViewAction) {
+    func submit(vieAction: KYCBasicModels.Submit.ViewAction) {
         guard let firstName = dataStore?.firstName,
               let lastName = dataStore?.lastName,
               let country = dataStore?.country,
@@ -54,12 +54,12 @@ class PersonalInfoInteractor: NSObject, Interactor, PersonalInfoViewActions {
             // should not happen
             return
         }
-        let data = PersonalInfoRequestData(firstName: firstName,
+        let data = KYCBasicRequestData(firstName: firstName,
                                            lastName: lastName,
                                            country: country,
                                            birthDate: birthDate)
         
-        PersonalInfoWorker().execute(requestData: data) { [weak self] error in
+        KYCBasicWorker().execute(requestData: data) { [weak self] error in
             self?.presenter?.presentSubmit(actionResponse: .init(error: error))
         }
     }
@@ -67,7 +67,7 @@ class PersonalInfoInteractor: NSObject, Interactor, PersonalInfoViewActions {
     // MARK: - Aditional helpers
 }
 
-struct PersonalInfoRequestData: RequestModelData {
+struct KYCBasicRequestData: RequestModelData {
     var firstName: String
     var lastName: String
     var country: String
@@ -83,9 +83,13 @@ struct PersonalInfoRequestData: RequestModelData {
     }
 }
 
-class PersonalInfoWorker: BasePlainResponseWorker {
+class KYCBasicWorker: BasePlainResponseWorker {
     
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.basic)
+    }
+    
+    override func getMethod() -> EQHTTPMethod {
+        return .post
     }
 }

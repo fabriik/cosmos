@@ -7,8 +7,8 @@ import UIKit
 class AccountVerificationCoordinator: BaseCoordinator, AccountVerificationRoutes {
     // MARK: - AccountVerificationRoutes
     
-    func showPersonalInfo() {
-        open(scene: Scenes.PersonalInfo)
+    func showKYCBasic() {
+        open(scene: Scenes.KYCBasic)
     }
 
     // MARK: - Aditional helpers
