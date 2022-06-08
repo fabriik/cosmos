@@ -51,5 +51,7 @@ class FELabel: UILabel, ViewProtocol {
         textColor = config.textColor
         numberOfLines = config.numberOfLines
         lineBreakMode = config.lineBreakMode
+        font = config.font
+        textColor = config.textColor
     }
 }

@@ -195,6 +195,38 @@ class BaseTableViewController<C: CoordinatableRoutes,
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleLabelCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? LabelViewModel,
+              let cell: WrapperTableViewCell<FELabel> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init(font: Fonts.Title.four, textColor: LightColors.Text.one))
+            view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, descriptionLabelCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? LabelViewModel,
+              let cell: WrapperTableViewCell<FELabel> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init(font: Fonts.Body.one, textColor: LightColors.Text.two))
+            view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         guard let model = sectionRows[section]?[indexPath.row] as? ButtonViewModel,

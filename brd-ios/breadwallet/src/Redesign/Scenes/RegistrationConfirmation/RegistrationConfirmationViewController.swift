@@ -28,8 +28,11 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
         case .image:
             cell = self.tableView(tableView, coverCellForRowAt: indexPath)
             
-        case .title, .instructions:
-            cell = self.tableView(tableView, labelCellForRowAt: indexPath)
+        case .title:
+            cell = self.tableView(tableView, titleLabelCellForRowAt: indexPath)
+            
+        case .instructions:
+            cell = self.tableView(tableView, descriptionLabelCellForRowAt: indexPath)
             
         case .input:
             cell = self.tableView(tableView, codeInputCellForRowAt: indexPath)
