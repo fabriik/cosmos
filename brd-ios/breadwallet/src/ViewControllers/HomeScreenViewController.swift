@@ -251,8 +251,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private func setupToolbar() {
         let buttons = [
             ("Balance", #imageLiteral(resourceName: "balance"), #selector(showBalance)),
-            (buyButtonTitle, #imageLiteral(resourceName: "buy"), #selector(buy)),
             (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
+            ("Buy/Sell", #imageLiteral(resourceName: "buy"), #selector(buy)),
             ("Profile", #imageLiteral(resourceName: "user"), #selector(profile)),
             (S.HomeScreen.menu, #imageLiteral(resourceName: "more"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
                 let button = UIButton.vertical(title: title, image: image)
