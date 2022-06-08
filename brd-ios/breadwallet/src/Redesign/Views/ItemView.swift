@@ -55,8 +55,14 @@ class ItemView: FEView<ItemViewConfiguration, ItemViewModel> {
     
     override func setup(with viewModel: ItemViewModel?) {
         guard let viewModel = viewModel else { return }
-
-        imageView.setup(with: .imageName(viewModel.imageName))
+        
         titleLabel.setup(with: .text(viewModel.title))
+        
+        let imageExists = UIImage(named: viewModel.imageName) != nil
+        guard imageExists else {
+            imageView.setup(with: .imageName("LogoBlue"))
+            return
+        }
+        imageView.setup(with: .imageName(viewModel.imageName))
     }
 }
