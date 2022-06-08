@@ -18,6 +18,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
     func getData(viewAction: FetchModels.Get.ViewAction) {
         let item = Models.Item(dataStore?.email, dataStore?.type)
         presenter?.presentData(actionResponse: .init(item: item))
+        presenter?.presentNotification(actionResponse: .init(text: "\(RegistrationWorker().getUrl())"))
     }
     
     func validate(viewAction: RegistrationModels.Validate.ViewAction) {
