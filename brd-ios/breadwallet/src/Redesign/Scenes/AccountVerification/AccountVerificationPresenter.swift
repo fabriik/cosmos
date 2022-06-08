@@ -18,17 +18,21 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
         let sectionRows: [Models.Section: [Any]] = [
             .verificationLevel: [
                 VerificationViewModel(title: .text("Level 1"),
-                                      status: item.verificationStatus ?? .verified,
+                                      status: item.verificationStatus ?? .none,
                                       description: .text("Personal information"),
                                       bottomButton: .init(title: "Account limit: $1,000/day ($10,000 lifetime)", image: nil)),
                 VerificationViewModel(title: .text("Level 2"),
-                                      status: item.verificationStatus ?? .pending,
+                                      status: item.verificationStatus ?? .none,
                                       description: .text("ID Verification"),
                                       bottomButton: .init(title: "Swap limit: $10,000 per Swap, no lifetime limit"))
             ]
         ]
         
         viewController?.displayData(responseDisplay: .init(sections: sections, sectionRows: sectionRows))
+    }
+    
+    func presentStartVerification(actionResponse: AccountVerificationModels.Start.ActionResponse) {
+        viewController?.displayStartVerification(responseDisplay: .init(level: actionResponse.level))
     }
 
     // MARK: - Additional Helpers

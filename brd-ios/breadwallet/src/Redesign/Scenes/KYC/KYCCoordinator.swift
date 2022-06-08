@@ -10,7 +10,7 @@
 
 import UIKit
 
-class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
+class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes {
     
     override func start() {
         open(scene: Scenes.KYCBasic)
@@ -24,6 +24,22 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
         (nvc.topViewController as? ItemSelectionViewController)?.itemSelected = selected
         childCoordinators.append(coordinator)
         navigationController.show(nvc, sender: nil)
+    }
+    
+    func showKYCLevelOne() {
+        open(scene: Scenes.KYCBasic)
+    }
+    
+    func showKYCLevelTwo() {
+        open(scene: Scenes.KYCLevelTwo)
+    }
+    
+    func showIdentitySelector() {
+        open(scene: Scenes.KYCDocumentPicker)
+    }
+    
+    func showDocumentVerification(for document: Document) {
+        showUnderConstruction("\(document.title) verification")
     }
     
     override func goBack() {

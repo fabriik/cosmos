@@ -15,6 +15,9 @@ struct NavigationConfiguration: Configurable {
     var image: BackgroundConfiguration?
     var label: LabelConfiguration?
     var button: ButtonConfiguration?
+    
+    var shadow: ShadowConfiguration?
+    var background: BackgroundConfiguration?
 }
 
 struct NavigationViewModel: ViewModel {
@@ -46,6 +49,13 @@ class NavigationItemView: FEView<NavigationConfiguration, NavigationViewModel> {
         return view
     }()
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        configure(background: config?.background)
+        configure(shadow: config?.shadow)
+    }
+    
     override func setupSubviews() {
         super.setupSubviews()
         setupCustomMargins(all: .large)
@@ -75,6 +85,9 @@ class NavigationItemView: FEView<NavigationConfiguration, NavigationViewModel> {
         leading.configure(with: config.image)
         titleLabel.configure(with: config.label)
         trailing.configure(with: config.button)
+        
+        configure(background: config.background)
+        configure(shadow: config.shadow)
     }
     
     override func setup(with viewModel: NavigationViewModel?) {

@@ -11,8 +11,8 @@
 import UIKit
 
 class BaseTableViewController<C: CoordinatableRoutes,
-                              I: Interactor & FetchViewActions,
-                              P: Presenter & FetchActionResponses,
+                              I: Interactor,
+                              P: Presenter,
                               DS: BaseDataStore & NSObject>: VIPTableViewController<C, I, P, DS>,
                                                                               FetchResponseDisplays {
     override var isModalDismissableEnabled: Bool { return true }
@@ -45,6 +45,8 @@ class BaseTableViewController<C: CoordinatableRoutes,
     
     override func setupSubviews() {
         super.setupSubviews()
+        view.backgroundColor = LightColors.Background.one
+        tableView.backgroundColor = .clear
         
         // TODO: register proper accessoryViews
         tableView.registerAccessoryView(WrapperAccessoryView<FELabel>.self)
@@ -66,7 +68,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
 
     override func prepareData() {
         super.prepareData()
-        interactor?.getData(viewAction: .init())
+        (interactor as? FetchViewActions)?.getData(viewAction: .init())
     }
 
     // MARK: ResponseDisplay

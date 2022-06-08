@@ -89,7 +89,6 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
             
             button.configure(with: buttonConfig)
             button.setup(with: model)
-            button.backgroundColor = .yellow
             buttons.append(button)
             stack.addArrangedSubview(button)
             button.snp.makeConstraints { make in

@@ -24,8 +24,8 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
                 self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Under construction", image: "earth")))
                 return
             }
-            
-            self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Under construction", image: "earth")))
+            self?.dataStore?.profile = profile
+            self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: profile.email, image: "earth")))
         }
     }
     

@@ -4,7 +4,7 @@
 
 import UIKit
 
-class AccountVerificationViewController: BaseTableViewController<ProfileCoordinator,
+class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
                                          AccountVerificationInteractor,
                                          AccountVerificationPresenter,
                                          AccountVerificationStore>,
@@ -57,12 +57,21 @@ class AccountVerificationViewController: BaseTableViewController<ProfileCoordina
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.showKYCBasic()
+        interactor?.startVerification(viewAction: .init(level: indexPath.row))
     }
 
     // MARK: - User Interaction
 
     // MARK: - AccountVerificationResponseDisplay
+    func displayStartVerification(responseDisplay: AccountVerificationModels.Start.ResponseDisplay) {
+        switch responseDisplay.level {
+        case .one:
+            coordinator?.showKYCLevelOne()
+            
+        case .two:
+            coordinator?.showKYCLevelTwo()
+        }
+    }
 
     // MARK: - Additional Helpers
 }
