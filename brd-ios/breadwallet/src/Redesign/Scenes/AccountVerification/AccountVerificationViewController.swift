@@ -32,6 +32,8 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
         
+        cell.setupCustomMargins(vertical: .huge, horizontal: .large)
+        
         return cell
     }
     
