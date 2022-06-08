@@ -19,8 +19,11 @@ class VerifyAccountViewController: BaseTableViewController<VerifyAccountCoordina
         case .image:
             cell = self.tableView(tableView, coverCellForRowAt: indexPath)
             
-        case .title, .description:
-            cell = self.tableView(tableView, labelCellForRowAt: indexPath)
+        case .title:
+            cell = self.tableView(tableView, titleLabelCellForRowAt: indexPath)
+            
+        case .description:
+            cell = self.tableView(tableView, descriptionLabelCellForRowAt: indexPath)
             
         case .verifyButton:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)

@@ -133,6 +133,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         
         tintColor = background?.tintColor
         titleLabel?.textColor = background?.tintColor
+        titleLabel?.font = Fonts.button
         
         Self.animate(withDuration: withAnimation ? Presets.Animation.duration : 0) { [weak self] in
             self?.configure(background: background)
