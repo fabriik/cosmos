@@ -33,12 +33,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
             return
         }
         
-        guard let tokenData = try? KeyStore.create().apiUserAccount else {
-            presenter?.presentNotification(actionResponse: .init(text: "no api user account"))
-            return
-        }
-        
-        guard let token = tokenData["token"] as? String else {
+        guard let token = UserDefaults.sessionKeyValue else {
             presenter?.presentNotification(actionResponse: .init(text: "no token"))
             return
         }
