@@ -16,6 +16,15 @@ class RegistrationViewController: BaseTableViewController<RegistrationCoordinato
     typealias Models = RegistrationModels
 
     // MARK: - Overrides
+    override func setupSubviews() {
+        super.setupSubviews()
+        
+        tableView.snp.remakeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(Margins.large.rawValue)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch sections[indexPath.section] as? Models.Section {
