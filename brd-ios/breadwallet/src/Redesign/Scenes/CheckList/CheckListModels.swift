@@ -17,5 +17,4 @@ enum CheckListModels {
         var header: AccessoryType? { return nil }
         var footer: AccessoryType? { return nil }
     }
-    
 }

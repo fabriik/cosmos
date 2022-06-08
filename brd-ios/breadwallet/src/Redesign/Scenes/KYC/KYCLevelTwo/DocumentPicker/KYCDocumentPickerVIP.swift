@@ -13,16 +13,19 @@ extension Scenes {
 }
 
 protocol KYCDocumentPickerViewActions: BaseViewActions, FetchViewActions {
+    func verify(viewAction: KYCDocumentPickerModels.Documents.ViewAction)
 }
 
 protocol KYCDocumentPickerActionResponses: BaseActionResponses, FetchActionResponses {
+    func presentVerify(actionResponse: KYCDocumentPickerModels.Documents.ActionResponse)
 }
 
 protocol KYCDocumentPickerResponseDisplays: AnyObject, BaseResponseDisplays, FetchResponseDisplays {
+    func displayVerify(responseDisplay: KYCDocumentPickerModels.Documents.ResponseDisplay)
 }
 
 protocol KYCDocumentPickerDataStore: BaseDataStore, FetchDataStore {
-    var country: String? { get set }
+    var documents: [Document]? { get set }
 }
 
 protocol KYCDocumentPickerDataPassing {
@@ -30,4 +33,5 @@ protocol KYCDocumentPickerDataPassing {
 }
 
 protocol KYCDocumentPickerRoutes: CoordinatableRoutes {
+    func showDocumentVerification(for document: Document)
 }

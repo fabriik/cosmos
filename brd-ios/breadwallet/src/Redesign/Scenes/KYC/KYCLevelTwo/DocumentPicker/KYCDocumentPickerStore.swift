@@ -11,6 +11,6 @@ import UIKit
 class KYCDocumentPickerStore: NSObject, BaseDataStore, KYCDocumentPickerDataStore {
     // MARK: - KYCDocumentPickerDataStore
     var itemId: String?
-    var country: String?
+    var documents: [Document]?
     // MARK: - Aditional helpers
 }

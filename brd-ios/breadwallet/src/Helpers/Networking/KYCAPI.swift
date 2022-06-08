@@ -26,6 +26,7 @@ enum KYCAuthEndpoints: String, URLType {
     case confirm = "auth/associate/confirm"
     case resend = "auth/associate/resend"
     case basic = "kyc/basic"
+    case documents = "kyc/documents"
     
     // TODO: @Kenan deprecated?
     case login

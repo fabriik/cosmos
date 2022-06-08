@@ -10,7 +10,7 @@
 
 import UIKit
 
-class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
+class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes {
     
     override func start() {
         open(scene: Scenes.KYCBasic)
@@ -36,6 +36,10 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes {
     
     func showIdentitySelector() {
         open(scene: Scenes.KYCDocumentPicker)
+    }
+    
+    func showDocumentVerification(for document: Document) {
+        showUnderConstruction("\(document.title) verification")
     }
     
     override func goBack() {
