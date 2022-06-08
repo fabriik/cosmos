@@ -22,7 +22,7 @@ protocol ItemSelectionResponseDisplays: AnyObject, BaseResponseDisplays, FetchRe
 }
 
 protocol ItemSelectionDataStore: BaseDataStore, FetchDataStore {
-    var countries: [String] { get set }
+    var countries: [CountryResponseData] { get set }
 }
 
 protocol ItemSelectionDataPassing {

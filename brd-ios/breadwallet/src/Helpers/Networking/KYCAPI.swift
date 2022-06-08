@@ -11,6 +11,7 @@ enum KYCEndpoints: String, URLType {
     case uploadSelfieImage = "upload?type=SELFIE&%@"
     case uploadFrontBackImage = "upload?type=ID&%@"
     case login = "auth/login%@"
+    case countries = "countries"
     
     var url: String {
         return String(format: Self.baseURL, rawValue)

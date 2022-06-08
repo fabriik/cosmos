@@ -16,17 +16,24 @@ class ItemSelectionInteractor: NSObject, Interactor, ItemSelectionViewActions {
 
     // MARK: - ItemSelectionViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        guard let countries = dataStore?.countries else { return }
-        
-        presenter?.presentData(actionResponse: .init(item: Models.Item(countries)))
+        let data = CountriesRequestData()
+        CountriesWorker().execute(requestData: data) { [weak self] countries, error in
+            guard let countries = countries, error == nil else {
+                self?.presenter?.presentError(actionResponse: .init(error: error))
+                return
+            }
+            self?.dataStore?.countries = countries
+            self?.presenter?.presentData(actionResponse: .init(item: countries))
+        }
     }
     
     func search(viewAction: ItemSelectionModels.Search.ViewAction) {
-        guard let countries = dataStore?.countries else { return }
+        guard let countries = dataStore?.countries,
+        let searchText = viewAction.text else { return }
         
-        let searchCountries = countries.filter { $0.contains(viewAction.text?.localizedUppercase ?? "") }
+        var searchData = searchText.isEmpty ? countries : countries.filter { $0.localizedName?.contains(searchText) as? Bool ?? false }
         
-        presenter?.presentData(actionResponse: .init(item: Models.Item(searchCountries)))
+        presenter?.presentData(actionResponse: .init(item: Models.Item(searchData)))
     }
     // MARK: - Aditional helpers
 }
