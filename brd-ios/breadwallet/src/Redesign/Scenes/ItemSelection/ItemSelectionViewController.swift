@@ -56,7 +56,7 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
         guard let model = sectionRows[section]?[indexPath.row] as? CountryResponseData else { return }
-        itemSelected?(model.localizedName)
+        itemSelected?(model.iso2)
         coordinator?.goBack()
     }
     
