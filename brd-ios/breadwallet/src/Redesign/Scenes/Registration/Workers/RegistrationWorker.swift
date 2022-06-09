@@ -10,6 +10,7 @@
 
 import Foundation
 import WalletKit
+import UIKit
 
 class RegistrationMapper: ModelMapper<RegistrationResponseData, RegistrationData> {
     override func getModel(from response: RegistrationResponseData) -> RegistrationData? {
@@ -51,8 +52,10 @@ class RegistrationWorker: BaseResponseWorker<RegistrationResponseData,
         guard let email = (getParameters()["email"] as? String),
               let token = (getParameters()["token"] as? String),
               let data = (token + email).data(using: .utf8)?.sha256,
-              let key = try? KeyStore.create().apiAuthKey,
-              let signature = CoreSigner.basicDER.sign(data32: data, using: key)?.base64EncodedString()
+              let apiKeyString = try? keychainItem(key: KeychainKey.apiAuthKey) as String?,
+              !apiKeyString.isEmpty,
+              let apiKey = Key.createFromString(asPrivate: apiKeyString),
+              let signature = CoreSigner.basicDER.sign(data32: data, using: apiKey)?.base64EncodedString()
         else { return [:] }
         
         // TODO: extract?
