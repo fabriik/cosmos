@@ -115,12 +115,6 @@ jobs:
             cp breadwallet.xcodeproj/project.pbxproj.rnm breadwallet.xcodeproj/project.pbxproj
             mkdir test_output
             cp breadwallet.xcodeproj/project.pbxproj.rnm test_output
-            cd ..
-            uuid=`grep UUID -A1 -a .circleci/mobileprovision/wallet-CNI-distribution2.mobileprovision | grep -io "[-A-F0-9]\{36\}"`
-            mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-            cp .circleci/mobileprovision/wallet-CNI-distribution2.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
-            ls -la ~/Library/MobileDevice/Provisioning\ Profiles
-
             git status
 
       - run:
@@ -196,38 +190,3 @@ jobs:
             echo "Build breadwallet version ${mainBundleShortVersionString} build number ${mainBundleVersion}"
             set -o pipefail
             xcodebuild -workspace breadwallet.xcworkspace -scheme "breadwallet" archive -archivePath build/breadwallet.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-
-      - run:
-          name: Export Build
-          command: |
-            security default-keychain
-            security set-keychain-settings -lut 9999
-            security unlock-keychain -p test ~/Library/Keychains/default.keychain
-
-            cd brd-ios
-
-            # xcodebuild -exportArchive -archivePath build/breadwallet.xcarchive -exportOptionsPlist build/exportOptions.plist -exportPath build
-
-      - run:
-          name: Upload Build To Testflight
-          command: |
-            security default-keychain
-            security set-keychain-settings -lut 9999
-            security unlock-keychain -p test ~/Library/Keychains/default.keychain
-
-            cd brd-ios
-
-            # Upload if on a release branch
-            if [[ ${CIRCLE_BRANCH} == releases* ]]; then
-                echo "Release build detected. Would have uploaded to TestFlight.  Branch is " ${CIRCLE_BRANCH}
-                # xcrun altool --upload-app --type ios --file "build/breadwallet.ipa" --username "$APPLE_BUILD_USER" --password "$APPLE_BUILD_PASSWORD"
-            else
-                echo "Not a releases build.  Will NOT upload. Branch is " ${CIRCLE_BRANCH}
-            fi
-
-      - store_test_results:
-          path: brd-ios/test_output
-
-      - store_artifacts:
-          path: brd-ios/build
-          destination: artifacts/
