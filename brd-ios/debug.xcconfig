@@ -1,16 +1,17 @@
 //
- //  testnet.xcconfig
- //  breadwallet
- //
- //  Created by Rok on 07/03/2022.
- //  Copyright © 2022 Breadwinner AG. All rights reserved.
- //
- //  See the LICENSE file at the project root for license information.
- //
+//  debug.xcconfig
+//  breadwallet
+//
+//  Created by Rok on 07/03/2022.
+//  Copyright © 2022 Breadwinner AG. All rights reserved.
+//
+//  See the LICENSE file at the project root for license information.
+//
 
- // Configuration settings file format documentation can be found at:
- // https://help.apple.com/xcode/#/dev745c5c974
- #include ".env"
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
 
- API_TOKEN = $(DEBUG_TOKEN)
- API_URL = $(DEBUG_URL)
+#include ".env"
+
+API_TOKEN = $(DEBUG_TOKEN)
+API_URL = $(DEBUG_URL)

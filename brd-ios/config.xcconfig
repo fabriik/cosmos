@@ -1,5 +1,5 @@
-// 
-//  testnet.xcconfig
+//
+//  config.xcconfig
 //  breadwallet
 //
 //  Created by Rok on 07/03/2022.
@@ -10,4 +10,8 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
+
 #include ".env"
+
+API_TOKEN = $(API_TOKEN)
+API_URL = $(API_URL)
