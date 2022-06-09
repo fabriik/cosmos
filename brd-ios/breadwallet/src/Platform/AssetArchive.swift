@@ -70,13 +70,7 @@ open class AssetArchive {
                     return completionHandler(versionError)
                 }
                 
-                guard let versions = versions, let version = self.version else {
-                    self.extractBundledArchive()
-                    
-                    return completionHandler(BRAPIClientError.unknownError)
-                }
-                
-                if versions.firstIndex(of: version) == versions.count - 1 {
+                if let versions = versions, let version = self.version, versions.firstIndex(of: version) == versions.count - 1 {
                     print("[AssetArchive] already at most recent version of bundle \(self.name)")
                     
                     self.extract(path: self.archivePath) { error in
