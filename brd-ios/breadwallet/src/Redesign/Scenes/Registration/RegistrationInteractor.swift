@@ -27,13 +27,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
     }
     
     func next(viewACtion: RegistrationModels.Next.ViewAction) {
-        guard let email = dataStore?.email else {
-            return
-        }
-        
-        guard let token = UserDefaults.sessionKeyValue else {
-            return
-        }
+        guard let email = dataStore?.email, let token = UserDefaults.sessionKeyValue else { return }
         
         let data = RegistrationRequestData(email: email, token: token)
         RegistrationWorker().execute(requestData: data) { [weak self] data, error in
