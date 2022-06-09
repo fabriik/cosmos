@@ -18,7 +18,6 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
     func getData(viewAction: FetchModels.Get.ViewAction) {
         let item = Models.Item(dataStore?.email, dataStore?.type)
         presenter?.presentData(actionResponse: .init(item: item))
-        presenter?.presentNotification(actionResponse: .init(text: "\(RegistrationWorker().getUrl())"))
     }
     
     func validate(viewAction: RegistrationModels.Validate.ViewAction) {
@@ -28,15 +27,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
     }
     
     func next(viewACtion: RegistrationModels.Next.ViewAction) {
-        guard let email = dataStore?.email else {
-            presenter?.presentNotification(actionResponse: .init(text: "no keystore token"))
-            return
-        }
-        
-        guard let token = UserDefaults.sessionKeyValue else {
-            presenter?.presentNotification(actionResponse: .init(text: "no token"))
-            return
-        }
+        guard let email = dataStore?.email, let token = UserDefaults.sessionKeyValue else { return }
         
         let data = RegistrationRequestData(email: email, token: token)
         RegistrationWorker().execute(requestData: data) { [weak self] data, error in
@@ -46,9 +37,10 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
                 self?.presenter?.presentNotification(actionResponse: .init(text: "\(error)"))
                 return
             }
-            self?.presenter?.presentNotification(actionResponse: .init(text: "got new session key \(sessionKey)"))
+            
             UserDefaults.email = email
             UserDefaults.kycSessionKeyValue = sessionKey
+            
             self?.presenter?.presentNext(actionResponse: .init(email: email))
         }
     }
