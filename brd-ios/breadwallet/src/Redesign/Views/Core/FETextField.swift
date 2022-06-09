@@ -12,9 +12,9 @@ import UIKit
 import SnapKit
 
 struct TextFieldTypeConfiguration: TextFieldTypeConfigurable {
-    var autocapitalizationType: UITextAutocapitalizationType?
-    var autocorrectionType: UITextAutocorrectionType?
-    var keyboardType: UIKeyboardType?
+    var autocapitalizationType: UITextAutocapitalizationType
+    var autocorrectionType: UITextAutocorrectionType
+    var keyboardType: UIKeyboardType
 }
 
 struct TextFieldConfiguration: Configurable {
@@ -211,16 +211,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         titleLabel.configure(with: config.titleConfiguration)
         hintLabel.configure(with: config.hintConfiguration)
         
-        if let autocapitalizationType = config.textFieldTypeConfiguration?.autocapitalizationType {
-            textField.autocapitalizationType = autocapitalizationType
-        }
-        
-        if let autocorrectionType = config.textFieldTypeConfiguration?.autocorrectionType {
-            textField.autocorrectionType = autocorrectionType
-        }
-        
-        if let keyboardType = config.textFieldTypeConfiguration?.keyboardType {
-            textField.keyboardType = keyboardType
+        if let fieldTypeConfig = config.textFieldTypeConfiguration {
+            textField.autocapitalizationType = fieldTypeConfig.autocapitalizationType
+            textField.autocorrectionType = fieldTypeConfig.autocorrectionType
+            textField.keyboardType = fieldTypeConfig.keyboardType
         }
         
         if let textConfig = config.textConfiguration {

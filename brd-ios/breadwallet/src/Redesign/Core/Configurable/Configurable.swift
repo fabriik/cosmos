@@ -68,7 +68,7 @@ protocol TextConfigurable: Configurable {
 /// - Defines variable autocorrectionType of type UITextAutocorrectionType
 /// - Defines variable keyboardType of type UIKeyboardType
 protocol TextFieldTypeConfigurable: Configurable {
-    var autocapitalizationType: UITextAutocapitalizationType? { get }
-    var autocorrectionType: UITextAutocorrectionType? { get }
-    var keyboardType: UIKeyboardType? { get }
+    var autocapitalizationType: UITextAutocapitalizationType { get }
+    var autocorrectionType: UITextAutocorrectionType { get }
+    var keyboardType: UIKeyboardType { get }
 }
