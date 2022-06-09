@@ -118,14 +118,16 @@ struct E {
     }()
     
     static var apiUrl: String {
-        guard let url = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+        guard let url = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String,
+              !url.isEmpty else {
             fatalError("Env not configured properly")
         }
         return url
     }
     
     static var apiToken: String {
-        guard let token = Bundle.main.object(forInfoDictionaryKey: "API_TOKEN") as? String else {
+        guard let token = Bundle.main.object(forInfoDictionaryKey: "API_TOKEN") as? String,
+              !token.isEmpty else {
             fatalError("Env not configured properly")
         }
         return token

@@ -5760,7 +5760,7 @@
 		};
 		75A2A7E41DA5934400A983D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E09EA4027D60D2100B0268C /* config.xcconfig */;
+			baseConfigurationReference = 7E2C2F8327D7BE7A00114923 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_GROUPS_ID = com.fabriik.one;
@@ -6024,7 +6024,7 @@
 		};
 		7CF5933621B9B14900A49FED /* Debug-Internal */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E09EA4027D60D2100B0268C /* config.xcconfig */;
+			baseConfigurationReference = 7E2C2F8327D7BE7A00114923 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_GROUPS_ID = com.fabriik.one.internalQA;
@@ -7555,7 +7555,7 @@
 		};
 		CEA7E69C1F0AAA84001F8C27 /* Debug-Testnet */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E09EA4027D60D2100B0268C /* config.xcconfig */;
+			baseConfigurationReference = 7E2C2F8327D7BE7A00114923 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_GROUPS_ID = com.fabriik.one.testnetQA;
