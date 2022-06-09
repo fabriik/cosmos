@@ -124,7 +124,7 @@ extension Presets {
 
 extension Presets {
     struct EmailTextField {
-        static var primary = TextFieldTypeConfiguration(autocapitalizationType: UITextAutocapitalizationType.none, autocorrectionType: UITextAutocorrectionType.no, keyboardType: .emailAddress)
+        static var primary = LabelConfiguration(autocapitalizationType: UITextAutocapitalizationType.none, autocorrectionType: UITextAutocorrectionType.no, keyboardType: .emailAddress)
     }
 }
 

@@ -54,20 +54,15 @@ protocol ShadowConfigurable {
 /// - Defines variable textAlignment of type NSTextAlignment
 /// - Defines variable numberOfLines of type Int
 /// - Defines variable lineBreakMode of type NSLineBreakMode
+/// - Defines variable autocapitalizationType of type UITextAutocapitalizationType
+/// - Defines variable autocorrectionType of type UITextAutocorrectionType
+/// - Defines variable keyboardType of type UIKeyboardType
 protocol TextConfigurable: Configurable {
     var font: UIFont { get }
     var textColor: UIColor? { get }
     var textAlignment: NSTextAlignment { get }
     var numberOfLines: Int { get }
     var lineBreakMode: NSLineBreakMode { get }
-}
-
-/// TextFieldConfigurable protocol,
-///
-/// - Defines variable autocapitalizationType of type UITextAutocapitalizationType
-/// - Defines variable autocorrectionType of type UITextAutocorrectionType
-/// - Defines variable keyboardType of type UIKeyboardType
-protocol TextFieldTypeConfigurable: Configurable {
     var autocapitalizationType: UITextAutocapitalizationType { get }
     var autocorrectionType: UITextAutocorrectionType { get }
     var keyboardType: UIKeyboardType { get }

@@ -11,20 +11,13 @@
 import UIKit
 import SnapKit
 
-struct TextFieldTypeConfiguration: TextFieldTypeConfigurable {
-    var autocapitalizationType: UITextAutocapitalizationType
-    var autocorrectionType: UITextAutocorrectionType
-    var keyboardType: UIKeyboardType
-}
-
 struct TextFieldConfiguration: Configurable {
     var leadingImageConfiguration: BackgroundConfiguration?
     var titleConfiguration: LabelConfiguration?
     var textConfiguration: LabelConfiguration?
     var placeholderConfiguration: LabelConfiguration?
     var hintConfiguration: LabelConfiguration?
-    
-    var textFieldTypeConfiguration: TextFieldTypeConfiguration?
+    var textFieldTypeConfiguration: LabelConfiguration?
     
     var trailingImageConfiguration: BackgroundConfiguration?
     var backgroundConfiguration: BackgroundConfiguration?
