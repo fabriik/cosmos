@@ -79,7 +79,7 @@ open class AssetArchive {
                 if versions.firstIndex(of: version) == versions.count - 1 {
                     print("[AssetArchive] already at most recent version of bundle \(self.name)")
                     
-                    self.extract { error in
+                    self.extract(path: self.archivePath) { error in
                         completionHandler(error)
                     }
                 } else {
@@ -89,9 +89,9 @@ open class AssetArchive {
         }
     }
     
-    private func extract(completionHandler: @escaping (_ error: Error?) -> Void) {
+    private func extract(path: String, completionHandler: @escaping (_ error: Error?) -> Void) {
         do {
-            try BRTar.createFilesAndDirectoriesAtPath(extractedPath, withTarPath: archivePath)
+            try BRTar.createFilesAndDirectoriesAtPath(extractedPath, withTarPath: path)
             
             completionHandler(nil)
         } catch let error {
@@ -121,7 +121,7 @@ open class AssetArchive {
                 do {
                     try data.write(to: self.archiveUrl, options: .atomic)
                     
-                    self.extract { error in
+                    self.extract(path: self.archivePath) { error in
                         return completionHandler(error)
                     }
                 } catch let e {
@@ -143,9 +143,9 @@ open class AssetArchive {
     }
     
     private func extractBundledArchive() {
-        guard let bundledArchiveUrl = Bundle.main.url(forResource: name, withExtension: "tar") else { return }
+        guard let bundledArchiveUrl = Bundle.main.url(forResource: name, withExtension: "tar")?.path else { return }
         
-        extract { error in
+        extract(path: bundledArchiveUrl) { error in
             if let error = error {
                 print("[AssetArchive] unable to extract bundled archive `\(self.name)` \(bundledArchiveUrl) -> \(self.archiveUrl): \(error)")
             }
