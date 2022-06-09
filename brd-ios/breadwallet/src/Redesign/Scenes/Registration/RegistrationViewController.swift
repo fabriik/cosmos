@@ -22,8 +22,11 @@ class RegistrationViewController: BaseTableViewController<RegistrationCoordinato
         case .image:
             cell = self.tableView(tableView, coverCellForRowAt: indexPath)
             
-        case .title, .instructions:
-            cell = self.tableView(tableView, labelCellForRowAt: indexPath)
+        case .title:
+            cell = self.tableView(tableView, titleLabelCellForRowAt: indexPath)
+            
+        case .instructions:
+            cell = self.tableView(tableView, descriptionLabelCellForRowAt: indexPath)
             
         case .email:
             cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
@@ -34,6 +37,8 @@ class RegistrationViewController: BaseTableViewController<RegistrationCoordinato
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
+        
+        cell.setupCustomMargins(vertical: .huge, horizontal: .large)
         
         return cell
     }

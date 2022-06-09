@@ -77,8 +77,7 @@ class APICallWorker: APICallWorkerProperties {
         var key = UserDefaults.kycSessionKeyValue
         
         if key.isEmpty,
-           let tokenData = try? KeyStore.create().apiUserAccount,
-           let token = tokenData["token"] as? String {
+           let token = UserDefaults.sessionKeyValue {
             key = "Bread \(token)"
         }
         

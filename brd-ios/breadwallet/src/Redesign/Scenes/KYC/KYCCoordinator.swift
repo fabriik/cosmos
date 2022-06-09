@@ -44,6 +44,10 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         showUnderConstruction("\(document.title) verification")
     }
     
+    func showLevelTwoValidation() {
+        open(scene: Scenes.KYCLevelTwoPostValidation)
+    }
+    
     override func goBack() {
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)

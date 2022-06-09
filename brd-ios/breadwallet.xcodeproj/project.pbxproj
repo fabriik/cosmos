@@ -724,6 +724,7 @@
 		A243978083345DAFD36DA7A4 /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24399A172C828ECD708E17D /* MarketInfo.swift */; };
 		A2439D019C08106D6E14D70A /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24399A172C828ECD708E17D /* MarketInfo.swift */; };
 		A2439D7BB746E6CFC3F9B64A /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2439F5D8263945E73EFF4A3 /* CacheService.swift */; };
+		C416BE0628509C4E0020ACCD /* KYCLevelTwoPostValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C416BE0528509C4E0020ACCD /* KYCLevelTwoPostValidation.swift */; };
 		C45E0BA62845F4C40083F028 /* AccountVerificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0B9F2845F4C40083F028 /* AccountVerificationCoordinator.swift */; };
 		C45E0BA72845F4C40083F028 /* AccountVerificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0BA02845F4C40083F028 /* AccountVerificationStore.swift */; };
 		C45E0BA82845F4C40083F028 /* AccountVerificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E0BA12845F4C40083F028 /* AccountVerificationPresenter.swift */; };
@@ -1700,6 +1701,7 @@
 		A243988A5DA12A405BFEB9F6 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A24399A172C828ECD708E17D /* MarketInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfo.swift; sourceTree = "<group>"; };
 		A2439F5D8263945E73EFF4A3 /* CacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		C416BE0528509C4E0020ACCD /* KYCLevelTwoPostValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCLevelTwoPostValidation.swift; sourceTree = "<group>"; };
 		C45E0B9F2845F4C40083F028 /* AccountVerificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationCoordinator.swift; sourceTree = "<group>"; };
 		C45E0BA02845F4C40083F028 /* AccountVerificationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationStore.swift; sourceTree = "<group>"; };
 		C45E0BA12845F4C40083F028 /* AccountVerificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationPresenter.swift; sourceTree = "<group>"; };
@@ -3249,6 +3251,7 @@
 		7ED83ACC284F372000261565 /* KYCLevelTwo */ = {
 			isa = PBXGroup;
 			children = (
+				C416BE0528509C4E0020ACCD /* KYCLevelTwoPostValidation.swift */,
 				7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */,
 				7ED83ADF284F37E200261565 /* DocumentPicker */,
 			);
@@ -4997,6 +5000,7 @@
 				7EBC6B092848ABC5000A301F /* RegistrationConfirmationVIP.swift in Sources */,
 				7E8E97A0283F48EE008606B0 /* NavigationItemView.swift in Sources */,
 				7B54E52227F4A208002DD1E4 /* KYCSignInWorker.swift in Sources */,
+				C416BE0628509C4E0020ACCD /* KYCLevelTwoPostValidation.swift in Sources */,
 				7B54E5BD27F4A2B1002DD1E4 /* BaseViewDeprecated.swift in Sources */,
 				22A9A9461DF61945000F0016 /* BRAPIClient.swift in Sources */,
 				7E5CB3A82835090E00EC787E /* Colors.swift in Sources */,
@@ -5760,7 +5764,7 @@
 		};
 		75A2A7E41DA5934400A983D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E09EA4027D60D2100B0268C /* config.xcconfig */;
+			baseConfigurationReference = 7E2C2F8327D7BE7A00114923 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_GROUPS_ID = com.fabriik.one;
@@ -6024,7 +6028,7 @@
 		};
 		7CF5933621B9B14900A49FED /* Debug-Internal */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E09EA4027D60D2100B0268C /* config.xcconfig */;
+			baseConfigurationReference = 7E2C2F8327D7BE7A00114923 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_GROUPS_ID = com.fabriik.one.internalQA;
@@ -7555,7 +7559,7 @@
 		};
 		CEA7E69C1F0AAA84001F8C27 /* Debug-Testnet */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E09EA4027D60D2100B0268C /* config.xcconfig */;
+			baseConfigurationReference = 7E2C2F8327D7BE7A00114923 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_GROUPS_ID = com.fabriik.one.testnetQA;
