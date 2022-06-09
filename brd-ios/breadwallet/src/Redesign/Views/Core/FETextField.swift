@@ -34,6 +34,8 @@ struct TextFieldModel: ViewModel {
     var placeholder: String?
     var hint: String?
     var error: String?
+    var autocapitalizationType: UITextAutocapitalizationType?
+    var autocorrectionType: UITextAutocorrectionType?
     var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
     var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) >= 1 }
@@ -222,6 +224,14 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         titleLabel.setup(with: .text(viewModel.title))
         titleLabel.isHidden = viewModel.title == nil
         textField.text = viewModel.value
+        
+        if let autocapitalizationType = viewModel.autocapitalizationType {
+            textField.autocapitalizationType = autocapitalizationType
+        }
+        
+        if let autocorrectionType = viewModel.autocorrectionType {
+            textField.autocorrectionType = autocorrectionType
+        }
         
         if let placeholder = viewModel.placeholder,
            let config = config?.placeholderConfiguration {

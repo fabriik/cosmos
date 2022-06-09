@@ -37,7 +37,7 @@ final class RegistrationPresenter: NSObject, Presenter, RegistrationActionRespon
             ],
             .email: [
                 // TODO: validator?
-                TextFieldModel(title: "Email", value: item.email)
+                TextFieldModel(title: "Email", value: item.email, autocapitalizationType: UITextAutocapitalizationType.none)
             ],
             .confirm: [
                 ButtonViewModel(title: "Next", enabled: false)
