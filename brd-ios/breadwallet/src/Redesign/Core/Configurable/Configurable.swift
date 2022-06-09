@@ -69,4 +69,5 @@ protocol TextConfigurable: Configurable {
 protocol TextFieldTypeConfigurable: Configurable {
     var autocapitalizationType: UITextAutocapitalizationType? { get }
     var autocorrectionType: UITextAutocorrectionType? { get }
+    var keyboardType: UIKeyboardType? { get }
 }

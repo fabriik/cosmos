@@ -14,6 +14,7 @@ import SnapKit
 struct TextFieldTypeConfiguration: TextFieldTypeConfigurable {
     var autocapitalizationType: UITextAutocapitalizationType?
     var autocorrectionType: UITextAutocorrectionType?
+    var keyboardType: UIKeyboardType?
 }
 
 struct TextFieldConfiguration: Configurable {
@@ -216,6 +217,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         if let autocorrectionType = config.textFieldTypeConfiguration?.autocorrectionType {
             textField.autocorrectionType = autocorrectionType
+        }
+        
+        if let keyboardType = config.textFieldTypeConfiguration?.keyboardType {
+            textField.keyboardType = keyboardType
         }
         
         if let textConfig = config.textConfiguration {

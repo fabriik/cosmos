@@ -114,14 +114,20 @@ extension Presets {
                                                   textConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
                                                   placeholderConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
                                                   hintConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
-                                                  textFieldTypeConfiguration: .init(autocapitalizationType: UITextAutocapitalizationType.none, autocorrectionType: .no),
+                                                  textFieldTypeConfiguration: Presets.EmailTextField.primary,
                                                   backgroundConfiguration: Presets.Background.Secondary.normal.withBorder(border: Presets.Border.normal),
                                                   selectedBackgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.selected),
                                                   disabledBackgroundConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled),
                                                   errorBackgroundConfiguration: Presets.Background.Secondary.error.withBorder(border: Presets.Border.error))
     }
 }
- 
+
+extension Presets {
+    struct EmailTextField {
+        static var primary = TextFieldTypeConfiguration(autocapitalizationType: UITextAutocapitalizationType.none, autocorrectionType: UITextAutocorrectionType.no, keyboardType: .emailAddress)
+    }
+}
+
 extension Presets {
     struct InfoView {
         static var verification = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
