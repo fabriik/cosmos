@@ -11,14 +11,21 @@
 import UIKit
 import SnapKit
 
+struct TextFieldTypeConfiguration: TextFieldTypeConfigurable {
+    var autocapitalizationType: UITextAutocapitalizationType?
+    var autocorrectionType: UITextAutocorrectionType?
+}
+
 struct TextFieldConfiguration: Configurable {
     var leadingImageConfiguration: BackgroundConfiguration?
     var titleConfiguration: LabelConfiguration?
     var textConfiguration: LabelConfiguration?
     var placeholderConfiguration: LabelConfiguration?
     var hintConfiguration: LabelConfiguration?
-    var trailingImageConfiguration: BackgroundConfiguration?
     
+    var textFieldTypeConfiguration: TextFieldTypeConfiguration?
+    
+    var trailingImageConfiguration: BackgroundConfiguration?
     var backgroundConfiguration: BackgroundConfiguration?
     var selectedBackgroundConfiguration: BackgroundConfiguration?
     var disabledBackgroundConfiguration: BackgroundConfiguration?
@@ -34,8 +41,6 @@ struct TextFieldModel: ViewModel {
     var placeholder: String?
     var hint: String?
     var error: String?
-    var autocapitalizationType: UITextAutocapitalizationType?
-    var autocorrectionType: UITextAutocorrectionType?
     var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
     var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) >= 1 }
@@ -205,6 +210,14 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         titleLabel.configure(with: config.titleConfiguration)
         hintLabel.configure(with: config.hintConfiguration)
         
+        if let autocapitalizationType = config.textFieldTypeConfiguration?.autocapitalizationType {
+            textField.autocapitalizationType = autocapitalizationType
+        }
+        
+        if let autocorrectionType = config.textFieldTypeConfiguration?.autocorrectionType {
+            textField.autocorrectionType = autocorrectionType
+        }
+        
         if let textConfig = config.textConfiguration {
             textField.font = textConfig.font
             textField.textColor = textConfig.textColor
@@ -224,14 +237,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         titleLabel.setup(with: .text(viewModel.title))
         titleLabel.isHidden = viewModel.title == nil
         textField.text = viewModel.value
-        
-        if let autocapitalizationType = viewModel.autocapitalizationType {
-            textField.autocapitalizationType = autocapitalizationType
-        }
-        
-        if let autocorrectionType = viewModel.autocorrectionType {
-            textField.autocorrectionType = autocorrectionType
-        }
         
         if let placeholder = viewModel.placeholder,
            let config = config?.placeholderConfiguration {

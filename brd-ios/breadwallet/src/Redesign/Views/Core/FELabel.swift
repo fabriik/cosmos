@@ -16,6 +16,8 @@ struct LabelConfiguration: TextConfigurable {
     var textAlignment: NSTextAlignment = .left
     var numberOfLines: Int = 0
     var lineBreakMode: NSLineBreakMode = .byWordWrapping
+    var autocapitalizationType: UITextAutocapitalizationType?
+    var autocorrectionType: UITextAutocorrectionType?
 }
 
 enum LabelViewModel: ViewModel {

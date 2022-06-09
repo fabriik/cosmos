@@ -125,9 +125,9 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         super.configure(with: config)
         
         titleLabel.configure(with: .init(font: Fonts.Body.two, textColor: LightColors.Text.two))
-        monthTextfield.configure(with: Presets.TexxtField.primary)
-        dayTextField.configure(with: Presets.TexxtField.primary)
-        yearTextField.configure(with: Presets.TexxtField.primary)
+        monthTextfield.configure(with: Presets.TextField.primary)
+        dayTextField.configure(with: Presets.TextField.primary)
+        yearTextField.configure(with: Presets.TextField.primary)
     }
     
     override func setup(with viewModel: DateViewModel?) {

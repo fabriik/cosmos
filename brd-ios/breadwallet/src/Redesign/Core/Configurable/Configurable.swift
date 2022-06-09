@@ -61,3 +61,12 @@ protocol TextConfigurable: Configurable {
     var numberOfLines: Int { get }
     var lineBreakMode: NSLineBreakMode { get }
 }
+
+/// TextFieldConfigurable protocol,
+///
+/// - Defines variable autocapitalizationType of type UITextAutocapitalizationType
+/// - Defines variable autocorrectionType of type UITextAutocorrectionType
+protocol TextFieldTypeConfigurable: Configurable {
+    var autocapitalizationType: UITextAutocapitalizationType? { get }
+    var autocorrectionType: UITextAutocorrectionType? { get }
+}

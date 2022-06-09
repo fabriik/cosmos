@@ -104,8 +104,8 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         super.configure(with: config)
         
         titleLabel.configure(with: .init(font: Fonts.Body.two, textColor: LightColors.Text.two))
-        firstNameTextField.configure(with: Presets.TexxtField.primary)
-        lastNameTextfield.configure(with: Presets.TexxtField.primary)
+        firstNameTextField.configure(with: Presets.TextField.primary)
+        lastNameTextfield.configure(with: Presets.TextField.primary)
         errorLabel.configure(with: .init(font: Fonts.caption, textColor: LightColors.error))
     }
     
