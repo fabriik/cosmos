@@ -113,9 +113,6 @@ jobs:
             cd brd-ios
             sed "s/PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;/PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;\                PROVISIONING_PROFILE_SPECIFIER = wallet-CNI-distribution2;\                CODE_SIGN_IDENTITY = \"iPhone Distribution\";\                CODE_SIGN_STYLE = Manual;/g"  breadwallet.xcodeproj/project.pbxproj  > breadwallet.xcodeproj/project.pbxproj.rnm
             cp breadwallet.xcodeproj/project.pbxproj.rnm breadwallet.xcodeproj/project.pbxproj
-            mkdir test_output
-            cp breadwallet.xcodeproj/project.pbxproj.rnm test_output
-            git status
 
       - run:
           name: Help and Project List
