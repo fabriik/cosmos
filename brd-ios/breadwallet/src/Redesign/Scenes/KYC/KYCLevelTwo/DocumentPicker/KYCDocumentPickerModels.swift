@@ -38,6 +38,7 @@ enum KYCDocumentPickerModels {
         
         struct ResponseDisplay {
             var model: FEImagePickerModel?
+            var device: UIImagePickerController.CameraDevice
         }
     }
     
