@@ -23,4 +23,4 @@ protocol ObjectViewModelable: NSObject {
     func setup(with viewModel: VM?)
 }
 
-protocol ViewProtocol: UIView, ObjectConfigurable, ObjectViewModelable {}
+protocol ViewProtocol: ObjectConfigurable, ObjectViewModelable {}

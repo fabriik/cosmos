@@ -80,8 +80,7 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
             return
         }
         
-        setupSubviews()
-        configure(with: config)
+        layoutIfNeeded()
     }
     
     public override func prepareForReuse() {

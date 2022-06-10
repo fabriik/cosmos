@@ -13,19 +13,26 @@ extension Scenes {
 }
 
 protocol KYCDocumentPickerViewActions: BaseViewActions, FetchViewActions {
-    func verify(viewAction: KYCDocumentPickerModels.Documents.ViewAction)
+    func selectDocument(viewAction: KYCDocumentPickerModels.Documents.ViewAction)
+    func takePhoto(viewAction: KYCDocumentPickerModels.Photo.ViewAction)
+    func confirmPhoto(viewAction: KYCDocumentPickerModels.ConfirmPhoto.ViewAction)
 }
 
 protocol KYCDocumentPickerActionResponses: BaseActionResponses, FetchActionResponses {
-    func presentVerify(actionResponse: KYCDocumentPickerModels.Documents.ActionResponse)
+    func presentTakePhoto(actionResponse: KYCDocumentPickerModels.Photo.ActionResponse)
+    func presentFinish(actionResponse: KYCDocumentPickerModels.Finish.ActionResponse)
 }
 
 protocol KYCDocumentPickerResponseDisplays: AnyObject, BaseResponseDisplays, FetchResponseDisplays {
-    func displayVerify(responseDisplay: KYCDocumentPickerModels.Documents.ResponseDisplay)
+    func displayTakePhoto(responseDisplay: KYCDocumentPickerModels.Photo.ResponseDisplay)
+    func displayFinish(responseDisplay: KYCDocumentPickerModels.Finish.ResponseDisplay)
 }
 
 protocol KYCDocumentPickerDataStore: BaseDataStore, FetchDataStore {
     var documents: [Document]? { get set }
+    var front: UIImage? { get set }
+    var back: UIImage? { get set }
+    var selfie: UIImage? { get set }
 }
 
 protocol KYCDocumentPickerDataPassing {
