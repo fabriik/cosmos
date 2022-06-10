@@ -11,10 +11,10 @@
 import Foundation
 
 enum Document: String, Model {
-    case passport
-    case idCard
-    case driversLicense
-    case residencePermit
+    case passport = "PASSPORT"
+    case idCard = "ID_CARD"
+    case driversLicense = "DRIVERS_LICENSE"
+    case residencePermit = "RESIDENCE_PERMIT"
     
     init(from rawValue: String?) {
         switch rawValue {
@@ -38,13 +38,13 @@ enum Document: String, Model {
             return "passport"
             
         case .idCard:
-            return "idCard"
+            return "id_card"
             
         case .driversLicense:
-            return "driversLicense"
+            return "drivers_license"
             
         case .residencePermit:
-            return "residencePermit"
+            return "id_card"
         }
     }
     

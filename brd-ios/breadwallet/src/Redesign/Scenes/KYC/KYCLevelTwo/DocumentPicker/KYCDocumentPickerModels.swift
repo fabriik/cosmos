@@ -23,31 +23,38 @@ enum KYCDocumentPickerModels {
         struct ViewAction {
             var index: Int?
         }
-        
-        struct ActionResponse {
-            var document: Document?
-        }
-        
-        struct ResponseDisplay {
-            var document: Document
-        }
     }
     
     struct Photo {
-        struct ViewAction {}
+        struct ViewAction {
+        }
         
         struct ActionResponse {
+            var document: Document?
             var isFront: Bool = false
             var isBack: Bool = false
             var isSelfie: Bool = false
         }
         
-        struct ResponseDisplay {}
+        struct ResponseDisplay {
+            var model: FEImagePickerModel?
+        }
     }
     
     struct ConfirmPhoto {
         struct ViewAction {
-            var isConfirmed: Bool
+            var photo: UIImage?
+        }
+        
+        struct ActionResponse {
+            var document: Document?
+            var isFront: Bool = false
+            var isBack: Bool = false
+            var isSelfie: Bool = false
+        }
+        
+        struct ResponseDisplay {
+            var model: FEImagePickerModel?
         }
     }
 }

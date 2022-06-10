@@ -112,8 +112,13 @@ class BaseCoordinator: NSObject,
         let notification = FEInfoView()
         notification.setupCustomMargins(all: .large)
         notification.configure(with: Presets.InfoView.primary)
-        notification.setup(with: .init(description: .text(configuration.text)))
-        
+        notification.setup(with: .init(description: .text(configuration.text), button: .init(title: "Yes")))
+        notification.headerButtonCallback = {
+            configuration.tapCallback?(notification)
+        }
+        notification.trailingButtonCallback = {
+            configuration.tapCallback?(notification)
+        }
         guard let superview = navigationController.topViewController?.view else {
             return
         }
