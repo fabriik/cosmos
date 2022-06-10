@@ -118,17 +118,9 @@ extension Presets {
                                                   selectedBackgroundConfiguration: Presets.Background.Secondary.selected.withBorder(border: Presets.Border.selected),
                                                   disabledBackgroundConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled),
                                                   errorBackgroundConfiguration: Presets.Background.Secondary.error.withBorder(border: Presets.Border.error),
-                                                  autocapitalizationType: Presets.EmailTextField.primary.autocapitalizationType,
-                                                  autocorrectionType: Presets.EmailTextField.primary.autocorrectionType,
-                                                  keyboardType: Presets.EmailTextField.primary.keyboardType)
-    }
-}
-
-extension Presets {
-    struct EmailTextField {
-        static var primary = TextFieldConfiguration(autocapitalizationType: UITextAutocapitalizationType.none,
-                                                    autocorrectionType: UITextAutocorrectionType.no,
-                                                    keyboardType: .emailAddress)
+                                                  autocapitalizationType: UITextAutocapitalizationType.none,
+                                                  autocorrectionType: .no,
+                                                  keyboardType: .emailAddress)
     }
 }
 
