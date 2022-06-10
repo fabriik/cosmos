@@ -72,67 +72,20 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
     }
     
     func confirmPhoto(viewAction: KYCDocumentPickerModels.ConfirmPhoto.ViewAction) {
-        ImageCompressor.compress(image: viewAction.photo, maxByte: 512*512) { [unowned self] image, _ in
-            if dataStore?.front == nil {
-                dataStore?.front = image
-            } else if dataStore?.document != .passport,
-                      dataStore?.back == nil {
-                dataStore?.back = image
+        guard let photo = viewAction.photo else { return }
+        
+        photo.compress(to: 1024*1024) { [weak self] image in
+            if self?.dataStore?.front == nil {
+                self?.dataStore?.front = image
+            } else if self?.dataStore?.document != .passport,
+                      self?.dataStore?.back == nil {
+                self?.dataStore?.back = image
             } else if dataStore?.selfie == nil {
-                dataStore?.selfie = image
+                self?.dataStore?.selfie = image
             }
-            takePhoto(viewAction: .init())
+            self?.takePhoto(viewAction: .init())
         }
     }
 
     // MARK: - Aditional helpers
-}
-
-struct ImageCompressor {
-    static func compress(image: UIImage?, maxByte: Int, completion: @escaping (UIImage?, Data?) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            guard let image = image,
-                  let currentImageSize = image.jpegData(compressionQuality: 1.0)?.count else { return }
-            
-            var iterationImage: UIImage? = image
-            var iterationImageData: Data?
-            
-            var iterationImageSize = currentImageSize
-            var iterationCompression: CGFloat = 1.0
-            
-            if iterationImageSize <= maxByte && iterationCompression > 0.01 {
-                DispatchQueue.main.async {
-                    completion(iterationImage, iterationImage?.jpegData(compressionQuality: 1.0))
-                }
-            }
-            
-            while iterationImageSize > maxByte && iterationCompression > 0.01 {
-                let percantageDecrease = getPercantageToDecreaseTo(forDataCount: iterationImageSize)
-                
-                let canvasSize = CGSize(width: image.size.width * iterationCompression,
-                                        height: image.size.height * iterationCompression)
-                UIGraphicsBeginImageContextWithOptions(canvasSize, false, image.scale)
-                defer { UIGraphicsEndImageContext() }
-                image.draw(in: CGRect(origin: .zero, size: canvasSize))
-                iterationImage = UIGraphicsGetImageFromCurrentImageContext()
-                iterationImageData = iterationImage?.jpegData(compressionQuality: 1.0)
-                
-                guard let newImageSize = iterationImage?.jpegData(compressionQuality: 1.0)?.count else { return }
-                iterationImageSize = newImageSize
-                iterationCompression -= percantageDecrease
-            }
-            
-            DispatchQueue.main.async {
-                completion(iterationImage, iterationImageData)
-            }
-        }
-    }
-    
-    private static func getPercantageToDecreaseTo(forDataCount dataCount: Int) -> CGFloat {
-        switch dataCount {
-        case 0..<3_000_000: return 0.05
-        case 3_000_000..<10_000_000: return 0.1
-        default: return 0.2
-        }
-    }
 }
