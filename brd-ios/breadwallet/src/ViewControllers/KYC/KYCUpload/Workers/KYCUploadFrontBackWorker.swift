@@ -43,21 +43,7 @@ class KYCUploadFrontBackWorker: KYCBasePlainResponseWorker {
     static let backKey: String = "auto_upload_file_back"
     
     override func executeMultipartRequest(requestData: RequestModelData? = nil, completion: BasePlainResponseWorker.Completion?) {
-        guard let getParameters = (requestData as? KYCUploadFrontBackWorkerData)?.getParameters(),
-              let frontValue = getParameters[KYCUploadFrontBackWorker.frontKey] as? Data,
-              let backValue = getParameters[KYCUploadFrontBackWorker.backKey] as? Data else { return }
-        
-        self.data = [MultipartMedia(with: frontValue,
-                                    fileName: UUID().uuidString,
-                                    forKey: KYCUploadFrontBackWorker.frontKey,
-                                    mimeType: .jpeg,
-                                    mimeFileFormat: .jpeg),
-                     MultipartMedia(with: backValue,
-                                    fileName: UUID().uuidString,
-                                    forKey: KYCUploadFrontBackWorker.backKey,
-                                    mimeType: .jpeg,
-                                    mimeFileFormat: .jpeg)]
-        
+
         super.executeMultipartRequest(requestData: requestData, completion: completion)
     }
     
@@ -69,5 +55,24 @@ class KYCUploadFrontBackWorker: KYCBasePlainResponseWorker {
     
     override func getMethod() -> EQHTTPMethod {
         return .post
+    }
+    
+    override func getMultipartData() -> [MultipartMedia] {
+        guard let getParameters = (requestData as? KYCUploadFrontBackWorkerData)?.getParameters(),
+              let frontValue = getParameters[KYCUploadFrontBackWorker.frontKey] as? Data,
+              let backValue = getParameters[KYCUploadFrontBackWorker.backKey] as? Data else { return [] }
+  
+        return [
+            .init(with: frontValue,
+                  fileName: UUID().uuidString,
+                  forKey: KYCUploadFrontBackWorker.frontKey,
+                  mimeType: .jpeg,
+                  mimeFileFormat: .jpeg),
+            .init(with: backValue,
+                  fileName: UUID().uuidString,
+                  forKey: KYCUploadFrontBackWorker.backKey,
+                  mimeType: .jpeg,
+                  mimeFileFormat: .jpeg)
+        ]
     }
 }

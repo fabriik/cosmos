@@ -61,11 +61,7 @@ class KYCDocumentUploadWorker: BasePlainResponseWorker {
         return APIURLHandler.getUrl(KYCAuthEndpoints.upload)
     }
     
-    override func executeMultipartRequest(requestData: RequestModelData? = nil, completion: BasePlainResponseWorker.Completion?) {
-        guard let uploadData = (requestData as? KYCDocumentUploadRequestData) else { return }
-        
-        self.data = uploadData.getMultipartData()
-        super.executeMultipartRequest(requestData: requestData, completion: completion)
+    override func getMultipartData() -> [MultipartMedia] {
+        return (requestData as? MultipartModelData)?.getMultipartData() ?? []
     }
-    
 }

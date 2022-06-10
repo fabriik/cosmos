@@ -14,8 +14,7 @@ protocol APICallWorkerProperties {
     func getMethod() -> EQHTTPMethod
     func getParameters() -> [String: Any]
     func getHeaders() -> [String: String]
-    
-    var data: [MultiPart] { get set }
+    func getMultipartData() -> [MultipartMedia]
 }
 /**
  Super class for all workers that make api calls to API
@@ -47,7 +46,7 @@ class APICallWorker: APICallWorkerProperties {
         let url = getUrl()
         let headers = getHeaders()
         let parameters = getParameters()
-        let myData = data
+        let myData = getMultipartData()
         
         let request = httpRequestManager.request(method, url: url, headers: headers, media: myData, parameters: parameters)
         request.runMultipartRequest { response in
@@ -84,5 +83,5 @@ class APICallWorker: APICallWorkerProperties {
         return ["Authorization": key]
     }
     
-    var data = [MultiPart]()
+    func getMultipartData() -> [MultipartMedia] { return [] }
 }
