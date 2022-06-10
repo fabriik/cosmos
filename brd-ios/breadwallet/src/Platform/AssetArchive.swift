@@ -9,13 +9,16 @@
 import Foundation
 
 open class AssetArchive {
-    let name: String
+    private unowned let apiClient: BRAPIClient
     private let fileManager: FileManager
+    
+    private let name: String
     private let archiveUrl: URL
+    
     private var archivePath: String { return archiveUrl.path }
     private var extractedPath: String { return extractedUrl.path }
+    
     let extractedUrl: URL
-    private unowned let apiClient: BRAPIClient
     
     private var archiveExists: Bool {
         return fileManager.fileExists(atPath: archivePath)
@@ -36,6 +39,7 @@ open class AssetArchive {
         self.name = name
         self.apiClient = apiClient
         self.fileManager = FileManager.default
+        
         let bundleDirUrl = apiClient.bundleDirUrl
         archiveUrl = bundleDirUrl.appendingPathComponent("\(name).tar")
         extractedUrl = bundleDirUrl.appendingPathComponent("\(name)-extracted", isDirectory: true)
@@ -56,24 +60,20 @@ open class AssetArchive {
             return completionHandler(e)
         }
         
-        copyBundledArchive()
-        
         apiClient.getAssetVersions(name) { versions, err in
             DispatchQueue.global(qos: .utility).async {
-                if let err = err {
-                    print("[AssetArchive] could not get asset versions. error: \(err)")
+                if let versionError = err {
+                    print("[AssetArchive] could not get asset versions. error: \(versionError)")
                     
-                    return completionHandler(err)
+                    self.extractBundledArchive()
+                    
+                    return completionHandler(versionError)
                 }
                 
-                guard let versions = versions, let version = self.version else {
-                    return completionHandler(BRAPIClientError.unknownError)
-                }
-                
-                if versions.firstIndex(of: version) == versions.count - 1 {
+                if let versions = versions, let version = self.version, versions.firstIndex(of: version) == versions.count - 1 {
                     print("[AssetArchive] already at most recent version of bundle \(self.name)")
                     
-                    self.extract { error in
+                    self.extract(path: self.archivePath) { error in
                         completionHandler(error)
                     }
                 } else {
@@ -83,9 +83,9 @@ open class AssetArchive {
         }
     }
     
-    fileprivate func extract(completionHandler: @escaping (_ error: Error?) -> Void) {
+    private func extract(path: String, completionHandler: @escaping (_ error: Error?) -> Void) {
         do {
-            try BRTar.createFilesAndDirectoriesAtPath(extractedPath, withTarPath: archivePath)
+            try BRTar.createFilesAndDirectoriesAtPath(extractedPath, withTarPath: path)
             
             completionHandler(nil)
         } catch let error {
@@ -95,21 +95,27 @@ open class AssetArchive {
         }
     }
     
-    fileprivate func downloadCompleteArchive(completionHandler: @escaping (_ error: Error?) -> Void) {
+    private func downloadCompleteArchive(completionHandler: @escaping (_ error: Error?) -> Void) {
         apiClient.downloadAssetArchive(name) { (data, err) in
             DispatchQueue.global(qos: .utility).async {
-                if let err = err {
-                    print("[AssetArchive] error downloading complete archive \(self.name) error=\(err)")
+                if let versionError = err {
+                    print("[AssetArchive] error downloading complete archive \(self.name) error=\(versionError)")
                     
-                    return completionHandler(err)
+                    self.extractBundledArchive()
+                    
+                    return completionHandler(versionError)
                 }
+                
                 guard let data = data else {
+                    self.extractBundledArchive()
+                    
                     return completionHandler(BRAPIClientError.unknownError)
                 }
+                
                 do {
                     try data.write(to: self.archiveUrl, options: .atomic)
                     
-                    self.extract { error in
+                    self.extract(path: self.archivePath) { error in
                         return completionHandler(error)
                     }
                 } catch let e {
@@ -121,7 +127,7 @@ open class AssetArchive {
         }
     }
     
-    fileprivate func ensureExtractedPath() throws {
+    private func ensureExtractedPath() throws {
         if !extractedDirExists {
             try fileManager.createDirectory(atPath: extractedPath,
                                             withIntermediateDirectories: true,
@@ -130,18 +136,12 @@ open class AssetArchive {
         }
     }
     
-    fileprivate func copyBundledArchive() {
-        if let bundledArchiveUrl = Bundle.main.url(forResource: name, withExtension: "tar") {
-            do {
-                if archiveExists {
-                    try fileManager.removeItem(atPath: archivePath)
-                }
-                
-                try fileManager.copyItem(at: bundledArchiveUrl, to: archiveUrl)
-                
-                print("[AssetArchive] used bundled archive for \(name)")
-            } catch let error {
-                print("[AssetArchive] unable to copy bundled archive `\(name)` \(bundledArchiveUrl) -> \(archiveUrl): \(error)")
+    private func extractBundledArchive() {
+        guard let bundledArchiveUrl = Bundle.main.url(forResource: name, withExtension: "tar")?.path else { return }
+        
+        extract(path: bundledArchiveUrl) { error in
+            if let error = error {
+                print("[AssetArchive] unable to extract bundled archive `\(self.name)` \(bundledArchiveUrl) -> \(self.archiveUrl): \(error)")
             }
         }
     }
