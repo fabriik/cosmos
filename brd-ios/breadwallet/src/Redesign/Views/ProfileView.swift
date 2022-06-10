@@ -50,6 +50,7 @@ class ProfileView: FEView<ProfileConfiguration, ProfileViewModel> {
         let view = WrapperView<FEImageView>()
         view.wrappedView.setup(with: .init(.imageName("edit")))
         view.isUserInteractionEnabled = false
+        view.isHidden = true
         return view
     }()
     

@@ -72,7 +72,8 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
         
         cell.setup { view in
             view.editImageCallback = { [weak self] in
-                self?.coordinator?.showAvatarSelection()
+                // return it back when approved
+                // self?.coordinator?.showAvatarSelection()
             }
         }
         

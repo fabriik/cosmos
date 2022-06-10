@@ -86,6 +86,5 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
             self?.takePhoto(viewAction: .init())
         }
     }
-
     // MARK: - Aditional helpers
 }
