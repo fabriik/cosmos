@@ -17,14 +17,18 @@ struct TextFieldConfiguration: Configurable {
     var textConfiguration: LabelConfiguration?
     var placeholderConfiguration: LabelConfiguration?
     var hintConfiguration: LabelConfiguration?
-    var trailingImageConfiguration: BackgroundConfiguration?
     
+    var trailingImageConfiguration: BackgroundConfiguration?
     var backgroundConfiguration: BackgroundConfiguration?
     var selectedBackgroundConfiguration: BackgroundConfiguration?
     var disabledBackgroundConfiguration: BackgroundConfiguration?
     var errorBackgroundConfiguration: BackgroundConfiguration?
     
     var shadowConfiguration: ShadowConfiguration?
+    
+    var autocapitalizationType: UITextAutocapitalizationType = .sentences
+    var autocorrectionType: UITextAutocorrectionType = .default
+    var keyboardType: UIKeyboardType = .default
 }
 
 struct TextFieldModel: ViewModel {
@@ -202,6 +206,9 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         titleLabel.configure(with: config.titleConfiguration)
         hintLabel.configure(with: config.hintConfiguration)
+        textField.autocapitalizationType = config.autocapitalizationType
+        textField.autocorrectionType = config.autocorrectionType
+        textField.keyboardType = config.keyboardType
         
         if let textConfig = config.textConfiguration {
             textField.font = textConfig.font

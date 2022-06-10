@@ -19,6 +19,7 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
         navigationItem.title = "Account Verification"
         tableView.register(WrapperTableViewCell<VerificationView>.self)
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section] as? Models.Section
         

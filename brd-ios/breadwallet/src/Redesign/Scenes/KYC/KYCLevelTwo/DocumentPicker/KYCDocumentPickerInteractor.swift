@@ -33,6 +33,5 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
         }
         presenter?.presentVerify(actionResponse: .init(document: dataStore?.documents?[index]))
     }
-
     // MARK: - Aditional helpers
 }

@@ -102,7 +102,7 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         }
         
         cell.setup { view in
-            view.configure(with: Presets.TexxtField.two)
+            view.configure(with: Presets.TextField.two)
             view.setup(with: model)
             view.contentSizeChanged = {
                 tableView.beginUpdates()
@@ -147,7 +147,7 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             }
             
             cell.wrappedView.animateTo(state: .selected)
-            coordinator?.showCountrySelector() { [weak self] code in
+            coordinator?.showCountrySelector { [weak self] code in
                 cell.wrappedView.animateTo(state: .normal, withAnimation: false)
                 self?.interactor?.countrySelected(viewAction: .init(code: code))
             }
