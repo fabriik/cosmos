@@ -30,12 +30,6 @@ final class KYCDocumentPickerPresenter: NSObject, Presenter, KYCDocumentPickerAc
         viewController?.displayData(responseDisplay: .init(sections: sections, sectionRows: sectionRows))
     }
     
-//    func presentVerify(actionResponse: KYCDocumentPickerModels.Documents.ActionResponse) {
-//        guard let doc = actionResponse.document else { return }
-//
-//        viewController?.displayVerify(responseDisplay: .init(document: doc))
-//    }
-    
     func presentTakePhoto(actionResponse: KYCDocumentPickerModels.Photo.ActionResponse) {
         var instructions: String?
         var confirmation: String?
