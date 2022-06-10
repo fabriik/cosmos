@@ -76,7 +76,9 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     }
     
     func displayFinish(responseDisplay: KYCDocumentPickerModels.Finish.ResponseDisplay) {
-        coordinator?.goBack()
+        coordinator?.showOverlay(with: .success, completion: { [weak self] in
+            self?.coordinator?.goBack()
+        })
     }
     
     // MARK: - Additional Helpers
