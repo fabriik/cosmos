@@ -31,11 +31,6 @@ class RegistrationViewController: BaseTableViewController<RegistrationCoordinato
         case .email:
             cell = self.tableView(tableView, textFieldCellForRowAt: indexPath)
             
-            let castedCell = cell as? WrapperTableViewCell<FETextField>
-            castedCell?.setup { view in
-                view.configure(with: Presets.TextField.email)
-            }
-            
         case .confirm:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
             

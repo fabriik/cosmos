@@ -63,7 +63,4 @@ protocol TextConfigurable: Configurable {
     var textAlignment: NSTextAlignment { get }
     var numberOfLines: Int { get }
     var lineBreakMode: NSLineBreakMode { get }
-    var autocapitalizationType: UITextAutocapitalizationType { get }
-    var autocorrectionType: UITextAutocorrectionType { get }
-    var keyboardType: UIKeyboardType { get }
 }
