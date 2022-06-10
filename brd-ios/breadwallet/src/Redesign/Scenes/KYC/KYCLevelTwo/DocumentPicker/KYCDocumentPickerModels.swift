@@ -57,4 +57,9 @@ enum KYCDocumentPickerModels {
             var model: FEImagePickerModel?
         }
     }
+    
+    struct Finish {
+        struct ActionResponse {}
+        struct ResponseDisplay {}
+    }
 }

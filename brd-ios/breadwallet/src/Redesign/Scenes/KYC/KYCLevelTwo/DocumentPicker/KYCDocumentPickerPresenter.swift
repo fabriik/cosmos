@@ -58,6 +58,10 @@ final class KYCDocumentPickerPresenter: NSObject, Presenter, KYCDocumentPickerAc
         
         viewController?.displayTakePhoto(responseDisplay: .init(model: .init(instruction: .text(instructions), confirmation: .text(confirmation))))
     }
+    
+    func presentFinish(actionResponse: KYCDocumentPickerModels.Finish.ActionResponse) {
+        viewController?.displayFinish(responseDisplay: .init())
+    }
 
     // MARK: - Additional Helpers
 

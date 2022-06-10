@@ -56,6 +56,7 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section] as? Models.Sections {
         case .documents:
+            toggleBlur(animated: false)
             interactor?.selectDocument(viewAction: .init(index: indexPath.row))
             
         default: return
@@ -71,6 +72,10 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
                                      model: responseDisplay.model) { [weak self] image in
             self?.interactor?.confirmPhoto(viewAction: .init(photo: image))
         }
+    }
+    
+    func displayFinish(responseDisplay: KYCDocumentPickerModels.Finish.ResponseDisplay) {
+        coordinator?.goBack()
     }
     
     // MARK: - Additional Helpers

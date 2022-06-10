@@ -18,12 +18,10 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
     // MARK: - KYCDocumentPickerViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
         KYCDocumentWorker().execute { [weak self] documents, error in
-            let documents: [Document] = documents ?? [.passport, .driversLicense, .idCard]
-            
-//            guard error == nil else {
-//                self?.presenter?.presentError(actionResponse: .init(error: error))
-//                return
-//            }
+            guard let documents = documents, error == nil else {
+                self?.presenter?.presentError(actionResponse: .init(error: error))
+                return
+            }
             self?.dataStore?.documents = documents
             self?.presenter?.presentData(actionResponse: .init(item: documents))
         }
@@ -50,89 +48,91 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
             guard let document = dataStore?.document else { return
                 
             }
-            var data = KYCDocumentUploadRequestData(front: dataStore?.front,
+            let data = KYCDocumentUploadRequestData(front: dataStore?.front,
                                                     back: dataStore?.back,
                                                     documentyType: document)
-            let group = DispatchGroup()
-            group.enter()
-            KYCDocumentUploadWorker().executeMultipartRequest(requestData: data) { error in
-                group.leave()
-            }
+            let selfie = dataStore?.selfie
             
-            data = KYCDocumentUploadRequestData(selfie: dataStore?.selfie,
-                                                documentyType: document)
-            group.enter()
-            KYCDocumentUploadWorker().executeMultipartRequest(requestData: data) { error in
-                group.leave()
-            }
-            
-            group.notify(queue: DispatchQueue.main) {
-                print("uploaded both")
+            KYCDocumentUploadWorker().executeMultipartRequest(requestData: data) { [weak self] error in
+                guard error == nil else {
+                    self?.presenter?.presentError(actionResponse: .init(error: error))
+                    return
+                }
+                
+                let data = KYCDocumentUploadRequestData(selfie: selfie, documentyType: .selfie)
+                KYCDocumentUploadWorker().executeMultipartRequest(requestData: data) { error in
+                    guard error == nil else {
+                        self?.presenter?.presentError(actionResponse: .init(error: error))
+                        return
+                    }
+                    self?.presenter?.presentFinish(actionResponse: .init())
+                }
             }
         }
     }
     
     func confirmPhoto(viewAction: KYCDocumentPickerModels.ConfirmPhoto.ViewAction) {
-        let photo = viewAction.photo
-        if dataStore?.front == nil {
-            dataStore?.front = photo
-        } else if dataStore?.document != .passport,
-                  dataStore?.back == nil {
-            dataStore?.back = photo
-        } else if dataStore?.selfie == nil {
-            dataStore?.selfie = photo
+        ImageCompressor.compress(image: viewAction.photo, maxByte: 512*512) { [unowned self] image, _ in
+            if dataStore?.front == nil {
+                dataStore?.front = image
+            } else if dataStore?.document != .passport,
+                      dataStore?.back == nil {
+                dataStore?.back = image
+            } else if dataStore?.selfie == nil {
+                dataStore?.selfie = image
+            }
+            takePhoto(viewAction: .init())
         }
-        takePhoto(viewAction: .init())
     }
 
     // MARK: - Aditional helpers
 }
 
-struct KYCDocumentUploadRequestData: RequestModelData {
-    
-    var front: UIImage?
-    var back: UIImage?
-    var selfie: UIImage?
-    var documentyType: Document
-    var documentNumber: String = "NOT_NEEDED_BUT_NEEDED"
-    
-    func getParameters() -> [String : Any] {
-        let result: [String: Any?] = [
-            "documenty_type": documentyType.rawValue,
-            "document_number": documentNumber
-        ]
-        
-        return result.compactMapValues { $0 }
-    }
-    
-    func getMultipartData()  -> [MultipartMedia] {
-        let result: [String: Any?] = [
-            "front": front,
-            "back": back,
-            "selfie": selfie
-        ]
-        
-        return result.compactMapValues { $0 }.compactMap {
-            guard let image = $0.value as? UIImage,
-                  let data = image.pngData() else { return nil }
-            return .init(with: data, forKey: $0.key, mimeType: .jpeg, mimeFileFormat: .jpeg)
+struct ImageCompressor {
+    static func compress(image: UIImage?, maxByte: Int, completion: @escaping (UIImage?, Data?) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let image = image,
+                  let currentImageSize = image.jpegData(compressionQuality: 1.0)?.count else { return }
+            
+            var iterationImage: UIImage? = image
+            var iterationImageData: Data?
+            
+            var iterationImageSize = currentImageSize
+            var iterationCompression: CGFloat = 1.0
+            
+            if iterationImageSize <= maxByte && iterationCompression > 0.01 {
+                DispatchQueue.main.async {
+                    completion(iterationImage, iterationImage?.jpegData(compressionQuality: 1.0))
+                }
+            }
+            
+            while iterationImageSize > maxByte && iterationCompression > 0.01 {
+                let percantageDecrease = getPercantageToDecreaseTo(forDataCount: iterationImageSize)
+                
+                let canvasSize = CGSize(width: image.size.width * iterationCompression,
+                                        height: image.size.height * iterationCompression)
+                UIGraphicsBeginImageContextWithOptions(canvasSize, false, image.scale)
+                defer { UIGraphicsEndImageContext() }
+                image.draw(in: CGRect(origin: .zero, size: canvasSize))
+                iterationImage = UIGraphicsGetImageFromCurrentImageContext()
+                iterationImageData = iterationImage?.jpegData(compressionQuality: 1.0)
+                
+                guard let newImageSize = iterationImage?.jpegData(compressionQuality: 1.0)?.count else { return }
+                iterationImageSize = newImageSize
+                iterationCompression -= percantageDecrease
+            }
+            
+            DispatchQueue.main.async {
+                completion(iterationImage, iterationImageData)
+            }
         }
     }
-}
-
-class KYCDocumentUploadWorker: BasePlainResponseWorker {
     
-    override func getMethod() -> EQHTTPMethod { return .post }
-    
-    override func getUrl() -> String {
-        return APIURLHandler.getUrl(KYCAuthEndpoints.upload)
+    private static func getPercantageToDecreaseTo(forDataCount dataCount: Int) -> CGFloat {
+        switch dataCount {
+        case 0..<3_000_000: return 0.05
+        case 3_000_000..<10_000_000: return 0.1
+        default: return 0.2
+        }
     }
-    
-    override func executeMultipartRequest(requestData: RequestModelData? = nil, completion: BasePlainResponseWorker.Completion?) {
-        guard let uploadData = (requestData as? KYCDocumentUploadRequestData) else { return }
-        
-        self.data = uploadData.getMultipartData()
-        super.executeMultipartRequest(requestData: requestData, completion: completion)
-    }
-    
 }

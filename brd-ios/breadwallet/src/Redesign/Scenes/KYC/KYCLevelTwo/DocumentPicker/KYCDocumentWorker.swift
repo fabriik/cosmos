@@ -15,6 +15,7 @@ enum Document: String, Model {
     case idCard = "ID_CARD"
     case driversLicense = "DRIVERS_LICENSE"
     case residencePermit = "RESIDENCE_PERMIT"
+    case selfie = "SELFIE"
     
     init(from rawValue: String?) {
         switch rawValue {
@@ -34,9 +35,6 @@ enum Document: String, Model {
     
     var imageName: String {
         switch self {
-        case .passport:
-            return "passport"
-            
         case .idCard:
             return "id_card"
             
@@ -45,15 +43,18 @@ enum Document: String, Model {
             
         case .residencePermit:
             return "id_card"
+            
+        default:
+            return "passport"
         }
     }
     
     var title: String {
         switch self {
-        case .passport: return "Passport"
         case .idCard: return "National ID card"
         case .driversLicense: return "Driver’s license"
         case .residencePermit: return "Residence permit"
+        default: return "Passport"
         }
     }
     

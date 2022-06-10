@@ -20,10 +20,12 @@ protocol KYCDocumentPickerViewActions: BaseViewActions, FetchViewActions {
 
 protocol KYCDocumentPickerActionResponses: BaseActionResponses, FetchActionResponses {
     func presentTakePhoto(actionResponse: KYCDocumentPickerModels.Photo.ActionResponse)
+    func presentFinish(actionResponse: KYCDocumentPickerModels.Finish.ActionResponse)
 }
 
 protocol KYCDocumentPickerResponseDisplays: AnyObject, BaseResponseDisplays, FetchResponseDisplays {
     func displayTakePhoto(responseDisplay: KYCDocumentPickerModels.Photo.ResponseDisplay)
+    func displayFinish(responseDisplay: KYCDocumentPickerModels.Finish.ResponseDisplay)
 }
 
 protocol KYCDocumentPickerDataStore: BaseDataStore, FetchDataStore {
