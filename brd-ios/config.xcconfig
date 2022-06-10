@@ -12,6 +12,3 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 #include ".env"
-
-API_TOKEN = $(API_TOKEN)
-API_URL = $(API_URL)
