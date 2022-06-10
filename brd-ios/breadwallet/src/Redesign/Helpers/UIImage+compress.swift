@@ -1,5 +1,5 @@
 // 
-//  UIImage+compress.swift
+//  ImageCompressor.swift
 //  breadwallet
 //
 //  Created by Rok on 10/06/2022.
@@ -11,22 +11,24 @@
 import UIKit
 
 extension UIImage {
+    
     func compress(to byteSize: Int, didFinish: @escaping ((UIImage?) -> Void)) {
-        guard let currentImageSize = jpegData(compressionQuality: 1.0)?.count else { return didFinish(self) }
+        let image = self
+        guard let currentImageSize = image.jpegData(compressionQuality: 1.0)?.count else { return didFinish(image) }
         
-        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            var iterationImage: UIImage? = self
+        DispatchQueue.global(qos: .userInitiated).async {
+            var iterationImage: UIImage? = image
             var iterationImageSize = currentImageSize
             var iterationCompression: CGFloat = 1.0
             
             while iterationImageSize > byteSize && iterationCompression > 0.01 {
                 let percantageDecrease = Self.getPercantageToDecreaseTo(forDataCount: iterationImageSize)
                 
-                let canvasSize = CGSize(width: size.width * iterationCompression,
-                                        height: size.height * iterationCompression)
-                UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+                let canvasSize = CGSize(width: image.size.width * iterationCompression,
+                                        height: image.size.height * iterationCompression)
+                UIGraphicsBeginImageContextWithOptions(canvasSize, false, image.scale)
                 defer { UIGraphicsEndImageContext() }
-                draw(in: CGRect(origin: .zero, size: canvasSize))
+                image.draw(in: CGRect(origin: .zero, size: canvasSize))
                 iterationImage = UIGraphicsGetImageFromCurrentImageContext()
                 
                 guard let newImageSize = iterationImage?.jpegData(compressionQuality: 1.0)?.count

@@ -80,7 +80,7 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
             } else if self?.dataStore?.document != .passport,
                       self?.dataStore?.back == nil {
                 self?.dataStore?.back = image
-            } else if dataStore?.selfie == nil {
+            } else if self?.dataStore?.selfie == nil {
                 self?.dataStore?.selfie = image
             }
             self?.takePhoto(viewAction: .init())

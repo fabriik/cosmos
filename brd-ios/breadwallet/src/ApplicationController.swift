@@ -24,12 +24,7 @@ class ApplicationController: Subscriber, Trackable {
     static let initialLaunchCount = 0
     
     let window = UIWindow()
-    lazy var coordinator: BaseCoordinator? = {
-        guard let nvc = window.rootViewController as? UINavigationController else {
-            return nil
-        }
-        return BaseCoordinator(navigationController: nvc)
-    }()
+    var coordinator: BaseCoordinator?
     
     private var startFlowController: StartFlowPresenter?
     private var modalPresenter: ModalPresenter?
@@ -112,11 +107,15 @@ class ApplicationController: Subscriber, Trackable {
         setupRootViewController()
         window.makeKeyAndVisible()
         
-        alertPresenter = AlertPresenter(window: self.window)
+        alertPresenter = AlertPresenter(window: window)
         modalPresenter = ModalPresenter(keyStore: keyStore,
                                         system: coreSystem,
                                         window: window,
                                         alertPresenter: alertPresenter)
+        
+        if let nvc = rootNavigationController {
+            coordinator = BaseCoordinator(navigationController: nvc)
+        }
 
         // Start collecting analytics events. Once we have a wallet, startBackendServices() will
         // notify `Backend.apiClient.analytics` so that it can upload events to the server.
