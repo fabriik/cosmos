@@ -46,7 +46,7 @@ class HTTPRequest {
         request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let dataBody = createMultipartDataBody(media: media, boundary: boundary)
+        let dataBody: Data = createMultipartDataBody(media: media, boundary: boundary)
         request.httpBody = dataBody
         
         let backgroundTask: UIBackgroundTaskIdentifier = .init(rawValue: Int.random(in: 0...9999))
@@ -68,9 +68,16 @@ class HTTPRequest {
     
     func createMultipartDataBody(media: [MultiPart], boundary: String) -> Data {
         var body = Data()
-        
         let lineBreak = "\r\n"
         
+        // add parameters to body
+        for (key, value) in parameters {
+            body.append("--\(boundary + lineBreak)")
+            body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+            body.append("\(value)\r\n")
+        }
+        
+        // add media to body
         for mediaFile in media {
             body.append("--\(boundary + lineBreak)")
             
@@ -88,7 +95,6 @@ class HTTPRequest {
             body.append(mediaFile.data)
             body.append(lineBreak)
         }
-        
         body.append("--\(boundary)--\(lineBreak)")
         
         return body

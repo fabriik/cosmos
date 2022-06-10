@@ -6,6 +6,8 @@
 import Foundation
 
 class BasePlainResponseWorker: APICallWorker {
+    // TODO: replace completion with the bellow
+//    typealias Completion = (Result<Void, Error>) -> Void
     typealias Completion = (NetworkingError?) -> Void
     
     var requestData: RequestModelData?
