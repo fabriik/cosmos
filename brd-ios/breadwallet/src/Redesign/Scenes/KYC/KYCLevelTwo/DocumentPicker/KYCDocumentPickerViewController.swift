@@ -69,7 +69,8 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     
     func displayTakePhoto(responseDisplay: KYCDocumentPickerModels.Photo.ResponseDisplay) {
         coordinator?.showImagePicker(sourceType: .camera,
-                                     model: responseDisplay.model) { [weak self] image in
+                                     model: responseDisplay.model,
+                                     device: responseDisplay.device) { [weak self] image in
             self?.interactor?.confirmPhoto(viewAction: .init(photo: image))
         }
     }
@@ -85,5 +86,6 @@ protocol ImagePickable: UIImagePickerControllerDelegate, UINavigationControllerD
     
     func showImagePicker(sourceType: UIImagePickerController.SourceType,
                          model: FEImagePickerModel?,
+                         device: UIImagePickerController.CameraDevice,
                          completion: ((UIImage?) -> Void)?)
 }

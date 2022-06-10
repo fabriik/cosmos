@@ -56,7 +56,9 @@ final class KYCDocumentPickerPresenter: NSObject, Presenter, KYCDocumentPickerAc
             confirmation = "Make sure to capture the entire document.\nYour face is clearly visible."
         }
         
-        viewController?.displayTakePhoto(responseDisplay: .init(model: .init(instruction: .text(instructions), confirmation: .text(confirmation))))
+        let device: UIImagePickerController.CameraDevice = (actionResponse.isSelfie == true ? .front : .rear)
+        
+        viewController?.displayTakePhoto(responseDisplay: .init(model: .init(instruction: .text(instructions), confirmation: .text(confirmation)), device: device))
     }
     
     func presentFinish(actionResponse: KYCDocumentPickerModels.Finish.ActionResponse) {
