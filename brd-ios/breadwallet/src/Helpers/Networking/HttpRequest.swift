@@ -46,8 +46,7 @@ class HTTPRequest {
         request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let dataBody: Data = createMultipartDataBody(media: media, boundary: boundary)
-        request.httpBody = dataBody
+        request.httpBody = createMultipartDataBody(media: media, boundary: boundary)
         
         let backgroundTask: UIBackgroundTaskIdentifier = .init(rawValue: Int.random(in: 0...9999))
         
