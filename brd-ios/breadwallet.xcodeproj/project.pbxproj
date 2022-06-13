@@ -3330,8 +3330,8 @@
 			isa = PBXGroup;
 			children = (
 				7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */,
-				7ED83ACC284F372000261565 /* KYCLevelTwo */,
 				7EF45F472845352400D1F7B0 /* KYCLevelOne */,
+				7ED83ACC284F372000261565 /* KYCLevelTwo */,
 			);
 			path = KYC;
 			sourceTree = "<group>";
