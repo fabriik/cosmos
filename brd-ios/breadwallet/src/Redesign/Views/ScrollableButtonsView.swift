@@ -43,7 +43,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
         content.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            make.height.equalTo(28)
+            make.height.equalTo(48)
         }
         content.setupClearMargins()
         
@@ -55,6 +55,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     
     override func configure(with config: ScrollableButtonsConfiguration?) {
         super.configure(with: config)
+        setupButtons()
         guard let config = config else { return }
         configure(background: config.background)
     }
@@ -66,8 +67,6 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
         guard buttons.count != viewModel.buttons.count else {
             return
         }
-        
-        buttons.forEach { $0.removeFromSuperview() }
 
         setupButtons()
     }
@@ -76,6 +75,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
         guard let viewModel = viewModel,
               let config = config
         else { return }
+        buttons.forEach { $0.removeFromSuperview() }
         
         for (index, model) in viewModel.buttons.enumerated() {
             let button = FEButton()
@@ -91,10 +91,6 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
             button.setup(with: model)
             buttons.append(button)
             stack.addArrangedSubview(button)
-            button.snp.makeConstraints { make in
-                make.width.equalToSuperview().priority(.low)
-                make.height.equalToSuperview()
-            }
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
         stack.layoutIfNeeded()
