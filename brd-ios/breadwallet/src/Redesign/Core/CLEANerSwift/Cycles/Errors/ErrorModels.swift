@@ -16,8 +16,8 @@ enum ErrorModels {
         }
         
         struct ResponseDisplay {
-            let model: AlertViewModel?
-            let config: AlertConfiguration?
+            let model: InfoViewModel?
+            let config: InfoViewConfiguration?
         }
     }
 }

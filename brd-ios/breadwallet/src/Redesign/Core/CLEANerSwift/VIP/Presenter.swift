@@ -16,28 +16,17 @@ extension Presenter {
     func presentError(actionResponse: ErrorModels.Errors.ActionResponse) {
         guard let error = actionResponse.error else { return }
 
-        let model = AlertViewModel(title: nil, description: error.localizedDescription, buttons: ["click", "cancel"])
+        let model = InfoViewModel(headerTitle: .text("Error"), description: .text(error.localizedDescription), tapToDismiss: true)
         
-        // TODO: set proper configs
-        let config = AlertConfiguration(titleConfiguration: .init(),
-                                        descriptionConfiguration: .init(),
-                                        imageConfiguration: Presets.Image.primary,
-                                        buttonConfigurations: [
-                                            Presets.Button.primary,
-                                            Presets.Button.secondary
-                                        ])
+        // TODO: create Error preset
+        let config = Presets.InfoView.primary
 
         viewController?.displayError(responseDisplay: .init(model: model, config: config))
     }
 
     func presentNotification(actionResponse: NotificationModels.Notification.ActionResponse) {
-        let config = NotificationConfiguration(text: actionResponse.text,
-                                               autoDismissable: actionResponse.autoDimissisable) { notificationView in
-            // TODO: animation?
-            notificationView.removeFromSuperview()
-        }
-
-        viewController?.displayNotification(responseDisplay: .init(config: config))
+        let model = InfoViewModel(description: .text(actionResponse.text), tapToDismiss: actionResponse.autoDimissisable)
+        viewController?.displayNotification(responseDisplay: .init(model: model))
     }
 
     func presentAlert(actionResponse: AlertModels.Alerts.ActionResponse) {

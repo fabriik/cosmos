@@ -137,7 +137,7 @@ class VIPViewController<C: CoordinatableRoutes,
     }
 
     func displayNotification(responseDisplay: NotificationModels.Notification.ResponseDisplay) {
-        coordinator?.showNotification(with: responseDisplay.config)
+        coordinator?.showNotification(with: responseDisplay.model, configuration: responseDisplay.config)
     }
 
     func hideNotification(notification: UIView) {
@@ -145,7 +145,7 @@ class VIPViewController<C: CoordinatableRoutes,
     }
 
     func displayError(responseDisplay: ErrorModels.Errors.ResponseDisplay) {
-        coordinator?.showAlertView(with: responseDisplay.model, config: responseDisplay.config)
+        coordinator?.showNotification(with: responseDisplay.model, configuration: responseDisplay.config)
     }
     
     // MARK: - Blurrable
