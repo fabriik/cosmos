@@ -20,8 +20,9 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     
     func showRegistrationConfirmation(for email: String?) {
         let controller = RegistrationConfirmationViewController()
-        controller.coordinator = self
         controller.dataStore?.email = email
+        controller.prepareData()
+        controller.coordinator = self
         navigationController.show(controller, sender: nil)
     }
     
