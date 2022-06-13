@@ -53,7 +53,7 @@ class WrapperView<T: UIView>: UIView,
         
         content.addSubview(wrappedView)
         wrappedView.snp.makeConstraints { make in
-            make.edges.equalTo(snp.margins)
+            make.edges.equalTo(content.snp.margins)
         }
         content.setupCustomMargins(all: .zero)
         isUserInteractionEnabled = true
