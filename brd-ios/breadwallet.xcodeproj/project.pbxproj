@@ -427,6 +427,12 @@
 		7E8E97A5283F9804008606B0 /* FEPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E97A4283F9803008606B0 /* FEPopupView.swift */; };
 		7E9B13EE285720D400BD9EF5 /* KYCSubmitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B13ED285720D400BD9EF5 /* KYCSubmitWorker.swift */; };
 		7E9B13F02857213400BD9EF5 /* KYCLevelOneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B13EF2857213400BD9EF5 /* KYCLevelOneWorker.swift */; };
+		7E9B13FA2857404600BD9EF5 /* DocumentReviewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B13F32857404600BD9EF5 /* DocumentReviewStore.swift */; };
+		7E9B13FB2857404600BD9EF5 /* DocumentReviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B13F42857404600BD9EF5 /* DocumentReviewPresenter.swift */; };
+		7E9B13FC2857404600BD9EF5 /* DocumentReviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B13F52857404600BD9EF5 /* DocumentReviewModels.swift */; };
+		7E9B13FD2857404600BD9EF5 /* DocumentReviewVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B13F62857404600BD9EF5 /* DocumentReviewVIP.swift */; };
+		7E9B13FE2857404600BD9EF5 /* DocumentReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B13F72857404600BD9EF5 /* DocumentReviewViewController.swift */; };
+		7E9B13FF2857404600BD9EF5 /* DocumentReviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B13F82857404600BD9EF5 /* DocumentReviewInteractor.swift */; };
 		7EB838462849D49A00C7CC05 /* ScrollableButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB838452849D49A00C7CC05 /* ScrollableButtonsView.swift */; };
 		7EB838482849DD8200C7CC05 /* FELink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB838472849DD8200C7CC05 /* FELink.swift */; };
 		7EBC6AF528488B10000A301F /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC6AEE28488B10000A301F /* RegistrationCoordinator.swift */; };
@@ -1440,6 +1446,12 @@
 		7E8E97A4283F9803008606B0 /* FEPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FEPopupView.swift; sourceTree = "<group>"; };
 		7E9B13ED285720D400BD9EF5 /* KYCSubmitWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCSubmitWorker.swift; sourceTree = "<group>"; };
 		7E9B13EF2857213400BD9EF5 /* KYCLevelOneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCLevelOneWorker.swift; sourceTree = "<group>"; };
+		7E9B13F32857404600BD9EF5 /* DocumentReviewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReviewStore.swift; sourceTree = "<group>"; };
+		7E9B13F42857404600BD9EF5 /* DocumentReviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReviewPresenter.swift; sourceTree = "<group>"; };
+		7E9B13F52857404600BD9EF5 /* DocumentReviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReviewModels.swift; sourceTree = "<group>"; };
+		7E9B13F62857404600BD9EF5 /* DocumentReviewVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReviewVIP.swift; sourceTree = "<group>"; };
+		7E9B13F72857404600BD9EF5 /* DocumentReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReviewViewController.swift; sourceTree = "<group>"; };
+		7E9B13F82857404600BD9EF5 /* DocumentReviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReviewInteractor.swift; sourceTree = "<group>"; };
 		7EB838452849D49A00C7CC05 /* ScrollableButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableButtonsView.swift; sourceTree = "<group>"; };
 		7EB838472849DD8200C7CC05 /* FELink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FELink.swift; sourceTree = "<group>"; };
 		7EBC6AEE28488B10000A301F /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
@@ -3231,6 +3243,19 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		7E9B13F12857401B00BD9EF5 /* DocumentReview */ = {
+			isa = PBXGroup;
+			children = (
+				7E9B13F32857404600BD9EF5 /* DocumentReviewStore.swift */,
+				7E9B13F42857404600BD9EF5 /* DocumentReviewPresenter.swift */,
+				7E9B13F52857404600BD9EF5 /* DocumentReviewModels.swift */,
+				7E9B13F62857404600BD9EF5 /* DocumentReviewVIP.swift */,
+				7E9B13F72857404600BD9EF5 /* DocumentReviewViewController.swift */,
+				7E9B13F82857404600BD9EF5 /* DocumentReviewInteractor.swift */,
+			);
+			path = DocumentReview;
+			sourceTree = "<group>";
+		};
 		7EBC6AFD2848ABAB000A301F /* RegistrationConfirmation */ = {
 			isa = PBXGroup;
 			children = (
@@ -3260,6 +3285,7 @@
 			children = (
 				C416BE0528509C4E0020ACCD /* KYCLevelTwoPostValidation.swift */,
 				7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */,
+				7E9B13F12857401B00BD9EF5 /* DocumentReview */,
 				7ED83ADF284F37E200261565 /* DocumentPicker */,
 			);
 			path = KYCLevelTwo;
@@ -4833,6 +4859,7 @@
 				223DB2191DF691260076A151 /* BRSocketHelpers.c in Sources */,
 				3A1D4180250965730089FE63 /* MarketDataPublisher.swift in Sources */,
 				7EBC6AF628488B10000A301F /* RegistrationStore.swift in Sources */,
+				7E9B13FB2857404600BD9EF5 /* DocumentReviewPresenter.swift in Sources */,
 				7B54E51927F4A208002DD1E4 /* KYCPersonalInfoPresenter.swift in Sources */,
 				7B432FAD2804196C0056B364 /* KYCForgotPasswordWorker.swift in Sources */,
 				CEF3E82D1DE528BF007C0A9E /* AlertView.swift in Sources */,
@@ -5065,6 +5092,7 @@
 				7B54E51E27F4A208002DD1E4 /* KYCSignInView.swift in Sources */,
 				7EBC6AF728488B10000A301F /* RegistrationPresenter.swift in Sources */,
 				7B54E5B027F4A2B0002DD1E4 /* SwapNavigationController.swift in Sources */,
+				7E9B13FE2857404600BD9EF5 /* DocumentReviewViewController.swift in Sources */,
 				CEC6AA421DEFC88F00EE5AFD /* ReceiveViewController.swift in Sources */,
 				7C9BC58F231765190011732F /* WalletConnectionSettings.swift in Sources */,
 				CEE20C2D1EA288FA0086F724 /* UpdatingLabel.swift in Sources */,
@@ -5081,6 +5109,7 @@
 				7B54E54A27F4A208002DD1E4 /* KYCAddressModels.swift in Sources */,
 				C469BF1627F6E6920070ED33 /* SwapConfirmTradePresenter.swift in Sources */,
 				CEE20C341EA5B4550086F724 /* ArticleIds.swift in Sources */,
+				7E9B13FF2857404600BD9EF5 /* DocumentReviewInteractor.swift in Sources */,
 				7E8E97A2283F78B0008606B0 /* ProfileView.swift in Sources */,
 				C469BF1927F6E6920070ED33 /* SwapConfirmTradeModels.swift in Sources */,
 				3A93890A22A303800081FCF9 /* CubicCurveAlgorithm.swift in Sources */,
@@ -5123,6 +5152,7 @@
 				7EBC6B0B2848ABC5000A301F /* RegistrationConfirmationInteractor.swift in Sources */,
 				7EF45F502845352400D1F7B0 /* KYCBasicPresenter.swift in Sources */,
 				7EBC6AFB28488B10000A301F /* RegistrationInteractor.swift in Sources */,
+				7E9B13FD2857404600BD9EF5 /* DocumentReviewVIP.swift in Sources */,
 				7B54E5AF27F4A2B0002DD1E4 /* KYCCameraView.swift in Sources */,
 				CE8CD8DD1E2D9EF200785E02 /* Sender.swift in Sources */,
 				7BA83DA6280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift in Sources */,
@@ -5175,6 +5205,7 @@
 				3A188FF82582835600957819 /* Sharing.swift in Sources */,
 				22A9A94B1DF61945000F0016 /* BRCoding.swift in Sources */,
 				CE6B829A1FE3A7B6007A41B9 /* UIScrollView+Additions.swift in Sources */,
+				7E9B13FA2857404600BD9EF5 /* DocumentReviewStore.swift in Sources */,
 				3AEA2CAB24D3219200DA4C3A /* SelectBackupView.swift in Sources */,
 				7E2E1A2B284E097900E56E69 /* KYCCoordinator.swift in Sources */,
 				C469BF1F27F6E6B10070ED33 /* SwapConfirmTradeView.swift in Sources */,
@@ -5192,6 +5223,7 @@
 				7E5CB3992835090E00EC787E /* Interactor.swift in Sources */,
 				7B54E51C27F4A208002DD1E4 /* KYCPersonalInfoModels.swift in Sources */,
 				7B54E5A927F4A2B0002DD1E4 /* BaseResponseWorker.swift in Sources */,
+				7E9B13FC2857404600BD9EF5 /* DocumentReviewModels.swift in Sources */,
 				C45E0BA62845F4C40083F028 /* AccountVerificationCoordinator.swift in Sources */,
 				7C787AE221ED89510017EA7E /* KeyStore.swift in Sources */,
 				CEAA9E911DC0FDFE0066731D /* UIViewPropertyAnimator+BRWAdditions.swift in Sources */,

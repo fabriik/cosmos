@@ -75,6 +75,11 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
     
     func configure(with config: ButtonConfiguration?) {
         guard let config = config else { return }
+        
+        contentEdgeInsets = .init(top: Margins.medium.rawValue,
+                                  left: Margins.huge.rawValue,
+                                  bottom: Margins.medium.rawValue,
+                                  right: Margins.huge.rawValue)
 
         self.config = config
         setTitleColor(config.backgroundConfiguration?.tintColor, for: .normal)
