@@ -976,6 +976,8 @@ internal enum L10n {
       internal static let dontShow = L10n.tr("Localizable", "Prompts.RateApp.dontShow")
       /// Enjoying Fabriik?
       internal static let enjoyingBrd = L10n.tr("Localizable", "Prompts.RateApp.enjoyingBrd")
+      /// Enjoying Fabriik?
+      internal static let enjoyingFabriik = L10n.tr("Localizable", "Prompts.RateApp.enjoyingFabriik")
       /// Your review helps grow the Fabriik community.
       internal static let googlePlayReview = L10n.tr("Localizable", "Prompts.RateApp.googlePlayReview")
       /// No thanks

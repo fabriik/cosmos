@@ -24,19 +24,20 @@ struct TxListViewModel: TxViewModel {
             return L10n.Transaction.tokenTransfer(tokenCode.uppercased())
         } else {
             var address = tx.toAddress
-            var format: String
+            var format: (Any) -> String
+            
             switch tx.direction {
             case .sent, .recovered:
-                format = isComplete ? String(describing: L10n.Transaction.sentTo(_:)) : String(describing: L10n.Transaction.sendingTo(_:))
+                format = isComplete ? L10n.Transaction.sentTo : L10n.Transaction.sendingTo
             case .received:
                 if !tx.currency.isBitcoinCompatible {
-                    format = isComplete ? String(describing: L10n.TransactionDetails.receivedFrom(_:)) : String(describing: L10n.TransactionDetails.receivingFrom(_:))
+                    format = isComplete ? L10n.TransactionDetails.receivedFrom : L10n.TransactionDetails.receivingFrom
                     address = tx.fromAddress
                 } else {
-                    format = isComplete ? String(describing:  L10n.TransactionDetails.receivedVia(_:)) : String(describing:  L10n.TransactionDetails.receivingVia(_:))
+                    format = isComplete ? L10n.TransactionDetails.receivedVia : L10n.TransactionDetails.receivingVia
                 }
             }
-            return String(format: format, address)
+            return format(address)
         }
     }
 
