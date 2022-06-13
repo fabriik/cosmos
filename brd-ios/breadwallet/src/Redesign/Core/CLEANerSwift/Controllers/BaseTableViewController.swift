@@ -61,6 +61,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         tableView.register(WrapperTableViewCell<NameView>.self)
         tableView.register(WrapperTableViewCell<FEImageView>.self)
         tableView.register(WrapperTableViewCell<ScrollableButtonsView>.self)
+        tableView.register(WrapperTableViewCell<ChecklistItemView>.self)
         
         // eg.
 //        tableView.register(WrapperCell<WrapperView<AnimationImageView>>.self)
@@ -334,6 +335,22 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setup { view in
             view.configure(with: .init())
             view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, checkmarCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<ChecklistItemView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? ChecklistItemViewModel else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+            view.setupCustomMargins(horizontal: .large)
         }
         
         return cell

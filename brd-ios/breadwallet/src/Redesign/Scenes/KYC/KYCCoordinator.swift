@@ -10,7 +10,7 @@
 
 import UIKit
 
-class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes {
+class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, DocumentReviewRoutes {
     
     override func start() {
         open(scene: Scenes.KYCBasic)
