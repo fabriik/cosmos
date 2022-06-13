@@ -43,7 +43,6 @@ local.properties
 
 # Gradle
 .gradle/
-build/
 */build/
 /captures
 .externalNativeBuild
@@ -103,20 +102,23 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 
+## Gcc Patch
+/*.gcno
 
-# End of https://www.gitignore.io/api/jetbrains
+## xcode-frameworks folders and plists so that xcode does not complain prior first build of Cosmos.xcframework
+cosmos-bundled/build-frameworks/
+
+*.env
 
 # Xcode
-## User settings
-xcuserdata/
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
-*.xcscmblueprint
-*.xccheckout
-
-## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
+## Build generated
+build/
 DerivedData/
-*.moved-aside
+
+## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -125,11 +127,59 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
+xcuserdata/
 
-## Gcc Patch
-/*.gcno
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+*.DS_Store
 
-## xcode-frameworks folders and plists so that xcode does not complain prior first build of Cosmos.xcframework
-cosmos-bundled/build-frameworks/
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
 
-*.env
+## R.swift
+*.generated.swift
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+#
+# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
+# Packages/
+# Package.pins
+# Package.resolved
+.build/
+
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+# Pods/
+#
+# Add this line if you want to avoid checking in source code from the Xcode workspace
+# *.xcworkspace
+
+Carthage/Build
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/#source-control
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+.idea
+Pods/
