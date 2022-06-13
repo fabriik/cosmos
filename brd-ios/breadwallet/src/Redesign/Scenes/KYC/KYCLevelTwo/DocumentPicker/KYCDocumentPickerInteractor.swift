@@ -99,14 +99,3 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
     
     // MARK: - Aditional helpers
 }
-
-class KycSubmitWorker: BasePlainResponseWorker {
-    
-    override func getUrl() -> String {
-        return APIURLHandler.getUrl(KYCAuthEndpoints.submit)
-    }
-    
-    override func getMethod() -> EQHTTPMethod {
-        return .post
-    }
-}
