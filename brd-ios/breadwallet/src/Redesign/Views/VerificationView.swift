@@ -207,6 +207,11 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         arrowImageView.isHidden = viewModel?.infoButton != nil
         statusView.wrappedView.setup(with: .text(viewModel?.status.value))
         statusView.isHidden = viewModel?.status == VerificationStatus.none
+        // if level 1 was done, but we present level 2, status is hidden
+        if viewModel?.status == .levelOne,
+           viewModel?.kyc == .levelTwo {
+            statusView.isHidden = true
+        }
         descriptionLabel.setup(with: viewModel?.description)
         descriptionLabel.isHidden = viewModel?.description == nil
         benefitsLabel.wrappedView.setup(with: viewModel?.benefits)
