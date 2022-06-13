@@ -1,11 +1,11 @@
 /* App name */
-"About.appName.android" = "Fabriik";
+"About.appName.android" = "BRD";
 
 /* About screen blog label */
 "About.blog" = "Blog";
 
 /* About screen footer */
-"About.footer" = "Criada pela equipa Fabriik global. Versão %1$@ Build %2$@";
+"About.footer" = "Criada pela equipa BRD global. Versão %1$@ Build %2$@";
 
 /* Privay Policy button label */
 "About.privacy" = "Política de Privacidade";
@@ -23,7 +23,7 @@
 "About.twitter" = "Twitter";
 
 /* About screen wallet ID label */
-"About.walletID" = "ID de Recompensas do Fabriik";
+"About.walletID" = "ID de Recompensas do BRD";
 
 /* Close modal button accessibility label */
 "AccessibilityLabels.close" = "Fechar";
@@ -65,7 +65,7 @@
 "AccountCreation.title" = "Confirmar criação de conta";
 
 /* Default wallet name */
-"AccountHeader.defaultWalletName" = "Minha Fabriik";
+"AccountHeader.defaultWalletName" = "Minha BRD";
 
 /* Third party keyboard warning */
 "Alert.customKeyboard.android" = "Ao que parece, está a utilizar um teclado de terceiros, o qual pode gravar aquilo que digita e furtar a sua Paper Key. Por favor, mude para o teclado predefinido do Android, a fim de ficar mais protegido.";
@@ -77,13 +77,13 @@
 "Alert.keystore.generic.android" = "Há um problema com a KeyStore do seu SO Android. Por favor, contacte support@breadwallet.com";
 
 /* KeyStore error, keys are invalidated */
-"Alert.keystore.invalidated.android" = "Os seus dados encriptados pelo Fabriik foram recentemente invalidados porque o seu ecrã de bloqueio do Android estava desativado.";
+"Alert.keystore.invalidated.android" = "Os seus dados encriptados pelo BRD foram recentemente invalidados porque o seu ecrã de bloqueio do Android estava desativado.";
 
 /* Warn user key store data has been invalidate because the user changed their security settings. The user must uninstall. */
-"Alert.keystore.invalidated.uninstall.android" = "Não podemos continuarporque as suasconfigurações de bloqueio de ecrã foram alteradas ( a sua password foi desativada, e as impressões digitaisforam alteradas). Por motivos de segurança, o Android bloqueou permanentemente seu armazenamento de passwords. \nPortanto, os dados do seu aplicativo Fabriik devem ser apagados a desinstalação.pel\n\nNão se preocupe, seus fundos continuam seguros! Reinstale a aplicação e recupere a sua carteira usando a chave de papel.";
+"Alert.keystore.invalidated.uninstall.android" = "Não podemos continuarporque as suasconfigurações de bloqueio de ecrã foram alteradas ( a sua password foi desativada, e as impressões digitaisforam alteradas). Por motivos de segurança, o Android bloqueou permanentemente seu armazenamento de passwords. \nPortanto, os dados do seu aplicativo BRD devem ser apagados a desinstalação.pel\n\nNão se preocupe, seus fundos continuam seguros! Reinstale a aplicação e recupere a sua carteira usando a chave de papel.";
 
 /* Warn user key store data has been invalidate because the user changed their security settings. The user must wipe their app data. */
-"Alert.keystore.invalidated.wipe.android" = "Não podemos continuarporque as suasconfigurações de bloqueio de ecrã foram alteradas ( a sua password foi desativada, e as impressões digitaisforam alteradas). Por motivos de segurança, o Android bloqueou permanentemente seu armazenamento de passwords. Portanto, os seus dados da aplicação Fabriik devem ser apagados.\n\nNão se preocupe, seus fundos continuam seguros! Recupere asua carteira usando a sua chave de papel.";
+"Alert.keystore.invalidated.wipe.android" = "Não podemos continuarporque as suasconfigurações de bloqueio de ecrã foram alteradas ( a sua password foi desativada, e as impressões digitaisforam alteradas). Por motivos de segurança, o Android bloqueou permanentemente seu armazenamento de passwords. Portanto, os seus dados da aplicação BRD devem ser apagados.\n\nNão se preocupe, seus fundos continuam seguros! Recupere asua carteira usando a sua chave de papel.";
 
 /* Keystore error title */
 "Alert.keystore.title.android" = "Erro na KeyStore do Android";
@@ -128,13 +128,13 @@
 "Alerts.touchIdSucceeded.android" = "Impressão digital reconhecida";
 
 /* Tell the user where they can enable permissions to access device storage. */
-"Android.allowFileSystemAccess" = "Agradecemos que ative as permissões de armazenamento nas definições do seu dispositivo: \"Definições\" > \"Aplicações\" > \"Fabriik\" > \"Permissões\".";
+"Android.allowFileSystemAccess" = "Agradecemos que ative as permissões de armazenamento nas definições do seu dispositivo: \"Definições\" > \"Aplicações\" > \"BRD\" > \"Permissões\".";
 
 /* The "home" screen is the name of the top level menu for the app. */
 "Android.BCH.welcome.message" = "Qualquer BCH existente na sua carteira pode ser acedido através do ecrã principal.";
 
 /* Warning about using apps that can alter the screen */
-"Android.screenAlteringMessage" = "O Fabriik não vai funcionar adequadamente se não forem desativadas as aplicações que alteram o ecrã (tais como a Twilight).";
+"Android.screenAlteringMessage" = "O BRD não vai funcionar adequadamente se não forem desativadas as aplicações que alteram o ecrã (tais como a Twilight).";
 
 /* An app that alters the screen ("screen-altering app") has been detected. */
 "Android.screenAlteringTitle" = "Foi Detetada uma Aplicação que Altera o Ecrã";
@@ -443,7 +443,7 @@
 "ErrorMessages.emailUnavailableTitle" = "Email Indisponível";
 
 /* Message that gets shown when we've detected the user has encountered the looping lock-screen bug. (preserve [ ] characters) */
-"ErrorMessages.loopingLockScreen.android" = "Devido a um erro existente na sua versão do Android, o Fabriik não pode ser autenticado. [Por favor, toque aqui, a fim de obter mais informações.]";
+"ErrorMessages.loopingLockScreen.android" = "Devido a um erro existente na sua versão do Android, o BRD não pode ser autenticado. [Por favor, toque aqui, a fim de obter mais informações.]";
 
 /* Messaging unavailable alert title */
 "ErrorMessages.messagingUnavailableMessage" = "Este dispositivo não está configurado para enviar mensagens.";
@@ -480,17 +480,17 @@
 /* You can customize your Face ID Spending Limit from the [menu] */
 "FaceIDSettings.customizeText" = "Pode personalizar o seu limite de gastos do Face ID a partir de %1$@.";
 
-/* Text describing the purpose of the Face ID settings in the Fabriik app. */
-"FaceIDSettings.explanatoryText" = "Utilizar o Face ID para abrir a sua aplicação Fabriik e transferir dinheiro.";
+/* Text describing the purpose of the Face ID settings in the BRD app. */
+"FaceIDSettings.explanatoryText" = "Utilizar o Face ID para abrir a sua aplicação BRD e transferir dinheiro.";
 
 /* Face Id screen label */
-"FaceIDSettings.label" = "Utilize o seu rosto para desbloquear o seu Fabriik e enviar dinheiro até certo limite definido.";
+"FaceIDSettings.label" = "Utilize o seu rosto para desbloquear o seu BRD e enviar dinheiro até certo limite definido.";
 
 /* Title of the screen for setting the Face ID Spending Limit */
 "FaceIDSettings.linkText" = "Ecrã de limite de gastos do Face ID";
 
-/* Setting to turn on Face ID for Fabriik */
-"FaceIDSettings.switchLabel" = "Ativar o Face ID para o Fabriik";
+/* Setting to turn on Face ID for BRD */
+"FaceIDSettings.switchLabel" = "Ativar o Face ID para o BRD";
 
 /* Face ID settings view title */
 "FaceIDSettings.title" = "Face ID";
@@ -504,8 +504,8 @@
 /* Face ID unavailable alert title */
 "FaceIDSettings.unavailableAlertTitle" = "Face ID não configurado";
 
-/* Text label for a toggle that enables Face ID for unlocking the Fabriik app. */
-"FaceIDSettings.unlockTitleText" = "Ativar o Face ID para abrir Fabriik";
+/* Text label for a toggle that enables Face ID for unlocking the BRD app. */
+"FaceIDSettings.unlockTitleText" = "Ativar o Face ID para abrir BRD";
 
 /* Face Id spending limit screen title */
 "FaceIDSpendingLimit.title" = "Limite de Gastos do Face ID";
@@ -546,7 +546,7 @@
 "FileChooser.selectImageSource.android" = "Selecione a origem da imagem";
 
 /* Fingerprint authentication settings screen description */
-"FingerprintSettings.description" = "Utilize a sua impressão digital para desbloquear a sua aplicação Fabriik e enviar transacções.";
+"FingerprintSettings.description" = "Utilize a sua impressão digital para desbloquear a sua aplicação BRD e enviar transacções.";
 
 /* Switch label to enable fingerprint authentication to send money */
 "FingerprintSettings.sendMoney" = "Use a impressão digital para enviar dinheiro";
@@ -554,8 +554,8 @@
 /* Fingerprint authentication settings sceen title */
 "FingerprintSettings.title" = "Impressão digital";
 
-/* Switch label to enable fingerprint authentication to unlock Fabriik app */
-"FingerprintSettings.unlockApp" = "Use a impressão digital para desbloquear o Fabriik";
+/* Switch label to enable fingerprint authentication to unlock BRD app */
+"FingerprintSettings.unlockApp" = "Use a impressão digital para desbloquear o BRD";
 
 /* This is the section that allows administration of the user's wallet */
 "HomeScreen.admin" = "Administrador";
@@ -609,7 +609,7 @@
 "Import.leftCaption" = "Chave Privada";
 
 /* Import wallet intro screen message */
-"Import.message" = "As chaves privadas são frequentemente impressas em papel sob a forma de código QR e utilizadas para armazenar os fundos offline. Resgate uma chave privada, a fim de transferir todo o dinheiro que controla para o seu Fabriik através de uma só transação.";
+"Import.message" = "As chaves privadas são frequentemente impressas em papel sob a forma de código QR e utilizadas para armazenar os fundos offline. Resgate uma chave privada, a fim de transferir todo o dinheiro que controla para o seu BRD através de uma só transação.";
 
 /* Enter password alert view title */
 "Import.password" = "Esta chave privada está protegida com uma palavra-passe.";
@@ -618,7 +618,7 @@
 "Import.passwordPlaceholder" = "palavra-passe";
 
 /* Caption for graphics */
-"Import.rightCaption" = "A Sua Carteira Fabriik";
+"Import.rightCaption" = "A Sua Carteira BRD";
 
 /* Scan Private key button label */
 "Import.scan" = "Digitalizar Chave Privada";
@@ -651,7 +651,7 @@
 "JailbreakWarnings.messageWithBalance" = "SEGURANÇA DO DISPOSITIVO COMPROMETIDA\n Qualquer aplicação com \"jailbreak\" consegue aceder aos seus dados de porta-chaves e roubar as suas bitcoins! Apague esta carteira imediatamente e restaure-a num dispositivo seguro.";
 
 /* Jailbreak warning message */
-"JailbreakWarnings.messageWithoutBalance" = "SEGURANÇA DO DISPOSITIVO COMPROMETIDA\n Qualquer aplicação com \"jailbreak\" consegue aceder aos seus dados de porta-chaves da Fabriik e roubar as suas bitcoins. Por favor, use a Fabriik somente num dispositivo não desbloqueado.";
+"JailbreakWarnings.messageWithoutBalance" = "SEGURANÇA DO DISPOSITIVO COMPROMETIDA\n Qualquer aplicação com \"jailbreak\" consegue aceder aos seus dados de porta-chaves da BRD e roubar as suas bitcoins. Por favor, use a BRD somente num dispositivo não desbloqueado.";
 
 /* Jailbreak warning title */
 "JailbreakWarnings.title" = "AVISO";
@@ -684,7 +684,7 @@
 "LocationPlugin.disabled" = "Os serviços de localização estão desativados.";
 
 /* No permissions for location services */
-"LocationPlugin.notAuthorized" = "A Fabriik não tem permissão para aceder aos serviços de localização.";
+"LocationPlugin.notAuthorized" = "A BRD não tem permissão para aceder aos serviços de localização.";
 
 /* Wallet creation date prefix */
 "ManageWallet.creationDatePrefix" = "Criou a sua carteira em %1$@";
@@ -809,7 +809,7 @@
 "OnboardingPageOne.title" = "Bem vindo à sua nova carteira global!";
 
 /* Onboarding screen Page 3 subtitle */
-"OnboardingPageThree.subtitle" = "Invista e diversifique com a Fabriik, de modo fácil e seguro.";
+"OnboardingPageThree.subtitle" = "Invista e diversifique com a BRD, de modo fácil e seguro.";
 
 /* Onboarding screen Page 3 title */
 "OnboardingPageThree.title" = "Compre e negoceie bitcoins, tokens e outras moedas digitais.";
@@ -818,7 +818,7 @@
 "OnboardingPageTwo.subtitle" = "Temos activos protegidos no valor de mais de 6 mil milhões de dólares.";
 
 /* Onboarding screen Page 2 title */
-"OnboardingPageTwo.title" = "Junte-se a milhões de pessoas em todo o mundo que confiam em Fabriik.";
+"OnboardingPageTwo.title" = "Junte-se a milhões de pessoas em todo o mundo que confiam em BRD.";
 
 /* Eg. Send 1.0Eth to purchase CCC */
 "PaymentConfirmation.amountText" = "Enviar %1$@ para comprar %2$@";
@@ -902,9 +902,9 @@
 
 "Prompts.RateApp.dontShow" = "Não pergunte novamente";
 
-"Prompts.RateApp.enjoyingFabriik" = "Apreciando o Fabriik?";
+"Prompts.RateApp.enjoyingBrd" = "Apreciando o BRD?";
 
-"Prompts.RateApp.googlePlayReview" = "Sua análise ajuda a aumentar a comunidade Fabriik.";
+"Prompts.RateApp.googlePlayReview" = "Sua análise ajuda a aumentar a comunidade BRD.";
 
 "Prompts.RateApp.noThanks" = "Não, obrigado";
 
@@ -917,7 +917,7 @@
 "Prompts.RecommendRescan.title" = "Transação Rejeitada";
 
 /* Share data prompt body */
-"Prompts.ShareData.body" = "Ajude a melhorar a Fabriik, partilhando connosco os seus dados anónimos";
+"Prompts.ShareData.body" = "Ajude a melhorar a BRD, partilhando connosco os seus dados anónimos";
 
 /* Share data prompt title */
 "Prompts.ShareData.title" = "Partilhar dados anónimos";
@@ -938,7 +938,7 @@
 "Prompts.TouchId.usePin.android" = "PIN";
 
 /* Upgrade PIN prompt body. */
-"Prompts.UpgradePin.body" = "A Fabriik foi atualizada para usar um PIN de 6-dígitos. Toque aqui para atualizar.";
+"Prompts.UpgradePin.body" = "A BRD foi atualizada para usar um PIN de 6-dígitos. Toque aqui para atualizar.";
 
 /* Upgrade PIN prompt title. */
 "Prompts.UpgradePin.title" = "Atualizar PIN";
@@ -950,13 +950,13 @@
 "PushNotifications.disabled" = "Notificações Desativadas";
 
 /* Body text when push notifications are disabled. */
-"PushNotifications.disabledBody" = "Ative as notificações para receber ofertas especiais e atualizações do Fabriik.";
+"PushNotifications.disabledBody" = "Ative as notificações para receber ofertas especiais e atualizações do BRD.";
 
 /* Body text when push notifications are enabled. */
-"PushNotifications.enabledBody" = "Está a receber ofertas especiais e atualizações do Fabriik.";
+"PushNotifications.enabledBody" = "Está a receber ofertas especiais e atualizações do BRD.";
 
-/* Instructions to enable push notifications for Fabriik in the phone's system settings. */
-"PushNotifications.enableInstructions" = "Parece que as notificações estão desativadas. Vá para Configurações para ativar as notificações do Fabriik.";
+/* Instructions to enable push notifications for BRD in the phone's system settings. */
+"PushNotifications.enableInstructions" = "Parece que as notificações estão desativadas. Vá para Configurações para ativar as notificações do BRD.";
 
 /* Push notifications toggle switch label */
 "PushNotifications.label" = "Receber Notificações Push";
@@ -980,10 +980,10 @@
 "RateAppPrompt.Button.Dismiss.Android" = "Não, obrigado";
 
 /* Google play review prompt, dismiss button */
-"RateAppPrompt.Button.RateApp.Android" = "Avalia a Fabriik";
+"RateAppPrompt.Button.RateApp.Android" = "Avalia a BRD";
 
 /* Google play review prompt title */
-"RateAppPrompt.Title.Android" = "Avalia a Fabriik";
+"RateAppPrompt.Title.Android" = "Avalia a BRD";
 
 /* Address copied message. */
 "Receive.copied" = "Copiado para a área de transferência.";
@@ -1016,7 +1016,7 @@
 "RecoverWallet.instruction" = "Introduzir Chave de Papel";
 
 /* Recover wallet intro */
-"RecoverWallet.intro" = "Recupere a sua Fabriik com a sua chave de papel.";
+"RecoverWallet.intro" = "Recupere a sua BRD com a sua chave de papel.";
 
 /* Invalid paper key message */
 "RecoverWallet.invalid" = "A chave de papel que introduziu é inválida. Por favor verifique cada palavra e tente novamente.";
@@ -1105,17 +1105,17 @@
 /* Instruction displayed when the user is resetting the PIN, which requires the recovery phrase to be entered */
 "RecoveryKeyFlow.resetPINInstruction" = "Por favor, introduza a sua chave de recuperação para redefinir o seu PIN.";
 
-/* Assures the user that Fabriik will keep the user's funds secure. */
+/* Assures the user that BRD will keep the user's funds secure. */
 "RecoveryKeyFlow.securityAssurance" = "Compre e troque sabendo que os seus fundos estão protegidos pela melhor segurança e privacidade na área.";
 
 /* Recommends that the user stores the recovery key in a secure location */
-"RecoveryKeyFlow.storeSecurelyRecommendation" = "Guarde a sua chave numa localização segura. Esta é a única forma de recuperar a sua carteira. A Fabriik não guarda uma cópia.";
+"RecoveryKeyFlow.storeSecurelyRecommendation" = "Guarde a sua chave numa localização segura. Esta é a única forma de recuperar a sua carteira. A BRD não guarda uma cópia.";
 
 /* Title for the success page after the recovery phrase has been set up */
 "RecoveryKeyFlow.successHeading" = "Parabéns! Completou a definição da sua chave de recuperação.";
 
 /* Subtitle for the success page after the recovery key has been set up */
-"RecoveryKeyFlow.successSubheading" = "Está pronto para depositar, trocar, e comprar crypto a partir da sua carteira Fabriik.";
+"RecoveryKeyFlow.successSubheading" = "Está pronto para depositar, trocar, e comprar crypto a partir da sua carteira BRD.";
 
 /* Title displayed to the user on the intro screen when unlinking a wallet */
 "RecoveryKeyFlow.unlinkWallet" = "Desvincule a sua carteira deste dispositivo.";
@@ -1166,7 +1166,7 @@
 "ReScan.body1" = "20-45 minutos";
 
 /* Syncing explanation */
-"ReScan.body2" = "Se uma transação aparece como concluída na sua rede bitcoin mas não na sua Fabriik.";
+"ReScan.body2" = "Se uma transação aparece como concluída na sua rede bitcoin mas não na sua BRD.";
 
 /* Syncing explanation */
 "ReScan.body3" = "Recebe repetidamente uma mensagem de erro dizendo que a sua transação foi rejeitada.";
@@ -1190,7 +1190,7 @@
 "RewardsView.expandedBody" = "Saiba como pode poupar em comissões de negociação e desbloqueie recompensas futuras.";
 
 /* Rewards view expanded title. */
-"RewardsView.expandedTitle" = "Apresentando as Recompensas Fabriik.";
+"RewardsView.expandedTitle" = "Apresentando as Recompensas BRD.";
 
 /* Rewards view title */
 "RewardsView.normalTitle" = "Recompensas";
@@ -1232,13 +1232,13 @@
 "SecurityCenter.paperKeyTitle.android" = "Chave de Papel";
 
 /* PIN button description */
-"SecurityCenter.pinDescription" = "Protege a sua Fabriik de utilizadores não autorizados.";
+"SecurityCenter.pinDescription" = "Protege a sua BRD de utilizadores não autorizados.";
 
 /* PIN button title */
 "SecurityCenter.pinTitle" = "PIN de 6-Dígitos";
 
 /* Touch ID button description */
-"SecurityCenter.touchIdDescription" = "Desbloqueie convenientemente a sua Fabriik e envie dinheiro até um limite definido";
+"SecurityCenter.touchIdDescription" = "Desbloqueie convenientemente a sua BRD e envie dinheiro até um limite definido";
 
 /* Touch ID button title */
 "SecurityCenter.touchIdTitle" = "Touch ID";
@@ -1274,16 +1274,16 @@
 "Send.balanceString" = "Saldo:";
 
 /* Instructions how to allow the camera access for the app */
-"Send.cameraUnavailabeMessage.android" = "Permita o acesso à câmara em \"Definições\" > \"Aplicações\" > \"Fabriik\" > \"Permissões\"";
+"Send.cameraUnavailabeMessage.android" = "Permita o acesso à câmara em \"Definições\" > \"Aplicações\" > \"BRD\" > \"Permissões\"";
 
 /* Permission required to access camera */
-"Send.cameraUnavailabeTitle.android" = "O Fabriik não tem autorização para aceder à câmara";
+"Send.cameraUnavailabeTitle.android" = "O BRD não tem autorização para aceder à câmara";
 
 /* Camera not allowed message */
 "Send.cameraunavailableMessage" = "Vá às Definições para permitir acesso à câmara.";
 
 /* Camera not allowed alert title */
-"Send.cameraUnavailableTitle" = "A Fabriik não tem autorização para aceder à câmara";
+"Send.cameraUnavailableTitle" = "A BRD não tem autorização para aceder à câmara";
 
 /* Warning when sending to self. */
 "Send.containsAddress" = "O destino é o seu próprio endereço. Não pode enviar a si mesmo.";
@@ -1446,7 +1446,7 @@
 "Settings.EnableSegwit" = "Ativar Segwit";
 
 /* Are you enjoying bread alert message body */
-"Settings.enjoying" = "Está a gostar da Fabriik?";
+"Settings.enjoying" = "Está a gostar da BRD?";
 
 /* Export transaction history menu item */
 "Settings.exportTransfers" = "Exportar histórico de transações para CSV";
@@ -1512,7 +1512,7 @@
 "Settings.wipe.android" = "Desvincule a sua carteira deste dispositivo.";
 
 /* Share data view body */
-"ShareData.body" = "Ajude a melhorar a Fabriik partilhando os seus dados anónimos connosco. Isto não inclui quaisquer informações financeiras. Respeitamos a sua privacidade financeira.";
+"ShareData.body" = "Ajude a melhorar a BRD partilhando os seus dados anónimos connosco. Isto não inclui quaisquer informações financeiras. Respeitamos a sua privacidade financeira.";
 
 /* Share data header */
 "ShareData.header" = "Partilhar Dados?";
@@ -1524,7 +1524,7 @@
 
 "ShareGift.footerMessage1" = "Uma taxa de rede será deduzida do total quando for reivindicada.\n O valor real depende do preço atual do bitcoin.";
 
-"ShareGift.footerMessage2" = "Baixe o aplicativo Fabriik para iPhone ou Android.\n Para obter mais informações, visite Fabriik.com/gift";
+"ShareGift.footerMessage2" = "Baixe o aplicativo BRD para iPhone ou Android.\n Para obter mais informações, visite brd.com/gift";
 
 "ShareGift.tagLine" = "Alguém presenteou você com bitcoins!";
 
@@ -1596,10 +1596,10 @@
 "StartPaperPhrase.againButtonTitle" = "Escrever Novamente Chave de Papel";
 
 /* Paper key explanation text. */
-"StartPaperPhrase.body" = "A chave de papel é a única forma de restaurar a sua Fabriik se o seu telefone for perdido, roubado, partido ou atualizado.\n\nVamos mostrar-lhe uma lista de palavras para escrever numa folha de papel e manter em segurança.";
+"StartPaperPhrase.body" = "A chave de papel é a única forma de restaurar a sua BRD se o seu telefone for perdido, roubado, partido ou atualizado.\n\nVamos mostrar-lhe uma lista de palavras para escrever numa folha de papel e manter em segurança.";
 
 /* Paper key explanation text (Android-version) */
-"StartPaperPhrase.Body.Android" = "A sua chave de papel é a única forma de restaurar a sua Fabriik se o seu telefone se perder, partir, for roubado ou atualizado.\n\nA sua chave de papel também é necessária se alterar as definições de segurança do seu dispositivo.\n\nVamos mostrar-lhe uma lista de palavras para escrever numa folha de papel e manter em segurança.";
+"StartPaperPhrase.Body.Android" = "A sua chave de papel é a única forma de restaurar a sua BRD se o seu telefone se perder, partir, for roubado ou atualizado.\n\nA sua chave de papel também é necessária se alterar as definições de segurança do seu dispositivo.\n\nVamos mostrar-lhe uma lista de palavras para escrever numa folha de papel e manter em segurança.";
 
 /* button label */
 "StartPaperPhrase.buttonTitle" = "Escrever Chave de Papel";
@@ -1687,11 +1687,11 @@
 /* Fingerprint Is Not Setup */
 "TouchIdSettings.disabledWarning.title.android" = "Autenticação por Impressão Digital não Ativada";
 
-/* Text that describes the purpose of the Touch ID settings in the Fabriik app. */
-"TouchIdSettings.explanatoryText" = "Utilizar o Touch ID para abrir a sua aplicação Fabriik e transferir dinheiro.";
+/* Text that describes the purpose of the Touch ID settings in the BRD app. */
+"TouchIdSettings.explanatoryText" = "Utilizar o Touch ID para abrir a sua aplicação BRD e transferir dinheiro.";
 
 /* Touch Id screen label */
-"TouchIdSettings.label" = "Utilize a impressão digital para desbloquear a sua Fabriik e enviar dinheiro até um limite definido.";
+"TouchIdSettings.label" = "Utilize a impressão digital para desbloquear a sua BRD e enviar dinheiro até um limite definido.";
 
 /* Link Text (see TouchIdSettings.customizeText) */
 "TouchIdSettings.linkText" = "Ecrã de limite dos gastos do Touch ID";
@@ -1700,7 +1700,7 @@
 "TouchIdSettings.spendingLimit" = "Limite de Gastos: %1$@ (%2$@)";
 
 /* Touch id switch label. */
-"TouchIdSettings.switchLabel" = "Ativar Touch ID para a Fabriik";
+"TouchIdSettings.switchLabel" = "Ativar Touch ID para a BRD";
 
 /* Enable fingerprint for this wallet called Bread */
 "TouchIdSettings.switchLabel.android" = "Ativar a Autenticação por Impressão Digital";
@@ -1720,8 +1720,8 @@
 /* Touch ID unavailable alert title */
 "TouchIdSettings.unavailableAlertTitle" = "Touch ID Não Configurado";
 
-/* Text label for the toggle that enables Touch ID for unlocking the Fabriik app. */
-"TouchIdSettings.unlockTitleText" = "Ativar o Touch ID para abrir Fabriik";
+/* Text label for the toggle that enables Touch ID for unlocking the BRD app. */
+"TouchIdSettings.unlockTitleText" = "Ativar o Touch ID para abrir BRD";
 
 /* Always require passcode option */
 "TouchIdSpendingLimit" = "Pedir sempre um código de acesso";
@@ -1785,7 +1785,7 @@
 /* eg. Starting balance: $50.00 */
 "Transaction.starting" = "Saldo inicial: %1$@";
 
-/* e.g. "[The money you paid was a] Fee for token transfer: Fabriik" (Fabriik is the token that was transfered) */
+/* e.g. "[The money you paid was a] Fee for token transfer: BRD" (BRD is the token that was transfered) */
 "Transaction.tokenTransfer" = "Taxa para transferência de token: %1$@";
 
 "Transaction.toRecipient" = "para %1$s";
@@ -1971,7 +1971,7 @@
 "UnlockScreen.touchIdInstructions.android" = "Sensor de Toque";
 
 /* TouchID prompt text */
-"UnlockScreen.touchIdPrompt" = "Desbloqueie a sua Fabriik.";
+"UnlockScreen.touchIdPrompt" = "Desbloqueie a sua BRD.";
 
 /* Device authentication body */
 "UnlockScreen.touchIdPrompt.android" = "Desbloqueie o seu dispositivo Android para continuar.";
@@ -1986,7 +1986,7 @@
 "UpdatePin.caption" = "Lembre-se deste PIN. Se o esquecer, não será capaz de aceder às suas bitcoins.";
 
 /* PIN creation info. */
-"UpdatePin.createInstruction" = "O seu PIN será usado para desbloquear a sua Fabriik e para enviar dinheiro.";
+"UpdatePin.createInstruction" = "O seu PIN será usado para desbloquear a sua BRD e para enviar dinheiro.";
 
 /* Update PIN title */
 "UpdatePin.createTitle" = "Definir PIN";
@@ -2075,7 +2075,7 @@
 "WalletConnectionSettings.viewTitle" = "Fastsync";
 
 /* 'No wallet' warning for watch app */
-"Watch.noWalletWarning" = "Abra a aplicação Fabriik para iPhone para configurar a sua carteira.";
+"Watch.noWalletWarning" = "Abra a aplicação BRD para iPhone para configurar a sua carteira.";
 
 /* Dismiss button label */
 "Webview.dismiss" = "Ignorar";
@@ -2087,10 +2087,10 @@
 "Webview.updating" = "A Atualizar...";
 
 /* Welcome screen text. (?) will be replaced with the help icon users should look for. */
-"Welcome.body" = "As Breadwallets mudaram de nome para Fabriik, com um visual completamente novo e algumas características novas. \n\nSe precisar de ajuda, procure o (?) no canto superior direito da maioria das telas.";
+"Welcome.body" = "As Breadwallets mudaram de nome para BRD, com um visual completamente novo e algumas características novas. \n\nSe precisar de ajuda, procure o (?) no canto superior direito da maioria das telas.";
 
 /* Top title of welcome screen */
-"Welcome.title" = "Bem-vindo ao Fabriik!";
+"Welcome.title" = "Bem-vindo ao BRD!";
 
 /* Single asset widget description */
 "Widget.assetDescription" = "Mantenha-se atualizado com o seu ativo criptográfico favorito";
@@ -2201,7 +2201,7 @@
 "WipeWallet.startMessage" = "Elimine a ligação à sua carteira, a fim de a remover deste dispositivo. Assim que a ligação à carteira tiver sido eliminada, pode iniciar uma nova carteira ou recuperar outra carteira neste dispositivo.";
 
 /* Start wipe wallet view warning */
-"WipeWallet.startWarning" = "Não poderá mais aceder à sua Fabriik wallet a partir deste dispositivo. O saldo permanecerá na frase.";
+"WipeWallet.startWarning" = "Não poderá mais aceder à sua BRD wallet a partir deste dispositivo. O saldo permanecerá na frase.";
 
 /* Unlink this wallet from this device. */
 "WipeWallet.title" = "Eliminar a ligação à carteira";

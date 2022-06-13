@@ -62,11 +62,11 @@ enum PromptType: Int {
     
     var title: String {
         switch self {
-        case .biometrics: return LAContext.biometricType() == .face ? S.Prompts.FaceId.title : S.Prompts.TouchId.title
-        case .paperKey: return S.Prompts.PaperKey.title
-        case .upgradePin: return S.Prompts.UpgradePin.title
-        case .noPasscode: return S.Prompts.NoPasscode.title
-        case .email: return S.Prompts.Email.title
+        case .biometrics: return LAContext.biometricType() == .face ? L10n.Prompts.FaceId.title : L10n.Prompts.TouchId.title
+        case .paperKey: return L10n.Prompts.PaperKey.title
+        case .upgradePin: return L10n.Prompts.UpgradePin.title
+        case .noPasscode: return L10n.Prompts.NoPasscode.title
+        case .email: return L10n.Prompts.Email.title
         default: return ""
         }
     }
@@ -85,11 +85,11 @@ enum PromptType: Int {
 
     var body: String {
         switch self {
-        case .biometrics: return LAContext.biometricType() == .face ? S.Prompts.FaceId.body : S.Prompts.TouchId.body
-        case .paperKey: return S.Prompts.PaperKey.body
-        case .upgradePin: return S.Prompts.UpgradePin.body
-        case .noPasscode: return S.Prompts.NoPasscode.body
-        case .email: return S.Prompts.Email.body
+        case .biometrics: return LAContext.biometricType() == .face ? L10n.Prompts.FaceId.body : L10n.Prompts.TouchId.body
+        case .paperKey: return L10n.Prompts.PaperKey.body
+        case .upgradePin: return L10n.Prompts.UpgradePin.body
+        case .noPasscode: return L10n.Prompts.NoPasscode.body
+        case .email: return L10n.Prompts.Email.body
         default: return ""
         }
     }
@@ -305,23 +305,23 @@ struct StandardEmailCollectingPrompt: Prompt, EmailCollectingPrompt {
     }
     
     var title: String {
-        return S.Prompts.Email.title
+        return L10n.Prompts.Email.title
     }
     
     var body: String {
-        return S.Prompts.Email.body
+        return L10n.Prompts.Email.body
     }
     
     var confirmationTitle: String {
-        return S.Prompts.Email.successTitle
+        return L10n.Prompts.Email.successTitle
     }
     
     var confirmationBody: String {
-        return S.Prompts.Email.successBody
+        return L10n.Prompts.Email.successBody
     }
     
     var confirmationFootnote: String? {
-        return S.Prompts.Email.successFootnote
+        return L10n.Prompts.Email.successFootnote
     }
     
     var confirmationImageName: String? {

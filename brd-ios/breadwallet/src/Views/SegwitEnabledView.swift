@@ -12,7 +12,7 @@ class SegwitEnabledView: UIView {
     
     private let primaryLabel = UILabel.wrapping(font: .customBody(size: 13.0), color: .white)
     private let secondaryLabel = UILabel.wrapping(font: .customBody(size: 11.0), color: .white)
-    let home = BRDButton(title: S.Segwit.homeButton, type: .primary)
+    let home = BRDButton(title: L10n.Segwit.homeButton, type: .primary)
     let checkView = LinkStatusCircle(colour: .greenCheck)
     
     init() {
@@ -59,10 +59,10 @@ class SegwitEnabledView: UIView {
         layer.masksToBounds = true
         layer.cornerRadius = 8.0
         
-        primaryLabel.text = S.Segwit.confirmationConfirmationTitle
+        primaryLabel.text = L10n.Segwit.confirmationConfirmationTitle
         primaryLabel.textAlignment = .center
         
-        secondaryLabel.text = S.Segwit.confirmationInstructionsDescription
+        secondaryLabel.text = L10n.Segwit.confirmationInstructionsDescription
         secondaryLabel.textAlignment = .center
 
     }

@@ -215,11 +215,11 @@ class AccountViewController: UIViewController, Subscriber, Trackable {
         }
         
         createFooter.didTapCreate = { [weak self] in
-            let alert = UIAlertController(title: S.AccountCreation.title,
-                                          message: S.AccountCreation.body,
+            let alert = UIAlertController(title: L10n.AccountCreation.title,
+                                          message: L10n.AccountCreation.body,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: S.AccountCreation.notNow, style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: S.AccountCreation.create, style: .default, handler: { [weak self] _ in
+            alert.addAction(UIAlertAction(title: L10n.AccountCreation.notNow, style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: L10n.AccountCreation.create, style: .default, handler: { [weak self] _ in
                 self?.createAccount()
             }))
             self?.present(alert, animated: true, completion: nil)
@@ -227,7 +227,7 @@ class AccountViewController: UIViewController, Subscriber, Trackable {
     }
     
     private func createAccount() {
-        let activity = BRActivityViewController(message: S.AccountCreation.creating)
+        let activity = BRActivityViewController(message: L10n.AccountCreation.creating)
         present(activity, animated: true, completion: nil)
         
         let completion: (Wallet?) -> Void = { [weak self] wallet in
@@ -236,7 +236,7 @@ class AccountViewController: UIViewController, Subscriber, Trackable {
                 self?.createTimeoutTimer = nil
                 activity.dismiss(animated: true, completion: {
                     if wallet == nil {
-                        self?.showErrorMessage(S.AccountCreation.error)
+                        self?.showErrorMessage(L10n.AccountCreation.error)
                     } else {
                         UIView.animate(withDuration: 0.5, animations: {
                             self?.createFooter.alpha = 0.0
@@ -250,7 +250,7 @@ class AccountViewController: UIViewController, Subscriber, Trackable {
         
         let handleTimeout: (Timer) -> Void = { [weak self] _ in
             activity.dismiss(animated: true, completion: {
-                self?.showErrorMessage(S.AccountCreation.timeout)
+                self?.showErrorMessage(L10n.AccountCreation.timeout)
             })
         }
         //This could take a while because we're waiting for a transaction to confirm, so we need a decent timeout of 45 seconds.

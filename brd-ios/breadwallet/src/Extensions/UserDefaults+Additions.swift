@@ -330,7 +330,7 @@ extension UserDefaults {
         guard let date = writePaperPhraseDate else { return "" }
         let df = DateFormatter()
         df.setLocalizedDateFormatFromTemplate("MMMM d, yyyy")
-        return String(format: S.StartPaperPhrase.date, df.string(from: date))
+        return L10n.StartPaperPhrase.date(df.string(from: date))
     }
     
     static var walletRequiresBackup: Bool {

@@ -139,13 +139,13 @@ class Currency: SharedCurrency, CurrencyWithIcon {
     var attributeDefinition: AttributeDefinition? {
         if isXRP {
             return AttributeDefinition(key: "DestinationTag",
-                                       label: S.Send.destinationTagLabel,
+                                       label: L10n.Send.destinationTagOptional,
                                        keyboardType: .numberPad,
                                        maxLength: 10)
         }
         if isHBAR {
             return AttributeDefinition(key: "Memo",
-                                       label: S.Send.memoTagLabelOptional,
+                                       label: L10n.Send.memoTagOptional,
                                        keyboardType: .default,
                                        maxLength: 100)
         }
@@ -258,7 +258,7 @@ extension Currency {
         } else if isBitcoinCompatible {
             return btcFeeText(forIndex: index)
         } else {
-            return String(format: S.Confirmation.processingTime, S.FeeSelector.ethTime)
+            return L10n.Confirmation.processingTime(L10n.FeeSelector.ethTime)
         }
     }
     
@@ -266,11 +266,11 @@ extension Currency {
         
         switch index {
         case 0:
-            return String(format: S.FeeSelector.estimatedDelivery, timeString(forMinutes: 6))
+            return L10n.FeeSelector.estimatedDeliver(timeString(forMinutes: 6))
         case 1:
-            return String(format: S.FeeSelector.estimatedDelivery, timeString(forMinutes: 4))
+            return L10n.FeeSelector.estimatedDeliver(timeString(forMinutes: 4))
         case 2:
-            return String(format: S.FeeSelector.estimatedDelivery, timeString(forMinutes: 2))
+            return L10n.FeeSelector.estimatedDeliver(timeString(forMinutes: 2))
         default:
             return ""
         }
@@ -288,11 +288,11 @@ extension Currency {
     private func btcFeeText(forIndex index: Int) -> String {
         switch index {
         case 0:
-            return String(format: S.FeeSelector.estimatedDelivery, S.FeeSelector.economyTime)
+            return L10n.FeeSelector.estimatedDeliver(L10n.FeeSelector.economyTime)
         case 1:
-            return String(format: S.FeeSelector.estimatedDelivery, S.FeeSelector.regularTime)
+            return L10n.FeeSelector.estimatedDeliver(L10n.FeeSelector.regularTime)
         case 2:
-            return String(format: S.FeeSelector.estimatedDelivery, S.FeeSelector.priorityTime)
+            return L10n.FeeSelector.estimatedDeliver(L10n.FeeSelector.priorityTime)
         default:
             return ""
         }

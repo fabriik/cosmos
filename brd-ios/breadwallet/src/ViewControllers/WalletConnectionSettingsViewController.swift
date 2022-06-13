@@ -124,9 +124,9 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
     private func bindData() {
         guard let currency = currency else { return }
         
-        title = S.WalletConnectionSettings.viewTitle
-        header.text = S.WalletConnectionSettings.header
-        footerLabel.text = S.WalletConnectionSettings.footerTitle
+        title = L10n.WalletConnectionSettings.viewTitle
+        header.text = L10n.WalletConnectionSettings.header
+        footerLabel.text = L10n.WalletConnectionSettings.footerTitle
         footerLogo.tintColor = Theme.blueBackground
         
         let selectedMode = walletConnectionSettings.mode(for: currency)
@@ -168,19 +168,19 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
     }
     
     private func confirmToggle() {
-        let alert = UIAlertController(title: "", message: S.WalletConnectionSettings.confirmation, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: { _ in
+        let alert = UIAlertController(title: "", message: L10n.WalletConnectionSettings.confirmation, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: { _ in
             self.toggleSwitch.setOn(true, animated: true)
         }))
-        alert.addAction(UIAlertAction(title: S.WalletConnectionSettings.turnOff, style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: L10n.WalletConnectionSettings.turnOff, style: .default, handler: { _ in
             self.setMode()
         }))
         present(alert, animated: true)
     }
     
     private func setupLink() {
-        let string = NSMutableAttributedString(string: S.WalletConnectionSettings.explanatoryText)
-        let linkRange = string.mutableString.range(of: S.WalletConnectionSettings.link)
+        let string = NSMutableAttributedString(string: L10n.WalletConnectionSettings.explanatoryText)
+        let linkRange = string.mutableString.range(of: L10n.WalletConnectionSettings.link)
         if linkRange.location != NSNotFound {
             string.addAttribute(.link, value: NSURL(string: "https://www.brd.com/blog/fastsync-explained")!, range: linkRange)
         }

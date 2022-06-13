@@ -74,13 +74,13 @@ class TxStatusCell: UITableViewCell, Subscriber {
         statusIndicator.status = status
         switch status {
         case .pending:
-            statusLabel.text = S.Transaction.pending
+            statusLabel.text = L10n.Transaction.pending
         case .confirmed:
-            statusLabel.text = S.Transaction.confirming
+            statusLabel.text = L10n.Transaction.confirming
         case .complete:
-            statusLabel.text = S.Transaction.complete
+            statusLabel.text = L10n.Transaction.complete
         case .invalid:
-            statusLabel.text = S.Transaction.invalid
+            statusLabel.text = L10n.Transaction.invalid
         }
     }
     

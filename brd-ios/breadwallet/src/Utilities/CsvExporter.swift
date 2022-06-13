@@ -109,7 +109,7 @@ private extension FileHandle {
         if transfer.metaData?.tokenTransfer.isEmpty ?? true {
             memo = transfer.metaData?.comment ?? ""
         } else {
-            memo = String(format: S.Transaction.tokenTransfer, transfer.metaData!.tokenTransfer.uppercased())
+            memo = L10n.Transaction.tokenTransfer(transfer.metaData!.tokenTransfer.uppercased())
         }
         
         switch transfer.direction {

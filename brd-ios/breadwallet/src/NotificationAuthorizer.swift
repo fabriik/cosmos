@@ -166,11 +166,11 @@ struct NotificationAuthorizer: Trackable {
     }
     
     private func showOptInAlert(fromViewController viewController: UIViewController, completion: @escaping OptInResponseCallback) {
-        let alert = UIAlertController(title: S.PushNotifications.title,
-                                      message: S.PushNotifications.body,
+        let alert = UIAlertController(title: L10n.PushNotifications.title,
+                                      message: L10n.PushNotifications.body,
                                       preferredStyle: .alert)
         
-        let enableAction = UIAlertAction(title: S.Button.ok, style: .default) { _ in
+        let enableAction = UIAlertAction(title: L10n.Button.ok, style: .default) { _ in
             
             self.logEvent(.optInPrompt, .okButton)
             
@@ -188,7 +188,7 @@ struct NotificationAuthorizer: Trackable {
             }
         }
         
-        let deferAction = UIAlertAction(title: S.Button.maybeLater, style: .cancel) { _ in
+        let deferAction = UIAlertAction(title: L10n.Button.maybeLater, style: .cancel) { _ in
             // Logging this here rather than in `userDidDeferNotificationsOptIn()` so that it's not logged
             // during unit testing; however, at this point 'optInDeferralCount' won't be updated yet, so
             // add 1 when logging the event.
@@ -218,17 +218,17 @@ struct NotificationAuthorizer: Trackable {
     }
 
     private func showAlertForDisabledNotifications(fromViewController viewController: UIViewController, completion: @escaping AuthorizationHandler) {
-        let alert = UIAlertController(title: S.PushNotifications.disabled,
-                                      message: S.PushNotifications.enableInstructions,
+        let alert = UIAlertController(title: L10n.PushNotifications.disabled,
+                                      message: L10n.PushNotifications.enableInstructions,
                                       preferredStyle: .alert)
         
-        let settingsAction = UIAlertAction(title: S.Button.settings, style: .default) { _ in
+        let settingsAction = UIAlertAction(title: L10n.Button.settings, style: .default) { _ in
             if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(url)
             }
             completion(false)
         }
-        let cancelAction = UIAlertAction(title: S.Button.cancel, style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: L10n.Button.cancel, style: .cancel) { _ in
             completion(false)
         }
         

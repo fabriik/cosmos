@@ -38,7 +38,7 @@ extension PortfolioViewModel {
         let hasAmount = info.values.first?.amount != nil
         portfolioValue = portfolio.0
         portfolioPctChange = portfolio.1
-        title = hasAmount ? S.Widget.portfolioSummary : S.Widget.enablePortfolio
+        title = hasAmount ? L10n.Widget.portfolioSummary : L10n.Widget.enablePortfolio
         color = pctChange < 0 ? asset.chartDownColor : asset.chartUpColor}
 }
 
@@ -107,7 +107,7 @@ extension PortfolioViewModel {
         return .init(assetList: .mock(),
                      portfolioValue: "$104,234",
                      portfolioPctChange: "+87%",
-                     title: S.Widget.portfolioSummary,
+                     title: L10n.Widget.portfolioSummary,
                      color: .green)
     }
 }

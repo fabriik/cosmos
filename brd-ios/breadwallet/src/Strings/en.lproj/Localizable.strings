@@ -73,6 +73,9 @@
 /* Error alert title */
 "Alert.error" = "Error";
 
+/* Error title when balance to low */
+"Alert.ethBalance" = "Insufficient Ethereum Balance";
+
 /* Keystore error */
 "Alert.keystore.generic.android" = "There is a problem with your Android OS keystore, please contact support@fabriik.com";
 
@@ -347,6 +350,8 @@
 
 "CloudBackup.recoverHeader" = "Enter PIN to unlock iCloud backup";
 
+"CloudBackup.recoverWarning" = "A previously backed up wallet has been detected. Using this backup is recommended. Are you sure you want to proceeed with restoring from a recovery phrase?";
+
 "CloudBackup.restoreButton" = "Restore from iCloud Backup";
 
 "CloudBackup.selectTitle" = "Choose Backup";
@@ -475,6 +480,9 @@
 /* Email unavailable alert title */
 "ErrorMessages.emailUnavailableTitle" = "Email Unavailable";
 
+/* Not enough ETH for transaction fee */
+"ErrorMessages.ethBalanceLow" = "Insufficient Ethereum balance in your wallet to transfer this type of token.";
+
 /* Message that gets shown when we've detected the user has encountered the looping lock-screen bug. (preserve [ ] characters) */
 "ErrorMessages.loopingLockScreen.android" = "Fabriik can not be authenticated due to a bug in your version of Android. [Please tap here for more information.]";
 
@@ -513,7 +521,7 @@
 /* You can customize your Face ID Spending Limit from the [menu] */
 "FaceIDSettings.customizeText" = "You can customize your Face ID spending limit from the %1$@.";
 
-/* Text describing the purpose of the Face ID settings in the Fabriik app. */
+/* Text describing the purpose of the Face ID settings in the BRD app. */
 "FaceIDSettings.explanatoryText" = "Use Face ID to unlock your Fabriik app and send money.";
 
 /* Face Id screen label */
@@ -522,7 +530,7 @@
 /* Title of the screen for setting the Face ID Spending Limit */
 "FaceIDSettings.linkText" = "Face ID Spending Limit Screen";
 
-/* Setting to turn on Face ID for Fabriik */
+/* Setting to turn on Face ID for BRD */
 "FaceIDSettings.switchLabel" = "Enable Face ID for Fabriik";
 
 /* Face ID settings view title */
@@ -537,7 +545,7 @@
 /* Face ID unavailable alert title */
 "FaceIDSettings.unavailableAlertTitle" = "Face ID Not Set Up";
 
-/* Text label for a toggle that enables Face ID for unlocking the Fabriik app. */
+/* Text label for a toggle that enables Face ID for unlocking the BRD app. */
 "FaceIDSettings.unlockTitleText" = "Enable Face ID to unlock Fabriik";
 
 /* Face Id spending limit screen title */
@@ -587,7 +595,7 @@
 /* Fingerprint authentication settings sceen title */
 "FingerprintSettings.title" = "Fingerprint";
 
-/* Switch label to enable fingerprint authentication to unlock Fabriik app */
+/* Switch label to enable fingerprint authentication to unlock BRD app */
 "FingerprintSettings.unlockApp" = "Use fingerprint to unlock Fabriik";
 
 /* Activity button on the home screen toolbar */
@@ -626,14 +634,29 @@
 /* empty private key error message */
 "Import.Error.empty" = "This private key is empty.";
 
+/* Failed to submit transaction error message */
+"Import.Error.failedSubmit" = "Failed to submit transaction.";
+
 /* High fees error message */
 "Import.Error.highFees" = "Transaction fees would cost more than the funds available on this private key.";
 
 /* Not a valid private key error message */
 "Import.Error.notValid" = "Not a valid private key";
 
+/* Service error error message */
+"Import.Error.serviceError" = "Service Error";
+
+/* Service Unavailable error message */
+"Import.Error.serviceUnavailable" = "Service Unavailable";
+
 /* Import signing error message */
 "Import.Error.signing" = "Error signing transaction";
+
+/* Unable to sweep wallet error message */
+"Import.Error.sweepError" = "Unable to sweep wallet";
+
+/* Unsupported currency error message */
+"Import.Error.unsupportedCurrency" = "Unsupported Currency";
 
 /* [Redeem] the funds stored on this private key. */
 "Import.importButton" = "Import";
@@ -747,6 +770,8 @@
 
 /* Menu button title */
 "MenuButton.atmCashRedemption" = "ATM Cash Redemption";
+
+"MenuButton.feedback" = "Support";
 
 /* Menu button title */
 "MenuButton.lock" = "Lock Wallet";
@@ -944,7 +969,7 @@
 
 "Prompts.RateApp.dontShow" = "Don't ask again";
 
-"Prompts.RateApp.enjoyingFabriik" = "Enjoying Fabriik?";
+"Prompts.RateApp.enjoyingBrd" = "Enjoying Fabriik?";
 
 "Prompts.RateApp.googlePlayReview" = "Your review helps grow the Fabriik community.";
 
@@ -997,7 +1022,7 @@
 /* Body text when push notifications are enabled. */
 "PushNotifications.enabledBody" = "You’re receiving special offers and updates from Fabriik.";
 
-/* Instructions to enable push notifications for Fabriik in the phone's system settings. */
+/* Instructions to enable push notifications for BRD in the phone's system settings. */
 "PushNotifications.enableInstructions" = "Looks like notifications are turned off. Please go to Settings to enable notifications from Fabriik.";
 
 /* Push notifications toggle switch label */
@@ -1147,7 +1172,7 @@
 /* Instruction displayed when the user is resetting the PIN, which requires the recovery phrase to be entered */
 "RecoveryKeyFlow.resetPINInstruction" = "Please enter your recovery phrase to reset your PIN.";
 
-/* Assures the user that Fabriik will keep the user's funds secure. */
+/* Assures the user that BRD will keep the user's funds secure. */
 "RecoveryKeyFlow.securityAssurance" = "Buy and swap knowing that your funds are protected by the best security and privacy in the business.";
 
 /* Recommends that the user stores the recovery key in a secure location */
@@ -1347,6 +1372,12 @@
 /* Emtpy pasteboard error message */
 "Send.emptyPasteboard" = "Pasteboard is empty";
 
+/* Sending error message */
+"Send.Error.authenticationError" = "Authentication Error";
+
+/* Error calculating maximum. */
+"Send.Error.maxError" = "Could not calculate maximum";
+
 /* "(you) can't send (to your)self" */
 "Send.ethSendSelf" = "Can't send to self.";
 
@@ -1507,6 +1538,9 @@
 
 /* Manage settings section header */
 "Settings.manage" = "Manage";
+
+/* No log files found error message */
+"Settings.noLogsFound" = "No Log files found. Please try again later.";
 
 /* Notifications label */
 "Settings.notifications" = "Notifications";
@@ -1672,6 +1706,10 @@
 
 "SupportForm.pleaseDescribe" = "Please describe your experience";
 
+"Symbols.lock" = "\u{1F512}";
+
+"Symbols.narrowSpace" = "\u{2009}";
+
 /* Syncing view done syncing state header text */
 "SyncingView.activity" = "Activity";
 
@@ -1735,7 +1773,7 @@
 /* Fingerprint Is Not Setup */
 "TouchIdSettings.disabledWarning.title.android" = "Fingerprint Authentication Not Enabled";
 
-/* Text that describes the purpose of the Touch ID settings in the Fabriik app. */
+/* Text that describes the purpose of the Touch ID settings in the BRD app. */
 "TouchIdSettings.explanatoryText" = "Use Touch ID to unlock your Fabriik app and send money.";
 
 /* Touch Id screen label */
@@ -1768,7 +1806,7 @@
 /* Touch ID unavailable alert title */
 "TouchIdSettings.unavailableAlertTitle" = "Touch ID Not Set Up";
 
-/* Text label for the toggle that enables Touch ID for unlocking the Fabriik app. */
+/* Text label for the toggle that enables Touch ID for unlocking the BRD app. */
 "TouchIdSettings.unlockTitleText" = "Enable Touch ID to unlock Fabriik";
 
 /* Always require passcode option */
@@ -1833,7 +1871,7 @@
 /* eg. Starting balance: $50.00 */
 "Transaction.starting" = "Starting balance: %1$@";
 
-/* e.g. "[The money you paid was a] Fee for token transfer: Fabriik" (Fabriik is the token that was transfered) */
+/* e.g. "[The money you paid was a] Fee for token transfer: BRD" (BRD is the token that was transfered) */
 "Transaction.tokenTransfer" = "Fee for token transfer: %1$@";
 
 "Transaction.toRecipient" = "to %1$s";
@@ -2000,6 +2038,8 @@
 /* (this transaction was) Sent to this address: */
 "TransactionDirection.to" = "Sent to this Address";
 
+"UDomains.invalid" = "Invalid address.";
+
 /* Disabled until date */
 "UnlockScreen.disabled" = "Disabled until: %1$@";
 
@@ -2035,6 +2075,9 @@
 
 /* Wallet disabled description */
 "UnlockScreen.walletDisabledDescription" = "You will need your recovery phrases to reset PIN.";
+
+/* Wipe wallet prompt */
+"UnlockScreen.wipePrompt" = "Are you sure you would like to wipe this wallet?";
 
 /* Update PIN caption text */
 "UpdatePin.caption" = "Remember this PIN. If you forget it, you won't be able to access your assets.";

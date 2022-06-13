@@ -93,7 +93,7 @@ class TxAmountCell: UITableViewCell, Subscriber {
                                                 attributes: [.font: smallFont,
                                                              .foregroundColor: fiatColor])
         } else {
-            let format = (viewModel.direction == .sent) ? S.TransactionDetails.amountWhenSent : S.TransactionDetails.amountWhenReceived
+            let format = (viewModel.direction == .sent) ? String(describing: L10n.TransactionDetails.amountWhenSent) : String(describing: L10n.TransactionDetails.amountWhenReceived)
             
             let attributedText = NSMutableAttributedString(string: String(format: format, originalAmount!, currentAmount),
                                                            attributes: [.font: smallFont,

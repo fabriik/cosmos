@@ -39,10 +39,10 @@ class SelectBakerCell: UITableViewCell {
     
     func set(_ baker: Baker?) {
         bakerName.text = baker?.name
-        roiHeader.text = S.Staking.roiHeader
+        roiHeader.text = L10n.Staking.roiHeader
         roi.text = baker?.roiString
         let feeText = baker?.feeString ?? ""
-        fee.text = "\(S.Staking.feeHeader) \(feeText)"
+        fee.text = "\(L10n.Staking.feeHeader) \(feeText)"
 
         if let imageUrl = baker?.logo, !imageUrl.isEmpty {
             UIImage.fetchAsync(from: imageUrl) { [weak bakerIcon] (image, url) in

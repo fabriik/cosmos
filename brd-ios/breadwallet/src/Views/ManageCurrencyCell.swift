@@ -13,11 +13,11 @@ enum EditWalletType {
     case add
     
     var addTitle: String {
-        return self == .manage ? S.TokenList.show : S.TokenList.add
+        return self == .manage ? L10n.TokenList.show : L10n.TokenList.add
     }
     
     var removeTitle: String {
-        return self == .manage ? S.TokenList.hide : S.TokenList.remove
+        return self == .manage ? L10n.TokenList.hide : L10n.TokenList.remove
     }
 }
 
@@ -32,7 +32,7 @@ class ManageCurrencyCell: UITableViewCell {
     private let subheader = UILabel(font: .customBody(size: 14.0), color: .gray2)
     private let icon = UIImageView()
     private let balanceLabel = UILabel(font: Theme.body3, color: Theme.secondaryText)
-    private let button = ToggleButton(normalTitle: S.TokenList.add, normalColor: .navigationTint, selectedTitle: S.TokenList.hide, selectedColor: .orangeButton)
+    private let button = ToggleButton(normalTitle: L10n.TokenList.add, normalColor: .navigationTint, selectedTitle: L10n.TokenList.hide, selectedColor: .orangeButton)
     private var identifier: CurrencyId = ""
     private var listType: EditWalletType = .add
     private var isCurrencyHidden = false
@@ -109,11 +109,11 @@ class ManageCurrencyCell: UITableViewCell {
     
     private func setState() {
         if listType == .add {
-            button.setTitle(S.TokenList.add, for: .normal)
-            button.setTitle(S.TokenList.remove, for: .selected)
+            button.setTitle(L10n.TokenList.add, for: .normal)
+            button.setTitle(L10n.TokenList.remove, for: .selected)
         } else {
-            button.setTitle(S.TokenList.remove, for: .normal)
-            button.setTitle(S.TokenList.remove, for: .selected)
+            button.setTitle(L10n.TokenList.remove, for: .normal)
+            button.setTitle(L10n.TokenList.remove, for: .selected)
         }
         
         button.tap = strongify(self) { myself in

@@ -21,19 +21,19 @@ struct TxListViewModel: TxViewModel {
         if let comment = comment, !comment.isEmpty {
             return comment
         } else if let tokenCode = tokenTransferCode {
-            return String(format: S.Transaction.tokenTransfer, tokenCode.uppercased())
+            return L10n.Transaction.tokenTransfer(tokenCode.uppercased())
         } else {
             var address = tx.toAddress
             var format: String
             switch tx.direction {
             case .sent, .recovered:
-                format = isComplete ? S.Transaction.sentTo : S.Transaction.sendingTo
+                format = isComplete ? String(describing: L10n.Transaction.sentTo(_:)) : String(describing: L10n.Transaction.sendingTo(_:))
             case .received:
                 if !tx.currency.isBitcoinCompatible {
-                    format = isComplete ? S.Transaction.receivedFrom : S.Transaction.receivingFrom
+                    format = isComplete ? String(describing: L10n.TransactionDetails.receivedFrom(_:)) : String(describing: L10n.TransactionDetails.receivingFrom(_:))
                     address = tx.fromAddress
                 } else {
-                    format = isComplete ? S.Transaction.receivedVia : S.Transaction.receivingVia
+                    format = isComplete ? String(describing:  L10n.TransactionDetails.receivedVia(_:)) : String(describing:  L10n.TransactionDetails.receivingVia(_:))
                 }
             }
             return String(format: format, address)

@@ -112,7 +112,7 @@ class AlertPresenter: Subscriber {
 
     private func showNotReachable() {
         guard notReachableAlert == nil else { return }
-        let alert = InAppAlert(message: S.Alert.noInternet, image: #imageLiteral(resourceName: "BrokenCloud"))
+        let alert = InAppAlert(message: L10n.Alert.noInternet, image: #imageLiteral(resourceName: "BrokenCloud"))
         notReachableAlert = alert
         let window = UIApplication.shared.keyWindow!
         let size = window.bounds.size

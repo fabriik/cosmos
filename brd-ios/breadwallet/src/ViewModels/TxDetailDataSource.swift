@@ -96,27 +96,27 @@ class TxDetailDataSource: NSObject {
     fileprivate func title(forField field: Field) -> String {
         switch field {
         case .status:
-            return S.TransactionDetails.statusHeader
+            return L10n.TransactionDetails.statusHeader
         case .memo:
-            return S.TransactionDetails.commentsHeader
+            return L10n.TransactionDetails.commentsHeader
         case .address:
             return viewModel.addressHeader
         case .exchangeRate:
-            return S.TransactionDetails.exchangeRateHeader
+            return L10n.TransactionDetails.exchangeRateHeader
         case .blockHeight:
-            return S.TransactionDetails.blockHeightLabel
+            return L10n.TransactionDetails.blockHeightLabel
         case .transactionId:
-            return S.TransactionDetails.txHashHeader
+            return L10n.TransactionDetails.txHashHeader
         case .gasPrice:
-            return S.TransactionDetails.gasPriceHeader
+            return L10n.TransactionDetails.gasPriceHeader
         case .gasLimit:
-            return S.TransactionDetails.gasLimitHeader
+            return L10n.TransactionDetails.gasLimitHeader
         case .fee:
-            return S.TransactionDetails.feeHeader
+            return L10n.TransactionDetails.feeHeader
         case .total:
-            return S.TransactionDetails.totalHeader
+            return L10n.TransactionDetails.totalHeader
         case .confirmations:
-            return S.TransactionDetails.confirmationsLabel
+            return L10n.TransactionDetails.confirmationsLabel
         case .extraAttribute:
             return viewModel.extraAttributeHeader
         case .gift:

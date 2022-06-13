@@ -136,18 +136,18 @@ class URLController: Trackable, Subscriber {
 
     private func handleBitId(_ url: URL) -> Bool {
         let bitid = BRBitID(url: url, walletAuthenticator: walletAuthenticator)
-        let message = String(format: S.BitID.authenticationRequest, bitid.siteName)
-        let alert = UIAlertController(title: S.BitID.title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.BitID.deny, style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: S.BitID.approve, style: .default, handler: { _ in
+        let message = L10n.BitID.authenticationRequest(bitid.siteName)
+        let alert = UIAlertController(title: L10n.BitID.title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.BitID.deny, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.BitID.approve, style: .default, handler: { _ in
             bitid.runCallback { _, response, error in
                 if let resp = response as? HTTPURLResponse, error == nil && resp.statusCode >= 200 && resp.statusCode < 300 {
-                    let alert = UIAlertController(title: S.BitID.success, message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
+                    let alert = UIAlertController(title: L10n.BitID.success, message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: nil))
                     self.present(alert: alert)
                 } else {
-                    let alert = UIAlertController(title: S.BitID.error, message: S.BitID.errorMessage, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
+                    let alert = UIAlertController(title: L10n.BitID.error, message: L10n.BitID.errorMessage, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: nil))
                     self.present(alert: alert)
                 }
             }

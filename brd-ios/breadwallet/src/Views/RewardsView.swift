@@ -105,9 +105,9 @@ class RewardsView: UIView {
     private func setUpStyle() {
         clipsToBounds = true
         backgroundColor = .white
-        normalTitle.text = S.RewardsView.normalTitle
-        expandedTitle.text = S.RewardsView.expandedTitle
-        expandedBody.text = S.RewardsView.expandedBody
+        normalTitle.text = L10n.RewardsView.normalTitle
+        expandedTitle.text = L10n.RewardsView.expandedTitle
+        expandedBody.text = L10n.RewardsView.expandedBody
         expandedTitle.numberOfLines = 0
         expandedBody.numberOfLines = 0
         normalTitle.alpha = RewardsView.shouldShowExpandedWithAnimation ? 0 : 1

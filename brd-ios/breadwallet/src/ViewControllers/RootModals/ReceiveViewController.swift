@@ -38,10 +38,10 @@ class ReceiveViewController: UIViewController, Subscriber, Trackable {
     private let qrCode = UIImageView()
     private let address = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
-    private let share = BRDButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"))
+    private let share = BRDButton(title: L10n.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"))
     private let sharePopout = InViewAlert(type: .secondary)
     private let border = UIView()
-    private let request = BRDButton(title: S.Receive.request, type: .secondary)
+    private let request = BRDButton(title: L10n.Receive.request, type: .secondary)
     private let addressButton = UIButton(type: .system)
     private var topSharePopoutConstraint: NSLayoutConstraint?
     fileprivate let isRequestAmountVisible: Bool
@@ -180,7 +180,7 @@ class ReceiveViewController: UIViewController, Subscriber, Trackable {
     private func setupCopiedMessage() {
         let copiedMessage = UILabel(font: .customMedium(size: 14.0))
         copiedMessage.textColor = .black
-        copiedMessage.text = S.Receive.copied
+        copiedMessage.text = L10n.Receive.copied
         copiedMessage.textAlignment = .center
         addressPopout.contentView = copiedMessage
     }
@@ -254,6 +254,6 @@ extension ReceiveViewController: ModalDisplayable {
     }
 
     var modalTitle: String {
-        return "\(S.Receive.title) \(currency.code)"
+        return "\(L10n.Receive.title) \(currency.code)"
     }
 }

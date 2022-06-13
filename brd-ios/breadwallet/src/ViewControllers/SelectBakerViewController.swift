@@ -121,6 +121,6 @@ extension SelectBakerViewController: ModalDisplayable {
     }
 
     var modalTitle: String {
-        return S.Staking.selectBakerTitle
+        return L10n.Staking.selectBakerTitle
     }
 }

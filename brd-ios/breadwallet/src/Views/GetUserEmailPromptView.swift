@@ -56,7 +56,7 @@ class GetUserEmailPromptView: PromptView {
         successFootnoteLabel.font = body.font
 
         // The 'Continue' action text for the email prompt is "Submit"
-        continueButton.setTitle(S.Button.submit, for: .normal)
+        continueButton.setTitle(L10n.Button.submit, for: .normal)
         
         // The 'Dismiss' action for the email prompt has no text; uses an 'x' image instead.
         dismissButton.setTitle("", for: .normal)
@@ -109,7 +109,7 @@ class GetUserEmailPromptView: PromptView {
     }
     
     private func showErrorOnEmailSubscriptionFailure() {
-        presenter.showErrorMessage(S.Alert.somethingWentWrong)
+        presenter.showErrorMessage(L10n.Alert.somethingWentWrong)
     }
         
     private func updateViewOnEmailSubmissionResult(successful: Bool) {
@@ -173,7 +173,7 @@ class GetUserEmailPromptView: PromptView {
         emailInput.layer.cornerRadius = 2.0
         emailInput.textColor = Theme.primaryText
         emailInput.font = UIFont.emailPlaceholder()
-        emailInput.attributedPlaceholder = NSAttributedString(string: S.Prompts.Email.emailPlaceholder,
+        emailInput.attributedPlaceholder = NSAttributedString(string: L10n.Prompts.Email.placeholder,
                                                               attributes: [ NSAttributedString.Key.foregroundColor: UIColor.emailPlaceholderText ])
         emailInput.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: emailInputHeight))
         emailInput.leftViewMode = .always

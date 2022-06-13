@@ -76,7 +76,7 @@ class TransactionsTableViewController: UITableViewController, Subscriber, Tracka
         tableView.tableHeaderView = header
 
         emptyMessage.textAlignment = .center
-        emptyMessage.text = S.TransactionDetails.emptyMessage
+        emptyMessage.text = L10n.TransactionDetails.emptyMessage
         
         setupSubscriptions()
         updateTransactions()

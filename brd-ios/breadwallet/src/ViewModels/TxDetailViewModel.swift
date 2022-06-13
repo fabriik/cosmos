@@ -26,25 +26,25 @@ struct TxDetailViewModel: TxViewModel {
     var total: String?
     
     var title: String {
-        guard status != .invalid else { return S.TransactionDetails.titleFailed }
+        guard status != .invalid else { return L10n.TransactionDetails.titleFailed }
         switch direction {
         case .recovered:
-            return S.TransactionDetails.titleInternal
+            return L10n.TransactionDetails.titleInternal
         case .received:
-            return status == .complete ? S.TransactionDetails.titleReceived : S.TransactionDetails.titleReceiving
+            return status == .complete ? L10n.TransactionDetails.titleReceived : L10n.TransactionDetails.titleReceiving
         case .sent:
-            return status == .complete ? S.TransactionDetails.titleSent : S.TransactionDetails.titleSending
+            return status == .complete ? L10n.TransactionDetails.titleSent : L10n.TransactionDetails.titleSending
         }
     }
     
     var timestampHeader: NSAttributedString {
         if status == .complete {
-            let text = " " + S.TransactionDetails.completeTimestampHeader
+            let text = " " + L10n.TransactionDetails.completeTimestampHeader
             let attributedString = NSMutableAttributedString(string: text)
             let icon = NSTextAttachment()
             icon.image = #imageLiteral(resourceName: "CircleCheckSolid").withRenderingMode(.alwaysTemplate)
             icon.bounds = CGRect(x: 0, y: -2.0, width: 14.0, height: 14.0)
-            let iconString = NSMutableAttributedString(string: S.Symbols.narrowSpace) // space required before an attachment to apply template color (UIKit bug)
+            let iconString = NSMutableAttributedString(string: L10n.Symbols.narrowSpace) // space required before an attachment to apply template color (UIKit bug)
             iconString.append(NSAttributedString(attachment: icon))
             attributedString.insert(iconString, at: 0)
             attributedString.addAttributes([.foregroundColor: UIColor.receivedGreen,
@@ -52,18 +52,18 @@ struct TxDetailViewModel: TxViewModel {
                                            range: NSRange(location: 0, length: iconString.length))
             return attributedString
         } else {
-            return NSAttributedString(string: S.TransactionDetails.initializedTimestampHeader)
+            return NSAttributedString(string: L10n.TransactionDetails.initializedTimestampHeader)
         }
     }
     
     var addressHeader: String {
         if direction == .sent {
-            return S.TransactionDetails.addressToHeader
+            return L10n.TransactionDetails.addressToHeader
         } else {
             if tx.currency.isBitcoinCompatible {
-                return S.TransactionDetails.addressViaHeader
+                return L10n.TransactionDetails.addressViaHeader
             } else {
-                return S.TransactionDetails.addressFromHeader
+                return L10n.TransactionDetails.addressFromHeader
             }
         }
     }
@@ -74,10 +74,10 @@ struct TxDetailViewModel: TxViewModel {
     
     var extraAttributeHeader: String {
         if tx.currency.isXRP {
-            return S.TransactionDetails.destinationTagHeader
+            return L10n.TransactionDetails.destinationTag
         }
         if tx.currency.isHBAR {
-            return S.TransactionDetails.memoTagHeader
+            return L10n.TransactionDetails.hederaMemo
         }
         return ""
     }
@@ -155,7 +155,7 @@ extension TxDetailViewModel {
         guard let metaData = tx.metaData else { return (currentAmount, nil) }
         
         guard metaData.tokenTransfer.isEmpty else {
-            let tokenTransfer = String(format: S.Transaction.tokenTransfer, metaData.tokenTransfer.uppercased())
+            let tokenTransfer = L10n.Transaction.tokenTransfer(metaData.tokenTransfer.uppercased())
             return (tokenTransfer, nil)
         }
         

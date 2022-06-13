@@ -75,7 +75,7 @@ class BaseRecoveryKeyViewController: UIViewController, Trackable {
             navigationItem.rightBarButtonItem = close
 
         case .skip:
-            let skip = UIBarButtonItem(title: S.Button.skip,
+            let skip = UIBarButtonItem(title: L10n.Button.skip,
                                        style: .plain,
                                        target: self,
                                        action: #selector(onCloseButton))

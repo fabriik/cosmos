@@ -47,7 +47,7 @@ class DefaultCurrencyViewController: UITableViewController, Subscriber, Trackabl
         tableView.backgroundColor = Theme.primaryBackground
 
         let titleLabel = UILabel(font: .customBold(size: 17.0), color: .almostBlack)
-        titleLabel.text = S.Settings.currency
+        titleLabel.text = L10n.Settings.currency
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
 

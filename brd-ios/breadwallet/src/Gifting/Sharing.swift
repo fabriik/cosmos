@@ -30,7 +30,7 @@ class GiftSharingCoordinator {
         alert.addAction(UIAlertAction(title: "Share QR Code", style: .default, handler: { [weak self] _ in
             self?.shareImage()
         }))
-        alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
         UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
     }
     

@@ -19,7 +19,7 @@ class ConfirmRecoveryKeyViewController: BaseRecoveryKeyViewController {
     
     private let firstWordInputView = RecoveryKeyWordInputView()
     private let secondWordInputView = RecoveryKeyWordInputView()
-    private let continueButton = BRDButton(title: S.Button.continueAction, type: .primary)
+    private let continueButton = BRDButton(title: L10n.Button.continueAction, type: .primary)
 
     typealias ConfirmationWordIndices = (first: Int, second: Int)
 
@@ -40,7 +40,7 @@ class ConfirmRecoveryKeyViewController: BaseRecoveryKeyViewController {
     }
 
     private func confirmationWordLabel(_ index: Int) -> String {
-        return String(format: S.ConfirmPaperPhrase.word, "\(index + 1)") // zero-based array, so add one
+        return L10n.ConfirmPaperPhrase.word("\(index + 1)") // zero-based array, so add one
     }
     
     private var notificationObservers = [String: NSObjectProtocol]()
@@ -116,7 +116,7 @@ class ConfirmRecoveryKeyViewController: BaseRecoveryKeyViewController {
         
         constrainContinueButton(continueButton)
         
-        continueButton.title = S.Button.confirm
+        continueButton.title = L10n.Button.confirm
         
         continueButton.tap = { [unowned self] in
             self.userDidWriteKey()
@@ -132,7 +132,7 @@ class ConfirmRecoveryKeyViewController: BaseRecoveryKeyViewController {
     
     private func setUpTitles() {
         
-        let titles = [S.RecoverKeyFlow.confirmRecoveryKeyTitle, S.RecoverKeyFlow.confirmRecoveryKeySubtitle]
+        let titles = [L10n.RecoveryKeyFlow.confirmRecoveryKeyTitle, L10n.RecoveryKeyFlow.confirmRecoveryKeySubtitle]
         let fonts = [E.isSmallScreen ? Theme.h3Title : Theme.h2Title,
                      E.isSmallScreen ? Theme.body2 : Theme.body1]
         let colors = [Theme.primaryText, Theme.secondaryText]
@@ -391,7 +391,7 @@ class RecoveryKeyWordInputView: UIView, UITextFieldDelegate {
         errorLabel.isHidden = true
         errorLabel.textColor = Theme.error
         errorLabel.font = Theme.caption
-        errorLabel.text = S.RecoverKeyFlow.confirmRecoveryInputError
+        errorLabel.text = L10n.RecoveryKeyFlow.confirmRecoveryInputError
     }
     
     private func setUpFocusBar() {

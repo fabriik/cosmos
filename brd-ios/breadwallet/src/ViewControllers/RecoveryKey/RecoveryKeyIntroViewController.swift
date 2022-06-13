@@ -31,7 +31,7 @@ struct RecoveryKeyIntroPage {
          subTitle: String,
          imageName: String,
          stepHint: String = "",
-         continueButtonText: String = S.Button.continueAction,
+         continueButtonText: String = L10n.Button.continueAction,
          isLandingPage: Bool = false) {
         
         self.title = title
@@ -218,20 +218,20 @@ class RecoveryKeyIntroViewController: BaseRecoveryKeyViewController {
     private var landingPage: RecoveryKeyIntroPage {
         switch mode {
         case .generateKey:
-            return RecoveryKeyIntroPage(title: S.RecoverKeyFlow.generateKey,
-                                        subTitle: S.RecoverKeyFlow.generateKeyExplanation,
+            return RecoveryKeyIntroPage(title: L10n.RecoveryKeyFlow.generateKeyTitle,
+                                        subTitle: L10n.RecoveryKeyFlow.generateKeyExplanation,
                                         imageName: RecoveryKeyLandingPageCell.lockImageName,
-                                        continueButtonText: S.Button.continueAction, isLandingPage: true)
+                                        continueButtonText: L10n.Button.continueAction, isLandingPage: true)
         case .writeKey:
-            return RecoveryKeyIntroPage(title: S.RecoverKeyFlow.writeKeyAgain,
+            return RecoveryKeyIntroPage(title: L10n.RecoveryKeyFlow.writeKeyAgain,
                                         subTitle: UserDefaults.writePaperPhraseDateString,
                                         imageName: RecoveryKeyLandingPageCell.lockImageName,
-                                        continueButtonText: S.Button.continueAction, isLandingPage: true)
+                                        continueButtonText: L10n.Button.continueAction, isLandingPage: true)
         case .unlinkWallet:
-            return RecoveryKeyIntroPage(title: S.RecoverKeyFlow.unlinkWallet,
-                                        subTitle: S.RecoverKeyFlow.unlinkWalletSubtitle,
+            return RecoveryKeyIntroPage(title: L10n.RecoveryKeyFlow.unlinkWallet,
+                                        subTitle: L10n.RecoveryKeyFlow.unlinkWalletSubtext,
                                         imageName: RecoveryKeyLandingPageCell.lockImageName,
-                                        continueButtonText: S.Button.continueAction, isLandingPage: true)
+                                        continueButtonText: L10n.Button.continueAction, isLandingPage: true)
         }
     }
     
@@ -240,7 +240,7 @@ class RecoveryKeyIntroViewController: BaseRecoveryKeyViewController {
     // wallet access.
     private let keyUseInfoView = InfoView()
     
-    private let continueButton = BRDButton(title: S.Button.continueAction, type: .primary)
+    private let continueButton = BRDButton(title: L10n.Button.continueAction, type: .primary)
     private var pagingView: UICollectionView?
     private var pagingViewContainer: UIView = UIView()
     
@@ -297,9 +297,9 @@ class RecoveryKeyIntroViewController: BaseRecoveryKeyViewController {
     
     private var infoViewText: String {
         if mode == .unlinkWallet {
-            return S.RecoverKeyFlow.unlinkWalletWarning
+            return L10n.RecoveryKeyFlow.unlinkWalletWarning
         } else {
-            return S.RecoverKeyFlow.keyUseInfoHint
+            return L10n.RecoveryKeyFlow.keyUseHint
         }
     }
     
@@ -409,21 +409,21 @@ class RecoveryKeyIntroViewController: BaseRecoveryKeyViewController {
         
         // If the key is being generated for the first time, add the intro pages and allow paging.
         if mode == .generateKey {
-            pages.append(RecoveryKeyIntroPage(title: S.RecoverKeyFlow.writeItDown,
-                                              subTitle: S.RecoverKeyFlow.noScreenshotsRecommendation,
+            pages.append(RecoveryKeyIntroPage(title: L10n.RecoveryKeyFlow.writeItDown,
+                                              subTitle: L10n.RecoveryKeyFlow.noScreenshotsRecommendation,
                                               imageName: "RecoveryKeyPaper",
-                                              stepHint: String(format: S.RecoverKeyFlow.howItWorksStepLabel, "1")))
+                                              stepHint: L10n.RecoveryKeyFlow.howItWorksStep("1")))
 
-            pages.append(RecoveryKeyIntroPage(title: S.RecoverKeyFlow.keepSecure,
-                                              subTitle: S.RecoverKeyFlow.storeSecurelyRecommendation,
+            pages.append(RecoveryKeyIntroPage(title: L10n.RecoveryKeyFlow.keepSecure,
+                                              subTitle: L10n.RecoveryKeyFlow.storeSecurelyRecommendation,
                                               imageName: "RecoveryKeyPrivateEye",
-                                              stepHint: String(format: S.RecoverKeyFlow.howItWorksStepLabel, "2")))
-
-            pages.append(RecoveryKeyIntroPage(title: S.RecoverKeyFlow.relaxBuyTrade,
-                                              subTitle: S.RecoverKeyFlow.securityAssurance,
+                                              stepHint: L10n.RecoveryKeyFlow.howItWorksStep("2")))
+            
+            pages.append(RecoveryKeyIntroPage(title: L10n.RecoveryKeyFlow.relaxBuyTrade,
+                                              subTitle: L10n.RecoveryKeyFlow.securityAssurance,
                                               imageName: "RecoveryKeyShield",
-                                              stepHint: String(format: S.RecoverKeyFlow.howItWorksStepLabel, "3"),
-                                              continueButtonText: S.RecoverKeyFlow.generateKeyButton,
+                                              stepHint: L10n.RecoveryKeyFlow.howItWorksStep("3"),
+                                              continueButtonText: L10n.RecoveryKeyFlow.generateKeyButton,
                                               isLandingPage: false))
         }
     }

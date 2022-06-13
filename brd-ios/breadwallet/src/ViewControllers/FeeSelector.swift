@@ -62,7 +62,7 @@ class FeeSelector: UIView {
     private let header = UILabel(font: .customMedium(size: 16.0), color: .darkText)
     private let subheader = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
     private let warning = UILabel.wrapping(font: .customBody(size: 14.0), color: .red)
-    private let control = UISegmentedControl(items: [S.FeeSelector.economy, S.FeeSelector.regular, S.FeeSelector.priority])
+    private let control = UISegmentedControl(items: [L10n.FeeSelector.economy, L10n.FeeSelector.regular, L10n.FeeSelector.priority])
 
     private func setupViews() {
         addSubview(topBorder)
@@ -84,7 +84,7 @@ class FeeSelector: UIView {
             warning.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 4.0),
             warning.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
             warning.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[1])])
-        header.text = S.FeeSelector.title
+        header.text = L10n.FeeSelector.title
         subheader.text = currency.feeText(forIndex: 1)
         control.constrain([
             control.leadingAnchor.constraint(equalTo: warning.leadingAnchor),
@@ -106,7 +106,7 @@ class FeeSelector: UIView {
             default:
                 fee = .economy
                 subheader = self.currency.feeText(forIndex: 0)
-                warning = S.FeeSelector.economyWarning
+                warning = L10n.FeeSelector.economyWarning
                 
             }
             myself.didUpdateFee?(fee)

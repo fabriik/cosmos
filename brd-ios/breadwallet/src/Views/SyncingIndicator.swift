@@ -32,23 +32,23 @@ class SyncingIndicator: UIView {
             case .connecting:
                 switch style {
                 case .home:
-                    self.text = S.SyncingView.connecting
+                    self.text = L10n.SyncingView.connecting
                 case .account:
                     self.text = ""
                 }
                 setNeedsLayout()
             case .syncing:
-                self.text = S.SyncingView.syncing
+                self.text = L10n.SyncingView.syncing
                 setNeedsLayout()
             case .success:
                 self.text = ""
             case .failed:
-                self.text = S.SyncingView.failed
+                self.text = L10n.SyncingView.failed
             }
         }
     }
 
-    private var text: String = S.SyncingView.syncing {
+    private var text: String = L10n.SyncingView.syncing {
         didSet {
             updateTextLabel()
         }

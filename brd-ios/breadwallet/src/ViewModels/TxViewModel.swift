@@ -46,7 +46,7 @@ extension TxViewModel {
     }
     
     var blockHeight: String {
-        return tx.blockNumber?.description ?? S.TransactionDetails.notConfirmedBlockHeightLabel
+        return tx.blockNumber?.description ?? L10n.TransactionDetails.notConfirmedBlockHeightLabel
     }
     
     var confirmations: String {
@@ -54,13 +54,13 @@ extension TxViewModel {
     }
     
     var longTimestamp: String {
-        guard tx.timestamp > 0 else { return tx.isValid ? S.Transaction.justNow : "" }
+        guard tx.timestamp > 0 else { return tx.isValid ? L10n.Transaction.justNow : "" }
         let date = Date(timeIntervalSince1970: tx.timestamp)
         return DateFormatter.longDateFormatter.string(from: date)
     }
     
     var shortTimestamp: String {
-        guard tx.timestamp > 0 else { return tx.isValid ? S.Transaction.justNow : "" }
+        guard tx.timestamp > 0 else { return tx.isValid ? L10n.Transaction.justNow : "" }
         let date = Date(timeIntervalSince1970: tx.timestamp)
         
         if date.hasEqualDay(Date()) {

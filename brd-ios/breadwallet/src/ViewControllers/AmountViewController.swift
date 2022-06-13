@@ -214,7 +214,7 @@ class AmountViewController: UIViewController, Trackable {
         cursor.isHidden = true
         cursor.startBlinking()
         amountLabel.text = ""
-        placeholder.text = S.Send.amountLabel
+        placeholder.text = L10n.Send.amountLabel
         bottomBorder.isHidden = true
         if Store.state.showFiatAmounts {
             if let rate = currency.state?.currentRate {
@@ -253,7 +253,7 @@ class AmountViewController: UIViewController, Trackable {
         let alert = UIAlertController(title: "XRP Balance",
                                       message: message,
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: S.Button.ok, style: .default)
+        let okAction = UIAlertAction(title: L10n.Button.ok, style: .default)
         alert.addAction(okAction)
         
         present(alert, animated: true, completion: nil)

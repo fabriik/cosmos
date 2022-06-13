@@ -337,8 +337,8 @@ class ModalPresenter: Subscriber, Trackable {
         guard let wallet = system.wallet(for: currency),
             let kvStore = Backend.kvStore else { assertionFailure(); return nil }
         guard !(currency.state?.isRescanning ?? false) else {
-            let alert = UIAlertController(title: S.Alert.error, message: S.Send.isRescanning, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: S.Button.ok, style: .cancel, handler: nil))
+            let alert = UIAlertController(title: L10n.Alert.error, message: L10n.Send.isRescanning, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .cancel, handler: nil))
             topViewController?.present(alert, animated: true, completion: nil)
             return nil
         }
@@ -391,15 +391,15 @@ class ModalPresenter: Subscriber, Trackable {
             case .paymentRequest(let request):
                 guard let request = request else { return }
                 
-                let message = String(format: S.Scanner.paymentPromptMessage, request.currency.name)
-                let alert = UIAlertController.confirmationAlert(title: S.Scanner.paymentPrompTitle, message: message) {
+                let message = L10n.Scanner.paymentPromptMessage(request.currency.name)
+                let alert = UIAlertController.confirmationAlert(title: L10n.Scanner.paymentPromptTitle, message: message) {
                     self.currentRequest = request
                     self.presentModal(.send(currency: request.currency))
                 }
                 top.present(alert, animated: true, completion: nil)
                 
             case .privateKey:
-                let alert = UIAlertController(title: S.Settings.importTile, message: nil, preferredStyle: .actionSheet)
+                let alert = UIAlertController(title: L10n.Settings.importTitle, message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "BTC", style: .default, handler: { _ in
                     if let wallet = Currencies.shared.btc?.wallet {
                         self.presentKeyImport(wallet: wallet, scanResult: scanResult)
@@ -410,7 +410,7 @@ class ModalPresenter: Subscriber, Trackable {
                         self.presentKeyImport(wallet: wallet, scanResult: scanResult)
                     }
                 }))
-                alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
                 top.present(alert, animated: true, completion: nil)
             case .deepLink(let url):
                 UIApplication.shared.open(url)
@@ -442,7 +442,7 @@ class ModalPresenter: Subscriber, Trackable {
         if let btc = Currencies.shared.btc, let btcWallet = btc.wallet {
             
             // Rescan
-            var rescan = MenuItem(title: S.Settings.sync, callback: { [unowned self] in
+            var rescan = MenuItem(title: L10n.Settings.sync, callback: { [unowned self] in
                 menuNav.pushViewController(ReScanViewController(system: self.system, wallet: btcWallet), animated: true)
             })
             rescan.shouldShow = { [unowned self] in
@@ -451,7 +451,7 @@ class ModalPresenter: Subscriber, Trackable {
             btcItems.append(rescan)
             
             // Nodes
-            var nodeSelection = MenuItem(title: S.NodeSelector.title, callback: {
+            var nodeSelection = MenuItem(title: L10n.NodeSelector.title, callback: {
                 let nodeSelector = NodeSelectorViewController(wallet: btcWallet)
                 menuNav.pushViewController(nodeSelector, animated: true)
             })
@@ -460,19 +460,19 @@ class ModalPresenter: Subscriber, Trackable {
             }
             btcItems.append(nodeSelection)
             
-            btcItems.append(MenuItem(title: S.Settings.importTile, callback: {
+            btcItems.append(MenuItem(title: L10n.Settings.importTitle, callback: {
                 menuNav.dismiss(animated: true, completion: { [weak self] in
                     guard let `self` = self else { return }
                     self.presentKeyImport(wallet: btcWallet)
                 })
             }))
             
-            var enableSegwit = MenuItem(title: S.Settings.enableSegwit, callback: {
+            var enableSegwit = MenuItem(title: L10n.Settings.enableSegwit, callback: {
                 let segwitView = SegwitViewController()
                 menuNav.pushViewController(segwitView, animated: true)
             })
             enableSegwit.shouldShow = { return !UserDefaults.hasOptedInSegwit }
-            var viewLegacyAddress = MenuItem(title: S.Settings.viewLegacyAddress, callback: {
+            var viewLegacyAddress = MenuItem(title: L10n.Settings.viewLegacyAddress, callback: {
                 Backend.apiClient.sendViewLegacyAddress()
                 Store.perform(action: RootModalActions.Present(modal: .receiveLegacy))
             })
@@ -481,7 +481,7 @@ class ModalPresenter: Subscriber, Trackable {
             btcItems.append(enableSegwit)
             btcItems.append(viewLegacyAddress)
         }
-        var btcMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.btc?.name ?? ""), subMenu: btcItems, rootNav: menuNav)
+        var btcMenu = MenuItem(title: L10n.Settings.currencyPageTitle(Currencies.shared.btc?.name ?? ""), subMenu: btcItems, rootNav: menuNav)
         btcMenu.shouldShow = { return !btcItems.isEmpty }
         
         // MARK: Bitcoin Cash Menu
@@ -489,19 +489,19 @@ class ModalPresenter: Subscriber, Trackable {
         if let bch = Currencies.shared.bch, let bchWallet = bch.wallet {
             if system.connectionMode(for: bch) == .p2p_only {
                 // Rescan
-                bchItems.append(MenuItem(title: S.Settings.sync, callback: { [weak self] in
+                bchItems.append(MenuItem(title: L10n.Settings.sync, callback: { [weak self] in
                     guard let `self` = self else { return }
                     menuNav.pushViewController(ReScanViewController(system: self.system, wallet: bchWallet), animated: true)
                 }))
             }
-            bchItems.append(MenuItem(title: S.Settings.importTile, callback: {
+            bchItems.append(MenuItem(title: L10n.Settings.importTitle, callback: {
                 menuNav.dismiss(animated: true, completion: { [unowned self] in
                     self.presentKeyImport(wallet: bchWallet)
                 })
             }))
             
         }
-        var bchMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.bch?.name ?? ""), subMenu: bchItems, rootNav: menuNav)
+        var bchMenu = MenuItem(title: L10n.Settings.currencyPageTitle(Currencies.shared.bch?.name ?? ""), subMenu: bchItems, rootNav: menuNav)
         bchMenu.shouldShow = { return !bchItems.isEmpty }
         
         // MARK: Ethereum Menu
@@ -509,19 +509,19 @@ class ModalPresenter: Subscriber, Trackable {
         if let eth = Currencies.shared.eth, let ethWallet = eth.wallet {
             if system.connectionMode(for: eth) == .p2p_only {
                 // Rescan
-                ethItems.append(MenuItem(title: S.Settings.sync, callback: { [weak self] in
+                ethItems.append(MenuItem(title: L10n.Settings.sync, callback: { [weak self] in
                     guard let `self` = self else { return }
                     menuNav.pushViewController(ReScanViewController(system: self.system, wallet: ethWallet), animated: true)
                 }))
             }
         }
-        var ethMenu = MenuItem(title: String(format: S.Settings.currencyPageTitle, Currencies.shared.eth?.name ?? ""), subMenu: ethItems, rootNav: menuNav)
+        var ethMenu = MenuItem(title: L10n.Settings.currencyPageTitle(Currencies.shared.eth?.name ?? ""), subMenu: ethItems, rootNav: menuNav)
         ethMenu.shouldShow = { return !ethItems.isEmpty }
 
         // MARK: Preferences
         let preferencesItems: [MenuItem] = [
             // Display Currency
-            MenuItem(title: S.Settings.currency, accessoryText: {
+            MenuItem(title: L10n.Settings.currency, accessoryText: {
                 let code = Store.state.defaultCurrencyCode
                 let components: [String: String] = [NSLocale.Key.currencyCode.rawValue: code]
                 let identifier = Locale.identifier(fromComponents: components)
@@ -535,12 +535,12 @@ class ModalPresenter: Subscriber, Trackable {
             ethMenu,
 
             // Share Anonymous Data
-            MenuItem(title: S.Settings.shareData, callback: {
+            MenuItem(title: L10n.Settings.shareData, callback: {
                 menuNav.pushViewController(ShareDataViewController(), animated: true)
             }),
             
             // Reset Wallets
-            MenuItem(title: S.Settings.resetCurrencies, callback: { [weak self] in
+            MenuItem(title: L10n.Settings.resetCurrencies, callback: { [weak self] in
                 guard let `self` = self else { return }
                 menuNav.dismiss(animated: true, completion: {
                     self.system.resetToDefaultCurrencies()
@@ -548,7 +548,7 @@ class ModalPresenter: Subscriber, Trackable {
             }),
             
             // Notifications
-            MenuItem(title: S.Settings.notifications, callback: {
+            MenuItem(title: L10n.Settings.notifications, callback: {
                 menuNav.pushViewController(PushNotificationsViewController(), animated: true)
             })
         ]
@@ -556,7 +556,7 @@ class ModalPresenter: Subscriber, Trackable {
         // MARK: Security Settings
         var securityItems: [MenuItem] = [
             // Unlink
-            MenuItem(title: S.Settings.wipe) { [weak self] in
+            MenuItem(title: L10n.Settings.wipe) { [weak self] in
                 guard let `self` = self, let vc = self.topViewController else { return }
                 RecoveryKeyFlowController.enterUnlinkWalletFlow(from: vc,
                                                                 keyMaster: self.keyStore,
@@ -566,26 +566,26 @@ class ModalPresenter: Subscriber, Trackable {
             },
             
             // Update PIN
-            MenuItem(title: S.UpdatePin.updateTitle) { [weak self] in
+            MenuItem(title: L10n.UpdatePin.updateTitle) { [weak self] in
                 guard let `self` = self else { return }
                 let updatePin = UpdatePinViewController(keyMaster: self.keyStore, type: .update)
                 menuNav.pushViewController(updatePin, animated: true)
             },
             
             // Biometrics
-            MenuItem(title: LAContext.biometricType() == .face ? S.SecurityCenter.Cells.faceIdTitle : S.SecurityCenter.Cells.touchIdTitle) { [weak self] in
+            MenuItem(title: LAContext.biometricType() == .face ? L10n.SecurityCenter.faceIdTitle : L10n.SecurityCenter.touchIdTitle) { [weak self] in
                 guard let `self` = self else { return }
                 self.presentBiometricsMenuItem()
             },
             
             // Paper key
-            MenuItem(title: S.SecurityCenter.Cells.paperKeyTitle) { [weak self] in
+            MenuItem(title: L10n.SecurityCenter.paperKeyTitle) { [weak self] in
                 guard let `self` = self else { return }
                 self.presentWritePaperKey(fromViewController: menuNav)
             },
 
             // Portfolio data for widget
-            MenuItem(title: S.Settings.shareWithWidget,
+            MenuItem(title: L10n.Settings.shareWithWidget,
                      accessoryText: { [weak self] in
                          self?.system.widgetDataShareService.sharingEnabled ?? false ? "ON" : "OFF"
                      },
@@ -598,7 +598,7 @@ class ModalPresenter: Subscriber, Trackable {
         // Add iCloud backup
         if #available(iOS 13.6, *) {
             securityItems.append(
-                MenuItem(title: S.CloudBackup.backupMenuTitle) {
+                MenuItem(title: L10n.CloudBackup.backupMenuTitle) {
                     let synchronizer = BackupSynchronizer(context: .existingWallet, keyStore: self.keyStore, navController: menuNav)
                     let cloudView = CloudBackupView(synchronizer: synchronizer)
                     let hosting = UIHostingController(rootView: cloudView)
@@ -610,18 +610,18 @@ class ModalPresenter: Subscriber, Trackable {
         // MARK: Root Menu
         var rootItems: [MenuItem] = [
             // Scan QR Code
-            MenuItem(title: S.MenuButton.scan, icon: MenuItem.Icon.scan) { [weak self] in
+            MenuItem(title: L10n.MenuButton.scan, icon: MenuItem.Icon.scan) { [weak self] in
                 self?.presentLoginScan()
             },
             
             // Registration and KYC
             // TODO: Add back when ready.
-//            MenuItem(title: S.MenuButton.registrationAndKyc, icon: MenuItem.Icon.registrationAndKyc) { [weak self] in
+//            MenuItem(title: L10n.MenuButton.registrationAndKyc, icon: MenuItem.Icon.registrationAndKyc) { [weak self] in
 //                self?.presentRegistrationAndKYC()
 //            },
             
             // Feedback
-            MenuItem(title: S.MenuButton.feedback, icon: MenuItem.Icon.feedback) { [weak self] in
+            MenuItem(title: L10n.MenuButton.feedback, icon: MenuItem.Icon.feedback) { [weak self] in
                 guard let topVc = self?.topViewController else { return }
                 
                 let feedback = EmailFeedbackManager.Feedback(recipients: "feedback@fabriik.com", subject: "Fabriik - Feedback", body: "")
@@ -635,34 +635,34 @@ class ModalPresenter: Subscriber, Trackable {
             },
             
             // Manage Assets
-            MenuItem(title: S.MenuButton.manageAssets, icon: MenuItem.Icon.wallet) { [weak self] in
+            MenuItem(title: L10n.MenuButton.manageAssets, icon: MenuItem.Icon.wallet) { [weak self] in
                 guard let `self` = self, let assetCollection = self.system.assetCollection else { return }
                 let vc = ManageWalletsViewController(assetCollection: assetCollection, coreSystem: self.system)
                 menuNav.pushViewController(vc, animated: true)
             },
             
             // Preferences
-            MenuItem(title: S.Settings.preferences, icon: MenuItem.Icon.preferences, subMenu: preferencesItems, rootNav: menuNav),
+            MenuItem(title: L10n.Settings.preferences, icon: MenuItem.Icon.preferences, subMenu: preferencesItems, rootNav: menuNav),
             
             // Security
-            MenuItem(title: S.MenuButton.security,
+            MenuItem(title: L10n.MenuButton.security,
                      icon: #imageLiteral(resourceName: "security"),
                      subMenu: securityItems,
                      rootNav: menuNav,
                      faqButton: UIButton.buildFaqButton(articleId: ArticleIds.securityCenter)),
             
             // Support
-            MenuItem(title: S.MenuButton.support, icon: MenuItem.Icon.support) { [weak self] in
+            MenuItem(title: L10n.MenuButton.support, icon: MenuItem.Icon.support) { [weak self] in
                 self?.presentFaq()
             },
             
             // About
-            MenuItem(title: S.Settings.about, icon: MenuItem.Icon.about) {
+            MenuItem(title: L10n.Settings.about, icon: MenuItem.Icon.about) {
                 menuNav.pushViewController(AboutViewController(), animated: true)
             },
             
             // Export Transfer History
-            MenuItem(title: S.Settings.exportTransfers, icon: MenuItem.Icon.export) { [weak self] in
+            MenuItem(title: L10n.Settings.exportTransfers, icon: MenuItem.Icon.export) { [weak self] in
                 self?.presentExportTransfers()
             }
         ]
@@ -673,8 +673,8 @@ class ModalPresenter: Subscriber, Trackable {
             let url = meta.url, !url.isEmpty,
             let URL = URL(string: url) {
             
-            rootItems.append(MenuItem(title: S.Settings.atmMapMenuItemTitle,
-                                      subTitle: S.Settings.atmMapMenuItemSubtitle,
+            rootItems.append(MenuItem(title: L10n.Settings.atmMapMenuItemTitle,
+                                      subTitle: L10n.Settings.atmMapMenuItemSubtitle,
                                       icon: MenuItem.Icon.atmMap) { [weak self] in
                 guard let `self` = self else { return }
                 
@@ -705,7 +705,7 @@ class ModalPresenter: Subscriber, Trackable {
                 self?.presentConnectionModeScreen(menuNav: menuNav)
             }))
             
-            developerItems.append(MenuItem(title: S.Settings.sendLogs) { [weak self] in
+            developerItems.append(MenuItem(title: "Send Logs") { [weak self] in
                 self?.showEmailLogsModal()
             })
 
@@ -814,7 +814,7 @@ class ModalPresenter: Subscriber, Trackable {
                                 }
                             })
 
-                            alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
+                            alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
 
                             menuNav.present(alert, animated: true, completion: nil)
                 }))
@@ -841,7 +841,7 @@ class ModalPresenter: Subscriber, Trackable {
                                 (menuNav.topViewController as? MenuViewController)?.reloadMenu()
                             })
 
-                            alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
+                            alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
 
                             menuNav.present(alert, animated: true, completion: nil)
                 }))
@@ -854,7 +854,7 @@ class ModalPresenter: Subscriber, Trackable {
         }
                 
         let rootMenu = MenuViewController(items: rootItems,
-                                          title: S.Settings.title)
+                                          title: L10n.Settings.title)
         rootMenu.addCloseNavigationItem(side: .right)
         menuNav.viewControllers = [rootMenu]
         
@@ -904,10 +904,10 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     private func wipeWallet() {
-        let alert = UIAlertController.confirmationAlert(title: S.WipeWallet.alertTitle,
-                                                        message: S.WipeWallet.alertMessage,
-                                                        okButtonTitle: S.WipeWallet.wipe,
-                                                        cancelButtonTitle: S.Button.cancel,
+        let alert = UIAlertController.confirmationAlert(title: L10n.WipeWallet.alertTitle,
+                                                        message: L10n.WipeWallet.alertMessage,
+                                                        okButtonTitle: L10n.WipeWallet.wipe,
+                                                        cancelButtonTitle: L10n.Button.cancel,
                                                         isDestructiveAction: true) {
                                                             self.topViewController?.dismiss(animated: true, completion: {
                                                                 Store.trigger(name: .wipeWalletNoPrompt)
@@ -921,7 +921,7 @@ class ModalPresenter: Subscriber, Trackable {
         nc.setDarkStyle()
         let start = ImportKeyViewController(wallet: wallet, initialQRCode: scanResult)
         start.addCloseNavigationItem(tintColor: Theme.blueBackground)
-        start.navigationItem.title = S.Import.title
+        start.navigationItem.title = L10n.Import.title
         let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.importWallet, currency: wallet.currency)
         faqButton.tintColor = .white
         start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
@@ -932,16 +932,16 @@ class ModalPresenter: Subscriber, Trackable {
     // MARK: - Prompts
 
     func presentExportTransfers() {
-        let alert = UIAlertController(title: S.ExportTransfers.header, message: S.ExportTransfers.body, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.ExportTransfers.confirmExport, style: .default, handler: { (_) in
+        let alert = UIAlertController(title: L10n.ExportTransfers.header, message: L10n.ExportTransfers.body, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.ExportTransfers.confirmExport, style: .default, handler: { (_) in
             self.topViewController?.present(BRActivityViewController(message: ""), animated: true, completion: nil)
             DispatchQueue.global(qos: .background).async {
                 guard let csvFile = CsvExporter.instance.exportTransfers(wallets: self.system.wallets) else {
                     DispatchQueue.main.async {
                         self.topViewController?.dismiss(animated: true) {
                             self.topViewController?.showAlert(
-                                title: S.ExportTransfers.exportFailedTitle,
-                                message: S.ExportTransfers.exportFailedBody)
+                                title: L10n.ExportTransfers.exportFailedTitle,
+                                message: L10n.ExportTransfers.exportFailedBody)
                         }
                     }
                     return
@@ -954,7 +954,7 @@ class ModalPresenter: Subscriber, Trackable {
                 }
             }
         }))
-        alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
         topViewController?.present(alert, animated: true, completion: nil)
     }
     
@@ -1018,13 +1018,13 @@ class ModalPresenter: Subscriber, Trackable {
         } else if let ack = PaymentProtocolACK(data: file) {
             if let memo = ack.memo {
                 let alert = UIAlertController(title: "", message: memo, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: S.Button.ok, style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .cancel, handler: nil))
                 topViewController?.present(alert, animated: true, completion: nil)
             }
         //TODO - handle payment type
         } else {
-            let alert = UIAlertController(title: S.Alert.error, message: S.PaymentProtocol.Errors.corruptedDocument, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: S.Button.ok, style: .cancel, handler: nil))
+            let alert = UIAlertController(title: L10n.Alert.error, message: L10n.PaymentProtocol.Errors.corruptedDocument, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .cancel, handler: nil))
             topViewController?.present(alert, animated: true, completion: nil)
         }
  */

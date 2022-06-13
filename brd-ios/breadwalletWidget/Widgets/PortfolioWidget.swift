@@ -121,8 +121,8 @@ struct PortfolioWidget: Widget {
                             provider: PortfolioProvider()) { entry in
             PortfolioWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName(S.Widget.portfolioTitle)
-        .description(S.Widget.portfolioDescription)
+        .configurationDisplayName(L10n.Widget.portfolioTitle)
+        .description(L10n.Widget.portfolioDescription)
     }
 }
 

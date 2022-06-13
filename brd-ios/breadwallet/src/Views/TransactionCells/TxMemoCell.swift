@@ -58,7 +58,7 @@ class TxMemoCell: TxDetailRowCell {
         textView.delegate = self
         
         placeholderLabel.textAlignment = .right
-        placeholderLabel.text = S.TransactionDetails.commentsPlaceholder
+        placeholderLabel.text = L10n.TransactionDetails.commentsPlaceholder
     }
     
     // MARK: -

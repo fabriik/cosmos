@@ -30,9 +30,9 @@ struct MarketDataView: View {
         HStack {
             VStack(alignment: .center, spacing: C.padding[1]) {
                 text(marketData.viewModel.marketCap)
-                subText(S.MarketData.marketCap)
+                subText(L10n.MarketData.marketCap)
                 text(marketData.viewModel.totalVolume)
-                subText(S.MarketData.volume)
+                subText(L10n.MarketData.volume)
             }.padding(8.0)
             .frame(minWidth: 0, maxWidth: .infinity)
             Rectangle()
@@ -42,9 +42,9 @@ struct MarketDataView: View {
                 .padding([.top, .bottom], 4.0)
             VStack(alignment: .center, spacing: C.padding[1]) {
                 text(marketData.viewModel.high24h)
-                subText(S.MarketData.high24h)
+                subText(L10n.MarketData.high24h)
                 text(marketData.viewModel.low24h)
-                subText(S.MarketData.low24h)
+                subText(L10n.MarketData.low24h)
             }.padding(8.0)
             .frame(minWidth: 0, maxWidth: .infinity)
         }

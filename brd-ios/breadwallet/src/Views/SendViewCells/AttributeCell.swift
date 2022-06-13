@@ -152,7 +152,7 @@ class AttributeCell: UIView {
         alert.setValue(titleString, forKey: "attributedTitle")
         alert.setValue(messageString, forKey: "attributedMessage")
         
-        let okAction = UIAlertAction(title: S.Button.ok, style: .default, handler: nil)
+        let okAction = UIAlertAction(title: L10n.Button.ok, style: .default, handler: nil)
         alert.addAction(okAction)
         
         UIApplication.topViewController()?.present(alert, animated: true, completion: nil)

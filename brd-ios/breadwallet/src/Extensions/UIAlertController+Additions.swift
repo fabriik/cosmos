@@ -13,8 +13,8 @@ extension UIAlertController {
     /// Alert with OK/Cancel buttons with a handler for OK and no-op for Cancel
     static func confirmationAlert(title: String,
                                   message: String,
-                                  okButtonTitle: String = S.Button.ok,
-                                  cancelButtonTitle: String = S.Button.cancel,
+                                  okButtonTitle: String = L10n.Button.ok,
+                                  cancelButtonTitle: String = L10n.Button.cancel,
                                   isDestructiveAction: Bool = false,
                                   handler: @escaping () -> Void) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

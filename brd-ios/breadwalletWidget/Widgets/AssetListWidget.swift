@@ -121,8 +121,8 @@ struct AssetListWidget: Widget {
                             provider: AssetListProvider()) { entry in
             AssetListWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName(S.Widget.assetListTitle)
-        .description(S.Widget.assetListDescription)
+        .configurationDisplayName(L10n.Widget.assetListTitle)
+        .description(L10n.Widget.assetListDescription)
     }
 }
 

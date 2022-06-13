@@ -47,7 +47,7 @@ class WalletDisabledView: UIView {
     private let label = UILabel(font: Fonts.Title.five, color: Theme.primaryText)
     private let faq: UIButton
     private let blur: UIVisualEffectView
-    private let reset = BRDButton(title: S.UnlockScreen.resetPin, type: .primary)
+    private let reset = BRDButton(title: L10n.UnlockScreen.resetPin, type: .primary)
     private let effect = UIBlurEffect(style: .regular)
     private let gr = UITapGestureRecognizer()
     private var tapCount = 0
@@ -58,7 +58,7 @@ class WalletDisabledView: UIView {
         header.textColor = Theme.primaryText
         header.font = Fonts.Title.four
         header.textAlignment = .center
-        header.text = S.UnlockScreen.walletDisabled
+        header.text = L10n.UnlockScreen.walletDisabled
         
         return header
     }()
@@ -75,7 +75,7 @@ class WalletDisabledView: UIView {
         descriptionLabel.textColor = Theme.secondaryText
         descriptionLabel.font = Fonts.caption
         descriptionLabel.textAlignment = .center
-        descriptionLabel.text = S.UnlockScreen.walletDisabledDescription
+        descriptionLabel.text = L10n.UnlockScreen.walletDisabledDescription
         
         return descriptionLabel
     }()

@@ -106,7 +106,7 @@ class SyncingHeaderView: UIView, Subscriber {
         
         switch syncState {
         case .connecting:
-            date.text = S.SyncingView.connecting
+            date.text = L10n.SyncingView.connecting
             lineLoadingView.isHidden = false
             syncIndicator.isHidden = false
         case .syncing:
@@ -117,10 +117,10 @@ class SyncingHeaderView: UIView, Subscriber {
             } else {
                 let date = Date(timeIntervalSince1970: Double(self.lastBlockTimestamp))
                 let dateString = DateFormatter.mediumDateFormatter.string(from: date)
-                self.date.text = String(format: S.SyncingView.syncedThrough, dateString)
+                self.date.text = L10n.SyncingView.syncedThrough(dateString)
             }
         case .success:
-            date.text = S.SyncingView.activity
+            date.text = L10n.SyncingView.activity
             lineLoadingView.isHidden = true
             syncIndicator.isHidden = true
         case .failed:

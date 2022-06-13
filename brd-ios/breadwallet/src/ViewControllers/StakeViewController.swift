@@ -29,13 +29,13 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
     
     private let titleLabel = UILabel(font: .customBold(size: 17.0))
     private let caption = UILabel(font: .customBody(size: 15.0))
-    private let stakeButton = BRDButton(title: S.Staking.stake, type: .primary)
+    private let stakeButton = BRDButton(title: L10n.Staking.stake, type: .primary)
     private let selectBakerButton = UIButton()
     private let changeBakerButton = UIButton()
     private let bakerInfoView = UIView()
     private let txPendingView = UIView()
     private let loadingSpinner = UIActivityIndicatorView(style: .gray)
-    private let sendingActivity = BRActivityViewController(message: S.TransactionDetails.titleSending)
+    private let sendingActivity = BRActivityViewController(message: L10n.TransactionDetails.titleSending)
     
     init(currency: Currency, sender: Sender) {
         self.currency = currency
@@ -114,8 +114,8 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
     }
     
     private func setInitialData() {
-        titleLabel.text = S.Staking.subTitle
-        caption.text = S.Staking.descriptionTezos
+        titleLabel.text = L10n.Staking.subTitle
+        caption.text = L10n.Staking.descriptionTezos
         titleLabel.textAlignment = .center
         caption.textAlignment = .center
         caption.numberOfLines = 0
@@ -178,7 +178,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         let pinVerifier: PinVerifier = { [weak self] pinValidationCallback in
             guard let `self` = self else { return assertionFailure() }
             self.sendingActivity.dismiss(animated: false) {
-                self.presentVerifyPin?(S.VerifyPin.authorize) { pin in
+                self.presentVerifyPin?(L10n.VerifyPin.authorize) { pin in
                     self.parent?.view.isFrameChangeBlocked = false
                     pinValidationCallback(pin)
                     self.present(self.sendingActivity, animated: false)
@@ -198,9 +198,9 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
                         self.dismiss(animated: true, completion: nil)
                     }
                 case .creationError(let message):
-                    self.showAlert(title: S.Alerts.sendFailure, message: message, buttonLabel: S.Button.ok)
+                    self.showAlert(title: L10n.Alerts.sendFailure, message: message, buttonLabel: L10n.Button.ok)
                 case .publishFailure(let code, let message):
-                    self.showAlert(title: S.Alerts.sendFailure, message: "\(message) (\(code))", buttonLabel: S.Button.ok)
+                    self.showAlert(title: L10n.Alerts.sendFailure, message: "\(message) (\(code))", buttonLabel: L10n.Button.ok)
                 case .insufficientGas(let rpcErrorMessage):
                     print("insufficientGas: \(rpcErrorMessage)")
                 }
@@ -272,7 +272,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         self.baker = baker
         selectBakerButton.isHidden = true
         stakeButton.isHidden = false
-        stakeButton.title = S.Staking.stake
+        stakeButton.title = L10n.Staking.stake
         changeBakerButton.isHidden = false
         
         buildChangeBakerButton(with: baker)
@@ -284,7 +284,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         selectBakerButton.isHidden = true
         changeBakerButton.isHidden = true
         stakeButton.isHidden = false
-        stakeButton.title = S.Staking.unstake
+        stakeButton.title = L10n.Staking.unstake
         bakerInfoView.isHidden = false
         bakerInfoView.alpha = 0.0
         buildInfoView(with: baker)
@@ -310,11 +310,11 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         arrow.tintColor = .almostBlack
         
         let feeText = baker?.feeString ?? ""
-        bakerFee.text = "\(S.Staking.feeHeader) \(feeText)"
+        bakerFee.text = "\(L10n.Staking.feeHeader) \(feeText)"
         bakerROI.text = baker?.roiString
         bakerROI.adjustsFontSizeToFitWidth = true
         bakerROI.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        bakerROIHeader.text = S.Staking.roiHeader
+        bakerROIHeader.text = L10n.Staking.roiHeader
         bakerName.adjustsFontSizeToFitWidth = true
         bakerName.text = baker?.name
         
@@ -395,7 +395,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         currencyIcon.tintColor = .white
         let selectBakerLabel = UILabel(font: .customBold(size: 16.0))
         selectBakerLabel.textColor = .black
-        selectBakerLabel.text = S.Staking.selectBakerTitle
+        selectBakerLabel.text = L10n.Staking.selectBakerTitle
         let arrow = UIImageView()
         arrow.image = UIImage(named: "RightArrow")?.withRenderingMode(.alwaysTemplate)
         arrow.tintColor = .white
@@ -432,9 +432,9 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         
         bakerName.text = baker?.name
         let feeText = baker?.feeString ?? ""
-        bakerFee.text = "\(S.Staking.feeHeader) \(feeText)"
+        bakerFee.text = "\(L10n.Staking.feeHeader) \(feeText)"
         bakerROI.text = baker?.roiString
-        bakerROIHeader.text = S.Staking.roiHeader
+        bakerROIHeader.text = L10n.Staking.roiHeader
         
         bakerIcon.layer.cornerRadius = C.Sizes.roundedCornerRadius
         bakerIcon.layer.masksToBounds = true
@@ -498,7 +498,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         let pendingSpinner = UIActivityIndicatorView(style: .gray)
         let pendingLabel = UILabel(font: .customBold(size: 20.0), color: .darkGray)
 
-        pendingLabel.text = S.Staking.pendingTransaction
+        pendingLabel.text = L10n.Staking.pendingTransaction
         
         pendingSpinner.startAnimating()
         
@@ -534,6 +534,6 @@ extension StakeViewController: ModalDisplayable {
     }
 
     var modalTitle: String {
-        return "\(S.Staking.stakingTitle) \(currency.code)"
+        return "\(L10n.Staking.stakingTitle) \(currency.code)"
     }
 }

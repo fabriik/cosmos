@@ -20,7 +20,7 @@ class AssetListTableView: UITableViewController, Subscriber {
     
     private lazy var manageAssetsButton: ManageAssetsButton = {
         let manageAssetsButton = ManageAssetsButton()
-        let manageAssetsButtonTitle = S.MenuButton.manageAssets
+        let manageAssetsButtonTitle = L10n.MenuButton.manageAssets
         manageAssetsButton.set(title: manageAssetsButtonTitle)
         manageAssetsButton.accessibilityLabel = manageAssetsButtonTitle
         

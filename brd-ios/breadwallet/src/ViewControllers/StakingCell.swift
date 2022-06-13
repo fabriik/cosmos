@@ -73,7 +73,7 @@ class StakingCell: UIView, Subscriber {
         icon.tintColor = .white
         iconContainer.layer.cornerRadius = C.Sizes.homeCellCornerRadius
         iconContainer.backgroundColor = currency.colors.0
-        title.text = S.Staking.stakingTitle
+        title.text = L10n.Staking.stakingTitle
         statusFlag.layer.cornerRadius = C.Sizes.homeCellCornerRadius
         statusFlag.clipsToBounds = true
         indicatorView.image = UIImage(named: "RightArrow")
@@ -94,15 +94,15 @@ class StakingCell: UIView, Subscriber {
     
     private func updateStakingStatus() {
         if currency.wallet?.hasPendingTxn == true {
-            statusFlag.text = "  \(S.Staking.stakingPendingFlag)  "
+            statusFlag.text = "  \(L10n.Staking.stakingPendingFlag)  "
             statusFlag.backgroundColor = Theme.accent.withAlphaComponent(0.16)
             statusFlag.textColor = .darkGray
         } else if currency.wallet?.stakedValidatorAddress != nil {
-            statusFlag.text = "  \(S.Staking.stakingActiveFlag)  "
+            statusFlag.text = "  \(L10n.Staking.stakingActiveFlag)  "
             statusFlag.backgroundColor = Theme.success.withAlphaComponent(0.16)
             statusFlag.textColor = Theme.success
         } else {
-            statusFlag.text = "  \(S.Staking.stakingInactiveFlag)  "
+            statusFlag.text = "  \(L10n.Staking.stakingInactiveFlag)  "
             statusFlag.backgroundColor = Theme.accent.withAlphaComponent(0.16)
             statusFlag.textColor = .darkGray
         }

@@ -33,7 +33,7 @@ class SyncingView: UIView {
     }
 
     func setIsConnecting() {
-        header.text = S.SyncingView.connecting
+        header.text = L10n.SyncingView.connecting
         date.text = ""
     }
 
@@ -99,7 +99,7 @@ class SyncingView: UIView {
     }
 
     private func setInitialData() {
-        header.text = S.SyncingView.syncing
+        header.text = L10n.SyncingView.syncing
         header.textColor = .darkText
         date.text = ""
     }

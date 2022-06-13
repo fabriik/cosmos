@@ -226,12 +226,12 @@ class RecoveryKeyFlowController {
     }
     
     static func promptToSetUpRecoveryKeyLater(from viewController: UIViewController, setUpLater: @escaping (Bool) -> Void) {
-        let alert = UIAlertController(title: S.RecoverKeyFlow.exitRecoveryKeyPromptTitle,
-                                      message: S.RecoverKeyFlow.exitRecoveryKeyPromptBody,
+        let alert = UIAlertController(title: L10n.RecoveryKeyFlow.exitRecoveryKeyPromptTitle,
+                                      message: L10n.RecoveryKeyFlow.exitRecoveryKeyPromptBody,
                                       preferredStyle: .alert)
         
-        let no = UIAlertAction(title: S.Button.no, style: .default, handler: nil)
-        let yes = UIAlertAction(title: S.Button.yes, style: .default) { _ in
+        let no = UIAlertAction(title: L10n.Button.no, style: .default, handler: nil)
+        let yes = UIAlertAction(title: L10n.Button.yes, style: .default) { _ in
             setUpLater(true)
         }
         
@@ -259,7 +259,7 @@ class RecoveryKeyFlowController {
             return
         }
         
-        let pinViewController = VerifyPinViewController(bodyText: S.VerifyPin.continueBody,
+        let pinViewController = VerifyPinViewController(bodyText: L10n.VerifyPin.continueBody,
                                                         pinLength: Store.state.pinLength,
                                                         walletAuthenticator: keyMaster,
                                                         pinAuthenticationType: .recoveryKey,

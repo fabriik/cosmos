@@ -38,11 +38,11 @@ extension IntentHandler: AssetIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )
@@ -64,11 +64,11 @@ extension IntentHandler: AssetIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )
@@ -90,13 +90,13 @@ extension IntentHandler: AssetIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionSystem,
+                        INObjectSection(title: L10n.Widget.colorSectionSystem,
                                         items: options.filter { $0.isSystem }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor }),
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionCurrency,
+                        INObjectSection(title: L10n.Widget.colorSectionCurrency,
                                         items: options.filter { $0.isCurrencyColor })
                     ]
 
@@ -119,13 +119,13 @@ extension IntentHandler: AssetIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionSystem,
+                        INObjectSection(title: L10n.Widget.colorSectionSystem,
                                         items: options.filter { $0.isSystem }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )
@@ -186,11 +186,11 @@ extension IntentHandler: AssetListIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )
@@ -212,11 +212,11 @@ extension IntentHandler: AssetListIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )
@@ -238,13 +238,13 @@ extension IntentHandler: AssetListIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionSystem,
+                        INObjectSection(title: L10n.Widget.colorSectionSystem,
                                         items: options.filter { $0.isSystem }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor }),
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionCurrency,
+                        INObjectSection(title: L10n.Widget.colorSectionCurrency,
                                         items: options.filter { $0.isCurrencyColor })
                     ]
                 )
@@ -266,13 +266,13 @@ extension IntentHandler: AssetListIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionSystem,
+                        INObjectSection(title: L10n.Widget.colorSectionSystem,
                                         items: options.filter { $0.isSystem }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )
@@ -315,11 +315,11 @@ extension IntentHandler: PortfolioIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )
@@ -341,11 +341,11 @@ extension IntentHandler: PortfolioIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )
@@ -367,13 +367,13 @@ extension IntentHandler: PortfolioIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionSystem,
+                        INObjectSection(title: L10n.Widget.colorSectionSystem,
                                         items: options.filter { $0.isSystem }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor }),
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionCurrency,
+                        INObjectSection(title: L10n.Widget.colorSectionCurrency,
                                         items: options.filter { $0.isCurrencyColor })
                     ]
                 )
@@ -395,13 +395,13 @@ extension IntentHandler: PortfolioIntentHandling {
             case let .success(options):
                 let collection = INObjectCollection(
                     sections: [
-                        INObjectSection(title: S.Widget.colorSectionSystem,
+                        INObjectSection(title: L10n.Widget.colorSectionSystem,
                                         items: options.filter { $0.isSystem }),
-                        INObjectSection(title: S.Widget.colorSectionText,
+                        INObjectSection(title: L10n.Widget.colorSectionText,
                                         items: options.filter { $0.isBrdTextColor }),
-                        INObjectSection(title: S.Widget.colorSectionBasic,
+                        INObjectSection(title: L10n.Widget.colorSectionBasic,
                                         items: options.filter { $0.isBasicColor }),
-                        INObjectSection(title: S.Widget.colorSectionBackground,
+                        INObjectSection(title: L10n.Widget.colorSectionBackground,
                                         items: options.filter { $0.isBrdBackgroundColor })
                     ]
                 )

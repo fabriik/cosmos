@@ -12,7 +12,7 @@ class SegwitViewController: UIViewController {
     
     let logo = UIImageView(image: UIImage(named: "SegWitLogo"))
     let label = UILabel.wrapping(font: .customBody(size: 14.0), color: .almostBlack)
-    let button = BRDButton(title: S.Segwit.enable, type: .primary)
+    let button = BRDButton(title: L10n.Segwit.enable, type: .primary)
     let confirmView = EnableSegwitView()
     let enabled = SegwitEnabledView()
     
@@ -77,7 +77,7 @@ class SegwitViewController: UIViewController {
     private func setInitialData() {
         view.backgroundColor = Theme.primaryBackground
         view.clipsToBounds = true //Some subviews are placed just offscreen so they can be animated into view
-        label.text = S.Segwit.confirmationInstructionsInstructions
+        label.text = L10n.Segwit.confirmationInstructionsInstructions
         logo.tintColor = Theme.blueBackground
         
         button.tap = { [weak self] in

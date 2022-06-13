@@ -99,7 +99,7 @@ class AddWalletsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewDidLoad() {
-        title = S.TokenList.addTitle
+        title = L10n.TokenList.addTitle
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -141,7 +141,7 @@ class AddWalletsViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.barStyle = .black
         searchBar.isTranslucent = false
         searchBar.barTintColor = .darkBackground
-        searchBar.placeholder = S.Search.search
+        searchBar.placeholder = L10n.Search.search
     }
     
     private func setupInfoView() {
@@ -176,7 +176,7 @@ class AddWalletsViewController: UIViewController, UITableViewDelegate, UITableVi
         let alert = UIAlertController(title: "Limited assets",
                                       message: message,
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: S.Button.ok, style: .default)
+        let okAction = UIAlertAction(title: L10n.Button.ok, style: .default)
         alert.addAction(okAction)
         
         present(alert, animated: true, completion: nil)
