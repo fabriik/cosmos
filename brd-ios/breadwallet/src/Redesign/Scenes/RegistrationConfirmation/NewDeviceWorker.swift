@@ -1,8 +1,8 @@
 // 
-//  RegistrationWorker.swift
+//  NewDeviceWorker.swift
 //  breadwallet
 //
-//  Created by Rok on 01/06/2022.
+//  Created by Rok on 13/06/2022.
 //  Copyright © 2022 Fabriik Exchange, LLC. All rights reserved.
 //
 //  See the LICENSE file at the project root for license information.
@@ -11,41 +11,36 @@
 import UIKit
 import WalletKit
 
-class RegistrationMapper: ModelMapper<RegistrationResponseData, RegistrationData> {
-    override func getModel(from response: RegistrationResponseData) -> RegistrationData? {
-        guard let key = response.sessionKey else {
-            return nil
-        }
-        return .init(sessionKey: key)
-    }
-}
-
-struct RegistrationResponseData: ModelResponse {
-    var data: [String: String]?
-    var sessionKey: String? {
-        return data?["sessionKey"]
-    }
-}
-
-struct RegistrationData: Model {
+struct NewDeviceResponseData: ModelResponse {
+    var status: String?
     var sessionKey: String?
+    var email: String?
 }
 
-struct RegistrationRequestData: RequestModelData {
-    let email: String?
+struct NewDeviceData: Model {
+    var sessionKey: String?
+    var email: String?
+}
+
+class NewDeviceMapper: ModelMapper<NewDeviceResponseData, NewDeviceData> {
+    override func getModel(from response: NewDeviceResponseData) -> NewDeviceData? {
+        return .init(sessionKey: response.sessionKey, email: response.email)
+    }
+}
+
+struct NewDeviceRequestData: RequestModelData {
+    var nonce = UUID().uuidString
     let token: String?
     
     func getParameters() -> [String: Any] {
         return [
-            "email": email ?? "",
+            "nonce": nonce,
             "token": token ?? ""
         ]
     }
 }
 
-class RegistrationWorker: BaseResponseWorker<RegistrationResponseData,
-                          RegistrationData,
-                          RegistrationMapper> {
+class NewDeviceWorker: BaseResponseWorker<NewDeviceResponseData, NewDeviceData, NewDeviceMapper> {
     
     override func getHeaders() -> [String: String] {
         // TODO: extract?
@@ -54,15 +49,15 @@ class RegistrationWorker: BaseResponseWorker<RegistrationResponseData,
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
         let dateString = formatter.string(from: Date())
         
-        guard let email = (getParameters()["email"] as? String),
+        guard let nonce = (getParameters()["nonce"] as? String),
               let token = (getParameters()["token"] as? String),
-              let data = (dateString + token + email).data(using: .utf8)?.sha256,
+              let data = (dateString + token + nonce).data(using: .utf8)?.sha256,
               let apiKeyString = try? keychainItem(key: KeychainKey.apiAuthKey) as String?,
               !apiKeyString.isEmpty,
               let apiKey = Key.createFromString(asPrivate: apiKeyString),
               let signature = CoreSigner.basicDER.sign(data32: data, using: apiKey)?.base64EncodedString()
         else { return [:] }
-
+        
         return [
             "Date": dateString,
             "Signature": signature
@@ -70,11 +65,7 @@ class RegistrationWorker: BaseResponseWorker<RegistrationResponseData,
     }
     
     override func getUrl() -> String {
-        return APIURLHandler.getUrl(KYCAuthEndpoints.register)
-    }
-    
-    override func getParameters() -> [String: Any] {
-        return requestData?.getParameters() ?? [:]
+        return APIURLHandler.getUrl(KYCAuthEndpoints.newDevice)
     }
     
     override func getMethod() -> EQHTTPMethod {
