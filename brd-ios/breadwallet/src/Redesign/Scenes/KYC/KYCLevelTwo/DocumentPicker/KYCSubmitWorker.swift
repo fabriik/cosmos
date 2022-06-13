@@ -1,5 +1,5 @@
 // 
-//  KycSubmitWorker.swift
+//  KYCSubmitWorker.swift
 //  breadwallet
 //
 //  Created by Rok on 13/06/2022.
@@ -10,7 +10,7 @@
 
 import Foundation
 
-class KycSubmitWorker: BasePlainResponseWorker {
+class KYCSubmitWorker: BasePlainResponseWorker {
 
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.submit)

@@ -88,7 +88,7 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
     }
     
     func finish(viewAction: KYCDocumentPickerModels.Finish.ViewAction) {
-        KycSubmitWorker().execute { [weak self] error in
+        KYCSubmitWorker().execute { [weak self] error in
             guard error == nil else {
                 self?.presenter?.presentError(actionResponse: .init(error: error))
                 return
