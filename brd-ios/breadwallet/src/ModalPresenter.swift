@@ -424,14 +424,6 @@ class ModalPresenter: Subscriber, Trackable {
         }
     }
     
-    public func presentRegistrationAndKYC() {
-        let vc = KYCSignInViewController()
-        let navController = KYCNavigationController(rootViewController: vc)
-        vc.setAsNonDismissableModal()
-        
-        topViewController?.present(navController, animated: true, completion: nil)
-    }
-    
     // MARK: Settings
     func presentMenu() {
         let menuNav = UINavigationController()
@@ -613,12 +605,6 @@ class ModalPresenter: Subscriber, Trackable {
             MenuItem(title: L10n.MenuButton.scan, icon: MenuItem.Icon.scan) { [weak self] in
                 self?.presentLoginScan()
             },
-            
-            // Registration and KYC
-            // TODO: Add back when ready.
-//            MenuItem(title: L10n.MenuButton.registrationAndKyc, icon: MenuItem.Icon.registrationAndKyc) { [weak self] in
-//                self?.presentRegistrationAndKYC()
-//            },
             
             // Feedback
             MenuItem(title: L10n.MenuButton.feedback, icon: MenuItem.Icon.feedback) { [weak self] in
