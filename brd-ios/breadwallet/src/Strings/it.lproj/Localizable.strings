@@ -480,7 +480,7 @@
 /* You can customize your Face ID Spending Limit from the [menu] */
 "FaceIDSettings.customizeText" = "Puoi personalizzare il tuo limite di spesa Face ID dal %1$@.";
 
-/* Text describing the purpose of the Face ID settings in the Fabriik app. */
+/* Text describing the purpose of the Face ID settings in the BRD app. */
 "FaceIDSettings.explanatoryText" = "Utilizza Face ID per sbloccare l'app Fabriik e inviare denaro.";
 
 /* Face Id screen label */
@@ -489,7 +489,7 @@
 /* Title of the screen for setting the Face ID Spending Limit */
 "FaceIDSettings.linkText" = "Schermata limite di spesa Face ID";
 
-/* Setting to turn on Face ID for Fabriik */
+/* Setting to turn on Face ID for BRD */
 "FaceIDSettings.switchLabel" = "Abilita Face ID per Fabriik";
 
 /* Face ID settings view title */
@@ -504,7 +504,7 @@
 /* Face ID unavailable alert title */
 "FaceIDSettings.unavailableAlertTitle" = "Face ID non impostato";
 
-/* Text label for a toggle that enables Face ID for unlocking the Fabriik app. */
+/* Text label for a toggle that enables Face ID for unlocking the BRD app. */
 "FaceIDSettings.unlockTitleText" = "Abilita Face ID per sbloccare Fabriik";
 
 /* Face Id spending limit screen title */
@@ -554,7 +554,7 @@
 /* Fingerprint authentication settings sceen title */
 "FingerprintSettings.title" = "Impronta digitale";
 
-/* Switch label to enable fingerprint authentication to unlock Fabriik app */
+/* Switch label to enable fingerprint authentication to unlock BRD app */
 "FingerprintSettings.unlockApp" = "Utilizzare l'impronta digitale per sbloccare Fabriik";
 
 /* This is the section that allows administration of the user's wallet */
@@ -902,6 +902,8 @@
 
 "Prompts.RateApp.dontShow" = "Non chiedere più";
 
+"Prompts.RateApp.enjoyingBrd" = "Ti piace BRD?";
+
 "Prompts.RateApp.enjoyingFabriik" = "Ti piace Fabriik?";
 
 "Prompts.RateApp.googlePlayReview" = "La tua recensione aiuta a far crescere la comunità Fabriik.";
@@ -955,7 +957,7 @@
 /* Body text when push notifications are enabled. */
 "PushNotifications.enabledBody" = "Stai ricevendo offerte speciali e aggiornamenti da Fabriik.";
 
-/* Instructions to enable push notifications for Fabriik in the phone's system settings. */
+/* Instructions to enable push notifications for BRD in the phone's system settings. */
 "PushNotifications.enableInstructions" = "Sembra che le notifiche siano disattivate. Accedi alle Impostazioni per abilitare le notifiche da Fabriik.";
 
 /* Push notifications toggle switch label */
@@ -1105,7 +1107,7 @@
 /* Instruction displayed when the user is resetting the PIN, which requires the recovery phrase to be entered */
 "RecoveryKeyFlow.resetPINInstruction" = "Per favore inserisci la tua chiave di recupero per resettare il tuo PIN.";
 
-/* Assures the user that Fabriik will keep the user's funds secure. */
+/* Assures the user that BRD will keep the user's funds secure. */
 "RecoveryKeyFlow.securityAssurance" = "Compra e fai affari sapendo che i tuoi fondi sono protetti dalla migliore sicurezza e privacy sul mercato.";
 
 /* Recommends that the user stores the recovery key in a secure location */
@@ -1687,7 +1689,7 @@
 /* Fingerprint Is Not Setup */
 "TouchIdSettings.disabledWarning.title.android" = "Autenticazione Impronta non abilitata";
 
-/* Text that describes the purpose of the Touch ID settings in the Fabriik app. */
+/* Text that describes the purpose of the Touch ID settings in the BRD app. */
 "TouchIdSettings.explanatoryText" = "Utilizza Touch ID per sbloccare l'app Fabriik e inviare denaro.";
 
 /* Touch Id screen label */
@@ -1720,7 +1722,7 @@
 /* Touch ID unavailable alert title */
 "TouchIdSettings.unavailableAlertTitle" = "Touch ID Non Impostato";
 
-/* Text label for the toggle that enables Touch ID for unlocking the Fabriik app. */
+/* Text label for the toggle that enables Touch ID for unlocking the BRD app. */
 "TouchIdSettings.unlockTitleText" = "Abilita Touch ID per sbloccare Fabriik";
 
 /* Always require passcode option */
@@ -1785,7 +1787,7 @@
 /* eg. Starting balance: $50.00 */
 "Transaction.starting" = "Saldo iniziale: %1$@";
 
-/* e.g. "[The money you paid was a] Fee for token transfer: Fabriik" (Fabriik is the token that was transfered) */
+/* e.g. "[The money you paid was a] Fee for token transfer: BRD" (BRD is the token that was transfered) */
 "Transaction.tokenTransfer" = "Commissione per il trasferimento del gettone: %1$@";
 
 "Transaction.toRecipient" = "a %1$s";
