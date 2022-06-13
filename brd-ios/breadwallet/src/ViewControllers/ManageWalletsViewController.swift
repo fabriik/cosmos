@@ -18,7 +18,7 @@ class ManageWalletsViewController: UITableViewController {
     
     private lazy var manageAssetsButton: ManageAssetsButton = {
         let manageAssetsButton = ManageAssetsButton()
-        let manageAssetsButtonTitle = "+ " + S.TokenList.addTitle
+        let manageAssetsButtonTitle = "+ " + L10n.TokenList.addTitle
         manageAssetsButton.set(title: manageAssetsButtonTitle)
         manageAssetsButton.accessibilityLabel = manageAssetsButtonTitle
         
@@ -47,7 +47,7 @@ class ManageWalletsViewController: UITableViewController {
         tableView.rowHeight = 66.0
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = .gray3
-        title = S.TokenList.manageTitle
+        title = L10n.TokenList.manageTitle
         tableView.register(ManageCurrencyCell.self, forCellReuseIdentifier: ManageCurrencyCell.cellIdentifier)
         tableView.setEditing(true, animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushAddWallets))

@@ -26,7 +26,7 @@ class RecoveryKeyCompleteViewController: BaseRecoveryKeyViewController {
     private let lockSuccessIcon = UIImageView(image: UIImage(named: "RecoveryKeyLockImageSuccess"))
     private let headingLabel = UILabel()
     private let subheadingLabel = UILabel()
-    private let continueButton = BRDButton(title: S.RecoverKeyFlow.goToWalletButtonTitle, type: .primary)
+    private let continueButton = BRDButton(title: L10n.RecoveryKeyFlow.goToWalletButtonTitle, type: .primary)
 
     init(fromOnboarding: Bool, proceedToWallet: (() -> Void)?) {
         super.init()
@@ -71,7 +71,7 @@ class RecoveryKeyCompleteViewController: BaseRecoveryKeyViewController {
         //
         // labels
         //
-        let titles = [S.RecoverKeyFlow.successHeading, S.RecoverKeyFlow.successSubheading]
+        let titles = [L10n.RecoveryKeyFlow.successHeading, L10n.RecoveryKeyFlow.successSubheading]
         let fonts = [Theme.h2Title, Theme.body1]
         let colors = [Theme.primaryText, Theme.secondaryText]
         let xInsets: CGFloat = E.isSmallScreen ? 40 : 62

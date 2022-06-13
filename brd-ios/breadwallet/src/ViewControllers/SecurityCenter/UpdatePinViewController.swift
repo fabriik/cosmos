@@ -72,11 +72,11 @@ class UpdatePinViewController: UIViewController, Subscriber {
         didSet {
             switch step {
             case .verify:
-                instruction.text = isCreatingPin ? S.UpdatePin.createInstruction : S.UpdatePin.enterCurrent
+                instruction.text = isCreatingPin ? L10n.UpdatePin.createInstruction : L10n.UpdatePin.enterCurrent
                 caption.isHidden = true
             case .new:
-                let instructionText = isCreatingPin ? S.UpdatePin.createInstruction : S.UpdatePin.enterNew
-                header.text = isCreatingPin ? S.UpdatePin.setNewPinTitle : S.UpdatePin.createTitle
+                let instructionText = isCreatingPin ? L10n.UpdatePin.createInstruction : L10n.UpdatePin.enterNew
+                header.text = isCreatingPin ? L10n.UpdatePin.setNewPinTitle : L10n.UpdatePin.createTitle
                 if instruction.text != instructionText {
                     instruction.pushNewText(instructionText)
                 }
@@ -84,9 +84,9 @@ class UpdatePinViewController: UIViewController, Subscriber {
             case .confirmNew:
                 caption.isHidden = true
                 if isCreatingPin {
-                    header.text = S.UpdatePin.createTitleConfirm
+                    header.text = L10n.UpdatePin.createTitleConfirm
                 } else {
-                    instruction.pushNewText(S.UpdatePin.reEnterNew)
+                    instruction.pushNewText(L10n.UpdatePin.reEnterNew)
                 }
             }
         }
@@ -115,7 +115,7 @@ class UpdatePinViewController: UIViewController, Subscriber {
         }
         
         if isCreatingPin {
-            navigationItem.title = S.UnlockScreen.resetPin
+            navigationItem.title = L10n.UnlockScreen.resetPin
         }
         
         header.textAlignment = .center
@@ -207,13 +207,13 @@ class UpdatePinViewController: UIViewController, Subscriber {
         }
 
         if type == .recoverBackup {
-            header.text = S.CloudBackup.recoverHeader
+            header.text = L10n.CloudBackup.recoverHeader
             instruction.text = ""
             caption.text = ""
         } else {
-            caption.text = S.UpdatePin.caption
-            header.text = isCreatingPin ? S.UpdatePin.setNewPinTitle : S.UpdatePin.updateTitle
-            instruction.text = isCreatingPin ? S.UpdatePin.createInstruction : S.UpdatePin.enterCurrent
+            caption.text = L10n.UpdatePin.caption
+            header.text = isCreatingPin ? L10n.UpdatePin.setNewPinTitle : L10n.UpdatePin.updateTitle
+            instruction.text = isCreatingPin ? L10n.UpdatePin.createInstruction : L10n.UpdatePin.enterCurrent
             if isCreatingPin {
                 step = .new
                 caption.isHidden = false
@@ -264,13 +264,13 @@ class UpdatePinViewController: UIViewController, Subscriber {
             switch error {
             case UnlockBackupError.wrongPin(let retries):
                 if retries < 5 {
-                    warning.pushNewText(String(format: S.CloudBackup.pinAttempts, "\(retries)"))
+                    warning.pushNewText(L10n.CloudBackup.pinAttempts("\(retries)"))
                     let retryCount = 3
                     if retries == retryCount {
-                        let alert = UIAlertController(title: S.Alert.warning,
-                                                      message: String(format: S.CloudBackup.warningBody, "\(retryCount)"),
+                        let alert = UIAlertController(title: L10n.Alert.warning,
+                                                      message: L10n.CloudBackup.warningBody("\(retryCount)"),
                                                       preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
+                        alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: nil))
                         present(alert, animated: true, completion: nil)
                     }
                 } else {
@@ -278,12 +278,12 @@ class UpdatePinViewController: UIViewController, Subscriber {
                 }
                 clearAfterFailure()
             case UnlockBackupError.backupDeleted:
-                caption.pushNewText(S.CloudBackup.backupDeleted)
+                caption.pushNewText(L10n.CloudBackup.backupDeleted)
                 clearAfterFailure()
-                let alert = UIAlertController(title: S.CloudBackup.backupDeleted,
-                                              message: S.CloudBackup.backupDeletedMessage,
+                let alert = UIAlertController(title: L10n.CloudBackup.backupDeleted,
+                                              message: L10n.CloudBackup.backupDeletedMessage,
                                               preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: { _ in
+                alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: { _ in
                     exit(0)
                 }))
                 present(alert, animated: true, completion: nil)
@@ -377,8 +377,8 @@ class UpdatePinViewController: UIViewController, Subscriber {
                 }
 
             } else {
-                let alert = UIAlertController(title: S.UpdatePin.updateTitle, message: S.UpdatePin.setPinError, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: { [weak self] _ in
+                let alert = UIAlertController(title: L10n.UpdatePin.updateTitle, message: L10n.UpdatePin.setPinError, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: { [weak self] _ in
                     self?.clearAfterFailure()
                     self?.pushNewStep(.new)
                 }))

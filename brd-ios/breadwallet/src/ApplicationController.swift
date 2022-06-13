@@ -331,7 +331,7 @@ class ApplicationController: Subscriber, Trackable {
     private func setWalletInfo(account: Account) {
         guard let kvStore = Backend.kvStore, WalletInfo(kvStore: kvStore) == nil else { return }
         print("[KV] created new WalletInfo")
-        let walletInfo = WalletInfo(name: S.AccountHeader.defaultWalletName)
+        let walletInfo = WalletInfo(name: L10n.AccountHeader.defaultWalletName)
         walletInfo.creationDate = account.timestamp
         _ = try? kvStore.set(walletInfo)
     }
@@ -400,7 +400,7 @@ class ApplicationController: Subscriber, Trackable {
             let alert = UIAlertController(title: "Partnership note",
                                           message: message,
                                           preferredStyle: .alert)
-            let continueAction = UIAlertAction(title: S.Button.continueAction, style: .default) { _ in
+            let continueAction = UIAlertAction(title: L10n.Button.continueAction, style: .default) { _ in
                 Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
             }
             
@@ -422,7 +422,7 @@ class ApplicationController: Subscriber, Trackable {
             let alert = UIAlertController(title: "Partnership note",
                                           message: message,
                                           preferredStyle: .alert)
-            let continueAction = UIAlertAction(title: S.Button.continueAction, style: .default) { _ in
+            let continueAction = UIAlertAction(title: L10n.Button.continueAction, style: .default) { _ in
                 self?.openSwapScreen()
             }
             
@@ -487,7 +487,7 @@ class ApplicationController: Subscriber, Trackable {
     
     // do not call directly, instead use wipeWalletNoPrompt trigger so other subscribers are notified
     private func wipeWalletNoPrompt() {
-        let activity = BRActivityViewController(message: S.WipeWallet.wiping)
+        let activity = BRActivityViewController(message: L10n.WipeWallet.wiping)
         var topViewController = rootNavigationController as UIViewController?
         while let newTopViewController = topViewController?.presentedViewController {
             topViewController = newTopViewController
@@ -497,7 +497,7 @@ class ApplicationController: Subscriber, Trackable {
         let success = keyStore.wipeWallet()
         guard success else { // unexpected error writing to keychain
             activity.dismiss(animated: true)
-            topViewController?.showAlert(title: S.WipeWallet.failedTitle, message: S.WipeWallet.failedMessage)
+            topViewController?.showAlert(title: L10n.WipeWallet.failedTitle, message: L10n.WipeWallet.failedMessage)
             return
         }
         

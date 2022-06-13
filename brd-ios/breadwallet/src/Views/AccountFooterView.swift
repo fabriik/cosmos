@@ -56,8 +56,8 @@ class AccountFooterView: UIView, Subscriber, Trackable {
     
     private func setupToolbarButtons() {
         let buttons = [
-            (S.Button.send, #selector(AccountFooterView.send)),
-            (S.Button.receive, #selector(AccountFooterView.receive))
+            (L10n.Button.send, #selector(AccountFooterView.send)),
+            (L10n.Button.receive, #selector(AccountFooterView.receive))
         ].compactMap { (title, selector) -> UIBarButtonItem in
             let button = UIButton.rounded(title: title)
             button.tintColor = .white

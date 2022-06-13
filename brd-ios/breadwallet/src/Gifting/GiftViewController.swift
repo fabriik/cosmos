@@ -65,7 +65,7 @@ class GiftViewController: UIViewController, Trackable {
     }()
     
     private var selectedIndex: Int = -1
-    private let sendingActivity = BRActivityViewController(message: S.TransactionDetails.titleSending)
+    private let sendingActivity = BRActivityViewController(message: L10n.TransactionDetails.titleSending)
     private let extraSwitch = UISwitch()
     private let extraLabel = UILabel.wrapping(font: Theme.caption, color: .white)
     
@@ -355,7 +355,7 @@ class GiftViewController: UIViewController, Trackable {
         let pinVerifier: PinVerifier = { [weak self] pinValidationCallback in
             guard let `self` = self else { return assertionFailure() }
             self.sendingActivity.dismiss(animated: false) {
-                self.presentVerifyPin?(S.VerifyPin.authorize) { pin in
+                self.presentVerifyPin?(L10n.VerifyPin.authorize) { pin in
                     self.parent?.view.isFrameChangeBlocked = false
                     pinValidationCallback(pin)
                     self.present(self.sendingActivity, animated: false)
@@ -378,9 +378,9 @@ class GiftViewController: UIViewController, Trackable {
                         self.present(share, animated: true, completion: nil)
                     }
                 case .creationError(let message):
-                    self.showAlert(title: S.Alerts.sendFailure, message: message, buttonLabel: S.Button.ok)
+                    self.showAlert(title: L10n.Alerts.sendFailure, message: message, buttonLabel: L10n.Button.ok)
                 case .publishFailure(let code, let message):
-                    self.showAlert(title: S.Alerts.sendFailure, message: "\(message) (\(code))", buttonLabel: S.Button.ok)
+                    self.showAlert(title: L10n.Alerts.sendFailure, message: "\(message) (\(code))", buttonLabel: L10n.Button.ok)
                 case .insufficientGas(let rpcErrorMessage):
                     print("blah: \(rpcErrorMessage)")
                     //self.showInsufficientGasError()

@@ -129,7 +129,7 @@ class PromptView: UIView {
         continueButton.setTitleColor(Theme.accentHighlighted, for: .highlighted)
         continueButton.titleLabel?.font = Theme.primaryButton
         
-        continueButton.setTitle(S.Button.continueAction, for: .normal)
+        continueButton.setTitle(L10n.Button.continueAction, for: .normal)
     }
     
     private func setupStyle() {

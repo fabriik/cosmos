@@ -15,7 +15,7 @@ class PushNotificationsViewController: UIViewController, Trackable {
     private let body = UILabel.wrapping(font: Theme.body2, color: Theme.secondaryText)
     private let toggle = UISwitch()
     private let separator = UIView()
-    private let openSettingsButton = BRDButton(title: S.Button.openSettings, type: .primary)
+    private let openSettingsButton = BRDButton(title: L10n.Button.openSettings, type: .primary)
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -114,19 +114,19 @@ class PushNotificationsViewController: UIViewController, Trackable {
     
     private func bodyText(notificationsStatus: UNAuthorizationStatus) -> String {
         if notificationsStatus == .authorized {
-            return areNotificationsEnabled ? S.PushNotifications.enabledBody : S.PushNotifications.disabledBody
+            return areNotificationsEnabled ? L10n.PushNotifications.enabledBody : L10n.PushNotifications.disabledBody
         } else {
-            return S.PushNotifications.enableInstructions
+            return L10n.PushNotifications.enableInstructions
         }
     }
     
     private func setData() {
-        title = S.Settings.notifications
+        title = L10n.Settings.notifications
         
         view.backgroundColor = Theme.primaryBackground
         separator.backgroundColor = Theme.tertiaryText
         
-        toggleLabel.text = S.PushNotifications.label
+        toggleLabel.text = L10n.PushNotifications.label
         toggleLabel.textColor = Theme.primaryText
         
         toggle.isOn = areNotificationsEnabled

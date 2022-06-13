@@ -174,8 +174,8 @@ class TxDetailViewController: UIViewController, Subscriber {
         tableView.dataSource = dataSource
         tableView.reloadData()
         
-        detailsButton.setTitle(S.TransactionDetails.showDetails, for: .normal)
-        detailsButton.setTitle(S.TransactionDetails.hideDetails, for: .selected)
+        detailsButton.setTitle(L10n.TransactionDetails.showDetails, for: .normal)
+        detailsButton.setTitle(L10n.TransactionDetails.hideDetails, for: .selected)
         detailsButton.addTarget(self, action: #selector(onToggleDetails), for: .touchUpInside)
         
         header.setTitle(viewModel.title)

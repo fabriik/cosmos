@@ -51,7 +51,7 @@ class TxListCell: UITableViewCell {
         
         switch viewModel.status {
         case .invalid:
-            timestamp.text = S.Transaction.failed
+            timestamp.text = L10n.Transaction.failed
             failedIndicator.isHidden = false
             statusIndicator.isHidden = true
             if #available(iOS 13, *) {
@@ -79,7 +79,7 @@ class TxListCell: UITableViewCell {
             failedIndicator.isHidden = true
             statusIndicator.isHidden = false
             timestamp.isHidden = false
-            timestamp.text = "\(viewModel.confirmations)/\(viewModel.currency.confirmationsUntilFinal) " + S.TransactionDetails.confirmationsLabel
+            timestamp.text = "\(viewModel.confirmations)/\(viewModel.currency.confirmationsUntilFinal) " + L10n.TransactionDetails.confirmationsLabel
             
             if #available(iOS 13, *) {
                 NSLayoutConstraint.activate(completeConstraints)
@@ -168,7 +168,7 @@ class TxListCell: UITableViewCell {
         descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         descriptionLabel.lineBreakMode = .byTruncatingTail
         
-        failedIndicator.setTitle(S.Transaction.failed, for: .normal)
+        failedIndicator.setTitle(L10n.Transaction.failed, for: .normal)
         failedIndicator.titleLabel?.font = .customBold(size: 12.0)
         failedIndicator.setTitleColor(.white, for: .normal)
         failedIndicator.backgroundColor = .failedRed

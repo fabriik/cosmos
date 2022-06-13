@@ -47,12 +47,12 @@ extension ColorOption {
 
     static let autoBackground = ColorOption(
         identifier: Constant.systemBgId,
-        display: S.Widget.Color.autoLightDark
+        display: L10n.Widget.Color.autoLightDark
     )
     
     static let autoTextColor = ColorOption(
         identifier: Constant.systemTextId,
-        display: S.Widget.Color.autoLightDark
+        display: L10n.Widget.Color.autoLightDark
     )
 }
 
@@ -70,16 +70,16 @@ extension ColorOption {
 
 extension ColorOption {
 
-    static let white = ColorOption(identifier: ".white", display: S.Widget.Color.white)
-    static let black = ColorOption(identifier: ".black", display: S.Widget.Color.black)
-    static let gray = ColorOption(identifier: ".gray", display: S.Widget.Color.gray)
-    static let red = ColorOption(identifier: ".red", display: S.Widget.Color.red)
-    static let green = ColorOption(identifier: ".green", display: S.Widget.Color.green)
-    static let blue = ColorOption(identifier: ".blue", display: S.Widget.Color.blue)
-    static let orange = ColorOption(identifier: ".orange", display: S.Widget.Color.orange)
-    static let yellow = ColorOption(identifier: ".yellow", display: S.Widget.Color.yellow)
-    static let pink = ColorOption(identifier: ".pink", display: S.Widget.Color.pink)
-    static let purple = ColorOption(identifier: ".purple", display: S.Widget.Color.purple)
+    static let white = ColorOption(identifier: ".white", display: L10n.Widget.Color.white)
+    static let black = ColorOption(identifier: ".black", display: L10n.Widget.Color.black)
+    static let gray = ColorOption(identifier: ".gray", display: L10n.Widget.Color.gray)
+    static let red = ColorOption(identifier: ".red", display: L10n.Widget.Color.red)
+    static let green = ColorOption(identifier: ".green", display: L10n.Widget.Color.green)
+    static let blue = ColorOption(identifier: ".blue", display: L10n.Widget.Color.blue)
+    static let orange = ColorOption(identifier: ".orange", display: L10n.Widget.Color.orange)
+    static let yellow = ColorOption(identifier: ".yellow", display: L10n.Widget.Color.yellow)
+    static let pink = ColorOption(identifier: ".pink", display: L10n.Widget.Color.pink)
+    static let purple = ColorOption(identifier: ".purple", display: L10n.Widget.Color.purple)
 
     static func basicColors() -> [ColorOption] {
         return [ .white, .black, .gray, .red, .green, .blue, .orange, .yellow,
@@ -92,11 +92,11 @@ extension ColorOption {
 extension ColorOption {
 
     static let primaryBackground = ColorOption(identifier: Constant.brdBgPrefix + "primaryBackground",
-                                               display: S.Widget.Color.primaryBackground)
+                                               display: L10n.Widget.Color.primaryBackground)
     static let secondaryBackground = ColorOption(identifier: Constant.brdBgPrefix + "secondaryBackground",
-                                               display: S.Widget.Color.secondaryBackground)
+                                               display: L10n.Widget.Color.secondaryBackground)
     static let tertiaryBackground = ColorOption(identifier: Constant.brdBgPrefix + "tertiaryBackground",
-                                                display: S.Widget.Color.tertiaryBackground)
+                                                display: L10n.Widget.Color.tertiaryBackground)
 
     static func backgroundColors() -> [ColorOption] {
         return [.primaryBackground, secondaryBackground, .tertiaryBackground]
@@ -108,11 +108,11 @@ extension ColorOption {
 extension ColorOption {
 
     static let primaryText = ColorOption(identifier: Constant.brdTextPrefix + "primaryText",
-                                         display: S.Widget.Color.primaryText)
+                                         display: L10n.Widget.Color.primaryText)
     static let secondaryText = ColorOption(identifier: Constant.brdTextPrefix + "secondaryText",
-                                           display: S.Widget.Color.secondaryText)
+                                           display: L10n.Widget.Color.secondaryText)
     static let tertiaryText = ColorOption(identifier: Constant.brdTextPrefix + "tertiaryText",
-                                          display: S.Widget.Color.tertiaryText)
+                                          display: L10n.Widget.Color.tertiaryText)
 
     static func textColors() -> [ColorOption] {
         return [.primaryText, secondaryText, .tertiaryText]

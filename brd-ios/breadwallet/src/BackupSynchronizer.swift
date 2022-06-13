@@ -69,7 +69,7 @@ class BackupSynchronizer {
                 callback(false)
             }
         }
-        let pinViewController = VerifyPinViewController(bodyText: S.CloudBackup.encryptBackupMessage,
+        let pinViewController = VerifyPinViewController(bodyText: L10n.CloudBackup.encryptBackupMessage,
                                           pinLength: 6, //force backups to be 6 digit
                                           walletAuthenticator: self.keyStore,
                                           pinAuthenticationType: .transactions,

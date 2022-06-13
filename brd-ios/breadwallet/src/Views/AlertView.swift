@@ -22,15 +22,15 @@ enum AlertType {
     var header: String {
         switch self {
         case .pinSet:
-            return S.Alerts.pinSet
+            return L10n.Alerts.pinSet
         case .paperKeySet:
-            return S.Alerts.paperKeySet
+            return L10n.Alerts.paperKeySet
         case .sendSuccess:
-            return S.Alerts.sendSuccess
+            return L10n.Alerts.sendSuccess
         case .addressesCopied:
-            return S.Alerts.copiedAddressesHeader
+            return L10n.Alerts.copiedAddressesHeader
         case .sweepSuccess:
-            return S.Import.success
+            return L10n.Import.success
         case .accountCreation, .cloudBackupRestoreSuccess, .cloudBackupSuccess:
             return "Success"
         case .none:
@@ -43,13 +43,13 @@ enum AlertType {
         case .pinSet:
             return ""
         case .paperKeySet:
-            return S.Alerts.paperKeySetSubheader
+            return L10n.Alerts.paperKeySetSubheader
         case .sendSuccess:
-            return S.Alerts.sendSuccessSubheader
+            return L10n.Alerts.sendSuccessSubheader
         case .addressesCopied:
-            return S.Alerts.copiedAddressesSubheader
+            return L10n.Alerts.copiedAddressesSubheader
         case .sweepSuccess:
-            return S.Import.successBody
+            return L10n.Import.successBody
         case .accountCreation:
             return "Hedera Account succesfully created."
         case .cloudBackupRestoreSuccess:

@@ -45,7 +45,7 @@ class WriteRecoveryKeyViewController: BaseRecoveryKeyViewController {
     private let headingLabel = UILabel()
     private let subheadingLabel = UILabel()
     private let stepLabel = UILabel()
-    private let doneButton = BRDButton(title: S.Button.doneAction, type: .primary)
+    private let doneButton = BRDButton(title: L10n.Button.done, type: .primary)
     private let infoView = InfoView()
     
     var pageIndex: Int = 0 {
@@ -253,13 +253,13 @@ class WriteRecoveryKeyViewController: BaseRecoveryKeyViewController {
     private func setUpLabels() {
         headingLabel.textColor = Theme.primaryText
         headingLabel.font = Theme.h2Title
-        headingLabel.text = S.RecoverKeyFlow.writeKeyScreenTitle
+        headingLabel.text = L10n.RecoveryKeyFlow.writeKeyScreenTitle
         headingLabel.textAlignment = .center
         headingLabel.numberOfLines = 0
         
         subheadingLabel.textColor = Theme.secondaryText
         subheadingLabel.font = Theme.body1
-        subheadingLabel.text = S.RecoverKeyFlow.writeKeyScreenSubtitle
+        subheadingLabel.text = L10n.RecoveryKeyFlow.writeKeyScreenSubtitle
         subheadingLabel.textAlignment = .center
         subheadingLabel.numberOfLines = 0
         
@@ -385,11 +385,11 @@ class WriteRecoveryKeyViewController: BaseRecoveryKeyViewController {
     
     private func updateStepLabel() {
         // this will generate a string such as "2 of 12"
-        stepLabel.text = String(format: S.RecoverKeyFlow.writeKeyStepTitle, String(pageIndex + 1), String(pageCount))
+        stepLabel.text = L10n.RecoveryKeyFlow.writeKeyStepTitle(String(pageIndex + 1), String(pageCount))
     }
     
     private func updateInfoView() {
-        infoView.text = (pageIndex == 0) ? S.RecoverKeyFlow.noScreenshotsOrEmailReminder : S.RecoverKeyFlow.rememberToWriteDownReminder
+        infoView.text = (pageIndex == 0) ? L10n.RecoveryKeyFlow.noScreenshotsOrEmailWarning : L10n.RecoveryKeyFlow.rememberToWriteDownReminder
         infoView.imageName = (pageIndex == 0) ? "ExclamationMarkCircle" : "Document"
     }
     

@@ -18,13 +18,13 @@ enum SearchFilterType {
     var description: String {
         switch self {
         case .sent:
-            return S.Search.sent
+            return L10n.Search.sent
         case .received:
-            return S.Search.received
+            return L10n.Search.received
         case .pending:
-            return S.Search.pending
+            return L10n.Search.pending
         case .complete:
-            return S.Search.complete
+            return L10n.Search.complete
         case .text:
             return ""
         }
@@ -99,10 +99,10 @@ class SearchHeaderView: UIView {
     }
 
     private let searchBar = UISearchBar()
-    private let sent = BRDButton(title: S.Search.sent, type: .search)
-    private let received = BRDButton(title: S.Search.received, type: .search)
-    private let pending = BRDButton(title: S.Search.pending, type: .search)
-    private let complete = BRDButton(title: S.Search.complete, type: .search)
+    private let sent = BRDButton(title: L10n.Search.sent, type: .search)
+    private let received = BRDButton(title: L10n.Search.received, type: .search)
+    private let pending = BRDButton(title: L10n.Search.pending, type: .search)
+    private let complete = BRDButton(title: L10n.Search.complete, type: .search)
     private let cancel = UIButton(type: .system)
     fileprivate var filters: [SearchFilterType] = [] {
         didSet {
@@ -159,7 +159,7 @@ class SearchHeaderView: UIView {
         searchBar.backgroundImage = UIImage()
         searchBar.delegate = self
         
-        cancel.setTitle(S.Button.cancel, for: .normal)
+        cancel.setTitle(L10n.Button.cancel, for: .normal)
         cancel.tap = { [weak self] in
             self?.didChangeFilters?([])
             self?.searchBar.resignFirstResponder()

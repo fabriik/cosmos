@@ -23,7 +23,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private lazy var totalAssetsTitleLabel: UILabel = {
         let totalAssetsTitleLabel = UILabel(font: Theme.caption, color: Theme.tertiaryText)
         totalAssetsTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        totalAssetsTitleLabel.text = S.HomeScreen.totalAssets
+        totalAssetsTitleLabel.text = L10n.HomeScreen.totalAssets
         
         return totalAssetsTitleLabel
     }()
@@ -53,7 +53,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     private var buyButtonTitle: String {
-        return shouldShowBuyAndSell ? S.HomeScreen.buyAndSell : S.HomeScreen.buy
+        return shouldShowBuyAndSell ? L10n.HomeScreen.buyAndSell : L10n.HomeScreen.buy
     }
     
     private let buyButtonIndex = 0
@@ -251,10 +251,10 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private func setupToolbar() {
         let buttons = [
             ("Balance", #imageLiteral(resourceName: "balance"), #selector(showBalance)),
-            (S.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
+            (L10n.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
             ("Buy/Sell", #imageLiteral(resourceName: "buy"), #selector(buy)),
             ("Profile", #imageLiteral(resourceName: "user"), #selector(profile)),
-            (S.HomeScreen.menu, #imageLiteral(resourceName: "more"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
+            (L10n.HomeScreen.menu, #imageLiteral(resourceName: "more"), #selector(menu))].map { (title, image, selector) -> UIBarButtonItem in
                 let button = UIButton.vertical(title: title, image: image)
                 button.tintColor = .gray1
                 button.addTarget(self, action: selector, for: .touchUpInside)

@@ -29,7 +29,7 @@ struct SelectBackupView: View {
             Rectangle()
                 .fill(Color(Theme.primaryBackground))
             VStack {
-                Text(S.CloudBackup.selectTitle)
+                Text(L10n.CloudBackup.selectTitle)
                     .foregroundColor(Color(Theme.primaryText))
                     .lineLimit(nil)
                     .font(Font(Theme.h2Title))
@@ -52,7 +52,7 @@ struct SelectBackupView: View {
                 RoundedRectangle(cornerRadius: 4.0)
                     .fill(Color(UIColor.primaryButton))
                     .opacity(self.selectedBackup == nil ? 0.3 : 1.0)
-                Text(S.Button.continueAction)
+                Text(L10n.Button.continueAction)
                     .foregroundColor(Color(Theme.primaryText))
                     .font(Font(Theme.h3Title))
             }

@@ -12,7 +12,7 @@ class DelistedTokenView: UIView {
     
     private let currency: Currency
     private let label = UILabel(font: .customBody(size: 14.0), color: .white)
-    private let button = UIButton.outline(title: S.Button.moreInfo)
+    private let button = UIButton.outline(title: L10n.Button.moreInfo)
     
     init(currency: Currency) {
         self.currency = currency
@@ -28,7 +28,7 @@ class DelistedTokenView: UIView {
         backgroundColor = .disabledBackground
         
         label.numberOfLines = 0
-        label.text = S.Account.delistedToken
+        label.text = L10n.Account.delistedToken
         
         button.tap = {
             Store.trigger(name: .presentFaq(ArticleIds.unsupportedToken, self.currency))

@@ -52,7 +52,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = S.UnlockScreen.resetPin
+        navigationItem.title = L10n.UnlockScreen.resetPin
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faq)
         navigationController?.navigationBar.tintColor = Theme.blueBackground
         
@@ -131,7 +131,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
 
     private func setInitialData() {
         view.backgroundColor = .darkBackground
-        errorLabel.text = S.RecoverWallet.invalid
+        errorLabel.text = L10n.RecoverWallet.invalid
         errorLabel.isHidden = true
         errorLabel.textAlignment = .center
         enterPhrase.didFinishPhraseEntry = { [weak self] phrase in
@@ -141,20 +141,20 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         switch reason {
         case .setSeed:
             saveEvent("enterPhrase.setSeed")
-            heading.text = S.RecoverKeyFlow.recoverYourWallet
-            subheading.text = S.RecoverKeyFlow.recoverYourWalletSubtitle
+            heading.text = L10n.RecoveryKeyFlow.recoveryYourWallet
+            subheading.text = L10n.RecoveryKeyFlow.recoveryYourWalletSubtitle
         case .validateForResettingPin:
             saveEvent("enterPhrase.resettingPin")
-            heading.text = S.RecoverKeyFlow.enterRecoveryKey
-            subheading.text = S.RecoverKeyFlow.resetPINInstruction
+            heading.text = L10n.RecoveryKeyFlow.enterRecoveryKey
+            subheading.text = L10n.RecoveryKeyFlow.resetPINInstruction
             faq.tap = {
                 Store.trigger(name: .presentFaq(ArticleIds.resetPinWithPaperKey, nil))
             }
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faq)
         case .validateForWipingWallet:
             saveEvent("enterPhrase.wipeWallet")
-            heading.text = S.RecoverKeyFlow.enterRecoveryKey
-            subheading.text = S.RecoverKeyFlow.enterRecoveryKeySubtitle
+            heading.text = L10n.RecoveryKeyFlow.enterRecoveryKey
+            subheading.text = L10n.RecoveryKeyFlow.enterRecoveryKeySubtitle
         }
 
         scrollView.delegate = self

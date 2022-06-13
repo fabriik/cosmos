@@ -21,7 +21,7 @@ class ReScanViewController: UIViewController, Subscriber {
     private let wallet: Wallet
     private let header = UILabel.wrapping(font: .customBold(size: 26.0), color: .white)
     private let body = UILabel.wrapping(font: .systemFont(ofSize: 15.0))
-    private let button = BRDButton(title: S.ReScan.buttonTitle, type: .primary)
+    private let button = BRDButton(title: L10n.ReScan.buttonTitle, type: .primary)
     private let footer = UILabel.wrapping(font: .customBody(size: 16.0), color: .white)
     private let faq: UIButton
 
@@ -46,9 +46,9 @@ class ReScanViewController: UIViewController, Subscriber {
                                 && (self.wallet.networkPrimaryWallet?.manager.isConnected ?? false)
                             self.button.isEnabled = enabled
                             if walletState.syncState == .syncing {
-                                self.button.title = S.SyncingView.syncing
+                                self.button.title = L10n.SyncingView.syncing
                             } else {
-                                self.button.title = S.ReScan.buttonTitle
+                                self.button.title = L10n.ReScan.buttonTitle
                             }
         })
     }
@@ -89,18 +89,18 @@ class ReScanViewController: UIViewController, Subscriber {
     private func setInitialData() {
         view.backgroundColor = .darkBackground
         faq.tintColor = .navigationTint
-        header.text = S.ReScan.header
+        header.text = L10n.ReScan.header
         body.attributedText = bodyText
-        footer.text = S.ReScan.footer
+        footer.text = L10n.ReScan.footer
         button.tap = { [weak self] in
             self?.presentRescanAlert()
         }
     }
 
     private func presentRescanAlert() {
-        let alert = UIAlertController(title: S.ReScan.alertTitle, message: S.ReScan.alertMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.Button.cancel, style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: S.ReScan.alertAction, style: .default, handler: { _ in
+        let alert = UIAlertController(title: L10n.ReScan.alertTitle, message: L10n.ReScan.alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.ReScan.alertAction, style: .default, handler: { _ in
             RescanCoordinator.initiateRescan(system: self.system, wallet: self.wallet)
             self.dismiss(animated: true, completion: nil)
         }))
@@ -114,8 +114,8 @@ class ReScanViewController: UIViewController, Subscriber {
         let bodyAttributes = [ NSAttributedString.Key.font: UIFont.customBody(size: 16.0),
                                NSAttributedString.Key.foregroundColor: UIColor.white ]
 
-        body.append(NSAttributedString(string: "\(S.ReScan.subheader2)\n", attributes: headerAttributes))
-        body.append(NSAttributedString(string: "\(S.ReScan.body2)\n\n\(S.ReScan.body3)", attributes: bodyAttributes))
+        body.append(NSAttributedString(string: "\(L10n.ReScan.subheader2)\n", attributes: headerAttributes))
+        body.append(NSAttributedString(string: "\(L10n.ReScan.body2)\n\n\(L10n.ReScan.body3)", attributes: bodyAttributes))
         return body
     }
 

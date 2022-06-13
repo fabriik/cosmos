@@ -36,13 +36,13 @@ class ImportKeyViewController: UIViewController, Subscriber {
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "ImportIllustration"))
     private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .almostBlack)
     private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .almostBlack)
-    private let button = BRDButton(title: S.Import.scan, type: .primary)
+    private let button = BRDButton(title: L10n.Import.scan, type: .primary)
     private let bullet = UIImageView(image: #imageLiteral(resourceName: "deletecircle"))
     private let leftCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .darkText)
     private let rightCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .darkText)
-    private let balanceActivity = BRActivityViewController(message: S.Import.checking)
-    private let importingActivity = BRActivityViewController(message: S.Import.importing)
-    private let unlockingActivity = BRActivityViewController(message: S.Import.unlockingActivity)
+    private let balanceActivity = BRActivityViewController(message: L10n.Import.checking)
+    private let importingActivity = BRActivityViewController(message: L10n.Import.importing)
+    private let unlockingActivity = BRActivityViewController(message: L10n.Import.unlockingActivity)
     private var viewModel: TxViewModel?
     
     // Previously scanned QR code passed to init()
@@ -123,12 +123,12 @@ class ImportKeyViewController: UIViewController, Subscriber {
     private func setInitialData() {
         view.backgroundColor = .darkBackground
         illustration.contentMode = .scaleAspectFill
-        message.text = S.Import.importMessage
-        leftCaption.text = S.Import.leftCaption
+        message.text = L10n.Import.message
+        leftCaption.text = L10n.Import.leftCaption
         leftCaption.textAlignment = .center
-        rightCaption.text = S.Import.rightCaption
+        rightCaption.text = L10n.Import.rightCaption
         rightCaption.textAlignment = .center
-        warning.text = S.Import.importWarning
+        warning.text = L10n.Import.warning
 
         // Set up the tap handler for the "Scan Private Key" button.
         button.tap = strongify(self) { myself in
@@ -158,7 +158,7 @@ class ImportKeyViewController: UIViewController, Subscriber {
         }
         
         guard let key = Key.createFromString(asPrivate: address) else {
-            showErrorMessage(S.Import.Error.notValid)
+            showErrorMessage(L10n.Import.Error.notValid)
             return
         }
 
@@ -183,9 +183,9 @@ class ImportKeyViewController: UIViewController, Subscriber {
     }
     
     private func importFrom(_ sweeper: WalletSweeper) {
-        guard let balance = sweeper.balance else { return self.showErrorMessage(S.Import.Error.empty) }
+        guard let balance = sweeper.balance else { return self.showErrorMessage(L10n.Import.Error.empty) }
         let balanceAmount = Amount(cryptoAmount: balance, currency: wallet.currency)
-        guard !balanceAmount.isZero else { return self.showErrorMessage(S.Import.Error.empty) }
+        guard !balanceAmount.isZero else { return self.showErrorMessage(L10n.Import.Error.empty) }
         sweeper.estimate(fee: wallet.feeForLevel(level: .regular)) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -203,10 +203,10 @@ class ImportKeyViewController: UIViewController, Subscriber {
         let feeAmount = Amount(cryptoAmount: fee.fee, currency: wallet.currency)
         let balanceText = "\(balanceAmount.fiatDescription) (\(balanceAmount.description))"
         let feeText = "\(feeAmount.fiatDescription)"
-        let message = String(format: S.Import.confirm, balanceText, feeText)
-        let alert = UIAlertController(title: S.Import.title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: S.Import.importButton, style: .default, handler: { _ in
+        let message = L10n.Import.confirm(balanceText, feeText)
+        let alert = UIAlertController(title: L10n.Import.title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.Import.importButton, style: .default, handler: { _ in
             self.present(self.importingActivity, animated: true)
             self.submit(sweeper: sweeper, fee: fee)
         }))
@@ -216,14 +216,14 @@ class ImportKeyViewController: UIViewController, Subscriber {
     private func submit(sweeper: WalletSweeper, fee: TransferFeeBasis) {
         guard let transfer = sweeper.submit(estimatedFeeBasis: fee) else {
             importingActivity.dismiss(animated: true)
-            return showErrorMessage(S.Alerts.sendFailure)
+            return showErrorMessage(L10n.Alerts.sendFailure)
         }
         wallet.subscribe(self) { event in
             guard case .transferSubmitted(let eventTransfer, let success) = event,
                 eventTransfer.hash == transfer.hash else { return }
             DispatchQueue.main.async {
                 self.importingActivity.dismiss(animated: true) {
-                    guard success else { return self.showErrorMessage(S.Import.Error.failedSubmit) }
+                    guard success else { return self.showErrorMessage(L10n.Import.Error.failedSubmit) }
                     self.markAsReclaimed()
                     self.showSuccess()
                 }
@@ -255,19 +255,19 @@ class ImportKeyViewController: UIViewController, Subscriber {
     private func handleError(_ error: WalletSweeperError) {
         switch error {
         case .unsupportedCurrency:
-            showErrorMessage(S.Import.Error.unsupportedCurrency)
+            showErrorMessage(L10n.Import.Error.unsupportedCurrency)
         case .invalidKey:
-            showErrorMessage(S.Send.invalidAddressTitle)
+            showErrorMessage(L10n.Send.invalidAddressTitle)
         case .invalidSourceWallet:
-            showErrorMessage(S.Send.invalidAddressTitle)
+            showErrorMessage(L10n.Send.invalidAddressTitle)
         case .insufficientFunds:
-            showErrorMessage(S.Send.insufficientFunds)
+            showErrorMessage(L10n.Send.insufficientFunds)
         case .unableToSweep:
-            showErrorMessage(S.Import.Error.sweepError)
+            showErrorMessage(L10n.Import.Error.sweepError)
         case .noTransfersFound:
-            showErrorMessage(S.Import.Error.empty)
+            showErrorMessage(L10n.Import.Error.empty)
         case .unexpectedError:
-            showErrorMessage(S.Alert.somethingWentWrong)
+            showErrorMessage(L10n.Alert.somethingWentWrong)
         case .clientError(let error):
             showErrorMessage(error.localizedDescription)
         }
@@ -276,23 +276,23 @@ class ImportKeyViewController: UIViewController, Subscriber {
     private func handleEstimateFeeError(_ error: WalletKit.Wallet.FeeEstimationError) {
         switch error {
         case .InsufficientFunds:
-            showErrorMessage(S.Send.insufficientFunds)
+            showErrorMessage(L10n.Send.insufficientFunds)
         case .ServiceError:
-            showErrorMessage(S.Import.Error.serviceError)
+            showErrorMessage(L10n.Import.Error.serviceError)
         case .ServiceUnavailable:
-            showErrorMessage(S.Import.Error.serviceUnavailable)
+            showErrorMessage(L10n.Import.Error.serviceUnavailable)
         }
     }
 
     private func unlock(address: String, callback: @escaping (Key) -> Void) {
-        let alert = UIAlertController(title: S.Import.title, message: S.Import.password, preferredStyle: .alert)
+        let alert = UIAlertController(title: L10n.Import.title, message: L10n.Import.password, preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = S.Import.passwordPlaceholder
+            textField.placeholder = L10n.Import.passwordPlaceholder
             textField.isSecureTextEntry = true
             textField.returnKeyType = .done
         })
-        alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: { _ in
             self.unlock(alert: alert, address: address, callback: callback)
         }))
         present(alert, animated: true)
@@ -303,7 +303,7 @@ class ImportKeyViewController: UIViewController, Subscriber {
             guard let password = alert.textFields?.first?.text,
                 let key = Key.createFromString(asPrivate: address, withPassphrase: password) else {
                 self.unlockingActivity.dismiss(animated: true, completion: {
-                    self.showErrorMessage(S.Import.wrongPassword)
+                    self.showErrorMessage(L10n.Import.wrongPassword)
                 })
                 return
             }

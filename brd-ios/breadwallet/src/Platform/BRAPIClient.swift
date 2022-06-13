@@ -210,7 +210,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
         guard let authKey = authKey,
             let authPubKey = authKey.encodeAsPublic.hexToData else {
                 return handler(NSError(domain: BRAPIClientErrorDomain, code: 500, userInfo: [
-                    NSLocalizedDescriptionKey: S.ApiClient.notReady]))
+                    NSLocalizedDescriptionKey: L10n.ApiClient.notReady]))
         }
         isFetchingAuth = true
         log("auth: entering group")
@@ -232,7 +232,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
             isFetchingAuth = false
             authFetchGroup.leave()
             return handler(NSError(domain: BRAPIClientErrorDomain, code: 500, userInfo: [
-                NSLocalizedDescriptionKey: S.ApiClient.jsonError]))
+                NSLocalizedDescriptionKey: L10n.ApiClient.jsonError]))
         }
         session.dataTask(with: req, completionHandler: { (data, resp, err) in
             DispatchQueue.main.async {
@@ -245,7 +245,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                         self.isFetchingAuth = false
                         self.authFetchGroup.leave()
                         return handler(NSError(domain: BRAPIClientErrorDomain, code: httpResp.statusCode, userInfo: [
-                            NSLocalizedDescriptionKey: S.ApiClient.tokenError]))
+                            NSLocalizedDescriptionKey: L10n.ApiClient.tokenError]))
                     }
                 }
                 if let data = data {

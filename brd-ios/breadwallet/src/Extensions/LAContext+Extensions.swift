@@ -73,7 +73,7 @@ extension LAContext {
         }
 
         let policy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
-        let prompt = type == .faceID ? S.FaceIDSettings.explanatoryText : S.TouchIdSettings.explanatoryText
+        let prompt = type == .faceID ? L10n.FaceIDSettings.explanatoryText : L10n.TouchIdSettings.explanatoryText
         
         // Ensures that the Enter Passcode iOS fallback option is not displayed if the touch/face ID input
         // fails, otherwise Apple expects us to present our own enter-passcode UI for the device passcode.

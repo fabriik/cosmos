@@ -52,8 +52,8 @@ class AddressCell: UIView {
     }
 
     let textField = UITextField()
-    let paste = BRDButton(title: S.Send.pasteLabel, type: .tertiary)
-    let scan = BRDButton(title: S.Send.scanLabel, type: .tertiary)
+    let paste = BRDButton(title: L10n.Send.pasteLabel, type: .tertiary)
+    let scan = BRDButton(title: L10n.Send.scanLabel, type: .tertiary)
     fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
     private let label = UILabel(font: .customBody(size: 16.0))
     fileprivate let gr = UITapGestureRecognizer()
@@ -148,7 +148,7 @@ class AddressCell: UIView {
     }
 
     private func setInitialData() {
-        label.text = S.Send.toLabel
+        label.text = L10n.Send.toLabel
         textField.font = contentLabel.font
         textField.textColor = contentLabel.textColor
         textField.isHidden = true

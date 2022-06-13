@@ -50,14 +50,14 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
     private let amountView: AmountViewController
     private let addressCell: AddressCell
     private let attributeCell: AttributeCell?
-    private let memoCell = DescriptionSendCell(placeholder: S.Send.descriptionLabel)
-    private let sendButton = BRDButton(title: S.Send.sendLabel, type: .primary)
+    private let memoCell = DescriptionSendCell(placeholder: L10n.Send.descriptionLabel)
+    private let sendButton = BRDButton(title: L10n.Send.sendLabel, type: .primary)
     private let currencyBorder = UIView(color: .secondaryShadow)
     private var currencySwitcherHeightConstraint: NSLayoutConstraint?
     private var pinPadHeightConstraint: NSLayoutConstraint?
     private var attributeCellHeight: NSLayoutConstraint?
     private let confirmTransitioningDelegate = PinTransitioningDelegate()
-    private let sendingActivity = BRActivityViewController(message: S.TransactionDetails.titleSending)
+    private let sendingActivity = BRActivityViewController(message: L10n.TransactionDetails.titleSending)
     private let sender: Sender
     private let currency: Currency
     private let initialRequest: PaymentRequest?
@@ -265,7 +265,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             guard let max = self?.maximum else {
                 //This is highly unlikely to be reached because the button should be disabled
                 //if a maximum doesn't exist
-                self?.showErrorMessage(S.Send.Error.maxError)
+                self?.showErrorMessage(L10n.Send.Error.maxError)
                 return
             }
             self?.isSendingMax = true
@@ -290,9 +290,9 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
                     self?.currentFeeBasis = fee
                     
                 case .failure:
-                    self?.showAlert(title: S.Alert.ethBalanceLow,
-                                    message: S.ErrorMessages.notEnouthBalanceForFee,
-                                    buttonLabel: S.Button.ok)
+                    self?.showAlert(title: L10n.Alert.ethBalance,
+                                    message: L10n.ErrorMessages.ethBalanceLow,
+                                    buttonLabel: L10n.Button.ok)
                 }
                 self?.group?.leave()
             }
@@ -343,7 +343,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             var feeAmount = Amount(cryptoAmount: feeBasis.fee, currency: sender.wallet.feeCurrency)
             feeAmount.rate = rate
             let feeText = feeAmount.description
-            feeOutput = String(format: S.Send.fee, feeText)
+            feeOutput = L10n.Send.fee(feeText)
         }
         
         let balanceLabelattributes: [NSAttributedString.Key: Any] = [
@@ -365,14 +365,14 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         ]
         
         let balanceOutput = NSMutableAttributedString()
-        balanceOutput.append(NSAttributedString(string: isSendingMax ? S.Send.sendingMax : S.Send.balanceString, attributes: balanceLabelattributes))
+        balanceOutput.append(NSAttributedString(string: isSendingMax ? L10n.Send.sendingMax : L10n.Send.balanceString, attributes: balanceLabelattributes))
         balanceOutput.append(NSAttributedString(string: balanceAmount.description, attributes: balanceAttributes))
         return (balanceOutput, NSAttributedString(string: feeOutput, attributes: feeAttributes), !isSendingMax)
     }
     
     @objc private func pasteTapped() {
         guard let pasteboard = UIPasteboard.general.string, !pasteboard.utf8.isEmpty else {
-            return showAlert(title: S.Alert.error, message: S.Send.emptyPasteboard, buttonLabel: S.Button.ok)
+            return showAlert(title: L10n.Alert.error, message: L10n.Send.emptyPasteboard, buttonLabel: L10n.Button.ok)
         }
         
         if let resolver = ResolvableFactory.resolver(pasteboard) {
@@ -387,8 +387,8 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         }
         
         guard let request = PaymentRequest(string: pasteboard, currency: currency) else {
-            let message = String.init(format: S.Send.invalidAddressOnPasteboard, currency.name)
-            return showAlert(title: S.Send.invalidAddressTitle, message: message, buttonLabel: S.Button.ok)
+            let message = L10n.Send.invalidAddressOnPasteboard(currency.name)
+            return showAlert(title: L10n.Send.invalidAddressTitle, message: message, buttonLabel: L10n.Button.ok)
         }
         self.paymentProtocolRequest = nil
         handleRequest(request)
@@ -403,8 +403,8 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             let address = addressDetails.0
             let tag = addressDetails.1
             guard currency.isValidAddress(address) else {
-                let message = String(format: S.Send.invalidAddressMessage, currency.name)
-                showAlert(title: S.Send.invalidAddressTitle, message: message, buttonLabel: S.Button.ok)
+                let message = L10n.Send.invalidAddressMessage(currency.name)
+                showAlert(title: L10n.Send.invalidAddressTitle, message: message, buttonLabel: L10n.Button.ok)
                 resetPayId()
                 return
             }
@@ -428,13 +428,13 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             if shouldShowError {
                 switch type {
                 case .fio:
-                    showErrorMessage(S.FIO.invalid)
+                    showErrorMessage(L10n.Send.fioInvalid)
                 case .payId:
-                    showErrorMessage(S.PayId.invalidPayID)
+                    showErrorMessage(L10n.Send.payIdInvalid)
                 case .uDomains:
-                    showErrorMessage(S.UDomains.invalid)
+                    showErrorMessage(L10n.UDomains.invalid)
                 default:
-                    showErrorMessage(S.UDomains.invalid)
+                    showErrorMessage(L10n.UDomains.invalid)
                 }
             }
             addressCell.hideResolveableState()
@@ -472,7 +472,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         guard paymentProtocolRequest == nil else { return true }
         
         guard let address = address, !address.isEmpty else {
-            showAlert(title: S.Alert.error, message: S.Send.noAddress, buttonLabel: S.Button.ok)
+            showAlert(title: L10n.Alert.error, message: L10n.Send.noAddress, buttonLabel: L10n.Button.ok)
             return false
         }
         
@@ -481,18 +481,18 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         //Without this, the fee estimate error will be shown and the user won't
         //know that the address is invalid.
         guard currency.isValidAddress(address) else {
-            let message = String(format: S.Send.invalidAddressMessage, currency.name)
-            showAlert(title: S.Send.invalidAddressTitle, message: message, buttonLabel: S.Button.ok)
+            let message = L10n.Send.invalidAddressMessage(currency.name)
+            showAlert(title: L10n.Send.invalidAddressTitle, message: message, buttonLabel: L10n.Button.ok)
             return false
         }
 
         guard let amount = amount, !amount.isZero else {
-            showAlert(title: S.Alert.error, message: S.Send.noAmount, buttonLabel: S.Button.ok)
+            showAlert(title: L10n.Alert.error, message: L10n.Send.noAmount, buttonLabel: L10n.Button.ok)
             return false
         }
         
         guard let feeBasis = currentFeeBasis else {
-            showAlert(title: S.Alert.error, message: "No fee estimate", buttonLabel: S.Button.ok)
+            showAlert(title: L10n.Alert.error, message: "No fee estimate", buttonLabel: L10n.Button.ok)
             return false
         }
         
@@ -501,7 +501,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         if let attribute = attributeCell?.attribute, currency.isXRP,
            !attribute.isEmpty {
             if UInt32(attribute) == nil {
-               showAlert(title: S.Alert.error, message: "Destination tag is too long.", buttonLabel: S.Button.ok)
+               showAlert(title: L10n.Alert.error, message: "Destination tag is too long.", buttonLabel: L10n.Button.ok)
                return false
             }
             attributeText = attribute
@@ -517,31 +517,31 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
     private func handleValidationResult(_ result: SenderValidationResult, protocolRequest: PaymentProtocolRequest? = nil) -> Bool {
         switch result {
         case .noFees:
-            showAlert(title: S.Alert.error, message: S.Send.noFeesError, buttonLabel: S.Button.ok)
+            showAlert(title: L10n.Alert.error, message: L10n.Send.noFeesError, buttonLabel: L10n.Button.ok)
             
         case .invalidAddress:
-            let message = String(format: S.Send.invalidAddressMessage, currency.name)
-            showAlert(title: S.Send.invalidAddressTitle, message: message, buttonLabel: S.Button.ok)
+            let message = L10n.Send.invalidAddressMessage(currency.name)
+            showAlert(title: L10n.Send.invalidAddressTitle, message: message, buttonLabel: L10n.Button.ok)
             
         case .ownAddress:
-            showAlert(title: S.Alert.error, message: S.Send.containsAddress, buttonLabel: S.Button.ok)
+            showAlert(title: L10n.Alert.error, message: L10n.Send.containsAddress, buttonLabel: L10n.Button.ok)
             
         case .outputTooSmall(let minOutput), .paymentTooSmall(let minOutput):
             let amountText = "\(minOutput.tokenDescription) (\(minOutput.fiatDescription))"
-            let message = String(format: S.PaymentProtocol.Errors.smallPayment, amountText)
-            showAlert(title: S.Alert.error, message: message, buttonLabel: S.Button.ok)
+            let message = L10n.PaymentProtocol.Errors.smallPayment(amountText)
+            showAlert(title: L10n.Alert.error, message: message, buttonLabel: L10n.Button.ok)
             
         case .insufficientFunds:
-            showAlert(title: S.Alert.error, message: S.Send.insufficientFunds, buttonLabel: S.Button.ok)
+            showAlert(title: L10n.Alert.error, message: L10n.Send.insufficientFunds, buttonLabel: L10n.Button.ok)
             
         case .failed:
-            showAlert(title: S.Alert.error, message: S.Send.createTransactionError, buttonLabel: S.Button.ok)
+            showAlert(title: L10n.Alert.error, message: L10n.Send.creatTransactionError, buttonLabel: L10n.Button.ok)
             
         case .insufficientGas:
             showInsufficientGasError()
             
         case .identityNotCertified(let message):
-            showError(title: S.Send.identityNotCertified, message: message, ignore: { [unowned self] in
+            showError(title: L10n.Send.identityNotCertified, message: message, ignore: { [unowned self] in
                 self.didIgnoreIdentityNotCertified = true
                 if let protoReq = protocolRequest {
                     self.didReceivePaymentProtocolRequest(protoReq)
@@ -549,10 +549,10 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             })
             return false
         case .invalidRequest(let errorMessage):
-            showAlert(title: S.PaymentProtocol.Errors.badPaymentRequest, message: errorMessage, buttonLabel: S.Button.ok)
+            showAlert(title: L10n.PaymentProtocol.Errors.badPaymentRequest, message: errorMessage, buttonLabel: L10n.Button.ok)
             return false
         case .usedAddress:
-            showError(title: S.Send.UsedAddress.title, message: "\(S.Send.UsedAddress.firstLine)\n\n\(S.Send.UsedAddress.secondLine)", ignore: { [unowned self] in
+            showError(title: L10n.Send.UsedAddress.title, message: "\(L10n.Send.UsedAddress.firstLine)\n\n\(L10n.Send.UsedAddress.secondLIne)", ignore: { [unowned self] in
                 self.didIgnoreUsedAddressWarning = true
             })
             return false
@@ -607,7 +607,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         let pinVerifier: PinVerifier = { [weak self] pinValidationCallback in
             guard let `self` = self else { return assertionFailure() }
             self.sendingActivity.dismiss(animated: false) {
-                self.presentVerifyPin?(S.VerifyPin.authorize) { pin in
+                self.presentVerifyPin?(L10n.VerifyPin.authorize) { pin in
                     self.parent?.view.isFrameChangeBlocked = false
                     pinValidationCallback(pin)
                     self.present(self.sendingActivity, animated: false)
@@ -628,11 +628,11 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
                     }
                     self.saveEvent("send.success")
                 case .creationError(let message):
-                    self.showAlert(title: S.Alerts.sendFailure, message: message, buttonLabel: S.Button.ok)
+                    self.showAlert(title: L10n.Alerts.sendFailure, message: message, buttonLabel: L10n.Button.ok)
                     self.saveEvent("send.publishFailed", attributes: ["errorMessage": message])
                 case .publishFailure(let code, let message):
                     let codeStr = code == 0 ? "" : " (\(code))"
-                    self.showAlert(title: S.Send.sendError, message: message + codeStr, buttonLabel: S.Button.ok)
+                    self.showAlert(title: L10n.Send.sendError, message: message + codeStr, buttonLabel: L10n.Button.ok)
                     self.saveEvent("send.publishFailed", attributes: ["errorMessage": "\(message) (\(code))"])
                 case .insufficientGas(let rpcErrorMessage):
                     self.showInsufficientGasError()
@@ -659,7 +659,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
                 attributeCell?.setContent(request.destinationTag)
             }
         case .remote:
-            let loadingView = BRActivityViewController(message: S.Send.loadingRequest)
+            let loadingView = BRActivityViewController(message: L10n.Send.loadingRequest)
             present(loadingView, animated: true, completion: nil)
             request.fetchRemoteRequest(completion: { [weak self] request in
                 DispatchQueue.main.async {
@@ -667,7 +667,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
                         if let paymentProtocolRequest = request?.paymentProtocolRequest {
                             self?.didReceivePaymentProtocolRequest(paymentProtocolRequest)
                         } else {
-                            self?.showErrorMessage(S.Send.remoteRequestError)
+                            self?.showErrorMessage(L10n.Send.remoteRequestError)
                         }
                     })
                 }
@@ -716,13 +716,13 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
         addressCell.hideActionButtons()
         amountView.isEditable = false
         sender.displayPaymentProtocolResponse = { [weak self] in
-            self?.showAlert(title: S.Import.success, message: $0)
+            self?.showAlert(title: L10n.Import.success, message: $0)
         }
     }
     
     private func handleZeroAmountPaymentProtocolRequest(_ protoReq: PaymentProtocolRequest) {
         guard let address = protoReq.primaryTarget?.description else {
-            showErrorMessage(S.Send.invalidAddressTitle); return
+            showErrorMessage(L10n.Send.invalidAddressTitle); return
         }
         //After this point, a zero amount Payment protocol request behaves like a
         //regular send except the address cell isn't editable
@@ -735,10 +735,10 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
 
     private func showError(title: String, message: String, ignore: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: S.Button.ignore, style: .default, handler: { _ in
+        alertController.addAction(UIAlertAction(title: L10n.Button.ignore, style: .default, handler: { _ in
             ignore()
         }))
-        alertController.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
     
@@ -746,14 +746,14 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
     private func showInsufficientGasError() {
         guard let feeAmount = self.currentFeeBasis?.fee else { return assertionFailure() }
         
-        let message = String(format: S.Send.insufficientGasMessage, feeAmount.description)
+        let message = L10n.Send.insufficientGasMessage(feeAmount.description)
 
-        let alertController = UIAlertController(title: S.Send.insufficientGasTitle, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: S.Button.yes, style: .default, handler: { [weak self] _ in
+        let alertController = UIAlertController(title: L10n.Send.insufficientGasTitle, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: L10n.Button.yes, style: .default, handler: { [weak self] _ in
             guard let `self` = self else { return }
             Store.trigger(name: .showCurrency(self.sender.wallet.feeCurrency))
         }))
-        alertController.addAction(UIAlertAction(title: S.Button.no, style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: L10n.Button.no, style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
 
@@ -796,6 +796,6 @@ extension SendViewController: ModalDisplayable {
     }
 
     var modalTitle: String {
-        return "\(S.Send.title) \(currency.code)"
+        return "\(L10n.Send.title) \(currency.code)"
     }
 }

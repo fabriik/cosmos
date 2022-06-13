@@ -11,8 +11,8 @@ import UIKit
 class EnableSegwitView: UIView {
     
     private let label = UILabel.wrapping(font: .customBody(size: 13.0), color: .white)
-    private let cancel = BRDButton(title: S.Button.cancel, type: .secondary)
-    private let continueButton = BRDButton(title: S.Button.continueAction, type: .primary)
+    private let cancel = BRDButton(title: L10n.Button.cancel, type: .secondary)
+    private let continueButton = BRDButton(title: L10n.Button.continueAction, type: .primary)
     
     var didCancel: (() -> Void)? {
         didSet { cancel.tap = didCancel }
@@ -60,7 +60,7 @@ class EnableSegwitView: UIView {
         backgroundColor = Theme.transparentBlue
         layer.masksToBounds = true
         layer.cornerRadius = 8.0
-        label.text = S.Segwit.confirmChoiceLayout
+        label.text = L10n.Segwit.confirmChoiceLayout
     }
     
 }

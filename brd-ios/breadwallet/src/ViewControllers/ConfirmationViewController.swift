@@ -54,9 +54,9 @@ class ConfirmationViewController: UIViewController, ContentBoxPresenter, Trackab
     var successCallback: (() -> Void)?
     var cancelCallback: (() -> Void)?
 
-    private let header = ModalHeaderView(title: S.Confirmation.title, style: .dark)
-    private let cancel = BRDButton(title: S.Button.cancel, type: .secondary)
-    private let sendButton = BRDButton(title: S.Confirmation.send, type: .primary, image: (LAContext.biometricType() == .face ? #imageLiteral(resourceName: "FaceId") : #imageLiteral(resourceName: "TouchId")))
+    private let header = ModalHeaderView(title: L10n.Confirmation.title, style: .dark)
+    private let cancel = BRDButton(title: L10n.Button.cancel, type: .secondary)
+    private let sendButton = BRDButton(title: L10n.Confirmation.send, type: .primary, image: (LAContext.biometricType() == .face ? #imageLiteral(resourceName: "FaceId") : #imageLiteral(resourceName: "TouchId")))
 
     private let payLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
     private let toLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
@@ -169,9 +169,9 @@ class ConfirmationViewController: UIViewController, ContentBoxPresenter, Trackab
 
     private func confirmationFeeLabel() -> String {
         if amount.currency != feeAmount.currency && feeAmount.currency.isEthereum {
-            return S.Confirmation.feeLabelETH
+            return L10n.Confirmation.feeLabelETH
         } else {
-            return S.Confirmation.feeLabel
+            return L10n.Confirmation.feeLabel
         }
     }
     
@@ -184,7 +184,7 @@ class ConfirmationViewController: UIViewController, ContentBoxPresenter, Trackab
                 payLabel.text = "Stake"
             }
         } else {
-            payLabel.text = S.Confirmation.send
+            payLabel.text = L10n.Confirmation.send
         }
 
         let totalAmount = (amount.currency == feeAmount.currency) ? amount + feeAmount : amount
@@ -198,19 +198,19 @@ class ConfirmationViewController: UIViewController, ContentBoxPresenter, Trackab
             amountLabel.text = amount.combinedDescription
         }
 
-        toLabel.text = isStake ? "Validator Address" : S.Confirmation.to
+        toLabel.text = isStake ? "Validator Address" : L10n.Confirmation.to
         address.text = addressText
         address.lineBreakMode = .byTruncatingMiddle
 
         processingTime.text = currency.feeText(forIndex: displayFeeLevel.rawValue)
 
-        sendLabel.text = S.Confirmation.amountLabel
+        sendLabel.text = L10n.Confirmation.amountLabel
         sendLabel.adjustsFontSizeToFitWidth = true
         send.text = amount.description
         feeLabel.text = confirmationFeeLabel()
         fee.text = feeAmount.description
 
-        totalLabel.text = S.Confirmation.totalLabel
+        totalLabel.text = L10n.Confirmation.totalLabel
         total.text = displayTotal.description
 
         if currency.isERC20Token {

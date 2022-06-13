@@ -132,7 +132,7 @@ class VerifyPinViewController: UIViewController, ContentBoxPresenter {
         contentBox.layer.shadowRadius = 4.0
         contentBox.layer.shadowOffset = .zero
 
-        titleLabel.text = S.VerifyPin.title
+        titleLabel.text = L10n.VerifyPin.title
         body.text = bodyText
         body.numberOfLines = 0
         body.lineBreakMode = .byWordWrapping
@@ -156,7 +156,7 @@ class VerifyPinViewController: UIViewController, ContentBoxPresenter {
             self?.didCancel?()
             self?.dismiss(animated: true, completion: nil)
         }
-        cancel.setTitle(S.Button.cancel, for: .normal)
+        cancel.setTitle(L10n.Button.cancel, for: .normal)
         view.backgroundColor = .clear
     }
 

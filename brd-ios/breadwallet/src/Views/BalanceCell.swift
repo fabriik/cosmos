@@ -139,7 +139,7 @@ class BalanceCell: UIView, Subscriber {
     
     private func setInitialData() {
         balanceLabel.textColor = .transparentWhiteText
-        balanceLabel.text = S.Account.balance
+        balanceLabel.text = L10n.Account.balance
         
         primaryBalance.textAlignment = .right
         secondaryBalance.textAlignment = .right

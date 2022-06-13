@@ -186,8 +186,8 @@ private class BRBrowserViewControllerInternal: UIViewController, WKNavigationDel
     }
     
     func showError(_ errString: String) {
-        let alertView = UIAlertController(title: S.Alert.error, message: errString, preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
+        let alertView = UIAlertController(title: L10n.Alert.error, message: errString, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: nil))
         self.present(alertView, animated: true, completion: nil)
     }
     

@@ -31,7 +31,7 @@ class RequestAmountViewController: UIViewController {
     private let qrCode = UIImageView()
     private let address = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
-    private let share = BRDButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"))
+    private let share = BRDButton(title: L10n.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"))
     private let border = UIView()
     private var topSharePopoutConstraint: NSLayoutConstraint?
     private let receiveAddress: String
@@ -130,13 +130,13 @@ class RequestAmountViewController: UIViewController {
     private func setupCopiedMessage() {
         let copiedMessage = UILabel(font: .customMedium(size: 14.0))
         copiedMessage.textColor = .black
-        copiedMessage.text = S.Receive.copied
+        copiedMessage.text = L10n.Receive.copied
         copiedMessage.textAlignment = .center
         addressPopout.contentView = copiedMessage
     }
 
     @objc private func shareTapped() {
-        guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
+        guard let amount = amount else { return showErrorMessage(L10n.RequestAnAmount.noAmount) }
         let text = PaymentRequest.requestString(withAddress: receiveAddress, forAmount: amount)
         if let image = qrCode.image {
             shareAddress?(text, image)
@@ -190,6 +190,6 @@ extension RequestAmountViewController: ModalDisplayable {
     }
 
     var modalTitle: String {
-        return S.Receive.request
+        return L10n.Receive.request
     }
 }

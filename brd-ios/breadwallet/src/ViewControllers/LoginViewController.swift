@@ -79,7 +79,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         header.textColor = Theme.primaryText
         header.font = Fonts.Title.four
         header.textAlignment = .center
-        header.text = S.UpdatePin.securedWallet
+        header.text = L10n.UpdatePin.securedWallet
         
         return header
     }()
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         instruction.textColor = Theme.secondaryText
         instruction.font = Fonts.Body.two
         instruction.textAlignment = .center
-        instruction.text = S.UpdatePin.enterYourPin
+        instruction.text = L10n.UpdatePin.enterYourPin
         
         return instruction
     }()
@@ -101,7 +101,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         NSAttributedString.Key.font: Fonts.Subtitle.two,
         NSAttributedString.Key.foregroundColor: Theme.primaryText]
 
-        let attributedString = NSMutableAttributedString(string: S.RecoverWallet.headerResetPin, attributes: attributes)
+        let attributedString = NSMutableAttributedString(string: L10n.RecoverWallet.headerResetPin, attributes: attributes)
         resetPinButton.setAttributedTitle(attributedString, for: .normal)
         resetPinButton.addTarget(self, action: #selector(resetPinTapped), for: .touchUpInside)
         
@@ -355,13 +355,13 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     @objc func biometricsTapped() {
         guard !isWalletDisabled else { return }
         if case .initialLaunch = context {
-            keyMaster.createAccount(withBiometricsPrompt: S.UnlockScreen.touchIdPrompt, completion: { account in
+            keyMaster.createAccount(withBiometricsPrompt: L10n.UnlockScreen.touchIdPrompt, completion: { account in
                 if let account = account {
                     self.authenticationSucceded(forLoginWithAccount: account)
                 }
             })
         } else {
-            keyMaster.authenticate(withBiometricsPrompt: S.UnlockScreen.touchIdPrompt, completion: { result in
+            keyMaster.authenticate(withBiometricsPrompt: L10n.UnlockScreen.touchIdPrompt, completion: { result in
                 if result == .success {
                     self.authenticationSucceded()
                 }
@@ -385,7 +385,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         let df = DateFormatter()
         df.setLocalizedDateFormatFromTemplate(unlockInterval > C.secondsInDay ? "h:mm:ss a MMM d, yyy" : "h:mm:ss a")
 
-        disabledView.setTimeLabel(string: String(format: S.UnlockScreen.disabled, df.string(from: disabledUntilDate)))
+        disabledView.setTimeLabel(string: L10n.UnlockScreen.disabled(df.string(from: disabledUntilDate)))
 
         pinPad.view.isUserInteractionEnabled = false
         unlockTimer?.invalidate()
@@ -418,11 +418,11 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     
     private func showJailbreakWarnings(isJailbroken: Bool) {
         guard isJailbroken else { return }
-        let alert = UIAlertController(title: S.JailbreakWarnings.title, message: S.JailbreakWarnings.messageWithBalance, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.JailbreakWarnings.ignore, style: .default, handler: { _ in
+        let alert = UIAlertController(title: L10n.JailbreakWarnings.title, message: L10n.JailbreakWarnings.messageWithBalance, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.JailbreakWarnings.ignore, style: .default, handler: { _ in
             self.saveEvent(self.makeEventName([EventContext.jailbreak.name, Event.ignore.name]))
         }))
-        alert.addAction(UIAlertAction(title: S.JailbreakWarnings.close, style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: L10n.JailbreakWarnings.close, style: .default, handler: { _ in
             self.saveEvent(self.makeEventName([EventContext.jailbreak.name, Event.close.name]))
             exit(0)
         }))
@@ -446,9 +446,9 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         //If unlock time is greater than 4 hours allow wiping
         guard unlockInterval > (C.secondsInMinute * 60 * 4.0) else { return }
         let alertView = UIAlertController(title: "",
-                                          message: S.UnlockScreen.wipePrompt, preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: S.Button.cancel, style: .default, handler: nil))
-        alertView.addAction(UIAlertAction(title: S.JailbreakWarnings.wipe, style: .destructive, handler: { _ in
+                                          message: L10n.UnlockScreen.wipePrompt, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: L10n.Button.cancel, style: .default, handler: nil))
+        alertView.addAction(UIAlertAction(title: L10n.JailbreakWarnings.wipe, style: .destructive, handler: { _ in
             Store.trigger(name: .wipeWalletNoPrompt)
         }))
         present(alertView, animated: true, completion: nil)

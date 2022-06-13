@@ -43,7 +43,7 @@ class TxAddressCell: TxDetailRowCell {
         
         addressButton.tap = strongify(self) { myself in
             myself.addressButton.tempDisable()
-            Store.trigger(name: .lightWeightAlert(S.Receive.copied))
+            Store.trigger(name: .lightWeightAlert(L10n.Receive.copied))
             UIPasteboard.general.string = myself.addressButton.titleLabel?.text
         }
     }

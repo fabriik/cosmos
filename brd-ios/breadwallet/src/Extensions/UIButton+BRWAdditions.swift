@@ -62,17 +62,17 @@ extension UIButton {
     }
 
     static var close: UIButton {
-        let accessibilityLabel = E.isScreenshots ? "Close" : S.AccessibilityLabels.close
+        let accessibilityLabel = E.isScreenshots ? "Close" : L10n.AccessibilityLabels.close
         return UIButton.icon(image: #imageLiteral(resourceName: "CloseModern"), accessibilityLabel: accessibilityLabel)
     }
 
     static var closeSmall: UIButton {
-        let accessibilityLabel = E.isScreenshots ? "Close" : S.AccessibilityLabels.close
+        let accessibilityLabel = E.isScreenshots ? "Close" : L10n.AccessibilityLabels.close
         return UIButton.icon(image: #imageLiteral(resourceName: "Close-X-small"), accessibilityLabel: accessibilityLabel)
     }
 
     static func buildFaqButton(articleId: String, currency: Currency? = nil, tapped: (() -> Void)? = nil) -> UIButton {
-        let button = UIButton.icon(image: #imageLiteral(resourceName: "Faq"), accessibilityLabel: S.AccessibilityLabels.faq)
+        let button = UIButton.icon(image: #imageLiteral(resourceName: "Faq"), accessibilityLabel: L10n.AccessibilityLabels.faq)
         button.tintColor = Theme.blueBackground
         button.tap = {
             Store.trigger(name: .presentFaq(articleId, currency))
@@ -117,7 +117,7 @@ extension UIButton {
 extension UIBarButtonItem {
     
     static func skipBarButtonItem() -> UIBarButtonItem {
-        let skip = UIBarButtonItem(title: S.Button.skip, style: .plain, target: nil, action: nil)
+        let skip = UIBarButtonItem(title: L10n.Button.skip, style: .plain, target: nil, action: nil)
         skip.tintColor = Theme.tertiaryText
         skip.setTitleTextAttributes([NSAttributedString.Key.font: Theme.body2], for: .normal)
         skip.setTitleTextAttributes([NSAttributedString.Key.font: Theme.body2], for: .highlighted)

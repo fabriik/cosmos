@@ -24,9 +24,9 @@ class NodeSelectorViewController: UIViewController, Trackable {
     init(wallet: Wallet) {
         self.wallet = wallet
         if UserDefaults.customNodeIP == nil {
-            button = BRDButton(title: S.NodeSelector.manualButton, type: .primary)
+            button = BRDButton(title: L10n.NodeSelector.manualButton, type: .primary)
         } else {
-            button = BRDButton(title: S.NodeSelector.automaticButton, type: .primary)
+            button = BRDButton(title: L10n.NodeSelector.automaticButton, type: .primary)
         }
         super.init(nibName: nil, bundle: nil)
     }
@@ -64,9 +64,9 @@ class NodeSelectorViewController: UIViewController, Trackable {
 
     private func setInitialData() {
         view.backgroundColor = .darkBackground
-        titleLabel.text = S.NodeSelector.title
-        nodeLabel.text = S.NodeSelector.nodeLabel
-        statusLabel.text = S.NodeSelector.statusLabel
+        titleLabel.text = L10n.NodeSelector.title
+        nodeLabel.text = L10n.NodeSelector.nodeLabel
+        statusLabel.text = L10n.NodeSelector.statusLabel
         button.tap = strongify(self) { myself in
             if UserDefaults.customNodeIP == nil {
                 myself.switchToManual()
@@ -81,19 +81,19 @@ class NodeSelectorViewController: UIViewController, Trackable {
     @objc private func setStatusText() {
         switch wallet.manager.state {
         case .disconnected, .deleted:
-            status.text = S.NodeSelector.notConnected
+            status.text = L10n.NodeSelector.notConnected
         case .created:
-            status.text = S.NodeSelector.connecting
+            status.text = L10n.NodeSelector.connecting
         case .connected:
-            status.text = S.NodeSelector.connected
+            status.text = L10n.NodeSelector.connected
         default:
-            status.text = S.NodeSelector.connected
+            status.text = L10n.NodeSelector.connected
         }
         
         if let ip = UserDefaults.customNodeIP {
             node.text = "\(ip):\(UserDefaults.customNodePort ?? C.standardPort)"
         } else {
-            node.text = S.NodeSelector.automaticLabel
+            node.text = L10n.NodeSelector.automatic
         }
     }
 
@@ -102,14 +102,14 @@ class NodeSelectorViewController: UIViewController, Trackable {
         saveEvent("nodeSelector.switchToAuto")
         UserDefaults.customNodeIP = nil
         UserDefaults.customNodePort = nil
-        button.title = S.NodeSelector.manualButton
+        button.title = L10n.NodeSelector.manualButton
         reconnectWalletManager()
     }
 
     private func switchToManual() {
-        let alert = UIAlertController(title: S.NodeSelector.enterTitle, message: S.NodeSelector.enterBody, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
-        let okAction = UIAlertAction(title: S.Button.ok, style: .default, handler: { [weak self] _ in
+        let alert = UIAlertController(title: L10n.NodeSelector.enterTitle, message: L10n.NodeSelector.enterBody, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
+        let okAction = UIAlertAction(title: L10n.Button.ok, style: .default, handler: { [weak self] _ in
             guard let `self` = self else { return }
             guard let ip = alert.textFields?.first,
                 let port = alert.textFields?.last,
@@ -120,7 +120,7 @@ class NodeSelectorViewController: UIViewController, Trackable {
                 UserDefaults.customNodePort = Int(portText)
             }
             self.reconnectWalletManager()
-            self.button.title = S.NodeSelector.automaticButton
+            self.button.title = L10n.NodeSelector.automaticButton
         })
         self.okAction = okAction
         self.okAction?.isEnabled = false

@@ -73,8 +73,8 @@ class EnterPhraseCell: UICollectionViewCell {
 
     // MARK: - Private
     let textField = UITextField()
-    private let nextField = UIButton.icon(image: #imageLiteral(resourceName: "RightArrow"), accessibilityLabel: S.RecoverWallet.rightArrow)
-    private let previousField = UIButton.icon(image: #imageLiteral(resourceName: "LeftArrow"), accessibilityLabel: S.RecoverWallet.leftArrow)
+    private let nextField = UIButton.icon(image: #imageLiteral(resourceName: "RightArrow"), accessibilityLabel: L10n.RecoverWallet.rightArrow)
+    private let previousField = UIButton.icon(image: #imageLiteral(resourceName: "LeftArrow"), accessibilityLabel: L10n.RecoverWallet.leftArrow)
     private let done = UIButton(type: .system)
     fileprivate let focusBar = UIView(color: Theme.accent)
     fileprivate var hasDisplayedInvalidState = false
@@ -130,7 +130,7 @@ class EnterPhraseCell: UICollectionViewCell {
 
         previousField.tintColor = .secondaryGrayText
         nextField.tintColor = .secondaryGrayText
-        done.setTitle(S.RecoverWallet.done, for: .normal)
+        done.setTitle(L10n.RecoverWallet.done, for: .normal)
     }
 
     private var accessoryView: UIView {

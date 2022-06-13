@@ -44,7 +44,7 @@ class MessageUIPresenter: NSObject, Trackable {
         guard MFMailComposeViewController.canSendMail() else { showEmailUnavailableAlert(); return }
         
         let attachments = getLogAttachments()
-        guard !attachments.isEmpty else { showErrorMessage(S.ErrorMessages.noLogsFound); return }
+        guard !attachments.isEmpty else { showErrorMessage(L10n.Settings.noLogsFound); return }
         
         originalTitleTextAttributes = UINavigationBar.appearance().titleTextAttributes
         UINavigationBar.appearance().titleTextAttributes = nil
@@ -118,21 +118,21 @@ class MessageUIPresenter: NSObject, Trackable {
 
     private func showEmailUnavailableAlert() {
         saveEvent("receive.emailUnavailable")
-        let alert = UIAlertController(title: S.ErrorMessages.emailUnavailableTitle, message: S.ErrorMessages.emailUnavailableMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
+        let alert = UIAlertController(title: L10n.ErrorMessages.emailUnavailableTitle, message: L10n.ErrorMessages.emailUnavailableMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: nil))
         presenter?.present(alert, animated: true, completion: nil)
     }
 
     private func showMessageUnavailableAlert() {
         saveEvent("receive.messagingUnavailable")
-        let alert = UIAlertController(title: S.ErrorMessages.messagingUnavailableTitle, message: S.ErrorMessages.messagingUnavailableMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
+        let alert = UIAlertController(title: L10n.ErrorMessages.messagingUnavailableTitle, message: L10n.ErrorMessages.messagingUnavailableMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: nil))
         presenter?.present(alert, animated: true, completion: nil)
     }
 
     private func showErrorMessage(_ message: String) {
-        let alert = UIAlertController(title: S.Alert.error, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
+        let alert = UIAlertController(title: L10n.Alert.error, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Button.ok, style: .default, handler: nil))
         presenter?.present(alert, animated: true, completion: nil)
     }
 }

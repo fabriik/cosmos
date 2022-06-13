@@ -32,11 +32,11 @@ public struct Baker: Codable {
     var serviceTypeString: String {
         switch serviceType {
         case "multiasset":
-            return S.Staking.tezosMultiasset
+            return L10n.Staking.tezosMultiasset
         case "tezos_only":
-            return S.Staking.tezosOnly
+            return L10n.Staking.tezosOnly
         case "tezos_dune":
-            return S.Staking.tezosDune
+            return L10n.Staking.tezosDune
         default:
             return ""
         }

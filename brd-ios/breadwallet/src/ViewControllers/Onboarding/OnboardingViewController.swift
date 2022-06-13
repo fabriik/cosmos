@@ -158,7 +158,7 @@ class OnboardingViewController: UIViewController {
     private let topButton = BRDButton(title: "", type: .primary)
     private let middleButton = BRDButton(title: "", type: .darkOpaque)
     private let bottomButton = BRDButton(title: "", type: .secondary)
-    private let nextButton = BRDButton(title: S.OnboardingScreen.next, type: .primary)
+    private let nextButton = BRDButton(title: L10n.Onboarding.next, type: .primary)
     
     // Constraints used to show and hide the bottom buttons.
     private var topButtonAnimationConstraint: NSLayoutConstraint?
@@ -345,16 +345,16 @@ class OnboardingViewController: UIViewController {
     
     private func setUpPages() {
         
-        pages.append(OnboardingPage(heading: S.OnboardingScreen.pageOneTitle,
+        pages.append(OnboardingPage(heading: L10n.OnboardingPageOne.title,
                                     subheading: "",
                                     videoClip: ""))
         
-        pages.append(OnboardingPage(heading: S.OnboardingScreen.pageTwoTitle,
+        pages.append(OnboardingPage(heading: L10n.OnboardingPageTwo.title,
                                     subheading: "",
                                     videoClip: "onboarding-video-globe"))
         
-        pages.append(OnboardingPage(heading: S.OnboardingScreen.pageThreeTitle,
-                                    subheading: S.OnboardingScreen.pageThreeSubtitle,
+        pages.append(OnboardingPage(heading: L10n.OnboardingPageThree.title,
+                                    subheading: L10n.OnboardingPageThree.subtitle,
                                     videoClip: "onboarding-video-coins-in"))
     }
     
@@ -425,9 +425,9 @@ class OnboardingViewController: UIViewController {
     private func topButtonText(pageIndex: Int) -> String {
         if pageIndex == 0 {
             if cloudBackupExists {
-                return S.CloudBackup.restoreButton
+                return L10n.CloudBackup.restoreButton
             } else {
-                return S.OnboardingScreen.getStarted
+                return L10n.Onboarding.getStarted
             }
         }
         return ""
@@ -436,7 +436,7 @@ class OnboardingViewController: UIViewController {
     private func middleButtonText(pageIndex: Int) -> String {
         //no middle button if no backup detected
         if pageIndex == 0 && cloudBackupExists {
-            return S.CloudBackup.recoverButton
+            return L10n.CloudBackup.recoverButton
         }
         return ""
     }
@@ -444,9 +444,9 @@ class OnboardingViewController: UIViewController {
     private func bottomButtonText(pageIndex: Int) -> String {
         if pageIndex == 0 {
             if cloudBackupExists {
-                return S.CloudBackup.createButton
+                return L10n.CloudBackup.createButton
             } else {
-                return S.OnboardingScreen.restoreWallet
+                return L10n.Onboarding.restoreWallet
             }
         }
         return ""
@@ -642,7 +642,7 @@ class OnboardingViewController: UIViewController {
             backButton.widthAnchor.constraint(equalToConstant: 20)
             ])
         
-        skipButton.setTitle(S.OnboardingScreen.skip, for: .normal)
+        skipButton.setTitle(L10n.Onboarding.skip, for: .normal)
         skipButton.titleLabel?.font = UIFont.onboardingSkipButton()
         skipButton.setTitleColor(.onboardingSkipButtonTitle, for: .normal)
         skipButton.addTarget(self, action: #selector(skipTapped(sender:)), for: .touchUpInside)
@@ -833,8 +833,8 @@ class OnboardingViewController: UIViewController {
     }
     
     private func middleButtonTapped() {
-        showAlert(message: S.CloudBackup.recoverWarning,
-                  button: S.CloudBackup.recoverButton,
+        showAlert(message: L10n.CloudBackup.recoverWarning,
+                  button: L10n.CloudBackup.recoverButton,
                   completion: { [weak self] in
                     self?.exitWith(action: .restoreWallet)
                     self?.logEvent(.restoreWalletButton, screen: .landingPage)
@@ -844,7 +844,7 @@ class OnboardingViewController: UIViewController {
     private func bottomButtonTapped() {
         if pageIndex == 0 {
             if cloudBackupExists {
-                showAlert(message: S.CloudBackup.createWarning, button: S.CloudBackup.createButton, completion: { [weak self] in
+                showAlert(message: L10n.CloudBackup.createWarning, button: L10n.CloudBackup.createButton, completion: { [weak self] in
                     self?.animateToNextPage()
                 })
             } else {
@@ -911,10 +911,10 @@ class OnboardingViewController: UIViewController {
     }
     
     private func showAlert(message: String, button: String, completion: @escaping () -> Void) {
-        let alert = UIAlertController(title: S.Alert.warning,
+        let alert = UIAlertController(title: L10n.Alert.warning,
                                       message: message,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: {_ in }))
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: {_ in }))
         alert.addAction(UIAlertAction(title: button, style: .default, handler: {_ in
             completion()
         }))

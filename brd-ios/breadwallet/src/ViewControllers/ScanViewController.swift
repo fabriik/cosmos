@@ -14,9 +14,9 @@ typealias ScanCompletion = (QRCode?) -> Void
 class ScanViewController: UIViewController, Trackable {
 
     static func presentCameraUnavailableAlert(fromRoot: UIViewController) {
-        let alertController = UIAlertController(title: S.Send.cameraUnavailableTitle, message: S.Send.cameraUnavailableMessage, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: S.Button.settings, style: .`default`, handler: { _ in
+        let alertController = UIAlertController(title: L10n.Send.cameraUnavailableTitle, message: L10n.Send.cameraunavailableMessage, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: L10n.Button.settings, style: .`default`, handler: { _ in
             if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
                 UIApplication.shared.open(appSettings)
             }
@@ -36,7 +36,7 @@ class ScanViewController: UIViewController, Trackable {
     fileprivate let session = AVCaptureSession()
     private let toolbar = UIStackView()
     private let close = UIButton.close
-    private let flash = UIButton.icon(image: #imageLiteral(resourceName: "Flash"), accessibilityLabel: S.Scanner.flashButtonLabel)
+    private let flash = UIButton.icon(image: #imageLiteral(resourceName: "Flash"), accessibilityLabel: L10n.Scanner.flashButtonLabel)
     private let cameraRoll: UIButton = {
         let button: UIButton
         if #available(iOS 13.0, *) {
