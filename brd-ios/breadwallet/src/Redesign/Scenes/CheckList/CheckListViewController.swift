@@ -43,7 +43,6 @@ class CheckListViewController: BaseTableViewController<BaseCoordinator,
             make.leading.trailing.top.equalToSuperview()
             make.bottom.equalTo(confirmButton.snp.top)
         }
-        tableView.register(WrapperTableViewCell<ChecklistItemView>.self)
         confirmButton.configure(with: Presets.Button.primary)
         
         confirmButton.addTarget(self, action: #selector(confirmTapped(_:)), for: .touchUpInside)
@@ -78,22 +77,6 @@ class CheckListViewController: BaseTableViewController<BaseCoordinator,
             cell = UITableViewCell()
         }
         cell.setupCustomMargins(vertical: .huge, horizontal: .medium)
-        
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, checkmarCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
-        guard let cell: WrapperTableViewCell<ChecklistItemView> = tableView.dequeueReusableCell(for: indexPath),
-              let model = sectionRows[section]?[indexPath.row] as? ChecklistItemViewModel else {
-            return UITableViewCell()
-        }
-        
-        cell.setup { view in
-            view.configure(with: .init())
-            view.setup(with: model)
-            view.setupCustomMargins(horizontal: .large)
-        }
         
         return cell
     }
