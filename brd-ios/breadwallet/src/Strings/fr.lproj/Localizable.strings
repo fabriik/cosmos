@@ -513,7 +513,7 @@
 /* You can customize your Face ID Spending Limit from the [menu] */
 "FaceIDSettings.customizeText" = "Vous pouvez personnaliser votre limite de dépense Face ID à partir de %1$@.";
 
-/* Text describing the purpose of the Face ID settings in the BRD app. */
+/* Text describing the purpose of the Face ID settings in the Fabriik app. */
 "FaceIDSettings.explanatoryText" = "Utilisez Face ID pour déverrouiller votre application Fabriik et envoyer de l'argent.";
 
 /* Face Id screen label */
@@ -522,7 +522,7 @@
 /* Title of the screen for setting the Face ID Spending Limit */
 "FaceIDSettings.linkText" = "Réglage des limites de dépenses Face ID";
 
-/* Setting to turn on Face ID for BRD */
+/* Setting to turn on Face ID for Fabriik */
 "FaceIDSettings.switchLabel" = "Activer Face ID pour Fabriik";
 
 /* Face ID settings view title */
@@ -537,7 +537,7 @@
 /* Face ID unavailable alert title */
 "FaceIDSettings.unavailableAlertTitle" = "Face ID non configuré";
 
-/* Text label for a toggle that enables Face ID for unlocking the BRD app. */
+/* Text label for a toggle that enables Face ID for unlocking the Fabriik app. */
 "FaceIDSettings.unlockTitleText" = "Activez Face ID pour déverrouiller Fabriik";
 
 /* Face Id spending limit screen title */
@@ -579,7 +579,7 @@
 "FileChooser.selectImageSource.android" = "Sélectionner une source d'image";
 
 /* Fingerprint authentication settings screen description */
-"FingerprintSettings.description" = "Utilisez votre empreinte digitale pour déverrouiller votre application BRD et envoyer des transactions.";
+"FingerprintSettings.description" = "Utilisez votre empreinte digitale pour déverrouiller votre application Fabriik et envoyer des transactions.";
 
 /* Switch label to enable fingerprint authentication to send money */
 "FingerprintSettings.sendMoney" = "Utiliser l'empreinte digitale pour envoyer de l'argent";
@@ -587,8 +587,8 @@
 /* Fingerprint authentication settings sceen title */
 "FingerprintSettings.title" = "Empreinte digitale";
 
-/* Switch label to enable fingerprint authentication to unlock BRD app */
-"FingerprintSettings.unlockApp" = "Utiliser l'empreinte digitale pour déverrouiller BRD";
+/* Switch label to enable fingerprint authentication to unlock Fabriik app */
+"FingerprintSettings.unlockApp" = "Utiliser l'empreinte digitale pour déverrouiller Fabriik";
 
 /* Activity button on the home screen toolbar */
 "HomeScreen.activity" = "Activité";
@@ -941,9 +941,9 @@
 
 "Prompts.RateApp.dontShow" = "Ne plus demander";
 
-"Prompts.RateApp.enjoyingBrd" = "Vous aimez BRD?";
+"Prompts.RateApp.enjoyingFabriik" = "Vous aimez Fabriik?";
 
-"Prompts.RateApp.googlePlayReview" = "Votre avis contribue à développer la communauté BRD.";
+"Prompts.RateApp.googlePlayReview" = "Votre avis contribue à développer la communauté Fabriik.";
 
 "Prompts.RateApp.noThanks" = "Non merci";
 
@@ -994,7 +994,7 @@
 /* Body text when push notifications are enabled. */
 "PushNotifications.enabledBody" = "Vous recevez des offres spéciales et des mises à jour de la part de Fabriik.";
 
-/* Instructions to enable push notifications for BRD in the phone's system settings. */
+/* Instructions to enable push notifications for Fabriik in the phone's system settings. */
 "PushNotifications.enableInstructions" = "Il semblerait que les notifications sont désactivées. Aller dans les paramètres pour activer les notifications de Fabriik.";
 
 /* Push notifications toggle switch label */
@@ -1144,7 +1144,7 @@
 /* Instruction displayed when the user is resetting the PIN, which requires the recovery phrase to be entered */
 "RecoveryKeyFlow.resetPINInstruction" = "Veuillez entrer votre clé de récupération pour réinitialiser votre code PIN.";
 
-/* Assures the user that BRD will keep the user's funds secure. */
+/* Assures the user that Fabriik will keep the user's funds secure. */
 "RecoveryKeyFlow.securityAssurance" = "Achetez et échangez en sachant que vos fonds sont protégés par la meilleure sécurité et la plus grande confidentialité qui soient.";
 
 /* Recommends that the user stores the recovery key in a secure location */
@@ -1563,7 +1563,7 @@
 
 "ShareGift.footerMessage1" = "Des frais de réseau seront déduits du total lors de la réclamation.\n La valeur réelle dépend du prix actuel du bitcoin.";
 
-"ShareGift.footerMessage2" = "Téléchargez l'application BRD pour iPhone ou Android.\n Pour plus d'informations, visitez brd.com/gift";
+"ShareGift.footerMessage2" = "Téléchargez l'application Fabriik pour iPhone ou Android.\n Pour plus d'informations, visitez Fabriik.com/gift";
 
 "ShareGift.tagLine" = "Quelqu'un vous a offert du bitcoin!";
 
@@ -1726,7 +1726,7 @@
 /* Fingerprint Is Not Setup */
 "TouchIdSettings.disabledWarning.title.android" = "L'identification par empreinte digitale n'est pas activée";
 
-/* Text that describes the purpose of the Touch ID settings in the BRD app. */
+/* Text that describes the purpose of the Touch ID settings in the Fabriik app. */
 "TouchIdSettings.explanatoryText" = "Utilisez Touch ID pour déverrouiller votre application Fabriik et envoyer de l'argent.";
 
 /* Touch Id screen label */
@@ -1759,7 +1759,7 @@
 /* Touch ID unavailable alert title */
 "TouchIdSettings.unavailableAlertTitle" = "Touch ID non configuré";
 
-/* Text label for the toggle that enables Touch ID for unlocking the BRD app. */
+/* Text label for the toggle that enables Touch ID for unlocking the Fabriik app. */
 "TouchIdSettings.unlockTitleText" = "Activez Touch ID pour déverrouiller Fabriik";
 
 /* Always require passcode option */
@@ -1824,7 +1824,7 @@
 /* eg. Starting balance: $50.00 */
 "Transaction.starting" = "Solde initial : %1$@";
 
-/* e.g. "[The money you paid was a] Fee for token transfer: BRD" (BRD is the token that was transfered) */
+/* e.g. "[The money you paid was a] Fee for token transfer: Fabriik" (Fabriik is the token that was transfered) */
 "Transaction.tokenTransfer" = "Frais de transfert du jeton : %1$@";
 
 "Transaction.toRecipient" = "à %1$s";
