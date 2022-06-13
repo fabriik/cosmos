@@ -64,7 +64,7 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
     
     func presentResend(actionResponse: RegistrationConfirmationModels.Resend.ActionResponse) {
         // TODO: localize
-        viewController?.displayNotification(responseDisplay: .init(config: .init(text: "Verification code sent.")))
+        viewController?.displayNotification(responseDisplay: .init(model: .init(description: .text("Verification code sent.")), config: Presets.InfoView.verification))
     }
     // MARK: - Additional Helpers
 

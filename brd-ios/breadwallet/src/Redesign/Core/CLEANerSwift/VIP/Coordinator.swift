@@ -108,17 +108,11 @@ class BaseCoordinator: NSObject,
 
     func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?) {}
     
-    func showNotification(with configuration: NotificationConfiguration) {
+    func showNotification(with model: InfoViewModel?, configuration: InfoViewConfiguration?) {
         let notification = FEInfoView()
         notification.setupCustomMargins(all: .large)
-        notification.configure(with: Presets.InfoView.primary)
-        notification.setup(with: .init(description: .text(configuration.text), button: .init(title: "Yes")))
-        notification.headerButtonCallback = {
-            configuration.tapCallback?(notification)
-        }
-        notification.trailingButtonCallback = {
-            configuration.tapCallback?(notification)
-        }
+        notification.configure(with: configuration)
+        notification.setup(with: model)
         guard let superview = navigationController.topViewController?.view else {
             return
         }
