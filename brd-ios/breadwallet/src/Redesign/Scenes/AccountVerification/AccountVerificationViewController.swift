@@ -47,11 +47,29 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
         }
         cell.setup { view in
             view.setup(with: model)
-            let config = [
+            let configs = [
                 Presets.VerificationView.verified,
                 Presets.VerificationView.pending,
                 Presets.VerificationView.resubmit
-            ][indexPath.row]
+            ]
+            
+            let config: VerificationConfiguration
+            switch (model.kyc, model.status) {
+            case (.levelOne, .levelOne),
+                (.levelOne, .levelTwo),
+                (.levelTwo, .levelTwo(.levelTwo)):
+                config = configs[0]
+                
+            case (.levelOne, _):
+                config = configs[1]
+                
+            case (.levelTwo, .levelTwo(.resubmit)):
+                config = configs[2]
+                
+            default:
+                config = configs[1]
+            }
+            
             view.configure(with: config)
         }
         cell.setupCustomMargins(all: .extraSmall)

@@ -59,37 +59,10 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
                                            country: country,
                                            birthDate: birthDate)
         
-        KYCBasicWorker().execute(requestData: data) { [weak self] error in
+        KYCLevelOneWorker().execute(requestData: data) { [weak self] error in
             self?.presenter?.presentSubmit(actionResponse: .init(error: error))
         }
     }
 
     // MARK: - Aditional helpers
-}
-
-struct KYCBasicRequestData: RequestModelData {
-    var firstName: String
-    var lastName: String
-    var country: String
-    var birthDate: String
-    
-    func getParameters() -> [String: Any] {
-        return [
-            "first_name": firstName,
-            "last_name": lastName,
-            "country": country,
-            "date_of_birth": birthDate
-        ]
-    }
-}
-
-class KYCBasicWorker: BasePlainResponseWorker {
-    
-    override func getUrl() -> String {
-        return APIURLHandler.getUrl(KYCAuthEndpoints.basic)
-    }
-    
-    override func getMethod() -> EQHTTPMethod {
-        return .post
-    }
 }

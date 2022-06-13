@@ -109,6 +109,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     
     private lazy var hintLabel: FELabel = {
         let view = FELabel()
+        view.isHidden = true
         return view
     }()
     
@@ -136,13 +137,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         content.addSubview(mainStack)
         mainStack.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().priority(.low)
+            make.bottom.equalToSuperview()
         }
         
         mainStack.addArrangedSubview(textFieldContent)
-        textFieldContent.snp.makeConstraints { make in
-            make.height.equalTo(58).priority(.required)
-        }
         mainStack.addArrangedSubview(hintLabel)
         
         textFieldContent.addSubview(textFieldStack)

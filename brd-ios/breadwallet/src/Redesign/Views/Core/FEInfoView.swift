@@ -31,6 +31,8 @@ struct InfoViewModel: ViewModel {
     var title: LabelViewModel?
     var description: LabelViewModel?
     var button: ButtonViewModel?
+    
+    var tapToDismiss = false
 }
 
 class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
@@ -38,6 +40,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     // MARK: public properties
     var headerButtonCallback: (() -> Void)?
     var trailingButtonCallback: (() -> Void)?
+    
     // MARK: Lazy UI
     private lazy var verticalStackView: UIStackView = {
         let stack = UIStackView()
@@ -153,9 +156,6 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         
         configure(background: config.background)
         configure(shadow: config.shadow)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
-        addGestureRecognizer(tap)
     }
     
     override func configure(background: BackgroundConfiguration?) {
@@ -199,6 +199,11 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         
         trailingButton.setup(with: viewModel.button)
         trailingButton.isHidden = viewModel.button == nil
+        
+        if viewModel.tapToDismiss {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
+            addGestureRecognizer(tap)
+        }
         
         guard headerLeadingView.isHidden,
               headerTitleLabel.isHidden,

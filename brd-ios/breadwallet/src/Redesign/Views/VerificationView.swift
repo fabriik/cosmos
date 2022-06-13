@@ -11,29 +11,46 @@
 import UIKit
 import SnapKit
 
-enum VerificationStatus: String {
+enum Kyc2: String {
+    case notStarted = "KYC2_NOT_STARTED"
+    case expired = "KYC2_EXPIRED"
+    case submitted = "KYC2_SUBMITTED"
+    case levelTwo = "KYC2"
+    case resubmit = "KYC2_RESUBMISSION_REQUESTED"
+    case declined = "KYC2_DECLINED"
+}
+
+enum VerificationStatus: Equatable {
     case none
+    case emailPending
+    case email
     case levelOne
-    case pending
-    case levelTwo
-    case error
+    case levelTwo(Kyc2)
     
+    var value: String {
+        switch self {
+        case .none: return "DEFAULT"
+        case .emailPending: return "EMAIL_VERIFICATION_PENDING"
+        case .email: return "EMAIL_VERIFIED"
+        case .levelOne: return "KYC1"
+        case .levelTwo(let kyc2): return kyc2.rawValue
+        }
+    }
+
     init(rawValue: String?) {
-        switch rawValue?.lowercased() {
-        case "kyc_basic":
-            self = .levelOne
-            
-        case "kyc_unlimited_submitted":
-            self = .pending
-    
-        case "kyc_unlimited":
-            self = .levelTwo
-            
-        case "kyc_unlimited_declined":
-            self = .error
+        switch rawValue?.uppercased() {
+        case "DEFAULT": self = .none
+        case "EMAIL_VERIFICATION_PENDING": self = .emailPending
+        case "EMAIL_VERIFIED": self = .email
+        case "KYC1": self = .levelOne
             
         default:
-            self = .none
+            let kyc2 = Kyc2.init(rawValue: rawValue?.uppercased() ?? "")
+            if let kyc2 = kyc2 {
+                self = .levelTwo(kyc2)
+            } else {
+                self = .none
+            }
         }
     }
 }
@@ -50,16 +67,22 @@ struct VerificationConfiguration: Configurable {
     var status: StatusViewConfiguration?
     var infoButton: ButtonConfiguration?
     var description: LabelConfiguration?
-    var bottomButton: ButtonConfiguration?
+    var benefits: LabelConfiguration?
+}
+
+enum KYC {
+    case levelOne
+    case levelTwo
 }
 
 struct VerificationViewModel: ViewModel {
+    var kyc: KYC
     var title: LabelViewModel?
     // TODO: custom
     var status: VerificationStatus
     var infoButton: ButtonViewModel?
     var description: LabelViewModel?
-    var bottomButton: ButtonViewModel?
+    var benefits: LabelViewModel?
 }
 
 class VerificationView: FEView<VerificationConfiguration, VerificationViewModel> {
@@ -120,8 +143,8 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         return view
     }()
     
-    private lazy var button: FEButton = {
-        let view = FEButton()
+    private lazy var benefitsLabel: WrapperView<FELabel>  = {
+        let view = WrapperView<FELabel>()
         return view
     }()
     
@@ -142,7 +165,8 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         }
         
         headerStack.addArrangedSubview(statusView)
-        statusView.setupCustomMargins(vertical: .extraSmall, horizontal: .large)
+        statusView.setupCustomMargins(all: .small)
+        statusView.content.setupCustomMargins(vertical: .zero, horizontal: .small)
         
         headerStack.addArrangedSubview(headerInfoButton)
         headerInfoButton.snp.makeConstraints { make in
@@ -157,10 +181,8 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
             make.height.equalTo(Margins.extraLarge.rawValue)
         }
         
-        mainStack.addArrangedSubview(button)
-        button.snp.makeConstraints { make in
-            make.height.equalTo(Margins.extraHuge.rawValue)
-        }
+        mainStack.addArrangedSubview(benefitsLabel)
+        benefitsLabel.setupCustomMargins(all: .extraSmall)
         setupClearMargins()
     }
     
@@ -168,13 +190,13 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         configure(background: config?.background)
         headerLabel.configure(with: config?.title)
         headerInfoButton.configure(with: config?.infoButton)
-        statusView.setup { view in
-            view.configure(with: config?.status?.title)
-        }
+        
+        statusView.wrappedView.configure(with: config?.status?.title)
         statusView.configure(background: config?.status?.background)
 
         descriptionLabel.configure(with: config?.description)
-        button.configure(with: config?.bottomButton)
+        benefitsLabel.wrappedView.configure(with: config?.benefits)
+        benefitsLabel.configure(background: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal))
     }
     
     override func setup(with viewModel: VerificationViewModel?) {
@@ -183,16 +205,16 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         headerInfoButton.isHidden = viewModel?.infoButton == nil
         statusImageView.isHidden = viewModel?.infoButton != nil
         arrowImageView.isHidden = viewModel?.infoButton != nil
-//        statusView.setup(with: viewModel?.status)
-        statusView.setup { view in
-            let title = viewModel?.status.rawValue.uppercased()
-            view.setup(with: .text(title))
-        }
+        statusView.wrappedView.setup(with: .text(viewModel?.status.value))
         statusView.isHidden = viewModel?.status == VerificationStatus.none
-        
+        // if level 1 was done, but we present level 2, status is hidden
+        if viewModel?.status == .levelOne,
+           viewModel?.kyc == .levelTwo {
+            statusView.isHidden = true
+        }
         descriptionLabel.setup(with: viewModel?.description)
         descriptionLabel.isHidden = viewModel?.description == nil
-        button.setup(with: viewModel?.bottomButton)
-        button.isHidden = viewModel?.bottomButton == nil
+        benefitsLabel.wrappedView.setup(with: viewModel?.benefits)
+        benefitsLabel.isHidden = viewModel?.benefits == nil
     }
 }

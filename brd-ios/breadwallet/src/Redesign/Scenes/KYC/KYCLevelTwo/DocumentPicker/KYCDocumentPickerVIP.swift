@@ -16,6 +16,7 @@ protocol KYCDocumentPickerViewActions: BaseViewActions, FetchViewActions {
     func selectDocument(viewAction: KYCDocumentPickerModels.Documents.ViewAction)
     func takePhoto(viewAction: KYCDocumentPickerModels.Photo.ViewAction)
     func confirmPhoto(viewAction: KYCDocumentPickerModels.ConfirmPhoto.ViewAction)
+    func finish(viewAction: KYCDocumentPickerModels.Finish.ViewAction)
 }
 
 protocol KYCDocumentPickerActionResponses: BaseActionResponses, FetchActionResponses {

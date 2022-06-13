@@ -29,6 +29,7 @@ enum KYCAuthEndpoints: String, URLType {
     case basic = "kyc/basic"
     case documents = "kyc/documents"
     case upload = "kyc/upload"
+    case submit = "kyc/session/submit"
     
     // TODO: @Kenan deprecated?
     case login
