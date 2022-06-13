@@ -60,6 +60,7 @@ enum KYCDocumentPickerModels {
     }
     
     struct Finish {
+        struct ViewAction {}
         struct ActionResponse {}
         struct ResponseDisplay {}
     }

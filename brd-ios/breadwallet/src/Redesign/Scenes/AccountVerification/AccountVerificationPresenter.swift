@@ -17,14 +17,16 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
         let sections = [ Models.Section.verificationLevel ]
         let sectionRows: [Models.Section: [Any]] = [
             .verificationLevel: [
-                VerificationViewModel(title: .text("Level 1"),
-                                      status: item.verificationStatus ?? .none,
+                VerificationViewModel(kyc: .levelOne,
+                                      title: .text("Level 1"),
+                                      status: item.status,
                                       description: .text("Personal information"),
-                                      bottomButton: .init(title: "Account limit: $1,000/day ($10,000 lifetime)", image: nil)),
-                VerificationViewModel(title: .text("Level 2"),
-                                      status: item.verificationStatus ?? .none,
+                                      benefits: .text("Account limit: $1,000/day ($10,000 lifetime)")),
+                VerificationViewModel(kyc: .levelTwo,
+                                      title: .text("Level 2"),
+                                      status: item.status,
                                       description: .text("ID Verification"),
-                                      bottomButton: .init(title: "Swap limit: $10,000 per Swap, no lifetime limit"))
+                                      benefits: .text("Swap limit: $10,000 per Swap, no lifetime limit"))
             ]
         ]
         

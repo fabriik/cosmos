@@ -57,23 +57,8 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
                 }
                 
                 view.trailingButtonCallback = { [weak self] in
-                    self?.coordinator?.showAccountVerification()
+                    self?.coordinator?.showVerificationScreen(for: self?.dataStore?.profile)
                 }
-            }
-        }
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, profileViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, profileViewCellForRowAt: indexPath)
-        guard let cell = cell as? WrapperTableViewCell<ProfileView>
-        else { return cell }
-        
-        cell.setup { view in
-            view.editImageCallback = { [weak self] in
-                // return it back when approved
-                // self?.coordinator?.showAvatarSelection()
             }
         }
         

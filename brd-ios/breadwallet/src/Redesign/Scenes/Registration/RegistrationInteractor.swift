@@ -33,8 +33,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
         RegistrationWorker().execute(requestData: data) { [weak self] data, error in
             guard let sessionKey = data?.sessionKey,
                   error == nil else {
-                // TODO: handle error
-                self?.presenter?.presentNotification(actionResponse: .init(text: "\(error)"))
+                self?.presenter?.presentError(actionResponse: .init(error: error))
                 return
             }
             

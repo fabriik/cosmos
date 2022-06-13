@@ -65,7 +65,7 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
                         self?.presenter?.presentError(actionResponse: .init(error: error))
                         return
                     }
-                    self?.presenter?.presentFinish(actionResponse: .init())
+                    self?.finish(viewAction: .init())
                 }
             }
         }
@@ -86,5 +86,16 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
             self?.takePhoto(viewAction: .init())
         }
     }
+    
+    func finish(viewAction: KYCDocumentPickerModels.Finish.ViewAction) {
+        KYCSubmitWorker().execute { [weak self] error in
+            guard error == nil else {
+                self?.presenter?.presentError(actionResponse: .init(error: error))
+                return
+            }
+            self?.presenter?.presentFinish(actionResponse: .init())
+        }
+    }
+    
     // MARK: - Aditional helpers
 }

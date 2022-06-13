@@ -11,7 +11,7 @@ enum AccountVerificationModels {
         case two = 1
     }
     
-    typealias Item = AccountVerificationStore
+    typealias Item = Profile
     
     enum Section: Sectionable {
         case verificationLevel
