@@ -267,6 +267,7 @@
 		7B88C4872837B8E70089CFBE /* Currency+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B88C4842837B8710089CFBE /* Currency+Shared.swift */; };
 		7B88C48A283CD2D80089CFBE /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B519A922835B505007AC80A /* currencies.json */; };
 		7B88C48B283CD2D80089CFBE /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B519A922835B505007AC80A /* currencies.json */; };
+		7B8AC9AB2857A3DC00717BF7 /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 7B8AC9AA2857A3DC00717BF7 /* AnyCodable */; };
 		7B8EC630280896F0008C6DE5 /* brd-tokens.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0F2806FA190031F015 /* brd-tokens.tar */; };
 		7B8EC631280896F1008C6DE5 /* brd-tokens.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0F2806FA190031F015 /* brd-tokens.tar */; };
 		7B8EC632280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */; };
@@ -1965,6 +1966,7 @@
 				7E5CB32D2834E63400EC787E /* SnapKit in Frameworks */,
 				22A9A9641DF61FE7000F0016 /* Security.framework in Frameworks */,
 				22A9A9621DF61FE0000F0016 /* SystemConfiguration.framework in Frameworks */,
+				7B8AC9AB2857A3DC00717BF7 /* AnyCodable in Frameworks */,
 				9F1143AD261B035300848E7B /* WalletKit in Frameworks */,
 				22A9A9601DF61FD8000F0016 /* CoreLocation.framework in Frameworks */,
 				22A9A95E1DF61FD0000F0016 /* PushKit.framework in Frameworks */,
@@ -4215,6 +4217,7 @@
 				3A0C6087242A5CC900F0FBC2 /* WalletKit */,
 				7B2C9AFB27D9270B00D5135C /* IQKeyboardManagerSwift */,
 				7E5CB32C2834E63400EC787E /* SnapKit */,
+				7B8AC9AA2857A3DC00717BF7 /* AnyCodable */,
 			);
 			productName = breadwallet;
 			productReference = 75A2A7901DA5934300A983D8 /* breadwallet.app */;
@@ -4406,6 +4409,7 @@
 			packageReferences = (
 				7B2C9AFA27D9270B00D5135C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				7E5CB32B2834E63400EC787E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				7B8AC9A92857A3DC00717BF7 /* XCRemoteSwiftPackageReference "AnyCodable" */,
 			);
 			productRefGroup = 75A2A7911DA5934300A983D8 /* Products */;
 			projectDirPath = "";
@@ -8134,6 +8138,14 @@
 				version = 6.5.9;
 			};
 		};
+		7B8AC9A92857A3DC00717BF7 /* XCRemoteSwiftPackageReference "AnyCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flight-School/AnyCodable.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.6.3;
+			};
+		};
 		7E5CB32B2834E63400EC787E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -8153,6 +8165,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7B2C9AFA27D9270B00D5135C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		7B8AC9AA2857A3DC00717BF7 /* AnyCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B8AC9A92857A3DC00717BF7 /* XCRemoteSwiftPackageReference "AnyCodable" */;
+			productName = AnyCodable;
 		};
 		7E5CB32C2834E63400EC787E /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
