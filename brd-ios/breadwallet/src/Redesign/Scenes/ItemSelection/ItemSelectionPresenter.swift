@@ -17,7 +17,7 @@ final class ItemSelectionPresenter: NSObject, Presenter, ItemSelectionActionResp
     func presentData(actionResponse: FetchModels.Get.ActionResponse) {
         guard let item = actionResponse.item as? Models.Item else { return }
         
-        let sections = [ Models.Sections.items ]
+        let sections = [Models.Sections.items]
         let sectionRows = [
             Models.Sections.items: item
         ]
