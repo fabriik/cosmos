@@ -293,25 +293,22 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             UserDefaults.kycSessionKeyValue = sessionKey
                         }
                         
+                        self.exit()
+                        
                         handler(err as NSError?)
                     }
                 } else {
-                    self.isFetchingAuth = false
-                    self.authFetchGroup.leave()
-                    
-                    UserDefaults.walletTokenValue = self.walletTokenValueStored
+                    self.exit()
                     
                     handler(err as NSError?)
-                    
-                    self.exit()
                 }
             }
         }) .resume()
     }
     
     func exit() {
-        self.isFetchingAuth = false
-        self.authFetchGroup.leave()
+        isFetchingAuth = false
+        authFetchGroup.leave()
         
         UserDefaults.walletTokenValue = walletTokenValueStored
     }
