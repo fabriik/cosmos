@@ -51,7 +51,7 @@ private let appLaunchesAtLastNotificationDeferralKey = "appLaunchesAtLastNotific
 private let deviceIdKey = "BR_DEVICE_ID"
 private let savedChartHistoryPeriodKey = "savedHistoryPeriodKey"
 private let balanceKey = "balanceKey"
-private let sessionKey = "sessionKey"
+private let walletToken = "sessionKey"
 private let kycSessionKey = "kycSessionKey"
 private let cachedErrors = "cachedErrors"
 private let userEmail = "registrationEmail"
@@ -444,9 +444,9 @@ extension UserDefaults {
         set { defaults.set(newValue, forKey: kycSessionKey) }
     }
     
-    static var sessionKeyValue: String? {
-        get { return defaults.string(forKey: sessionKey) }
-        set { defaults.set(newValue, forKey: sessionKey) }
+    static var walletTokenValue: String? {
+        get { return defaults.string(forKey: walletToken) }
+        set { defaults.set(newValue, forKey: walletToken) }
     }
 }
 
