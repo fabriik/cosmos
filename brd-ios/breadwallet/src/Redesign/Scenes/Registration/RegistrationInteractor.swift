@@ -26,7 +26,7 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
         presenter?.presentValidate(actionResponse: .init(item: dataStore?.email))
     }
     
-    func next(viewACtion: RegistrationModels.Next.ViewAction) {
+    func next(viewAction: RegistrationModels.Next.ViewAction) {
         guard let email = dataStore?.email, let token = UserDefaults.walletTokenValue else { return }
         
         let data = RegistrationRequestData(email: email, token: token)

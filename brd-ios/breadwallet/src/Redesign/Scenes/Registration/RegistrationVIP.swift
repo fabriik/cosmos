@@ -14,7 +14,7 @@ extension Scenes {
 
 protocol RegistrationViewActions: BaseViewActions, FetchViewActions {
     func validate(viewAction: RegistrationModels.Validate.ViewAction)
-    func next(viewACtion: RegistrationModels.Next.ViewAction)
+    func next(viewAction: RegistrationModels.Next.ViewAction)
 }
 
 protocol RegistrationActionResponses: BaseActionResponses, FetchActionResponses {

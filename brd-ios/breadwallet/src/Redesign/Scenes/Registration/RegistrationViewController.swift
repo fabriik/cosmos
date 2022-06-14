@@ -54,7 +54,7 @@ class RegistrationViewController: BaseTableViewController<RegistrationCoordinato
     }
     
     override func buttonTapped() {
-        interactor?.next(viewACtion: .init())
+        interactor?.next(viewAction: .init())
     }
 
     // MARK: - RegistrationResponseDisplay
