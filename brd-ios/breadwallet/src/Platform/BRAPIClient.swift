@@ -207,14 +207,18 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
             }
             return
         }
+        
         guard let authKey = authKey,
             let authPubKey = authKey.encodeAsPublic.hexToData else {
                 return handler(NSError(domain: BRAPIClientErrorDomain, code: 500, userInfo: [
                     NSLocalizedDescriptionKey: S.ApiClient.notReady]))
         }
-        isFetchingAuth = true
+        
         log("auth: entering group")
+        
         authFetchGroup.enter()
+        isFetchingAuth = true
+        
         var req = URLRequest(url: url("/token"))
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -229,8 +233,10 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
             req.httpBody = dat
         } catch let e {
             log("JSON Serialization error \(e)")
+            
             isFetchingAuth = false
             authFetchGroup.leave()
+            
             return handler(NSError(domain: BRAPIClientErrorDomain, code: 500, userInfo: [
                 NSLocalizedDescriptionKey: S.ApiClient.jsonError]))
         }
@@ -242,12 +248,15 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                         if let data = data, let s = String(data: data, encoding: .utf8) {
                             self.log("Token error: \(s)")
                         }
+                        
                         self.isFetchingAuth = false
                         self.authFetchGroup.leave()
+                        
                         return handler(NSError(domain: BRAPIClientErrorDomain, code: httpResp.statusCode, userInfo: [
                             NSLocalizedDescriptionKey: S.ApiClient.tokenError]))
                     }
                 }
+                
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
@@ -257,28 +266,35 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             let uid = topObj["userID"] as? String {
                             // success! store it in the keychain
                             
-                            let data = NewDeviceRequestData(token: walletTokenValue)
-                            NewDeviceWorker().execute(requestData: data) { data, error in
-                                if error != nil {
-                                    self.log("Session key error: \(error?.errorMessage ?? "")")
-                                }
-                                
-                                UserDefaults.walletTokenValue = walletTokenValue
-                                UserDefaults.email = data?.email
-                                
-                                var kcData = self.authenticator.apiUserAccount ?? [AnyHashable: Any]()
-                                kcData["token"] = walletTokenValue
-                                kcData["userID"] = uid
-                                self.authenticator.apiUserAccount = kcData
-                            }
+                            UserDefaults.walletTokenValue = walletTokenValue
+                            
+                            var kcData = self.authenticator.apiUserAccount ?? [AnyHashable: Any]()
+                            kcData["token"] = walletTokenValue
+                            kcData["userID"] = uid
+                            self.authenticator.apiUserAccount = kcData
                         }
                     } catch let e {
                         self.log("JSON Deserialization error \(e)")
                     }
                 }
-                self.isFetchingAuth = false
-                self.authFetchGroup.leave()
-                handler(err as NSError?)
+                
+                let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
+                NewDeviceWorker().execute(requestData: newDeviceRequestData) { data, error in
+                    if error != nil {
+                        self.log("Session key error: \(error?.errorMessage ?? "")")
+                    }
+                    
+                    UserDefaults.email = data?.email
+                    
+                    if let sessionKey = data?.sessionKey {
+                        UserDefaults.kycSessionKeyValue = sessionKey
+                    }
+                    
+                    self.isFetchingAuth = false
+                    self.authFetchGroup.leave()
+                    
+                    handler(err as NSError?)
+                }
             }
         }) .resume()
     }
