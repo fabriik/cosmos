@@ -253,14 +253,24 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                         let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                         self.log("POST /token json response: \(json)")
                         if let topObj = json as? [String: Any],
-                            let tok = topObj["token"] as? String,
+                            let walletTokenValue = topObj["token"] as? String,
                             let uid = topObj["userID"] as? String {
                             // success! store it in the keychain
-                            UserDefaults.sessionKeyValue = tok
-                            var kcData = self.authenticator.apiUserAccount ?? [AnyHashable: Any]()
-                            kcData["token"] = tok
-                            kcData["userID"] = uid
-                            self.authenticator.apiUserAccount = kcData
+                            
+                            let data = NewDeviceRequestData(token: walletTokenValue)
+                            NewDeviceWorker().execute(requestData: data) { data, error in
+                                if error != nil {
+                                    self.log("Session key error: \(error?.errorMessage ?? "")")
+                                }
+                                
+                                UserDefaults.walletTokenValue = walletTokenValue
+                                UserDefaults.email = data?.email
+                                
+                                var kcData = self.authenticator.apiUserAccount ?? [AnyHashable: Any]()
+                                kcData["token"] = walletTokenValue
+                                kcData["userID"] = uid
+                                self.authenticator.apiUserAccount = kcData
+                            }
                         }
                     } catch let e {
                         self.log("JSON Deserialization error \(e)")

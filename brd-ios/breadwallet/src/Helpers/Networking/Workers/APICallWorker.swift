@@ -76,7 +76,7 @@ class APICallWorker: APICallWorkerProperties {
         var key = UserDefaults.kycSessionKeyValue
         
         if key.isEmpty,
-           let token = UserDefaults.sessionKeyValue {
+           let token = UserDefaults.walletTokenValue {
             key = "Bread \(token)"
         }
         
