@@ -62,6 +62,8 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
         return "\(proto)://\(host)"
     }
     
+    private var walletTokenValueStored = ""
+    
     init(authenticator: WalletAuthenticator) {
         self.authenticator = authenticator
         super.init()
@@ -266,7 +268,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             let uid = topObj["userID"] as? String {
                             // success! store it in the keychain
                             
-                            UserDefaults.walletTokenValue = walletTokenValue
+                            self.walletTokenValueStored = walletTokenValue
                             
                             var kcData = self.authenticator.apiUserAccount ?? [AnyHashable: Any]()
                             kcData["token"] = walletTokenValue
@@ -278,25 +280,40 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                     }
                 }
                 
-                let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
-                NewDeviceWorker().execute(requestData: newDeviceRequestData) { data, error in
-                    if error != nil {
-                        self.log("Session key error: \(error?.errorMessage ?? "")")
+                if UserDefaults.walletTokenValue == nil {
+                    let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
+                    NewDeviceWorker().execute(requestData: newDeviceRequestData) { data, error in
+                        if error != nil {
+                            self.log("Session key error: \(error?.errorMessage ?? "")")
+                        }
+                        
+                        UserDefaults.email = data?.email
+                        
+                        if let sessionKey = data?.sessionKey {
+                            UserDefaults.kycSessionKeyValue = sessionKey
+                        }
+                        
+                        handler(err as NSError?)
                     }
-                    
-                    UserDefaults.email = data?.email
-                    
-                    if let sessionKey = data?.sessionKey {
-                        UserDefaults.kycSessionKeyValue = sessionKey
-                    }
-                    
+                } else {
                     self.isFetchingAuth = false
                     self.authFetchGroup.leave()
                     
+                    UserDefaults.walletTokenValue = self.walletTokenValueStored
+                    
                     handler(err as NSError?)
+                    
+                    self.exit()
                 }
             }
         }) .resume()
+    }
+    
+    func exit() {
+        self.isFetchingAuth = false
+        self.authFetchGroup.leave()
+        
+        UserDefaults.walletTokenValue = walletTokenValueStored
     }
     
     // MARK: URLSession Delegate
