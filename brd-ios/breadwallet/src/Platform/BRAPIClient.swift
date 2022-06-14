@@ -293,12 +293,12 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             UserDefaults.kycSessionKeyValue = sessionKey
                         }
                         
-                        self.exit()
+                        self.saveToken()
                         
                         handler(err as NSError?)
                     }
                 } else {
-                    self.exit()
+                    self.saveToken()
                     
                     handler(err as NSError?)
                 }
@@ -306,7 +306,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
         }) .resume()
     }
     
-    func exit() {
+    func saveToken() {
         isFetchingAuth = false
         authFetchGroup.leave()
         
