@@ -307,10 +307,10 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
     }
     
     func saveToken() {
+        UserDefaults.walletTokenValue = walletTokenValueStored
+        
         isFetchingAuth = false
         authFetchGroup.leave()
-        
-        UserDefaults.walletTokenValue = walletTokenValueStored
     }
     
     // MARK: URLSession Delegate
