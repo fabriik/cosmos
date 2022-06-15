@@ -14,6 +14,7 @@ enum ImageViewModel: ViewModel {
     case animation(String)
     case imageName(String)
     case image(UIImage)
+    case photo(UIImage)
     case url(String)
 }
 
@@ -39,7 +40,7 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
         
         content.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.edges.equalTo(content.snp.margins)
+            make.top.bottom.leading.trailing.equalToSuperview()
         }
         content.setupClearMargins()
     }
@@ -70,6 +71,10 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
         super.setup(with: viewModel)
         
         switch viewModel {
+        case .photo(let image):
+            imageView.image = image
+            layoutViews(image: image)
+            
         case .image(let image):
             imageView.image = image
             
@@ -83,8 +88,27 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
         layoutIfNeeded()
     }
     
+    private func layoutViews(image: UIImage?) {
+        guard let image = image else {
+            return
+        }
+        
+        var imageAspectRatio = image.size.height / image.size.width
+        if imageAspectRatio >= 1.5 {
+            imageAspectRatio = 1.5
+        }
+        
+        imageView.snp.makeConstraints { make in
+            make.height.equalTo(self.imageView.snp.width).multipliedBy(imageAspectRatio)
+        }
+        
+        imageView.layoutIfNeeded()
+        layoutIfNeeded()
+    }
+    
     public override func prepareForReuse() {
         super.prepareForReuse()
+        
         imageView.image = nil
     }
 }

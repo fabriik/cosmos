@@ -10,7 +10,7 @@ import UIKit
 
 enum DocumentReviewModels {
     
-    typealias Item = (type: DocumentImageType?, image: UIImage?)
+    typealias Item = (type: DocumentImageType?, image: UIImage?, checklist: [ChecklistItemViewModel]?)
     
     enum Sections: Sectionable {
         case title

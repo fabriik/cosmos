@@ -6,6 +6,7 @@
 //
 //
 
+import AVFoundation
 import UIKit
 
 enum KYCDocumentPickerModels {
@@ -38,7 +39,8 @@ enum KYCDocumentPickerModels {
         
         struct ResponseDisplay {
             var model: FEImagePickerModel?
-            var device: UIImagePickerController.CameraDevice
+            var device: AVCaptureDevice
+            var checklist: [ChecklistItemViewModel]
         }
     }
     

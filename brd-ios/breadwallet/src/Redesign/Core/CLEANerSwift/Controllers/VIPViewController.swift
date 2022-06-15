@@ -9,15 +9,15 @@ import UIKit
 import SnapKit
 
 class VIPViewController<C: CoordinatableRoutes,
-                             I: Interactor,
-                             P: Presenter,
-                             DS: BaseDataStore & NSObject>: UIViewController,
-                                                            UIAdaptivePresentationControllerDelegate,
-                                                            Controller,
-                                                            BaseDataPassing,
-                                                            BaseResponseDisplays,
-                                                            ModalDismissable,
-                                                            Blurrable {
+                        I: Interactor,
+                        P: Presenter,
+                        DS: BaseDataStore & NSObject>: UIViewController,
+                                                       UIAdaptivePresentationControllerDelegate,
+                                                       Controller,
+                                                       BaseDataPassing,
+                                                       BaseResponseDisplays,
+                                                       ModalDismissable,
+                                                       Blurrable {
     
     // MARK: Title and tab bar appearance
     var sceneTitle: String? { return nil }

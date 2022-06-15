@@ -6,6 +6,7 @@
 //
 //
 
+import AVFoundation
 import UIKit
 
 class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
@@ -16,13 +17,13 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     
     typealias Models = KYCDocumentPickerModels
     
-    private var imagePicker: UIImagePickerController!
-    
     override var sceneTitle: String? {
          // TODO: localize
         return "Proof of Identity"
     }
-
+    
+    var confirmPhoto: (() -> Void)?
+    
     // MARK: - Overrides
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,17 +70,15 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     // MARK: - KYCDocumentPickerResponseDisplay
     
     func displayTakePhoto(responseDisplay: KYCDocumentPickerModels.Photo.ResponseDisplay) {
-        coordinator?.showImagePicker(sourceType: .camera,
-                                     model: responseDisplay.model,
+        coordinator?.showImagePicker(model: responseDisplay.model,
                                      device: responseDisplay.device) { [weak self] image in
-            self?.interactor?.confirmPhoto(viewAction: .init(photo: image))
+            guard let image = image else { return }
+            self?.coordinator?.showDocumentReview(checklist: responseDisplay.checklist, image: image)
         }
     }
     
     func displayFinish(responseDisplay: KYCDocumentPickerModels.Finish.ResponseDisplay) {
-        coordinator?.showOverlay(with: .success, completion: { [weak self] in
-            self?.coordinator?.goBack()
-        })
+        coordinator?.showKYCFinal()
     }
     
     // MARK: - Additional Helpers
@@ -87,8 +86,7 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
 
 protocol ImagePickable: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func showImagePicker(sourceType: UIImagePickerController.SourceType,
-                         model: FEImagePickerModel?,
-                         device: UIImagePickerController.CameraDevice,
+    func showImagePicker(model: FEImagePickerModel?,
+                         device: AVCaptureDevice,
                          completion: ((UIImage?) -> Void)?)
 }

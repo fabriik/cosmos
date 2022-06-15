@@ -16,7 +16,9 @@ class DocumentReviewInteractor: NSObject, Interactor, DocumentReviewViewActions 
 
     // MARK: - DocumentReviewViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        presenter?.presentData(actionResponse: .init(item: Models.Item(type: dataStore?.type, image: dataStore?.image)))
+        presenter?.presentData(actionResponse: .init(item: Models.Item(type: dataStore?.type,
+                                                                       image: dataStore?.image,
+                                                                       checklist: dataStore?.checklist)))
     }
 
     // MARK: - Aditional helpers

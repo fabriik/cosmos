@@ -20,7 +20,13 @@ class KYCLevelTwoPostValidationViewController: CheckListViewController {
     ]
     }
     
+    override func prepareData() {
+        super.prepareData()
+        
+        confirmButton.setup(with: .init(title: "Continue"))
+    }
+    
     override func confirmTapped(_ sender: UIButton?) {
-        (coordinator as? KYCCoordinator)?.goBack()
+        (coordinator as? KYCCoordinator)?.dismissFlow()
     }
 }

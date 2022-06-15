@@ -26,8 +26,8 @@ protocol Coordinatable: CoordinatableRoutes {
 }
 
 class BaseCoordinator: NSObject,
-                              Coordinatable {
-
+                       Coordinatable {
+    
     var parentCoordinator: Coordinatable?
     var childCoordinators: [Coordinatable] = []
     var navigationController: UINavigationController
