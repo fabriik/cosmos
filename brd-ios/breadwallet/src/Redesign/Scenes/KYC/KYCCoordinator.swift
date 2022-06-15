@@ -8,6 +8,7 @@
 //  See the LICENSE file at the project root for license information.
 //
 
+import AVFoundation
 import UIKit
 
 class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, DocumentReviewRoutes {
@@ -24,6 +25,32 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         (nvc.topViewController as? ItemSelectionViewController)?.itemSelected = selected
         childCoordinators.append(coordinator)
         navigationController.show(nvc, sender: nil)
+    }
+    
+    func showDocumentReview(checklist: [ChecklistItemViewModel], image: UIImage) {
+        let controller = DocumentReviewViewController()
+        controller.dataStore?.checklist = checklist
+        controller.dataStore?.image = image
+        controller.prepareData()
+        controller.coordinator = self
+        
+        controller.retakePhoto = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+        
+        controller.confirmPhoto = { [weak self] in
+            let picker = self?.navigationController.children.first(where: { $0 is KYCDocumentPickerViewController }) as? KYCDocumentPickerViewController
+            picker?.interactor?.confirmPhoto(viewAction: .init(photo: image))
+        }
+        
+        navigationController.show(controller, sender: nil)
+    }
+    
+    func showKYCFinal() {
+        let controller = KYCLevelTwoPostValidationViewController()
+        controller.prepareData()
+        controller.coordinator = self
+        navigationController.show(controller, sender: nil)
     }
     
     func showKYCLevelOne() {
@@ -46,29 +73,27 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         open(scene: Scenes.KYCLevelTwoPostValidation)
     }
     
-    override func goBack() {
+    func dismissFlow() {
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)
     }
 }
 
 extension KYCCoordinator: ImagePickable {
-    
-    func showImagePicker(sourceType: UIImagePickerController.SourceType = .camera,
-                         model: FEImagePickerModel?,
-                         device: UIImagePickerController.CameraDevice = .rear,
+    func showImagePicker(model: FEImagePickerModel?,
+                         device: AVCaptureDevice,
                          completion: ((UIImage?) -> Void)?) {
-        guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
+        let controller = KYCCameraViewController()
+        controller.modalPresentationStyle = .fullScreen
         
-        let controller = FEImagePickerController()
-        controller.sourceType = sourceType
-        controller.cameraDevice = device
+        controller.defaultVideoDevice = device
         controller.configure(with: .init(instructions: .init(font: Fonts.Body.one,
                                                              textColor: LightInversedColors.Text.one,
                                                              textAlignment: .center),
                                          background: .init(backgroundColor: LightInversedColors.Background.one)))
         controller.setup(with: model)
         controller.photoSelected = completion
+        
         navigationController.present(controller, animated: true)
     }
 }

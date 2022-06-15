@@ -16,6 +16,14 @@ class DocumentReviewViewController: BaseTableViewController<KYCCoordinator,
     
     typealias Models = DocumentReviewModels
 
+    override var sceneTitle: String? {
+         // TODO: localize
+        return "Submit your photo"
+    }
+    
+    var retakePhoto: (() -> Void)?
+    var confirmPhoto: (() -> Void)?
+    
     // MARK: - Overrides
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
@@ -50,11 +58,24 @@ class DocumentReviewViewController: BaseTableViewController<KYCCoordinator,
         
         cell.wrappedView.configure(with: .init(buttons: [Presets.Button.primary]))
         
+        cell.wrappedView.callbacks = [
+            retakePhotoTapped,
+            confirmPhotoTapped
+        ]
+        
         return cell
     }
 
     // MARK: - User Interaction
 
+    private func retakePhotoTapped() {
+        retakePhoto?()
+    }
+    
+    private func confirmPhotoTapped() {
+        confirmPhoto?()
+    }
+    
     // MARK: - DocumentReviewResponseDisplay
 
     // MARK: - Additional Helpers

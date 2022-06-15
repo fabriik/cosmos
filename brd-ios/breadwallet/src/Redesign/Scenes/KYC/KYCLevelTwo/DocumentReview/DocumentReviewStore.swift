@@ -12,6 +12,7 @@ class DocumentReviewStore: NSObject, BaseDataStore, DocumentReviewDataStore {
     // MARK: - DocumentReviewDataStore
     var itemId: String?
     var image: UIImage?
+    var checklist: [ChecklistItemViewModel] = []
     var type: DocumentImageType = .front
 
     // MARK: - Aditional helpers

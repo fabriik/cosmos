@@ -6,6 +6,7 @@
 //
 //
 
+import AVFoundation
 import UIKit
 
 final class KYCDocumentPickerPresenter: NSObject, Presenter, KYCDocumentPickerActionResponses {
@@ -33,26 +34,46 @@ final class KYCDocumentPickerPresenter: NSObject, Presenter, KYCDocumentPickerAc
     func presentTakePhoto(actionResponse: KYCDocumentPickerModels.Photo.ActionResponse) {
         var instructions: String?
         var confirmation: String?
+        var checklist = [ChecklistItemViewModel]()
         
         // TODO: localize
         if actionResponse.isFront == true,
            actionResponse.document == .passport {
             instructions = "Make sure to capture the entire document"
             confirmation = "You have captured the entire document\nMake sure document details are clearly visible and within the frame"
+            checklist = [ChecklistItemViewModel(title: .text("You have captured the entire document")),
+                         ChecklistItemViewModel(title: .text("Make sure document details are clearly visible and within the frame"))]
         } else if actionResponse.isFront == true {
             instructions = "Make sure to capture the entire front page of the document"
             confirmation = "You have captured the entire front page of the document\nMake sure document details are clearly visible and within the frame"
+            checklist = [ChecklistItemViewModel(title: .text("You have captured the entire front page of the document")),
+                         ChecklistItemViewModel(title: .text("Make sure document details are clearly visible and within the frame"))]
         } else if actionResponse.isBack == true {
             instructions = "Make sure to capture the entire back page of the document"
             confirmation = "You have captured the entire back page of the document\nMake sure document details are clearly visible and within the frame"
+            checklist = [ChecklistItemViewModel(title: .text("You have captured the entire back page of the document")),
+                         ChecklistItemViewModel(title: .text("Make sure document details are clearly visible and within the frame"))]
         } else if actionResponse.isSelfie == true {
             instructions = "Make sure your face is in the frame and clearly vibisle"
             confirmation = "Make sure to capture the entire document.\nYour face is clearly visible."
+            checklist = [ChecklistItemViewModel(title: .text("You have captured your entire face in the frame.")),
+                         ChecklistItemViewModel(title: .text("Your face is clearly visible."))]
         }
         
-        let device: UIImagePickerController.CameraDevice = (actionResponse.isSelfie == true ? .front : .rear)
+        var device: AVCaptureDevice?
         
-        viewController?.displayTakePhoto(responseDisplay: .init(model: .init(instruction: .text(instructions), confirmation: .text(confirmation)), device: device))
+        if actionResponse.isSelfie {
+            device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+        } else {
+            device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+        }
+        
+        guard let device = device else { return }
+        
+        viewController?.displayTakePhoto(responseDisplay: .init(model: .init(instruction: .text(instructions),
+                                                                             confirmation: .text(confirmation)),
+                                                                device: device,
+                                                                checklist: checklist))
     }
     
     func presentFinish(actionResponse: KYCDocumentPickerModels.Finish.ActionResponse) {

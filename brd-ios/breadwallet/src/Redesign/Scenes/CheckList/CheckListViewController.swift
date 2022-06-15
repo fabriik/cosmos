@@ -21,7 +21,7 @@ class CheckListViewController: BaseTableViewController<BaseCoordinator,
     
     var continueCallback: (() -> Void)?
     
-    private lazy var confirmButton: FEButton = {
+    lazy var confirmButton: FEButton = {
         let button = FEButton()
         return button
     }()

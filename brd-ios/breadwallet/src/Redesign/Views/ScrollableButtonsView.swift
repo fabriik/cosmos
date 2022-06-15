@@ -27,6 +27,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     // MARK: callbacks:
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
+        
         return view
     }()
     
@@ -54,28 +55,28 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     }
     
     override func configure(with config: ScrollableButtonsConfiguration?) {
+        buttons.forEach { $0.removeFromSuperview() }
+        buttons = []
+        
         super.configure(with: config)
+        
         setupButtons()
+        
         guard let config = config else { return }
         configure(background: config.background)
     }
     
     override func setup(with viewModel: ScrollableButtonsViewModel?) {
-        super.setup(with: viewModel)
-        guard let viewModel = viewModel else { return }
+        buttons.forEach { $0.removeFromSuperview() }
+        buttons = []
         
-        guard buttons.count != viewModel.buttons.count else {
-            return
-        }
-
+        super.setup(with: viewModel)
+        
         setupButtons()
     }
     
     private func setupButtons() {
-        guard let viewModel = viewModel,
-              let config = config
-        else { return }
-        buttons.forEach { $0.removeFromSuperview() }
+        guard let viewModel = viewModel, let config = config else { return }
         
         for (index, model) in viewModel.buttons.enumerated() {
             let button = FEButton()
@@ -93,6 +94,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
             stack.addArrangedSubview(button)
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
+        
         stack.layoutIfNeeded()
     }
     
@@ -100,10 +102,6 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     @objc private  func buttonTapped(_ sender: FEButton) {
         guard let index = buttons.firstIndex(where: { $0 == sender }) else { return }
         
-        if index < callbacks.count {
-            callbacks[index]()
-        } else {
-            callbacks.last?()
-        }
+        callbacks[index]()
     }
 }

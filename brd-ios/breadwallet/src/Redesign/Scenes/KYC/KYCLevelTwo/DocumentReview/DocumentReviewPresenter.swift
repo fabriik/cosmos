@@ -25,13 +25,11 @@ final class DocumentReviewPresenter: NSObject, Presenter, DocumentReviewActionRe
             .buttons
         ]
         
+        // HMM
         let sectionRows: [Models.Sections: [Any]] = [
             .title: [LabelViewModel.text("Before you confirm, please:")],
-            .checkmarks: [
-                ChecklistItemViewModel(title: .text("You have captured the entire front page of the document")),
-                ChecklistItemViewModel(title: .text("Make sure document details are clearly visible and within the frame"))
-            ],
-            .image: [ImageViewModel.image(image)],
+            .checkmarks: item.checklist ?? [],
+            .image: [ImageViewModel.photo(image)],
             .buttons: [
                 ScrollableButtonsViewModel(buttons: [
                     .init(title: "Retake photo"),
