@@ -281,7 +281,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                 }
                 
                 if UserDefaults.walletTokenValue == nil {
-                    let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
+                    let newDeviceRequestData = NewDeviceRequestData(token: self.walletTokenValueStored)
                     NewDeviceWorker().execute(requestData: newDeviceRequestData) { data, error in
                         if error != nil {
                             self.log("Session key error: \(error?.errorMessage ?? "")")
