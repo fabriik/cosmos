@@ -58,7 +58,6 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section] as? Models.Sections {
         case .documents:
-            toggleBlur(animated: false)
             interactor?.selectDocument(viewAction: .init(index: indexPath.row))
             
         default: return
@@ -70,6 +69,8 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     // MARK: - KYCDocumentPickerResponseDisplay
     
     func displayTakePhoto(responseDisplay: KYCDocumentPickerModels.Photo.ResponseDisplay) {
+        LoadingView.hide()
+        
         coordinator?.showImagePicker(model: responseDisplay.model,
                                      device: responseDisplay.device) { [weak self] image in
             guard let image = image else { return }
@@ -78,6 +79,8 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
     }
     
     func displayFinish(responseDisplay: KYCDocumentPickerModels.Finish.ResponseDisplay) {
+        LoadingView.hide()
+        
         coordinator?.showKYCFinal()
     }
     
@@ -85,8 +88,7 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
 }
 
 protocol ImagePickable: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func showImagePicker(model: FEImagePickerModel?,
+    func showImagePicker(model: KYCCameraImagePickerModel?,
                          device: AVCaptureDevice,
                          completion: ((UIImage?) -> Void)?)
 }

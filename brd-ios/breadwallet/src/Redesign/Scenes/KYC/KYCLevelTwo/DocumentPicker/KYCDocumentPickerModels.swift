@@ -38,7 +38,7 @@ enum KYCDocumentPickerModels {
         }
         
         struct ResponseDisplay {
-            var model: FEImagePickerModel?
+            var model: KYCCameraImagePickerModel?
             var device: AVCaptureDevice
             var checklist: [ChecklistItemViewModel]
         }
@@ -57,7 +57,7 @@ enum KYCDocumentPickerModels {
         }
         
         struct ResponseDisplay {
-            var model: FEImagePickerModel?
+            var model: KYCCameraImagePickerModel?
         }
     }
     

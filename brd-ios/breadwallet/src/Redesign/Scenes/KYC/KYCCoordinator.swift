@@ -41,16 +41,19 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         controller.confirmPhoto = { [weak self] in
             let picker = self?.navigationController.children.first(where: { $0 is KYCDocumentPickerViewController }) as? KYCDocumentPickerViewController
             picker?.interactor?.confirmPhoto(viewAction: .init(photo: image))
+            
+            LoadingView.show()
         }
         
-        navigationController.show(controller, sender: nil)
+        navigationController.pushViewController(controller, animated: true)
     }
     
     func showKYCFinal() {
         let controller = KYCLevelTwoPostValidationViewController()
         controller.prepareData()
         controller.coordinator = self
-        navigationController.show(controller, sender: nil)
+        controller.navigationItem.setHidesBackButton(true, animated: false)
+        navigationController.pushViewController(controller, animated: true)
     }
     
     func showKYCLevelOne() {
@@ -69,10 +72,6 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         showUnderConstruction("\(document.title) verification")
     }
     
-    func showLevelTwoValidation() {
-        open(scene: Scenes.KYCLevelTwoPostValidation)
-    }
-    
     func dismissFlow() {
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)
@@ -80,11 +79,10 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
 }
 
 extension KYCCoordinator: ImagePickable {
-    func showImagePicker(model: FEImagePickerModel?,
+    func showImagePicker(model: KYCCameraImagePickerModel?,
                          device: AVCaptureDevice,
                          completion: ((UIImage?) -> Void)?) {
         let controller = KYCCameraViewController()
-        controller.modalPresentationStyle = .fullScreen
         
         controller.defaultVideoDevice = device
         controller.configure(with: .init(instructions: .init(font: Fonts.Body.one,
@@ -94,6 +92,6 @@ extension KYCCoordinator: ImagePickable {
         controller.setup(with: model)
         controller.photoSelected = completion
         
-        navigationController.present(controller, animated: true)
+        navigationController.pushViewController(controller, animated: true)
     }
 }

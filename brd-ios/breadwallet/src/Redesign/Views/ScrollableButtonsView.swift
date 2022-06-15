@@ -27,13 +27,13 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     // MARK: callbacks:
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
-        
         return view
     }()
     
     private lazy var stack: UIStackView = {
         let view = UIStackView()
         view.spacing = Margins.large.rawValue
+        view.distribution = .fillEqually
         return view
     }()
     
@@ -51,6 +51,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
         scrollView.addSubview(stack)
         stack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+            make.width.equalTo(scrollView.snp.width)
         }
     }
     
