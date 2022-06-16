@@ -9,10 +9,10 @@
 import UIKit
 
 class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
-                                  KYCBasicInteractor,
-                                  KYCBasicPresenter,
-                                  KYCBasicStore>,
-                                  KYCBasicResponseDisplays {
+                              KYCBasicInteractor,
+                              KYCBasicPresenter,
+                              KYCBasicStore>,
+                              KYCBasicResponseDisplays {
     typealias Models = KYCBasicModels
     
     override var sceneTitle: String? {
