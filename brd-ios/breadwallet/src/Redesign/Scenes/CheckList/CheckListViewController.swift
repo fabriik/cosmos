@@ -15,7 +15,7 @@ class CheckListViewController: BaseTableViewController<BaseCoordinator,
                                CheckListResponseDisplays {
     typealias Models = CheckListModels
 
-    override var sceneTitle: String? { return "Checklist base VC" }
+    override var sceneLeftAlignedTitle: String? { return "Checklist base VC" }
     var checklistTitle: LabelViewModel { return .text("OVERRIDE IN SUBCLASS") }
     var checkmarks: [ChecklistItemViewModel] { return [] }
     

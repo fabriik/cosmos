@@ -8,11 +8,11 @@
 import UIKit
 
 class VIPTableViewController<C: CoordinatableRoutes,
-                                  I: Interactor,
-                                  P: Presenter,
-                                  DS: BaseDataStore & NSObject>: VIPViewController<C, I, P, DS>,
-                                                                 UITableViewDelegate,
-                                                                 UITableViewDataSource {
+                             I: Interactor,
+                             P: Presenter,
+                             DS: BaseDataStore & NSObject>: VIPViewController<C, I, P, DS>,
+                                                            UITableViewDelegate,
+                                                            UITableViewDataSource {
     override var isModalDismissableEnabled: Bool {
         return true
     }
@@ -44,11 +44,22 @@ class VIPTableViewController<C: CoordinatableRoutes,
     // MARK: Overrides
     override func setupSubviews() {
         super.setupSubviews()
-
+        
+        let topInsetValue = sceneLeftAlignedTitle == nil ? 0 : (Margins.large.rawValue * 2) + 28
+        
+        view.addSubview(leftAlignedTitleLabel)
+        leftAlignedTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.height.equalTo(topInsetValue)
+            make.leading.trailing.equalToSuperview().inset(Margins.large.rawValue)
+        }
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        tableView.contentInset.top = topInsetValue
     }
     
     // MARK: ResponseDisplay

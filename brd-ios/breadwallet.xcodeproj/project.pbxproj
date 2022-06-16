@@ -3161,9 +3161,9 @@
 		7E5CB3602835090D00EC787E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7E5CB3612835090D00EC787E /* BaseTableViewController.swift */,
 				7E5CB3622835090D00EC787E /* VIPViewController.swift */,
 				7E5CB3632835090D00EC787E /* VIPTableViewController.swift */,
+				7E5CB3612835090D00EC787E /* BaseTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

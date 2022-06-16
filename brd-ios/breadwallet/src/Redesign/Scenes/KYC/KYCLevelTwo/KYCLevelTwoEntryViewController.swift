@@ -16,7 +16,7 @@ extension Scenes {
 
 class KYCLevelTwoEntryViewController: CheckListViewController {
     // TODO: localized
-    override var sceneTitle: String? { return "We need to confirm your ID" }
+    override var sceneLeftAlignedTitle: String? { return "We need to confirm your ID" }
     override var checklistTitle: LabelViewModel { return .text("Before you start, please:") }
     override var checkmarks: [ChecklistItemViewModel] { return [
         .init(title: .text("Prepare a valid government-issued identity document (Passport, National ID card or Drivers license)")),
