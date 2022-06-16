@@ -11,12 +11,12 @@
 import UIKit
 import AVFoundation
 
-struct FEImagePickerConfiguration: Configurable {
+struct KYCCameraImagePickerConfiguration: Configurable {
     var instructions: LabelConfiguration?
     var background: BackgroundConfiguration?
 }
 
-struct FEImagePickerModel: ViewModel {
+struct KYCCameraImagePickerModel: ViewModel {
     var instruction: LabelViewModel?
     var confirmation: LabelViewModel?
 }
@@ -24,16 +24,12 @@ struct FEImagePickerModel: ViewModel {
 class KYCCameraViewController: UIViewController, ViewProtocol {
     private var spinner: UIActivityIndicatorView!
     
-    var windowOrientation: UIInterfaceOrientation {
-        return .portrait
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    var config: FEImagePickerConfiguration?
-    var viewModel: FEImagePickerModel?
+    var config: KYCCameraImagePickerConfiguration?
+    var viewModel: KYCCameraImagePickerModel?
     
     var photoSelected: ((UIImage?) -> Void)?
     
@@ -41,14 +37,14 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
     
     // MARK: View Controller Life Cycle
     
-    func configure(with config: FEImagePickerConfiguration?) {
+    func configure(with config: KYCCameraImagePickerConfiguration?) {
         self.config = config
         
         instructionsLabel.wrappedView.configure(with: config?.instructions)
         instructionsLabel.backgroundColor = config?.background?.backgroundColor
     }
     
-    func setup(with viewModel: FEImagePickerModel?) {
+    func setup(with viewModel: KYCCameraImagePickerModel?) {
         self.viewModel = viewModel
         
         instructionsLabel.wrappedView.setup(with: viewModel?.instruction)
@@ -79,6 +75,12 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
             make.bottom.equalToSuperview().inset(40)
         }
         
+        previewView.addSubview(dismissButton)
+        dismissButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(16)
+            make.centerY.equalTo(photoButton.snp.centerY)
+        }
+        
         previewView.addSubview(instructionsLabel)
         instructionsLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -96,7 +98,7 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
         
         /*
          Check the video authorization status. Video access is required and audio
-         access is optional. If the user denies audio access, AVCam won't
+         access is optional. If the user denies audio access, KYCCamera won't
          record audio during movie recording.
          */
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -161,15 +163,13 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
                 
             case .notAuthorized:
                 DispatchQueue.main.async {
-                    let changePrivacySetting = "AVCam doesn't have permission to use the camera, please change privacy settings"
-                    let message = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to the camera")
-                    let alertController = UIAlertController(title: "AVCam", message: message, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: nil, message: "KYCCamera doesn't have permission to use the camera, please change privacy settings", preferredStyle: .alert)
                     
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""),
                                                             style: .cancel,
                                                             handler: nil))
                     
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"),
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: ""),
                                                             style: .`default`,
                                                             handler: { _ in
                                                                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!,
@@ -182,11 +182,9 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
                 
             case .configurationFailed:
                 DispatchQueue.main.async {
-                    let alertMsg = "Alert message when something goes wrong during capture session configuration"
-                    let message = NSLocalizedString("Unable to capture media", comment: alertMsg)
-                    let alertController = UIAlertController(title: "AVCam", message: message, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: nil, message: "Unable to capture media", preferredStyle: .alert)
                     
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""),
                                                             style: .cancel,
                                                             handler: nil))
                     
@@ -205,24 +203,6 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
                 self.isSessionRunning = self.session.isRunning
                 self.removeObservers()
             }
-        }
-    }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        if let videoPreviewLayerConnection = previewView.videoPreviewLayer.connection {
-            let deviceOrientation = UIDevice.current.orientation
-            guard let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation),
-                deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
-                    return
-            }
-            
-            videoPreviewLayerConnection.videoOrientation = newVideoOrientation
         }
     }
     
@@ -253,6 +233,16 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
     private lazy var photoButton: KYShutterButton = {
         let view = KYShutterButton(frame: .zero, buttonColor: UIColor.red)
         view.addTarget(self, action: #selector(capturePhoto(_:)), for: .touchUpInside)
+        
+        return view
+    }()
+    
+    private lazy var dismissButton: UIButton = {
+        let view = UIButton()
+        view.addTarget(self, action: #selector(dismissAll(_:)), for: .touchUpInside)
+        view.setTitle("Cancel", for: .normal)
+        view.titleLabel?.textColor = .white
+        view.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         
         return view
     }()
@@ -292,23 +282,7 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
                 self.videoDeviceInput = videoDeviceInput
                 
                 DispatchQueue.main.async {
-                    /*
-                     Dispatch video streaming to the main queue because AVCaptureVideoPreviewLayer is the backing layer for PreviewView.
-                     You can manipulate UIView only on the main thread.
-                     Note: As an exception to the above rule, it's not necessary to serialize video orientation changes
-                     on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
-                     
-                     Use the window scene's orientation as the initial video orientation. Subsequent orientation changes are
-                     handled by CameraViewController.viewWillTransition(to:with:).
-                     */
-                    var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
-                    if self.windowOrientation != .unknown {
-                        if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
-                            initialVideoOrientation = videoOrientation
-                        }
-                    }
-                    
-                    self.previewView.videoPreviewLayer.connection?.videoOrientation = initialVideoOrientation
+                    self.previewView.videoPreviewLayer.connection?.videoOrientation = .portrait
                 }
             } else {
                 print("Couldn't add video device input to the session.")
@@ -419,7 +393,7 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
             }
             
             let photoCaptureProcessor = KYCCameraPhotoCaptureProcessor(with: photoSettings, willCapturePhotoAnimation: {
-                // Flash the screen to signal that AVCam took a photo.
+                // Flash the screen to signal that KYCCamera took a photo.
                 DispatchQueue.main.async {
                     self.previewView.videoPreviewLayer.opacity = 0
                     UIView.animate(withDuration: 0.25) {
@@ -433,8 +407,6 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
                 }
             }, photoProcessed: { image in
                 self.photoSelected?(image)
-                
-                self.dismiss(animated: true)
             }, photoProcessingHandler: { animate in
                 // Animates a spinner while photo is processing
                 DispatchQueue.main.async {
@@ -454,45 +426,9 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
         }
     }
     
-    // MARK: ItemSelectionViewControllerDelegate
-    
-    let semanticSegmentationTypeItemSelectionIdentifier = "SemanticSegmentationTypes"
-    
-    func tenBitVariantOfFormat(activeFormat: AVCaptureDevice.Format) -> AVCaptureDevice.Format? {
-        let formats = self.videoDeviceInput.device.formats
-        let formatIndex = formats.firstIndex(of: activeFormat)!
-        
-        let activeDimensions = CMVideoFormatDescriptionGetDimensions(activeFormat.formatDescription)
-        let activeMaxFrameRate = activeFormat.videoSupportedFrameRateRanges.last?.maxFrameRate
-        let activePixelFormat = CMFormatDescriptionGetMediaSubType(activeFormat.formatDescription)
-        
-        /*
-         AVCaptureDeviceFormats are sorted from smallest to largest in resolution and frame rate.
-         For each resolution and max frame rate there's a cluster of formats that only differ in pixelFormatType.
-         Here, we're looking for an 'x420' variant of the current activeFormat.
-        */
-        if activePixelFormat != kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange {
-            // Current activeFormat is not a 10-bit HDR format, find its 10-bit HDR variant.
-            for index in formatIndex + 1..<formats.count {
-                let format = formats[index]
-                let dimensions = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
-                let maxFrameRate = format.videoSupportedFrameRateRanges.last?.maxFrameRate
-                let pixelFormat = CMFormatDescriptionGetMediaSubType(format.formatDescription)
-                
-                // Don't advance beyond the current format cluster
-                if activeMaxFrameRate != maxFrameRate || activeDimensions.width != dimensions.width || activeDimensions.height != dimensions.height {
-                    break
-                }
-                
-                if pixelFormat == kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange {
-                    return format
-                }
-            }
-        } else {
-            return activeFormat
-        }
-        
-        return nil
+    /// - Tag: dismissAll
+    @objc func dismissAll(_ sender: UIButton?) {
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: KVO and Notifications
@@ -573,7 +509,7 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
         /*
          In some scenarios you want to enable the user to resume the session.
          For example, if music playback is initiated from Control Center while
-         using AVCam, then the user can let AVCam resume
+         using KYCCamera, then the user can let KYCCamera resume
          the session running, which will stop music playback. Note that stopping
          music playback in Control Center will not automatically resume the session.
          Also note that it's not always possible to resume, see `resumeInterruptedSession(_:)`.
@@ -610,28 +546,6 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
                 self.cameraUnavailableLabel.isHidden = true
             }
             )
-        }
-    }
-}
-
-extension AVCaptureVideoOrientation {
-    init?(deviceOrientation: UIDeviceOrientation) {
-        switch deviceOrientation {
-        case .portrait: self = .portrait
-        case .portraitUpsideDown: self = .portraitUpsideDown
-        case .landscapeLeft: self = .landscapeRight
-        case .landscapeRight: self = .landscapeLeft
-        default: return nil
-        }
-    }
-    
-    init?(interfaceOrientation: UIInterfaceOrientation) {
-        switch interfaceOrientation {
-        case .portrait: self = .portrait
-        case .portraitUpsideDown: self = .portraitUpsideDown
-        case .landscapeLeft: self = .landscapeLeft
-        case .landscapeRight: self = .landscapeRight
-        default: return nil
         }
     }
 }

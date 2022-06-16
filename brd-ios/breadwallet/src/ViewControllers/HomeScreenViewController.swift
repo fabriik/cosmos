@@ -250,7 +250,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     
     private func setupToolbar() {
         let buttons = [
-            ("Balance", #imageLiteral(resourceName: "balance"), #selector(showBalance)),
+            ("Home", #imageLiteral(resourceName: "home"), #selector(showHome)),
             (L10n.HomeScreen.trade, #imageLiteral(resourceName: "trade"), #selector(trade)),
             ("Buy/Sell", #imageLiteral(resourceName: "buy"), #selector(buy)),
             ("Profile", #imageLiteral(resourceName: "user"), #selector(profile)),
@@ -374,9 +374,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     // MARK: Actions
-    @objc private func showBalance() {
-        print("does nothing")
-    }
+    
+    @objc private func showHome() {}
     
     @objc private func buy() {
         // TODO: move worker out of VC
