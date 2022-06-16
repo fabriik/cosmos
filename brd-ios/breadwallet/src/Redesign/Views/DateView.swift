@@ -110,6 +110,12 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         dateStack.addArrangedSubview(dayTextField)
         dateStack.addArrangedSubview(yearTextField)
         
+        dateStack.arrangedSubviews.forEach { arrangedSubview in
+            arrangedSubview.snp.makeConstraints { make in
+                make.height.equalTo(FieldHeights.common.rawValue)
+            }
+        }
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         addGestureRecognizer(tap)
         

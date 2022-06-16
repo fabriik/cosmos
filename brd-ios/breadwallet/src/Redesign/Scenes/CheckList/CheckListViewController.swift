@@ -35,8 +35,7 @@ class CheckListViewController: BaseTableViewController<BaseCoordinator,
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.snp.bottomMargin)
             make.leading.equalToSuperview().inset(Margins.large.rawValue)
-            // TODO: constants
-            make.height.equalTo(48)
+            make.height.equalTo(FieldHeights.common.rawValue)
         }
         
         tableView.snp.remakeConstraints { make in

@@ -50,6 +50,7 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
     private lazy var nameStack: UIStackView = {
         let view = UIStackView()
         view.spacing = Margins.small.rawValue
+        view.distribution = .fillEqually
         return view
     }()
     
@@ -93,6 +94,12 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         nameStack.addArrangedSubview(firstNameTextField)
         nameStack.addArrangedSubview(lastNameTextfield)
         stack.addArrangedSubview(errorLabel)
+        
+        nameStack.arrangedSubviews.forEach { arrangedSubview in
+            arrangedSubview.snp.makeConstraints { make in
+                make.height.equalTo(FieldHeights.common.rawValue)
+            }
+        }
         
         errorLabel.snp.makeConstraints { make in
             // TODO: constant

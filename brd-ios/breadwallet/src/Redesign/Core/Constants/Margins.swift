@@ -57,3 +57,8 @@ enum ViewSizes: CGFloat {
     /// 335
     case huge = 335.0
 }
+
+enum FieldHeights: CGFloat {
+    /// 48
+    case common = 48.0
+}

@@ -44,7 +44,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
         content.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            make.height.equalTo(48)
+            make.height.equalTo(FieldHeights.common.rawValue)
         }
         content.setupClearMargins()
         
