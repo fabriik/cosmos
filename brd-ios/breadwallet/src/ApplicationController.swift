@@ -113,10 +113,6 @@ class ApplicationController: Subscriber, Trackable {
                                         window: window,
                                         alertPresenter: alertPresenter)
         
-        if let nvc = rootNavigationController {
-            coordinator = BaseCoordinator(navigationController: nvc)
-        }
-
         // Start collecting analytics events. Once we have a wallet, startBackendServices() will
         // notify `Backend.apiClient.analytics` so that it can upload events to the server.
         Backend.apiClient.analytics?.startCollectingEvents()
@@ -135,7 +131,7 @@ class ApplicationController: Subscriber, Trackable {
             self.rootNavigationController?.viewControllers = []
             
             self.setupRootViewController()
-            self.enterOnboarding()
+            self.decideFlow()
         }
         
         initializeAssets(completionHandler: { [weak self] in
@@ -144,6 +140,10 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     func decideFlow() {
+        if let nvc = rootNavigationController {
+            coordinator = BaseCoordinator(navigationController: nvc)
+        }
+        
         if keyStore.noWallet {
             enterOnboarding()
         } else {
