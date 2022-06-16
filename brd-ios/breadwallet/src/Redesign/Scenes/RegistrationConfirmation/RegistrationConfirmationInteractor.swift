@@ -28,7 +28,7 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
         let data = RegistrationConfirmationRequestData(code: dataStore?.code)
         RegistrationConfirmationWorker().execute(requestData: data) { [weak self] error in
             guard error == nil else {
-                // TODO: error handling
+                self?.presenter?.presentError(actionResponse: .init(error: error))
                 return
             }
             // TODO: confirmed
