@@ -21,10 +21,11 @@ class VIPTableViewController<C: CoordinatableRoutes,
     var sectionRows: [AnyHashable: [Any]] = [:]
 
     // MARK: LazyUI
-    lazy var tableView: UITableView = {
-        var tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.delegate = self
+    lazy var tableView: ContentSizedTableView = {
+        var tableView = ContentSizedTableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
+        tableView.delegate = self
+
         // this prevents the top offset on tableViews
         let zeroView = UIView(frame: .init(origin: .zero, size: .init(width: 0, height: CGFloat.leastNonzeroMagnitude)))
         tableView.tableHeaderView = zeroView
@@ -40,12 +41,29 @@ class VIPTableViewController<C: CoordinatableRoutes,
         tableView.separatorStyle = .none
         return tableView
     }()
-
-    // MARK: Overrides
+    
+    lazy var contentShadowView: UIView = {
+        var contentShadowView = UIView()
+        contentShadowView.backgroundColor = .white
+        contentShadowView.clipsToBounds = true
+        contentShadowView.layer.cornerRadius = 12
+        contentShadowView.layer.shadowRadius = contentShadowView.layer.cornerRadius * 3
+        contentShadowView.layer.shadowOpacity = 0.08
+        contentShadowView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        contentShadowView.layer.shadowColor = UIColor(red: 0.043, green: 0.082, blue: 0.165, alpha: 1.0).cgColor
+        contentShadowView.layer.masksToBounds = false
+        contentShadowView.layer.shouldRasterize = true
+        contentShadowView.layer.rasterizationScale = UIScreen.main.scale
+        return contentShadowView
+    }()
+    
+    var topInsetValue: CGFloat = 0
+    
+    // MARK: Lifecycle
     override func setupSubviews() {
         super.setupSubviews()
         
-        let topInsetValue = sceneLeftAlignedTitle == nil ? 0 : (Margins.large.rawValue * 2) + 28
+        topInsetValue = sceneLeftAlignedTitle == nil ? 0 : (Margins.large.rawValue * 2) + 28
         
         view.addSubview(leftAlignedTitleLabel)
         leftAlignedTitleLabel.snp.makeConstraints { make in
@@ -60,6 +78,29 @@ class VIPTableViewController<C: CoordinatableRoutes,
         }
         
         tableView.contentInset.top = topInsetValue
+    }
+    
+    func setRoundedShadowBackground() {
+        tableView.snp.updateConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: topInsetValue + (Margins.extraHuge.rawValue * 2),
+                                                             left: Margins.extraHuge.rawValue,
+                                                             bottom: Margins.extraHuge.rawValue,
+                                                             right: Margins.extraHuge.rawValue))
+        }
+        
+        view.addSubview(contentShadowView)
+        contentShadowView.snp.makeConstraints { make in
+            make.leading.equalTo(Margins.large.rawValue)
+            make.trailing.equalTo(-Margins.large.rawValue)
+            make.top.equalTo(tableView.snp.top).inset(topInsetValue - Margins.large.rawValue)
+            make.height.equalTo(tableView.intrinsicContentSize.height + Margins.extraHuge.rawValue)
+        }
+        
+        view.bringSubviewToFront(tableView)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        contentShadowView.transform = .init(translationX: 0, y: -scrollView.contentOffset.y - tableView.contentInset.top)
     }
     
     // MARK: ResponseDisplay

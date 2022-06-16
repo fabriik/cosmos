@@ -25,8 +25,11 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
     
     override func setupSubviews() {
         super.setupSubviews()
+        
         tableView.register(WrapperTableViewCell<NameView>.self)
         tableView.register(WrapperTableViewCell<DateView>.self)
+        
+        setRoundedShadowBackground()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,7 +51,7 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             cell = UITableViewCell()
         }
         
-        cell.contentView.setupCustomMargins(vertical: .small, horizontal: .small)
+        cell.contentView.setupCustomMargins(vertical: .small, horizontal: .zero)
         
         return cell
     }
