@@ -33,6 +33,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     private lazy var stack: UIStackView = {
         let view = UIStackView()
         view.spacing = Margins.small.rawValue
+        view.distribution = .fillProportionally
         return view
     }()
     
