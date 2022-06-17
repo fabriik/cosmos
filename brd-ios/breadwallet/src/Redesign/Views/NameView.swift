@@ -24,21 +24,7 @@ struct NameViewModel: ViewModel {
 class NameView: FEView<NameViewConfiguration, NameViewModel> {
     
     var contentSizeChanged: (() -> Void)?
-    var firstNameValidator: ((String?) -> Bool)? = { return ($0?.count ?? 0) >= 1 }
-    var lastNameValidator: ((String?) -> Bool)? = { return ($0?.count ?? 0) >= 1 }
     var valueChanged: ((_ first: String?, _ last: String?) -> Void)?
-    
-    private var isValid: Bool {
-        guard firstNameValidator?(firstName) == true,
-              lastNameValidator?(lastName) == true else {
-            if firstName == nil, lastName == nil {
-                return true
-            }
-            return false
-        }
-        
-        return true
-    }
     
     private lazy var stack: UIStackView = {
         let view = UIStackView()
@@ -50,6 +36,7 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
     private lazy var nameStack: UIStackView = {
         let view = UIStackView()
         view.spacing = Margins.small.rawValue
+        view.distribution = .fillEqually
         return view
     }()
     
@@ -65,12 +52,6 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
     
     private lazy var firstNameTextField: FETextField = {
         let view = FETextField()
-        return view
-    }()
-    
-    private lazy var errorLabel: FELabel = {
-        let view = FELabel()
-        view.text = "Has to be at least 1 character long"
         return view
     }()
     
@@ -92,11 +73,11 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         stack.addArrangedSubview(nameStack)
         nameStack.addArrangedSubview(firstNameTextField)
         nameStack.addArrangedSubview(lastNameTextfield)
-        stack.addArrangedSubview(errorLabel)
         
-        errorLabel.snp.makeConstraints { make in
-            // TODO: constant
-            make.height.equalTo(0)
+        nameStack.arrangedSubviews.forEach { arrangedSubview in
+            arrangedSubview.snp.makeConstraints { make in
+                make.height.equalTo(FieldHeights.common.rawValue)
+            }
         }
     }
     
@@ -106,7 +87,6 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         titleLabel.configure(with: .init(font: Fonts.Body.two, textColor: LightColors.Text.two))
         firstNameTextField.configure(with: Presets.TextField.primary)
         lastNameTextfield.configure(with: Presets.TextField.primary)
-        errorLabel.configure(with: .init(font: Fonts.caption, textColor: LightColors.error))
     }
     
     override func setup(with viewModel: NameViewModel?) {
@@ -137,11 +117,6 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
             self.lastName = last.isEmpty ? nil : last
         }
         valueChanged?(self.firstName, self.lastName)
-        
-        let isValid = isValid
-        errorLabel.snp.remakeConstraints { make in
-            make.height.equalTo(isValid ? 0 : 20)
-        }
         
         Self.animate(withDuration: Presets.Animation.duration) { [weak self] in
             self?.content.layoutIfNeeded()

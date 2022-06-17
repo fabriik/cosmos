@@ -21,8 +21,17 @@ class VIPViewController<C: CoordinatableRoutes,
     
     // MARK: Title and tab bar appearance
     var sceneTitle: String? { return nil }
+    var sceneLeftAlignedTitle: String? { return nil }
     var tabIcon: UIImage? { return nil }
-
+    
+    lazy var leftAlignedTitleLabel: UILabel = {
+        let view = UILabel()
+        view.font = Fonts.Title.four
+        view.textAlignment = .left
+        view.textColor = LightColors.Icons.one
+        return view
+    }()
+    
     // MARK: Modal dimissable
     var isModalDismissableEnabled: Bool { return false }
     var dismissText: String { return "" }
@@ -127,8 +136,9 @@ class VIPViewController<C: CoordinatableRoutes,
     func localize() {
         tabBarItem.title = sceneTitle
         title = sceneTitle
+        leftAlignedTitleLabel.text = sceneLeftAlignedTitle
     }
-
+    
     func prepareData() {}
 
     // MARK: BaseResponseDisplay

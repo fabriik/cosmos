@@ -62,7 +62,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         }
     }
     
-    // MARK: Lazy UI
+    var isPicker = false
+    
     var value: String? {
         get { return textField.text }
         set {
@@ -70,6 +71,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             animateTo(state: newValue?.isEmpty == true ? .error : .filled)
         }
     }
+    
+    // MARK: Lazy UI
     
     private lazy var mainStack: UIStackView = {
         let view = UIStackView()
@@ -152,7 +155,13 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         textFieldStack.addArrangedSubview(titleStack)
         titleStack.addArrangedSubview(leadingView)
         titleStack.addArrangedSubview(titleLabel)
-        titleStack.addArrangedSubview(trailingView)
+        
+        textFieldContent.addSubview(trailingView)
+        trailingView.snp.makeConstraints { make in
+            make.width.equalTo(44)
+            make.trailing.equalTo(-Margins.large.rawValue)
+            make.top.equalTo(Margins.small.rawValue)
+        }
         
         titleLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().priority(.low)
@@ -287,6 +296,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         }
         var hint = viewModel?.hint
         var hideTextField = textField.text?.isEmpty == true
+        var hideTitleStack = false
         
         switch state {
         case .normal:
@@ -295,6 +305,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         case .filled:
             background = config?.backgroundConfiguration
             hideTextField = false
+            
+            hideTitleStack = isPicker
             
         case .highlighted, .selected:
             background = config?.selectedBackgroundConfiguration
@@ -308,11 +320,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             hideTextField = false
             hint = viewModel?.error
         }
+        
+        titleStack.isHidden = hideTitleStack
         textField.isHidden = hideTextField
         hintLabel.isHidden = hint == nil
-//        if textField.text?.isEmpty == false {
-//            valueChanged?(textField.text)
-//        }
         
         if let text = hint,
            !text.isEmpty {

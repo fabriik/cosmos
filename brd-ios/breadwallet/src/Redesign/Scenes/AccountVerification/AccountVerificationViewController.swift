@@ -11,12 +11,16 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
                                          AccountVerificationResponseDisplays {
     typealias Models = AccountVerificationModels
 
+    override var sceneLeftAlignedTitle: String? {
+        // TODO: localize
+        return "Account Verification"
+    }
+    
     // MARK: - Overrides
     
     override func setupSubviews() {
         super.setupSubviews()
         
-        navigationItem.title = "Account Verification"
         tableView.register(WrapperTableViewCell<VerificationView>.self)
     }
     

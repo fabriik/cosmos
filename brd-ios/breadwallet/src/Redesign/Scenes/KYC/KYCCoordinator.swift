@@ -17,7 +17,7 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         open(scene: Scenes.KYCBasic)
     }
     
-    func showCountrySelector(selected: ((String?) -> Void)?) {
+    func showCountrySelector(selected: ((CountryResponseData?) -> Void)?) {
         let nvc = UINavigationController()
         let coordinator = ItemSelectionCoordinator(navigationController: nvc)
         coordinator.start()
@@ -57,7 +57,11 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
     }
     
     func showKYCLevelOne() {
-        open(scene: Scenes.KYCBasic)
+        let controller = KYCBasicViewController()
+        controller.prepareData()
+        controller.coordinator = self
+        controller.setLastBarButtonItem(from: navigationController, to: .right)
+        navigationController.pushViewController(controller, animated: true)
     }
     
     func showKYCLevelTwo() {

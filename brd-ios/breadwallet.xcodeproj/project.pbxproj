@@ -283,6 +283,7 @@
 		7BA83DA7280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */; };
 		7BA83DAA28045F94003F73AA /* KYCResetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */; };
 		7BA83DAC28047894003F73AA /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DAB28047894003F73AA /* Validators.swift */; };
+		7BB22E49285B8D60003E37AC /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB22E48285B8D60003E37AC /* ContentSizedTableView.swift */; };
 		7BC49D1B282E69A3000BF284 /* ManageAssetsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */; };
 		7BDB49B62805AC780031F015 /* EmailFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */; };
 		7BDB49D62806C03A0031F015 /* BRTarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49D52806C03A0031F015 /* BRTarTests.swift */; };
@@ -1308,6 +1309,7 @@
 		7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessInteractor.swift; sourceTree = "<group>"; };
 		7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetSuccessView.swift; sourceTree = "<group>"; };
 		7BA83DAB28047894003F73AA /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		7BB22E48285B8D60003E37AC /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
 		7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageAssetsButton.swift; path = src/Views/ManageAssetsButton.swift; sourceTree = "<group>"; };
 		7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFeedbackManager.swift; sourceTree = "<group>"; };
 		7BDB49D52806C03A0031F015 /* BRTarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRTarTests.swift; sourceTree = "<group>"; };
@@ -2824,6 +2826,7 @@
 				7B54E57427F4A2B0002DD1E4 /* DatePickerViewController.swift */,
 				7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */,
 				7B54E58827F4A2B0002DD1E4 /* KYCCameraView.swift */,
+				7BB22E48285B8D60003E37AC /* ContentSizedTableView.swift */,
 				7B54E57227F4A2B0002DD1E4 /* KYCConstants.swift */,
 				7B54E58627F4A2B0002DD1E4 /* KYCNavigationController.swift */,
 				7B54E59827F4A2B0002DD1E4 /* KYCViewController.swift */,
@@ -3161,9 +3164,9 @@
 		7E5CB3602835090D00EC787E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7E5CB3612835090D00EC787E /* BaseTableViewController.swift */,
 				7E5CB3622835090D00EC787E /* VIPViewController.swift */,
 				7E5CB3632835090D00EC787E /* VIPTableViewController.swift */,
+				7E5CB3612835090D00EC787E /* BaseTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -4881,6 +4884,7 @@
 				CE0822641FCD1BD100EF371D /* HomeScreenViewController.swift in Sources */,
 				7B54E56127F4A218002DD1E4 /* SwapMainModels.swift in Sources */,
 				7ED83AFA284F40EB00261565 /* CheckListViewController.swift in Sources */,
+				7BB22E49285B8D60003E37AC /* ContentSizedTableView.swift in Sources */,
 				223DB2191DF691260076A151 /* BRSocketHelpers.c in Sources */,
 				3A1D4180250965730089FE63 /* MarketDataPublisher.swift in Sources */,
 				7EBC6AF628488B10000A301F /* RegistrationStore.swift in Sources */,
