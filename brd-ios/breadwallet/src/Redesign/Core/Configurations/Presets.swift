@@ -129,6 +129,7 @@ extension Presets {
         static var verification = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
                                                         headerTitle: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
                                                         headerTrailing: Presets.Button.icon,
+                                                        status: VerificationView.resubmit.status,
                                                         title: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
                                                         description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
                                                         button: Presets.Button.primary.withBorder(normal: Presets.Border.zero,
@@ -250,5 +251,39 @@ extension Presets {
                                                         description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Text.one),
                                                         benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
+    }
+}
+
+extension Presets {
+    struct VerificationInfoView {
+        // TODO: localize
+        static var none = InfoViewModel(kyc: .levelOne, headerTitle: .text("ACCOUNT LIMITS"),
+                                        headerTrailing: .init(image: "infoIcon"),
+                                        status: VerificationStatus.none,
+                                        description: .text("Get full access to your Fabriik wallet"),
+                                        button: .init(title: "Verify your account"))
+        
+        static var verified = InfoViewModel(kyc: .levelOne, headerTitle: .text("ACCOUNT LIMITS"),
+                                            headerTrailing: .init(image: "infoIcon"),
+                                            status: VerificationStatus.email,
+                                            description: .text("Current limit: $1,000/day"),
+                                            button: .init(title: "Upgrade your limits"))
+        
+        static var pending = InfoViewModel(kyc: .levelOne, headerTitle: .text("ACCOUNT LIMITS"),
+                                           headerTrailing: .init(image: "infoIcon"),
+                                           status: VerificationStatus.emailPending,
+                                           description: .text("We’ll let you know when your account is verified."))
+        
+        static var resubmit = InfoViewModel(kyc: .levelTwo, headerTitle: .text("ACCOUNT LIMITS"),
+                                            headerTrailing: .init(image: "infoIcon"),
+                                            status: VerificationStatus.levelTwoResubmision,
+                                            description: .text("Oops! We had some issues processing your data"),
+                                            button: .init(title: "Why is my verification declined?"))
+        
+        static var declined = InfoViewModel(kyc: .levelTwo, headerTitle: .text("ACCOUNT LIMITS"),
+                                            headerTrailing: .init(image: "infoIcon"),
+                                            status: VerificationStatus.levelTwoDeclined,
+                                            description: .text("Why is my verification declined?"),
+                                            button: .init(title: "Why is my verification declined?"))
     }
 }

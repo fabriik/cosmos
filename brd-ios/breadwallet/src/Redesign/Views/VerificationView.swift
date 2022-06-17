@@ -26,6 +26,11 @@ enum VerificationStatus: Equatable {
     case email
     case levelOne
     case levelTwo(Kyc2)
+    case levelTwoExpired
+    case levelTwoNotStarted
+    case levelTwoSubmitted
+    case levelTwoResubmision
+    case levelTwoDeclined
     
     var value: String {
         switch self {
@@ -34,6 +39,12 @@ enum VerificationStatus: Equatable {
         case .email: return "EMAIL_VERIFIED"
         case .levelOne: return "KYC1"
         case .levelTwo(let kyc2): return kyc2.rawValue
+            
+        case .levelTwoExpired: return "KYC2_EXPIRED"
+        case .levelTwoNotStarted: return "KYC2_NOT_STARTED"
+        case .levelTwoSubmitted: return "KYC2_SUBMITTED"
+        case .levelTwoResubmision: return "KYC2_RESUBMISSION_REQUESTED"
+        case .levelTwoDeclined: return "KYC2_DECLINED"
         }
     }
 
@@ -43,6 +54,12 @@ enum VerificationStatus: Equatable {
         case "EMAIL_VERIFICATION_PENDING": self = .emailPending
         case "EMAIL_VERIFIED": self = .email
         case "KYC1": self = .levelOne
+            
+        case "KYC2_EXPIRED": self = .levelTwoExpired
+        case "KYC2_NOT_STARTED": self = .levelTwoNotStarted
+        case "KYC2_SUBMITTED": self = .levelTwoSubmitted
+        case "KYC2_RESUBMISSION_REQUESTED": self = .levelTwoResubmision
+        case "KYC2_DECLINED": self = .levelTwoDeclined
             
         default:
             let kyc2 = Kyc2.init(rawValue: rawValue?.uppercased() ?? "")
