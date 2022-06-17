@@ -18,9 +18,9 @@ struct DateConfiguration: Configurable {
 struct DateViewModel: ViewModel {
     var date: Date?
     var title: LabelViewModel? = .text("Date of birth")
-    var month: TextFieldModel? = .init(title: "MONTH")
-    var day: TextFieldModel? = .init(title: "DAY")
-    var year: TextFieldModel? = .init(title: "YEAR")
+    var month: TextFieldModel? = .init(title: "MM")
+    var day: TextFieldModel? = .init(title: "DD")
+    var year: TextFieldModel? = .init(title: "YYYY")
 }
 
 class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
@@ -106,8 +106,8 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         }
         
         stack.addArrangedSubview(dateStack)
-        dateStack.addArrangedSubview(dayTextField)
         dateStack.addArrangedSubview(monthTextfield)
+        dateStack.addArrangedSubview(dayTextField)
         dateStack.addArrangedSubview(yearTextField)
         
         dateStack.arrangedSubviews.forEach { arrangedSubview in
