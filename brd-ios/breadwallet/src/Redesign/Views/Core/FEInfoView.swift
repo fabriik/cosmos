@@ -128,6 +128,9 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         
         headerStackView.addArrangedSubview(statusView)
         statusView.content.setupCustomMargins(vertical: .zero, horizontal: .small)
+        statusView.snp.makeConstraints { make in
+            make.width.equalTo(Margins.huge.rawValue * 3)
+        }
         
         headerStackView.addArrangedSubview(headerTrailingView)
         headerTrailingView.snp.makeConstraints { make in
@@ -205,7 +208,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         headerTrailingView.setup(with: viewModel.headerTrailing)
         headerTrailingView.isHidden = viewModel.headerTrailing == nil
         
-        statusView.wrappedView.setup(with: .text(viewModel.status?.value))
+        statusView.wrappedView.setup(with: .text(viewModel.status?.title))
         statusView.isHidden = viewModel.status == VerificationStatus.none
         
         titleLabel.setup(with: viewModel.title)
