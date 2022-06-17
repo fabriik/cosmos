@@ -73,6 +73,9 @@
 /* Error alert title */
 "Alert.error" = "Fel";
 
+/* Error title when balance to low */
+"Alert.ethBalance" = "Insufficient Ethereum Balance";
+
 /* Keystore error */
 "Alert.keystore.generic.android" = "Det har uppstått ett problem med KeyStore till Android OS. Kontakta support@breadwallet.com";
 
@@ -148,6 +151,9 @@
 /* API Token error message */
 "ApiClient.tokenError" = "Kan inte ta emot API-symbol";
 
+/* ATM Cash Locatios View Title */
+"ATMMapView.title" = "ATM Cash Locations Map";
+
 /* Send BCH view body. */
 "BCH.body" = "Ange mottagarens BCH-adress nedan. Alla BCH i din plånbok vid nästa fork (%1$@) kommer skickas.";
 
@@ -205,6 +211,9 @@
 /* Cancel button label */
 "Button.cancel" = "Avbryt";
 
+/* Close button */
+"Button.close" = "Close";
+
 /* Confirm button title */
 "Button.confirm" = "Bekräfta";
 
@@ -226,6 +235,9 @@
 /* Ignore button label */
 "Button.ignore" = "Ignorera";
 
+/* Map button */
+"Button.map" = "Map";
+
 /* Maybe Later button label */
 "Button.maybeLater" = "Kanske senare";
 
@@ -246,6 +258,9 @@
 
 /* receive button */
 "Button.receive" = "Ta emot";
+
+/* Search button */
+"Button.search" = "Search";
 
 /* Button label to open Security Settings. */
 "Button.securitySettings.android" = "Säkerhetscenter";
@@ -280,6 +295,27 @@
 /* Camera plugin instruction */
 "CameraPlugin.centerInstruction" = "Centrera ditt ID i boxen";
 
+/* Cash Token Action Instructions */
+"CashToken.actionInstructions" = "Please send bitcoin to this address to withdraw at the ATM. Scan QR code or copy and paste to send bitcoin. Note that it may take a few minutes for the transfer to be confirmed.";
+
+/* Cash Token Location */
+"CashToken.amountBTC" = "Amount (BTC)";
+
+/* Cash Token Amount */
+"CashToken.amountUSD" = "Amount (USD)";
+
+/* Cash Token Label */
+"CashToken.awaitingFunds" = "Awaiting Funds";
+
+/* Cash Token Label */
+"CashToken.label" = "Withdrawl Status";
+
+/* Cash Token Location */
+"CashToken.location" = "Location";
+
+/* Cash Token Please Verify */
+"CashToken.pleaseVerify" = "Please Verify";
+
 "CloudBackup.backupDeleted" = "Backup raderad";
 
 "CloudBackup.backupDeletedMessage" = "Din iCloud-säkerhetskopia har raderats efter för många misslyckade PIN-försök. Appen kommer nu att starta om.";
@@ -313,6 +349,8 @@
 "CloudBackup.recoverButton" = "Återställ från återställningsnyckel";
 
 "CloudBackup.recoverHeader" = "Ange PIN-kod för att låsa upp iCloud-säkerhetskopiering";
+
+"CloudBackup.recoverWarning" = "A previously backed up wallet has been detected. Using this backup is recommended. Are you sure you want to proceeed with restoring from a recovery phrase?";
 
 "CloudBackup.restoreButton" = "Återställ från iCloud Backup";
 
@@ -442,6 +480,9 @@
 /* Email unavailable alert title */
 "ErrorMessages.emailUnavailableTitle" = "E-posten är inte tillgänglig";
 
+/* Not enough ETH for transaction fee */
+"ErrorMessages.ethBalanceLow" = "Insufficient Ethereum balance in your wallet to transfer this type of token.";
+
 /* Message that gets shown when we've detected the user has encountered the looping lock-screen bug. (preserve [ ] characters) */
 "ErrorMessages.loopingLockScreen.android" = "Fabriik kan inte verifieras på grund av en bugg i din version av Android. [Klicka här för mer information.]";
 
@@ -557,6 +598,9 @@
 /* Switch label to enable fingerprint authentication to unlock BRD app */
 "FingerprintSettings.unlockApp" = "Använd fingeravtryck för att låsa upp Fabriik";
 
+/* Activity button on the home screen toolbar */
+"HomeScreen.activity" = "Activity";
+
 /* This is the section that allows administration of the user's wallet */
 "HomeScreen.admin" = "Admin";
 
@@ -590,14 +634,29 @@
 /* empty private key error message */
 "Import.Error.empty" = "Denna privata nyckel är tom.";
 
+/* Failed to submit transaction error message */
+"Import.Error.failedSubmit" = "Failed to submit transaction.";
+
 /* High fees error message */
 "Import.Error.highFees" = "Transaktionsavgifter skulle kosta mer än de medel som finns tillgängliga på denna privata nyckel.";
 
 /* Not a valid private key error message */
 "Import.Error.notValid" = "Inte någon privat nyckel";
 
+/* Service error error message */
+"Import.Error.serviceError" = "Service Error";
+
+/* Service Unavailable error message */
+"Import.Error.serviceUnavailable" = "Service Unavailable";
+
 /* Import signing error message */
 "Import.Error.signing" = "Fel vid signering av transaktion";
+
+/* Unable to sweep wallet error message */
+"Import.Error.sweepError" = "Unable to sweep wallet";
+
+/* Unsupported currency error message */
+"Import.Error.unsupportedCurrency" = "Unsupported Currency";
 
 /* [Redeem] the funds stored on this private key. */
 "Import.importButton" = "Lös In";
@@ -710,7 +769,15 @@
 "MenuButton.addWallet" = "Lägg till plånbok";
 
 /* Menu button title */
+"MenuButton.atmCashRedemption" = "ATM Cash Redemption";
+
+"MenuButton.feedback" = "Support";
+
+/* Menu button title */
 "MenuButton.lock" = "Lås plånbok";
+
+/* (Click here to) manage (your list of) wallets */
+"MenuButton.manageAssets" = "Manage Assets";
 
 /* (Click here to) manage (your list of) wallets */
 "MenuButton.manageWallets" = "Hantera plånböcker";
@@ -1307,6 +1374,12 @@
 /* Emtpy pasteboard error message */
 "Send.emptyPasteboard" = "Urklipp är tomt";
 
+/* Sending error message */
+"Send.Error.authenticationError" = "Authentication Error";
+
+/* Error calculating maximum. */
+"Send.Error.maxError" = "Could not calculate maximum";
+
 /* "(you) can't send (to your)self" */
 "Send.ethSendSelf" = "Kan inte skicka till sig själv.";
 
@@ -1388,6 +1461,9 @@
 /* Scan button label */
 "Send.scanLabel" = "Läs av";
 
+/* Title for error when send request times out and we are not sure weather it succesfull or not. */
+"Send.sendError" = "Send Error";
+
 /* Sending Max: $4.00 for iOS, the balance can't have a parameter */
 "Send.sendingMax" = "Sänd Max:";
 
@@ -1396,6 +1472,9 @@
 
 /* Send button label (for special case where the user specified send amount is too high and does not leave a balance to cover fees.) */
 "Send.sendMaximum" = "Skicka maxbeloppet?";
+
+/* Error message when send request times out and we are not sure weather it succesfull or not. */
+"Send.timeOutBody" = "Timed out waiting for network response. Please wait 30 minutes for confirmation before retrying.";
 
 /* Send screen title (as in "this is the screen for sending money") */
 "Send.title" = "Skicka";
@@ -1461,6 +1540,9 @@
 
 /* Manage settings section header */
 "Settings.manage" = "Hantera";
+
+/* No log files found error message */
+"Settings.noLogsFound" = "No Log files found. Please try again later.";
 
 /* Notifications label */
 "Settings.notifications" = "Meddelanden";
@@ -1625,6 +1707,10 @@
 "SupportForm.notNow" = "Inte nu";
 
 "SupportForm.pleaseDescribe" = "Beskriv din upplevelse";
+
+"Symbols.lock" = "\u{1F512}";
+
+"Symbols.narrowSpace" = "\u{2009}";
 
 /* Syncing view done syncing state header text */
 "SyncingView.activity" = "Aktivitet";
@@ -1954,6 +2040,8 @@
 /* (this transaction was) Sent to this address: */
 "TransactionDirection.to" = "Skickat till den här adressen";
 
+"UDomains.invalid" = "Invalid address.";
+
 /* Disabled until date */
 "UnlockScreen.disabled" = "Inaktiverad till: %1$@";
 
@@ -1984,6 +2072,15 @@
 /* Device authentication title */
 "UnlockScreen.touchIdTitle.android" = "Autentisering krävs";
 
+/* Wallet disabled header */
+"UnlockScreen.walletDisabled" = "Wallet disabled";
+
+/* Wallet disabled description */
+"UnlockScreen.walletDisabledDescription" = "You will need your recovery phrases to reset PIN.";
+
+/* Wipe wallet prompt */
+"UnlockScreen.wipePrompt" = "Are you sure you would like to wipe this wallet?";
+
 /* Update PIN caption text */
 "UpdatePin.caption" = "Kom ihåg PIN-koden. Om du glömmer den, kommer du inte åt dina bitcoin.";
 
@@ -2002,8 +2099,17 @@
 /* Enter new PIN instruction */
 "UpdatePin.enterNew" = "Ange din nya PIN-kod.";
 
+/* Enter PIN instruction */
+"UpdatePin.enterYourPin" = "Enter your PIN";
+
 /* Re-Enter new PIN instruction */
 "UpdatePin.reEnterNew" = "Ange din nya PIN-kod igen.";
+
+/* Enter PIN header */
+"UpdatePin.securedWallet" = "Secured wallet";
+
+/* Update PIN title */
+"UpdatePin.setNewPinTitle" = "Set your new PIN";
 
 /* Update PIN failure error message. */
 "UpdatePin.setPinError" = "Förlåt, vi kunde inte uppdatera din PIN-kod.";
@@ -2025,6 +2131,21 @@
 
 /* Copy wallet addresses alert button label */
 "URLHandling.copy" = "Kopiera";
+
+/* Verification Code Action Instructions */
+"VerificationCode.actionInstructions" = "Check your phone for the confirmation token we sent you. It may take a couple of minutes.";
+
+/* Verification Code Label */
+"VerificationCode.actionLabel" = "Enter token";
+
+/* Verification Code Confirm Button */
+"VerificationCode.buttonConfirm" = "Confirm";
+
+/* Verification Code Label */
+"VerificationCode.label" = "We Texted You a Confirmation Code";
+
+/* Verification Code Title */
+"VerificationCode.title" = "Confirmation Code";
 
 /* Verify PIN for transaction view body */
 "VerifyPin.authorize" = "Var god ange din pinkod för att godkänna denna transaktion.";
