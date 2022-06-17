@@ -140,6 +140,48 @@ extension Presets {
                                                                           border: Presets.Border.zero),
                                                         shadow: Presets.Shadow.normal)
         
+        static var pending = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
+                                                        headerTitle: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                        headerTrailing: Presets.Button.icon,
+                                                        status: VerificationView.pending.status,
+                                                        title: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                        description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
+                                                        button: Presets.Button.primary.withBorder(normal: Presets.Border.zero,
+                                                                                                  selected: Presets.Border.selected,
+                                                                                                  disabled: Presets.Border.disabled),
+                                                        background: .init(backgroundColor: LightColors.secondary,
+                                                                          tintColor: LightColors.Contrast.two,
+                                                                          border: Presets.Border.zero),
+                                                        shadow: Presets.Shadow.normal)
+        
+        static var verified = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
+                                                        headerTitle: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                        headerTrailing: Presets.Button.icon,
+                                                        status: VerificationView.verified.status,
+                                                        title: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                        description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
+                                                        button: Presets.Button.primary.withBorder(normal: Presets.Border.zero,
+                                                                                                  selected: Presets.Border.selected,
+                                                                                                  disabled: Presets.Border.disabled),
+                                                        background: .init(backgroundColor: LightColors.secondary,
+                                                                          tintColor: LightColors.Contrast.two,
+                                                                          border: Presets.Border.zero),
+                                                        shadow: Presets.Shadow.normal)
+        
+        static var declined = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
+                                                        headerTitle: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                        headerTrailing: Presets.Button.icon,
+                                                        status: VerificationView.resubmit.status,
+                                                        title: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                        description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
+                                                        button: Presets.Button.primary.withBorder(normal: Presets.Border.zero,
+                                                                                                  selected: Presets.Border.selected,
+                                                                                                  disabled: Presets.Border.disabled),
+                                                        background: .init(backgroundColor: LightColors.secondary,
+                                                                          tintColor: LightColors.Contrast.two,
+                                                                          border: Presets.Border.zero),
+                                                        shadow: Presets.Shadow.normal)
+        
         static var primary = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
                                                    headerTitle: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
                                                    headerTrailing: Presets.Button.icon,
@@ -276,13 +318,13 @@ extension Presets {
         
         static var resubmit = InfoViewModel(kyc: .levelTwo, headerTitle: .text("ACCOUNT LIMITS"),
                                             headerTrailing: .init(image: "infoIcon"),
-                                            status: VerificationStatus.levelTwoResubmision,
+                                            status: VerificationStatus.levelTwo(.resubmit),
                                             description: .text("Oops! We had some issues processing your data"),
                                             button: .init(title: "Why is my verification declined?"))
         
         static var declined = InfoViewModel(kyc: .levelTwo, headerTitle: .text("ACCOUNT LIMITS"),
                                             headerTrailing: .init(image: "infoIcon"),
-                                            status: VerificationStatus.levelTwoDeclined,
+                                            status: VerificationStatus.levelTwo(.declined),
                                             description: .text("Why is my verification declined?"),
                                             button: .init(title: "Why is my verification declined?"))
     }

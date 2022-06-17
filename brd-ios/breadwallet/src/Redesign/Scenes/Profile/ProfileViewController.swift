@@ -55,8 +55,28 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
         
         cell.setup { view in
             view.setup { view in
-                view.configure(with: Presets.InfoView.verification)
                 view.setup(with: model)
+                
+                let config: InfoViewConfiguration
+                switch (model.kyc, model.status) {
+                    
+                case (.levelOne, _),
+                    (.levelTwo, .levelTwo(.levelTwo)):
+                    config = Presets.InfoView.verified
+                    
+                case (.levelTwo, .levelTwo(.submitted)):
+                    config = Presets.InfoView.pending
+                    
+                case (.levelTwo, .levelTwo(.resubmit)),
+                    (.levelTwo, .levelTwo(.declined)),
+                    (.levelTwo, .levelTwo(.expired)):
+                    config = Presets.InfoView.declined
+                    
+                default:
+                    config = Presets.InfoView.verification
+                }
+                
+                view.configure(with: config)
                 
                 view.setupCustomMargins(all: .large)
                 view.headerButtonCallback = { [weak self] in

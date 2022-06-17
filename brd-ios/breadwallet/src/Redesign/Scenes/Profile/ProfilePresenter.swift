@@ -42,11 +42,11 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
             infoView = Presets.VerificationInfoView.none
         case .emailPending:
             infoView = Presets.VerificationInfoView.pending
-        case .email, .levelOne, .levelTwo(_), .levelTwoSubmitted:
+        case .email, .levelOne, .levelTwo(.levelTwo), .levelTwo(.submitted):
             infoView = Presets.VerificationInfoView.verified
-        case .levelTwoExpired, .levelTwoNotStarted, .levelTwoResubmision:
+        case .levelTwo(.expired), .levelTwo(.notStarted), .levelTwo(.resubmit):
             infoView = Presets.VerificationInfoView.resubmit
-        case .levelTwoDeclined:
+        case .levelTwo(.declined):
             infoView = Presets.VerificationInfoView.declined
         }
         
