@@ -154,9 +154,9 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             
             cell.wrappedView.isPicker = true
             
-            coordinator?.showCountrySelector { [weak self] code in
+            coordinator?.showCountrySelector { [weak self] code, fullName in
                 cell.wrappedView.animateTo(state: .filled, withAnimation: false)
-                self?.interactor?.countrySelected(viewAction: .init(code: code))
+                self?.interactor?.countrySelected(viewAction: .init(code: code, fullName: fullName))
             }
             
         default:

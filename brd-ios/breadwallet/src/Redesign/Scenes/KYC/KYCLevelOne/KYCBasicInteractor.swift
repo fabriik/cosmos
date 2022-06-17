@@ -29,6 +29,7 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
     
     func countrySelected(viewAction: KYCBasicModels.Country.ViewAction) {
         dataStore?.country = viewAction.code
+        dataStore?.countryFullName = viewAction.fullName
         getData(viewAction: .init())
     }
     

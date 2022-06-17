@@ -33,8 +33,8 @@ final class KYCBasicPresenter: NSObject, Presenter, KYCBasicActionResponses {
             ],
             .country: [
                 TextFieldModel(title: "Country",
-                               value: item.country,
-                               error: "to short",
+                               value: item.countryFullName,
+                               error: "too short",
                                trailing: .imageName("chevrondown"),
                                validator: { $0?.isEmpty == false })
             ],
