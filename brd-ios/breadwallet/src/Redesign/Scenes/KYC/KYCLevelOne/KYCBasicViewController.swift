@@ -107,6 +107,10 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         cell.setup { view in
             view.configure(with: Presets.TextField.two)
             view.setup(with: model)
+            view.snp.makeConstraints { make in
+                make.height.equalTo(FieldHeights.common.rawValue)
+            }
+            
             view.contentSizeChanged = {
                 tableView.beginUpdates()
                 tableView.endUpdates()
@@ -148,9 +152,10 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
                 return
             }
             
-            cell.wrappedView.animateTo(state: .selected)
+            cell.wrappedView.isPicker = true
+            
             coordinator?.showCountrySelector { [weak self] code in
-                cell.wrappedView.animateTo(state: .normal, withAnimation: false)
+                cell.wrappedView.animateTo(state: .filled, withAnimation: false)
                 self?.interactor?.countrySelected(viewAction: .init(code: code))
             }
             
