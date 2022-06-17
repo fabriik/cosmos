@@ -73,6 +73,9 @@
 /* Error alert title */
 "Alert.error" = "Ошибка";
 
+/* Error title when balance to low */
+"Alert.ethBalance" = "Insufficient Ethereum Balance";
+
 /* Keystore error */
 "Alert.keystore.generic.android" = "Имеется проблема с хранилищем ключей в вашей ОС Android, обратитесь по адресу: support@breadwallet.com";
 
@@ -148,6 +151,9 @@
 /* API Token error message */
 "ApiClient.tokenError" = "Не удалось извлечь токен API";
 
+/* ATM Cash Locatios View Title */
+"ATMMapView.title" = "ATM Cash Locations Map";
+
 /* Send BCH view body. */
 "BCH.body" = "Введите адрес адресата BCH ниже. Вся сумма BCH в вашем кошельке во время форка (%1$@) будет отправлена.";
 
@@ -205,6 +211,9 @@
 /* Cancel button label */
 "Button.cancel" = "Отменить";
 
+/* Close button */
+"Button.close" = "Close";
+
 /* Confirm button title */
 "Button.confirm" = "Подтвердить";
 
@@ -226,6 +235,9 @@
 /* Ignore button label */
 "Button.ignore" = "Игнорировать";
 
+/* Map button */
+"Button.map" = "Map";
+
 /* Maybe Later button label */
 "Button.maybeLater" = "Может быть, позже";
 
@@ -246,6 +258,9 @@
 
 /* receive button */
 "Button.receive" = "Получить";
+
+/* Search button */
+"Button.search" = "Search";
 
 /* Button label to open Security Settings. */
 "Button.securitySettings.android" = "Настройки безопасности";
@@ -280,6 +295,27 @@
 /* Camera plugin instruction */
 "CameraPlugin.centerInstruction" = "Поместите ваш ID-номер в центр данного поля";
 
+/* Cash Token Action Instructions */
+"CashToken.actionInstructions" = "Please send bitcoin to this address to withdraw at the ATM. Scan QR code or copy and paste to send bitcoin. Note that it may take a few minutes for the transfer to be confirmed.";
+
+/* Cash Token Location */
+"CashToken.amountBTC" = "Amount (BTC)";
+
+/* Cash Token Amount */
+"CashToken.amountUSD" = "Amount (USD)";
+
+/* Cash Token Label */
+"CashToken.awaitingFunds" = "Awaiting Funds";
+
+/* Cash Token Label */
+"CashToken.label" = "Withdrawl Status";
+
+/* Cash Token Location */
+"CashToken.location" = "Location";
+
+/* Cash Token Please Verify */
+"CashToken.pleaseVerify" = "Please Verify";
+
 "CloudBackup.backupDeleted" = "Резервная копия удалена";
 
 "CloudBackup.backupDeletedMessage" = "Ваша резервная копия iCloud была удалена после слишком большого количества неудачных попыток ввода PIN-кода. Приложение перезапустится.";
@@ -313,6 +349,8 @@
 "CloudBackup.recoverButton" = "Восстановление из ключа восстановления";
 
 "CloudBackup.recoverHeader" = "Введите PIN-код для разблокировки резервного копирования iCloud";
+
+"CloudBackup.recoverWarning" = "A previously backed up wallet has been detected. Using this backup is recommended. Are you sure you want to proceeed with restoring from a recovery phrase?";
 
 "CloudBackup.restoreButton" = "Восстановление из резервной копии iCloud";
 
@@ -442,6 +480,9 @@
 /* Email unavailable alert title */
 "ErrorMessages.emailUnavailableTitle" = "Электронное письмо недоступно";
 
+/* Not enough ETH for transaction fee */
+"ErrorMessages.ethBalanceLow" = "Insufficient Ethereum balance in your wallet to transfer this type of token.";
+
 /* Message that gets shown when we've detected the user has encountered the looping lock-screen bug. (preserve [ ] characters) */
 "ErrorMessages.loopingLockScreen.android" = "BRD невозможно аутентифицировать из-за ошибки в вашей версии Android. [Пожалуйста, нажмите сюда, чтобы узнать подробности.]";
 
@@ -557,6 +598,9 @@
 /* Switch label to enable fingerprint authentication to unlock BRD app */
 "FingerprintSettings.unlockApp" = "Используйте отпечатки пальцев для разблокировки BRD";
 
+/* Activity button on the home screen toolbar */
+"HomeScreen.activity" = "Activity";
+
 /* This is the section that allows administration of the user's wallet */
 "HomeScreen.admin" = "Админ";
 
@@ -590,14 +634,29 @@
 /* empty private key error message */
 "Import.Error.empty" = "Этот персональный ключ пуст.";
 
+/* Failed to submit transaction error message */
+"Import.Error.failedSubmit" = "Failed to submit transaction.";
+
 /* High fees error message */
 "Import.Error.highFees" = "Комиссия транзакции стоит больше, чем доступно средств на счете";
 
 /* Not a valid private key error message */
 "Import.Error.notValid" = "Недействительный персональный ключ";
 
+/* Service error error message */
+"Import.Error.serviceError" = "Service Error";
+
+/* Service Unavailable error message */
+"Import.Error.serviceUnavailable" = "Service Unavailable";
+
 /* Import signing error message */
 "Import.Error.signing" = "Ошибка подписания транзакции";
+
+/* Unable to sweep wallet error message */
+"Import.Error.sweepError" = "Unable to sweep wallet";
+
+/* Unsupported currency error message */
+"Import.Error.unsupportedCurrency" = "Unsupported Currency";
 
 /* [Redeem] the funds stored on this private key. */
 "Import.importButton" = "Восстановить";
@@ -710,7 +769,15 @@
 "MenuButton.addWallet" = "Добавить кошелек";
 
 /* Menu button title */
+"MenuButton.atmCashRedemption" = "ATM Cash Redemption";
+
+"MenuButton.feedback" = "Support";
+
+/* Menu button title */
 "MenuButton.lock" = "Заблокировать кошелек";
+
+/* (Click here to) manage (your list of) wallets */
+"MenuButton.manageAssets" = "Manage Assets";
 
 /* (Click here to) manage (your list of) wallets */
 "MenuButton.manageWallets" = "Управлять кошельками";
@@ -903,6 +970,8 @@
 "Prompts.RateApp.dontShow" = "Не спрашивай снова";
 
 "Prompts.RateApp.enjoyingBrd" = "Наслаждаешься BRD?";
+
+"Prompts.RateApp.enjoyingFabriik" = "Enjoying Fabriik?";
 
 "Prompts.RateApp.googlePlayReview" = "Ваш отзыв помогает развивать сообщество BRD.";
 
@@ -1305,6 +1374,12 @@
 /* Emtpy pasteboard error message */
 "Send.emptyPasteboard" = "Буфер обмена пуст";
 
+/* Sending error message */
+"Send.Error.authenticationError" = "Authentication Error";
+
+/* Error calculating maximum. */
+"Send.Error.maxError" = "Could not calculate maximum";
+
 /* "(you) can't send (to your)self" */
 "Send.ethSendSelf" = "Не удается отправить себе.";
 
@@ -1386,6 +1461,9 @@
 /* Scan button label */
 "Send.scanLabel" = "Сканировать";
 
+/* Title for error when send request times out and we are not sure weather it succesfull or not. */
+"Send.sendError" = "Send Error";
+
 /* Sending Max: $4.00 for iOS, the balance can't have a parameter */
 "Send.sendingMax" = "Отправка Макс:";
 
@@ -1394,6 +1472,9 @@
 
 /* Send button label (for special case where the user specified send amount is too high and does not leave a balance to cover fees.) */
 "Send.sendMaximum" = "Отправить максимальную сумму?";
+
+/* Error message when send request times out and we are not sure weather it succesfull or not. */
+"Send.timeOutBody" = "Timed out waiting for network response. Please wait 30 minutes for confirmation before retrying.";
 
 /* Send screen title (as in "this is the screen for sending money") */
 "Send.title" = "Отправить";
@@ -1459,6 +1540,9 @@
 
 /* Manage settings section header */
 "Settings.manage" = "Управление";
+
+/* No log files found error message */
+"Settings.noLogsFound" = "No Log files found. Please try again later.";
 
 /* Notifications label */
 "Settings.notifications" = "Уведомления";
@@ -1623,6 +1707,10 @@
 "SupportForm.notNow" = "Не сейчас";
 
 "SupportForm.pleaseDescribe" = "Пожалуйста, опишите ваш опыт";
+
+"Symbols.lock" = "\u{1F512}";
+
+"Symbols.narrowSpace" = "\u{2009}";
 
 /* Syncing view done syncing state header text */
 "SyncingView.activity" = "Активность";
@@ -1952,6 +2040,8 @@
 /* (this transaction was) Sent to this address: */
 "TransactionDirection.to" = "Отправлено на адрес:";
 
+"UDomains.invalid" = "Invalid address.";
+
 /* Disabled until date */
 "UnlockScreen.disabled" = "Отключено до: %1$@";
 
@@ -1982,6 +2072,15 @@
 /* Device authentication title */
 "UnlockScreen.touchIdTitle.android" = "Требуется аутентификация";
 
+/* Wallet disabled header */
+"UnlockScreen.walletDisabled" = "Wallet disabled";
+
+/* Wallet disabled description */
+"UnlockScreen.walletDisabledDescription" = "You will need your recovery phrases to reset PIN.";
+
+/* Wipe wallet prompt */
+"UnlockScreen.wipePrompt" = "Are you sure you would like to wipe this wallet?";
+
 /* Update PIN caption text */
 "UpdatePin.caption" = "Запомните этот PIN-код. Если вы его забудете, что не сможете получить доступ к вашим биткойнам.";
 
@@ -2000,8 +2099,17 @@
 /* Enter new PIN instruction */
 "UpdatePin.enterNew" = "Введите ваш новый PIN-код.";
 
+/* Enter PIN instruction */
+"UpdatePin.enterYourPin" = "Enter your PIN";
+
 /* Re-Enter new PIN instruction */
 "UpdatePin.reEnterNew" = "Введите ваш новый PIN-код еще раз.";
+
+/* Enter PIN header */
+"UpdatePin.securedWallet" = "Secured wallet";
+
+/* Update PIN title */
+"UpdatePin.setNewPinTitle" = "Set your new PIN";
 
 /* Update PIN failure error message. */
 "UpdatePin.setPinError" = "Очень жаль, но нам не удалось обновить ваш PIN-код.";
@@ -2023,6 +2131,21 @@
 
 /* Copy wallet addresses alert button label */
 "URLHandling.copy" = "Копировать";
+
+/* Verification Code Action Instructions */
+"VerificationCode.actionInstructions" = "Check your phone for the confirmation token we sent you. It may take a couple of minutes.";
+
+/* Verification Code Label */
+"VerificationCode.actionLabel" = "Enter token";
+
+/* Verification Code Confirm Button */
+"VerificationCode.buttonConfirm" = "Confirm";
+
+/* Verification Code Label */
+"VerificationCode.label" = "We Texted You a Confirmation Code";
+
+/* Verification Code Title */
+"VerificationCode.title" = "Confirmation Code";
 
 /* Verify PIN for transaction view body */
 "VerifyPin.authorize" = "Для авторизации этой транзакции введите свой ПИН-код.";

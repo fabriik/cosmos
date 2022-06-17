@@ -73,6 +73,9 @@
 /* Error alert title */
 "Alert.error" = "Erreur";
 
+/* Error title when balance to low */
+"Alert.ethBalance" = "Insufficient Ethereum Balance";
+
 /* Keystore error */
 "Alert.keystore.generic.android" = "Un problème est survenu avec votre keystore Android OS, veuillez contacter support@breadwallet.com";
 
@@ -347,6 +350,8 @@
 
 "CloudBackup.recoverHeader" = "Entrez le code PIN pour déverrouiller la sauvegarde iCloud";
 
+"CloudBackup.recoverWarning" = "A previously backed up wallet has been detected. Using this backup is recommended. Are you sure you want to proceeed with restoring from a recovery phrase?";
+
 "CloudBackup.restoreButton" = "Restaurer à partir de la sauvegarde iCloud";
 
 "CloudBackup.selectTitle" = "Choisir la sauvegarde";
@@ -474,6 +479,9 @@
 
 /* Email unavailable alert title */
 "ErrorMessages.emailUnavailableTitle" = "E-mail non disponible";
+
+/* Not enough ETH for transaction fee */
+"ErrorMessages.ethBalanceLow" = "Insufficient Ethereum balance in your wallet to transfer this type of token.";
 
 /* Message that gets shown when we've detected the user has encountered the looping lock-screen bug. (preserve [ ] characters) */
 "ErrorMessages.loopingLockScreen.android" = "Fabriik ne peut pas être authentifié en raison d'un bug dans votre version d'Android. [Veuillez cliquer ici pour plus d'informations.]";
@@ -626,14 +634,29 @@
 /* empty private key error message */
 "Import.Error.empty" = "Cette clé privée est vide.";
 
+/* Failed to submit transaction error message */
+"Import.Error.failedSubmit" = "Failed to submit transaction.";
+
 /* High fees error message */
 "Import.Error.highFees" = "Les frais de transactions excederaient le sold disponible sur cette clé privée";
 
 /* Not a valid private key error message */
 "Import.Error.notValid" = "Pas une clé privée valide";
 
+/* Service error error message */
+"Import.Error.serviceError" = "Service Error";
+
+/* Service Unavailable error message */
+"Import.Error.serviceUnavailable" = "Service Unavailable";
+
 /* Import signing error message */
 "Import.Error.signing" = "Erreur lors de la signature de la transaction";
+
+/* Unable to sweep wallet error message */
+"Import.Error.sweepError" = "Unable to sweep wallet";
+
+/* Unsupported currency error message */
+"Import.Error.unsupportedCurrency" = "Unsupported Currency";
 
 /* [Redeem] the funds stored on this private key. */
 "Import.importButton" = "Importer";
@@ -748,8 +771,13 @@
 /* Menu button title */
 "MenuButton.atmCashRedemption" = "ATM Rachat en Espèces";
 
+"MenuButton.feedback" = "Support";
+
 /* Menu button title */
 "MenuButton.lock" = "Verrouiller le portefeuille";
+
+/* (Click here to) manage (your list of) wallets */
+"MenuButton.manageAssets" = "Manage Assets";
 
 /* (Click here to) manage (your list of) wallets */
 "MenuButton.manageWallets" = "Gérer les portefeuilles";
@@ -1346,6 +1374,12 @@
 /* Emtpy pasteboard error message */
 "Send.emptyPasteboard" = "Le champ d'entrée est vide.";
 
+/* Sending error message */
+"Send.Error.authenticationError" = "Authentication Error";
+
+/* Error calculating maximum. */
+"Send.Error.maxError" = "Could not calculate maximum";
+
 /* "(you) can't send (to your)self" */
 "Send.ethSendSelf" = "Impossible d'envoyer à soi-même.";
 
@@ -1427,6 +1461,9 @@
 /* Scan button label */
 "Send.scanLabel" = "Scanner";
 
+/* Title for error when send request times out and we are not sure weather it succesfull or not. */
+"Send.sendError" = "Send Error";
+
 /* Sending Max: $4.00 for iOS, the balance can't have a parameter */
 "Send.sendingMax" = "Envoi maximum:";
 
@@ -1435,6 +1472,9 @@
 
 /* Send button label (for special case where the user specified send amount is too high and does not leave a balance to cover fees.) */
 "Send.sendMaximum" = "Envoyer le montant maximum?";
+
+/* Error message when send request times out and we are not sure weather it succesfull or not. */
+"Send.timeOutBody" = "Timed out waiting for network response. Please wait 30 minutes for confirmation before retrying.";
 
 /* Send screen title (as in "this is the screen for sending money") */
 "Send.title" = "Envoyer";
@@ -1500,6 +1540,9 @@
 
 /* Manage settings section header */
 "Settings.manage" = "Gérer";
+
+/* No log files found error message */
+"Settings.noLogsFound" = "No Log files found. Please try again later.";
 
 /* Notifications label */
 "Settings.notifications" = "Notifications";
@@ -1664,6 +1707,10 @@
 "SupportForm.notNow" = "Pas maintenant";
 
 "SupportForm.pleaseDescribe" = "Veuillez décrire votre expérience";
+
+"Symbols.lock" = "\u{1F512}";
+
+"Symbols.narrowSpace" = "\u{2009}";
 
 /* Syncing view done syncing state header text */
 "SyncingView.activity" = "Activité";
@@ -1993,6 +2040,8 @@
 /* (this transaction was) Sent to this address: */
 "TransactionDirection.to" = "Envoyé à cette adresse";
 
+"UDomains.invalid" = "Invalid address.";
+
 /* Disabled until date */
 "UnlockScreen.disabled" = "Désactivé jusqu'à : %1$@";
 
@@ -2023,6 +2072,15 @@
 /* Device authentication title */
 "UnlockScreen.touchIdTitle.android" = "Identification nécessaire";
 
+/* Wallet disabled header */
+"UnlockScreen.walletDisabled" = "Wallet disabled";
+
+/* Wallet disabled description */
+"UnlockScreen.walletDisabledDescription" = "You will need your recovery phrases to reset PIN.";
+
+/* Wipe wallet prompt */
+"UnlockScreen.wipePrompt" = "Are you sure you would like to wipe this wallet?";
+
 /* Update PIN caption text */
 "UpdatePin.caption" = "Souvenez-vous de ce code PIN. Si vous l'oubliez, vous ne pourrez pas accéder à votre bitcoin.";
 
@@ -2041,8 +2099,17 @@
 /* Enter new PIN instruction */
 "UpdatePin.enterNew" = "Entrez votre nouveau code PIN.";
 
+/* Enter PIN instruction */
+"UpdatePin.enterYourPin" = "Enter your PIN";
+
 /* Re-Enter new PIN instruction */
 "UpdatePin.reEnterNew" = "Entrez votre nouveau PIN à nouveau.";
+
+/* Enter PIN header */
+"UpdatePin.securedWallet" = "Secured wallet";
+
+/* Update PIN title */
+"UpdatePin.setNewPinTitle" = "Set your new PIN";
 
 /* Update PIN failure error message. */
 "UpdatePin.setPinError" = "Désolés, nous n'avons pas pu mettre à jour le code PIN.";
