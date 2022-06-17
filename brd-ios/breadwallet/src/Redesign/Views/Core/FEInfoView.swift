@@ -14,6 +14,7 @@ struct InfoViewConfiguration: Configurable {
     var headerLeadingImage: BackgroundConfiguration?
     var headerTitle: LabelConfiguration?
     var headerTrailing: ButtonConfiguration?
+    var status: StatusViewConfiguration?
     
     var title: LabelConfiguration?
     var description: LabelConfiguration?
@@ -24,9 +25,11 @@ struct InfoViewConfiguration: Configurable {
 }
 
 struct InfoViewModel: ViewModel {
+    var kyc: KYC?
     var headerLeadingImage: ImageViewModel?
     var headerTitle: LabelViewModel?
     var headerTrailing: ButtonViewModel?
+    var status: VerificationStatus?
     
     var title: LabelViewModel?
     var description: LabelViewModel?
@@ -70,6 +73,11 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
     private lazy var headerTitleLabel: FELabel = {
         let label = FELabel()
         return label
+    }()
+    
+    private lazy var statusView: WrapperView<FELabel> = {
+        let view = WrapperView<FELabel>()
+        return view
     }()
     
     private lazy var headerTrailingView: FEButton = {
@@ -118,6 +126,12 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
             make.height.equalToSuperview().priority(.low)
         }
         
+        headerStackView.addArrangedSubview(statusView)
+        statusView.content.setupCustomMargins(vertical: .zero, horizontal: .small)
+        statusView.snp.makeConstraints { make in
+            make.width.equalTo(Margins.huge.rawValue * 3)
+        }
+        
         headerStackView.addArrangedSubview(headerTrailingView)
         headerTrailingView.snp.makeConstraints { make in
             make.width.equalTo(Margins.huge.rawValue)
@@ -150,6 +164,9 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         headerLeadingView.configure(with: config.headerLeadingImage)
         headerTitleLabel.configure(with: config.headerTitle)
         headerTrailingView.configure(with: config.headerTrailing)
+        statusView.wrappedView.configure(with: config.status?.title)
+        statusView.configure(background: config.status?.background)
+        
         titleLabel.configure(with: config.title)
         descriptionLabel.configure(with: config.description)
         trailingButton.configure(with: config.button)
@@ -190,6 +207,9 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         
         headerTrailingView.setup(with: viewModel.headerTrailing)
         headerTrailingView.isHidden = viewModel.headerTrailing == nil
+        
+        statusView.wrappedView.setup(with: .text(viewModel.status?.title))
+        statusView.isHidden = viewModel.status == VerificationStatus.none
         
         titleLabel.setup(with: viewModel.title)
         titleLabel.isHidden = viewModel.title == nil

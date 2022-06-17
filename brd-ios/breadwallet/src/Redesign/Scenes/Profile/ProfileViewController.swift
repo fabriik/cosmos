@@ -46,12 +46,39 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     override func tableView(_ tableView: UITableView, infoViewCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, infoViewCellForRowAt: indexPath)
-        guard let cell = cell as? WrapperTableViewCell<WrapperView<FEInfoView>>
-        else { return cell }
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? InfoViewModel,
+              let cell: WrapperTableViewCell<WrapperView<FEInfoView>> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
         
         cell.setup { view in
             view.setup { view in
+                view.setup(with: model)
+                
+                let config: InfoViewConfiguration
+                switch (model.kyc, model.status) {
+                    
+                case (.levelOne, _),
+                    (.levelTwo, .levelTwo(.levelTwo)):
+                    config = Presets.InfoView.verified
+                    
+                case (.levelTwo, .levelTwo(.submitted)):
+                    config = Presets.InfoView.pending
+                    
+                case (.levelTwo, .levelTwo(.resubmit)),
+                    (.levelTwo, .levelTwo(.declined)),
+                    (.levelTwo, .levelTwo(.expired)):
+                    config = Presets.InfoView.declined
+                    
+                default:
+                    config = Presets.InfoView.verification
+                }
+                
+                view.configure(with: config)
+                
+                view.setupCustomMargins(all: .large)
                 view.headerButtonCallback = { [weak self] in
                     self?.interactor?.showVerificationInfo(viewAction: .init())
                 }
@@ -60,8 +87,9 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
                     self?.coordinator?.showVerificationScreen(for: self?.dataStore?.profile)
                 }
             }
+            view.setupCustomMargins(all: .large)
+            
         }
-        
         return cell
     }
     

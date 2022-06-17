@@ -53,6 +53,16 @@ enum VerificationStatus: Equatable {
             }
         }
     }
+    
+    var title: String {
+        switch self {
+        case .emailPending, .levelTwo(.submitted): return "Pending"
+        case .email, .levelOne, .levelTwo(.levelTwo): return "Verified"
+        case .levelTwo(.declined): return "Declined"
+        case .levelTwo(.resubmit): return "Resubmit"
+        default: return ""
+        }
+    }
 }
 
 struct StatusViewConfiguration: Configurable {
@@ -205,7 +215,7 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         headerInfoButton.isHidden = viewModel?.infoButton == nil
         statusImageView.isHidden = viewModel?.infoButton != nil
         arrowImageView.isHidden = viewModel?.infoButton != nil
-        statusView.wrappedView.setup(with: .text(viewModel?.status.value))
+        statusView.wrappedView.setup(with: .text(viewModel?.status.title))
         statusView.isHidden = viewModel?.status == VerificationStatus.none
         // if level 1 was done, but we present level 2, status is hidden
         if viewModel?.status == .levelOne,
