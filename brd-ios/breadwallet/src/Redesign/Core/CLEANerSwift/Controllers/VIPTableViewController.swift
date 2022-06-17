@@ -81,19 +81,21 @@ class VIPTableViewController<C: CoordinatableRoutes,
     }
     
     func setRoundedShadowBackground() {
+        view.addSubview(contentShadowView)
+        tableView.heightUpdated = { height in
+            self.contentShadowView.snp.remakeConstraints { make in
+                make.leading.equalTo(Margins.large.rawValue)
+                make.trailing.equalTo(-Margins.large.rawValue)
+                make.top.equalTo(self.tableView.snp.top).inset(self.topInsetValue - Margins.large.rawValue)
+                make.height.equalTo(height + Margins.extraHuge.rawValue)
+            }
+        }
+        
         tableView.snp.updateConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: topInsetValue + (Margins.extraHuge.rawValue * 2),
                                                              left: Margins.extraHuge.rawValue,
                                                              bottom: Margins.extraHuge.rawValue,
                                                              right: Margins.extraHuge.rawValue))
-        }
-        
-        view.addSubview(contentShadowView)
-        contentShadowView.snp.makeConstraints { make in
-            make.leading.equalTo(Margins.large.rawValue)
-            make.trailing.equalTo(-Margins.large.rawValue)
-            make.top.equalTo(tableView.snp.top).inset(topInsetValue - Margins.large.rawValue)
-            make.height.equalTo(tableView.intrinsicContentSize.height + Margins.extraHuge.rawValue)
         }
         
         view.bringSubviewToFront(tableView)

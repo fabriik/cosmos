@@ -11,6 +11,8 @@
 import UIKit
 
 final class ContentSizedTableView: UITableView {
+    var heightUpdated: ((CGFloat) -> Void)?
+    
     override var contentSize: CGSize {
         didSet {
             invalidateIntrinsicContentSize()
@@ -18,7 +20,10 @@ final class ContentSizedTableView: UITableView {
     }
     
     override var intrinsicContentSize: CGSize {
+        heightUpdated?(contentSize.height)
+        
         layoutIfNeeded()
+        
         return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
     }
 }
