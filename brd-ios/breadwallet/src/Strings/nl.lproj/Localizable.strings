@@ -73,6 +73,9 @@
 /* Error alert title */
 "Alert.error" = "Error";
 
+/* Error title when balance to low */
+"Alert.ethBalance" = "Insufficient Ethereum Balance";
+
 /* Keystore error */
 "Alert.keystore.generic.android" = "Er is een probleem met uw Android OS keystore, neem alstublieft contact op met support@breadwallet.com";
 
@@ -148,6 +151,9 @@
 /* API Token error message */
 "ApiClient.tokenError" = "Niet in staat op API teken te vinden";
 
+/* ATM Cash Locatios View Title */
+"ATMMapView.title" = "ATM Cash Locations Map";
+
 /* Send BCH view body. */
 "BCH.body" = "Voer hieronder een BCH adres in. Alle BCH die op het moment van de fork  (%1$@) in in je wallet zitten, zullen worden gestuurd.";
 
@@ -205,6 +211,9 @@
 /* Cancel button label */
 "Button.cancel" = "Annuleren";
 
+/* Close button */
+"Button.close" = "Close";
+
 /* Confirm button title */
 "Button.confirm" = "Bevestigen";
 
@@ -226,6 +235,9 @@
 /* Ignore button label */
 "Button.ignore" = "Negeren";
 
+/* Map button */
+"Button.map" = "Map";
+
 /* Maybe Later button label */
 "Button.maybeLater" = "Misschien later";
 
@@ -246,6 +258,9 @@
 
 /* receive button */
 "Button.receive" = "Ontvangen";
+
+/* Search button */
+"Button.search" = "Search";
 
 /* Button label to open Security Settings. */
 "Button.securitySettings.android" = "Veiligheidscentrum";
@@ -280,6 +295,27 @@
 /* Camera plugin instruction */
 "CameraPlugin.centerInstruction" = "Centreer je ID in het daarvoor bestemde vak";
 
+/* Cash Token Action Instructions */
+"CashToken.actionInstructions" = "Please send bitcoin to this address to withdraw at the ATM. Scan QR code or copy and paste to send bitcoin. Note that it may take a few minutes for the transfer to be confirmed.";
+
+/* Cash Token Location */
+"CashToken.amountBTC" = "Amount (BTC)";
+
+/* Cash Token Amount */
+"CashToken.amountUSD" = "Amount (USD)";
+
+/* Cash Token Label */
+"CashToken.awaitingFunds" = "Awaiting Funds";
+
+/* Cash Token Label */
+"CashToken.label" = "Withdrawl Status";
+
+/* Cash Token Location */
+"CashToken.location" = "Location";
+
+/* Cash Token Please Verify */
+"CashToken.pleaseVerify" = "Please Verify";
+
 "CloudBackup.backupDeleted" = "Back-up gewist";
 
 "CloudBackup.backupDeletedMessage" = "Uw iCloud-back-up is gewist na te veel mislukte PIN-pogingen. De app zal nu opnieuw opstarten.";
@@ -313,6 +349,8 @@
 "CloudBackup.recoverButton" = "Herstellen vanaf herstelsleutel";
 
 "CloudBackup.recoverHeader" = "Voer de PIN-code in om een iCloud-back-up te ontgrendelen";
+
+"CloudBackup.recoverWarning" = "A previously backed up wallet has been detected. Using this backup is recommended. Are you sure you want to proceeed with restoring from a recovery phrase?";
 
 "CloudBackup.restoreButton" = "Herstellen van iCloud Backup";
 
@@ -442,6 +480,9 @@
 /* Email unavailable alert title */
 "ErrorMessages.emailUnavailableTitle" = "E-mail niet beschikbaar";
 
+/* Not enough ETH for transaction fee */
+"ErrorMessages.ethBalanceLow" = "Insufficient Ethereum balance in your wallet to transfer this type of token.";
+
 /* Message that gets shown when we've detected the user has encountered the looping lock-screen bug. (preserve [ ] characters) */
 "ErrorMessages.loopingLockScreen.android" = "Fabriik kan niet gewaarmerkt worden vanwege een fout in uw versie van Android. [Klik hier voor meer informatie.]";
 
@@ -557,6 +598,9 @@
 /* Switch label to enable fingerprint authentication to unlock BRD app */
 "FingerprintSettings.unlockApp" = "Gebruik de vingerafdruk om Fabriik te ontgrendelen";
 
+/* Activity button on the home screen toolbar */
+"HomeScreen.activity" = "Activity";
+
 /* This is the section that allows administration of the user's wallet */
 "HomeScreen.admin" = "Beheerder";
 
@@ -590,14 +634,29 @@
 /* empty private key error message */
 "Import.Error.empty" = "Deze private key is leeg.";
 
+/* Failed to submit transaction error message */
+"Import.Error.failedSubmit" = "Failed to submit transaction.";
+
 /* High fees error message */
 "Import.Error.highFees" = "Transactiekosten zouden hoger zijn dan de fondsen die op deze private key aanwezig zijn.";
 
 /* Not a valid private key error message */
 "Import.Error.notValid" = "Geen geldige private key";
 
+/* Service error error message */
+"Import.Error.serviceError" = "Service Error";
+
+/* Service Unavailable error message */
+"Import.Error.serviceUnavailable" = "Service Unavailable";
+
 /* Import signing error message */
 "Import.Error.signing" = "Error bij transactie ondertekenen";
+
+/* Unable to sweep wallet error message */
+"Import.Error.sweepError" = "Unable to sweep wallet";
+
+/* Unsupported currency error message */
+"Import.Error.unsupportedCurrency" = "Unsupported Currency";
 
 /* [Redeem] the funds stored on this private key. */
 "Import.importButton" = "Import";
@@ -710,7 +769,15 @@
 "MenuButton.addWallet" = "Voeg Wallet toe";
 
 /* Menu button title */
+"MenuButton.atmCashRedemption" = "ATM Cash Redemption";
+
+"MenuButton.feedback" = "Support";
+
+/* Menu button title */
 "MenuButton.lock" = "Portemonnee Vergrendelen";
+
+/* (Click here to) manage (your list of) wallets */
+"MenuButton.manageAssets" = "Manage Assets";
 
 /* (Click here to) manage (your list of) wallets */
 "MenuButton.manageWallets" = "Beheer wallets";
@@ -1307,6 +1374,12 @@
 /* Emtpy pasteboard error message */
 "Send.emptyPasteboard" = "Plakbord is leeg";
 
+/* Sending error message */
+"Send.Error.authenticationError" = "Authentication Error";
+
+/* Error calculating maximum. */
+"Send.Error.maxError" = "Could not calculate maximum";
+
 /* "(you) can't send (to your)self" */
 "Send.ethSendSelf" = "Kan niet naar jezelf sturen.";
 
@@ -1388,6 +1461,9 @@
 /* Scan button label */
 "Send.scanLabel" = "Scannen";
 
+/* Title for error when send request times out and we are not sure weather it succesfull or not. */
+"Send.sendError" = "Send Error";
+
 /* Sending Max: $4.00 for iOS, the balance can't have a parameter */
 "Send.sendingMax" = "Max verzenden:";
 
@@ -1396,6 +1472,9 @@
 
 /* Send button label (for special case where the user specified send amount is too high and does not leave a balance to cover fees.) */
 "Send.sendMaximum" = "Verstuur maximum bedrag?";
+
+/* Error message when send request times out and we are not sure weather it succesfull or not. */
+"Send.timeOutBody" = "Timed out waiting for network response. Please wait 30 minutes for confirmation before retrying.";
 
 /* Send screen title (as in "this is the screen for sending money") */
 "Send.title" = "Versturen";
@@ -1461,6 +1540,9 @@
 
 /* Manage settings section header */
 "Settings.manage" = "Beheer";
+
+/* No log files found error message */
+"Settings.noLogsFound" = "No Log files found. Please try again later.";
 
 /* Notifications label */
 "Settings.notifications" = "Notificaties";
@@ -1625,6 +1707,10 @@
 "SupportForm.notNow" = "Niet nu";
 
 "SupportForm.pleaseDescribe" = "Beschrijf uw ervaring";
+
+"Symbols.lock" = "\u{1F512}";
+
+"Symbols.narrowSpace" = "\u{2009}";
 
 /* Syncing view done syncing state header text */
 "SyncingView.activity" = "Activiteit";
@@ -1954,6 +2040,8 @@
 /* (this transaction was) Sent to this address: */
 "TransactionDirection.to" = "Verstuurd naar dit adres";
 
+"UDomains.invalid" = "Invalid address.";
+
 /* Disabled until date */
 "UnlockScreen.disabled" = "Uitgeschakeld tot: %1$@";
 
@@ -1984,6 +2072,15 @@
 /* Device authentication title */
 "UnlockScreen.touchIdTitle.android" = "Authenticatie vereist";
 
+/* Wallet disabled header */
+"UnlockScreen.walletDisabled" = "Wallet disabled";
+
+/* Wallet disabled description */
+"UnlockScreen.walletDisabledDescription" = "You will need your recovery phrases to reset PIN.";
+
+/* Wipe wallet prompt */
+"UnlockScreen.wipePrompt" = "Are you sure you would like to wipe this wallet?";
+
 /* Update PIN caption text */
 "UpdatePin.caption" = "Onthoud deze PIN. Als je deze vergeet, zul je niet in staat zijn om bij je Bitcoins te kunnen.";
 
@@ -2002,8 +2099,17 @@
 /* Enter new PIN instruction */
 "UpdatePin.enterNew" = "Voer je nieuwe PIN in.";
 
+/* Enter PIN instruction */
+"UpdatePin.enterYourPin" = "Enter your PIN";
+
 /* Re-Enter new PIN instruction */
 "UpdatePin.reEnterNew" = "Voer je nieuwe PIN opnieuw in.";
+
+/* Enter PIN header */
+"UpdatePin.securedWallet" = "Secured wallet";
+
+/* Update PIN title */
+"UpdatePin.setNewPinTitle" = "Set your new PIN";
 
 /* Update PIN failure error message. */
 "UpdatePin.setPinError" = "Sorry, we konden je PIN niet updaten.";
@@ -2025,6 +2131,21 @@
 
 /* Copy wallet addresses alert button label */
 "URLHandling.copy" = "Kopiëren";
+
+/* Verification Code Action Instructions */
+"VerificationCode.actionInstructions" = "Check your phone for the confirmation token we sent you. It may take a couple of minutes.";
+
+/* Verification Code Label */
+"VerificationCode.actionLabel" = "Enter token";
+
+/* Verification Code Confirm Button */
+"VerificationCode.buttonConfirm" = "Confirm";
+
+/* Verification Code Label */
+"VerificationCode.label" = "We Texted You a Confirmation Code";
+
+/* Verification Code Title */
+"VerificationCode.title" = "Confirmation Code";
 
 /* Verify PIN for transaction view body */
 "VerifyPin.authorize" = "Voer alstublieft uw PIN in om deze transactie te autoriseren.";
