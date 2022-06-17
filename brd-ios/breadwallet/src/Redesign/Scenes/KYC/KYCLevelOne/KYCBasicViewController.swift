@@ -187,7 +187,9 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         }
         
         coordinator?.showOverlay(with: .success) { [weak self] in
-            self?.coordinator?.goBack()
+            self?.coordinator?.goBack(completion: {
+                // TODO: .goBack() does not work!
+            })
         }
     }
     
