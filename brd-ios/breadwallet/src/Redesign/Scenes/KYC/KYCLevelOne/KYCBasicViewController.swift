@@ -176,7 +176,8 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
               let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else {
             return
         }
-        cell.wrappedView.isEnabled = responseDisplay.isValid
+        isValid = responseDisplay.isValid
+        cell.wrappedView.isEnabled = isValid
     }
     
     func displaySubmit(responseDisplay: KYCBasicModels.Submit.ResponseDisplay) {

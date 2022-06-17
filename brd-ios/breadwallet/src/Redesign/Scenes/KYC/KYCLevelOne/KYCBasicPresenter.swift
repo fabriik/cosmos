@@ -50,21 +50,14 @@ final class KYCBasicPresenter: NSObject, Presenter, KYCBasicActionResponses {
     }
     
     func presentValidate(actionResponse: KYCBasicModels.Validate.ActionResponse) {
-        var isValid = true
-        if (actionResponse.item?.firstName?.count ?? 0) < 1 {
-            isValid = false
-        }
-        if (actionResponse.item?.lastName?.count ?? 0) < 1 {
-            isValid = false
-        }
+        var fieldValidationIsAllowed = [String?: Bool]()
         
-        if (actionResponse.item?.country?.count ?? 0) < 1 {
-            isValid = false
-        }
+        fieldValidationIsAllowed[actionResponse.item?.firstName] = (actionResponse.item?.firstName?.count ?? 0) >= 1
+        fieldValidationIsAllowed[actionResponse.item?.lastName] = (actionResponse.item?.lastName?.count ?? 0) >= 1
+        fieldValidationIsAllowed[actionResponse.item?.country] = (actionResponse.item?.country?.count ?? 0) >= 1
+        fieldValidationIsAllowed[actionResponse.item?.birthDateString] = actionResponse.item?.birthdate != nil
         
-        if actionResponse.item?.birthdate == nil {
-            isValid = false
-        }
+        let isValid = fieldValidationIsAllowed.values.contains(where: { $0 == false }) == false
         
         viewController?.displayValidate(responseDisplay: .init(isValid: isValid))
     }
