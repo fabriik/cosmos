@@ -52,7 +52,7 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController is AccountViewController {
-            navigationBar.tintColor = .white
+            navigationBar.tintColor = .darkPromptTitleColor
         }
         
         let item = SimpleBackBarButtonItem(title: "", style: .plain, target: nil, action: nil)
