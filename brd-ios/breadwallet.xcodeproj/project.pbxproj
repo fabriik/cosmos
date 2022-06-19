@@ -881,7 +881,6 @@
 		CEBF32F41DDCE12900348FC6 /* AccountFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF32F31DDCE12900348FC6 /* AccountFooterView.swift */; };
 		CEBF32F61DDCEAF900348FC6 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF32F51DDCEAF900348FC6 /* TransactionsTableViewController.swift */; };
 		CEC4CF091F0C84AB00E5C82E /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4CF081F0C84AB00E5C82E /* UIViewController+Alerts.swift */; };
-		CEC6AA391DEE10BA00EE5AFD /* UINavigationController+BRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6AA381DEE10BA00EE5AFD /* UINavigationController+BRAdditions.swift */; };
 		CEC6AA3B1DEE4EB000EE5AFD /* CGRect+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6AA3A1DEE4EB000EE5AFD /* CGRect+Additions.swift */; };
 		CEC6AA3D1DEE687000EE5AFD /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6AA3C1DEE687000EE5AFD /* RadialGradientView.swift */; };
 		CEC6AA401DEFC87300EE5AFD /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6AA3F1DEFC87300EE5AFD /* SendViewController.swift */; };
@@ -935,7 +934,6 @@
 		CEF3E82F1DE534C5007C0A9E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3E82E1DE534C5007C0A9E /* GradientView.swift */; };
 		CEF3E8321DE55540007C0A9E /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3E8311DE55540007C0A9E /* CheckView.swift */; };
 		CEF3E8341DE57166007C0A9E /* AnimatableIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3E8331DE57166007C0A9E /* AnimatableIcon.swift */; };
-		CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3E8351DE60222007C0A9E /* ModalNavigationController.swift */; };
 		CEF61B121ECF52C700C7EA6A /* AmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF61B111ECF52C700C7EA6A /* AmountViewController.swift */; };
 		CEF7D94622CE6AC000939D19 /* HistoryPeriodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7D94522CE6AC000939D19 /* HistoryPeriodButton.swift */; };
 		E821D4CA21C16A8300B0907B /* AnalyticsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821D4C921C16A8300B0907B /* AnalyticsEventTests.swift */; };
@@ -1887,7 +1885,6 @@
 		CEBF32F31DDCE12900348FC6 /* AccountFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountFooterView.swift; path = src/Views/AccountFooterView.swift; sourceTree = "<group>"; };
 		CEBF32F51DDCEAF900348FC6 /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionsTableViewController.swift; path = src/ViewControllers/TransactionsTableViewController.swift; sourceTree = "<group>"; };
 		CEC4CF081F0C84AB00E5C82E /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Alerts.swift"; path = "src/Extensions/UIViewController+Alerts.swift"; sourceTree = "<group>"; };
-		CEC6AA381DEE10BA00EE5AFD /* UINavigationController+BRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UINavigationController+BRAdditions.swift"; path = "src/Extensions/UINavigationController+BRAdditions.swift"; sourceTree = "<group>"; };
 		CEC6AA3A1DEE4EB000EE5AFD /* CGRect+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGRect+Additions.swift"; path = "src/Extensions/CGRect+Additions.swift"; sourceTree = "<group>"; };
 		CEC6AA3C1DEE687000EE5AFD /* RadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadialGradientView.swift; path = src/Views/RadialGradientView.swift; sourceTree = "<group>"; };
 		CEC6AA3F1DEFC87300EE5AFD /* SendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SendViewController.swift; path = src/ViewControllers/RootModals/SendViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1943,7 +1940,6 @@
 		CEF3E82E1DE534C5007C0A9E /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = src/Views/GradientView.swift; sourceTree = "<group>"; };
 		CEF3E8311DE55540007C0A9E /* CheckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CheckView.swift; path = src/Views/AnimatedIcons/CheckView.swift; sourceTree = "<group>"; };
 		CEF3E8331DE57166007C0A9E /* AnimatableIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatableIcon.swift; path = src/Views/AnimatedIcons/AnimatableIcon.swift; sourceTree = "<group>"; };
-		CEF3E8351DE60222007C0A9E /* ModalNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalNavigationController.swift; path = src/ViewControllers/ModalNavigationController.swift; sourceTree = "<group>"; };
 		CEF61B111ECF52C700C7EA6A /* AmountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AmountViewController.swift; path = src/ViewControllers/AmountViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CEF7D94522CE6AC000939D19 /* HistoryPeriodButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryPeriodButton.swift; path = src/Views/Charts/HistoryPeriodButton.swift; sourceTree = "<group>"; };
 		D1423EF52602AB9C00709CCA /* WalletKitSwift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WalletKitSwift; path = ../external/walletkit/WalletKitSwift; sourceTree = "<group>"; };
@@ -3755,7 +3751,6 @@
 				CE274A601FD7C902000A4E62 /* RootNavigationController.swift */,
 				CE3840E71FD590BD00437C31 /* AssetListTableView.swift */,
 				CEBF32F51DDCEAF900348FC6 /* TransactionsTableViewController.swift */,
-				CEF3E8351DE60222007C0A9E /* ModalNavigationController.swift */,
 				CE9057191DFF18B2006BA848 /* ScanViewController.swift */,
 				CECCE5A81E0378FB00D99448 /* PinPadViewController.swift */,
 				CE8CD8DE1E2E825000785E02 /* VerifyPinViewController.swift */,
@@ -3792,7 +3787,6 @@
 				CEAA9E9F1DC2F9F50066731D /* UIFont+BRWAdditions.swift */,
 				CE92F9F31DED59E80046B516 /* UIView+AnimationAdditions.swift */,
 				CE92F9F51DEDF6890046B516 /* UIViewControllerContextTransitioning+BRAdditions.swift */,
-				CEC6AA381DEE10BA00EE5AFD /* UINavigationController+BRAdditions.swift */,
 				CEC6AA3A1DEE4EB000EE5AFD /* CGRect+Additions.swift */,
 				CE25BF901DF9ADE700BC67B6 /* UIImage+Utils.swift */,
 				CE9057171DFF0FA8006BA848 /* String+Additions.swift */,
@@ -4966,7 +4960,6 @@
 				22A9A9511DF61945000F0016 /* TxMetaData.swift in Sources */,
 				7C6ACCB11FEB21580028ABFA /* TxDetailDataSource.swift in Sources */,
 				CE8CD8E11E31976800785E02 /* LoginViewController.swift in Sources */,
-				CEC6AA391DEE10BA00EE5AFD /* UINavigationController+BRAdditions.swift in Sources */,
 				7EF45F8A284768C100D1F7B0 /* ItemSelectionStore.swift in Sources */,
 				7EF45F87284768C100D1F7B0 /* ItemSelectionVIP.swift in Sources */,
 				CECCE5AB1E038C9900D99448 /* GenericPinPadCell.swift in Sources */,
@@ -5243,7 +5236,6 @@
 				7B54E54B27F4A208002DD1E4 /* KYCAddressRouter.swift in Sources */,
 				7B54E53727F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift in Sources */,
 				C4D5E800284951DD000BEE6F /* VerifyAccountPresenter.swift in Sources */,
-				CEF3E8361DE60222007C0A9E /* ModalNavigationController.swift in Sources */,
 				CEB909FA1E5FF242001804DC /* RecoverWalletIntroViewController.swift in Sources */,
 				CE25BF911DF9ADE700BC67B6 /* UIImage+Utils.swift in Sources */,
 				7B54E5AD27F4A2B0002DD1E4 /* KYCNavigationController.swift in Sources */,

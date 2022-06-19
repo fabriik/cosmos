@@ -243,7 +243,6 @@ class RecoveryKeyFlowController {
     
     private static func makeNavigationController() -> UINavigationController {
         let navController = UINavigationController()
-        navController.setDefaultStyle()
         navController.modalPresentationStyle = .overFullScreen
         return navController
     }

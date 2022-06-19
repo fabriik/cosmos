@@ -25,7 +25,6 @@ class ModalPresenter: Subscriber, Trackable {
         self.alertPresenter = alertPresenter
         self.keyStore = keyStore
         self.modalTransitionDelegate = ModalTransitionDelegate(type: .regular)
-        self.wipeNavigationDelegate = StartNavigationDelegate()
         addSubscriptions()
     }
     
@@ -42,7 +41,6 @@ class ModalPresenter: Subscriber, Trackable {
     private let securityCenterNavigationDelegate = SecurityCenterNavigationDelegate()
     private let verifyPinTransitionDelegate = PinTransitioningDelegate()
     private var currentRequest: PaymentRequest?
-    private let wipeNavigationDelegate: StartNavigationDelegate
     private var menuNavController: UINavigationController?
     private var feedbackManager: EmailFeedbackManager?
     private let system: CoreSystem
@@ -140,10 +138,7 @@ class ModalPresenter: Subscriber, Trackable {
             if case let .showInAppNotification(notification?)? = trigger {
                 let display: (UIImage?) -> Void = { (image) in
                     let notificationVC = InAppNotificationViewController(notification, image: image)
-                    
-                    let navigationController = ModalNavigationController(rootViewController: notificationVC)
-                    navigationController.setClearNavbar()
-                    
+                    let navigationController = RootNavigationController(rootViewController: notificationVC)
                     topVC.present(navigationController, animated: true, completion: nil)
                 }
                 
@@ -902,7 +897,7 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     private func presentKeyImport(wallet: Wallet, scanResult: QRCode? = nil) {
-        let nc = ModalNavigationController()
+        let nc = RootNavigationController()
         let start = ImportKeyViewController(wallet: wallet, initialQRCode: scanResult)
         start.addCloseNavigationItem(tintColor: Theme.blueBackground)
         start.navigationItem.title = L10n.Import.title
@@ -945,7 +940,7 @@ class ModalPresenter: Subscriber, Trackable {
     func presentBiometricsMenuItem() {
         let biometricsSettings = BiometricsSettingsViewController(self.keyStore)
         biometricsSettings.addCloseNavigationItem(tintColor: Theme.blueBackground)
-        let nc = ModalNavigationController(rootViewController: biometricsSettings)
+        let nc = RootNavigationController(rootViewController: biometricsSettings)
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
         topViewController?.present(nc, animated: true, completion: nil)
@@ -953,8 +948,7 @@ class ModalPresenter: Subscriber, Trackable {
 
     private func promptShareData() {
         let shareData = ShareDataViewController()
-        let nc = ModalNavigationController(rootViewController: shareData)
-        nc.setDefaultStyle()
+        let nc = RootNavigationController(rootViewController: shareData)
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
         shareData.addCloseNavigationItem()
@@ -968,8 +962,7 @@ class ModalPresenter: Subscriber, Trackable {
 
     func presentUpgradePin() {
         let updatePin = UpdatePinViewController(keyMaster: keyStore, type: .update)
-        let nc = ModalNavigationController(rootViewController: updatePin)
-        nc.setDefaultStyle()
+        let nc = RootNavigationController(rootViewController: updatePin)
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
         updatePin.addCloseNavigationItem()
@@ -1181,6 +1174,5 @@ class SecurityCenterNavigationDelegate: NSObject, UINavigationControllerDelegate
 
     func setStyle(navigationController: UINavigationController) {
         navigationController.isNavigationBarHidden = false
-        navigationController.setDefaultStyle()
     }
 }
