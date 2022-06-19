@@ -441,7 +441,7 @@ class ApplicationController: Subscriber, Trackable {
         homeScreen.didTapManageWallets = { [unowned self] in
             guard let assetCollection = self.coreSystem.assetCollection else { return }
             let vc = ManageWalletsViewController(assetCollection: assetCollection, coreSystem: self.coreSystem)
-            let nc = UINavigationController(rootViewController: vc)
+            let nc = RootNavigationController(rootViewController: vc)
             navigationController.present(nc, animated: true, completion: nil)
         }
     }

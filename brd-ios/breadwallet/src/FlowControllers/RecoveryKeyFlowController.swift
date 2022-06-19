@@ -70,7 +70,7 @@ class RecoveryKeyFlowController {
         
         let recoveryKeyNavController = RecoveryKeyFlowController.makeNavigationController()
         
-        var baseNavigationController: UINavigationController?
+        var baseNavigationController: RootNavigationController?
         var modalPresentingViewController: UIViewController?
         
         // Sort out how we should be presenting the recovery key flow. If it's dipslayed from the home
@@ -78,7 +78,7 @@ class RecoveryKeyFlowController {
         // we're already in a modal navigation controller so the recovery key flow is pushed.
         if modalPresentation {
             modalPresentingViewController = viewController
-        } else if let nc = viewController as? UINavigationController {
+        } else if let nc = viewController as? RootNavigationController {
             baseNavigationController = nc
         }
         
@@ -241,8 +241,8 @@ class RecoveryKeyFlowController {
         viewController.present(alert, animated: true, completion: nil)
     }
     
-    private static func makeNavigationController() -> UINavigationController {
-        let navController = UINavigationController()
+    private static func makeNavigationController() -> RootNavigationController {
+        let navController = RootNavigationController()
         navController.modalPresentationStyle = .overFullScreen
         return navController
     }

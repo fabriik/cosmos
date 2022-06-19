@@ -41,7 +41,7 @@ class ModalPresenter: Subscriber, Trackable {
     private let securityCenterNavigationDelegate = SecurityCenterNavigationDelegate()
     private let verifyPinTransitionDelegate = PinTransitioningDelegate()
     private var currentRequest: PaymentRequest?
-    private var menuNavController: UINavigationController?
+    private var menuNavController: RootNavigationController?
     private var feedbackManager: EmailFeedbackManager?
     private let system: CoreSystem
     
@@ -209,7 +209,7 @@ class ModalPresenter: Subscriber, Trackable {
         guard let url = URL(string: C.supportLink) else { return }
         let webViewController = SimpleWebViewController(url: url)
         webViewController.setup(with: .init(title: "Support"))
-        let navController = UINavigationController(rootViewController: webViewController)
+        let navController = RootNavigationController(rootViewController: webViewController)
         webViewController.setAsNonDismissableModal()
         
         topViewController?.present(navController, animated: true)
@@ -243,7 +243,7 @@ class ModalPresenter: Subscriber, Trackable {
             // TODO: localize
             webViewController.setup(with: .init(title: "Buy"))
             
-            let navController = UINavigationController(rootViewController: webViewController)
+            let navController = RootNavigationController(rootViewController: webViewController)
             topViewController?.show(navController, sender: nil)
             return nil
             
@@ -263,7 +263,7 @@ class ModalPresenter: Subscriber, Trackable {
             // TODO: localize
             webViewController.setup(with: .init(title: "Swap"))
             
-            let navController = UINavigationController(rootViewController: webViewController)
+            let navController = RootNavigationController(rootViewController: webViewController)
             topViewController?.show(navController, sender: nil)
             return nil
             
@@ -421,7 +421,7 @@ class ModalPresenter: Subscriber, Trackable {
     
     // MARK: Settings
     func presentMenu() {
-        let menuNav = UINavigationController()
+        let menuNav = RootNavigationController()
         
         // MARK: Bitcoin Menu
         var btcItems: [MenuItem] = []
