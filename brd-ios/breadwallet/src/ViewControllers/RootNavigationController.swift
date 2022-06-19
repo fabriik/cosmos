@@ -47,7 +47,7 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
             navigationBar.compactAppearance = normalAppearance
             
             let scrollAppearance = UINavigationBarAppearance()
-            scrollAppearance.configureWithOpaqueBackground()
+            scrollAppearance.configureWithTransparentBackground()
             scrollAppearance.backgroundColor = .clear
             scrollAppearance.shadowColor = nil
             navigationBar.scrollEdgeAppearance = scrollAppearance
