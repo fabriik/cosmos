@@ -67,7 +67,9 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
             case (.levelOne, _):
                 config = configs[1]
                 
-            case (.levelTwo, .levelTwo(.resubmit)):
+            case (.levelTwo, .levelTwo(.resubmit)),
+                (.levelTwo, .levelTwo(.expired)),
+                (.levelTwo, .levelTwo(.declined)):
                 config = configs[2]
                 
             default:

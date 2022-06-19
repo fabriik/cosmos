@@ -56,11 +56,10 @@ enum VerificationStatus: Equatable {
     
     var title: String {
         switch self {
-        case .emailPending, .levelTwo(.submitted): return "Pending"
         case .email, .levelOne, .levelTwo(.levelTwo): return "Verified"
         case .levelTwo(.declined): return "Declined"
         case .levelTwo(.resubmit): return "Resubmit"
-        default: return ""
+        default: return "Pending"
         }
     }
 }
@@ -192,7 +191,10 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         }
         
         mainStack.addArrangedSubview(benefitsLabel)
-        benefitsLabel.setupCustomMargins(all: .extraSmall)
+        benefitsLabel.snp.makeConstraints { make in
+            make.height.equalTo(Margins.huge.rawValue)
+            make.width.equalToSuperview().inset(Margins.small.rawValue)
+        }
         setupClearMargins()
     }
     
