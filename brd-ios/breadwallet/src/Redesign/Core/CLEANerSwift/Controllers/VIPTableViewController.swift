@@ -81,14 +81,19 @@ class VIPTableViewController<C: CoordinatableRoutes,
     }
     
     func setRoundedShadowBackground() {
+        let small = Margins.small.rawValue
+        let large = Margins.large.rawValue
+        let extraLarge = Margins.extraLarge.rawValue
+        let extraHuge = Margins.extraHuge.rawValue
+        
         view.addSubview(contentShadowView)
         tableView.heightUpdated = { height in
             self.contentShadowView.snp.remakeConstraints { make in
-                make.leading.equalTo(Margins.large.rawValue)
-                make.trailing.equalTo(-Margins.large.rawValue)
+                make.leading.equalTo(large)
+                make.trailing.equalTo(-large)
                 make.top.equalTo(self.tableView.snp.top).inset(self.topInsetValue)
-                make.height.equalTo(height + Margins.extraLarge.rawValue)
-                make.width.equalTo(self.tableView.snp.width).offset(Margins.extraHuge.rawValue)
+                make.height.equalTo(height + extraLarge)
+                make.width.equalTo(self.tableView.snp.width).offset(extraHuge)
             }
         }
         contentShadowView.layer.zPosition = tableView.layer.zPosition - 1
@@ -96,18 +101,18 @@ class VIPTableViewController<C: CoordinatableRoutes,
         
         tableView.snp.updateConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: self.topInsetValue,
-                                                             left: Margins.extraHuge.rawValue,
+                                                             left: extraHuge,
                                                              bottom: 0,
-                                                             right: Margins.extraHuge.rawValue))
+                                                             right: extraHuge))
         }
         
-        tableView.contentInset.top += Margins.small.rawValue
+        tableView.contentInset.top += small
         
         tableView.clipsToBounds = false
         tableView.layer.masksToBounds = false
         leftAlignedTitleLabel.snp.updateConstraints { make in
-            make.bottom.equalTo(tableView.snp.top).inset(-Margins.small.rawValue)
-            make.leading.equalToSuperview().inset(-Margins.large.rawValue)
+            make.bottom.equalTo(tableView.snp.top).inset(-small)
+            make.leading.equalToSuperview().inset(-large)
         }
     }
     
