@@ -49,7 +49,6 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setDarkStyle()
     }
 
     private func setUpAppearance() {

@@ -427,7 +427,6 @@ class ModalPresenter: Subscriber, Trackable {
     // MARK: Settings
     func presentMenu() {
         let menuNav = UINavigationController()
-        menuNav.setDarkStyle()
         
         // MARK: Bitcoin Menu
         var btcItems: [MenuItem] = []
@@ -904,7 +903,6 @@ class ModalPresenter: Subscriber, Trackable {
     
     private func presentKeyImport(wallet: Wallet, scanResult: QRCode? = nil) {
         let nc = ModalNavigationController()
-        nc.setDarkStyle()
         let start = ImportKeyViewController(wallet: wallet, initialQRCode: scanResult)
         start.addCloseNavigationItem(tintColor: Theme.blueBackground)
         start.navigationItem.title = L10n.Import.title

@@ -8,30 +8,42 @@
 
 import UIKit
 
-class RootNavigationController: UINavigationController {
-
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    override func viewDidLoad() {
-        setDarkStyle()
-        
-        view.backgroundColor = Theme.primaryBackground
-
-        self.delegate = self
-    }
-
+class RootNavigationController: UINavigationController, UINavigationControllerDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    override func viewDidLoad() {
+        delegate = self
+        
+        if #available(iOS 13.0, *) {
+            let normalAppearance = UINavigationBarAppearance()
+            normalAppearance.configureWithOpaqueBackground()
+            normalAppearance.backgroundColor = Theme.primaryBackground
+            normalAppearance.shadowColor = nil
+            navigationBar.standardAppearance = normalAppearance
+            navigationBar.compactAppearance = normalAppearance
+            
+            let scrollAppearance = UINavigationBarAppearance()
+            scrollAppearance.configureWithOpaqueBackground()
+            scrollAppearance.backgroundColor = .clear
+            scrollAppearance.shadowColor = nil
+            navigationBar.scrollEdgeAppearance = scrollAppearance
+        }
+        
+        navigationBar.tintColor = LightColors.Icons.one
+        navigationBar.barTintColor = Theme.primaryBackground
+        navigationBar.shadowImage = UIImage()
+        navigationBar.prefersLargeTitles = false
+        
+        navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.almostBlack ,
+            NSAttributedString.Key.font: UIFont.header
+        ]
+        
+        view.backgroundColor = Theme.primaryBackground
     }
-}
-
-extension RootNavigationController: UINavigationControllerDelegate {
+    
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController is HomeScreenViewController {
             navigationBar.tintColor = .navigationTint
@@ -42,6 +54,18 @@ extension RootNavigationController: UINavigationControllerDelegate {
         if viewController is AccountViewController {
             navigationBar.tintColor = .white
         }
+        
+        let item = SimpleBackBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        viewController.navigationItem.backBarButtonItem = item
     }
-    
+}
+
+class SimpleBackBarButtonItem: UIBarButtonItem {
+    @available(iOS 14.0, *)
+    override var menu: UIMenu? {
+        get {
+            return super.menu
+        }
+        set {}
+    }
 }

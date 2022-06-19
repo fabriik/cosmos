@@ -26,17 +26,6 @@ extension UINavigationController {
         ]
     }
     
-    func setDarkStyle() {
-        navigationBar.isTranslucent = false
-        navigationBar.barStyle = .blackOpaque
-        navigationBar.barTintColor = .navigationBackground
-        navigationBar.tintColor = .navigationTint
-        navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.almostBlack ,
-            NSAttributedString.Key.font: UIFont.header
-        ]
-    }
-
     func setClearNavbar() {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()

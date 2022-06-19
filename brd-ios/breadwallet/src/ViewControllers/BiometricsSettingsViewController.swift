@@ -57,7 +57,6 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setDarkStyle()
     }
     
     override func viewDidLoad() {

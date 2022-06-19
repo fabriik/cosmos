@@ -16,12 +16,12 @@ protocol BaseControllable: UIViewController {
 protocol Coordinatable: CoordinatableRoutes {
 
     var childCoordinators: [Coordinatable] { get set }
-    var navigationController: UINavigationController { get set }
+    var navigationController: RootNavigationController { get set }
     var parentCoordinator: Coordinatable? { get set }
 
     func childDidFinish(child: Coordinatable)
     func goBack()
-    init(navigationController: UINavigationController)
+    init(navigationController: RootNavigationController)
     func start()
 }
 
@@ -30,20 +30,20 @@ class BaseCoordinator: NSObject,
     
     var parentCoordinator: Coordinatable?
     var childCoordinators: [Coordinatable] = []
-    var navigationController: UINavigationController
+    var navigationController: RootNavigationController
 
-    required init(navigationController: UINavigationController) {
+    required init(navigationController: RootNavigationController) {
         self.navigationController = navigationController
     }
 
     init(viewController: UIViewController) {
         viewController.hidesBottomBarWhenPushed = true
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let navigationController = RootNavigationController(rootViewController: viewController)
         self.navigationController = navigationController
     }
 
     func start() {
-        let nvc = UINavigationController()
+        let nvc = RootNavigationController()
         let coordinator: Coordinatable
         if UserDefaults.emailConfirmed {
             coordinator = ProfileCoordinator(navigationController: nvc)
@@ -93,9 +93,10 @@ class BaseCoordinator: NSObject,
                                                   presentationStyle: UIModalPresentationStyle = .fullScreen,
                                                   configure: ((VC?) -> Void)? = nil) {
         let controller = VC()
-        let nvc = UINavigationController(rootViewController: controller)
+        let nvc = RootNavigationController(rootViewController: controller)
         nvc.modalPresentationStyle = presentationStyle
-
+        nvc.modalPresentationCapturesStatusBarAppearance = true
+        
         let coordinator = C(navigationController: nvc)
         controller.coordinator = coordinator as? VC.CoordinatorType
         configure?(controller)
