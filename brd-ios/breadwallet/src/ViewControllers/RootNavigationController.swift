@@ -37,7 +37,6 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
         navigationBar.prefersLargeTitles = false
         
         navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.almostBlack ,
             NSAttributedString.Key.font: UIFont.header
         ]
         
