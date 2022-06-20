@@ -124,9 +124,7 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
 
-    func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?) {}
-    
-    func showNotification(with model: InfoViewModel?, configuration: InfoViewConfiguration?) {
+    func showMessage(with model: InfoViewModel?, configuration: InfoViewConfiguration?) {
         let notification = FEInfoView()
         notification.setupCustomMargins(all: .large)
         notification.configure(with: configuration)
@@ -142,13 +140,13 @@ class BaseCoordinator: NSObject,
         }
         notification.layoutIfNeeded()
         notification.alpha = 0
-        	
+            
         UIView.animate(withDuration: Presets.Animation.duration) {
             notification.alpha = 1
         }
     }
     
-    func hideNotification(_ view: UIView) {}
+    func hideMessage(_ view: UIView) {}
 
     func goBack(completion: (() -> Void)? = nil) {
         guard parentCoordinator != nil,

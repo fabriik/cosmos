@@ -10,6 +10,15 @@
 
 import UIKit
 
+enum DismissType {
+    /// after 3 sec
+    case auto
+    /// tap to remove
+    case tapToDismiss
+    /// non interactable
+    case persistent
+}
+
 struct InfoViewConfiguration: Configurable {
     var headerLeadingImage: BackgroundConfiguration?
     var headerTitle: LabelConfiguration?
@@ -35,7 +44,7 @@ struct InfoViewModel: ViewModel {
     var description: LabelViewModel?
     var button: ButtonViewModel?
     
-    var tapToDismiss = false
+    var dismissType: DismissType = .auto
 }
 
 class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
@@ -220,9 +229,18 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         trailingButton.setup(with: viewModel.button)
         trailingButton.isHidden = viewModel.button == nil
         
-        if viewModel.tapToDismiss {
+        switch viewModel.dismissType {
+        case .auto:
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+                self?.viewTapped(nil)
+            }
+            
+        case .tapToDismiss:
             let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
             addGestureRecognizer(tap)
+            
+        default:
+            break
         }
         
         guard headerLeadingView.isHidden,
