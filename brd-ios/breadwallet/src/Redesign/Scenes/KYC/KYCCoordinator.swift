@@ -18,7 +18,7 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
     }
     
     func showCountrySelector(selected: ((CountryResponseData?) -> Void)?) {
-        let nvc = UINavigationController()
+        let nvc = RootNavigationController()
         let coordinator = ItemSelectionCoordinator(navigationController: nvc)
         coordinator.start()
         coordinator.parentCoordinator = self

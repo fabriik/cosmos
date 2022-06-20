@@ -38,12 +38,12 @@ class BaseCoordinator: NSObject,
 
     init(viewController: UIViewController) {
         viewController.hidesBottomBarWhenPushed = true
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let navigationController = RootNavigationController(rootViewController: viewController)
         self.navigationController = navigationController
     }
 
     func start() {
-        let nvc = UINavigationController()
+        let nvc = RootNavigationController()
         let coordinator: Coordinatable
         if UserDefaults.emailConfirmed {
             coordinator = ProfileCoordinator(navigationController: nvc)
@@ -93,9 +93,10 @@ class BaseCoordinator: NSObject,
                                                   presentationStyle: UIModalPresentationStyle = .fullScreen,
                                                   configure: ((VC?) -> Void)? = nil) {
         let controller = VC()
-        let nvc = UINavigationController(rootViewController: controller)
+        let nvc = RootNavigationController(rootViewController: controller)
         nvc.modalPresentationStyle = presentationStyle
-
+        nvc.modalPresentationCapturesStatusBarAppearance = true
+        
         let coordinator = C(navigationController: nvc)
         controller.coordinator = coordinator as? VC.CoordinatorType
         configure?(controller)

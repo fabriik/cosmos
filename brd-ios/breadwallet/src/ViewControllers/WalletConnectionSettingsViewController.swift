@@ -47,11 +47,6 @@ class WalletConnectionSettingsViewController: UIViewController, Trackable {
         bindData()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setDarkStyle()
-    }
-
     private func setUpAppearance() {
         view.backgroundColor = Theme.primaryBackground
         explanationLabel.textAlignment = .center

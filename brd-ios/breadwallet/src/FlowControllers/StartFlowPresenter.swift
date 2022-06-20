@@ -17,7 +17,7 @@ class StartFlowPresenter: Subscriber, Trackable {
     // MARK: - Properties
     
     private let rootViewController: RootNavigationController
-    private var navigationController: ModalNavigationController?
+    private var navigationController: RootNavigationController?
     private let navigationControllerDelegate: StartNavigationDelegate
     private let keyMaster: KeyStore
     private var loginViewController: UIViewController?
@@ -92,7 +92,7 @@ class StartFlowPresenter: Subscriber, Trackable {
             }
         })
         
-        navigationController = ModalNavigationController(rootViewController: onboardingScreen)
+        navigationController = RootNavigationController(rootViewController: onboardingScreen)
         navigationController?.delegate = navigationControllerDelegate
         
         if let onboardingFlow = navigationController {
@@ -155,8 +155,6 @@ class StartFlowPresenter: Subscriber, Trackable {
     // MARK: Recover Wallet
     
     private func enterRecoverWalletFlow() {
-        
-        navigationController?.setClearNavbar()
         navigationController?.setNavigationBarHidden(false, animated: false)
         
         let recoverWalletViewController =
@@ -177,7 +175,6 @@ class StartFlowPresenter: Subscriber, Trackable {
                 }
                 self.recoverBackup(backup)
             }
-            navigationController?.setClearNavbar()
             navigationController?.setNavigationBarHidden(false, animated: false)
             let vc = LightStatusBarHost(rootView: selectView)
             navigationController?.pushViewController(vc, animated: true)
@@ -197,7 +194,6 @@ class StartFlowPresenter: Subscriber, Trackable {
         update.didRecoverAccount = { [weak self] account in
             self?.handleRecoveredAccount(account)
         }
-        navigationController?.setClearNavbar()
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.pushViewController(update, animated: true)
     }
@@ -270,7 +266,6 @@ class StartFlowPresenter: Subscriber, Trackable {
             }
         }
 
-        navigationController?.setClearNavbar()
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.pushViewController(pinCreationViewController, animated: true)
     }

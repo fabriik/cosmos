@@ -8,30 +8,20 @@
 
 import UIKit
 
-class RootNavigationController: UINavigationController {
-
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    override func viewDidLoad() {
-        setDarkStyle()
-        
-        view.backgroundColor = Theme.primaryBackground
-
-        self.delegate = self
-    }
-
+class RootNavigationController: UINavigationController, UINavigationControllerDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+        guard let vc = topViewController else { return .default }
+        return vc.preferredStatusBarStyle
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        delegate = self
+        
+        setNormalNavigationBar()
     }
-}
-
-extension RootNavigationController: UINavigationControllerDelegate {
+    
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController is HomeScreenViewController {
             navigationBar.tintColor = .navigationTint
@@ -40,8 +30,38 @@ extension RootNavigationController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController is AccountViewController {
-            navigationBar.tintColor = .white
+            navigationBar.tintColor = .darkPromptTitleColor
         }
+        
+        let item = SimpleBackBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        viewController.navigationItem.backBarButtonItem = item
     }
     
+    func setNormalNavigationBar() {
+        if #available(iOS 13.0, *) {
+            let normalAppearance = UINavigationBarAppearance()
+            normalAppearance.configureWithOpaqueBackground()
+            normalAppearance.backgroundColor = LightColors.Contrast.two
+            normalAppearance.shadowColor = nil
+            navigationBar.standardAppearance = normalAppearance
+            navigationBar.compactAppearance = normalAppearance
+            
+            let scrollAppearance = UINavigationBarAppearance()
+            scrollAppearance.configureWithTransparentBackground()
+            scrollAppearance.backgroundColor = .clear
+            scrollAppearance.shadowColor = nil
+            navigationBar.scrollEdgeAppearance = scrollAppearance
+        }
+        
+        navigationBar.barTintColor = LightColors.Contrast.two
+        navigationBar.tintColor = LightColors.Icons.one
+        navigationBar.shadowImage = UIImage()
+        navigationBar.prefersLargeTitles = false
+        
+        navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: Fonts.Title.seven
+        ]
+        
+        view.backgroundColor = LightColors.Contrast.two
+    }
 }
