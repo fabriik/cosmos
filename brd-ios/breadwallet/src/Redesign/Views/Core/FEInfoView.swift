@@ -129,7 +129,7 @@ class FEInfoView: FEView<InfoViewConfiguration, InfoViewModel> {
         headerStackView.addArrangedSubview(statusView)
         statusView.content.setupCustomMargins(vertical: .zero, horizontal: .small)
         statusView.snp.makeConstraints { make in
-            make.width.equalTo(Margins.huge.rawValue * 3)
+            make.width.equalTo(Margins.extraLarge.rawValue * 4)
         }
         
         headerStackView.addArrangedSubview(headerTrailingView)

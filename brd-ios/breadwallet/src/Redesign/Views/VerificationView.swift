@@ -58,7 +58,7 @@ enum VerificationStatus: Equatable {
         switch self {
         case .email, .levelOne, .levelTwo(.levelTwo): return "Verified"
         case .levelTwo(.declined): return "Declined"
-        case .levelTwo(.resubmit): return "Resubmit"
+        case .levelTwo(.resubmit), .levelTwo(.expired): return "Resubmit"
         default: return "Pending"
         }
     }
