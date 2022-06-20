@@ -136,6 +136,7 @@
 		7B02D6282859201500C5C384 /* KYCCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02D6272859201500C5C384 /* KYCCameraViewController.swift */; };
 		7B02D62A2859202B00C5C384 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02D6292859202B00C5C384 /* PhotoCaptureDelegate.swift */; };
 		7B02D62C28592FE700C5C384 /* KYCCameraShutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02D62B28592FE700C5C384 /* KYCCameraShutter.swift */; };
+		7B08D2262860574F00D65ED9 /* SimpleBackBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08D2252860574F00D65ED9 /* SimpleBackBarButtonItem.swift */; };
 		7B2C9AFC27D9270B00D5135C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2C9AFB27D9270B00D5135C /* IQKeyboardManagerSwift */; };
 		7B432FA228040EB90056B364 /* KYCForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432F9C28040EB90056B364 /* KYCForgotPasswordPresenter.swift */; };
 		7B432FA428040EB90056B364 /* KYCForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432F9E28040EB90056B364 /* KYCForgotPasswordRouter.swift */; };
@@ -1151,6 +1152,7 @@
 		7B02D6272859201500C5C384 /* KYCCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCCameraViewController.swift; sourceTree = "<group>"; };
 		7B02D6292859202B00C5C384 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
 		7B02D62B28592FE700C5C384 /* KYCCameraShutter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCCameraShutter.swift; sourceTree = "<group>"; };
+		7B08D2252860574F00D65ED9 /* SimpleBackBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBackBarButtonItem.swift; sourceTree = "<group>"; };
 		7B432F9C28040EB90056B364 /* KYCForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordPresenter.swift; sourceTree = "<group>"; };
 		7B432F9E28040EB90056B364 /* KYCForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordRouter.swift; sourceTree = "<group>"; };
 		7B432F9F28040EB90056B364 /* KYCForgotPasswordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordModels.swift; sourceTree = "<group>"; };
@@ -2739,6 +2741,7 @@
 				7B54E58C27F4A2B0002DD1E4 /* SimpleButton.swift */,
 				7B54E58527F4A2B0002DD1E4 /* SimpleTextField.swift */,
 				7B54E58427F4A2B0002DD1E4 /* SpinnerView.swift */,
+				7B08D2252860574F00D65ED9 /* SimpleBackBarButtonItem.swift */,
 				7BA83DAB28047894003F73AA /* Validators.swift */,
 				7B54E58A27F4A2B0002DD1E4 /* UITableView+Extensions.swift */,
 				7B54E57027F4A2B0002DD1E4 /* UIView+Extensions.swift */,
@@ -4990,6 +4993,7 @@
 				7B02D6282859201500C5C384 /* KYCCameraViewController.swift in Sources */,
 				7CBABD9C20181D890077CB55 /* NSMutableAttributedString+Additions.swift in Sources */,
 				3A69885E24591F890084953D /* PayId.swift in Sources */,
+				7B08D2262860574F00D65ED9 /* SimpleBackBarButtonItem.swift in Sources */,
 				7B54E51E27F4A208002DD1E4 /* KYCSignInView.swift in Sources */,
 				7EBC6AF728488B10000A301F /* RegistrationPresenter.swift in Sources */,
 				7E9B13FE2857404600BD9EF5 /* DocumentReviewViewController.swift in Sources */,

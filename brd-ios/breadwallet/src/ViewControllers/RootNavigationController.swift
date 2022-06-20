@@ -65,13 +65,3 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
         view.backgroundColor = Theme.primaryBackground
     }
 }
-
-class SimpleBackBarButtonItem: UIBarButtonItem {
-    @available(iOS 14.0, *)
-    override var menu: UIMenu? {
-        get {
-            return super.menu
-        }
-        set {}
-    }
-}
