@@ -11,7 +11,7 @@ struct AlertViewModel {
     var title: String?
     var description: String?
     var image: UIImage?
-    var buttons: [String]
+    var buttons: [String] = []
 }
 
 struct AlertConfiguration: Configurable {

@@ -192,6 +192,17 @@ extension Presets {
                                                                      tintColor: LightColors.Contrast.two,
                                                                      border: Presets.Border.zero),
                                                    shadow: Presets.Shadow.normal)
+        
+        static var error = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
+                                                   headerTitle: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
+                                                   headerTrailing: Presets.Button.icon,
+                                                   title: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
+                                                   description: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two),
+                                                   button: Presets.Button.primary,
+                                                   background: .init(backgroundColor: LightColors.secondary,
+                                                                     tintColor: LightColors.Contrast.two,
+                                                                     border: Presets.Border.zero),
+                                                   shadow: Presets.Shadow.normal)
     }
 }
 
