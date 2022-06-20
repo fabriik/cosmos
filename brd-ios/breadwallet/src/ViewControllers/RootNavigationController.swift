@@ -62,6 +62,6 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
             NSAttributedString.Key.font: Fonts.Title.seven
         ]
         
-        view.backgroundColor = Theme.primaryBackground
+        view.backgroundColor = LightColors.Contrast.two
     }
 }
