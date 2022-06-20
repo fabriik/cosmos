@@ -68,7 +68,7 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
                 return
             }
             
-            self?.presenter?.presentSubmit(actionResponse: .init(error: error))
+            self?.presenter?.presentSubmit(actionResponse: .init())
         }
     }
 
