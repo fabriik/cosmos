@@ -92,6 +92,7 @@ struct VerificationViewModel: ViewModel {
     var infoButton: ButtonViewModel?
     var description: LabelViewModel?
     var benefits: LabelViewModel?
+    var isActive: Bool?
 }
 
 class VerificationView: FEView<VerificationConfiguration, VerificationViewModel> {
@@ -208,7 +209,6 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
 
         descriptionLabel.configure(with: config?.description)
         benefitsLabel.wrappedView.configure(with: config?.benefits)
-        benefitsLabel.configure(background: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal))
     }
     
     override func setup(with viewModel: VerificationViewModel?) {
@@ -226,7 +226,14 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         }
         descriptionLabel.setup(with: viewModel?.description)
         descriptionLabel.isHidden = viewModel?.description == nil
+        
         benefitsLabel.wrappedView.setup(with: viewModel?.benefits)
         benefitsLabel.isHidden = viewModel?.benefits == nil
+        if viewModel?.isActive ?? true {
+            benefitsLabel.configure(background: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal))
+        } else {
+            benefitsLabel.configure(background: Presets.Background.Primary.disabled.withBorder(border: Presets.Border.normal))
+            statusImageView.tintColor = LightColors.Contrast.two
+        }
     }
 }

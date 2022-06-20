@@ -85,7 +85,11 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.startVerification(viewAction: .init(level: indexPath.row))
+        let section = sections[indexPath.section]
+        let model = sectionRows[section]?[indexPath.row] as? VerificationViewModel
+        if model?.isActive ?? true {
+            interactor?.startVerification(viewAction: .init(level: indexPath.row))
+        }
     }
 
     // MARK: - User Interaction

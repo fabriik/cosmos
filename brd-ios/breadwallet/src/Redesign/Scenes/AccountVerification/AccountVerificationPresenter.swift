@@ -23,7 +23,7 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
             levelOneStatus = item.status
             levelTwoStatus = .none
         }
-        
+        let isActive = levelOneStatus == .levelOne || item.status == .levelOne
         let sections = [ Models.Section.verificationLevel ]
         let sectionRows: [Models.Section: [Any]] = [
             .verificationLevel: [
@@ -31,12 +31,14 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
                                       title: .text("Level 1"),
                                       status: levelOneStatus,
                                       description: .text("Personal information"),
-                                      benefits: .text("Account limit: $1,000/day ($10,000 lifetime)")),
+                                      benefits: .text("Account limit: $1,000/day ($10,000 lifetime)"),
+                                      isActive: true),
                 VerificationViewModel(kyc: .levelTwo,
                                       title: .text("Level 2"),
                                       status: levelTwoStatus,
                                       description: .text("ID Verification"),
-                                      benefits: .text("Swap limit: $10,000 per Swap, no lifetime limit"))
+                                      benefits: .text("Swap limit: $10,000 per Swap, no lifetime limit"),
+                                      isActive: isActive)
             ]
         ]
         
