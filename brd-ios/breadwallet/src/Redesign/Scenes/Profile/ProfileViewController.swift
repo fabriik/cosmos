@@ -105,7 +105,13 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     func displayNavigation(responseDisplay: ProfileModels.Navigate.ResponseDisplay) {
-        coordinator?.showUnderConstruction(responseDisplay.item.rawValue)
+        switch responseDisplay.item {
+        case .preferences:
+            coordinator?.showPreferences()
+            
+        case .security:
+            coordinator?.showSecuirtySettings()
+        }
     }
     
     // MARK: - Additional Helpers
