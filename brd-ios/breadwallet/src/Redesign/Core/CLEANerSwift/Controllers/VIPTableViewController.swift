@@ -48,7 +48,7 @@ class VIPTableViewController<C: CoordinatableRoutes,
         contentShadowView.clipsToBounds = true
         contentShadowView.layer.cornerRadius = 12
         contentShadowView.layer.shadowRadius = contentShadowView.layer.cornerRadius * 3
-        contentShadowView.layer.shadowOpacity = 0.08
+        contentShadowView.layer.shadowOpacity = 0.1
         contentShadowView.layer.shadowOffset = CGSize(width: 0, height: 8)
         contentShadowView.layer.shadowColor = UIColor(red: 0.043, green: 0.082, blue: 0.165, alpha: 1.0).cgColor
         contentShadowView.layer.masksToBounds = false
@@ -63,42 +63,57 @@ class VIPTableViewController<C: CoordinatableRoutes,
     override func setupSubviews() {
         super.setupSubviews()
         
-        topInsetValue = sceneLeftAlignedTitle == nil ? 0 : (Margins.large.rawValue * 2) + 28
-        
-        view.addSubview(leftAlignedTitleLabel)
-        leftAlignedTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.height.equalTo(topInsetValue)
-            make.leading.trailing.equalToSuperview().inset(Margins.large.rawValue)
-        }
+        topInsetValue = sceneLeftAlignedTitle == nil ? 0 : Margins.extraHuge.rawValue + 28
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
+        tableView.addSubview(leftAlignedTitleLabel)
+        leftAlignedTitleLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(tableView.snp.top)
+            make.height.equalTo(topInsetValue)
+            make.leading.trailing.equalToSuperview().inset(Margins.large.rawValue)
+        }
+        
         tableView.contentInset.top = topInsetValue
     }
     
     func setRoundedShadowBackground() {
+        let small = Margins.small.rawValue
+        let large = Margins.large.rawValue
+        let extraLarge = Margins.extraLarge.rawValue
+        let extraHuge = Margins.extraHuge.rawValue
+        
         view.addSubview(contentShadowView)
         tableView.heightUpdated = { height in
             self.contentShadowView.snp.remakeConstraints { make in
-                make.leading.equalTo(Margins.large.rawValue)
-                make.trailing.equalTo(-Margins.large.rawValue)
-                make.top.equalTo(self.tableView.snp.top).inset(self.topInsetValue - Margins.large.rawValue)
-                make.height.equalTo(height + Margins.extraHuge.rawValue)
+                make.leading.equalTo(large)
+                make.trailing.equalTo(-large)
+                make.top.equalTo(self.tableView.snp.top).inset(self.topInsetValue)
+                make.height.equalTo(height + extraLarge)
+                make.width.equalTo(self.tableView.snp.width).offset(extraHuge)
             }
         }
+        contentShadowView.layer.zPosition = tableView.layer.zPosition - 1
+        contentShadowView.isUserInteractionEnabled = false
         
         tableView.snp.updateConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: topInsetValue + (Margins.extraHuge.rawValue * 2),
-                                                             left: Margins.extraHuge.rawValue,
-                                                             bottom: Margins.extraHuge.rawValue,
-                                                             right: Margins.extraHuge.rawValue))
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: self.topInsetValue,
+                                                             left: extraHuge,
+                                                             bottom: 0,
+                                                             right: extraHuge))
         }
         
-        view.bringSubviewToFront(tableView)
+        tableView.contentInset.top += small
+        
+        tableView.clipsToBounds = false
+        tableView.layer.masksToBounds = false
+        leftAlignedTitleLabel.snp.updateConstraints { make in
+            make.bottom.equalTo(tableView.snp.top).inset(-small)
+            make.leading.equalToSuperview().inset(-large)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
