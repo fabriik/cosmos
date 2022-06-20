@@ -20,6 +20,7 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
             vc?.dataStore?.profile = profile
             vc?.prepareData()
         }
+        
     }
     
     func showAvatarSelection() {
@@ -28,16 +29,14 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
     }
     
     func showSecuirtySettings() {
-        
+        modalPresenter?.presentSecuritySettings()
     }
     
     func showPreferences() {
-        
+        modalPresenter?.presentPreferences()
     }
     
-    func showExport() {
-        
-    }
+    func showExport() {}
 
     // MARK: - Aditional helpers
     override func goBack() {
