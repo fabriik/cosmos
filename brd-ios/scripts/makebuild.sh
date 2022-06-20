@@ -57,13 +57,15 @@ if [ ! -f ~/.env ]; then
 	exit 1
 fi
 
-source .env
+source ~/.env
 json=$(curl -k -v -X POST -H 'Content-type: application/json' -d '{"deviceID": "b21f2253-51e1-4346-92b0-e32323733067", "pubKey": "rCxDp6qD8uGqK2Z3UgeQ5bvTCZegqGfVexyz5XkbvwfW"}'  https://$API_URL/blocksatoshi/wallet/token)
 
 token="$(echo $json | sed "s/{.*\"token\":\"\([^\"]*\).*}/\1/g"):sig"
 url=$API_URL/blocksatoshi
+
 source ${script_dir}/download_bundles.sh $url
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
 source ${script_dir}/download_currencylist.sh $url $token
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
@@ -73,3 +75,9 @@ echo
 
 source ${script_dir}/archive.sh "${scheme}"
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
+# source ${script_dir}/export_build.sh "${scheme}"
+# rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+
+# source ${script_dir}/upload_build.sh "${scheme}"
+# rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
