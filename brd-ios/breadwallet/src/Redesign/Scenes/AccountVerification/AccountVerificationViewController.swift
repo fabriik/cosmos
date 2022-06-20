@@ -60,6 +60,7 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
             let config: VerificationConfiguration
             switch (model.kyc, model.status) {
             case (.levelOne, .levelOne),
+                (.levelOne, .email),
                 (.levelOne, .levelTwo),
                 (.levelTwo, .levelTwo(.levelTwo)):
                 config = configs[0]
