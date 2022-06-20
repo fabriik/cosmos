@@ -65,7 +65,11 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
     }
     
     func showKYCLevelTwo() {
-        open(scene: Scenes.KYCLevelTwo)
+        let controller = KYCLevelTwoEntryViewController()
+        controller.prepareData()
+        controller.coordinator = self
+        controller.setLastBarButtonItem(from: navigationController, to: .right)
+        navigationController.pushViewController(controller, animated: true)
     }
     
     func showIdentitySelector() {

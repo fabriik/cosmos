@@ -33,7 +33,7 @@ class DocumentReviewViewController: BaseTableViewController<KYCCoordinator,
             (cell as? WrapperTableViewCell<FELabel>)?.wrappedView.configure(with: .init(font: Fonts.Title.six, textColor: LightColors.Text.one))
             
         case .checkmarks:
-            cell = self.tableView(tableView, checkmarCellForRowAt: indexPath)
+            cell = self.tableView(tableView, checkmarkCellForRowAt: indexPath)
             
         case .image:
             cell = self.tableView(tableView, coverCellForRowAt: indexPath)

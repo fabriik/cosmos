@@ -70,12 +70,13 @@ class CheckListViewController: BaseTableViewController<BaseCoordinator,
             (cell as? WrapperTableViewCell<FELabel>)?.wrappedView.configure(with: .init(font: Fonts.Title.six, textColor: LightColors.Text.one))
             
         case .checkmarks:
-            cell = self.tableView(tableView, checkmarCellForRowAt: indexPath)
+            cell = self.tableView(tableView, checkmarkCellForRowAt: indexPath)
             
         default:
             cell = UITableViewCell()
         }
-        cell.setupCustomMargins(vertical: .huge, horizontal: .medium)
+        
+        cell.setupCustomMargins(vertical: .huge, horizontal: .extraHuge)
         
         return cell
     }
