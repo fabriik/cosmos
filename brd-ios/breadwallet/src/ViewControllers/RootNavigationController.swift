@@ -41,7 +41,7 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
         if #available(iOS 13.0, *) {
             let normalAppearance = UINavigationBarAppearance()
             normalAppearance.configureWithOpaqueBackground()
-            normalAppearance.backgroundColor = Theme.primaryBackground
+            normalAppearance.backgroundColor = LightColors.Contrast.two
             normalAppearance.shadowColor = nil
             navigationBar.standardAppearance = normalAppearance
             navigationBar.compactAppearance = normalAppearance
