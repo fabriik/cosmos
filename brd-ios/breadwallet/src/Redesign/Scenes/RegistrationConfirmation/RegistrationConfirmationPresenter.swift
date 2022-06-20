@@ -33,7 +33,7 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
                 LabelViewModel.text("Verify your email")
             ],
             .instructions: [
-                LabelViewModel.text("Please enter the code we’ve sent to: \(email ?? "missing")")
+                LabelViewModel.text("Please enter the code we’ve sent to: \(email ?? "")")
             ],
             .input: [
                 // TODO: validator?
