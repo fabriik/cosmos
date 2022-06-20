@@ -15,6 +15,8 @@ protocol BaseControllable: UIViewController {
 
 protocol Coordinatable: CoordinatableRoutes {
 
+    // TODO: should eventually die
+    var modalPresenter: ModalPresenter? { get set }
     var childCoordinators: [Coordinatable] { get set }
     var navigationController: UINavigationController { get set }
     var parentCoordinator: Coordinatable? { get set }
@@ -28,6 +30,21 @@ protocol Coordinatable: CoordinatableRoutes {
 class BaseCoordinator: NSObject,
                        Coordinatable {
     
+    // TODO: should eventually die
+    var modalPresenter: ModalPresenter? {
+        get {
+            guard let modalPresenter = presenter else {
+                return  parentCoordinator?.modalPresenter
+            }
+
+            return modalPresenter
+        }
+        set {
+            presenter = newValue
+        }
+    }
+    
+    private var presenter: ModalPresenter?
     var parentCoordinator: Coordinatable?
     var childCoordinators: [Coordinatable] = []
     var navigationController: UINavigationController

@@ -142,6 +142,7 @@ class ApplicationController: Subscriber, Trackable {
     func decideFlow() {
         if let nvc = rootNavigationController {
             coordinator = BaseCoordinator(navigationController: nvc)
+            coordinator?.modalPresenter = modalPresenter
         }
         
         if keyStore.noWallet {

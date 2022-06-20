@@ -420,9 +420,25 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     // MARK: Settings
-    func presentMenu() {
+    func presentPreferences() {
         let menuNav = RootNavigationController()
         
+        let items = preparePreferencesMenuItems(menuNav: menuNav)
+        let rootMenu = MenuViewController(items: items, title: L10n.Settings.preferences)
+        self.topViewController?.show(rootMenu, sender: nil)
+    }
+    
+    func presentSecuritySettings() {
+        let menuNav = RootNavigationController()
+        let items = prepareSecuritySettingsMenuItems(menuNav: menuNav)
+        let rootMenu = MenuViewController(items: items,
+                                          title: L10n.MenuButton.security,
+                                          faqButton: UIButton.buildFaqButton(articleId: ArticleIds.securityCenter))
+        
+        self.topViewController?.show(rootMenu, sender: nil)
+    }
+    
+    private func preparePreferencesMenuItems(menuNav: RootNavigationController) -> [MenuItem] {
         // MARK: Bitcoin Menu
         var btcItems: [MenuItem] = []
         if let btc = Currencies.shared.btc, let btcWallet = btc.wallet {
@@ -539,59 +555,16 @@ class ModalPresenter: Subscriber, Trackable {
             })
         ]
         
-        // MARK: Security Settings
-        var securityItems: [MenuItem] = [
-            // Unlink
-            MenuItem(title: L10n.Settings.wipe) { [weak self] in
-                guard let `self` = self, let vc = self.topViewController else { return }
-                RecoveryKeyFlowController.enterUnlinkWalletFlow(from: vc,
-                                                                keyMaster: self.keyStore,
-                                                                phraseEntryReason: .validateForWipingWallet({ [weak self] in
-                                                                    self?.wipeWallet()
-                                                                }))
-            },
-            
-            // Update PIN
-            MenuItem(title: L10n.UpdatePin.updateTitle) { [weak self] in
-                guard let `self` = self else { return }
-                let updatePin = UpdatePinViewController(keyMaster: self.keyStore, type: .update)
-                menuNav.pushViewController(updatePin, animated: true)
-            },
-            
-            // Biometrics
-            MenuItem(title: LAContext.biometricType() == .face ? L10n.SecurityCenter.faceIdTitle : L10n.SecurityCenter.touchIdTitle) { [weak self] in
-                guard let `self` = self else { return }
-                self.presentBiometricsMenuItem()
-            },
-            
-            // Paper key
-            MenuItem(title: L10n.SecurityCenter.paperKeyTitle) { [weak self] in
-                guard let `self` = self else { return }
-                self.presentWritePaperKey(fromViewController: menuNav)
-            },
-
-            // Portfolio data for widget
-            MenuItem(title: L10n.Settings.shareWithWidget,
-                     accessoryText: { [weak self] in
-                         self?.system.widgetDataShareService.sharingEnabled ?? false ? "ON" : "OFF"
-                     },
-                     callback: { [weak self] in
-                         self?.system.widgetDataShareService.sharingEnabled.toggle()
-                         (menuNav.topViewController as? MenuViewController)?.reloadMenu()
-                     })
-        ]
+        return preferencesItems
+    }
+    
+    func presentMenu() {
+        let menuNav = RootNavigationController()
+        // MARK: Preferences
+        let preferencesItems = preparePreferencesMenuItems(menuNav: menuNav)
         
-        // Add iCloud backup
-        if #available(iOS 13.6, *) {
-            securityItems.append(
-                MenuItem(title: L10n.CloudBackup.backupMenuTitle) {
-                    let synchronizer = BackupSynchronizer(context: .existingWallet, keyStore: self.keyStore, navController: menuNav)
-                    let cloudView = CloudBackupView(synchronizer: synchronizer)
-                    let hosting = UIHostingController(rootView: cloudView)
-                    menuNav.pushViewController(hosting, animated: true)
-                }
-            )
-        }
+        // MARK: Security Settings
+        let securityItems = prepareSecuritySettingsMenuItems(menuNav: menuNav)
         
         // MARK: Root Menu
         var rootItems: [MenuItem] = [
@@ -1150,6 +1123,64 @@ class ModalPresenter: Subscriber, Trackable {
     private func showEmailLogsModal() {
         self.messagePresenter.presenter = self.topViewController
         self.messagePresenter.presentEmailLogs()
+    }
+    
+    private func prepareSecuritySettingsMenuItems(menuNav: RootNavigationController) -> [MenuItem] {
+        // MARK: Security Settings
+        var securityItems: [MenuItem] = [
+            // Unlink
+            MenuItem(title: L10n.Settings.wipe) { [weak self] in
+                guard let `self` = self, let vc = self.topViewController else { return }
+                RecoveryKeyFlowController.enterUnlinkWalletFlow(from: vc,
+                                                                keyMaster: self.keyStore,
+                                                                phraseEntryReason: .validateForWipingWallet({ [weak self] in
+                                                                    self?.wipeWallet()
+                                                                }))
+            },
+            
+            // Update PIN
+            MenuItem(title: L10n.UpdatePin.updateTitle) { [weak self] in
+                guard let `self` = self else { return }
+                let updatePin = UpdatePinViewController(keyMaster: self.keyStore, type: .update)
+                menuNav.pushViewController(updatePin, animated: true)
+            },
+            
+            // Biometrics
+            MenuItem(title: LAContext.biometricType() == .face ? L10n.SecurityCenter.faceIdTitle : L10n.SecurityCenter.touchIdTitle) { [weak self] in
+                guard let `self` = self else { return }
+                self.presentBiometricsMenuItem()
+            },
+            
+            // Paper key
+            MenuItem(title: L10n.SecurityCenter.paperKeyTitle) { [weak self] in
+                guard let `self` = self else { return }
+                self.presentWritePaperKey(fromViewController: menuNav)
+            },
+
+            // Portfolio data for widget
+            MenuItem(title: L10n.Settings.shareWithWidget,
+                     accessoryText: { [weak self] in
+                         self?.system.widgetDataShareService.sharingEnabled ?? false ? "ON" : "OFF"
+                     },
+                     callback: { [weak self] in
+                         self?.system.widgetDataShareService.sharingEnabled.toggle()
+                         (menuNav.topViewController as? MenuViewController)?.reloadMenu()
+                     })
+        ]
+        
+        // Add iCloud backup
+        if #available(iOS 13.6, *) {
+            securityItems.append(
+                MenuItem(title: L10n.CloudBackup.backupMenuTitle) {
+                    let synchronizer = BackupSynchronizer(context: .existingWallet, keyStore: self.keyStore, navController: menuNav)
+                    let cloudView = CloudBackupView(synchronizer: synchronizer)
+                    let hosting = UIHostingController(rootView: cloudView)
+                    menuNav.pushViewController(hosting, animated: true)
+                }
+            )
+        }
+        
+        return securityItems
     }
 }
 
