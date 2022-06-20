@@ -94,7 +94,12 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.navigate(viewAction: .init(index: indexPath.row))
+        switch sections[indexPath.section] as? Models.Section {
+        case .navigation:
+            interactor?.navigate(viewAction: .init(index: indexPath.row))
+        default:
+            return
+        }
     }
     
     // MARK: - User Interaction
