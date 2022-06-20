@@ -421,15 +421,14 @@ class ModalPresenter: Subscriber, Trackable {
     
     // MARK: Settings
     func presentPreferences() {
-        let menuNav = RootNavigationController()
-        
+        guard let menuNav = topViewController as? RootNavigationController else { return }
         let items = preparePreferencesMenuItems(menuNav: menuNav)
         let rootMenu = MenuViewController(items: items, title: L10n.Settings.preferences)
         self.topViewController?.show(rootMenu, sender: nil)
     }
     
     func presentSecuritySettings() {
-        let menuNav = RootNavigationController()
+        guard let menuNav = topViewController as? RootNavigationController else { return }
         let items = prepareSecuritySettingsMenuItems(menuNav: menuNav)
         let rootMenu = MenuViewController(items: items,
                                           title: L10n.MenuButton.security,
