@@ -53,13 +53,13 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
             navigationBar.scrollEdgeAppearance = scrollAppearance
         }
         
-        navigationBar.barTintColor = Theme.primaryBackground
+        navigationBar.barTintColor = LightColors.Contrast.two
         navigationBar.tintColor = LightColors.Icons.one
         navigationBar.shadowImage = UIImage()
         navigationBar.prefersLargeTitles = false
         
         navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.header
+            NSAttributedString.Key.font: Fonts.Title.seven
         ]
         
         view.backgroundColor = Theme.primaryBackground

@@ -363,7 +363,7 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     private func setupAppearance() {
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.header]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: Fonts.Title.seven]
         let backImage = #imageLiteral(resourceName: "BackArrowWhite").image(withInsets: UIEdgeInsets(top: 0.0, left: 8.0, bottom: 2.0, right: 0.0))
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
