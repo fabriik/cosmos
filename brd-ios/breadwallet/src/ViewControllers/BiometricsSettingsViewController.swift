@@ -55,10 +55,6 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
         super.init(nibName: nil, bundle: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
