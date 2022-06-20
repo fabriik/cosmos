@@ -63,6 +63,11 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
                                        birthDate: birthDateText)
         
         KYCLevelOneWorker().execute(requestData: data) { [weak self] error in
+            guard error == nil else {
+                self?.presenter?.presentError(actionResponse: .init(error: error))
+                return
+            }
+            
             self?.presenter?.presentSubmit(actionResponse: .init(error: error))
         }
     }
