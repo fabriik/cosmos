@@ -16,12 +16,12 @@ protocol BaseControllable: UIViewController {
 protocol Coordinatable: CoordinatableRoutes {
 
     var childCoordinators: [Coordinatable] { get set }
-    var navigationController: RootNavigationController { get set }
+    var navigationController: UINavigationController { get set }
     var parentCoordinator: Coordinatable? { get set }
 
     func childDidFinish(child: Coordinatable)
     func goBack()
-    init(navigationController: RootNavigationController)
+    init(navigationController: UINavigationController)
     func start()
 }
 
@@ -30,9 +30,9 @@ class BaseCoordinator: NSObject,
     
     var parentCoordinator: Coordinatable?
     var childCoordinators: [Coordinatable] = []
-    var navigationController: RootNavigationController
+    var navigationController: UINavigationController
 
-    required init(navigationController: RootNavigationController) {
+    required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
