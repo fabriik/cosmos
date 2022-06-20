@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CryptoKit
 
 extension UIViewController {
     enum NavBarButtonSide {
