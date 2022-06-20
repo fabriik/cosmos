@@ -142,6 +142,7 @@ class ApplicationController: Subscriber, Trackable {
     func decideFlow() {
         if let nvc = rootNavigationController {
             coordinator = BaseCoordinator(navigationController: nvc)
+            coordinator?.modalPresenter = modalPresenter
         }
         
         if keyStore.noWallet {
@@ -363,7 +364,7 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     private func setupAppearance() {
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.header]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: Fonts.Title.seven]
         let backImage = #imageLiteral(resourceName: "BackArrowWhite").image(withInsets: UIEdgeInsets(top: 0.0, left: 8.0, bottom: 2.0, right: 0.0))
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
@@ -441,8 +442,7 @@ class ApplicationController: Subscriber, Trackable {
         homeScreen.didTapManageWallets = { [unowned self] in
             guard let assetCollection = self.coreSystem.assetCollection else { return }
             let vc = ManageWalletsViewController(assetCollection: assetCollection, coreSystem: self.coreSystem)
-            let nc = UINavigationController(rootViewController: vc)
-            nc.setDarkStyle()
+            let nc = RootNavigationController(rootViewController: vc)
             navigationController.present(nc, animated: true, completion: nil)
         }
     }

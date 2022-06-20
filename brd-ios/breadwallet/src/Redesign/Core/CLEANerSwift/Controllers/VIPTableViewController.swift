@@ -8,11 +8,11 @@
 import UIKit
 
 class VIPTableViewController<C: CoordinatableRoutes,
-                                  I: Interactor,
-                                  P: Presenter,
-                                  DS: BaseDataStore & NSObject>: VIPViewController<C, I, P, DS>,
-                                                                 UITableViewDelegate,
-                                                                 UITableViewDataSource {
+                             I: Interactor,
+                             P: Presenter,
+                             DS: BaseDataStore & NSObject>: VIPViewController<C, I, P, DS>,
+                                                            UITableViewDelegate,
+                                                            UITableViewDataSource {
     override var isModalDismissableEnabled: Bool {
         return true
     }
@@ -21,10 +21,11 @@ class VIPTableViewController<C: CoordinatableRoutes,
     var sectionRows: [AnyHashable: [Any]] = [:]
 
     // MARK: LazyUI
-    lazy var tableView: UITableView = {
-        var tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.delegate = self
+    lazy var tableView: ContentSizedTableView = {
+        var tableView = ContentSizedTableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
+        tableView.delegate = self
+
         // this prevents the top offset on tableViews
         let zeroView = UIView(frame: .init(origin: .zero, size: .init(width: 0, height: CGFloat.leastNonzeroMagnitude)))
         tableView.tableHeaderView = zeroView
@@ -40,15 +41,83 @@ class VIPTableViewController<C: CoordinatableRoutes,
         tableView.separatorStyle = .none
         return tableView
     }()
-
-    // MARK: Overrides
+    
+    lazy var contentShadowView: UIView = {
+        var contentShadowView = UIView()
+        contentShadowView.backgroundColor = .white
+        contentShadowView.clipsToBounds = true
+        contentShadowView.layer.cornerRadius = 12
+        contentShadowView.layer.shadowRadius = contentShadowView.layer.cornerRadius * 3
+        contentShadowView.layer.shadowOpacity = 0.1
+        contentShadowView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        contentShadowView.layer.shadowColor = UIColor(red: 0.043, green: 0.082, blue: 0.165, alpha: 1.0).cgColor
+        contentShadowView.layer.masksToBounds = false
+        contentShadowView.layer.shouldRasterize = true
+        contentShadowView.layer.rasterizationScale = UIScreen.main.scale
+        return contentShadowView
+    }()
+    
+    var topInsetValue: CGFloat = 0
+    
+    // MARK: Lifecycle
     override func setupSubviews() {
         super.setupSubviews()
-
+        
+        topInsetValue = sceneLeftAlignedTitle == nil ? 0 : Margins.extraHuge.rawValue + 28
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        tableView.addSubview(leftAlignedTitleLabel)
+        leftAlignedTitleLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(tableView.snp.top)
+            make.height.equalTo(topInsetValue)
+            make.leading.trailing.equalToSuperview().inset(Margins.large.rawValue)
+        }
+        
+        tableView.contentInset.top = topInsetValue
+    }
+    
+    func setRoundedShadowBackground() {
+        let small = Margins.small.rawValue
+        let large = Margins.large.rawValue
+        let extraLarge = Margins.extraLarge.rawValue
+        let extraHuge = Margins.extraHuge.rawValue
+        
+        view.addSubview(contentShadowView)
+        tableView.heightUpdated = { height in
+            self.contentShadowView.snp.remakeConstraints { make in
+                make.leading.equalTo(large)
+                make.trailing.equalTo(-large)
+                make.top.equalTo(self.tableView.snp.top).inset(self.topInsetValue)
+                make.height.equalTo(height + extraLarge)
+                make.width.equalTo(self.tableView.snp.width).offset(extraHuge)
+            }
+        }
+        contentShadowView.layer.zPosition = tableView.layer.zPosition - 1
+        contentShadowView.isUserInteractionEnabled = false
+        
+        tableView.snp.updateConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: self.topInsetValue,
+                                                             left: extraHuge,
+                                                             bottom: 0,
+                                                             right: extraHuge))
+        }
+        
+        tableView.contentInset.top += small
+        
+        tableView.clipsToBounds = false
+        tableView.layer.masksToBounds = false
+        leftAlignedTitleLabel.snp.updateConstraints { make in
+            make.bottom.equalTo(tableView.snp.top).inset(-small)
+            make.leading.equalToSuperview().inset(-large)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        contentShadowView.transform = .init(translationX: 0, y: -scrollView.contentOffset.y - tableView.contentInset.top)
     }
     
     // MARK: ResponseDisplay

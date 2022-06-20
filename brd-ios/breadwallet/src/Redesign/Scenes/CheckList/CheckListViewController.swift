@@ -15,7 +15,7 @@ class CheckListViewController: BaseTableViewController<BaseCoordinator,
                                CheckListResponseDisplays {
     typealias Models = CheckListModels
 
-    override var sceneTitle: String? { return "Checklist base VC" }
+    override var sceneLeftAlignedTitle: String? { return "Checklist base VC" }
     var checklistTitle: LabelViewModel { return .text("OVERRIDE IN SUBCLASS") }
     var checkmarks: [ChecklistItemViewModel] { return [] }
     
@@ -35,8 +35,7 @@ class CheckListViewController: BaseTableViewController<BaseCoordinator,
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.snp.bottomMargin)
             make.leading.equalToSuperview().inset(Margins.large.rawValue)
-            // TODO: constants
-            make.height.equalTo(48)
+            make.height.equalTo(FieldHeights.common.rawValue)
         }
         
         tableView.snp.remakeConstraints { make in

@@ -9,13 +9,13 @@
 import UIKit
 
 class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
-                                  KYCBasicInteractor,
-                                  KYCBasicPresenter,
-                                  KYCBasicStore>,
-                                  KYCBasicResponseDisplays {
+                              KYCBasicInteractor,
+                              KYCBasicPresenter,
+                              KYCBasicStore>,
+                              KYCBasicResponseDisplays {
     typealias Models = KYCBasicModels
     
-    override var sceneTitle: String? {
+    override var sceneLeftAlignedTitle: String? {
         // TODO: localize
         return "Personal Information"
     }
@@ -25,8 +25,11 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
     
     override func setupSubviews() {
         super.setupSubviews()
+        
         tableView.register(WrapperTableViewCell<NameView>.self)
         tableView.register(WrapperTableViewCell<DateView>.self)
+        
+        setRoundedShadowBackground()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,7 +51,7 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             cell = UITableViewCell()
         }
         
-        cell.contentView.setupCustomMargins(vertical: .small, horizontal: .small)
+        cell.contentView.setupCustomMargins(vertical: .small, horizontal: .zero)
         
         return cell
     }
@@ -104,6 +107,10 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         cell.setup { view in
             view.configure(with: Presets.TextField.two)
             view.setup(with: model)
+            view.snp.makeConstraints { make in
+                make.height.equalTo(FieldHeights.common.rawValue)
+            }
+            
             view.contentSizeChanged = {
                 tableView.beginUpdates()
                 tableView.endUpdates()
@@ -128,8 +135,7 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             view.setup(with: model)
             view.setupCustomMargins(vertical: .large, horizontal: .large)
             view.snp.makeConstraints { make in
-                // TODO: constants for view heights
-                make.height.equalTo(48)
+                make.height.equalTo(FieldHeights.common.rawValue)
             }
             view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
@@ -146,10 +152,11 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
                 return
             }
             
-            cell.wrappedView.animateTo(state: .selected)
-            coordinator?.showCountrySelector { [weak self] code in
-                cell.wrappedView.animateTo(state: .normal, withAnimation: false)
-                self?.interactor?.countrySelected(viewAction: .init(code: code))
+            cell.wrappedView.isPicker = true
+            
+            coordinator?.showCountrySelector { [weak self] model in
+                cell.wrappedView.animateTo(state: .filled, withAnimation: false)
+                self?.interactor?.countrySelected(viewAction: .init(code: model?.iso2, fullName: model?.localizedName))
             }
             
         default:
@@ -169,7 +176,8 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
               let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else {
             return
         }
-        cell.wrappedView.isEnabled = responseDisplay.isValid
+        isValid = responseDisplay.isValid
+        cell.wrappedView.isEnabled = isValid
     }
     
     func displaySubmit(responseDisplay: KYCBasicModels.Submit.ResponseDisplay) {
@@ -179,7 +187,9 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         }
         
         coordinator?.showOverlay(with: .success) { [weak self] in
-            self?.coordinator?.goBack()
+            self?.coordinator?.goBack(completion: {
+                // TODO: .goBack() does not work!
+            })
         }
     }
     

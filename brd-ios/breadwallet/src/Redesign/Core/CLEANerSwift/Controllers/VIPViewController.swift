@@ -21,8 +21,17 @@ class VIPViewController<C: CoordinatableRoutes,
     
     // MARK: Title and tab bar appearance
     var sceneTitle: String? { return nil }
+    var sceneLeftAlignedTitle: String? { return nil }
     var tabIcon: UIImage? { return nil }
-
+    
+    lazy var leftAlignedTitleLabel: UILabel = {
+        let view = UILabel()
+        view.font = Fonts.Title.four
+        view.textAlignment = .left
+        view.textColor = LightColors.Icons.one
+        return view
+    }()
+    
     // MARK: Modal dimissable
     var isModalDismissableEnabled: Bool { return false }
     var dismissText: String { return "" }
@@ -127,27 +136,19 @@ class VIPViewController<C: CoordinatableRoutes,
     func localize() {
         tabBarItem.title = sceneTitle
         title = sceneTitle
+        leftAlignedTitleLabel.text = sceneLeftAlignedTitle
     }
-
+    
     func prepareData() {}
 
     // MARK: BaseResponseDisplay
-    func displayAlert(responseDisplay: AlertModels.Alerts.ResponseDisplay) {
-        coordinator?.showAlertView(with: responseDisplay.model, config: responseDisplay.config)
-    }
-
-    func displayNotification(responseDisplay: NotificationModels.Notification.ResponseDisplay) {
-        coordinator?.showNotification(with: responseDisplay.model, configuration: responseDisplay.config)
-    }
-
-    func hideNotification(notification: UIView) {
-        coordinator?.hideNotification(notification)
-    }
-
-    func displayError(responseDisplay: ErrorModels.Errors.ResponseDisplay) {
-        coordinator?.showNotification(with: responseDisplay.model, configuration: responseDisplay.config)
+    func displayMessage(responseDisplay: MessageModels.ResponseDisplays) {
+        coordinator?.showMessage(with: responseDisplay.model, configuration: responseDisplay.config)
     }
     
+    func hideNotification(notification: UIView) {
+        coordinator?.hideMessage(notification)
+    }
     // MARK: - Blurrable
     func toggleBlur(animated: Bool) {
         guard let blurView = blurView else { return }

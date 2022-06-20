@@ -10,7 +10,7 @@ extension Scenes {
 
 class KYCLevelTwoPostValidationViewController: CheckListViewController {
     // TODO: localized
-    override var sceneTitle: String? { return "Your ID verification is in progress" }
+    override var sceneLeftAlignedTitle: String? { return "Your ID verification is in progress" }
     override var checklistTitle: LabelViewModel { return .text("We are reviewing your documents and will let you know when your account has been verified.") }
     override var checkmarks: [ChecklistItemViewModel] { return [
         .init(title: .text("Uploading your photos")),

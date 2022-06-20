@@ -17,6 +17,7 @@ struct Fonts {
         static var four = ThemeManager.shared.font(for: "Degular-Semibold", size: 24)
         static var five = ThemeManager.shared.font(for: "Degular-Semibold", size: 20)
         static var six = ThemeManager.shared.font(for: "Degular-Semibold", size: 16)
+        static var seven = ThemeManager.shared.font(for: "Degular-Semibold", size: 18)
     }
     
     struct Subtitle {

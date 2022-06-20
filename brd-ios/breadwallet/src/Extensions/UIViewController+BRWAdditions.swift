@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum CloseButtonSide {
-    case left
-    case right
-}
-
 extension UIViewController {
+    enum NavBarButtonSide {
+        case left
+        case right
+    }
+    
     func addChildViewController(_ viewController: UIViewController, layout: () -> Void) {
         addChild(viewController)
         view.addSubview(viewController.view)
@@ -26,8 +26,17 @@ extension UIViewController {
         view.removeFromSuperview()
         removeFromParent()
     }
+    
+    func setLastBarButtonItem(from navigationController: UINavigationController, to side: NavBarButtonSide) {
+        switch side {
+        case .left:
+            navigationItem.leftBarButtonItem = navigationController.children.last?.navigationItem.leftBarButtonItem
+        case .right:
+            navigationItem.rightBarButtonItem = navigationController.children.last?.navigationItem.rightBarButtonItem
+        }
+    }
         
-    func addCloseNavigationItem(tintColor: UIColor? = nil, side: CloseButtonSide = .left) {
+    func addCloseNavigationItem(tintColor: UIColor? = nil, side: NavBarButtonSide = .left) {
         let close = UIButton.close
         close.tap = { [weak self] in
             self?.dismiss(animated: true, completion: nil)

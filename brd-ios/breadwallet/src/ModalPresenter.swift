@@ -25,7 +25,6 @@ class ModalPresenter: Subscriber, Trackable {
         self.alertPresenter = alertPresenter
         self.keyStore = keyStore
         self.modalTransitionDelegate = ModalTransitionDelegate(type: .regular)
-        self.wipeNavigationDelegate = StartNavigationDelegate()
         addSubscriptions()
     }
     
@@ -42,8 +41,7 @@ class ModalPresenter: Subscriber, Trackable {
     private let securityCenterNavigationDelegate = SecurityCenterNavigationDelegate()
     private let verifyPinTransitionDelegate = PinTransitioningDelegate()
     private var currentRequest: PaymentRequest?
-    private let wipeNavigationDelegate: StartNavigationDelegate
-    private var menuNavController: UINavigationController?
+    private var menuNavController: RootNavigationController?
     private var feedbackManager: EmailFeedbackManager?
     private let system: CoreSystem
     
@@ -140,10 +138,7 @@ class ModalPresenter: Subscriber, Trackable {
             if case let .showInAppNotification(notification?)? = trigger {
                 let display: (UIImage?) -> Void = { (image) in
                     let notificationVC = InAppNotificationViewController(notification, image: image)
-                    
-                    let navigationController = ModalNavigationController(rootViewController: notificationVC)
-                    navigationController.setClearNavbar()
-                    
+                    let navigationController = RootNavigationController(rootViewController: notificationVC)
                     topVC.present(navigationController, animated: true, completion: nil)
                 }
                 
@@ -214,7 +209,7 @@ class ModalPresenter: Subscriber, Trackable {
         guard let url = URL(string: C.supportLink) else { return }
         let webViewController = SimpleWebViewController(url: url)
         webViewController.setup(with: .init(title: "Support"))
-        let navController = UINavigationController(rootViewController: webViewController)
+        let navController = RootNavigationController(rootViewController: webViewController)
         webViewController.setAsNonDismissableModal()
         
         topViewController?.present(navController, animated: true)
@@ -248,7 +243,7 @@ class ModalPresenter: Subscriber, Trackable {
             // TODO: localize
             webViewController.setup(with: .init(title: "Buy"))
             
-            let navController = UINavigationController(rootViewController: webViewController)
+            let navController = RootNavigationController(rootViewController: webViewController)
             topViewController?.show(navController, sender: nil)
             return nil
             
@@ -268,7 +263,7 @@ class ModalPresenter: Subscriber, Trackable {
             // TODO: localize
             webViewController.setup(with: .init(title: "Swap"))
             
-            let navController = UINavigationController(rootViewController: webViewController)
+            let navController = RootNavigationController(rootViewController: webViewController)
             topViewController?.show(navController, sender: nil)
             return nil
             
@@ -425,10 +420,24 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     // MARK: Settings
-    func presentMenu() {
-        let menuNav = UINavigationController()
-        menuNav.setDarkStyle()
+    func presentPreferences() {
+        guard let menuNav = topViewController as? RootNavigationController else { return }
+        let items = preparePreferencesMenuItems(menuNav: menuNav)
+        let rootMenu = MenuViewController(items: items, title: L10n.Settings.preferences)
+        self.topViewController?.show(rootMenu, sender: nil)
+    }
+    
+    func presentSecuritySettings() {
+        guard let menuNav = topViewController as? RootNavigationController else { return }
+        let items = prepareSecuritySettingsMenuItems(menuNav: menuNav)
+        let rootMenu = MenuViewController(items: items,
+                                          title: L10n.MenuButton.security,
+                                          faqButton: UIButton.buildFaqButton(articleId: ArticleIds.securityCenter))
         
+        self.topViewController?.show(rootMenu, sender: nil)
+    }
+    
+    private func preparePreferencesMenuItems(menuNav: RootNavigationController) -> [MenuItem] {
         // MARK: Bitcoin Menu
         var btcItems: [MenuItem] = []
         if let btc = Currencies.shared.btc, let btcWallet = btc.wallet {
@@ -545,59 +554,16 @@ class ModalPresenter: Subscriber, Trackable {
             })
         ]
         
-        // MARK: Security Settings
-        var securityItems: [MenuItem] = [
-            // Unlink
-            MenuItem(title: L10n.Settings.wipe) { [weak self] in
-                guard let `self` = self, let vc = self.topViewController else { return }
-                RecoveryKeyFlowController.enterUnlinkWalletFlow(from: vc,
-                                                                keyMaster: self.keyStore,
-                                                                phraseEntryReason: .validateForWipingWallet({ [weak self] in
-                                                                    self?.wipeWallet()
-                                                                }))
-            },
-            
-            // Update PIN
-            MenuItem(title: L10n.UpdatePin.updateTitle) { [weak self] in
-                guard let `self` = self else { return }
-                let updatePin = UpdatePinViewController(keyMaster: self.keyStore, type: .update)
-                menuNav.pushViewController(updatePin, animated: true)
-            },
-            
-            // Biometrics
-            MenuItem(title: LAContext.biometricType() == .face ? L10n.SecurityCenter.faceIdTitle : L10n.SecurityCenter.touchIdTitle) { [weak self] in
-                guard let `self` = self else { return }
-                self.presentBiometricsMenuItem()
-            },
-            
-            // Paper key
-            MenuItem(title: L10n.SecurityCenter.paperKeyTitle) { [weak self] in
-                guard let `self` = self else { return }
-                self.presentWritePaperKey(fromViewController: menuNav)
-            },
-
-            // Portfolio data for widget
-            MenuItem(title: L10n.Settings.shareWithWidget,
-                     accessoryText: { [weak self] in
-                         self?.system.widgetDataShareService.sharingEnabled ?? false ? "ON" : "OFF"
-                     },
-                     callback: { [weak self] in
-                         self?.system.widgetDataShareService.sharingEnabled.toggle()
-                         (menuNav.topViewController as? MenuViewController)?.reloadMenu()
-                     })
-        ]
+        return preferencesItems
+    }
+    
+    func presentMenu() {
+        let menuNav = RootNavigationController()
+        // MARK: Preferences
+        let preferencesItems = preparePreferencesMenuItems(menuNav: menuNav)
         
-        // Add iCloud backup
-        if #available(iOS 13.6, *) {
-            securityItems.append(
-                MenuItem(title: L10n.CloudBackup.backupMenuTitle) {
-                    let synchronizer = BackupSynchronizer(context: .existingWallet, keyStore: self.keyStore, navController: menuNav)
-                    let cloudView = CloudBackupView(synchronizer: synchronizer)
-                    let hosting = UIHostingController(rootView: cloudView)
-                    menuNav.pushViewController(hosting, animated: true)
-                }
-            )
-        }
+        // MARK: Security Settings
+        let securityItems = prepareSecuritySettingsMenuItems(menuNav: menuNav)
         
         // MARK: Root Menu
         var rootItems: [MenuItem] = [
@@ -903,8 +869,7 @@ class ModalPresenter: Subscriber, Trackable {
     }
     
     private func presentKeyImport(wallet: Wallet, scanResult: QRCode? = nil) {
-        let nc = ModalNavigationController()
-        nc.setDarkStyle()
+        let nc = RootNavigationController()
         let start = ImportKeyViewController(wallet: wallet, initialQRCode: scanResult)
         start.addCloseNavigationItem(tintColor: Theme.blueBackground)
         start.navigationItem.title = L10n.Import.title
@@ -947,7 +912,7 @@ class ModalPresenter: Subscriber, Trackable {
     func presentBiometricsMenuItem() {
         let biometricsSettings = BiometricsSettingsViewController(self.keyStore)
         biometricsSettings.addCloseNavigationItem(tintColor: Theme.blueBackground)
-        let nc = ModalNavigationController(rootViewController: biometricsSettings)
+        let nc = RootNavigationController(rootViewController: biometricsSettings)
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
         topViewController?.present(nc, animated: true, completion: nil)
@@ -955,8 +920,7 @@ class ModalPresenter: Subscriber, Trackable {
 
     private func promptShareData() {
         let shareData = ShareDataViewController()
-        let nc = ModalNavigationController(rootViewController: shareData)
-        nc.setDefaultStyle()
+        let nc = RootNavigationController(rootViewController: shareData)
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
         shareData.addCloseNavigationItem()
@@ -970,8 +934,7 @@ class ModalPresenter: Subscriber, Trackable {
 
     func presentUpgradePin() {
         let updatePin = UpdatePinViewController(keyMaster: keyStore, type: .update)
-        let nc = ModalNavigationController(rootViewController: updatePin)
-        nc.setDefaultStyle()
+        let nc = RootNavigationController(rootViewController: updatePin)
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
         updatePin.addCloseNavigationItem()
@@ -1160,6 +1123,64 @@ class ModalPresenter: Subscriber, Trackable {
         self.messagePresenter.presenter = self.topViewController
         self.messagePresenter.presentEmailLogs()
     }
+    
+    private func prepareSecuritySettingsMenuItems(menuNav: RootNavigationController) -> [MenuItem] {
+        // MARK: Security Settings
+        var securityItems: [MenuItem] = [
+            // Unlink
+            MenuItem(title: L10n.Settings.wipe) { [weak self] in
+                guard let `self` = self, let vc = self.topViewController else { return }
+                RecoveryKeyFlowController.enterUnlinkWalletFlow(from: vc,
+                                                                keyMaster: self.keyStore,
+                                                                phraseEntryReason: .validateForWipingWallet({ [weak self] in
+                                                                    self?.wipeWallet()
+                                                                }))
+            },
+            
+            // Update PIN
+            MenuItem(title: L10n.UpdatePin.updateTitle) { [weak self] in
+                guard let `self` = self else { return }
+                let updatePin = UpdatePinViewController(keyMaster: self.keyStore, type: .update)
+                menuNav.pushViewController(updatePin, animated: true)
+            },
+            
+            // Biometrics
+            MenuItem(title: LAContext.biometricType() == .face ? L10n.SecurityCenter.faceIdTitle : L10n.SecurityCenter.touchIdTitle) { [weak self] in
+                guard let `self` = self else { return }
+                self.presentBiometricsMenuItem()
+            },
+            
+            // Paper key
+            MenuItem(title: L10n.SecurityCenter.paperKeyTitle) { [weak self] in
+                guard let `self` = self else { return }
+                self.presentWritePaperKey(fromViewController: menuNav)
+            },
+
+            // Portfolio data for widget
+            MenuItem(title: L10n.Settings.shareWithWidget,
+                     accessoryText: { [weak self] in
+                         self?.system.widgetDataShareService.sharingEnabled ?? false ? "ON" : "OFF"
+                     },
+                     callback: { [weak self] in
+                         self?.system.widgetDataShareService.sharingEnabled.toggle()
+                         (menuNav.topViewController as? MenuViewController)?.reloadMenu()
+                     })
+        ]
+        
+        // Add iCloud backup
+        if #available(iOS 13.6, *) {
+            securityItems.append(
+                MenuItem(title: L10n.CloudBackup.backupMenuTitle) {
+                    let synchronizer = BackupSynchronizer(context: .existingWallet, keyStore: self.keyStore, navController: menuNav)
+                    let cloudView = CloudBackupView(synchronizer: synchronizer)
+                    let hosting = UIHostingController(rootView: cloudView)
+                    menuNav.pushViewController(hosting, animated: true)
+                }
+            )
+        }
+        
+        return securityItems
+    }
 }
 
 class SecurityCenterNavigationDelegate: NSObject, UINavigationControllerDelegate {
@@ -1183,6 +1204,5 @@ class SecurityCenterNavigationDelegate: NSObject, UINavigationControllerDelegate
 
     func setStyle(navigationController: UINavigationController) {
         navigationController.isNavigationBarHidden = false
-        navigationController.setDefaultStyle()
     }
 }

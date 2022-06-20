@@ -13,28 +13,33 @@ protocol Presenter: NSObject, BaseActionResponses {
 }
 
 extension Presenter {
-    func presentError(actionResponse: ErrorModels.Errors.ActionResponse) {
+    func presentError(actionResponse: MessageModels.Errors.ActionResponse) {
         guard let error = actionResponse.error else { return }
-
-        let model = InfoViewModel(headerTitle: .text("Error"), description: .text(error.localizedDescription), tapToDismiss: true)
+        let model = InfoViewModel(headerTitle: .text("Error"), description: .text(error.localizedDescription))
         
         // TODO: create Error preset
         let config = Presets.InfoView.primary
 
-        viewController?.displayError(responseDisplay: .init(model: model, config: config))
+        viewController?.displayMessage(responseDisplay: .init(model: model, config: config))
     }
-
-    func presentNotification(actionResponse: NotificationModels.Notification.ActionResponse) {
-        let model = InfoViewModel(description: .text(actionResponse.text), tapToDismiss: actionResponse.autoDimissisable)
-        viewController?.displayNotification(responseDisplay: .init(model: model))
-    }
-
-    func presentAlert(actionResponse: AlertModels.Alerts.ActionResponse) {
-        let model = AlertViewModel(title: actionResponse.alert?.title,
-                                   description: actionResponse.alert?.description,
-                                   image: actionResponse.alert?.image,
-                                   buttons: actionResponse.alert?.buttons ?? [])
+    
+    func presentNotification(actionResponse: MessageModels.Notification.ActionResponse) {
+        let model = InfoViewModel(title: actionResponse.title != nil ?.text(actionResponse.title) : nil,
+                                  description: actionResponse.body != nil ?.text(actionResponse.body) : nil,
+                                  dismissType: actionResponse.dissmiss)
         
-        viewController?.displayAlert(responseDisplay: .init(model: model, config: Presets.Alert.one))
+        // TODO: create notification preset
+        let config = Presets.InfoView.primary
+        
+        viewController?.displayMessage(responseDisplay: .init(model: model, config: config))
+    }
+    
+    func presentAlert(actionResponse: MessageModels.Alert.ActionResponse) {
+        let model = InfoViewModel(title: .text(actionResponse.title),
+                                  description: .text(actionResponse.body))
+        
+        // TODO: create alert preset
+        let config = Presets.InfoView.primary
+        viewController?.displayMessage(responseDisplay: .init(model: model, config: config))
     }
 }

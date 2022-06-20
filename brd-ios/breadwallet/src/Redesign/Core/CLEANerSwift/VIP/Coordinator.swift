@@ -15,6 +15,8 @@ protocol BaseControllable: UIViewController {
 
 protocol Coordinatable: CoordinatableRoutes {
 
+    // TODO: should eventually die
+    var modalPresenter: ModalPresenter? { get set }
     var childCoordinators: [Coordinatable] { get set }
     var navigationController: UINavigationController { get set }
     var parentCoordinator: Coordinatable? { get set }
@@ -28,6 +30,21 @@ protocol Coordinatable: CoordinatableRoutes {
 class BaseCoordinator: NSObject,
                        Coordinatable {
     
+    // TODO: should eventually die
+    var modalPresenter: ModalPresenter? {
+        get {
+            guard let modalPresenter = presenter else {
+                return  parentCoordinator?.modalPresenter
+            }
+
+            return modalPresenter
+        }
+        set {
+            presenter = newValue
+        }
+    }
+    
+    private var presenter: ModalPresenter?
     var parentCoordinator: Coordinatable?
     var childCoordinators: [Coordinatable] = []
     var navigationController: UINavigationController
@@ -38,12 +55,12 @@ class BaseCoordinator: NSObject,
 
     init(viewController: UIViewController) {
         viewController.hidesBottomBarWhenPushed = true
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let navigationController = RootNavigationController(rootViewController: viewController)
         self.navigationController = navigationController
     }
 
     func start() {
-        let nvc = UINavigationController()
+        let nvc = RootNavigationController()
         let coordinator: Coordinatable
         if UserDefaults.emailConfirmed {
             coordinator = ProfileCoordinator(navigationController: nvc)
@@ -93,9 +110,10 @@ class BaseCoordinator: NSObject,
                                                   presentationStyle: UIModalPresentationStyle = .fullScreen,
                                                   configure: ((VC?) -> Void)? = nil) {
         let controller = VC()
-        let nvc = UINavigationController(rootViewController: controller)
+        let nvc = RootNavigationController(rootViewController: controller)
         nvc.modalPresentationStyle = presentationStyle
-
+        nvc.modalPresentationCapturesStatusBarAppearance = true
+        
         let coordinator = C(navigationController: nvc)
         controller.coordinator = coordinator as? VC.CoordinatorType
         configure?(controller)
@@ -106,9 +124,7 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
 
-    func showAlertView(with model: AlertViewModel?, config: AlertConfiguration?) {}
-    
-    func showNotification(with model: InfoViewModel?, configuration: InfoViewConfiguration?) {
+    func showMessage(with model: InfoViewModel?, configuration: InfoViewConfiguration?) {
         let notification = FEInfoView()
         notification.setupCustomMargins(all: .large)
         notification.configure(with: configuration)
@@ -124,13 +140,13 @@ class BaseCoordinator: NSObject,
         }
         notification.layoutIfNeeded()
         notification.alpha = 0
-        	
+            
         UIView.animate(withDuration: Presets.Animation.duration) {
             notification.alpha = 1
         }
     }
     
-    func hideNotification(_ view: UIView) {}
+    func hideMessage(_ view: UIView) {}
 
     func goBack(completion: (() -> Void)? = nil) {
         guard parentCoordinator != nil,

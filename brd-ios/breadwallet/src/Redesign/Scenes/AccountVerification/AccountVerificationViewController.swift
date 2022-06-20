@@ -11,12 +11,16 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
                                          AccountVerificationResponseDisplays {
     typealias Models = AccountVerificationModels
 
+    override var sceneLeftAlignedTitle: String? {
+        // TODO: localize
+        return "Account Verification"
+    }
+    
     // MARK: - Overrides
     
     override func setupSubviews() {
         super.setupSubviews()
         
-        navigationItem.title = "Account Verification"
         tableView.register(WrapperTableViewCell<VerificationView>.self)
     }
     
@@ -56,6 +60,7 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
             let config: VerificationConfiguration
             switch (model.kyc, model.status) {
             case (.levelOne, .levelOne),
+                (.levelOne, .email),
                 (.levelOne, .levelTwo),
                 (.levelTwo, .levelTwo(.levelTwo)):
                 config = configs[0]
@@ -63,7 +68,9 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
             case (.levelOne, _):
                 config = configs[1]
                 
-            case (.levelTwo, .levelTwo(.resubmit)):
+            case (.levelTwo, .levelTwo(.resubmit)),
+                (.levelTwo, .levelTwo(.expired)),
+                (.levelTwo, .levelTwo(.declined)):
                 config = configs[2]
                 
             default:
@@ -78,7 +85,11 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.startVerification(viewAction: .init(level: indexPath.row))
+        let section = sections[indexPath.section]
+        let model = sectionRows[section]?[indexPath.row] as? VerificationViewModel
+        if model?.isActive ?? true {
+            interactor?.startVerification(viewAction: .init(level: indexPath.row))
+        }
     }
 
     // MARK: - User Interaction

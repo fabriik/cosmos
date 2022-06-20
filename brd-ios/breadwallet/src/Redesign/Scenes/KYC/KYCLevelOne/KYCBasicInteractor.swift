@@ -21,24 +21,20 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
     }
     
     func nameSet(viewAction: KYCBasicModels.Name.ViewAction) {
-        if let value = viewAction.first {
-            dataStore?.firstName = value
-        }
-        if let value = viewAction.last {
-            dataStore?.lastName = value
-        }
+        dataStore?.firstName = viewAction.first
+        dataStore?.lastName = viewAction.last
+        
         validate(viewAction: .init())
     }
     
     func countrySelected(viewAction: KYCBasicModels.Country.ViewAction) {
-        guard  let country = viewAction.code else { return }
-        dataStore?.country = country
+        dataStore?.country = viewAction.code
+        dataStore?.countryFullName = viewAction.fullName
         getData(viewAction: .init())
     }
     
     func birthDateSet(viewAction: KYCBasicModels.BirthDate.ViewAction) {
-        guard  let date = viewAction.date else { return }
-        dataStore?.birthdate = date
+        dataStore?.birthdate = viewAction.date
         validate(viewAction: .init())
     }
     
@@ -50,14 +46,21 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
         guard let firstName = dataStore?.firstName,
               let lastName = dataStore?.lastName,
               let country = dataStore?.country,
-              let birthDate = dataStore?.birthDateString else {
+              let birthDateText = dataStore?.birthDateString,
+              let birthDate = dataStore?.birthdate else {
             // should not happen
             return
         }
+        
+        guard let legalDate = Calendar.current.date(byAdding: .year, value: -18, to: Date()),
+            birthDate <= legalDate else {
+            presenter?.presentNotification(actionResponse: .init(body: "You need to be at least 18 years old to complete Level 1 verification"))
+            return
+        }
         let data = KYCBasicRequestData(firstName: firstName,
-                                           lastName: lastName,
-                                           country: country,
-                                           birthDate: birthDate)
+                                       lastName: lastName,
+                                       country: country,
+                                       birthDate: birthDateText)
         
         KYCLevelOneWorker().execute(requestData: data) { [weak self] error in
             self?.presenter?.presentSubmit(actionResponse: .init(error: error))

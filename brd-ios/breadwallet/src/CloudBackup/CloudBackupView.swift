@@ -251,5 +251,5 @@ struct CloudBackupView_Previews: PreviewProvider {
     private static let keyStore = try! KeyStore.create()
     private static let synchronizer = BackupSynchronizer(context: .onboarding,
                                                          keyStore: CloudBackupView_Previews.keyStore,
-                                                         navController: UINavigationController())
+                                                         navController: RootNavigationController())
 }

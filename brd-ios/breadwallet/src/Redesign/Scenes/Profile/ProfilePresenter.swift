@@ -35,6 +35,23 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
     func presentData(actionResponse: FetchModels.Get.ActionResponse) {
         guard let item = actionResponse.item as? Models.Item else { return }
         
+        let status = item.status
+        var infoView: InfoViewModel
+        switch status {
+        case .none:
+            infoView = Presets.VerificationInfoView.none
+        case .emailPending, .levelTwo(.submitted):
+            infoView = Presets.VerificationInfoView.pending
+        case .email, .levelOne, .levelTwo(.notStarted):
+            infoView = Presets.VerificationInfoView.verified
+        case .levelTwo(.levelTwo):
+            infoView = Presets.VerificationInfoView.verifiedLevelTwo
+        case .levelTwo(.expired), .levelTwo(.resubmit):
+            infoView = Presets.VerificationInfoView.resubmit
+        case .levelTwo(.declined):
+            infoView = Presets.VerificationInfoView.declined
+        }
+        
         let sections: [Models.Section] = [
             .profile,
             .verification,
@@ -45,12 +62,8 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
             .profile: [
                 ProfileViewModel(name: item.title ?? "<unknown", image: item.image)
             ],
-            // TODO: localize! + set text according to kyc status
             .verification: [
-                InfoViewModel(headerTitle: .text("ACCOUNT LIMITS"),
-                              headerTrailing: .init(image: "infoIcon"),
-                              description: .text("Get full access to your Fabriik wallet"),
-                              button: .init(title: "Verify your account"))
+                infoView
             ],
             .navigation: Models.NavigationItems.allCases.compactMap { $0.model }
         ]

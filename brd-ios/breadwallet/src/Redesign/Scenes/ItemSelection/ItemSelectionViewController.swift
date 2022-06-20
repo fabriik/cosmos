@@ -17,7 +17,7 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
                                    UISearchBarDelegate {
    
     typealias Models = ItemSelectionModels
-    var itemSelected: ((String?) -> Void)?
+    var itemSelected: ((CountryResponseData?) -> Void)?
     
     // MARK: - Overrides
     override func setupSubviews() {
@@ -56,7 +56,7 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
         guard let model = sectionRows[section]?[indexPath.row] as? CountryResponseData else { return }
-        itemSelected?(model.iso2)
+        itemSelected?(model)
         coordinator?.goBack()
     }
     

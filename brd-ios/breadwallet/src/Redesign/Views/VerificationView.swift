@@ -53,6 +53,15 @@ enum VerificationStatus: Equatable {
             }
         }
     }
+    
+    var title: String {
+        switch self {
+        case .email, .levelOne, .levelTwo(.levelTwo): return "Verified"
+        case .levelTwo(.declined): return "Declined"
+        case .levelTwo(.resubmit), .levelTwo(.expired): return "Resubmit"
+        default: return "Pending"
+        }
+    }
 }
 
 struct StatusViewConfiguration: Configurable {
@@ -83,6 +92,7 @@ struct VerificationViewModel: ViewModel {
     var infoButton: ButtonViewModel?
     var description: LabelViewModel?
     var benefits: LabelViewModel?
+    var isActive: Bool?
 }
 
 class VerificationView: FEView<VerificationConfiguration, VerificationViewModel> {
@@ -182,7 +192,10 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         }
         
         mainStack.addArrangedSubview(benefitsLabel)
-        benefitsLabel.setupCustomMargins(all: .extraSmall)
+        benefitsLabel.snp.makeConstraints { make in
+            make.height.equalTo(Margins.huge.rawValue)
+            make.width.equalToSuperview().inset(Margins.small.rawValue)
+        }
         setupClearMargins()
     }
     
@@ -196,7 +209,6 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
 
         descriptionLabel.configure(with: config?.description)
         benefitsLabel.wrappedView.configure(with: config?.benefits)
-        benefitsLabel.configure(background: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal))
     }
     
     override func setup(with viewModel: VerificationViewModel?) {
@@ -205,7 +217,7 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         headerInfoButton.isHidden = viewModel?.infoButton == nil
         statusImageView.isHidden = viewModel?.infoButton != nil
         arrowImageView.isHidden = viewModel?.infoButton != nil
-        statusView.wrappedView.setup(with: .text(viewModel?.status.value))
+        statusView.wrappedView.setup(with: .text(viewModel?.status.title))
         statusView.isHidden = viewModel?.status == VerificationStatus.none
         // if level 1 was done, but we present level 2, status is hidden
         if viewModel?.status == .levelOne,
@@ -214,7 +226,14 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         }
         descriptionLabel.setup(with: viewModel?.description)
         descriptionLabel.isHidden = viewModel?.description == nil
+        
         benefitsLabel.wrappedView.setup(with: viewModel?.benefits)
         benefitsLabel.isHidden = viewModel?.benefits == nil
+        if viewModel?.isActive ?? true {
+            benefitsLabel.configure(background: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal))
+        } else {
+            benefitsLabel.configure(background: Presets.Background.Primary.disabled.withBorder(border: Presets.Border.normal))
+            statusImageView.tintColor = LightColors.Contrast.two
+        }
     }
 }

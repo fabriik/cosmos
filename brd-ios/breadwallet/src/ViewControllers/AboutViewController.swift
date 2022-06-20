@@ -56,6 +56,8 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = L10n.About.title
+        
         addSubviews()
         addConstraints()
         setActions()
