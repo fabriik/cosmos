@@ -235,11 +235,11 @@ extension Presets {
         static var none = VerificationConfiguration(background: .init(backgroundColor: LightColors.secondary,
                                                                       tintColor: LightColors.Contrast.two,
                                                                       border: Presets.Border.zero),
-                                                    title: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                    title: .init(font: Fonts.Title.five, textColor: LightColors.Contrast.two),
                                                     infoButton: .init(backgroundConfiguration: .init(tintColor: LightColors.Contrast.two),
                                                                       selectedConfiguration: Presets.Background.Secondary.normal,
                                                                       disabledConfiguration: Presets.Background.Secondary.disabled),
-                                                    description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
+                                                    description: .init(font: Fonts.Body.two, textColor: LightColors.Text.two),
                                                     benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
         static var resubmit = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
@@ -247,7 +247,7 @@ extension Presets {
                                                                           border: .init(tintColor: LightColors.Outline.two,
                                                                                         borderWidth: 1,
                                                                                         cornerRadius: .small)),
-                                                        title: .init(font: Fonts.overline, textColor: LightColors.Text.one),
+                                                        title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                         status: .init(title: .init(font: Fonts.Body.two,
                                                                                    textColor: LightColors.Contrast.two),
                                                                       background: .init(backgroundColor: LightColors.error,
@@ -256,7 +256,7 @@ extension Presets {
                                                         infoButton: .init(backgroundConfiguration: Presets.Background.Secondary.normal,
                                                                           selectedConfiguration: Presets.Background.Secondary.selected,
                                                                           disabledConfiguration: Presets.Background.Secondary.disabled),
-                                                        description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Text.one),
+                                                        description: .init(font: Fonts.Body.two, textColor: LightColors.Text.two),
                                                         benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
         static var pending = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
@@ -264,7 +264,7 @@ extension Presets {
                                                                          border: .init(tintColor: LightColors.Outline.two,
                                                                                        borderWidth: 1,
                                                                                        cornerRadius: .small)),
-                                                       title: .init(font: Fonts.overline, textColor: LightColors.Text.one),
+                                                       title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                        status: .init(title: .init(font: Fonts.Body.two,
                                                                                   textColor: LightColors.Contrast.two),
                                                                      background: .init(backgroundColor: LightColors.pending,
@@ -273,7 +273,7 @@ extension Presets {
                                                        infoButton: .init(backgroundConfiguration: Presets.Background.Secondary.normal,
                                                                          selectedConfiguration: Presets.Background.Secondary.selected,
                                                                          disabledConfiguration: Presets.Background.Secondary.disabled),
-                                                       description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Text.one),
+                                                       description: .init(font: Fonts.Body.two, textColor: LightColors.Text.two),
                                                        benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
         static var verified = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
@@ -281,7 +281,7 @@ extension Presets {
                                                                           border: .init(tintColor: LightColors.Outline.two,
                                                                                         borderWidth: 1,
                                                                                         cornerRadius: .small)),
-                                                        title: .init(font: Fonts.overline, textColor: LightColors.Text.one),
+                                                        title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                         status: .init(title: .init(font: Fonts.Body.two,
                                                                                    textColor: LightColors.Contrast.two),
                                                                       background: .init(backgroundColor: LightInversedColors.success,
@@ -290,7 +290,7 @@ extension Presets {
                                                         infoButton: .init(backgroundConfiguration: Presets.Background.Secondary.normal,
                                                                           selectedConfiguration: Presets.Background.Secondary.selected,
                                                                           disabledConfiguration: Presets.Background.Secondary.disabled),
-                                                        description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Text.one),
+                                                        description: .init(font: Fonts.Body.two, textColor: LightColors.Text.two),
                                                         benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
     }
@@ -316,6 +316,11 @@ extension Presets {
                                            status: VerificationStatus.emailPending,
                                            description: .text("We’ll let you know when your account is verified."))
         
+        static var verifiedLevelTwo = InfoViewModel(kyc: .levelTwo, headerTitle: .text("ACCOUNT LIMITS"),
+                                           headerTrailing: .init(image: "infoIcon"),
+                                                    status: VerificationStatus.levelTwo(.levelTwo),
+                                           description: .text("Congratulations! You now have full access to your Fabriik wallet."))
+        
         static var resubmit = InfoViewModel(kyc: .levelTwo, headerTitle: .text("ACCOUNT LIMITS"),
                                             headerTrailing: .init(image: "infoIcon"),
                                             status: VerificationStatus.levelTwo(.resubmit),
@@ -325,7 +330,7 @@ extension Presets {
         static var declined = InfoViewModel(kyc: .levelTwo, headerTitle: .text("ACCOUNT LIMITS"),
                                             headerTrailing: .init(image: "infoIcon"),
                                             status: VerificationStatus.levelTwo(.declined),
-                                            description: .text("Why is my verification declined?"),
+                                            description: .text("Oops! We had some issues processing your data"),
                                             button: .init(title: "Why is my verification declined?"))
     }
 }
