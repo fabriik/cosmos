@@ -39,12 +39,12 @@ protocol BorderConfigurable {
 /// - Defines variable color of type UIColor
 /// - Defines variable opacity of type Opacity
 /// - Defines variable offset of type CGSize
-/// - Defines variable cornerRadius of type CornerRadius 
+/// - Defines variable shadowRadius of type CornerRadius
 protocol ShadowConfigurable {
     var color: UIColor { get }
     var opacity: Opacity { get }
     var offset: CGSize { get }
-    var cornerRadius: CornerRadius { get }
+    var shadowRadius: CornerRadius { get }
 }
 
 /// TextConfigurable protocol,

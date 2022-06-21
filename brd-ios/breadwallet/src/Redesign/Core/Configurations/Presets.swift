@@ -53,11 +53,21 @@ struct Presets {
     // TODO: add as needed
     struct Shadow {
         // TODO: the shadow color is not part of our Color config?
+        
+        static var zero = ShadowConfiguration(color: .clear,
+                                              opacity: .zero,
+                                              offset: .zero,
+                                              shadowRadius: .small)
+        
         static var normal = ShadowConfiguration(color: LightColors.Contrast.one,
                                                 opacity: .low,
                                                 offset: .init(width: 4, height: 10),
-                                                cornerRadius: .small)
-        static var zero = ShadowConfiguration(color: .clear, opacity: .zero, offset: .zero, cornerRadius: .small)
+                                                shadowRadius: .small)
+        
+        static var light = ShadowConfiguration(color: LightColors.Contrast.one,
+                                               opacity: .lowest,
+                                               offset: .init(width: 0, height: 8),
+                                               shadowRadius: .small)
     }
     
     struct Image {
