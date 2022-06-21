@@ -20,7 +20,10 @@ class KYCCoordinator: BaseCoordinator,
     override func start() {
         switch UserManager.shared.profile?.status {
         case .emailPending:
-            open(scene: Scenes.RegistrationConfirmation)
+            let coordinator = RegistrationCoordinator(navigationController: navigationController)
+            coordinator.start()
+            coordinator.parentCoordinator = self
+            childCoordinators.append(coordinator)
             
         default:
             open(scene: Scenes.VerifyAccount)
