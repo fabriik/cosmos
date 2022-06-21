@@ -22,6 +22,7 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
         tableView.separatorInset = .zero
         tableView.separatorStyle = .singleLine
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section] as? Models.Section
         

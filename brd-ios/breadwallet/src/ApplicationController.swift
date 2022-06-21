@@ -140,10 +140,10 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     func decideFlow() {
+        UserManager.shared.refresh()
         if let nvc = rootNavigationController {
             coordinator = BaseCoordinator(navigationController: nvc)
             coordinator?.modalPresenter = modalPresenter
-            UserManager.shared.refresh()
         }
         
         if keyStore.noWallet {
@@ -553,9 +553,12 @@ class UserManager: NSObject {
     }
     
     func refresh(completion: ((Profile?) -> Void)? = nil) {
-        ProfileWorker().execute { [weak self] profile, _ in
+        ProfileWorker().execute { [weak self] profile, error in
             self?.profile = profile
             completion?(profile)
+            
+            guard UserDefaults.email == nil else { return }
+            UserDefaults.email = profile?.email
         }
     }
 }

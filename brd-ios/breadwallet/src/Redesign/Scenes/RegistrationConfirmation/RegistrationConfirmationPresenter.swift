@@ -24,6 +24,12 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
             .confirm,
             .help
         ]
+        var help: [ButtonViewModel] = [ButtonViewModel(title: "Re-send my code", isUnderlined: true)]
+        
+        if UserManager.shared.profile?.status == .emailPending
+            || UserManager.shared.profile?.status == nil {
+            help.append(ButtonViewModel(title: "Change my email", isUnderlined: true))
+        }
         
         let sectionRows: [Models.Section: [Any]] = [
             .image: [
@@ -43,10 +49,7 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
                 ButtonViewModel(title: "Confirm", enabled: false)
             ],
             .help: [
-                ScrollableButtonsViewModel(buttons: [
-                    ButtonViewModel(title: "Re-send my code", isUnderlined: true),
-                    ButtonViewModel(title: "Change my email", isUnderlined: true)
-                ])
+                ScrollableButtonsViewModel(buttons: help)
             ]
         ]
         

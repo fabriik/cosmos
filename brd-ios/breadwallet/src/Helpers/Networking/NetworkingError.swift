@@ -117,6 +117,15 @@ public struct NetworkingCustomError: NetworkingError {
     }
 }
 
+public struct SessioExpiredError: NetworkingError {
+    public var errorMessage: String {
+        return firstOccurringError() ?? ""
+    }
+    public var userInfo: [String: Any]?
+    
+    public init() {}
+}
+
 public class NetworkingErrorManager {
     static func getError(from response: HTTPURLResponse?, data: Data?, error: Error?) -> NetworkingError? {
         if let error = error as? URLError, error.code == .notConnectedToInternet {
@@ -134,6 +143,8 @@ public class NetworkingErrorManager {
             return NetworkingForbiddenError(data: data)
         case 404:
             return NetworkingNotFoundError(data: data)
+        case 105:
+            return SessioExpiredError(data: data)
         default:
             return NetworkingGeneralError(data: data)
         }

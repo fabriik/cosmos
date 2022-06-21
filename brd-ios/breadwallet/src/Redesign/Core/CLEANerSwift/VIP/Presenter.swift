@@ -15,14 +15,14 @@ protocol Presenter: NSObject, BaseActionResponses {
 extension Presenter {
     func presentError(actionResponse: MessageModels.Errors.ActionResponse) {
         guard let error = actionResponse.error else { return }
-        
+
         // TODO: Investigate localized errors
         let model = InfoViewModel(headerTitle: .text("Error"), description: .text(error.errorMessage))
         
         // TODO: create Error preset
         let config = Presets.InfoView.primary
 
-        viewController?.displayMessage(responseDisplay: .init(model: model, config: config))
+        viewController?.displayMessage(responseDisplay: .init(error: error, model: model, config: config))
     }
     
     func presentNotification(actionResponse: MessageModels.Notification.ActionResponse) {
