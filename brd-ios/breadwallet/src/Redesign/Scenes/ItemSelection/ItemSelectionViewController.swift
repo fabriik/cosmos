@@ -18,6 +18,7 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
    
     typealias Models = ItemSelectionModels
     var itemSelected: ((CountryResponseData?) -> Void)?
+    var searchController = UISearchController()
     
     // MARK: - Overrides
     override func setupSubviews() {
@@ -70,8 +71,6 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
     }
     
     // MARK: - Search View Delegate
-    var searchController = UISearchController()
-    
     func updateSearchResults(for searchController: UISearchController) {}
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
