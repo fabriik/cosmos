@@ -40,11 +40,11 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
         switch status {
         case .none:
             infoView = Presets.VerificationInfoView.none
-        case .emailPending:
+        case .emailPending, .levelTwo(.submitted):
             infoView = Presets.VerificationInfoView.pending
         case .email, .levelOne, .levelTwo(.notStarted):
             infoView = Presets.VerificationInfoView.verified
-        case .levelTwo(.levelTwo), .levelTwo(.submitted):
+        case .levelTwo(.levelTwo):
             infoView = Presets.VerificationInfoView.verifiedLevelTwo
         case .levelTwo(.expired), .levelTwo(.resubmit):
             infoView = Presets.VerificationInfoView.resubmit

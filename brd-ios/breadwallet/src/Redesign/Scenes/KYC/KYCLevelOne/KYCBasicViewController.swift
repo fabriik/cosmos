@@ -181,11 +181,6 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
     }
     
     func displaySubmit(responseDisplay: KYCBasicModels.Submit.ResponseDisplay) {
-        guard responseDisplay.error == nil else {
-            // TODO: handle error
-            return
-        }
-        
         coordinator?.showOverlay(with: .success) { [weak self] in
             self?.coordinator?.goBack(completion: {
                 // TODO: .goBack() does not work!

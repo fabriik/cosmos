@@ -142,20 +142,12 @@ class VIPViewController<C: CoordinatableRoutes,
     func prepareData() {}
 
     // MARK: BaseResponseDisplay
-    func displayAlert(responseDisplay: AlertModels.Alerts.ResponseDisplay) {
-        coordinator?.showAlertView(with: responseDisplay.model, config: responseDisplay.config)
+    func displayMessage(responseDisplay: MessageModels.ResponseDisplays) {
+        coordinator?.showMessage(with: responseDisplay.model, configuration: responseDisplay.config)
     }
-
-    func displayNotification(responseDisplay: NotificationModels.Notification.ResponseDisplay) {
-        coordinator?.showNotification(with: responseDisplay.model, configuration: responseDisplay.config)
-    }
-
+    
     func hideNotification(notification: UIView) {
-        coordinator?.hideNotification(notification)
-    }
-
-    func displayError(responseDisplay: ErrorModels.Errors.ResponseDisplay) {
-        coordinator?.showNotification(with: responseDisplay.model, configuration: responseDisplay.config)
+        coordinator?.hideMessage(notification)
     }
     
     // MARK: - Blurrable

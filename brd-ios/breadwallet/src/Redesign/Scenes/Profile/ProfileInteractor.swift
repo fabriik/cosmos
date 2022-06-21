@@ -21,10 +21,11 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
             // TODO: BE throwing errors.. try again later
             guard let profile = profile, error == nil else {
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: "Under construction", image: "earth", status: .none)))
                 return
             }
+            
             self?.dataStore?.profile = profile
+            
             self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: profile.email, image: "earth", status: profile.status)))
         }
     }

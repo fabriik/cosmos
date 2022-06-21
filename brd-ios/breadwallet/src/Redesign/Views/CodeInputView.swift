@@ -137,7 +137,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
             if let text = textField.text?.prefix(numberOfFields) {
                 textField.text = String(text)
             }
-            errorLabel.text = "Enetered code is to long. Should be \(numberOfFields) characters"
+            errorLabel.text = "Entered code is too long. Should be \(numberOfFields) characters"
             return animateTo(state: .error)
         }
         

@@ -34,10 +34,11 @@ class ChecklistItemView: FEView<ChecklistItemConfiguration, ChecklistItemViewMod
     
     override func setupSubviews() {
         super.setupSubviews()
+        
         content.addSubview(checkmarImageView)
         checkmarImageView.snp.makeConstraints { make in
-            make.top.equalTo(content.snp.topMargin)
-            make.leading.equalTo(content.snp.leadingMargin)
+            make.top.equalTo(content.snp.top).inset(Margins.extraSmall.rawValue)
+            make.leading.equalTo(content.snp.leading)
             make.height.equalTo(checkmarImageView.snp.width)
             make.width.equalTo(Margins.extraLarge.rawValue)
         }
@@ -45,9 +46,9 @@ class ChecklistItemView: FEView<ChecklistItemConfiguration, ChecklistItemViewMod
         content.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.leading.equalTo(checkmarImageView.snp.trailing).offset(Margins.medium.rawValue)
-            make.trailing.equalTo(content.snp.trailingMargin)
-            make.top.equalTo(content.snp.topMargin)
-            make.bottom.equalTo(content.snp.bottomMargin)
+            make.trailing.equalTo(content.snp.trailing)
+            make.top.equalTo(checkmarImageView.snp.top)
+            make.bottom.equalTo(content.snp.bottom)
         }
     }
     

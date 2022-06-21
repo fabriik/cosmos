@@ -43,6 +43,7 @@ class KYCCoordinator: BaseCoordinator,
         controller.dataStore?.image = image
         controller.prepareData()
         controller.coordinator = self
+        controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
         
         controller.retakePhoto = { [weak self] in
             self?.navigationController.popViewController(animated: true)
@@ -70,16 +71,24 @@ class KYCCoordinator: BaseCoordinator,
         let controller = KYCBasicViewController()
         controller.prepareData()
         controller.coordinator = self
-        controller.setLastBarButtonItem(from: navigationController, to: .right)
+        controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
         navigationController.pushViewController(controller, animated: true)
     }
     
     func showKYCLevelTwo() {
-        open(scene: Scenes.KYCLevelTwo)
+        let controller = KYCLevelTwoEntryViewController()
+        controller.prepareData()
+        controller.coordinator = self
+        controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
+        navigationController.pushViewController(controller, animated: true)
     }
     
     func showIdentitySelector() {
-        open(scene: Scenes.KYCDocumentPicker)
+        let controller = KYCDocumentPickerViewController()
+        controller.prepareData()
+        controller.coordinator = self
+        controller.setBarButtonItem(from: navigationController, to: .right)
+        navigationController.pushViewController(controller, animated: true)
     }
     
     func showDocumentVerification(for document: Document) {
@@ -97,6 +106,10 @@ class KYCCoordinator: BaseCoordinator,
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)
     }
+    
+    @objc func popFlow(sender: UIBarButtonItem) {
+        navigationController.popToRootViewController(animated: true)
+    }
 }
 
 extension KYCCoordinator: ImagePickable {
@@ -112,6 +125,7 @@ extension KYCCoordinator: ImagePickable {
                                          background: .init(backgroundColor: LightInversedColors.Background.one)))
         controller.setup(with: model)
         controller.photoSelected = completion
+        controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
         
         navigationController.pushViewController(controller, animated: true)
     }
