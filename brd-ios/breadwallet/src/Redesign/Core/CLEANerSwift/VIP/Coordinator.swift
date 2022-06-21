@@ -176,7 +176,7 @@ class BaseCoordinator: NSObject,
             var coordinator: Coordinatable?
             if UserDefaults.kycSessionKeyValue.isEmpty {
                 coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
-            } else if UserManager.shared.profile?.status.canBuyTrade == false {
+            } else if UserManager.shared.profile?.status == .email {
                 coordinator = KYCCoordinator(navigationController: RootNavigationController())
             }
             

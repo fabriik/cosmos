@@ -554,6 +554,7 @@ class UserManager: NSObject {
     
     func refresh(completion: ((Profile?) -> Void)? = nil) {
         ProfileWorker().execute { [weak self] profile, error in
+            print("Error: \(error?.firstOccurringError() ?? "<No error>")")
             self?.profile = profile
             completion?(profile)
             
