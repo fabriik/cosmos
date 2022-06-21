@@ -174,19 +174,23 @@ class BaseCoordinator: NSObject,
     private func upgradeAccountOrShowPopup(completion: ((Bool) -> Void)?) {
         UserManager.shared.refresh() { [unowned self] _ in
             var coordinator: Coordinatable?
-            if UserDefaults.kycSessionKeyValue.isEmpty {
+            if UserDefaults.kycSessionKeyValue.isEmpty
+                || !UserDefaults.emailConfirmed {
                 coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
-            } else if UserManager.shared.profile?.status == .email {
+            } else if UserManager.shared.profile?.status.canBuyTrade == false {
                 coordinator = KYCCoordinator(navigationController: RootNavigationController())
             }
             
-            completion?(coordinator == nil)
-            guard let coordinator = coordinator else { return }
+            guard let coordinator = coordinator else {
+                completion?(true)
+                return
+            }
 
             coordinator.start()
             coordinator.parentCoordinator = self
             childCoordinators.append(coordinator)
             navigationController.show(coordinator.navigationController, sender: nil)
+            completion?(false)
         }
     }
 
