@@ -27,12 +27,24 @@ extension UIViewController {
         removeFromParent()
     }
     
-    func setLastBarButtonItem(from navigationController: UINavigationController, to side: NavBarButtonSide) {
+    func setBarButtonItem(from navigationController: UINavigationController, to side: NavBarButtonSide, target: AnyObject? = nil, action: Selector? = nil) {
         switch side {
         case .left:
             navigationItem.leftBarButtonItem = navigationController.children.last?.navigationItem.leftBarButtonItem
+            
+            if target != nil && action != nil {
+                navigationItem.leftBarButtonItem?.target = target
+                navigationItem.leftBarButtonItem?.action = action
+            }
+            
         case .right:
             navigationItem.rightBarButtonItem = navigationController.children.last?.navigationItem.rightBarButtonItem
+            
+            if target != nil && action != nil {
+                navigationItem.rightBarButtonItem?.target = target
+                navigationItem.rightBarButtonItem?.action = action
+            }
+            
         }
     }
         

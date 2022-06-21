@@ -63,6 +63,6 @@ final class KYCBasicPresenter: NSObject, Presenter, KYCBasicActionResponses {
     }
     
     func presentSubmit(actionResponse: KYCBasicModels.Submit.ActionResponse) {
-        viewController?.displaySubmit(responseDisplay: .init(error: actionResponse.error))
+        viewController?.displaySubmit(responseDisplay: .init())
     }
 }

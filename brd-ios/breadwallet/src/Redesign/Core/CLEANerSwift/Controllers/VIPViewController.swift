@@ -149,6 +149,7 @@ class VIPViewController<C: CoordinatableRoutes,
     func hideNotification(notification: UIView) {
         coordinator?.hideMessage(notification)
     }
+    
     // MARK: - Blurrable
     func toggleBlur(animated: Bool) {
         guard let blurView = blurView else { return }
