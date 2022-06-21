@@ -32,6 +32,17 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
         setupSearchBar()
     }
     
+    func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.sizeToFit()
+        
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+    }
+    
     @objc override func dismissModal() {
         itemSelected?(nil)
         super.dismissModal()
@@ -59,17 +70,6 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
     }
     
     // MARK: - Search View Delegate
-    func setupSearchBar() {
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.showsCancelButton = false
-        searchController.searchBar.sizeToFit()
-        
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = searchController
-    }
-    
     var searchController = UISearchController()
     
     func updateSearchResults(for searchController: UISearchController) {}
