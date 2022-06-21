@@ -38,7 +38,7 @@ enum Opacity: Float {
     /// 0
     case zero = 0
     /// 0.08
-    case lowest = 0.08
+    case lowest = 0.12
     /// 0.15
     case low = 0.15
     /// 0.30

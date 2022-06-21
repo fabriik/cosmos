@@ -92,6 +92,7 @@ struct StatusViewConfiguration: Configurable {
 }
 
 struct VerificationConfiguration: Configurable {
+    var shadow: ShadowConfiguration?
     var background: BackgroundConfiguration?
     var title: LabelConfiguration?
     // TODO: custom
@@ -221,37 +222,54 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
         setupClearMargins()
     }
     
-    override func configure(with config: VerificationConfiguration?) {
-        configure(background: config?.background)
-        headerLabel.configure(with: config?.title)
-        headerInfoButton.configure(with: config?.infoButton)
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
-        statusView.wrappedView.configure(with: config?.status?.title)
-        statusView.configure(background: config?.status?.background)
+        configure(background: config?.background)
+        configure(shadow: config?.shadow)
+    }
+    
+    override func configure(with config: VerificationConfiguration?) {
+        guard let config = config else { return }
+        
+        super.configure(with: config)
+        
+        configure(background: config.background)
+        configure(shadow: config.shadow)
+        
+        headerLabel.configure(with: config.title)
+        headerInfoButton.configure(with: config.infoButton)
+        
+        statusView.wrappedView.configure(with: config.status?.title)
+        statusView.configure(background: config.status?.background)
 
-        descriptionLabel.configure(with: config?.description)
-        benefitsLabel.wrappedView.configure(with: config?.benefits)
+        descriptionLabel.configure(with: config.description)
+        benefitsLabel.wrappedView.configure(with: config.benefits)
     }
     
     override func setup(with viewModel: VerificationViewModel?) {
-        headerLabel.setup(with: viewModel?.title)
-        headerInfoButton.setup(with: viewModel?.infoButton)
-        headerInfoButton.isHidden = viewModel?.infoButton == nil
-        statusImageView.isHidden = viewModel?.infoButton != nil
-        arrowImageView.isHidden = viewModel?.infoButton != nil
-        statusView.wrappedView.setup(with: .text(viewModel?.status.title))
-        statusView.isHidden = viewModel?.status == VerificationStatus.none
+        guard let viewModel = viewModel else { return }
+
+        super.setup(with: viewModel)
+        
+        headerLabel.setup(with: viewModel.title)
+        headerInfoButton.setup(with: viewModel.infoButton)
+        headerInfoButton.isHidden = viewModel.infoButton == nil
+        statusImageView.isHidden = viewModel.infoButton != nil
+        arrowImageView.isHidden = viewModel.infoButton != nil
+        statusView.wrappedView.setup(with: .text(viewModel.status.title))
+        statusView.isHidden = viewModel.status == VerificationStatus.none
         // if level 1 was done, but we present level 2, status is hidden
-        if viewModel?.status == .levelOne,
-           viewModel?.kyc == .levelTwo {
+        if viewModel.status == .levelOne,
+           viewModel.kyc == .levelTwo {
             statusView.isHidden = true
         }
-        descriptionLabel.setup(with: viewModel?.description)
-        descriptionLabel.isHidden = viewModel?.description == nil
+        descriptionLabel.setup(with: viewModel.description)
+        descriptionLabel.isHidden = viewModel.description == nil
         
-        benefitsLabel.wrappedView.setup(with: viewModel?.benefits)
-        benefitsLabel.isHidden = viewModel?.benefits == nil
-        if viewModel?.isActive ?? true {
+        benefitsLabel.wrappedView.setup(with: viewModel.benefits)
+        benefitsLabel.isHidden = viewModel.benefits == nil
+        if viewModel.isActive ?? true {
             benefitsLabel.configure(background: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal))
         } else {
             benefitsLabel.configure(background: Presets.Background.Primary.disabled.withBorder(border: Presets.Border.normal))
