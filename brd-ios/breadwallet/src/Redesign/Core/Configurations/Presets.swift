@@ -254,8 +254,8 @@ extension Presets {
 extension Presets {
     struct VerificationView {
         static var none = VerificationConfiguration(shadow: Presets.Shadow.light,
-                                                    background: .init(backgroundColor: LightColors.Background.three,
-                                                                      tintColor: LightColors.Text.one,
+                                                    background: .init(backgroundColor: LightColors.secondary,
+                                                                      tintColor: LightColors.Contrast.two,
                                                                       border: Presets.Border.zero),
                                                     title: .init(font: Fonts.Title.five, textColor: LightColors.Contrast.two),
                                                     infoButton: .init(backgroundConfiguration: .init(tintColor: LightColors.Contrast.two),
@@ -265,8 +265,8 @@ extension Presets {
                                                     benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
         static var resubmit = VerificationConfiguration(shadow: Presets.Shadow.light,
-                                                        background: .init(backgroundColor: LightColors.Background.three,
-                                                                          tintColor: LightColors.Text.one,
+                                                        background: .init(backgroundColor: LightColors.Background.one,
+                                                                          tintColor: LightColors.Outline.two,
                                                                           border: Presets.Border.zero),
                                                         title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                         status: .init(title: .init(font: Fonts.Body.two,
@@ -281,8 +281,8 @@ extension Presets {
                                                         benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
         static var pending = VerificationConfiguration(shadow: Presets.Shadow.light,
-                                                       background: .init(backgroundColor: LightColors.Background.three,
-                                                                         tintColor: LightColors.Text.one,
+                                                       background: .init(backgroundColor: LightColors.Background.one,
+                                                                         tintColor: LightColors.Outline.two,
                                                                          border: Presets.Border.zero),
                                                        title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                        status: .init(title: .init(font: Fonts.Body.two,
@@ -297,8 +297,8 @@ extension Presets {
                                                        benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
         static var verified = VerificationConfiguration(shadow: Presets.Shadow.light,
-                                                        background: .init(backgroundColor: LightColors.Background.three,
-                                                                          tintColor: LightColors.Text.one,
+                                                        background: .init(backgroundColor: LightColors.Background.one,
+                                                                          tintColor: LightColors.Outline.two,
                                                                           border: Presets.Border.zero),
                                                         title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                         status: .init(title: .init(font: Fonts.Body.two,
@@ -311,7 +311,6 @@ extension Presets {
                                                                           disabledConfiguration: Presets.Background.Secondary.disabled),
                                                         description: .init(font: Fonts.Body.two, textColor: LightColors.Text.two),
                                                         benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
-        
     }
 }
 
