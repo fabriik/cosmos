@@ -4,7 +4,7 @@
 
 import UIKit
 
-class VerifyAccountViewController: BaseTableViewController<VerifyAccountCoordinator,
+class VerifyAccountViewController: BaseTableViewController<KYCCoordinator,
                                    VerifyAccountInteractor,
                                    VerifyAccountPresenter,
                                    VerifyAccountStore>,
@@ -40,7 +40,7 @@ class VerifyAccountViewController: BaseTableViewController<VerifyAccountCoordina
     // MARK: - User Interaction
     
     override func buttonTapped() {
-        coordinator?.showRegistration()
+        coordinator?.showVerifications()
     }
 
     // MARK: - VerifyAccountResponseDisplay

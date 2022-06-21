@@ -25,4 +25,5 @@ protocol VerifyAccountDataPassing {
 }
 
 protocol VerifyAccountRoutes: CoordinatableRoutes {
+    func showVerifications()
 }

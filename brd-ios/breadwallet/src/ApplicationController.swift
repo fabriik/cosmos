@@ -143,6 +143,7 @@ class ApplicationController: Subscriber, Trackable {
         if let nvc = rootNavigationController {
             coordinator = BaseCoordinator(navigationController: nvc)
             coordinator?.modalPresenter = modalPresenter
+            UserManager.shared.refresh()
         }
         
         if keyStore.noWallet {
@@ -387,48 +388,13 @@ class ApplicationController: Subscriber, Trackable {
             navigationController.pushViewController(accountViewController, animated: true)
         }
         
-        homeScreen.didTapBuy = { url, reservationCode in
-            let partnershipAlertShown = UserDefaults.standard.bool(forKey: "ShownBuyAlert")
-            
-            guard !partnershipAlertShown else {
-                Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
-                return
-            }
-            
-            UserDefaults.standard.set(true, forKey: "ShownBuyAlert")
-            let message = "Fabriik is providing Buy functionality through Wyre, a third-party API provider."
-            
-            let alert = UIAlertController(title: "Partnership note",
-                                          message: message,
-                                          preferredStyle: .alert)
-            let continueAction = UIAlertAction(title: L10n.Button.continueAction, style: .default) { _ in
-                Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
-            }
-            
-            alert.addAction(continueAction)
-            navigationController.present(alert, animated: true, completion: nil)
+        homeScreen.didTapBuy = { [unowned self] url, reservationCode in
+            coordinator?.showBuy(url: url, reservationCode: reservationCode)
         }
         
-        homeScreen.didTapTrade = { [weak self] in
-            let partnershipAlertShown = UserDefaults.standard.bool(forKey: "ShownSwapAlert")
-            
-            guard !partnershipAlertShown else {
-                self?.openSwapScreen()
-                return
-            }
-            
-            UserDefaults.standard.set(true, forKey: "ShownSwapAlert")
-            let message = "Fabriik is providing Swap functionality through Changelly, a third-party API provider."
-            
-            let alert = UIAlertController(title: "Partnership note",
-                                          message: message,
-                                          preferredStyle: .alert)
-            let continueAction = UIAlertAction(title: L10n.Button.continueAction, style: .default) { _ in
-                self?.openSwapScreen()
-            }
-            
-            alert.addAction(continueAction)
-            navigationController.present(alert, animated: true, completion: nil)
+        homeScreen.didTapTrade = { [unowned self] in
+            let currencies = coreSystem.assetCollection?.allAssets.compactMap { $0.value.code } ?? []
+            coordinator?.showSwap(currencies: currencies)
         }
         
         homeScreen.didTapProfile = { [unowned self] in
@@ -572,6 +538,24 @@ extension ApplicationController {
             if !Store.state.isPushNotificationsEnabled, let pushToken = UserDefaults.pushToken {
                 Backend.apiClient.deletePushNotificationToken(pushToken)
             }
+        }
+    }
+}
+
+class UserManager: NSObject {
+    
+    static var shared: UserManager = UserManager()
+    var profile: Profile?
+    
+    override init() {
+        super.init()
+        refresh()
+    }
+    
+    func refresh(completion: ((Bool) -> Void)? = nil) {
+        ProfileWorker().execute { [weak self] profile, _ in
+            self?.profile = profile
+            completion?(profile != nil)
         }
     }
 }

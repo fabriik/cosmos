@@ -32,6 +32,7 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
                 return
             }
             // TODO: confirmed
+            UserManager.shared.refresh()
             UserDefaults.emailConfirmed = true
             self?.presenter?.presentConfirm(actionResponse: .init())
         }
