@@ -33,14 +33,14 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
                 LabelViewModel.text("Verify your email")
             ],
             .instructions: [
-                LabelViewModel.text("Please enter the code we’ve sent to: \(email ?? "missing")")
+                LabelViewModel.text("Please enter the code we’ve sent to: \(email ?? "")")
             ],
             .input: [
                 // TODO: validator?
                 TextFieldModel(title: "Email", value: email)
             ],
             .confirm: [
-                ButtonViewModel(title: "Next", enabled: false)
+                ButtonViewModel(title: "Confirm", enabled: false)
             ],
             .help: [
                 ScrollableButtonsViewModel(buttons: [
