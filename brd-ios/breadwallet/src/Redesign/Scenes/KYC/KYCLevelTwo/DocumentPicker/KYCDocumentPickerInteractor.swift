@@ -93,6 +93,7 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
                 self?.presenter?.presentError(actionResponse: .init(error: error))
                 return
             }
+            
             self?.presenter?.presentFinish(actionResponse: .init())
         }
     }

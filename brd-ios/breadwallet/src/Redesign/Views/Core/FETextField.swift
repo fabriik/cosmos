@@ -150,7 +150,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         textFieldStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.leading.equalTo(Margins.large.rawValue)
-            make.top.equalTo(Margins.small.rawValue)
+            make.top.equalTo(Margins.medium.rawValue)
         }
         textFieldStack.addArrangedSubview(titleStack)
         titleStack.addArrangedSubview(leadingView)

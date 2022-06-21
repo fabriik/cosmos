@@ -57,13 +57,8 @@ enum KYCBasicModels {
     struct Submit {
         struct ViewAction {}
         
-        struct ActionResponse {
-            var error: Error?
-        }
+        struct ActionResponse {}
         
-        struct ResponseDisplay {
-            // TODO: should be replaced with error VM
-            var error: Error?
-        }
+        struct ResponseDisplay {}
     }
 }

@@ -339,7 +339,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         return cell
     }
     
-    func tableView(_ tableView: UITableView, checkmarCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, checkmarkCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         guard let cell: WrapperTableViewCell<ChecklistItemView> = tableView.dequeueReusableCell(for: indexPath),
               let model = sectionRows[section]?[indexPath.row] as? ChecklistItemViewModel else {
