@@ -72,13 +72,13 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     func configure(shadow: ShadowConfiguration?) {
         guard let shadow = shadow else { return }
         content.layoutIfNeeded()
-
-        content.layer.masksToBounds = false
-        content.layer.shadowColor = shadow.color.cgColor
+        
+        content.layer.shadowPath = UIBezierPath(roundedRect: content.bounds, cornerRadius: shadow.shadowRadius.rawValue).cgPath
+        content.layer.shadowRadius = shadow.shadowRadius.rawValue
         content.layer.shadowOpacity = shadow.opacity.rawValue
         content.layer.shadowOffset = shadow.offset
-        content.layer.shadowRadius = 1
-        content.layer.shadowPath = UIBezierPath(roundedRect: content.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
+        content.layer.shadowColor = shadow.color.cgColor
+        content.layer.masksToBounds = false
         content.layer.shouldRasterize = true
         content.layer.rasterizationScale = UIScreen.main.scale
     }

@@ -31,7 +31,8 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
         switch sections[indexPath.section] as? Models.Sections {
         case .title:
             cell = self.tableView(tableView, labelCellForRowAt: indexPath)
-            cell.setupCustomMargins(vertical: .large, horizontal: .small)
+            cell.setupCustomMargins(vertical: .large, horizontal: .large)
+            (cell as? WrapperTableViewCell<FELabel>)?.wrappedView.configure(with: .init(font: Fonts.Title.six, textColor: LightColors.Text.one))
             
         case .documents:
             cell = self.tableView(tableView, navigationCellForRowAt: indexPath)
@@ -39,14 +40,18 @@ class KYCDocumentPickerViewController: BaseTableViewController<KYCCoordinator,
                 view.configure(with: .init(image: Presets.Image.primary,
                                            label: .init(font: Fonts.Title.six,
                                                         textColor: LightColors.Contrast.one),
-                                           shadow: Presets.Shadow.normal,
+                                           shadow: Presets.Shadow.light,
                                            background: .init(backgroundColor: LightColors.Background.three,
                                                              tintColor: LightColors.Text.one,
                                                              border: Presets.Border.zero)))
-                
                 view.setupClearMargins()
+                view.snp.makeConstraints { make in
+                    // TODO: This is not alright. We need to have pre defined sizes. Discuss with the designers.
+                    make.height.equalTo(72)
+                }
             })
-            cell.setupClearMargins()
+            
+            cell.setupCustomMargins(vertical: .extraHuge, horizontal: .large)
             
         default:
             cell = UITableViewCell()

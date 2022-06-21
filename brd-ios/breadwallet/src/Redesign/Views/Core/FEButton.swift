@@ -154,7 +154,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         layer.shadowOpacity = shadow.opacity.rawValue
         layer.shadowOffset = shadow.offset
         layer.shadowRadius = 1
-        layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
+        layer.shadowPath = UIBezierPath(roundedRect: marginableView.bounds, cornerRadius: shadow.shadowRadius.rawValue).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
     }

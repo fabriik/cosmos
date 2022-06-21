@@ -354,7 +354,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         content.layer.shadowOpacity = shadow.opacity.rawValue
         content.layer.shadowOffset = shadow.offset
         content.layer.shadowRadius = 1
-        content.layer.shadowPath = UIBezierPath(roundedRect: content.bounds, cornerRadius: shadow.cornerRadius.rawValue).cgPath
+        content.layer.shadowPath = UIBezierPath(roundedRect: content.bounds, cornerRadius: shadow.shadowRadius.rawValue).cgPath
         content.layer.shouldRasterize = true
         content.layer.rasterizationScale = UIScreen.main.scale
     }

@@ -14,5 +14,5 @@ struct ShadowConfiguration: ShadowConfigurable {
     var color: UIColor
     var opacity: Opacity
     var offset: CGSize
-    var cornerRadius: CornerRadius
+    var shadowRadius: CornerRadius
 }
