@@ -115,10 +115,6 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         
         errorLabel.configure(with: config?.errorLabel)
     }
-
-    override func setup(with viewModel: CodeInputViewModel?) {
-        super.setup(with: viewModel)
-    }
     
     @objc private func tapped() {
         hiddenTextField.becomeFirstResponder()

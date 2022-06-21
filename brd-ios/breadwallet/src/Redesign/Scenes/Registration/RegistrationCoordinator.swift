@@ -19,19 +19,17 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     }
     
     func showRegistrationConfirmation(for email: String?) {
-        let controller = RegistrationConfirmationViewController()
-        controller.dataStore?.email = email
-        controller.prepareData()
-        controller.coordinator = self
-        navigationController.show(controller, sender: nil)
+        open(scene: Scenes.RegistrationConfirmation) { vc in
+            vc.dataStore?.email = email
+            vc.prepareData()
+        }
     }
     
     func showChangeEmail() {
-        let controller = RegistrationViewController()
-        controller.dataStore?.type = .resend
-        controller.prepareData()
-        controller.coordinator = self
-        navigationController.show(controller, sender: nil)
+        open(scene: Scenes.Registration) { vc in
+            vc.dataStore?.type = .resend
+            vc.prepareData()
+        }
     }
     
     override func goBack() {

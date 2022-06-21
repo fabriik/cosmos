@@ -190,7 +190,12 @@ class BaseCoordinator: NSObject,
         }
     }
 
-    func showMessage(with model: InfoViewModel?, configuration: InfoViewConfiguration?) {
+    func showMessage(with error: Error? = nil, model: InfoViewModel?, configuration: InfoViewConfiguration?) {
+        guard (error as? SessioExpiredError) == nil else {
+            openModally(coordinator: RegistrationCoordinator.self, scene: Scenes.RegistrationConfirmation)
+            return
+        }
+        
         let notification = FEInfoView()
         notification.setupCustomMargins(all: .large)
         notification.configure(with: configuration)
