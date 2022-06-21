@@ -56,6 +56,8 @@ private let kycSessionKey = "kycSessionKey"
 private let cachedErrors = "cachedErrors"
 private let userEmail = "registrationEmail"
 private let isEmailConfirmed = "isEmailConfirmed"
+private let shouldShowBuyAlert = "ShowBuyAlert"
+private let shouldShowSwapAlert = "ShowSwapAlert"
 
 typealias ResettableBooleanSetting = [String: Bool]
 typealias ResettableObjectSetting = String
@@ -145,6 +147,24 @@ extension UserDefaults {
         }
         
         set { defaults.set(newValue, forKey: isEmailConfirmed) }
+    }
+    
+    /// Should show  the 3rd party buy alert ?
+    static var showBuyAlert: Bool {
+        get {
+            return defaults.bool(forKey: shouldShowBuyAlert)
+        }
+        
+        set { defaults.set(newValue, forKey: shouldShowBuyAlert) }
+    }
+    
+    /// Should show  the 3rd party swap alert ?
+    static var showSwapAlert: Bool {
+        get {
+            return defaults.bool(forKey: shouldShowSwapAlert)
+        }
+        
+        set { defaults.set(newValue, forKey: shouldShowSwapAlert) }
     }
     
     // Legacy setting for biometrics allowing unlocking the app. This is checked when migrating from

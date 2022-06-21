@@ -552,10 +552,10 @@ class UserManager: NSObject {
         refresh()
     }
     
-    func refresh(completion: ((Bool) -> Void)? = nil) {
+    func refresh(completion: ((Profile?) -> Void)? = nil) {
         ProfileWorker().execute { [weak self] profile, _ in
             self?.profile = profile
-            completion?(profile != nil)
+            completion?(profile)
         }
     }
 }
