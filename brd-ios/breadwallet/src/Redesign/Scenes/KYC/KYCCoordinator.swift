@@ -111,6 +111,10 @@ class KYCCoordinator: BaseCoordinator,
     }
     
     @objc func popFlow(sender: UIBarButtonItem) {
+        if navigationController.children.count == 1 {
+            dismissFlow()
+        }
+        
         navigationController.popToRootViewController(animated: true)
     }
 }
