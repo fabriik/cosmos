@@ -43,7 +43,7 @@ struct Presets {
     }
     
     struct Border {
-        static var zero = BorderConfiguration(borderWidth: 0, cornerRadius: .small)
+        static var zero = BorderConfiguration(borderWidth: 0, cornerRadius: .medium)
         static var normal = BorderConfiguration(tintColor: LightColors.Outline.one, borderWidth: 1, cornerRadius: .small)
         static var selected = BorderConfiguration(tintColor: LightColors.primary, borderWidth: 1, cornerRadius: .small)
         static var disabled = BorderConfiguration(tintColor: .lightGray, borderWidth: 1, cornerRadius: .small)
@@ -253,8 +253,9 @@ extension Presets {
 
 extension Presets {
     struct VerificationView {
-        static var none = VerificationConfiguration(background: .init(backgroundColor: LightColors.secondary,
-                                                                      tintColor: LightColors.Contrast.two,
+        static var none = VerificationConfiguration(shadow: Presets.Shadow.light,
+                                                    background: .init(backgroundColor: LightColors.Background.three,
+                                                                      tintColor: LightColors.Text.one,
                                                                       border: Presets.Border.zero),
                                                     title: .init(font: Fonts.Title.five, textColor: LightColors.Contrast.two),
                                                     infoButton: .init(backgroundConfiguration: .init(tintColor: LightColors.Contrast.two),
@@ -263,11 +264,10 @@ extension Presets {
                                                     description: .init(font: Fonts.Body.two, textColor: LightColors.Text.two),
                                                     benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
-        static var resubmit = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
-                                                                          tintColor: LightColors.Outline.two,
-                                                                          border: .init(tintColor: LightColors.Outline.two,
-                                                                                        borderWidth: 1,
-                                                                                        cornerRadius: .small)),
+        static var resubmit = VerificationConfiguration(shadow: Presets.Shadow.light,
+                                                        background: .init(backgroundColor: LightColors.Background.three,
+                                                                          tintColor: LightColors.Text.one,
+                                                                          border: Presets.Border.zero),
                                                         title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                         status: .init(title: .init(font: Fonts.Body.two,
                                                                                    textColor: LightColors.Contrast.two),
@@ -280,11 +280,10 @@ extension Presets {
                                                         description: .init(font: Fonts.Body.two, textColor: LightColors.Text.two),
                                                         benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
-        static var pending = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
-                                                                         tintColor: LightColors.Outline.two,
-                                                                         border: .init(tintColor: LightColors.Outline.two,
-                                                                                       borderWidth: 1,
-                                                                                       cornerRadius: .small)),
+        static var pending = VerificationConfiguration(shadow: Presets.Shadow.light,
+                                                       background: .init(backgroundColor: LightColors.Background.three,
+                                                                         tintColor: LightColors.Text.one,
+                                                                         border: Presets.Border.zero),
                                                        title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                        status: .init(title: .init(font: Fonts.Body.two,
                                                                                   textColor: LightColors.Contrast.two),
@@ -297,11 +296,10 @@ extension Presets {
                                                        description: .init(font: Fonts.Body.two, textColor: LightColors.Text.two),
                                                        benefits: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two, textAlignment: .center))
         
-        static var verified = VerificationConfiguration(background: .init(backgroundColor: LightColors.Background.one,
-                                                                          tintColor: LightColors.Outline.two,
-                                                                          border: .init(tintColor: LightColors.Outline.two,
-                                                                                        borderWidth: 1,
-                                                                                        cornerRadius: .small)),
+        static var verified = VerificationConfiguration(shadow: Presets.Shadow.light,
+                                                        background: .init(backgroundColor: LightColors.Background.three,
+                                                                          tintColor: LightColors.Text.one,
+                                                                          border: Presets.Border.zero),
                                                         title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                         status: .init(title: .init(font: Fonts.Body.two,
                                                                                    textColor: LightColors.Contrast.two),
