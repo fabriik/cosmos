@@ -29,7 +29,7 @@ protocol Coordinatable: CoordinatableRoutes {
 
 class BaseCoordinator: NSObject,
                        Coordinatable {
-    
+
     // TODO: should eventually die
     var modalPresenter: ModalPresenter? {
         get {
@@ -122,6 +122,72 @@ class BaseCoordinator: NSObject,
         childCoordinators.append(coordinator)
         
         navigationController.show(nvc, sender: nil)
+    }
+    
+    func showBuy(url: String, reservationCode: String) {
+        upgradeAccountOrShowPopup { [unowned self] show in
+            guard show else { return }
+            guard UserDefaults.showBuyAlert else {
+                Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
+                return
+            }
+            UserDefaults.showBuyAlert = false
+            let message = "Fabriik is providing Buy functionality through Wyre, a third-party API provider."
+            
+            let alert = UIAlertController(title: "Partnership note",
+                                          message: message,
+                                          preferredStyle: .alert)
+            let continueAction = UIAlertAction(title: L10n.Button.continueAction, style: .default) { _ in
+                Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
+            }
+            
+            alert.addAction(continueAction)
+            navigationController.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showSwap(currencies: [String]) {
+        upgradeAccountOrShowPopup { [unowned self] showPopup in
+            guard showPopup else { return }
+            guard UserDefaults.showSwapAlert else {
+                Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
+                return
+            }
+            UserDefaults.showSwapAlert = false
+            let message = "Fabriik is providing Swap functionality through Changelly, a third-party API provider."
+            
+            let alert = UIAlertController(title: "Partnership note",
+                                          message: message,
+                                          preferredStyle: .alert)
+            let continueAction = UIAlertAction(title: L10n.Button.continueAction, style: .default) { _ in
+                Store.perform(action: RootModalActions.Present(modal: .trade(availibleCurrencies: currencies, amount: 1)))
+            }
+            
+            alert.addAction(continueAction)
+            navigationController.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    // TODO: really dont know how to name this :S
+    // IT prepares the next KYC coordinator OR returns true
+    // in which case we show 3rd party popup or continue to buy/swap
+    private func upgradeAccountOrShowPopup(completion: ((Bool) -> Void)?) {
+        UserManager.shared.refresh() { [unowned self] _ in
+            var coordinator: Coordinatable?
+            if UserDefaults.kycSessionKeyValue.isEmpty {
+                coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
+            } else if UserManager.shared.profile?.status.canBuyTrade == false {
+                coordinator = KYCCoordinator(navigationController: RootNavigationController())
+            }
+            
+            completion?(coordinator == nil)
+            guard let coordinator = coordinator else { return }
+
+            coordinator.start()
+            coordinator.parentCoordinator = self
+            childCoordinators.append(coordinator)
+            navigationController.show(coordinator.navigationController, sender: nil)
+        }
     }
 
     func showMessage(with model: InfoViewModel?, configuration: InfoViewConfiguration?) {

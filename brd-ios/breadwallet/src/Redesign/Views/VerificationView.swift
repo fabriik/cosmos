@@ -11,7 +11,7 @@
 import UIKit
 import SnapKit
 
-enum Kyc2: String {
+enum Kyc2: String, Equatable {
     case notStarted = "KYC2_NOT_STARTED"
     case expired = "KYC2_EXPIRED"
     case submitted = "KYC2_SUBMITTED"
@@ -26,6 +26,17 @@ enum VerificationStatus: Equatable {
     case email
     case levelOne
     case levelTwo(Kyc2)
+    
+    var canBuyTrade: Bool {
+        switch self {
+        case .levelOne,
+                .levelTwo:
+            return true
+            
+        default:
+            return false
+        }
+    }
     
     var value: String {
         switch self {
@@ -62,6 +73,17 @@ enum VerificationStatus: Equatable {
         default: return "Pending"
         }
     }
+#if swift(>=4.1)
+#else
+    static func >(lhs: VerificationStatus, rhs: VerificationStatus) -> Bool {
+        switch (lhs, rhs) {
+        case (.levelTwo(let lhs1), .levelTwo(let lhs2)):
+            return lhs1 == lhs2
+        default:
+            return false
+        }
+    }
+#endif
 }
 
 struct StatusViewConfiguration: Configurable {

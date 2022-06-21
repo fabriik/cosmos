@@ -20,7 +20,6 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
             vc?.dataStore?.profile = profile
             vc?.prepareData()
         }
-        
     }
     
     func showAvatarSelection() {

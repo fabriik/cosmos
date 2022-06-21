@@ -11,10 +11,23 @@
 import AVFoundation
 import UIKit
 
-class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, DocumentReviewRoutes {
+class KYCCoordinator: BaseCoordinator,
+                      KYCBasicRoutes,
+                      KYCDocumentPickerRoutes,
+                      DocumentReviewRoutes,
+                      VerifyAccountRoutes {
     
     override func start() {
-        open(scene: Scenes.KYCBasic)
+        switch UserManager.shared.profile?.status {
+        case .emailPending:
+            let coordinator = RegistrationCoordinator(navigationController: navigationController)
+            coordinator.start()
+            coordinator.parentCoordinator = self
+            childCoordinators.append(coordinator)
+            
+        default:
+            open(scene: Scenes.VerifyAccount)
+        }
     }
     
     func showCountrySelector(selected: ((CountryResponseData?) -> Void)?) {
@@ -83,6 +96,13 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
     
     func showDocumentVerification(for document: Document) {
         showUnderConstruction("\(document.title) verification")
+    }
+    
+    func showVerifications() {
+        open(scene: Scenes.AccountVerification) { vc in
+            vc.dataStore?.profile = UserManager.shared.profile
+            vc.prepareData()
+        }
     }
     
     func dismissFlow() {
