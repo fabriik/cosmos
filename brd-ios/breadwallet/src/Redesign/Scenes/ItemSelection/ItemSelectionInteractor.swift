@@ -29,9 +29,9 @@ class ItemSelectionInteractor: NSObject, Interactor, ItemSelectionViewActions {
     
     func search(viewAction: ItemSelectionModels.Search.ViewAction) {
         guard let countries = dataStore?.countries,
-        let searchText = viewAction.text else { return }
+              let searchText = viewAction.text?.lowercased() else { return }
         
-        let searchData = searchText.isEmpty ? countries : countries.filter { $0.localizedName?.contains(searchText) as? Bool ?? false }
+        let searchData = searchText.isEmpty ? countries : countries.filter { $0.localizedName?.lowercased().contains(searchText) as? Bool ?? false }
         
         presenter?.presentData(actionResponse: .init(item: Models.Item(searchData)))
     }

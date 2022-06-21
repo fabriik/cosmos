@@ -18,18 +18,28 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
    
     typealias Models = ItemSelectionModels
     var itemSelected: ((CountryResponseData?) -> Void)?
+    var searchController = UISearchController()
     
     // MARK: - Overrides
     override func setupSubviews() {
         super.setupSubviews()
         
+        navigationItem.title = "Country"
+        
         tableView.separatorInset = .zero
         tableView.separatorStyle = .singleLine
         tableView.register(WrapperTableViewCell<ItemView>.self)
         
+        setupSearchBar()
+    }
+    
+    func setupSearchBar() {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.showsCancelButton = false
         searchController.searchBar.sizeToFit()
+        
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
     }
@@ -61,8 +71,6 @@ class ItemSelectionViewController: BaseTableViewController<ItemSelectionCoordina
     }
     
     // MARK: - Search View Delegate
-    var searchController = UISearchController()
-    
     func updateSearchResults(for searchController: UISearchController) {}
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
