@@ -33,6 +33,7 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         controller.dataStore?.image = image
         controller.prepareData()
         controller.coordinator = self
+        controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
         
         controller.retakePhoto = { [weak self] in
             self?.navigationController.popViewController(animated: true)
@@ -60,7 +61,7 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         let controller = KYCBasicViewController()
         controller.prepareData()
         controller.coordinator = self
-        controller.setLastBarButtonItem(from: navigationController, to: .right)
+        controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
         navigationController.pushViewController(controller, animated: true)
     }
     
@@ -68,12 +69,16 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
         let controller = KYCLevelTwoEntryViewController()
         controller.prepareData()
         controller.coordinator = self
-        controller.setLastBarButtonItem(from: navigationController, to: .right)
+        controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
         navigationController.pushViewController(controller, animated: true)
     }
     
     func showIdentitySelector() {
-        open(scene: Scenes.KYCDocumentPicker)
+        let controller = KYCDocumentPickerViewController()
+        controller.prepareData()
+        controller.coordinator = self
+        controller.setBarButtonItem(from: navigationController, to: .right)
+        navigationController.pushViewController(controller, animated: true)
     }
     
     func showDocumentVerification(for document: Document) {
@@ -83,6 +88,10 @@ class KYCCoordinator: BaseCoordinator, KYCBasicRoutes, KYCDocumentPickerRoutes, 
     func dismissFlow() {
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)
+    }
+    
+    @objc func popFlow(sender: UIBarButtonItem) {
+        navigationController.popToRootViewController(animated: true)
     }
 }
 
@@ -99,6 +108,7 @@ extension KYCCoordinator: ImagePickable {
                                          background: .init(backgroundColor: LightInversedColors.Background.one)))
         controller.setup(with: model)
         controller.photoSelected = completion
+        controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
         
         navigationController.pushViewController(controller, animated: true)
     }
