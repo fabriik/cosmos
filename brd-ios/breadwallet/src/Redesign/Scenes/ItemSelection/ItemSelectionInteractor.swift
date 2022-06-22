@@ -17,13 +17,15 @@ class ItemSelectionInteractor: NSObject, Interactor, ItemSelectionViewActions {
     // MARK: - ItemSelectionViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
         let data = CountriesRequestData()
-        CountriesWorker().execute(requestData: data) { [weak self] countries, error in
-            guard let countries = countries, error == nil else {
+        CountriesWorker().execute(requestData: data) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.dataStore?.countries = data
+                self?.presenter?.presentData(actionResponse: .init(item: data))
+                
+            case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                return
             }
-            self?.dataStore?.countries = countries
-            self?.presenter?.presentData(actionResponse: .init(item: countries))
         }
     }
     

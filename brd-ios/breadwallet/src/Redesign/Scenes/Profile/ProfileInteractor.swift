@@ -17,16 +17,16 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
 
     // MARK: - ProfileViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        ProfileWorker().execute { [weak self] profile, error in
-            // TODO: BE throwing errors.. try again later
-            guard let profile = profile, error == nil else {
+        ProfileWorker().execute { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.dataStore?.profile = data
+                self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: data.email, image: "earth", status: data.status)))
+                
+            case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                return
+                
             }
-            
-            self?.dataStore?.profile = profile
-            
-            self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: profile.email, image: "earth", status: profile.status)))
         }
     }
     

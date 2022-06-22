@@ -10,7 +10,7 @@ import Foundation
 struct MessageModels {
     struct Errors {
         struct ActionResponse {
-            var error: NetworkingError?
+            var error: Error?
         }
     }
     

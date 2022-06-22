@@ -14,7 +14,7 @@ protocol Presenter: NSObject, BaseActionResponses {
 
 extension Presenter {
     func presentError(actionResponse: MessageModels.Errors.ActionResponse) {
-        guard let error = actionResponse.error else { return }
+        guard let error = actionResponse.error as? NetworkingError else { return }
 
         // TODO: Investigate localized errors
         let model = InfoViewModel(headerTitle: .text("Error"), description: .text(error.errorMessage))

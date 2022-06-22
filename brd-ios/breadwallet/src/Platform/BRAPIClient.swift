@@ -282,24 +282,22 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                 
                 if UserDefaults.walletTokenValue == nil {
                     let newDeviceRequestData = NewDeviceRequestData(token: self.walletTokenValueStored)
-                    NewDeviceWorker().execute(requestData: newDeviceRequestData) { data, error in
-                        if error != nil {
-                            self.log("Session key error: \(error?.errorMessage ?? "")")
+                    NewDeviceWorker().execute(requestData: newDeviceRequestData) { result in
+                        switch result {
+                        case .success(let data):
+                            UserDefaults.email = data.email
+                            if let sessionKey = data.sessionKey {
+                                UserDefaults.kycSessionKeyValue = sessionKey
+                            }
+                            self.saveToken()
+                            
+                        case .failure(let error):
+                            self.log("Session key error: \((error as? NetworkingError)?.errorMessage ?? "")")
+                            handler(err as NSError?)
                         }
-                        
-                        UserDefaults.email = data?.email
-                        
-                        if let sessionKey = data?.sessionKey {
-                            UserDefaults.kycSessionKeyValue = sessionKey
-                        }
-                        
-                        self.saveToken()
-                        
-                        handler(err as NSError?)
                     }
                 } else {
                     self.saveToken()
-                    
                     handler(err as NSError?)
                 }
             }

@@ -30,17 +30,21 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
         guard let email = dataStore?.email, let token = UserDefaults.walletTokenValue else { return }
         
         let data = RegistrationRequestData(email: email, token: token)
-        RegistrationWorker().execute(requestData: data) { [weak self] data, error in
-            guard let sessionKey = data?.sessionKey,
-                  error == nil else {
+        RegistrationWorker().execute(requestData: data) { [weak self] result in
+            switch result {
+            case .success(let data):
+                guard let sessionKey = data.sessionKey else { return }
+                
+                UserManager.shared.refresh()
+                UserDefaults.email = email
+                UserDefaults.kycSessionKeyValue = sessionKey
+                
+                self?.presenter?.presentNext(actionResponse: .init(email: email))
+                
+            case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                return
+                
             }
-            UserManager.shared.refresh()
-            UserDefaults.email = email
-            UserDefaults.kycSessionKeyValue = sessionKey
-            
-            self?.presenter?.presentNext(actionResponse: .init(email: email))
         }
     }
     

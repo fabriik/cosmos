@@ -17,13 +17,15 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
 
     // MARK: - KYCDocumentPickerViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        KYCDocumentWorker().execute { [weak self] documents, error in
-            guard let documents = documents, error == nil else {
+        KYCDocumentWorker().execute { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.dataStore?.documents = data
+                self?.presenter?.presentData(actionResponse: .init(item: data))
+                
+            case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                return
             }
-            self?.dataStore?.documents = documents
-            self?.presenter?.presentData(actionResponse: .init(item: documents))
         }
     }
     
