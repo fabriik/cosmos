@@ -322,10 +322,21 @@ class AmountViewController: UIViewController, Trackable {
                                    rate: selectedRate,
                                    minimumFractionDigits: minimumFractionDigits)
         var output = (selectedRate == nil) ? displayAmount.tokenFormattedString : displayAmount.fiatDescription
-        let sendingAmount = (NumberFormatter().number(from: output)?.doubleValue ?? 0)
+
         if hasTrailingDecimal {
             output = output.appending(NumberFormatter().currencyDecimalSeparator)
         }
+        
+        let sendingAmount: (Double)
+        let currencyDecimalSeparator = NumberFormatter().currencyDecimalSeparator ?? ""
+        
+        if output.contains(currencyDecimalSeparator) {
+            sendingAmount = (NumberFormatter().number(from: output)?.doubleValue ?? 0)
+        } else {
+            let sendingAmountString = output.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            sendingAmount = (NumberFormatter().number(from: sendingAmountString)?.doubleValue ?? 0)
+        }
+        
         amountLabel.text = output
         placeholder.isHidden = output.utf8.isEmpty ? false : true
         
