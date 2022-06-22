@@ -285,7 +285,7 @@
 		7BDB49F92806F1090031F015 /* PlatformAuthResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49F82806F1090031F015 /* PlatformAuthResult.swift */; };
 		7BDB49FA2806F23E0031F015 /* BRTar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49F62806F0BA0031F015 /* BRTar.swift */; };
 		7BDB49FB2806F23F0031F015 /* BRTar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49F62806F0BA0031F015 /* BRTar.swift */; };
-		7BDB49FD2806F3840031F015 /* WyreReservationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49FC2806F3830031F015 /* WyreReservationRequest.swift */; };
+		7BDB49FD2806F3840031F015 /* ReservationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49FC2806F3830031F015 /* ReservationWorker.swift */; };
 		7BDB49FF2806F3EC0031F015 /* CloudBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49FE2806F3EC0031F015 /* CloudBackup.swift */; };
 		7BDB4A012806F40D0031F015 /* ExchangeUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB4A002806F40D0031F015 /* ExchangeUpdater.swift */; };
 		7BDB4A032806F4290031F015 /* CsvExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB4A022806F4290031F015 /* CsvExporter.swift */; };
@@ -1282,7 +1282,7 @@
 		7BDB49F42806EF880031F015 /* BRAPIClient+Bundles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Bundles.swift"; path = "src/Platform/BRAPIClient+Bundles.swift"; sourceTree = "<group>"; };
 		7BDB49F62806F0BA0031F015 /* BRTar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRTar.swift; path = src/Platform/BRTar.swift; sourceTree = "<group>"; };
 		7BDB49F82806F1090031F015 /* PlatformAuthResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlatformAuthResult.swift; path = src/Platform/PlatformAuthResult.swift; sourceTree = "<group>"; };
-		7BDB49FC2806F3830031F015 /* WyreReservationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WyreReservationRequest.swift; path = src/Utilities/WyreReservationRequest.swift; sourceTree = "<group>"; };
+		7BDB49FC2806F3830031F015 /* ReservationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationWorker.swift; sourceTree = "<group>"; };
 		7BDB49FE2806F3EC0031F015 /* CloudBackup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudBackup.swift; path = src/CloudBackup/CloudBackup.swift; sourceTree = "<group>"; };
 		7BDB4A002806F40D0031F015 /* ExchangeUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExchangeUpdater.swift; path = src/Utilities/ExchangeUpdater.swift; sourceTree = "<group>"; };
 		7BDB4A022806F4290031F015 /* CsvExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CsvExporter.swift; path = src/Utilities/CsvExporter.swift; sourceTree = "<group>"; };
@@ -2154,7 +2154,6 @@
 			isa = PBXGroup;
 			children = (
 				7BDB4A002806F40D0031F015 /* ExchangeUpdater.swift */,
-				7BDB49FC2806F3830031F015 /* WyreReservationRequest.swift */,
 				710B036321F8C208007E8A2A /* AppRatingManager.swift */,
 				7BDB4A022806F4290031F015 /* CsvExporter.swift */,
 				714F5D6D22037F2400F7CA70 /* EventMonitor.swift */,
@@ -2902,6 +2901,7 @@
 		7E5CB32F2835090D00EC787E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7EF2187D2862F07A006ABCC1 /* Buy */,
 				7E2E1A2F284E169E00E56E69 /* CheckList */,
 				7EF45F7F284768C100D1F7B0 /* ItemSelection */,
 				7EF45F7C2847671F00D1F7B0 /* KYC */,
@@ -3219,6 +3219,14 @@
 				7E9B13ED285720D400BD9EF5 /* KYCSubmitWorker.swift */,
 			);
 			path = DocumentPicker;
+			sourceTree = "<group>";
+		};
+		7EF2187D2862F07A006ABCC1 /* Buy */ = {
+			isa = PBXGroup;
+			children = (
+				7BDB49FC2806F3830031F015 /* ReservationWorker.swift */,
+			);
+			path = Buy;
 			sourceTree = "<group>";
 		};
 		7EF2998727E3B8AA00A2238A /* CoinGecko */ = {
@@ -5231,7 +5239,7 @@
 				CED341331EF5A5C00014912A /* InAppAlert.swift in Sources */,
 				CE47A8E01F7DA54000FF35BA /* UIScreen+Additions.swift in Sources */,
 				7B54E51327F4A208002DD1E4 /* KYCUploadRouter.swift in Sources */,
-				7BDB49FD2806F3840031F015 /* WyreReservationRequest.swift in Sources */,
+				7BDB49FD2806F3840031F015 /* ReservationWorker.swift in Sources */,
 				7C9BC58D231764030011732F /* WalletConnectionSettingsViewController.swift in Sources */,
 				CEB909F51E5FE63D001804DC /* EnterPhraseViewController.swift in Sources */,
 				C4D5E803284951DD000BEE6F /* VerifyAccountViewController.swift in Sources */,

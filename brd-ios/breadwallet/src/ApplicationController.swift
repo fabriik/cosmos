@@ -388,8 +388,8 @@ class ApplicationController: Subscriber, Trackable {
             navigationController.pushViewController(accountViewController, animated: true)
         }
         
-        homeScreen.didTapBuy = { [unowned self] url, reservationCode in
-            coordinator?.showBuy(url: url, reservationCode: reservationCode)
+        homeScreen.didTapBuy = { [unowned self] in
+            coordinator?.showBuy()
         }
         
         homeScreen.didTapTrade = { [unowned self] in

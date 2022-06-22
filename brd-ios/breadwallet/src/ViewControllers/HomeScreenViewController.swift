@@ -72,7 +72,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     
     var didSelectCurrency: ((Currency) -> Void)?
     var didTapManageWallets: (() -> Void)?
-    var didTapBuy: ((String, String) -> Void)?
+    var didTapBuy: (() -> Void)?
     var didTapTrade: (() -> Void)?
     var didTapProfile: (() -> Void)?
     var didTapMenu: (() -> Void)?
@@ -378,25 +378,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     @objc private func showHome() {}
     
     @objc private func buy() {
-        // TODO: move worker out of VC
-        buyButton?.isEnabled = false
         saveEvent("currency.didTapBuyBitcoin", attributes: [ "buyAndSell": shouldShowBuyAndSell ? "true" : "false" ])
-        
-        ExternalAPIClient.shared.send(WyreReservationRequest()) { [weak self] response in
-            switch response {
-            case .success(let reservation):
-                guard let url = reservation.url,
-                      let code = reservation.reservation else {
-                    return
-                }
-                self?.didTapBuy?(url, code)
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-            self?.buyButton?.isEnabled = true
-        }
-        
+        didTapBuy?()
     }
     
     @objc private func trade() {
