@@ -436,6 +436,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     
     private func attemptShowPrompt() {
         guard okToShowPrompts else { return }
+        
         guard currentPromptView == nil else { return }
         
         if let nextPrompt = PromptFactory.nextPrompt(walletAuthenticator: walletAuthenticator) {

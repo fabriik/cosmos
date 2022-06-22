@@ -12,4 +12,3 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 #include ".env"
-IS_TEST=false

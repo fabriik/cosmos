@@ -457,6 +457,7 @@
 		7ED83AFB284F40EB00261565 /* CheckListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AF4284F40EB00261565 /* CheckListInteractor.swift */; };
 		7ED83AFD284F418E00261565 /* KYCDocumentWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AFC284F418E00261565 /* KYCDocumentWorker.swift */; };
 		7EE76FC22857648F00724548 /* NewDeviceWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE76FC12857648F00724548 /* NewDeviceWorker.swift */; };
+		7EF2188028630E2F006ABCC1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2187F28630E2F006ABCC1 /* UserManager.swift */; };
 		7EF2998A27E3B8C400A2238A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998827E3B8C400A2238A /* ApiClient.swift */; };
 		7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998927E3B8C400A2238A /* Resources.swift */; };
 		7EF2999027E3B8D200A2238A /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2998C27E3B8D200A2238A /* MarketData.swift */; };
@@ -1457,6 +1458,7 @@
 		7ED83AF4284F40EB00261565 /* CheckListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListInteractor.swift; sourceTree = "<group>"; };
 		7ED83AFC284F418E00261565 /* KYCDocumentWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentWorker.swift; sourceTree = "<group>"; };
 		7EE76FC12857648F00724548 /* NewDeviceWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeviceWorker.swift; sourceTree = "<group>"; };
+		7EF2187F28630E2F006ABCC1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		7EF2998827E3B8C400A2238A /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiClient.swift; path = CoinGecko/ApiClient.swift; sourceTree = "<group>"; };
 		7EF2998927E3B8C400A2238A /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resources.swift; path = CoinGecko/Resources.swift; sourceTree = "<group>"; };
 		7EF2998C27E3B8D200A2238A /* MarketData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketData.swift; path = CoinGecko/Models/MarketData.swift; sourceTree = "<group>"; };
@@ -2888,6 +2890,7 @@
 		7E5CB32E2835090D00EC787E /* Redesign */ = {
 			isa = PBXGroup;
 			children = (
+				7EF2187E28630E22006ABCC1 /* Managers */,
 				7E87B32B285346D50097671F /* Helpers */,
 				7E5CB32F2835090D00EC787E /* Scenes */,
 				7E5CB3382835090D00EC787E /* Core */,
@@ -3227,6 +3230,14 @@
 				7BDB49FC2806F3830031F015 /* ReservationWorker.swift */,
 			);
 			path = Buy;
+			sourceTree = "<group>";
+		};
+		7EF2187E28630E22006ABCC1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7EF2187F28630E2F006ABCC1 /* UserManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		7EF2998727E3B8AA00A2238A /* CoinGecko */ = {
@@ -4940,6 +4951,7 @@
 				CE12289D20D3695400EC6F81 /* MotionGradientView.swift in Sources */,
 				7141BB5D2249543600F7ECF2 /* InfoView.swift in Sources */,
 				CE1E69312423D34000DF8177 /* CreateAccountFooterView.swift in Sources */,
+				7EF2188028630E2F006ABCC1 /* UserManager.swift in Sources */,
 				7C787AE421ED8BB40017EA7E /* SimpleRedux.swift in Sources */,
 				7EF45F8F284768FE00D1F7B0 /* RegistrationWorker.swift in Sources */,
 				7ED83AEA284F384F00261565 /* KYCDocumentPickerModels.swift in Sources */,

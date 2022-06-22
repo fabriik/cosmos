@@ -26,6 +26,7 @@ class StartFlowPresenter: Subscriber, Trackable {
     private var onboardingCompletionHandler: LoginCompletionHandler?
     private let shouldDisableBiometrics: Bool
     private var startupScreen: StartupScreen? = StartupScreen()
+    var didFinish: (() -> Void)?
     
     // MARK: - Public
 
@@ -307,6 +308,7 @@ class StartFlowPresenter: Subscriber, Trackable {
     }
     
     private func dismissStartFlow() {
+        didFinish?()
         guard let navigationController = navigationController else { return assertionFailure() }
         saveEvent(context: .onboarding, event: .complete)
         
@@ -352,6 +354,7 @@ class StartFlowPresenter: Subscriber, Trackable {
     }
 
     private func dismissLoginFlow() {
+        didFinish?()
         guard let loginViewController = loginViewController, loginViewController.isBeingPresented else {
             self.loginViewController = nil
             return
