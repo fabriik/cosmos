@@ -497,7 +497,7 @@
 
 "ExportConfirmation.cancel" = "Afbestille";
 
-"ExportConfirmation.continue" = "Blive ved";
+"ExportConfirmation.continueAction" = "Blive ved";
 
 "ExportConfirmation.message" = "Dette genererer en CSV-fil, der inkluderer alle gennemførte transaktioner fra alle aktiverede tegnebøger.";
 

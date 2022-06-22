@@ -497,7 +497,7 @@
 
 "ExportConfirmation.cancel" = "annuleren";
 
-"ExportConfirmation.continue" = "Doorgaan met";
+"ExportConfirmation.continueAction" = "Doorgaan met";
 
 "ExportConfirmation.message" = "Dit genereert een CSV-bestand met alle voltooide transacties van alle ingeschakelde wallets.";
 

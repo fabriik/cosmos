@@ -497,7 +497,7 @@
 
 "ExportConfirmation.cancel" = "Avbryt";
 
-"ExportConfirmation.continue" = "Fortsätta";
+"ExportConfirmation.continueAction" = "Fortsätta";
 
 "ExportConfirmation.message" = "Detta genererar en CSV-fil inklusive alla slutförda transaktioner från alla aktiverade plånböcker.";
 

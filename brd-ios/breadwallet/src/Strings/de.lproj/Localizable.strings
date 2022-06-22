@@ -497,7 +497,7 @@
 
 "ExportConfirmation.cancel" = "Stornieren";
 
-"ExportConfirmation.continue" = "Fortsetzen";
+"ExportConfirmation.continueAction" = "Fortsetzen";
 
 "ExportConfirmation.message" = "Dadurch wird eine CSV-Datei generiert, die alle abgeschlossenen Transaktionen aus allen aktivierten Brieftaschen enthält.";
 

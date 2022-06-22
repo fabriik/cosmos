@@ -497,7 +497,7 @@
 
 "ExportConfirmation.cancel" = "Отмена";
 
-"ExportConfirmation.continue" = "Продолжать";
+"ExportConfirmation.continueAction" = "Продолжать";
 
 "ExportConfirmation.message" = "Будет создан файл CSV, включающий все завершенные транзакции со всех включенных кошельков.";
 

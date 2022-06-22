@@ -526,7 +526,7 @@ internal enum L10n {
     /// Cancel
     internal static let cancel = L10n.tr("Localizable", "ExportConfirmation.cancel")
     /// Continue
-    internal static let `continue` = L10n.tr("Localizable", "ExportConfirmation.continue")
+    internal static let continueAction = L10n.tr("Localizable", "ExportConfirmation.continueAction")
     /// This will generate a CSV file including all completed transactions from all enabled wallets.
     internal static let message = L10n.tr("Localizable", "ExportConfirmation.message")
     /// Export transactions?
