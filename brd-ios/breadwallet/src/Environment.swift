@@ -134,11 +134,6 @@ struct E {
     }
     
     static var isTest: Bool {
-        switch Bundle.main.object(forInfoDictionaryKey: "IS_TEST") as? String {
-        case "true":
-            return true
-        default:
-            return false
-        }
+        return Bundle.main.object(forInfoDictionaryKey: "IS_TEST") as? String == "true"
     }
 }
