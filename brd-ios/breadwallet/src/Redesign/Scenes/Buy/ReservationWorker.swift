@@ -4,6 +4,17 @@
 
 import Foundation
 
+
+enum WyreEndpoints: String, URLType {
+    static var baseURL: String = "https://" + E.apiUrl + "blocksatoshi/wyre/%@"
+    
+    case reserve = "reserve?test=%@&sessionKey=%@"
+    
+    var url: String {
+        return String(format: Self.baseURL, rawValue)
+    }
+}
+
 class ReservationMapper: ModelMapper<ReservationResponseData, ReservationData> {
     override func getModel(from response: ReservationResponseData) -> ReservationData? {
         return .init(url: response.url, reservation: response.reservation)
@@ -26,13 +37,13 @@ struct ReservationRequestData: RequestModelData {
     
     func getParameters() -> [String: Any] {
         var key = UserDefaults.kycSessionKeyValue
-
+        
         if key.isEmpty,
            let token = UserDefaults.walletTokenValue {
             key = token
         }
         return [
-            "test": test,
+            "test": test ? "true" : "false",
             "sessionKey": key
         ]
     }
@@ -40,13 +51,9 @@ struct ReservationRequestData: RequestModelData {
 
 class ReservationWorker: BaseResponseWorker<ReservationResponseData, ReservationData, ReservationMapper> {
     override func getUrl() -> String {
-        let params = getParameters()
-        let isTest = (params["test"] as? Bool) ?? false
-        let sessionKey = (params["sessionKey"] as? String) ?? ""
-        return "https://\(E.apiUrl)blocksatoshi/wyre/reserve?test=\(isTest)&sessionKey=\(sessionKey)"
-    }
-    
-    override func getHeaders() -> [String: String] {
-        return [:]
+        guard let urlParams = (requestData as? ReservationRequestData) else { return "" }
+        
+        let params = urlParams.getParameters().compactMap { $0.value as? String }
+        return APIURLHandler.getUrl(WyreEndpoints.reserve, parameters: params)
     }
 }
