@@ -132,4 +132,8 @@ struct E {
         }
         return token
     }
+    
+    static var isTest: Bool {
+        return Bundle.main.object(forInfoDictionaryKey: "IS_TEST") as? String == "true"
+    }
 }

@@ -124,25 +124,36 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
     
-    func showBuy(url: String, reservationCode: String) {
+    func showBuy() {
         upgradeAccountOrShowPopup { [unowned self] show in
             guard show else { return }
-            guard UserDefaults.showBuyAlert else {
-                Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
-                return
-            }
-            UserDefaults.showBuyAlert = false
-            let message = "Fabriik is providing Buy functionality through Wyre, a third-party API provider."
             
-            let alert = UIAlertController(title: "Partnership note",
-                                          message: message,
-                                          preferredStyle: .alert)
-            let continueAction = UIAlertAction(title: L10n.Button.continueAction, style: .default) { _ in
-                Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: reservationCode, currency: nil)))
+            let data = ReservationRequestData()
+            ReservationWorker().execute(requestData: data) { [unowned self] reservation, error in
+                guard let url = reservation?.url,
+                      let code = reservation?.reservation else {
+                    // TODO: handle error
+                    print("error: \(error?.localizedDescription ?? "UNKNOWN")")
+                    return
+                }
+                
+                guard UserDefaults.showBuyAlert else {
+                    Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: code, currency: nil)))
+                    return
+                }
+                UserDefaults.showBuyAlert = false
+                let message = "Fabriik is providing Buy functionality through Wyre, a third-party API provider."
+                
+                let alert = UIAlertController(title: "Partnership note",
+                                              message: message,
+                                              preferredStyle: .alert)
+                let continueAction = UIAlertAction(title: L10n.Button.continueAction, style: .default) { _ in
+                    Store.perform(action: RootModalActions.Present(modal: .buy(url: url, reservationCode: code, currency: nil)))
+                }
+                
+                alert.addAction(continueAction)
+                navigationController.present(alert, animated: true, completion: nil)
             }
-            
-            alert.addAction(continueAction)
-            navigationController.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -257,5 +268,10 @@ class BaseCoordinator: NSObject,
         
         view.layoutIfNeeded()
         view.show()
+    }
+    
+    func hideOverlay() {
+        guard let view = navigationController.view.subviews.first(where: { $0 is TransparentView }) as? TransparentView else { return }
+        view.hide()
     }
 }

@@ -26,6 +26,7 @@ class StartFlowPresenter: Subscriber, Trackable {
     private var onboardingCompletionHandler: LoginCompletionHandler?
     private let shouldDisableBiometrics: Bool
     private var startupScreen: StartupScreen? = StartupScreen()
+    var didFinish: (() -> Void)?
     
     // MARK: - Public
 
@@ -314,6 +315,7 @@ class StartFlowPresenter: Subscriber, Trackable {
         EventMonitor.shared.deregister(.onboarding)
         navigationController.dismiss(animated: true) { [unowned self] in
             self.navigationController = nil
+            didFinish?()
         }
     }
     
@@ -354,10 +356,12 @@ class StartFlowPresenter: Subscriber, Trackable {
     private func dismissLoginFlow() {
         guard let loginViewController = loginViewController, loginViewController.isBeingPresented else {
             self.loginViewController = nil
+            didFinish?()
             return
         }
         loginViewController.dismiss(animated: true, completion: { [weak self] in
             self?.loginViewController = nil
+            self?.didFinish?()
         })
     }
 }

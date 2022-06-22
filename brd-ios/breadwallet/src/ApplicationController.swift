@@ -210,9 +210,6 @@ class ApplicationController: Subscriber, Trackable {
                 }
             }
         }
-        Backend.apiClient.updateExperiments()
-        Backend.updateExchangeRates()
-        Backend.apiClient.fetchAnnouncements()
     }
     
     private func handleDeferedLaunchURL() {
@@ -362,6 +359,16 @@ class ApplicationController: Subscriber, Trackable {
                                                  rootViewController: navigationController,
                                                  shouldDisableBiometrics: shouldDisableBiometrics,
                                                  createHomeScreen: createHomeScreen)
+        startFlowController?.didFinish = { [weak self] in
+            UserManager.shared.refresh { profile in
+                guard profile?.status != .emailPending,
+                      profile?.status != nil else {
+                    return
+                }
+                
+                self?.coordinator?.start()
+            }
+        }
     }
     
     private func setupAppearance() {
@@ -388,8 +395,8 @@ class ApplicationController: Subscriber, Trackable {
             navigationController.pushViewController(accountViewController, animated: true)
         }
         
-        homeScreen.didTapBuy = { [unowned self] url, reservationCode in
-            coordinator?.showBuy(url: url, reservationCode: reservationCode)
+        homeScreen.didTapBuy = { [unowned self] in
+            coordinator?.showBuy()
         }
         
         homeScreen.didTapTrade = { [unowned self] in
@@ -538,28 +545,6 @@ extension ApplicationController {
             if !Store.state.isPushNotificationsEnabled, let pushToken = UserDefaults.pushToken {
                 Backend.apiClient.deletePushNotificationToken(pushToken)
             }
-        }
-    }
-}
-
-class UserManager: NSObject {
-    
-    static var shared: UserManager = UserManager()
-    var profile: Profile?
-    
-    override init() {
-        super.init()
-        refresh()
-    }
-    
-    func refresh(completion: ((Profile?) -> Void)? = nil) {
-        ProfileWorker().execute { [weak self] profile, error in
-            print("Error: \(error?.firstOccurringError() ?? "<No error>")")
-            self?.profile = profile
-            completion?(profile)
-            
-            guard UserDefaults.email == nil else { return }
-            UserDefaults.email = profile?.email
         }
     }
 }
