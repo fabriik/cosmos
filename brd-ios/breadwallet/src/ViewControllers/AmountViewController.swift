@@ -328,7 +328,7 @@ class AmountViewController: UIViewController, Trackable {
         }
         
         let sendingAmount: (Double)
-        let currencyDecimalSeparator = NumberFormatter().currencyDecimalSeparator ?? "."
+        let currencyDecimalSeparator = NumberFormatter().currencyDecimalSeparator ?? ""
         
         if output.contains(currencyDecimalSeparator) {
             sendingAmount = (NumberFormatter().number(from: output)?.doubleValue ?? 0)
