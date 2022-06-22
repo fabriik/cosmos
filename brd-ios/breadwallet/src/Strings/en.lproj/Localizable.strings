@@ -497,7 +497,7 @@
 
 "ExportConfirmation.cancel" = "Cancel";
 
-"ExportConfirmation.continue" = "Continue";
+"ExportConfirmation.continueAction" = "Continue";
 
 "ExportConfirmation.message" = "This will generate a CSV file including all completed transactions from all enabled wallets.";
 

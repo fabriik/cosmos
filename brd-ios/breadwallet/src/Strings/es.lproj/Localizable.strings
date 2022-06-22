@@ -497,7 +497,7 @@
 
 "ExportConfirmation.cancel" = "Cancelar";
 
-"ExportConfirmation.continue" = "Continuar";
+"ExportConfirmation.continueAction" = "Continuar";
 
 "ExportConfirmation.message" = "Esto generará un archivo CSV que incluye todas las transacciones completadas de todas las carteras habilitadas.";
 
