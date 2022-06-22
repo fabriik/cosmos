@@ -34,7 +34,7 @@ class BaseCoordinator: NSObject,
     var modalPresenter: ModalPresenter? {
         get {
             guard let modalPresenter = presenter else {
-                return  parentCoordinator?.modalPresenter
+                return parentCoordinator?.modalPresenter
             }
 
             return modalPresenter
