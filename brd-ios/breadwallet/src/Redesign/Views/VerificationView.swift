@@ -173,6 +173,7 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
     private lazy var arrowImageView: WrapperView<FEImageView> = {
         let view = WrapperView<FEImageView>()
         view.wrappedView.setup(with: .init(.imageName("forward")))
+        view.tintColor = LightColors.Icons.two
         return view
     }()
     

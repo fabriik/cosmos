@@ -110,7 +110,7 @@ class FEButton: UIButton, ViewProtocol, StateDisplayable, Borderable, Shadable {
         }
         
         if let image = viewModel.image {
-            setImage(.init(named: image), for: .normal)
+            setBackgroundImage(.init(named: image), for: .normal)
         }
         
         isEnabled = viewModel.enabled
