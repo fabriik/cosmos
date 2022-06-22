@@ -6,7 +6,7 @@
 import Foundation
 
 class BaseResponseWorker<T: ModelResponse, U: Model, V: ModelMapper<T, U>>: APICallWorker {
-    typealias Completion = (U?, NetworkingError?) -> Void
+    typealias Completion = (Result<U, Error>) -> Void
     
     var requestData: RequestModelData?
     
@@ -33,7 +33,11 @@ class BaseResponseWorker<T: ModelResponse, U: Model, V: ModelMapper<T, U>>: APIC
     }
     
     override func apiCallDidFinish(response: HTTPResponse) {
-        completion?(result, response.error)
+        if let data = result {
+            completion?(.success(data))
+        } else if let error = response.error {
+            completion?(.failure(error))
+        }
     }
     
     override func getParameters() -> [String: Any] {

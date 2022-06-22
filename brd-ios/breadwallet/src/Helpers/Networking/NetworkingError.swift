@@ -123,7 +123,9 @@ public struct SessioExpiredError: NetworkingError {
     }
     public var userInfo: [String: Any]?
     
-    public init() {}
+    public init() {
+        // empty init
+    }
 }
 
 public class NetworkingErrorManager {

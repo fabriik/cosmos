@@ -138,83 +138,7 @@
 		7B02D62C28592FE700C5C384 /* KYCCameraShutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02D62B28592FE700C5C384 /* KYCCameraShutter.swift */; };
 		7B08D2262860574F00D65ED9 /* SimpleBackBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B08D2252860574F00D65ED9 /* SimpleBackBarButtonItem.swift */; };
 		7B2C9AFC27D9270B00D5135C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2C9AFB27D9270B00D5135C /* IQKeyboardManagerSwift */; };
-		7B432FA228040EB90056B364 /* KYCForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432F9C28040EB90056B364 /* KYCForgotPasswordPresenter.swift */; };
-		7B432FA428040EB90056B364 /* KYCForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432F9E28040EB90056B364 /* KYCForgotPasswordRouter.swift */; };
-		7B432FA528040EB90056B364 /* KYCForgotPasswordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432F9F28040EB90056B364 /* KYCForgotPasswordModels.swift */; };
-		7B432FA628040EB90056B364 /* KYCForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FA028040EB90056B364 /* KYCForgotPasswordViewController.swift */; };
-		7B432FA728040EB90056B364 /* KYCForgotPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FA128040EB90056B364 /* KYCForgotPasswordInteractor.swift */; };
-		7B432FAB280416020056B364 /* KYCForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FAA280416020056B364 /* KYCForgotPasswordView.swift */; };
-		7B432FAD2804196C0056B364 /* KYCForgotPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FAC2804196C0056B364 /* KYCForgotPasswordWorker.swift */; };
-		7B432FB5280448520056B364 /* KYCResetPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FAF280448520056B364 /* KYCResetPasswordPresenter.swift */; };
-		7B432FB7280448520056B364 /* KYCResetPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FB1280448520056B364 /* KYCResetPasswordRouter.swift */; };
-		7B432FB8280448520056B364 /* KYCResetPasswordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FB2280448520056B364 /* KYCResetPasswordModels.swift */; };
-		7B432FB9280448520056B364 /* KYCResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FB3280448520056B364 /* KYCResetPasswordViewController.swift */; };
-		7B432FBA280448520056B364 /* KYCResetPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FB4280448520056B364 /* KYCResetPasswordInteractor.swift */; };
-		7B432FBE280450C30056B364 /* KYCResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FBD280450C30056B364 /* KYCResetPasswordView.swift */; };
-		7B432FC0280455F70056B364 /* KYCResetPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B432FBF280455F70056B364 /* KYCResetPasswordWorker.swift */; };
 		7B519A932835B506007AC80A /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B519A922835B505007AC80A /* currencies.json */; };
-		7B54E50F27F4A208002DD1E4 /* KYCCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4BD27F4A207002DD1E4 /* KYCCenteredTextView.swift */; };
-		7B54E51027F4A208002DD1E4 /* KYCCameraContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4BE27F4A207002DD1E4 /* KYCCameraContainerView.swift */; };
-		7B54E51127F4A208002DD1E4 /* KYCUploadPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4BF27F4A207002DD1E4 /* KYCUploadPresenter.swift */; };
-		7B54E51227F4A208002DD1E4 /* KYCUploadModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4C027F4A207002DD1E4 /* KYCUploadModels.swift */; };
-		7B54E51327F4A208002DD1E4 /* KYCUploadRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4C127F4A207002DD1E4 /* KYCUploadRouter.swift */; };
-		7B54E51427F4A208002DD1E4 /* KYCUploadFrontBackWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4C327F4A207002DD1E4 /* KYCUploadFrontBackWorker.swift */; };
-		7B54E51527F4A208002DD1E4 /* KYCUploadSelfieWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4C427F4A207002DD1E4 /* KYCUploadSelfieWorker.swift */; };
-		7B54E51627F4A208002DD1E4 /* KYCUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4C527F4A207002DD1E4 /* KYCUploadInteractor.swift */; };
-		7B54E51727F4A208002DD1E4 /* KYCUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4C627F4A207002DD1E4 /* KYCUploadViewController.swift */; };
-		7B54E51827F4A208002DD1E4 /* KYCPersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4C927F4A207002DD1E4 /* KYCPersonalInfoView.swift */; };
-		7B54E51927F4A208002DD1E4 /* KYCPersonalInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4CA27F4A207002DD1E4 /* KYCPersonalInfoPresenter.swift */; };
-		7B54E51A27F4A208002DD1E4 /* KYCPersonalInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4CB27F4A207002DD1E4 /* KYCPersonalInfoInteractor.swift */; };
-		7B54E51B27F4A208002DD1E4 /* KYCPersonalInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4CC27F4A207002DD1E4 /* KYCPersonalInfoRouter.swift */; };
-		7B54E51C27F4A208002DD1E4 /* KYCPersonalInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4CD27F4A207002DD1E4 /* KYCPersonalInfoModels.swift */; };
-		7B54E51D27F4A208002DD1E4 /* KYCPersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4CE27F4A207002DD1E4 /* KYCPersonalInfoViewController.swift */; };
-		7B54E51E27F4A208002DD1E4 /* KYCSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4D127F4A207002DD1E4 /* KYCSignInView.swift */; };
-		7B54E51F27F4A208002DD1E4 /* KYCSignInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4D227F4A207002DD1E4 /* KYCSignInInteractor.swift */; };
-		7B54E52027F4A208002DD1E4 /* KYCSignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4D327F4A207002DD1E4 /* KYCSignInPresenter.swift */; };
-		7B54E52127F4A208002DD1E4 /* KYCSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4D427F4A207002DD1E4 /* KYCSignInViewController.swift */; };
-		7B54E52227F4A208002DD1E4 /* KYCSignInWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4D627F4A207002DD1E4 /* KYCSignInWorker.swift */; };
-		7B54E52327F4A208002DD1E4 /* KYCSignInModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4D727F4A207002DD1E4 /* KYCSignInModels.swift */; };
-		7B54E52427F4A208002DD1E4 /* KYCSignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4D827F4A207002DD1E4 /* KYCSignInRouter.swift */; };
-		7B54E52527F4A208002DD1E4 /* KYCConfirmEmailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4DA27F4A207002DD1E4 /* KYCConfirmEmailInteractor.swift */; };
-		7B54E52627F4A208002DD1E4 /* KYCConfirmEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4DB27F4A207002DD1E4 /* KYCConfirmEmailView.swift */; };
-		7B54E52727F4A208002DD1E4 /* KYCConfirmEmailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4DC27F4A207002DD1E4 /* KYCConfirmEmailRouter.swift */; };
-		7B54E52827F4A208002DD1E4 /* KYCConfirmEmailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4DD27F4A207002DD1E4 /* KYCConfirmEmailModels.swift */; };
-		7B54E52927F4A208002DD1E4 /* KYCConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4DE27F4A207002DD1E4 /* KYCConfirmEmailViewController.swift */; };
-		7B54E52A27F4A208002DD1E4 /* KYCConfirmEmailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4DF27F4A207002DD1E4 /* KYCConfirmEmailPresenter.swift */; };
-		7B54E52B27F4A208002DD1E4 /* KYCConfirmEmailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4E127F4A207002DD1E4 /* KYCConfirmEmailWorker.swift */; };
-		7B54E52C27F4A208002DD1E4 /* KYCResendConfirmEmailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4E227F4A207002DD1E4 /* KYCResendConfirmEmailWorker.swift */; };
-		7B54E52D27F4A208002DD1E4 /* KYCSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4E527F4A207002DD1E4 /* KYCSignUpView.swift */; };
-		7B54E52E27F4A208002DD1E4 /* KYCSignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4E627F4A207002DD1E4 /* KYCSignUpInteractor.swift */; };
-		7B54E52F27F4A208002DD1E4 /* KYCSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4E727F4A207002DD1E4 /* KYCSignUpViewController.swift */; };
-		7B54E53027F4A208002DD1E4 /* KYCSignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4E827F4A207002DD1E4 /* KYCSignUpRouter.swift */; };
-		7B54E53127F4A208002DD1E4 /* KYCSignUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4E927F4A207002DD1E4 /* KYCSignUpModels.swift */; };
-		7B54E53227F4A208002DD1E4 /* KYCSignUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4EB27F4A207002DD1E4 /* KYCSignUpWorker.swift */; };
-		7B54E53327F4A208002DD1E4 /* KYCSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4EC27F4A207002DD1E4 /* KYCSignUpPresenter.swift */; };
-		7B54E53427F4A208002DD1E4 /* KYCSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4EF27F4A208002DD1E4 /* KYCSessionModel.swift */; };
-		7B54E53527F4A208002DD1E4 /* KYCSessionModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4F027F4A208002DD1E4 /* KYCSessionModelMapper.swift */; };
-		7B54E53627F4A208002DD1E4 /* KYCSessionModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4F127F4A208002DD1E4 /* KYCSessionModelResponse.swift */; };
-		7B54E53727F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4F427F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift */; };
-		7B54E53827F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4F527F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift */; };
-		7B54E53927F4A208002DD1E4 /* KYCTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4F627F4A208002DD1E4 /* KYCTutorialViewController.swift */; };
-		7B54E53A27F4A208002DD1E4 /* KYCTutorialModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4F727F4A208002DD1E4 /* KYCTutorialModels.swift */; };
-		7B54E53B27F4A208002DD1E4 /* KYCTutorialRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4F827F4A208002DD1E4 /* KYCTutorialRouter.swift */; };
-		7B54E53C27F4A208002DD1E4 /* KYCTutorialInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4F927F4A208002DD1E4 /* KYCTutorialInteractor.swift */; };
-		7B54E53D27F4A208002DD1E4 /* KYCTutorialPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4FA27F4A208002DD1E4 /* KYCTutorialPresenter.swift */; };
-		7B54E53E27F4A208002DD1E4 /* KYCTextAndImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4FD27F4A208002DD1E4 /* KYCTextAndImageView.swift */; };
-		7B54E53F27F4A208002DD1E4 /* KYCCompleteButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4FE27F4A208002DD1E4 /* KYCCompleteButtons.swift */; };
-		7B54E54027F4A208002DD1E4 /* KYCCompleteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E4FF27F4A208002DD1E4 /* KYCCompleteRouter.swift */; };
-		7B54E54127F4A208002DD1E4 /* KYCCompletePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50027F4A208002DD1E4 /* KYCCompletePresenter.swift */; };
-		7B54E54227F4A208002DD1E4 /* KYCCompleteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50127F4A208002DD1E4 /* KYCCompleteModels.swift */; };
-		7B54E54327F4A208002DD1E4 /* KYCCompleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50227F4A208002DD1E4 /* KYCCompleteInteractor.swift */; };
-		7B54E54427F4A208002DD1E4 /* KYCCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50327F4A208002DD1E4 /* KYCCompleteViewController.swift */; };
-		7B54E54527F4A208002DD1E4 /* KYCAddressInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50527F4A208002DD1E4 /* KYCAddressInteractor.swift */; };
-		7B54E54627F4A208002DD1E4 /* KYCProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50727F4A208002DD1E4 /* KYCProgressView.swift */; };
-		7B54E54727F4A208002DD1E4 /* KYCAddressFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50827F4A208002DD1E4 /* KYCAddressFieldsView.swift */; };
-		7B54E54827F4A208002DD1E4 /* KYCAddressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50927F4A208002DD1E4 /* KYCAddressPresenter.swift */; };
-		7B54E54927F4A208002DD1E4 /* KYCPostPersonalInformationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50B27F4A208002DD1E4 /* KYCPostPersonalInformationWorker.swift */; };
-		7B54E54A27F4A208002DD1E4 /* KYCAddressModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50C27F4A208002DD1E4 /* KYCAddressModels.swift */; };
-		7B54E54B27F4A208002DD1E4 /* KYCAddressRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50D27F4A208002DD1E4 /* KYCAddressRouter.swift */; };
-		7B54E54C27F4A208002DD1E4 /* KYCAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E50E27F4A208002DD1E4 /* KYCAddressViewController.swift */; };
 		7B54E59A27F4A2B0002DD1E4 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E57027F4A2B0002DD1E4 /* UIView+Extensions.swift */; };
 		7B54E59B27F4A2B0002DD1E4 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E57127F4A2B0002DD1E4 /* AlertHelper.swift */; };
 		7B54E59C27F4A2B0002DD1E4 /* KYCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E57227F4A2B0002DD1E4 /* KYCConstants.swift */; };
@@ -263,12 +187,6 @@
 		7B8EC631280896F1008C6DE5 /* brd-tokens.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0F2806FA190031F015 /* brd-tokens.tar */; };
 		7B8EC632280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */; };
 		7B8EC633280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */; };
-		7BA83DA2280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83D9C280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift */; };
-		7BA83DA4280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83D9E280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift */; };
-		7BA83DA5280459F3003F73AA /* KYCResetPasswordSuccessModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83D9F280459F3003F73AA /* KYCResetPasswordSuccessModels.swift */; };
-		7BA83DA6280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA0280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift */; };
-		7BA83DA7280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */; };
-		7BA83DAA28045F94003F73AA /* KYCResetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */; };
 		7BA83DAC28047894003F73AA /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA83DAB28047894003F73AA /* Validators.swift */; };
 		7BB22E49285B8D60003E37AC /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB22E48285B8D60003E37AC /* ContentSizedTableView.swift */; };
 		7BC49D1B282E69A3000BF284 /* ManageAssetsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */; };
@@ -1151,83 +1069,7 @@
 		7B02D6292859202B00C5C384 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
 		7B02D62B28592FE700C5C384 /* KYCCameraShutter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCCameraShutter.swift; sourceTree = "<group>"; };
 		7B08D2252860574F00D65ED9 /* SimpleBackBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBackBarButtonItem.swift; sourceTree = "<group>"; };
-		7B432F9C28040EB90056B364 /* KYCForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordPresenter.swift; sourceTree = "<group>"; };
-		7B432F9E28040EB90056B364 /* KYCForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordRouter.swift; sourceTree = "<group>"; };
-		7B432F9F28040EB90056B364 /* KYCForgotPasswordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordModels.swift; sourceTree = "<group>"; };
-		7B432FA028040EB90056B364 /* KYCForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		7B432FA128040EB90056B364 /* KYCForgotPasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordInteractor.swift; sourceTree = "<group>"; };
-		7B432FAA280416020056B364 /* KYCForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordView.swift; sourceTree = "<group>"; };
-		7B432FAC2804196C0056B364 /* KYCForgotPasswordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCForgotPasswordWorker.swift; sourceTree = "<group>"; };
-		7B432FAF280448520056B364 /* KYCResetPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordPresenter.swift; sourceTree = "<group>"; };
-		7B432FB1280448520056B364 /* KYCResetPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordRouter.swift; sourceTree = "<group>"; };
-		7B432FB2280448520056B364 /* KYCResetPasswordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordModels.swift; sourceTree = "<group>"; };
-		7B432FB3280448520056B364 /* KYCResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordViewController.swift; sourceTree = "<group>"; };
-		7B432FB4280448520056B364 /* KYCResetPasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordInteractor.swift; sourceTree = "<group>"; };
-		7B432FBD280450C30056B364 /* KYCResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordView.swift; sourceTree = "<group>"; };
-		7B432FBF280455F70056B364 /* KYCResetPasswordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordWorker.swift; sourceTree = "<group>"; };
 		7B519A922835B505007AC80A /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = currencies.json; path = Resources/currencies.json; sourceTree = "<group>"; };
-		7B54E4BD27F4A207002DD1E4 /* KYCCenteredTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCenteredTextView.swift; sourceTree = "<group>"; };
-		7B54E4BE27F4A207002DD1E4 /* KYCCameraContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCameraContainerView.swift; sourceTree = "<group>"; };
-		7B54E4BF27F4A207002DD1E4 /* KYCUploadPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadPresenter.swift; sourceTree = "<group>"; };
-		7B54E4C027F4A207002DD1E4 /* KYCUploadModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadModels.swift; sourceTree = "<group>"; };
-		7B54E4C127F4A207002DD1E4 /* KYCUploadRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadRouter.swift; sourceTree = "<group>"; };
-		7B54E4C327F4A207002DD1E4 /* KYCUploadFrontBackWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadFrontBackWorker.swift; sourceTree = "<group>"; };
-		7B54E4C427F4A207002DD1E4 /* KYCUploadSelfieWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadSelfieWorker.swift; sourceTree = "<group>"; };
-		7B54E4C527F4A207002DD1E4 /* KYCUploadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadInteractor.swift; sourceTree = "<group>"; };
-		7B54E4C627F4A207002DD1E4 /* KYCUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCUploadViewController.swift; sourceTree = "<group>"; };
-		7B54E4C927F4A207002DD1E4 /* KYCPersonalInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoView.swift; sourceTree = "<group>"; };
-		7B54E4CA27F4A207002DD1E4 /* KYCPersonalInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoPresenter.swift; sourceTree = "<group>"; };
-		7B54E4CB27F4A207002DD1E4 /* KYCPersonalInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoInteractor.swift; sourceTree = "<group>"; };
-		7B54E4CC27F4A207002DD1E4 /* KYCPersonalInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoRouter.swift; sourceTree = "<group>"; };
-		7B54E4CD27F4A207002DD1E4 /* KYCPersonalInfoModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoModels.swift; sourceTree = "<group>"; };
-		7B54E4CE27F4A207002DD1E4 /* KYCPersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPersonalInfoViewController.swift; sourceTree = "<group>"; };
-		7B54E4D127F4A207002DD1E4 /* KYCSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignInView.swift; sourceTree = "<group>"; };
-		7B54E4D227F4A207002DD1E4 /* KYCSignInInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignInInteractor.swift; sourceTree = "<group>"; };
-		7B54E4D327F4A207002DD1E4 /* KYCSignInPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignInPresenter.swift; sourceTree = "<group>"; };
-		7B54E4D427F4A207002DD1E4 /* KYCSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignInViewController.swift; sourceTree = "<group>"; };
-		7B54E4D627F4A207002DD1E4 /* KYCSignInWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignInWorker.swift; sourceTree = "<group>"; };
-		7B54E4D727F4A207002DD1E4 /* KYCSignInModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignInModels.swift; sourceTree = "<group>"; };
-		7B54E4D827F4A207002DD1E4 /* KYCSignInRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignInRouter.swift; sourceTree = "<group>"; };
-		7B54E4DA27F4A207002DD1E4 /* KYCConfirmEmailInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailInteractor.swift; sourceTree = "<group>"; };
-		7B54E4DB27F4A207002DD1E4 /* KYCConfirmEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailView.swift; sourceTree = "<group>"; };
-		7B54E4DC27F4A207002DD1E4 /* KYCConfirmEmailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailRouter.swift; sourceTree = "<group>"; };
-		7B54E4DD27F4A207002DD1E4 /* KYCConfirmEmailModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailModels.swift; sourceTree = "<group>"; };
-		7B54E4DE27F4A207002DD1E4 /* KYCConfirmEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailViewController.swift; sourceTree = "<group>"; };
-		7B54E4DF27F4A207002DD1E4 /* KYCConfirmEmailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailPresenter.swift; sourceTree = "<group>"; };
-		7B54E4E127F4A207002DD1E4 /* KYCConfirmEmailWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConfirmEmailWorker.swift; sourceTree = "<group>"; };
-		7B54E4E227F4A207002DD1E4 /* KYCResendConfirmEmailWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCResendConfirmEmailWorker.swift; sourceTree = "<group>"; };
-		7B54E4E527F4A207002DD1E4 /* KYCSignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignUpView.swift; sourceTree = "<group>"; };
-		7B54E4E627F4A207002DD1E4 /* KYCSignUpInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignUpInteractor.swift; sourceTree = "<group>"; };
-		7B54E4E727F4A207002DD1E4 /* KYCSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignUpViewController.swift; sourceTree = "<group>"; };
-		7B54E4E827F4A207002DD1E4 /* KYCSignUpRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignUpRouter.swift; sourceTree = "<group>"; };
-		7B54E4E927F4A207002DD1E4 /* KYCSignUpModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignUpModels.swift; sourceTree = "<group>"; };
-		7B54E4EB27F4A207002DD1E4 /* KYCSignUpWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignUpWorker.swift; sourceTree = "<group>"; };
-		7B54E4EC27F4A207002DD1E4 /* KYCSignUpPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSignUpPresenter.swift; sourceTree = "<group>"; };
-		7B54E4EF27F4A208002DD1E4 /* KYCSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSessionModel.swift; sourceTree = "<group>"; };
-		7B54E4F027F4A208002DD1E4 /* KYCSessionModelMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSessionModelMapper.swift; sourceTree = "<group>"; };
-		7B54E4F127F4A208002DD1E4 /* KYCSessionModelResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCSessionModelResponse.swift; sourceTree = "<group>"; };
-		7B54E4F427F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorial1CollectionViewView.swift; sourceTree = "<group>"; };
-		7B54E4F527F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorial2CollectionViewView.swift; sourceTree = "<group>"; };
-		7B54E4F627F4A208002DD1E4 /* KYCTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialViewController.swift; sourceTree = "<group>"; };
-		7B54E4F727F4A208002DD1E4 /* KYCTutorialModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialModels.swift; sourceTree = "<group>"; };
-		7B54E4F827F4A208002DD1E4 /* KYCTutorialRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialRouter.swift; sourceTree = "<group>"; };
-		7B54E4F927F4A208002DD1E4 /* KYCTutorialInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialInteractor.swift; sourceTree = "<group>"; };
-		7B54E4FA27F4A208002DD1E4 /* KYCTutorialPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTutorialPresenter.swift; sourceTree = "<group>"; };
-		7B54E4FD27F4A208002DD1E4 /* KYCTextAndImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTextAndImageView.swift; sourceTree = "<group>"; };
-		7B54E4FE27F4A208002DD1E4 /* KYCCompleteButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompleteButtons.swift; sourceTree = "<group>"; };
-		7B54E4FF27F4A208002DD1E4 /* KYCCompleteRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompleteRouter.swift; sourceTree = "<group>"; };
-		7B54E50027F4A208002DD1E4 /* KYCCompletePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompletePresenter.swift; sourceTree = "<group>"; };
-		7B54E50127F4A208002DD1E4 /* KYCCompleteModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompleteModels.swift; sourceTree = "<group>"; };
-		7B54E50227F4A208002DD1E4 /* KYCCompleteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompleteInteractor.swift; sourceTree = "<group>"; };
-		7B54E50327F4A208002DD1E4 /* KYCCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCCompleteViewController.swift; sourceTree = "<group>"; };
-		7B54E50527F4A208002DD1E4 /* KYCAddressInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressInteractor.swift; sourceTree = "<group>"; };
-		7B54E50727F4A208002DD1E4 /* KYCProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCProgressView.swift; sourceTree = "<group>"; };
-		7B54E50827F4A208002DD1E4 /* KYCAddressFieldsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressFieldsView.swift; sourceTree = "<group>"; };
-		7B54E50927F4A208002DD1E4 /* KYCAddressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressPresenter.swift; sourceTree = "<group>"; };
-		7B54E50B27F4A208002DD1E4 /* KYCPostPersonalInformationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPostPersonalInformationWorker.swift; sourceTree = "<group>"; };
-		7B54E50C27F4A208002DD1E4 /* KYCAddressModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressModels.swift; sourceTree = "<group>"; };
-		7B54E50D27F4A208002DD1E4 /* KYCAddressRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressRouter.swift; sourceTree = "<group>"; };
-		7B54E50E27F4A208002DD1E4 /* KYCAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCAddressViewController.swift; sourceTree = "<group>"; };
 		7B54E57027F4A2B0002DD1E4 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		7B54E57127F4A2B0002DD1E4 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		7B54E57227F4A2B0002DD1E4 /* KYCConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCConstants.swift; sourceTree = "<group>"; };
@@ -1266,12 +1108,6 @@
 		7B54E59927F4A2B0002DD1E4 /* BaseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Extensions.swift"; sourceTree = "<group>"; };
 		7B88C4842837B8710089CFBE /* Currency+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Shared.swift"; sourceTree = "<group>"; };
-		7BA83D9C280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessPresenter.swift; sourceTree = "<group>"; };
-		7BA83D9E280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessRouter.swift; sourceTree = "<group>"; };
-		7BA83D9F280459F3003F73AA /* KYCResetPasswordSuccessModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessModels.swift; sourceTree = "<group>"; };
-		7BA83DA0280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessViewController.swift; sourceTree = "<group>"; };
-		7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetPasswordSuccessInteractor.swift; sourceTree = "<group>"; };
-		7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCResetSuccessView.swift; sourceTree = "<group>"; };
 		7BA83DAB28047894003F73AA /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		7BB22E48285B8D60003E37AC /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
 		7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageAssetsButton.swift; path = src/Views/ManageAssetsButton.swift; sourceTree = "<group>"; };
@@ -2405,315 +2241,6 @@
 			path = CameraHelper;
 			sourceTree = "<group>";
 		};
-		7B432F9B28040EA00056B364 /* KYCForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-				7B432FA928040EF40056B364 /* Workers */,
-				7B432FA828040EEC0056B364 /* Cells */,
-				7B432F9C28040EB90056B364 /* KYCForgotPasswordPresenter.swift */,
-				7B432F9E28040EB90056B364 /* KYCForgotPasswordRouter.swift */,
-				7B432F9F28040EB90056B364 /* KYCForgotPasswordModels.swift */,
-				7B432FA028040EB90056B364 /* KYCForgotPasswordViewController.swift */,
-				7B432FA128040EB90056B364 /* KYCForgotPasswordInteractor.swift */,
-			);
-			path = KYCForgotPassword;
-			sourceTree = "<group>";
-		};
-		7B432FA828040EEC0056B364 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B432FAA280416020056B364 /* KYCForgotPasswordView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B432FA928040EF40056B364 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				7B432FAC2804196C0056B364 /* KYCForgotPasswordWorker.swift */,
-			);
-			path = Workers;
-			sourceTree = "<group>";
-		};
-		7B432FAE280448350056B364 /* KYCResetPassword */ = {
-			isa = PBXGroup;
-			children = (
-				7B432FBB28044D480056B364 /* Workers */,
-				7B432FBC28044D4F0056B364 /* Cells */,
-				7B432FAF280448520056B364 /* KYCResetPasswordPresenter.swift */,
-				7B432FB1280448520056B364 /* KYCResetPasswordRouter.swift */,
-				7B432FB2280448520056B364 /* KYCResetPasswordModels.swift */,
-				7B432FB3280448520056B364 /* KYCResetPasswordViewController.swift */,
-				7B432FB4280448520056B364 /* KYCResetPasswordInteractor.swift */,
-			);
-			path = KYCResetPassword;
-			sourceTree = "<group>";
-		};
-		7B432FBB28044D480056B364 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				7B432FBF280455F70056B364 /* KYCResetPasswordWorker.swift */,
-			);
-			path = Workers;
-			sourceTree = "<group>";
-		};
-		7B432FBC28044D4F0056B364 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B432FBD280450C30056B364 /* KYCResetPasswordView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B54E4BA27F4A207002DD1E4 /* KYC */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4ED27F4A208002DD1E4 /* KYCModels */,
-				7BA83D9B280459D8003F73AA /* KYCResetPasswordSuccess */,
-				7B432FAE280448350056B364 /* KYCResetPassword */,
-				7B432F9B28040EA00056B364 /* KYCForgotPassword */,
-				7B54E4BB27F4A207002DD1E4 /* KYCUpload */,
-				7B54E4C727F4A207002DD1E4 /* KYCPersonalInfo */,
-				7B54E4CF27F4A207002DD1E4 /* KYCSignIn */,
-				7B54E4D927F4A207002DD1E4 /* KYCConfirmEmail */,
-				7B54E4E327F4A207002DD1E4 /* KYCSignUp */,
-				7B54E4F227F4A208002DD1E4 /* KYCTutorial */,
-				7B54E4FB27F4A208002DD1E4 /* KYCComplete */,
-				7B54E50427F4A208002DD1E4 /* KYCAddress */,
-			);
-			name = KYC;
-			path = src/ViewControllers/KYC;
-			sourceTree = "<group>";
-		};
-		7B54E4BB27F4A207002DD1E4 /* KYCUpload */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4C227F4A207002DD1E4 /* Workers */,
-				7B54E4BC27F4A207002DD1E4 /* Cells */,
-				7B54E4BF27F4A207002DD1E4 /* KYCUploadPresenter.swift */,
-				7B54E4C127F4A207002DD1E4 /* KYCUploadRouter.swift */,
-				7B54E4C027F4A207002DD1E4 /* KYCUploadModels.swift */,
-				7B54E4C627F4A207002DD1E4 /* KYCUploadViewController.swift */,
-				7B54E4C527F4A207002DD1E4 /* KYCUploadInteractor.swift */,
-			);
-			path = KYCUpload;
-			sourceTree = "<group>";
-		};
-		7B54E4BC27F4A207002DD1E4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4BD27F4A207002DD1E4 /* KYCCenteredTextView.swift */,
-				7B54E4BE27F4A207002DD1E4 /* KYCCameraContainerView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B54E4C227F4A207002DD1E4 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4C327F4A207002DD1E4 /* KYCUploadFrontBackWorker.swift */,
-				7B54E4C427F4A207002DD1E4 /* KYCUploadSelfieWorker.swift */,
-			);
-			path = Workers;
-			sourceTree = "<group>";
-		};
-		7B54E4C727F4A207002DD1E4 /* KYCPersonalInfo */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4C827F4A207002DD1E4 /* Cells */,
-				7B54E4CA27F4A207002DD1E4 /* KYCPersonalInfoPresenter.swift */,
-				7B54E4CC27F4A207002DD1E4 /* KYCPersonalInfoRouter.swift */,
-				7B54E4CD27F4A207002DD1E4 /* KYCPersonalInfoModels.swift */,
-				7B54E4CE27F4A207002DD1E4 /* KYCPersonalInfoViewController.swift */,
-				7B54E4CB27F4A207002DD1E4 /* KYCPersonalInfoInteractor.swift */,
-			);
-			path = KYCPersonalInfo;
-			sourceTree = "<group>";
-		};
-		7B54E4C827F4A207002DD1E4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4C927F4A207002DD1E4 /* KYCPersonalInfoView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B54E4CF27F4A207002DD1E4 /* KYCSignIn */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4D527F4A207002DD1E4 /* Workers */,
-				7B54E4D027F4A207002DD1E4 /* Cells */,
-				7B54E4D327F4A207002DD1E4 /* KYCSignInPresenter.swift */,
-				7B54E4D827F4A207002DD1E4 /* KYCSignInRouter.swift */,
-				7B54E4D727F4A207002DD1E4 /* KYCSignInModels.swift */,
-				7B54E4D427F4A207002DD1E4 /* KYCSignInViewController.swift */,
-				7B54E4D227F4A207002DD1E4 /* KYCSignInInteractor.swift */,
-			);
-			path = KYCSignIn;
-			sourceTree = "<group>";
-		};
-		7B54E4D027F4A207002DD1E4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4D127F4A207002DD1E4 /* KYCSignInView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B54E4D527F4A207002DD1E4 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4D627F4A207002DD1E4 /* KYCSignInWorker.swift */,
-			);
-			path = Workers;
-			sourceTree = "<group>";
-		};
-		7B54E4D927F4A207002DD1E4 /* KYCConfirmEmail */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E5C027F4A39A002DD1E4 /* Cells */,
-				7B54E4E027F4A207002DD1E4 /* Workers */,
-				7B54E4DF27F4A207002DD1E4 /* KYCConfirmEmailPresenter.swift */,
-				7B54E4DC27F4A207002DD1E4 /* KYCConfirmEmailRouter.swift */,
-				7B54E4DD27F4A207002DD1E4 /* KYCConfirmEmailModels.swift */,
-				7B54E4DE27F4A207002DD1E4 /* KYCConfirmEmailViewController.swift */,
-				7B54E4DA27F4A207002DD1E4 /* KYCConfirmEmailInteractor.swift */,
-			);
-			path = KYCConfirmEmail;
-			sourceTree = "<group>";
-		};
-		7B54E4E027F4A207002DD1E4 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4E127F4A207002DD1E4 /* KYCConfirmEmailWorker.swift */,
-				7B54E4E227F4A207002DD1E4 /* KYCResendConfirmEmailWorker.swift */,
-			);
-			path = Workers;
-			sourceTree = "<group>";
-		};
-		7B54E4E327F4A207002DD1E4 /* KYCSignUp */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4E427F4A207002DD1E4 /* Cells */,
-				7B54E4EA27F4A207002DD1E4 /* Workers */,
-				7B54E4EC27F4A207002DD1E4 /* KYCSignUpPresenter.swift */,
-				7B54E4E827F4A207002DD1E4 /* KYCSignUpRouter.swift */,
-				7B54E4E927F4A207002DD1E4 /* KYCSignUpModels.swift */,
-				7B54E4E727F4A207002DD1E4 /* KYCSignUpViewController.swift */,
-				7B54E4E627F4A207002DD1E4 /* KYCSignUpInteractor.swift */,
-			);
-			path = KYCSignUp;
-			sourceTree = "<group>";
-		};
-		7B54E4E427F4A207002DD1E4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4E527F4A207002DD1E4 /* KYCSignUpView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B54E4EA27F4A207002DD1E4 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4EB27F4A207002DD1E4 /* KYCSignUpWorker.swift */,
-			);
-			path = Workers;
-			sourceTree = "<group>";
-		};
-		7B54E4ED27F4A208002DD1E4 /* KYCModels */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4EE27F4A208002DD1E4 /* KYCSessionModel */,
-			);
-			path = KYCModels;
-			sourceTree = "<group>";
-		};
-		7B54E4EE27F4A208002DD1E4 /* KYCSessionModel */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4EF27F4A208002DD1E4 /* KYCSessionModel.swift */,
-				7B54E4F027F4A208002DD1E4 /* KYCSessionModelMapper.swift */,
-				7B54E4F127F4A208002DD1E4 /* KYCSessionModelResponse.swift */,
-			);
-			path = KYCSessionModel;
-			sourceTree = "<group>";
-		};
-		7B54E4F227F4A208002DD1E4 /* KYCTutorial */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4F327F4A208002DD1E4 /* Cells */,
-				7B54E4FA27F4A208002DD1E4 /* KYCTutorialPresenter.swift */,
-				7B54E4F827F4A208002DD1E4 /* KYCTutorialRouter.swift */,
-				7B54E4F727F4A208002DD1E4 /* KYCTutorialModels.swift */,
-				7B54E4F627F4A208002DD1E4 /* KYCTutorialViewController.swift */,
-				7B54E4F927F4A208002DD1E4 /* KYCTutorialInteractor.swift */,
-			);
-			path = KYCTutorial;
-			sourceTree = "<group>";
-		};
-		7B54E4F327F4A208002DD1E4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4F427F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift */,
-				7B54E4F527F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B54E4FB27F4A208002DD1E4 /* KYCComplete */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4FC27F4A208002DD1E4 /* Cells */,
-				7B54E50027F4A208002DD1E4 /* KYCCompletePresenter.swift */,
-				7B54E4FF27F4A208002DD1E4 /* KYCCompleteRouter.swift */,
-				7B54E50127F4A208002DD1E4 /* KYCCompleteModels.swift */,
-				7B54E50327F4A208002DD1E4 /* KYCCompleteViewController.swift */,
-				7B54E50227F4A208002DD1E4 /* KYCCompleteInteractor.swift */,
-			);
-			path = KYCComplete;
-			sourceTree = "<group>";
-		};
-		7B54E4FC27F4A208002DD1E4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4FD27F4A208002DD1E4 /* KYCTextAndImageView.swift */,
-				7B54E4FE27F4A208002DD1E4 /* KYCCompleteButtons.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B54E50427F4A208002DD1E4 /* KYCAddress */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E50627F4A208002DD1E4 /* Cells */,
-				7B54E50A27F4A208002DD1E4 /* Workers */,
-				7B54E50927F4A208002DD1E4 /* KYCAddressPresenter.swift */,
-				7B54E50D27F4A208002DD1E4 /* KYCAddressRouter.swift */,
-				7B54E50C27F4A208002DD1E4 /* KYCAddressModels.swift */,
-				7B54E50E27F4A208002DD1E4 /* KYCAddressViewController.swift */,
-				7B54E50527F4A208002DD1E4 /* KYCAddressInteractor.swift */,
-			);
-			path = KYCAddress;
-			sourceTree = "<group>";
-		};
-		7B54E50627F4A208002DD1E4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E50727F4A208002DD1E4 /* KYCProgressView.swift */,
-				7B54E50827F4A208002DD1E4 /* KYCAddressFieldsView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7B54E50A27F4A208002DD1E4 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E50B27F4A208002DD1E4 /* KYCPostPersonalInformationWorker.swift */,
-			);
-			path = Workers;
-			sourceTree = "<group>";
-		};
 		7B54E56F27F4A2B0002DD1E4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2797,14 +2324,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		7B54E5C027F4A39A002DD1E4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B54E4DB27F4A207002DD1E4 /* KYCConfirmEmailView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		7B8EC63428089729008C6DE5 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -2813,27 +2332,6 @@
 				7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */,
 			);
 			name = Assets;
-			sourceTree = "<group>";
-		};
-		7BA83D9B280459D8003F73AA /* KYCResetPasswordSuccess */ = {
-			isa = PBXGroup;
-			children = (
-				7BA83DA828045F7F003F73AA /* Cells */,
-				7BA83D9C280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift */,
-				7BA83D9E280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift */,
-				7BA83D9F280459F3003F73AA /* KYCResetPasswordSuccessModels.swift */,
-				7BA83DA0280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift */,
-				7BA83DA1280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift */,
-			);
-			path = KYCResetPasswordSuccess;
-			sourceTree = "<group>";
-		};
-		7BA83DA828045F7F003F73AA /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7BA83DA928045F94003F73AA /* KYCResetSuccessView.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		7C377EBC20F64C1200E8CF1C /* Resources */ = {
@@ -3624,7 +3122,6 @@
 		CE20C8EF1DBAF6D300C8397A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7B54E4BA27F4A207002DD1E4 /* KYC */,
 				713CD88822401946004657D4 /* RecoverKey */,
 				CE1E5F241EF081F300BD0F72 /* Import */,
 				E843C10F2188CBDA00F46672 /* Onboarding */,
@@ -4709,17 +4206,13 @@
 				7ED83AFB284F40EB00261565 /* CheckListInteractor.swift in Sources */,
 				7E87B32A2853368E0097671F /* KYCDocumentUploadWorker.swift in Sources */,
 				CEE0EF521EBD14B60018DB36 /* PinTransitioningDelegate.swift in Sources */,
-				7B54E53527F4A208002DD1E4 /* KYCSessionModelMapper.swift in Sources */,
 				9AE8FFFA21FE6FE000D5058C /* RewardsIconView.swift in Sources */,
 				754AE0BC1DFE8A46007FD001 /* SecureAllocator.swift in Sources */,
 				7B54E59D27F4A2B0002DD1E4 /* Shadowable.swift in Sources */,
 				7E5CB3A02835090E00EC787E /* VIPTableViewController.swift in Sources */,
-				7B432FC0280455F70056B364 /* KYCResetPasswordWorker.swift in Sources */,
 				3A5C9B2B22A5676F00C907C1 /* PriceChange.swift in Sources */,
-				7B54E51527F4A208002DD1E4 /* KYCUploadSelfieWorker.swift in Sources */,
 				7B54E5AC27F4A2B0002DD1E4 /* SimpleTextField.swift in Sources */,
 				7E5CB3AC2835090E00EC787E /* WrapperView.swift in Sources */,
-				7B54E52A27F4A208002DD1E4 /* KYCConfirmEmailPresenter.swift in Sources */,
 				7EF45F512845352400D1F7B0 /* KYCBasicViewController.swift in Sources */,
 				7EF2999127E3B8D200A2238A /* MarketChart.swift in Sources */,
 				CEA9178620C07FBB00F29B31 /* SyncingHeaderView.swift in Sources */,
@@ -4727,25 +4220,18 @@
 				CEC6AA3B1DEE4EB000EE5AFD /* CGRect+Additions.swift in Sources */,
 				4F3AB12A25D58AB400B378DC /* SelectBakerViewController.swift in Sources */,
 				E843C1172188D19000F46672 /* OnboardingViewController.swift in Sources */,
-				7B54E51227F4A208002DD1E4 /* KYCUploadModels.swift in Sources */,
-				7B432FA528040EB90056B364 /* KYCForgotPasswordModels.swift in Sources */,
 				7E5CB38B2835090E00EC787E /* Shadable.swift in Sources */,
-				7B54E52127F4A208002DD1E4 /* KYCSignInViewController.swift in Sources */,
 				7B54E5BE27F4A2B1002DD1E4 /* KYCViewController.swift in Sources */,
 				3A36328D225301D60043EBA4 /* PriceChangeView.swift in Sources */,
 				7C5AC8A6203B93D3001B221E /* TxListCell.swift in Sources */,
-				7B54E52D27F4A208002DD1E4 /* KYCSignUpView.swift in Sources */,
-				7B432FB8280448520056B364 /* KYCResetPasswordModels.swift in Sources */,
 				7EBC6B0A2848ABC5000A301F /* RegistrationConfirmationViewController.swift in Sources */,
 				71A3171222A6E5F10088F97C /* BRAPIClient+Messages.swift in Sources */,
 				CE45C1FB1E74F89C002C3847 /* WalletInfo.swift in Sources */,
 				CEE659E71F65A936001FF29D /* RetryTimer.swift in Sources */,
-				7B54E54927F4A208002DD1E4 /* KYCPostPersonalInformationWorker.swift in Sources */,
 				CE90571A1DFF18B2006BA848 /* ScanViewController.swift in Sources */,
 				7CBC6B302177D72600899AFB /* DelistedTokenView.swift in Sources */,
 				7E5CB3A62835090E00EC787E /* ThemeManager.swift in Sources */,
 				7C6ACCB61FEB345E0028ABFA /* TxStatusCell.swift in Sources */,
-				7BA83DA7280459F3003F73AA /* KYCResetPasswordSuccessInteractor.swift in Sources */,
 				CE5393B022D7CC98000303B3 /* HistoryPeriod.swift in Sources */,
 				7EF45F8C284768C100D1F7B0 /* ItemSelectionModels.swift in Sources */,
 				CE20C8F61DBAF77D00C8397A /* UIViewController+BRWAdditions.swift in Sources */,
@@ -4756,7 +4242,6 @@
 				71C44E92225F95B100EF4459 /* RecoveryKeyCompleteViewController.swift in Sources */,
 				7BDB4A0B2806F5260031F015 /* RedeemGiftViewController.swift in Sources */,
 				CE6DCC251E6001E50044257B /* UIControl+Callback.swift in Sources */,
-				7B54E51A27F4A208002DD1E4 /* KYCPersonalInfoInteractor.swift in Sources */,
 				7B02D6262859200400C5C384 /* KYCCameraPreviewView.swift in Sources */,
 				7ED83ACE284F373200261565 /* KYCLevelTwoEntryViewController.swift in Sources */,
 				71904FB92225AB3900A6D027 /* AnnouncementPromptView.swift in Sources */,
@@ -4768,17 +4253,12 @@
 				3A1D4180250965730089FE63 /* MarketDataPublisher.swift in Sources */,
 				7EBC6AF628488B10000A301F /* RegistrationStore.swift in Sources */,
 				7E9B13FB2857404600BD9EF5 /* DocumentReviewPresenter.swift in Sources */,
-				7B54E51927F4A208002DD1E4 /* KYCPersonalInfoPresenter.swift in Sources */,
-				7B432FAD2804196C0056B364 /* KYCForgotPasswordWorker.swift in Sources */,
 				CEF3E82D1DE528BF007C0A9E /* AlertView.swift in Sources */,
 				CEF3E82B1DE51612007C0A9E /* GradientCircle.swift in Sources */,
 				7CCD9F6C1FEC1FA300175E64 /* TxAmountCell.swift in Sources */,
 				3A6CA703244239FD001833CA /* WalletInitializer.swift in Sources */,
-				7B54E52727F4A208002DD1E4 /* KYCConfirmEmailRouter.swift in Sources */,
 				CE124CFE1E68F57700DFA146 /* Async.swift in Sources */,
 				3AEA2C9C24D122EA00DA4C3A /* CloudBackupView.swift in Sources */,
-				7B54E51127F4A208002DD1E4 /* KYCUploadPresenter.swift in Sources */,
-				7B432FA228040EB90056B364 /* KYCForgotPasswordPresenter.swift in Sources */,
 				C4D5E802284951DD000BEE6F /* VerifyAccountVIP.swift in Sources */,
 				7B54E5BC27F4A2B1002DD1E4 /* GenericSettable.swift in Sources */,
 				3A188FEC257FF1A300957819 /* GiftCurrencyCell.swift in Sources */,
@@ -4788,7 +4268,6 @@
 				7E5CB39D2835090E00EC787E /* Alertable.swift in Sources */,
 				CEE9A2E920AB4F9A00C5CF2F /* BRAPIClient+Metrics.swift in Sources */,
 				7E5CB3892835090E00EC787E /* Margins.swift in Sources */,
-				7B54E54227F4A208002DD1E4 /* KYCCompleteModels.swift in Sources */,
 				7EB838482849DD8200C7CC05 /* FELink.swift in Sources */,
 				CEBF32F01DDCD30600348FC6 /* AccountViewController.swift in Sources */,
 				CEE1F5631DF13E5A00D733AD /* ModalHeaderView.swift in Sources */,
@@ -4813,10 +4292,8 @@
 				9F0EA16C25E2904400D4225E /* WidgetDataShareService.swift in Sources */,
 				9FC529D02604FAA300855473 /* BreadwalletWidget.intentdefinition in Sources */,
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
-				7B54E53827F4A208002DD1E4 /* KYCTutorial2CollectionViewView.swift in Sources */,
 				C45E0BA72845F4C40083F028 /* AccountVerificationStore.swift in Sources */,
 				7E5CB3B32835090E00EC787E /* FEImageView.swift in Sources */,
-				7B432FBA280448520056B364 /* KYCResetPasswordInteractor.swift in Sources */,
 				7EF45F532845352400D1F7B0 /* KYCBasicVIP.swift in Sources */,
 				CEA05CC31F21B53C00D850F0 /* FeeSelector.swift in Sources */,
 				E89C0611216A8BE70012CE0D /* GetUserEmailPromptView.swift in Sources */,
@@ -4827,7 +4304,6 @@
 				7B54E59B27F4A2B0002DD1E4 /* AlertHelper.swift in Sources */,
 				7BDB4A052806F4470031F015 /* Extensions.swift in Sources */,
 				CEA362681E00EE320061FC0E /* CameraGuideView.swift in Sources */,
-				7B54E54C27F4A208002DD1E4 /* KYCAddressViewController.swift in Sources */,
 				CEDB0B0722D445DB00331FFC /* ChartView.swift in Sources */,
 				7E5CB3822835090E00EC787E /* DemoModels.swift in Sources */,
 				7E5CB37D2835090E00EC787E /* DemoCoordinator.swift in Sources */,
@@ -4837,7 +4313,6 @@
 				C45E0BA82845F4C40083F028 /* AccountVerificationPresenter.swift in Sources */,
 				3ADE270C248F35B80023B770 /* ResolvedAddressLabel.swift in Sources */,
 				7E5CB37E2835090E00EC787E /* DemoVIP.swift in Sources */,
-				7B54E51D27F4A208002DD1E4 /* KYCPersonalInfoViewController.swift in Sources */,
 				7B54E5B827F4A2B1002DD1E4 /* UILabelConfigurable.swift in Sources */,
 				CE25BF8D1DF3B8A500BC67B6 /* InViewAlert.swift in Sources */,
 				7BDB49E72806CCBB0031F015 /* Bundle+Extensions.swift in Sources */,
@@ -4849,7 +4324,6 @@
 				CECCE5AB1E038C9900D99448 /* GenericPinPadCell.swift in Sources */,
 				7EB838462849D49A00C7CC05 /* ScrollableButtonsView.swift in Sources */,
 				7B54E5A427F4A2B0002DD1E4 /* RequestModels.swift in Sources */,
-				7B54E53027F4A208002DD1E4 /* KYCSignUpRouter.swift in Sources */,
 				C45E0BA92845F4C40083F028 /* AccountVerificationModels.swift in Sources */,
 				CECCE5B01E04AD7600D99448 /* DescriptionSendCell.swift in Sources */,
 				7E5CB38F2835090E00EC787E /* NSLayoutConstraint+priority.swift in Sources */,
@@ -4876,7 +4350,6 @@
 				7E5CB3B42835090E00EC787E /* FEButton.swift in Sources */,
 				CE4C1CC81ED88B600063E184 /* URLController.swift in Sources */,
 				CE20C9171DBE6F2A00C8397A /* UIButton+BRWAdditions.swift in Sources */,
-				7B54E53327F4A208002DD1E4 /* KYCSignUpPresenter.swift in Sources */,
 				CE3CDB9720D443CE007059F6 /* CutoutLabel.swift in Sources */,
 				3A611A0C2322139D004B8E36 /* Dot.swift in Sources */,
 				7B54E5B427F4A2B1002DD1E4 /* Roundable.swift in Sources */,
@@ -4889,7 +4362,6 @@
 				7CAF4EDF22CE80D100326168 /* AssetCollection.swift in Sources */,
 				CEE6282A1EA98B6D001035AA /* DispatchQueue+Additions.swift in Sources */,
 				CEC6AA3D1DEE687000EE5AFD /* RadialGradientView.swift in Sources */,
-				7B54E53227F4A208002DD1E4 /* KYCSignUpWorker.swift in Sources */,
 				CEEC70921E95DA4400EF788E /* GradientSwitch.swift in Sources */,
 				C4D5E801284951DD000BEE6F /* VerifyAccountModels.swift in Sources */,
 				CE0CD1591DBFBCF5004023DA /* ModalPresenter.swift in Sources */,
@@ -4905,13 +4377,10 @@
 				C4D5E804284951DD000BEE6F /* VerifyAccountInteractor.swift in Sources */,
 				CE92F9F01DED0C790046B516 /* PresentModalAnimator.swift in Sources */,
 				7E5CB3812835090E00EC787E /* DemoStore.swift in Sources */,
-				7B54E53127F4A208002DD1E4 /* KYCSignUpModels.swift in Sources */,
 				CEA2480023DE819D00B18BC6 /* AttributeCell.swift in Sources */,
 				7CBD578F2107EB560042C388 /* PairedWalletData.swift in Sources */,
-				7B54E52E27F4A208002DD1E4 /* KYCSignUpInteractor.swift in Sources */,
 				7EF2998B27E3B8C400A2238A /* Resources.swift in Sources */,
 				7E5CB38C2835090E00EC787E /* Borderable.swift in Sources */,
-				7B432FB9280448520056B364 /* KYCResetPasswordViewController.swift in Sources */,
 				7ED83AF5284F40EB00261565 /* CheckListVIP.swift in Sources */,
 				7EF45F592845353100D1F7B0 /* NameView.swift in Sources */,
 				CEAA9E951DC1659F0066731D /* UILabel+BRWAdditions.swift in Sources */,
@@ -4923,8 +4392,6 @@
 				7CBF4B6B2008899100E003AA /* TxAddressCell.swift in Sources */,
 				7EF45F8E284768EC00D1F7B0 /* ItemView.swift in Sources */,
 				7C35E717200ADF450064808F /* Transaction.swift in Sources */,
-				7B54E53427F4A208002DD1E4 /* KYCSessionModel.swift in Sources */,
-				7B54E52927F4A208002DD1E4 /* KYCConfirmEmailViewController.swift in Sources */,
 				7B54E5B627F4A2B1002DD1E4 /* UIViewConfigurable.swift in Sources */,
 				7E5CB3AE2835090E00EC787E /* FEView.swift in Sources */,
 				CEB909F71E5FE654001804DC /* EnterPhraseCollectionViewController.swift in Sources */,
@@ -4936,14 +4403,10 @@
 				7EE76FC22857648F00724548 /* NewDeviceWorker.swift in Sources */,
 				7ED83AF8284F40EB00261565 /* CheckListStore.swift in Sources */,
 				CEAFC8611E5D5B0500E4FD06 /* SegmentedButton.swift in Sources */,
-				7B432FA628040EB90056B364 /* KYCForgotPasswordViewController.swift in Sources */,
 				3A6FD42D24E456B800068ECE /* KeyStoreUtils.swift in Sources */,
 				7EF45F4F2845352400D1F7B0 /* KYCBasicInteractor.swift in Sources */,
-				7B432FAB280416020056B364 /* KYCForgotPasswordView.swift in Sources */,
 				7E5CB3982835090E00EC787E /* Controller.swift in Sources */,
-				7B54E51B27F4A208002DD1E4 /* KYCPersonalInfoRouter.swift in Sources */,
 				3A6FD42F24E4570900068ECE /* KeyStore+CloudBackup.swift in Sources */,
-				7B432FBE280450C30056B364 /* KYCResetPasswordView.swift in Sources */,
 				7E5CB3872835090E00EC787E /* BorderConfiguration.swift in Sources */,
 				7B54E5A627F4A2B0002DD1E4 /* HTTPRequestHelpers.swift in Sources */,
 				7E5CB38D2835090E00EC787E /* Configurable.swift in Sources */,
@@ -4962,7 +4425,6 @@
 				CEEC708E1E954AAB00EF788E /* AboutHeaderView.swift in Sources */,
 				7EBC6B092848ABC5000A301F /* RegistrationConfirmationVIP.swift in Sources */,
 				7E8E97A0283F48EE008606B0 /* NavigationItemView.swift in Sources */,
-				7B54E52227F4A208002DD1E4 /* KYCSignInWorker.swift in Sources */,
 				C416BE0628509C4E0020ACCD /* KYCLevelTwoPostValidation.swift in Sources */,
 				7B54E5BD27F4A2B1002DD1E4 /* BaseViewDeprecated.swift in Sources */,
 				22A9A9461DF61945000F0016 /* BRAPIClient.swift in Sources */,
@@ -4989,36 +4451,28 @@
 				7EF45F89284768C100D1F7B0 /* ItemSelectionPresenter.swift in Sources */,
 				7E5CB3902835090E00EC787E /* AlertModels.swift in Sources */,
 				CE4CA7BC1EE3649100373F11 /* BRActivityView.swift in Sources */,
-				7B54E53627F4A208002DD1E4 /* KYCSessionModelResponse.swift in Sources */,
 				E89C0613216D79550012CE0D /* BRAPIClient+EmailSubscription.swift in Sources */,
 				7B02D6282859201500C5C384 /* KYCCameraViewController.swift in Sources */,
 				7CBABD9C20181D890077CB55 /* NSMutableAttributedString+Additions.swift in Sources */,
 				3A69885E24591F890084953D /* PayId.swift in Sources */,
 				7B08D2262860574F00D65ED9 /* SimpleBackBarButtonItem.swift in Sources */,
-				7B54E51E27F4A208002DD1E4 /* KYCSignInView.swift in Sources */,
 				7EBC6AF728488B10000A301F /* RegistrationPresenter.swift in Sources */,
 				7E9B13FE2857404600BD9EF5 /* DocumentReviewViewController.swift in Sources */,
 				CEC6AA421DEFC88F00EE5AFD /* ReceiveViewController.swift in Sources */,
 				7C9BC58F231765190011732F /* WalletConnectionSettings.swift in Sources */,
 				CEE20C2D1EA288FA0086F724 /* UpdatingLabel.swift in Sources */,
-				7B54E53F27F4A208002DD1E4 /* KYCCompleteButtons.swift in Sources */,
 				714F5D6E22037F2400F7CA70 /* EventMonitor.swift in Sources */,
 				CE3D4C591EF743EF0016B1C8 /* Functions.swift in Sources */,
 				7E8E979B283F4830008606B0 /* ProfileVIP.swift in Sources */,
 				7B54E5B327F4A2B0002DD1E4 /* SimpleButton.swift in Sources */,
-				7B54E54027F4A208002DD1E4 /* KYCCompleteRouter.swift in Sources */,
 				C45E0BAA2845F4C40083F028 /* AccountVerificationVIP.swift in Sources */,
 				7B54E5B927F4A2B1002DD1E4 /* CellWrapperView.swift in Sources */,
-				7B54E54827F4A208002DD1E4 /* KYCAddressPresenter.swift in Sources */,
-				7B54E53A27F4A208002DD1E4 /* KYCTutorialModels.swift in Sources */,
-				7B54E54A27F4A208002DD1E4 /* KYCAddressModels.swift in Sources */,
 				CEE20C341EA5B4550086F724 /* ArticleIds.swift in Sources */,
 				7E9B13FF2857404600BD9EF5 /* DocumentReviewInteractor.swift in Sources */,
 				7E8E97A2283F78B0008606B0 /* ProfileView.swift in Sources */,
 				3A93890A22A303800081FCF9 /* CubicCurveAlgorithm.swift in Sources */,
 				7141BB5B2245271800F7ECF2 /* WriteRecoveryKeyViewController.swift in Sources */,
 				CEE65DF01E39056F0002994D /* Rate.swift in Sources */,
-				7B54E52627F4A208002DD1E4 /* KYCConfirmEmailView.swift in Sources */,
 				7BDB4A0D2806F54B0031F015 /* StakingCell.swift in Sources */,
 				CEDB09331FEAA21C001AF56A /* TxDetailViewModel.swift in Sources */,
 				7BDB49E42806CB980031F015 /* ImageStorageService.swift in Sources */,
@@ -5050,19 +4504,16 @@
 				7E8E97A5283F9804008606B0 /* FEPopupView.swift in Sources */,
 				CE977109216FA16300B9F621 /* SegwitViewController.swift in Sources */,
 				71173059220CCC91001931B3 /* PromptView.swift in Sources */,
-				7B54E54327F4A208002DD1E4 /* KYCCompleteInteractor.swift in Sources */,
 				7EBC6B0B2848ABC5000A301F /* RegistrationConfirmationInteractor.swift in Sources */,
 				7EF45F502845352400D1F7B0 /* KYCBasicPresenter.swift in Sources */,
 				7EBC6AFB28488B10000A301F /* RegistrationInteractor.swift in Sources */,
 				7E9B13FD2857404600BD9EF5 /* DocumentReviewVIP.swift in Sources */,
 				7B54E5AF27F4A2B0002DD1E4 /* KYCCameraView.swift in Sources */,
 				CE8CD8DD1E2D9EF200785E02 /* Sender.swift in Sources */,
-				7BA83DA6280459F3003F73AA /* KYCResetPasswordSuccessViewController.swift in Sources */,
 				3AFAD94825698A74005853E8 /* Gift.swift in Sources */,
 				CE4DFB2C1E9BE5880014009E /* ReScanViewController.swift in Sources */,
 				7E5CB3A22835090E00EC787E /* Marginable.swift in Sources */,
 				7B54E5BA27F4A2B1002DD1E4 /* KYCFooterView.swift in Sources */,
-				7B54E54527F4A208002DD1E4 /* KYCAddressInteractor.swift in Sources */,
 				7C9724661FF07B9A004248C4 /* StatusPip.swift in Sources */,
 				7EF45F542845352400D1F7B0 /* KYCBasicModels.swift in Sources */,
 				7BA83DAC28047894003F73AA /* Validators.swift in Sources */,
@@ -5076,9 +4527,7 @@
 				7E5CB39B2835090E00EC787E /* BaseVIP.swift in Sources */,
 				7B54E5B127F4A2B0002DD1E4 /* UITableView+Extensions.swift in Sources */,
 				CEAA9E971DC18E1F0066731D /* PhraseView.swift in Sources */,
-				7B54E51F27F4A208002DD1E4 /* KYCSignInInteractor.swift in Sources */,
 				3A6A3C7E24DDC90300ACAC70 /* BackupSynchronizer.swift in Sources */,
-				7B54E51827F4A208002DD1E4 /* KYCPersonalInfoView.swift in Sources */,
 				7E5CB3912835090E00EC787E /* AlertVIP.swift in Sources */,
 				3AFAD937256826F3005853E8 /* BorderedTextInput.swift in Sources */,
 				CEF3E82F1DE534C5007C0A9E /* GradientView.swift in Sources */,
@@ -5086,7 +4535,6 @@
 				CE4C1CC61ED65D830063E184 /* DrawableCircle.swift in Sources */,
 				7E5CB3A12835090E00EC787E /* ViewProtocol.swift in Sources */,
 				7CBD57912107FAFA0042C388 /* PairedWalletIndex.swift in Sources */,
-				7B54E52527F4A208002DD1E4 /* KYCConfirmEmailInteractor.swift in Sources */,
 				CEEC708C1E95461A00EF788E /* AboutViewController.swift in Sources */,
 				7BC49D1B282E69A3000BF284 /* ManageAssetsButton.swift in Sources */,
 				CEEC708A1E945E3B00EF788E /* UnEditableTextView.swift in Sources */,
@@ -5094,45 +4542,31 @@
 				CE3840E81FD590BD00437C31 /* AssetListTableView.swift in Sources */,
 				71A3171022A6D55A0088F97C /* InAppNotificationViewController.swift in Sources */,
 				7E9B13EE285720D400BD9EF5 /* KYCSubmitWorker.swift in Sources */,
-				7B54E53D27F4A208002DD1E4 /* KYCTutorialPresenter.swift in Sources */,
-				7B432FB7280448520056B364 /* KYCResetPasswordRouter.swift in Sources */,
 				7CF5319D231EE01300E61F12 /* Base32.swift in Sources */,
-				7B54E51427F4A208002DD1E4 /* KYCUploadFrontBackWorker.swift in Sources */,
 				CEAA9EA61DC3246F0066731D /* StartNavigationDelegate.swift in Sources */,
 				7CBF4B6420081BCE00E003AA /* KeyedDecodingContainer+Additions.swift in Sources */,
-				7B54E53E27F4A208002DD1E4 /* KYCTextAndImageView.swift in Sources */,
 				3A188FF82582835600957819 /* Sharing.swift in Sources */,
 				22A9A94B1DF61945000F0016 /* BRCoding.swift in Sources */,
 				CE6B829A1FE3A7B6007A41B9 /* UIScrollView+Additions.swift in Sources */,
 				7E9B13FA2857404600BD9EF5 /* DocumentReviewStore.swift in Sources */,
 				3AEA2CAB24D3219200DA4C3A /* SelectBackupView.swift in Sources */,
 				7E2E1A2B284E097900E56E69 /* KYCCoordinator.swift in Sources */,
-				7B54E54B27F4A208002DD1E4 /* KYCAddressRouter.swift in Sources */,
-				7B54E53727F4A208002DD1E4 /* KYCTutorial1CollectionViewView.swift in Sources */,
 				C4D5E800284951DD000BEE6F /* VerifyAccountPresenter.swift in Sources */,
 				CEB909FA1E5FF242001804DC /* RecoverWalletIntroViewController.swift in Sources */,
 				CE25BF911DF9ADE700BC67B6 /* UIImage+Utils.swift in Sources */,
-				7B54E54627F4A208002DD1E4 /* KYCProgressView.swift in Sources */,
 				7C7F18ED1FED9A3B0030230E /* TxStatusIndicator.swift in Sources */,
-				7B54E52327F4A208002DD1E4 /* KYCSignInModels.swift in Sources */,
 				7E5CB3992835090E00EC787E /* Interactor.swift in Sources */,
-				7B54E51C27F4A208002DD1E4 /* KYCPersonalInfoModels.swift in Sources */,
 				7B54E5A927F4A2B0002DD1E4 /* BaseResponseWorker.swift in Sources */,
 				7E9B13FC2857404600BD9EF5 /* DocumentReviewModels.swift in Sources */,
 				C45E0BA62845F4C40083F028 /* AccountVerificationCoordinator.swift in Sources */,
 				7C787AE221ED89510017EA7E /* KeyStore.swift in Sources */,
 				CEAA9E911DC0FDFE0066731D /* UIViewPropertyAnimator+BRWAdditions.swift in Sources */,
-				7B54E51027F4A208002DD1E4 /* KYCCameraContainerView.swift in Sources */,
 				7B54E5A027F4A2B0002DD1E4 /* NetworkingError.swift in Sources */,
 				7B54E59C27F4A2B0002DD1E4 /* KYCConstants.swift in Sources */,
-				7B54E50F27F4A208002DD1E4 /* KYCCenteredTextView.swift in Sources */,
-				7B54E51727F4A208002DD1E4 /* KYCUploadViewController.swift in Sources */,
 				7ED83AF6284F40EB00261565 /* ChecklistItemView.swift in Sources */,
 				7EF2998A27E3B8C400A2238A /* ApiClient.swift in Sources */,
 				7EF45F8D284768C100D1F7B0 /* ItemSelectionCoordinator.swift in Sources */,
-				7B54E52027F4A208002DD1E4 /* KYCSignInPresenter.swift in Sources */,
 				7C1931CD2327371A0061DE20 /* CoreDatabase.swift in Sources */,
-				7B54E52B27F4A208002DD1E4 /* KYCConfirmEmailWorker.swift in Sources */,
 				22E773041EE7813000397E0E /* Bonjour.swift in Sources */,
 				7EF45F582845353100D1F7B0 /* DateView.swift in Sources */,
 				3AFAD9302567EE15005853E8 /* GiftViewController.swift in Sources */,
@@ -5146,7 +4580,6 @@
 				CEBF32F21DDCE10D00348FC6 /* AccountHeaderView.swift in Sources */,
 				CECCE5B21E04B00D00D99448 /* SendCell.swift in Sources */,
 				CE6DCC301E6666470044257B /* NonScrollingCollectionView.swift in Sources */,
-				7BA83DA4280459F3003F73AA /* KYCResetPasswordSuccessRouter.swift in Sources */,
 				71C44E90225D135E00EF4459 /* ConfirmRecoveryKeyViewController.swift in Sources */,
 				7E5CB3802835090E00EC787E /* DemoInteractor.swift in Sources */,
 				7CF913BE1FFC7DC30085CB70 /* TxMemoCell.swift in Sources */,
@@ -5154,26 +4587,21 @@
 				3A3D63DE22F10B58000DE920 /* ManageWalletsViewController.swift in Sources */,
 				7ED83AFD284F418E00261565 /* KYCDocumentWorker.swift in Sources */,
 				CE20C9011DBBFFF800C8397A /* Actions.swift in Sources */,
-				7B54E54427F4A208002DD1E4 /* KYCCompleteViewController.swift in Sources */,
 				CE20C9191DBE7B8200C8397A /* State.swift in Sources */,
 				CEEC70811E90C04700EF788E /* SeparatorCell.swift in Sources */,
 				CE97710D216FF20F00B9F621 /* SegwitEnabledView.swift in Sources */,
 				7C230E752037AD52002F0FF1 /* SyncingIndicator.swift in Sources */,
 				7E5CB39C2835090E00EC787E /* Coordinator.swift in Sources */,
 				22122B721F0B8996000E9AB9 /* BRAPIClient+Events.swift in Sources */,
-				7B432FA428040EB90056B364 /* KYCForgotPasswordRouter.swift in Sources */,
 				CE4B6C201E233C2C00CF935B /* UITableView+Additions.swift in Sources */,
 				CEEC70861E94397D00EF788E /* UserDefaults+Additions.swift in Sources */,
 				7B54E5B527F4A2B1002DD1E4 /* KYCTickBoxView.swift in Sources */,
 				7E5CB3922835090E00EC787E /* FetchModels.swift in Sources */,
-				7B432FA728040EB90056B364 /* KYCForgotPasswordInteractor.swift in Sources */,
 				7EF2999027E3B8D200A2238A /* MarketData.swift in Sources */,
-				7B54E53C27F4A208002DD1E4 /* KYCTutorialInteractor.swift in Sources */,
 				7EBC6B082848ABC5000A301F /* RegistrationConfirmationModels.swift in Sources */,
 				CE1E7A9A20938DFD00C86BB7 /* MenuButton.swift in Sources */,
 				7B54E59E27F4A2B0002DD1E4 /* DatePickerViewController.swift in Sources */,
 				7C0A3ACE210A0E1D006C2783 /* NotificationAuthorizer.swift in Sources */,
-				7B54E51627F4A208002DD1E4 /* KYCUploadInteractor.swift in Sources */,
 				7E5CB3A32835090E00EC787E /* Reusable.swift in Sources */,
 				7E5CB37F2835090E00EC787E /* DemoViewController.swift in Sources */,
 				7CA3BC302006864C00517BF7 /* Currency.swift in Sources */,
@@ -5184,14 +4612,11 @@
 				7CBA74E62022784D00FBBFA9 /* HomeScreenAssetViewModel.swift in Sources */,
 				7CA1C47420EC25B9002E9E68 /* QRCode.swift in Sources */,
 				CE41327622CACA05002391E6 /* BalanceCell.swift in Sources */,
-				7B54E53927F4A208002DD1E4 /* KYCTutorialViewController.swift in Sources */,
 				7E5CB3AA2835090E00EC787E /* WrapperAccessoryView.swift in Sources */,
-				7B54E54727F4A208002DD1E4 /* KYCAddressFieldsView.swift in Sources */,
 				C45E0BAC2845F4C40083F028 /* AccountVerificationInteractor.swift in Sources */,
 				7E5CB3942835090E00EC787E /* MessageModels.swift in Sources */,
 				7E8E9798283F4830008606B0 /* ProfileStore.swift in Sources */,
 				CE4DFB2E1E9C26DA0014009E /* ShareDataViewController.swift in Sources */,
-				7B54E52C27F4A208002DD1E4 /* KYCResendConfirmEmailWorker.swift in Sources */,
 				CE1E5F261EF083A600BD0F72 /* ImportKeyViewController.swift in Sources */,
 				7E5CB3AB2835090E00EC787E /* WrapperCollectionViewCell.swift in Sources */,
 				CE25BF931DFDA7A600BC67B6 /* MessageUIPresenter.swift in Sources */,
@@ -5204,10 +4629,8 @@
 				7E5CB3832835090E00EC787E /* Presets.swift in Sources */,
 				7B54E5A327F4A2B0002DD1E4 /* HttpRequest.swift in Sources */,
 				C4D5E7FF284951DD000BEE6F /* VerifyAccountStore.swift in Sources */,
-				7B54E53B27F4A208002DD1E4 /* KYCTutorialRouter.swift in Sources */,
 				9AE8FFF821FE64E200D5058C /* RewardsView.swift in Sources */,
 				7E8E9799283F4830008606B0 /* ProfilePresenter.swift in Sources */,
-				7BA83DA2280459F3003F73AA /* KYCResetPasswordSuccessPresenter.swift in Sources */,
 				7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */,
 				7EF45F88284768C100D1F7B0 /* ItemSelectionInteractor.swift in Sources */,
 				CEA3626A1E01150D0061FC0E /* CGContext+Additions.swift in Sources */,
@@ -5218,7 +4641,6 @@
 				7EF2999327E3B8D200A2238A /* Models.swift in Sources */,
 				71249916221F466800BEA491 /* Prompt.swift in Sources */,
 				CE6B6B4A1E54C0CB00B31405 /* SecurityCenterCell.swift in Sources */,
-				7B54E54127F4A208002DD1E4 /* KYCCompletePresenter.swift in Sources */,
 				7B02D62C28592FE700C5C384 /* KYCCameraShutter.swift in Sources */,
 				7EF45F522845352400D1F7B0 /* KYCBasicStore.swift in Sources */,
 				3A1D416E250957A00089FE63 /* MarketDataView.swift in Sources */,
@@ -5229,11 +4651,8 @@
 				7C45481A2187E65B0002E884 /* AnyCodable.swift in Sources */,
 				4F3AB12325D53F5D00B378DC /* BakingBadRequest.swift in Sources */,
 				7E8E9797283F4830008606B0 /* ProfileCoordinator.swift in Sources */,
-				7BA83DAA28045F94003F73AA /* KYCResetSuccessView.swift in Sources */,
 				CECCE5A51E02408300D99448 /* UIView+FrameChangeBlocking.swift in Sources */,
-				7BA83DA5280459F3003F73AA /* KYCResetPasswordSuccessModels.swift in Sources */,
 				3A3D63DC22F10B4F000DE920 /* AddWalletsViewController.swift in Sources */,
-				7B54E52827F4A208002DD1E4 /* KYCConfirmEmailModels.swift in Sources */,
 				7B54E5BB27F4A2B1002DD1E4 /* LoadingView.swift in Sources */,
 				7E8E979A283F4830008606B0 /* ProfileModels.swift in Sources */,
 				CE6DCC271E6108D50044257B /* EnterPhraseCell.swift in Sources */,
@@ -5250,20 +4669,16 @@
 				713CD8872240117A004657D4 /* RecoveryKeyFlowController.swift in Sources */,
 				CED341331EF5A5C00014912A /* InAppAlert.swift in Sources */,
 				CE47A8E01F7DA54000FF35BA /* UIScreen+Additions.swift in Sources */,
-				7B54E51327F4A208002DD1E4 /* KYCUploadRouter.swift in Sources */,
 				7BDB49FD2806F3840031F015 /* ReservationWorker.swift in Sources */,
 				7C9BC58D231764030011732F /* WalletConnectionSettingsViewController.swift in Sources */,
 				CEB909F51E5FE63D001804DC /* EnterPhraseViewController.swift in Sources */,
 				C4D5E803284951DD000BEE6F /* VerifyAccountViewController.swift in Sources */,
-				7B432FB5280448520056B364 /* KYCResetPasswordPresenter.swift in Sources */,
 				7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */,
-				7B54E52F27F4A208002DD1E4 /* KYCSignUpViewController.swift in Sources */,
 				C45E0BAB2845F4C40083F028 /* AccountVerificationViewController.swift in Sources */,
 				713CD88A2240198A004657D4 /* RecoveryKeyIntroViewController.swift in Sources */,
 				7ED83AE8284F384F00261565 /* KYCDocumentPickerStore.swift in Sources */,
 				CE6D0F971DE8B73A00BD4BCF /* ModalTransitionDelegate.swift in Sources */,
 				7E5CB3A72835090E00EC787E /* Fonts.swift in Sources */,
-				7B54E52427F4A208002DD1E4 /* KYCSignInRouter.swift in Sources */,
 				1B1AFFA01FB7EF7C00E61908 /* BiometricsSettingsViewController.swift in Sources */,
 				4F3AB13425D5E7F900B378DC /* SelectBakerCell.swift in Sources */,
 				7B54E5A827F4A2B0002DD1E4 /* APICallWorker.swift in Sources */,

@@ -23,16 +23,21 @@ class UserManager: NSObject {
     }
     
     func refresh(completion: ((Profile?) -> Void)? = nil) {
-        ProfileWorker().execute { [weak self] profile, error in
-            print("Error: \(error?.firstOccurringError() ?? "<No error>")")
-            self?.profile = profile
-            self?.error = error
-            self?.dataChanged.forEach({ $0(profile, error) })
+        ProfileWorker().execute { [weak self] result in
+            switch result {
+            case .success(let profile):
+                self?.profile = profile
+                
+                if let email = profile.email {
+                    UserDefaults.email = email
+                }
+                
+            case .failure(let error):
+                self?.error = error
+            }
             
-            completion?(profile)
-            
-            guard UserDefaults.email == nil else { return }
-            UserDefaults.email = profile?.email
+            self?.dataChanged.forEach({ $0(self?.profile, self?.error) })
+            completion?(self?.profile)
         }
     }
 }

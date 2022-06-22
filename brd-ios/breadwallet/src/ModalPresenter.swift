@@ -441,7 +441,6 @@ class ModalPresenter: Subscriber, Trackable {
         // MARK: Bitcoin Menu
         var btcItems: [MenuItem] = []
         if let btc = Currencies.shared.btc, let btcWallet = btc.wallet {
-            
             // Rescan
             var rescan = MenuItem(title: L10n.Settings.sync, callback: { [unowned self] in
                 menuNav.pushViewController(ReScanViewController(system: self.system, wallet: btcWallet), animated: true)
