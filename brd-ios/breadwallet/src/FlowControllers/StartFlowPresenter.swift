@@ -308,7 +308,6 @@ class StartFlowPresenter: Subscriber, Trackable {
     }
     
     private func dismissStartFlow() {
-        didFinish?()
         guard let navigationController = navigationController else { return assertionFailure() }
         saveEvent(context: .onboarding, event: .complete)
         
@@ -316,6 +315,7 @@ class StartFlowPresenter: Subscriber, Trackable {
         EventMonitor.shared.deregister(.onboarding)
         navigationController.dismiss(animated: true) { [unowned self] in
             self.navigationController = nil
+            didFinish?()
         }
     }
     
@@ -354,13 +354,14 @@ class StartFlowPresenter: Subscriber, Trackable {
     }
 
     private func dismissLoginFlow() {
-        didFinish?()
         guard let loginViewController = loginViewController, loginViewController.isBeingPresented else {
             self.loginViewController = nil
+            didFinish?()
             return
         }
         loginViewController.dismiss(animated: true, completion: { [weak self] in
             self?.loginViewController = nil
+            self?.didFinish?()
         })
     }
 }
