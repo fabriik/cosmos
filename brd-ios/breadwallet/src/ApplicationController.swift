@@ -362,7 +362,8 @@ class ApplicationController: Subscriber, Trackable {
         startFlowController?.didFinish = { [weak self] in
             UserManager.shared.refresh { profile in
                 guard profile?.status != .emailPending,
-                      profile?.status != nil else {
+                      profile?.status != nil,
+                      !UserDefaults.emailConfirmed else {
                     return
                 }
                 
