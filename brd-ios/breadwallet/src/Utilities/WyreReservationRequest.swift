@@ -12,12 +12,16 @@ struct WyreReservationResponseObject: ModelResponse {
 struct WyreReservationRequest: ExternalAPIRequest {
     typealias Response = WyreReservationResponseObject
     var hostName: String { return "https://" + E.apiUrl + "blocksatoshi/" }
-    var resourceName: String { return "wyre/reserve?test=\(isTest)&sessionKey=\(sessionKey)" }
+    var resourceName: String { return "wyre/reserve?test=\(E.isTest)&sessionKey=\(sessionKey)" }
     
-    let sessionKey = E.apiToken
-    #if DEBUG
-    let isTest = true
-    #else
-    let isTest = false
-    #endif
+    var sessionKey: String {
+        let key = UserDefaults.kycSessionKeyValue
+        
+        if key.isEmpty,
+           let token = UserDefaults.walletTokenValue {
+            return token
+        }
+        
+        return key
+    }
 }
