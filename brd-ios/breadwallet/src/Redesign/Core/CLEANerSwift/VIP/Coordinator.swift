@@ -31,7 +31,7 @@ class BaseCoordinator: NSObject,
                        Coordinatable {
 
     // TODO: should eventually die
-    var modalPresenter: ModalPresenter? {
+    weak var modalPresenter: ModalPresenter? {
         get {
             guard let modalPresenter = presenter else {
                 return parentCoordinator?.modalPresenter
