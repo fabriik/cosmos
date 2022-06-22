@@ -44,7 +44,7 @@ class BaseCoordinator: NSObject,
         }
     }
     
-    private var presenter: ModalPresenter?
+    private weak var presenter: ModalPresenter?
     var parentCoordinator: Coordinatable?
     var childCoordinators: [Coordinatable] = []
     var navigationController: UINavigationController
@@ -172,7 +172,7 @@ class BaseCoordinator: NSObject,
     // IT prepares the next KYC coordinator OR returns true
     // in which case we show 3rd party popup or continue to buy/swap
     private func upgradeAccountOrShowPopup(completion: ((Bool) -> Void)?) {
-        UserManager.shared.refresh() { [unowned self] _ in
+        UserManager.shared.refresh { [unowned self] _ in
             var coordinator: Coordinatable?
             if UserDefaults.kycSessionKeyValue.isEmpty
                 || !UserDefaults.emailConfirmed {
