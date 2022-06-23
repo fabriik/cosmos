@@ -62,8 +62,6 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
         return "\(proto)://\(host)"
     }
     
-    private var walletTokenValueStored = ""
-    
     init(authenticator: WalletAuthenticator) {
         self.authenticator = authenticator
         super.init()
@@ -197,7 +195,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                     handler(data, nil, err as NSError?)
                 }
             }
-        }) 
+        })
     }
     
     // retrieve a token and save it in the keychain data for this account
@@ -268,7 +266,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             let uid = topObj["userID"] as? String {
                             // success! store it in the keychain
                             
-                            self.walletTokenValueStored = walletTokenValue
+                            UserDefaults.walletTokenValue = walletTokenValue
                             
                             var kcData = self.authenticator.apiUserAccount ?? [AnyHashable: Any]()
                             kcData["token"] = walletTokenValue
@@ -281,7 +279,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                 }
                 
                 if UserDefaults.walletTokenValue == nil {
-                    let newDeviceRequestData = NewDeviceRequestData(token: self.walletTokenValueStored)
+                    let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
                     NewDeviceWorker().execute(requestData: newDeviceRequestData) { result in
                         switch result {
                         case .success(let data):
@@ -305,8 +303,6 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
     }
     
     func saveToken() {
-        UserDefaults.walletTokenValue = walletTokenValueStored
-        
         isFetchingAuth = false
         authFetchGroup.leave()
     }
