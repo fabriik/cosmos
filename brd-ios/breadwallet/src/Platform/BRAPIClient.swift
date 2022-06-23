@@ -284,9 +284,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                         switch result {
                         case .success(let data):
                             UserDefaults.email = data.email
-                            if let sessionKey = data.sessionKey {
-                                UserDefaults.kycSessionKeyValue = sessionKey
-                            }
+                            UserDefaults.kycSessionKeyValue = data.sessionKey
                             
                             self.leaveGroup()
                             
@@ -295,6 +293,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             
                             self.leaveGroup()
                             handler(err as NSError?)
+                            
                         }
                     }
                 } else {

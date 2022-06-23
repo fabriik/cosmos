@@ -188,7 +188,7 @@ class BaseCoordinator: NSObject,
     private func upgradeAccountOrShowPopup(completion: ((Bool) -> Void)?) {
         UserManager.shared.refresh { [unowned self] _ in
             var coordinator: Coordinatable?
-            if UserDefaults.kycSessionKeyValue.isEmpty
+            if UserDefaults.kycSessionKeyValue == nil
                 || !UserDefaults.emailConfirmed {
                 coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
             } else if UserManager.shared.profile?.status.canBuyTrade == false {

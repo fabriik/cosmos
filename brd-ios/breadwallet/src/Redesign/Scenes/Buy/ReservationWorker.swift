@@ -36,7 +36,7 @@ struct ReservationRequestData: RequestModelData {
     let sessionKey: String = E.apiToken
     
     func getParameters() -> [String: Any] {
-        var key = UserDefaults.kycSessionKeyValue
+        var key = UserDefaults.kycSessionKeyValue ?? ""
         
         if key.isEmpty,
            let token = UserDefaults.walletTokenValue {

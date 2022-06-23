@@ -460,7 +460,7 @@ extension UserDefaults {
     }
     
     static var kycSessionKeyValue: String? {
-        get { return defaults.string(forKey: kycSessionKey) ?? "" }
+        get { return defaults.string(forKey: kycSessionKey) }
         set { defaults.set(newValue, forKey: kycSessionKey) }
     }
     
