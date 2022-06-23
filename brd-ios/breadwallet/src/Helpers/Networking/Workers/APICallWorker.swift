@@ -73,7 +73,7 @@ class APICallWorker: APICallWorkerProperties {
     func getParameters() -> [String: Any] { return [:] }
     
     func getHeaders() -> [String: String] {
-        var key: String
+        let key: String
         
         if let value = UserDefaults.kycSessionKeyValue {
             key = value
