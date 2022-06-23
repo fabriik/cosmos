@@ -62,6 +62,8 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
         return "\(proto)://\(host)"
     }
     
+    private var walletTokenValueStored: String?
+    
     init(authenticator: WalletAuthenticator) {
         self.authenticator = authenticator
         super.init()
@@ -266,7 +268,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             let uid = topObj["userID"] as? String {
                             // success! store it in the keychain
                             
-                            UserDefaults.walletTokenValue = walletTokenValue
+                            self.walletTokenValueStored = walletTokenValue
                             
                             var kcData = self.authenticator.apiUserAccount ?? [AnyHashable: Any]()
                             kcData["token"] = walletTokenValue
@@ -278,8 +280,8 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                     }
                 }
                 
-                if UserDefaults.walletTokenValue == nil {
-                    let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
+                if UserDefaults.walletTokenValue == nil && self.walletTokenValueStored != nil {
+                    let newDeviceRequestData = NewDeviceRequestData(token: self.walletTokenValueStored)
                     NewDeviceWorker().execute(requestData: newDeviceRequestData) { result in
                         switch result {
                         case .success(let data):
@@ -287,7 +289,10 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             if let sessionKey = data.sessionKey {
                                 UserDefaults.kycSessionKeyValue = sessionKey
                             }
-                            self.saveToken()
+                            
+                            self.leaveGroup()
+                            
+                            UserDefaults.walletTokenValue = self.walletTokenValueStored
                             
                         case .failure(let error):
                             self.log("Session key error: \((error as? NetworkingError)?.errorMessage ?? "")")
@@ -295,14 +300,14 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                         }
                     }
                 } else {
-                    self.saveToken()
+                    self.leaveGroup()
                     handler(err as NSError?)
                 }
             }
         }) .resume()
     }
     
-    func saveToken() {
+    private func leaveGroup() {
         isFetchingAuth = false
         authFetchGroup.leave()
     }
