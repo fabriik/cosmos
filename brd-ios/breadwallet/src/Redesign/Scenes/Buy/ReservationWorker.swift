@@ -4,7 +4,6 @@
 
 import Foundation
 
-
 enum WyreEndpoints: String, URLType {
     static var baseURL: String = "https://" + E.apiUrl + "blocksatoshi/wyre/%@"
     
