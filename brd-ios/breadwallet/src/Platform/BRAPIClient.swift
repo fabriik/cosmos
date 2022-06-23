@@ -278,7 +278,7 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                     }
                 }
                 
-                if UserDefaults.walletTokenValue == nil {
+                if UserDefaults.walletTokenValue != nil {
                     let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
                     NewDeviceWorker().execute(requestData: newDeviceRequestData) { result in
                         switch result {
@@ -287,22 +287,25 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                             if let sessionKey = data.sessionKey {
                                 UserDefaults.kycSessionKeyValue = sessionKey
                             }
-                            self.saveToken()
+                            
+                            self.leaveGroup()
                             
                         case .failure(let error):
                             self.log("Session key error: \((error as? NetworkingError)?.errorMessage ?? "")")
+                            
+                            self.leaveGroup()
                             handler(err as NSError?)
                         }
                     }
                 } else {
-                    self.saveToken()
+                    self.leaveGroup()
                     handler(err as NSError?)
                 }
             }
         }) .resume()
     }
     
-    func saveToken() {
+    func leaveGroup() {
         isFetchingAuth = false
         authFetchGroup.leave()
     }
