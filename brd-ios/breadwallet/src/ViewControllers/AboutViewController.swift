@@ -110,7 +110,9 @@ class AboutViewController: UIViewController {
         guard let url = URL(string: string) else { return }
         let webViewController = SimpleWebViewController(url: url)
         webViewController.setup(with: .init(title: title))
+        let navController = RootNavigationController(rootViewController: webViewController)
+        webViewController.setAsNonDismissableModal()
         
-        navigationController?.pushViewController(webViewController, animated: true)
+        navigationController?.present(navController, animated: true)
     }
 }
