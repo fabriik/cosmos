@@ -278,7 +278,11 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                     }
                 }
                 
+<<<<<<< Updated upstream
                 if UserDefaults.walletTokenValue == nil {
+=======
+                if UserDefaults.kycSessionKeyValue == nil {
+>>>>>>> Stashed changes
                     let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
                     NewDeviceWorker().execute(requestData: newDeviceRequestData) { result in
                         switch result {
