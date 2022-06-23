@@ -45,7 +45,7 @@ struct ReservationRequestData: RequestModelData {
         }
         
         return [
-            "test": test ? "true" : "false",
+            "test": String(test),
             "sessionKey": key
         ]
     }

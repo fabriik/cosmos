@@ -361,7 +361,8 @@ class ApplicationController: Subscriber, Trackable {
                                                  createHomeScreen: createHomeScreen)
         startFlowController?.didFinish = { [weak self] in
             UserManager.shared.refresh { profile in
-                guard profile?.status != .emailPending,
+                guard profile != nil,
+                      profile?.status != .emailPending,
                       profile?.status != nil,
                       !UserDefaults.emailConfirmed else {
                     return
