@@ -41,7 +41,7 @@ struct ReservationRequestData: RequestModelData {
            let token = UserDefaults.walletTokenValue {
             key = token
         } else {
-            key = "no key"
+            key = "no_key"
         }
         
         return [
