@@ -26,22 +26,26 @@ class ApplicationController: Subscriber, Trackable {
     let window = UIWindow()
     var coordinator: BaseCoordinator?
     
-    private var startFlowController: StartFlowPresenter?
-    private var modalPresenter: ModalPresenter?
-    private var alertPresenter: AlertPresenter?
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-
+    private var startFlowController: StartFlowPresenter?
+    private var alertPresenter: AlertPresenter?
+    private var modalPresenter: ModalPresenter? {
+        didSet {
+            if let nvc = self.rootNavigationController {
+                self.coordinator = BaseCoordinator(navigationController: nvc)
+                self.coordinator?.modalPresenter = self.modalPresenter
+            }
+        }
+    }
+    
     var rootNavigationController: RootNavigationController? {
         guard let root = window.rootViewController as? RootNavigationController else { return nil }
         return root
     }
     
     var homeScreenViewController: HomeScreenViewController? {
-        guard   let rootNavController = rootNavigationController,
-                let homeScreen = rootNavController.viewControllers.first as? HomeScreenViewController
-        else {
-                return nil
-        }
+        guard let rootNavController = rootNavigationController,
+              let homeScreen = rootNavController.viewControllers.first as? HomeScreenViewController else { return nil }
         return homeScreen
     }
         
@@ -141,10 +145,6 @@ class ApplicationController: Subscriber, Trackable {
     
     func decideFlow() {
         UserManager.shared.refresh()
-        if let nvc = rootNavigationController {
-            coordinator = BaseCoordinator(navigationController: nvc)
-            coordinator?.modalPresenter = modalPresenter
-        }
         
         if keyStore.noWallet {
             enterOnboarding()
@@ -197,16 +197,16 @@ class ApplicationController: Subscriber, Trackable {
             Backend.kvStore?.syncAllKeys { [weak self] error in
                 print("[KV] finished syncing. result: \(error == nil ? "ok" : error!.localizedDescription)")
                 Store.trigger(name: .didSyncKVStore)
-                guard let weakSelf = self else { return }
-                weakSelf.setWalletInfo(account: account)
-                weakSelf.coreSystem.create(account: account,
-                                           authToken: E.apiToken,
-                                           btcWalletCreationCallback: weakSelf.handleDeferedLaunchURL) {
-                    weakSelf.modalPresenter = ModalPresenter(keyStore: weakSelf.keyStore,
-                                                             system: weakSelf.coreSystem,
-                                                             window: weakSelf.window,
-                                                             alertPresenter: weakSelf.alertPresenter)
-                    weakSelf.coreSystem.connect()
+                guard let self = self else { return }
+                self.setWalletInfo(account: account)
+                self.coreSystem.create(account: account,
+                                       authToken: E.apiToken,
+                                       btcWalletCreationCallback: self.handleDeferedLaunchURL) {
+                    self.modalPresenter = ModalPresenter(keyStore: self.keyStore,
+                                                         system: self.coreSystem,
+                                                         window: self.window,
+                                                         alertPresenter: self.alertPresenter)
+                    self.coreSystem.connect()
                 }
             }
         }
@@ -361,7 +361,8 @@ class ApplicationController: Subscriber, Trackable {
                                                  createHomeScreen: createHomeScreen)
         startFlowController?.didFinish = { [weak self] in
             UserManager.shared.refresh { profile in
-                guard profile?.status != .emailPending,
+                guard profile != nil,
+                      profile?.status != .emailPending,
                       profile?.status != nil,
                       !UserDefaults.emailConfirmed else {
                     return
