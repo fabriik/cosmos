@@ -26,22 +26,26 @@ class ApplicationController: Subscriber, Trackable {
     let window = UIWindow()
     var coordinator: BaseCoordinator?
     
-    private var startFlowController: StartFlowPresenter?
-    private var modalPresenter: ModalPresenter?
-    private var alertPresenter: AlertPresenter?
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-
+    private var startFlowController: StartFlowPresenter?
+    private var alertPresenter: AlertPresenter?
+    private var modalPresenter: ModalPresenter? {
+        didSet {
+            if let nvc = self.rootNavigationController {
+                self.coordinator = BaseCoordinator(navigationController: nvc)
+                self.coordinator?.modalPresenter = self.modalPresenter
+            }
+        }
+    }
+    
     var rootNavigationController: RootNavigationController? {
         guard let root = window.rootViewController as? RootNavigationController else { return nil }
         return root
     }
     
     var homeScreenViewController: HomeScreenViewController? {
-        guard   let rootNavController = rootNavigationController,
-                let homeScreen = rootNavController.viewControllers.first as? HomeScreenViewController
-        else {
-                return nil
-        }
+        guard let rootNavController = rootNavigationController,
+              let homeScreen = rootNavController.viewControllers.first as? HomeScreenViewController else { return nil }
         return homeScreen
     }
         
@@ -203,11 +207,6 @@ class ApplicationController: Subscriber, Trackable {
                                                          window: self.window,
                                                          alertPresenter: self.alertPresenter)
                     self.coreSystem.connect()
-                    
-                    if let nvc = self.rootNavigationController {
-                        self.coordinator = BaseCoordinator(navigationController: nvc)
-                        self.coordinator?.modalPresenter = self.modalPresenter
-                    }
                 }
             }
         }
