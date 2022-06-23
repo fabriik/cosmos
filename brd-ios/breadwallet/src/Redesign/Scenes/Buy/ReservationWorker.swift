@@ -4,7 +4,6 @@
 
 import Foundation
 
-
 enum WyreEndpoints: String, URLType {
     static var baseURL: String = "https://" + E.apiUrl + "blocksatoshi/wyre/%@"
     
@@ -36,12 +35,15 @@ struct ReservationRequestData: RequestModelData {
     let sessionKey: String = E.apiToken
     
     func getParameters() -> [String: Any] {
-        var key = UserDefaults.kycSessionKeyValue
+        let key: String
         
-        if key.isEmpty,
+        if UserDefaults.kycSessionKeyValue == nil,
            let token = UserDefaults.walletTokenValue {
             key = token
+        } else {
+            key = "no key"
         }
+        
         return [
             "test": test ? "true" : "false",
             "sessionKey": key

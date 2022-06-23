@@ -73,11 +73,14 @@ class APICallWorker: APICallWorkerProperties {
     func getParameters() -> [String: Any] { return [:] }
     
     func getHeaders() -> [String: String] {
-        var key = UserDefaults.kycSessionKeyValue
+        let key: String
         
-        if key.isEmpty,
-           let token = UserDefaults.walletTokenValue {
-            key = "Bread \(token)"
+        if let value = UserDefaults.kycSessionKeyValue {
+            key = value
+        } else if let value = UserDefaults.walletTokenValue {
+            key = "Bread \(value)"
+        } else {
+            key = "no_token"
         }
         
         return ["Authorization": key]

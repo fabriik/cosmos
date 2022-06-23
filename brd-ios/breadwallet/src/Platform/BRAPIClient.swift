@@ -278,15 +278,13 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                     }
                 }
                 
-                if UserDefaults.walletTokenValue != nil {
+                if UserDefaults.kycSessionKeyValue == nil {
                     let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
                     NewDeviceWorker().execute(requestData: newDeviceRequestData) { result in
                         switch result {
                         case .success(let data):
                             UserDefaults.email = data.email
-                            if let sessionKey = data.sessionKey {
-                                UserDefaults.kycSessionKeyValue = sessionKey
-                            }
+                            UserDefaults.kycSessionKeyValue = data.sessionKey
                             
                             self.leaveGroup()
                             

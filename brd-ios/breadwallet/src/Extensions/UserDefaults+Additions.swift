@@ -459,8 +459,8 @@ extension UserDefaults {
         set { defaults.set(newValue, forKey: hasBchConnectedKey) }
     }
     
-    static var kycSessionKeyValue: String {
-        get { return defaults.string(forKey: kycSessionKey) ?? "" }
+    static var kycSessionKeyValue: String? {
+        get { return defaults.string(forKey: kycSessionKey) }
         set { defaults.set(newValue, forKey: kycSessionKey) }
     }
     
