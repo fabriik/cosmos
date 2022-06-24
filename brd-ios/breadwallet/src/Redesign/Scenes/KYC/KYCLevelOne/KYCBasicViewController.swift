@@ -113,9 +113,6 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             
             // TODO: Update isPicker logic
             view.isPicker = true
-            if model.value != nil {
-                view.animateTo(state: .filled, withAnimation: false)
-            }
             
             view.contentSizeChanged = {
                 tableView.beginUpdates()

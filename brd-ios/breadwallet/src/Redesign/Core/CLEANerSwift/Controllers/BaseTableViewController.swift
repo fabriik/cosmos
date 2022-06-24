@@ -76,7 +76,13 @@ class BaseTableViewController<C: CoordinatableRoutes,
     func displayData(responseDisplay: FetchModels.Get.ResponseDisplay) {
         sections = responseDisplay.sections
         sectionRows = responseDisplay.sectionRows
-        tableView.reloadData()
+        
+        // TODO: DiffableDataSource
+        UIView.transition(with: tableView,
+                          duration: Presets.Animation.duration,
+                          options: .transitionCrossDissolve,
+                          animations: { [weak self] in self?.tableView.reloadData() })
+        
         tableView.backgroundView?.isHidden = !sections.isEmpty
     }
 

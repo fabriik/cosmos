@@ -262,10 +262,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         layoutSubviews()
         
-        guard textField.text?.isEmpty == false else {
-            return
-        }
-        animateTo(state: .filled, withAnimation: false)
+        guard viewModel.value?.isEmpty == false else { return }
+        animateTo(state: .filled, withAnimation: true)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -351,7 +349,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         configure(shadow: config?.shadowConfiguration)
         
         titleLabel.layoutIfNeeded()
-        Self.animate(withDuration: Presets.Animation.duration, animations: {
+        
+        Self.animate(withDuration: withAnimation ? Presets.Animation.duration : 0, animations: {
             self.textFieldContent.layoutIfNeeded()
         }, completion: { _ in
             self.contentSizeChanged?()

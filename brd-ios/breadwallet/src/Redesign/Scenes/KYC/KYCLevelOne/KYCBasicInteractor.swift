@@ -16,6 +16,8 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
 
     // MARK: - KYCBasicViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
+        presenter?.presentData(actionResponse: .init(item: dataStore))
+        
         ProfileWorker().execute { [weak self] result in
             switch result {
             case .success(let profileData):
