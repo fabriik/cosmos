@@ -55,7 +55,7 @@ final class KYCBasicPresenter: NSObject, Presenter, KYCBasicActionResponses {
         fieldValidationIsAllowed[actionResponse.item?.firstName] = (actionResponse.item?.firstName?.count ?? 0) >= 1
         fieldValidationIsAllowed[actionResponse.item?.lastName] = (actionResponse.item?.lastName?.count ?? 0) >= 1
         fieldValidationIsAllowed[actionResponse.item?.country] = (actionResponse.item?.country?.count ?? 0) >= 1
-        fieldValidationIsAllowed[actionResponse.item?.birthDateString] = actionResponse.item?.birthdate != nil
+        fieldValidationIsAllowed[actionResponse.item?.birthDateString] = actionResponse.item?.birthDateString != nil
         
         let isValid = fieldValidationIsAllowed.values.contains(where: { $0 == false }) == false
         

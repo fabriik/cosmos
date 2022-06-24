@@ -143,6 +143,8 @@ class VIPViewController<C: CoordinatableRoutes,
 
     // MARK: BaseResponseDisplay
     func displayMessage(responseDisplay: MessageModels.ResponseDisplays) {
+        LoadingView.hide()
+        
         coordinator?.showMessage(with: responseDisplay.error, model: responseDisplay.model, configuration: responseDisplay.config)
     }
     

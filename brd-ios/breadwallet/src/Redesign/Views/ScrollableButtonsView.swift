@@ -41,6 +41,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     
     override func setupSubviews() {
         super.setupSubviews()
+        
         content.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

@@ -16,8 +16,36 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
 
     // MARK: - KYCBasicViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        presenter?.presentData(actionResponse: .init(item: dataStore))
-        validate(viewAction: .init())
+        ProfileWorker().execute { [weak self] result in
+            switch result {
+            case .success(let profileData):
+                CountriesWorker().execute(requestData: CountriesRequestData()) { [weak self] result in
+                    switch result {
+                    case .success(let data):
+                        self?.dataStore?.firstName = profileData.firstName
+                        self?.dataStore?.lastName = profileData.lastName
+                        self?.dataStore?.country = profileData.country
+                        self?.dataStore?.countryFullName = data.first(where: { $0.iso2 == self?.dataStore?.country })?.localizedName
+                        
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.timeStyle = .none
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        let date = dateFormatter.date(from: profileData.dateOfBirth ?? "")
+                        self?.dataStore?.birthdate = date
+                        self?.dataStore?.birthDateString = dateFormatter.string(from: date ?? Date())
+                        
+                        self?.presenter?.presentData(actionResponse: .init(item: self?.dataStore))
+                        self?.validate(viewAction: .init())
+                        
+                    case .failure(let error):
+                        self?.presenter?.presentError(actionResponse: .init(error: error))
+                    }
+                }
+                
+            case .failure(let error):
+                self?.presenter?.presentError(actionResponse: .init(error: error))
+            }
+        }
     }
     
     func nameSet(viewAction: KYCBasicModels.Name.ViewAction) {
@@ -29,12 +57,15 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
     
     func countrySelected(viewAction: KYCBasicModels.Country.ViewAction) {
         dataStore?.country = viewAction.code
-        dataStore?.countryFullName = viewAction.fullName
-        getData(viewAction: .init())
+        dataStore?.countryFullName = viewAction.countryFullName
+        
+        presenter?.presentData(actionResponse: .init(item: dataStore))
+        validate(viewAction: .init())
     }
     
     func birthDateSet(viewAction: KYCBasicModels.BirthDate.ViewAction) {
         dataStore?.birthdate = viewAction.date
+        
         validate(viewAction: .init())
     }
     
@@ -48,7 +79,6 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
               let country = dataStore?.country,
               let birthDateText = dataStore?.birthDateString,
               let birthDate = dataStore?.birthdate else {
-            // should not happen
             return
         }
         
@@ -57,11 +87,11 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
             presenter?.presentNotification(actionResponse: .init(body: "You need to be at least 18 years old to complete Level 1 verification"))
             return
         }
+        
         let data = KYCBasicRequestData(firstName: firstName,
                                        lastName: lastName,
                                        country: country,
                                        birthDate: birthDateText)
-        
         KYCLevelOneWorker().execute(requestData: data) { [weak self] error in
             guard error == nil else {
                 self?.presenter?.presentError(actionResponse: .init(error: error))
