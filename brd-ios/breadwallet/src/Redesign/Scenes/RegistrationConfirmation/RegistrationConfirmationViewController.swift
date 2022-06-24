@@ -122,5 +122,13 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
         
     }
     
+    func displayError(responseDisplay: RegistrationConfirmationModels.Error.ResponseDisplay) {
+        guard let section = sections.firstIndex(of: Models.Section.input),
+              let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<CodeInputView>
+        else { return }
+        
+        cell.wrappedView.showErrorMessage()
+    }
+    
     // MARK: - Additional Helpers
 }

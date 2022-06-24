@@ -57,8 +57,7 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
     }
     
     func presentValidate(actionResponse: RegistrationConfirmationModels.Validate.ActionResponse) {
-        let code = actionResponse.item ?? ""
-        viewController?.displayValidate(responseDisplay: .init(isValid: code.count == 6))
+        viewController?.displayValidate(responseDisplay: .init(isValid: actionResponse.isValid))
     }
     
     func presentConfirm(actionResponse: RegistrationConfirmationModels.Confirm.ActionResponse) {
@@ -70,6 +69,11 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
         viewController?.displayMessage(responseDisplay: .init(model: .init(description: .text("Verification code sent.")),
                                                               config: Presets.InfoView.verification))
     }
+    
+    func presentError(actionResponse: RegistrationConfirmationModels.Error.ActionResponse) {
+        viewController?.displayError(responseDisplay: .init())
+    }
+    
     // MARK: - Additional Helpers
 
 }

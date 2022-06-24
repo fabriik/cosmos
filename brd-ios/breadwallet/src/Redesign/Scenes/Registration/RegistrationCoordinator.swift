@@ -32,9 +32,5 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
         }
     }
     
-    override func goBack() {
-        navigationController.dismiss(animated: true)
-        parentCoordinator?.childDidFinish(child: self)
-    }
     // MARK: - Aditional helpers
 }

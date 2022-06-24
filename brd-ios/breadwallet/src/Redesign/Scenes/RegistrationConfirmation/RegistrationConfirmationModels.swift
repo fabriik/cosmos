@@ -29,7 +29,7 @@ enum RegistrationConfirmationModels {
         }
         
         struct ActionResponse {
-            var item: Item
+            var isValid: Bool
         }
         
         struct ResponseDisplay {
@@ -44,6 +44,12 @@ enum RegistrationConfirmationModels {
     }
     
     struct Resend {
+        struct ViewAction {}
+        struct ActionResponse {}
+        struct ResponseDisplay {}
+    }
+    
+    struct Error {
         struct ViewAction {}
         struct ActionResponse {}
         struct ResponseDisplay {}
