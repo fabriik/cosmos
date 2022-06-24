@@ -100,7 +100,8 @@ extension Presets {
 extension Presets {
     struct TextField {
         static var primary = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.two),
-                                                    titleConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
+                                                    titleConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
+                                                    selectedTitleConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
                                                     textConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
                                                     placeholderConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
                                                     hintConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
@@ -109,7 +110,8 @@ extension Presets {
                                                     disabledBackgroundConfiguration: Presets.Background.Secondary.disabled.withBorder(border: Presets.Border.disabled),
                                                     errorBackgroundConfiguration: Presets.Background.Secondary.error.withBorder(border: Presets.Border.error))
         
-        static var two = TextFieldConfiguration(titleConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
+        static var two = TextFieldConfiguration(titleConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
+                                                selectedTitleConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
                                                 textConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
                                                 placeholderConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
                                                 hintConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
@@ -120,7 +122,8 @@ extension Presets {
                                                 errorBackgroundConfiguration: Presets.Background.Secondary.error.withBorder(border: Presets.Border.error))
         
         static var email = TextFieldConfiguration(leadingImageConfiguration: .init(backgroundColor: .clear, tintColor: LightColors.Icons.two),
-                                                  titleConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
+                                                  titleConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
+                                                  selectedTitleConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
                                                   textConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
                                                   placeholderConfiguration: .init(font: Fonts.Body.two, textColor: LightColors.Text.one),
                                                   hintConfiguration: .init(font: Fonts.caption, textColor: LightColors.Text.two),
