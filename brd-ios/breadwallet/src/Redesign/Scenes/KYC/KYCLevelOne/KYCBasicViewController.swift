@@ -122,10 +122,6 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
                 tableView.endUpdates()
             }
             
-            view.snp.makeConstraints { make in
-                make.height.equalTo(FieldHeights.small.rawValue)
-            }
-            
             view.isUserInteractionEnabled = false
         }
         
