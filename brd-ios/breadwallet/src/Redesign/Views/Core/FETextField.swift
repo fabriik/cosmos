@@ -344,6 +344,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         // Shadow
         configure(shadow: config?.shadowConfiguration)
         
+        titleLabel.layoutIfNeeded()
         Self.animate(withDuration: Presets.Animation.duration, animations: {
             self.textFieldContent.layoutIfNeeded()
         }, completion: { _ in
