@@ -63,7 +63,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         }
     }
     
-    var isPicker = false
+    var hideFilledTitleStack = false
     
     var value: String? {
         get { return textField.text }
@@ -314,7 +314,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
             titleConfig = config?.selectedTitleConfiguration
             
             hideTextField = false
-            hideTitleStack = isPicker
+            hideTitleStack = hideFilledTitleStack
             
         case .highlighted, .selected:
             background = config?.selectedBackgroundConfiguration

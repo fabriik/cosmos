@@ -125,7 +125,7 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         dateStack.addArrangedSubview(yearTextField)
         
         dateStack.arrangedSubviews.forEach { arrangedSubview in
-            (arrangedSubview as? FETextField)?.isPicker = true
+            (arrangedSubview as? FETextField)?.hideFilledTitleStack = true
         }
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))

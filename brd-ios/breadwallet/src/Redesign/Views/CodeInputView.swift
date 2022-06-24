@@ -86,6 +86,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         stack.addArrangedSubview(inputStack)
         
         for view in inputTextfields {
+            view.hideFilledTitleStack = true
             inputStack.addArrangedSubview(view)
         }
         stack.addArrangedSubview(errorLabel)
@@ -182,6 +183,6 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
     
     func showErrorMessage() {
         errorLabel.text = "Invalid code"
-        self.animateTo(state: .error)
+        animateTo(state: .error)
     }
 }
