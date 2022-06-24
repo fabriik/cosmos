@@ -99,7 +99,6 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         content.addSubview(stack)
         stack.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(FieldHeights.small.rawValue + titleHeight + stack.spacing)
             make.bottom.equalToSuperview().priority(.low)
         }
         

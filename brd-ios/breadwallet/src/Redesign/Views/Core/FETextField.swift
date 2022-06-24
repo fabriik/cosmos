@@ -90,9 +90,8 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
     private lazy var textFieldStack: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.spacing = Margins.extraSmall.rawValue
-        view.alignment = .fill
-        view.distribution = .fill
+        view.distribution = .fillEqually
+        view.spacing = -Margins.medium.rawValue
         return view
     }()
     
@@ -149,24 +148,25 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         textFieldContent.addSubview(textFieldStack)
         textFieldStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
+            make.height.equalTo(FieldHeights.common.rawValue)
             make.leading.equalTo(Margins.large.rawValue)
-            make.top.equalToSuperview().inset(Margins.small.rawValue)
-            make.bottom.equalToSuperview().inset(Margins.small.rawValue).priority(.low)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().priority(.low)
         }
         
         textFieldStack.addArrangedSubview(titleStack)
         titleStack.addArrangedSubview(leadingView)
         titleStack.addArrangedSubview(titleLabel)
         
+        titleLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview().priority(.low)
+        }
+        
         textFieldContent.addSubview(trailingView)
         trailingView.snp.makeConstraints { make in
             make.width.equalTo(44)
             make.trailing.equalTo(-Margins.large.rawValue)
             make.top.equalTo(Margins.small.rawValue)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().priority(.low)
         }
         
         textFieldStack.addArrangedSubview(textField)
@@ -299,30 +299,37 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         var hint = viewModel?.hint
         var hideTextField = textField.text?.isEmpty == true
         var hideTitleStack = false
-        var titleConfig: LabelConfiguration?
+        var titleConfig: LabelConfiguration? = config?.titleConfiguration
         
         switch state {
         case .normal:
             background = config?.backgroundConfiguration
-            titleConfig = config?.titleConfiguration
+            
+            if textField.isFirstResponder == false && textField.text?.isEmpty == false {
+                titleConfig = config?.selectedTitleConfiguration
+            } else {
+                titleConfig = config?.titleConfiguration
+            }
             
         case .filled:
             background = config?.backgroundConfiguration
-            hideTextField = false
-            
-            hideTitleStack = isPicker
             titleConfig = config?.selectedTitleConfiguration
+            
+            hideTextField = false
+            hideTitleStack = isPicker
             
         case .highlighted, .selected:
             background = config?.selectedBackgroundConfiguration
-            hideTextField = false
             titleConfig = config?.selectedTitleConfiguration
+            
+            hideTextField = false
             
         case .disabled:
             background = config?.disabledBackgroundConfiguration
             
         case .error:
             background = config?.errorBackgroundConfiguration
+            
             hideTextField = false
             hint = viewModel?.error
         }

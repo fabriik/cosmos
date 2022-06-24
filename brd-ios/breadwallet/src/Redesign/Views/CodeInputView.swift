@@ -84,9 +84,6 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         }
         
         stack.addArrangedSubview(inputStack)
-        inputStack.snp.makeConstraints { make in
-            make.height.equalTo(FieldHeights.small.rawValue)
-        }
         
         for view in inputTextfields {
             inputStack.addArrangedSubview(view)
