@@ -171,7 +171,8 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
     
     // MARK: - User Interaction
     @objc override func buttonTapped() {
-        view.endEditing(true)
+        super.buttonTapped()
+        
         interactor?.submit(vieAction: .init())
     }
 

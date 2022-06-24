@@ -375,6 +375,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
     
     @objc func buttonTapped() {
         // override in subclass
+        view.endEditing(true)
     }
 
     func didSelectItem(in section: Int, row: Int) {
