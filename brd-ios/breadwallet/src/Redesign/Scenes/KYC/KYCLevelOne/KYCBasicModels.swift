@@ -32,7 +32,7 @@ enum KYCBasicModels {
     struct Country {
         struct ViewAction {
             var code: String?
-            var fullName: String?
+            var countryFullName: String?
         }
     }
     

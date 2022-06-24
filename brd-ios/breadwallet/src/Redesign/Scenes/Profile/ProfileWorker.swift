@@ -10,20 +10,32 @@
 
 import Foundation
 
-// TODO: BE bug.. currently the EP returns nil
 struct ProfileResponseData: ModelResponse {
+    var country: String?
+    var date_of_birth: String?
+    var first_name: String?
+    var last_name: String?
     var email: String?
     var kyc_status: String?
 }
 
 struct Profile: Model {
+    var country: String?
+    var dateOfBirth: String?
+    var firstName: String?
+    var lastName: String?
     var email: String?
     var status: VerificationStatus
 }
 
 class ProfileMapper: ModelMapper<ProfileResponseData, Profile> {
     override func getModel(from response: ProfileResponseData) -> Profile? {
-        return .init(email: response.email, status: .init(rawValue: response.kyc_status))
+        return .init(country: response.country,
+                     dateOfBirth: response.date_of_birth,
+                     firstName: response.first_name,
+                     lastName: response.last_name,
+                     email: response.email,
+                     status: .init(rawValue: response.kyc_status))
     }
 }
 

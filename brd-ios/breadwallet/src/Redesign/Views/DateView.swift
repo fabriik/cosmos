@@ -91,18 +91,21 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
     override func setupSubviews() {
         super.setupSubviews()
         
+        // TODO: Constant
+        let titleHeight: CGFloat = 20
+        
         addSubview(hiddenTextField)
         hiddenTextField.alpha = 0
         content.addSubview(stack)
         stack.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(FieldHeights.small.rawValue + titleHeight + stack.spacing)
             make.bottom.equalToSuperview().priority(.low)
         }
         
         stack.addArrangedSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            // TODO: constant
-            make.height.equalTo(20)
+            make.height.equalTo(titleHeight)
         }
         
         stack.addArrangedSubview(dateStack)
@@ -112,12 +115,6 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         
         dateStack.arrangedSubviews.forEach { arrangedSubview in
             (arrangedSubview as? FETextField)?.isPicker = true
-        }
-        
-        dateStack.arrangedSubviews.forEach { arrangedSubview in
-            arrangedSubview.snp.makeConstraints { make in
-                make.height.equalTo(FieldHeights.common.rawValue)
-            }
         }
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -151,19 +148,24 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         
         guard let date = viewModel?.date else { return }
         datePicker.date = date
-        dateChanged(datePicker: datePicker)
+        setDateValues()
     }
     
-    @objc private func dateChanged(datePicker: UIDatePicker) {
+    @objc private func setDateValues() {
         let components = datePicker.calendar.dateComponents([.day, .month, .year], from: datePicker.date)
         guard let month = components.month,
               let day = components.day,
               let year = components.year
         else { return }
-        valueChanged?(datePicker.date)
+        
         monthTextfield.value = "\(month)"
         dayTextField.value = "\(day)"
         yearTextField.value = "\(year)"
+    }
+    
+    @objc private func dateChanged(datePicker: UIDatePicker) {
+        valueChanged?(datePicker.date)
+        setDateValues()
     }
     
     @objc private func tapped() {

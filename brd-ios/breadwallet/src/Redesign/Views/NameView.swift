@@ -55,30 +55,30 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         return view
     }()
     
+    private var firstName: String?
+    private var lastName: String?
+    
     override func setupSubviews() {
         super.setupSubviews()
+        
+        // TODO: Constant
+        let titleHeight: CGFloat = 20
         
         content.addSubview(stack)
         stack.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(FieldHeights.small.rawValue + titleHeight + stack.spacing)
             make.bottom.equalToSuperview().priority(.low)
         }
         
         stack.addArrangedSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            // TODO: constant
-            make.height.equalTo(20)
+            make.height.equalTo(titleHeight)
         }
         
         stack.addArrangedSubview(nameStack)
         nameStack.addArrangedSubview(firstNameTextField)
         nameStack.addArrangedSubview(lastNameTextfield)
-        
-        nameStack.arrangedSubviews.forEach { arrangedSubview in
-            arrangedSubview.snp.makeConstraints { make in
-                make.height.equalTo(FieldHeights.common.rawValue)
-            }
-        }
     }
     
     override func configure(with config: NameViewConfiguration?) {
@@ -93,30 +93,27 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         super.setup(with: viewModel)
         
         titleLabel.setup(with: viewModel?.title)
+        
+        firstName = viewModel?.firstName?.value
+        lastName = viewModel?.lastName?.value
         firstNameTextField.setup(with: viewModel?.firstName)
         lastNameTextfield.setup(with: viewModel?.lastName)
         
         firstNameTextField.valueChanged = { [weak self] in
-            self?.stateChanged(firstName: $0)
+            self?.firstName = $0
+            self?.stateChanged()
         }
         
         lastNameTextfield.valueChanged = { [weak self] in
-            self?.stateChanged(lastName: $0)
+            self?.lastName = $0
+            self?.stateChanged()
         }
+        
         stack.layoutIfNeeded()
     }
     
-    var firstName: String?
-    var lastName: String?
-    
-    private func stateChanged(firstName: String? = nil, lastName: String? = nil) {
-        // TODO: clean up this logic
-        if let first = firstName {
-            self.firstName = first.isEmpty ? nil : first
-        } else if let last = lastName {
-            self.lastName = last.isEmpty ? nil : last
-        }
-        valueChanged?(self.firstName, self.lastName)
+    private func stateChanged() {
+        valueChanged?(firstName, lastName)
         
         Self.animate(withDuration: Presets.Animation.duration) { [weak self] in
             self?.content.layoutIfNeeded()

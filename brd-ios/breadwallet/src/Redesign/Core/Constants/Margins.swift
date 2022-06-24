@@ -59,6 +59,9 @@ enum ViewSizes: CGFloat {
 }
 
 enum FieldHeights: CGFloat {
+    /// 48
+    case small = 48.0
+    
     /// 60
     case common = 60.0
 }

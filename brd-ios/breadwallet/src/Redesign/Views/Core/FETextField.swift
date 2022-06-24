@@ -41,7 +41,7 @@ struct TextFieldModel: ViewModel {
     var error: String?
     var info: InfoViewModel? //= InfoViewModel(description: .text("Please enter ur name."))
     var trailing: ImageViewModel?
-    var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) >= 1 }
+    var validator: ((String?) -> Bool)? = { text in return (text?.count ?? 0) >= 1 } // TODO: This is Interactor logic
 }
 
 class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDelegate, StateDisplayable {
@@ -140,8 +140,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         content.addSubview(mainStack)
         mainStack.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.top.bottom.leading.trailing.equalToSuperview()
         }
         
         mainStack.addArrangedSubview(textFieldContent)
@@ -151,9 +150,10 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         textFieldStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.leading.equalTo(Margins.large.rawValue)
-            make.top.equalToSuperview().inset(Margins.medium.rawValue)
-            make.bottom.equalToSuperview().inset(Margins.medium.rawValue).priority(.low)
+            make.top.equalToSuperview().inset(Margins.small.rawValue)
+            make.bottom.equalToSuperview().inset(Margins.small.rawValue).priority(.low)
         }
+        
         textFieldStack.addArrangedSubview(titleStack)
         titleStack.addArrangedSubview(leadingView)
         titleStack.addArrangedSubview(titleLabel)
@@ -329,7 +329,6 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         titleStack.isHidden = hideTitleStack
         textField.isHidden = hideTextField
-        titleLabel.configure(with: titleConfig)
         hintLabel.isHidden = hint == nil
         
         if let text = hint,
@@ -339,10 +338,9 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         displayState = state
         
+        titleLabel.configure(with: titleConfig)
         hintLabel.configure(with: .init(textColor: background?.tintColor))
-        // Border
         configure(background: background)
-        // Shadow
         configure(shadow: config?.shadowConfiguration)
         
         titleLabel.layoutIfNeeded()
