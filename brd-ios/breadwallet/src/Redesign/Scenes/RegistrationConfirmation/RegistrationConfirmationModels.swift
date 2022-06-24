@@ -48,4 +48,10 @@ enum RegistrationConfirmationModels {
         struct ActionResponse {}
         struct ResponseDisplay {}
     }
+    
+    struct Error {
+        struct ViewAction {}
+        struct ActionResponse {}
+        struct ResponseDisplay {}
+    }
 }

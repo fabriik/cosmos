@@ -70,6 +70,11 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
         viewController?.displayMessage(responseDisplay: .init(model: .init(description: .text("Verification code sent.")),
                                                               config: Presets.InfoView.verification))
     }
+    
+    func presentError(actionResponse: RegistrationConfirmationModels.Error.ActionResponse) {
+        viewController?.displayError(responseDisplay: .init())
+    }
+    
     // MARK: - Additional Helpers
 
 }

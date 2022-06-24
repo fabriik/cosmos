@@ -130,11 +130,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         
         guard let text = textField.text,
         text.count <= numberOfFields else {
-            if let text = textField.text?.prefix(numberOfFields) {
-                textField.text = String(text)
-            }
-            errorLabel.text = "Entered code is too long. Should be \(numberOfFields) characters"
-            return animateTo(state: .error)
+            return
         }
         
         animateTo(state: .selected)
@@ -183,5 +179,10 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
             textField.layer.borderWidth = border.borderWidth
             textField.layer.borderColor = border.tintColor.cgColor
         }
+    }
+    
+    func showErrorMessage() {
+        errorLabel.text = "Invalid code"
+        self.animateTo(state: .error)
     }
 }
