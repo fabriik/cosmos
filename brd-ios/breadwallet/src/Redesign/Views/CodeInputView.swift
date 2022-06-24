@@ -129,9 +129,12 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         valueChanged?(textField.text)
         
         guard let text = textField.text,
-        text.count <= numberOfFields else {
-            return
-        }
+              text.count <= numberOfFields else {
+                  if let text = textField.text?.prefix(numberOfFields) {
+                      textField.text = String(text)
+                  }
+                  return
+              }
         
         animateTo(state: .selected)
         let textArray = Array(text)

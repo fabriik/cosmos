@@ -58,6 +58,8 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
     
     func presentValidate(actionResponse: RegistrationConfirmationModels.Validate.ActionResponse) {
         let code = actionResponse.item ?? ""
+        guard code.count <= 6 else { return }
+        
         viewController?.displayValidate(responseDisplay: .init(isValid: code.count == 6))
     }
     
