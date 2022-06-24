@@ -289,7 +289,7 @@ extension Presets {
                                                                          border: Presets.Border.zero),
                                                        title: .init(font: Fonts.Title.five, textColor: LightColors.Text.one),
                                                        status: .init(title: .init(font: Fonts.Body.two,
-                                                                                  textColor: LightColors.Contrast.two),
+                                                                                  textColor: LightColors.Contrast.one),
                                                                      background: .init(backgroundColor: LightColors.pending,
                                                                                        tintColor: LightColors.Contrast.one,
                                                                                        border: Presets.Border.zero)),

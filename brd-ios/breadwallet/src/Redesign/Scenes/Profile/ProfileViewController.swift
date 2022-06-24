@@ -61,7 +61,7 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
                 let config: InfoViewConfiguration
                 switch (model.kyc, model.status) {
                     
-                case (.levelOne, _),
+                case (.levelOne, .levelOne),
                     (.levelTwo, .levelTwo(.levelTwo)):
                     config = Presets.InfoView.verified
                     
