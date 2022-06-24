@@ -114,7 +114,7 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
     
     func displayConfirm(responseDisplay: RegistrationConfirmationModels.Confirm.ResponseDisplay) {
         coordinator?.showOverlay(with: .success) { [weak self] in
-            self?.coordinator?.goBack()
+            self?.coordinator?.dismissFlow()
         }
     }
     
