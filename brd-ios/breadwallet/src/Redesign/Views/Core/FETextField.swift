@@ -14,6 +14,7 @@ import SnapKit
 struct TextFieldConfiguration: Configurable {
     var leadingImageConfiguration: BackgroundConfiguration?
     var titleConfiguration: LabelConfiguration?
+    var selectedTitleConfiguration: LabelConfiguration?
     var textConfiguration: LabelConfiguration?
     var placeholderConfiguration: LabelConfiguration?
     var hintConfiguration: LabelConfiguration?
@@ -148,9 +149,9 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         textFieldContent.addSubview(textFieldStack)
         textFieldStack.snp.makeConstraints { make in
-            make.center.equalToSuperview()
             make.leading.equalTo(Margins.large.rawValue)
-            make.top.equalTo(Margins.small.rawValue)
+            make.top.equalToSuperview().inset(Margins.medium.rawValue)
+            make.bottom.equalToSuperview().inset(Margins.medium.rawValue).priority(.low)
         }
         textFieldStack.addArrangedSubview(titleStack)
         titleStack.addArrangedSubview(leadingView)
@@ -297,20 +298,24 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         var hint = viewModel?.hint
         var hideTextField = textField.text?.isEmpty == true
         var hideTitleStack = false
+        var titleConfig: LabelConfiguration?
         
         switch state {
         case .normal:
             background = config?.backgroundConfiguration
+            titleConfig = config?.titleConfiguration
             
         case .filled:
             background = config?.backgroundConfiguration
             hideTextField = false
             
             hideTitleStack = isPicker
+            titleConfig = config?.selectedTitleConfiguration
             
         case .highlighted, .selected:
             background = config?.selectedBackgroundConfiguration
             hideTextField = false
+            titleConfig = config?.selectedTitleConfiguration
             
         case .disabled:
             background = config?.disabledBackgroundConfiguration
@@ -323,6 +328,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         
         titleStack.isHidden = hideTitleStack
         textField.isHidden = hideTextField
+        titleLabel.configure(with: titleConfig)
         hintLabel.isHidden = hint == nil
         
         if let text = hint,
