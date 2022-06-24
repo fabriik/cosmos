@@ -49,6 +49,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         var views = [FETextField]()
         for _ in (0..<numberOfFields) {
             let view = FETextField()
+            view.hideFilledTitleStack = true
             view.isUserInteractionEnabled = false
             views.append(view)
         }
@@ -86,9 +87,9 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         stack.addArrangedSubview(inputStack)
         
         for view in inputTextfields {
-            view.hideFilledTitleStack = true
             inputStack.addArrangedSubview(view)
         }
+        
         stack.addArrangedSubview(errorLabel)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))

@@ -111,7 +111,7 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             view.configure(with: Presets.TextField.two)
             view.setup(with: model)
             
-            // TODO: Update hideFilledTitleStack logic and make it a configuration. 
+            // TODO: Update hideFilledTitleStack logic and make it a configuration.
             view.hideFilledTitleStack = true
             
             view.contentSizeChanged = {
