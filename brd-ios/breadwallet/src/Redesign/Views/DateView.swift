@@ -51,18 +51,21 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
     private lazy var monthTextfield: FETextField = {
         let view = FETextField()
         view.isUserInteractionEnabled = false
+        view.hideFilledTitleStack = true
         return view
     }()
     
     private lazy var dayTextField: FETextField = {
         let view = FETextField()
         view.isUserInteractionEnabled = false
+        view.hideFilledTitleStack = true
         return view
     }()
     
     private lazy var yearTextField: FETextField = {
         let view = FETextField()
         view.isUserInteractionEnabled = false
+        view.hideFilledTitleStack = true
         return view
     }()
     
@@ -123,10 +126,6 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         dateStack.addArrangedSubview(monthTextfield)
         dateStack.addArrangedSubview(dayTextField)
         dateStack.addArrangedSubview(yearTextField)
-        
-        dateStack.arrangedSubviews.forEach { arrangedSubview in
-            (arrangedSubview as? FETextField)?.hideFilledTitleStack = true
-        }
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         addGestureRecognizer(tap)
