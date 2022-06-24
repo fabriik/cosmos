@@ -135,7 +135,7 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             view.setup(with: model)
             view.setupCustomMargins(vertical: .large, horizontal: .large)
             view.snp.makeConstraints { make in
-                make.height.equalTo(FieldHeights.common.rawValue)
+                make.height.equalTo(ButtonHeights.common.rawValue)
             }
             view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
