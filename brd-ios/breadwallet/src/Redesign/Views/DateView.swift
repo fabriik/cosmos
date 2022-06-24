@@ -67,8 +67,20 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
     }()
     
     private lazy var hiddenTextField: UITextField = {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor.black
+        toolBar.sizeToFit()
+        
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(UIView.endEditing))
+        toolBar.setItems([space, doneButton], animated: false)
+        
         let view = UITextField()
         view.inputView = datePicker
+        view.inputAccessoryView = toolBar
+        
         return view
     }()
     
