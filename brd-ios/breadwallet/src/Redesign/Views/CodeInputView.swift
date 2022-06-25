@@ -49,6 +49,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         var views = [FETextField]()
         for _ in (0..<numberOfFields) {
             let view = FETextField()
+            view.hideFilledTitleStack = true
             view.isUserInteractionEnabled = false
             views.append(view)
         }
@@ -88,6 +89,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         for view in inputTextfields {
             inputStack.addArrangedSubview(view)
         }
+        
         stack.addArrangedSubview(errorLabel)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -182,6 +184,6 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
     
     func showErrorMessage() {
         errorLabel.text = "Invalid code"
-        self.animateTo(state: .error)
+        animateTo(state: .error)
     }
 }

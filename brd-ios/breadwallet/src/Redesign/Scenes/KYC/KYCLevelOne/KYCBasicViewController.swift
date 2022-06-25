@@ -111,11 +111,8 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             view.configure(with: Presets.TextField.two)
             view.setup(with: model)
             
-            // TODO: Update isPicker logic
-            view.isPicker = true
-            if model.value != nil {
-                view.animateTo(state: .filled, withAnimation: false)
-            }
+            // TODO: Update hideFilledTitleStack logic and make it a configuration.
+            view.hideFilledTitleStack = true
             
             view.contentSizeChanged = {
                 tableView.beginUpdates()
@@ -171,7 +168,8 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
     
     // MARK: - User Interaction
     @objc override func buttonTapped() {
-        view.endEditing(true)
+        super.buttonTapped()
+        
         interactor?.submit(vieAction: .init())
     }
 
