@@ -229,7 +229,9 @@ class Currencies {
         var value: String { return rawValue }
     }
     
-    var currencies = [CurrencyMetaData]()
+    var currencies: [CurrencyMetaData] {
+        return CurrencyFileManager().getCurrencyMetaDataFromCache()
+    }
     
     static let defaultCurrencyCodes = [AssetCodes.bsv.value,
                                        AssetCodes.btc.value,
@@ -237,14 +239,6 @@ class Currencies {
     
     var defaultCurrencyIds: [CurrencyId] {
         return Currencies.defaultCurrencyCodes.compactMap { getUID(from: $0) }
-    }
-    
-    init() {
-        CurrencyFileManager.getCurrencyMetaDataFromCache { currency in
-            let metaDatas = currency.values.compactMap { $0 } as? [CurrencyMetaData]
-            self.currencies.removeAll()
-            self.currencies.append(contentsOf: metaDatas ?? [])
-        }
     }
     
     func getUID(from code: String) -> CurrencyId? {
@@ -263,6 +257,26 @@ struct CurrencyFileManager {
             return sharedFilePath
         } else {
             return bundleFilePath
+        }
+    }
+    
+    func getCurrencyMetaDataFromCache() -> [CurrencyMetaData] {
+        guard let sharedFilePath = CurrencyFileManager.cachedCurrenciesFilePath else { return [] }
+        
+        guard FileManager.default.fileExists(atPath: sharedFilePath) else { return [] }
+        do {
+            print("[CurrencyList] using cached token list")
+            let cachedData = try Data(contentsOf: URL(fileURLWithPath: sharedFilePath))
+            let currencies = try JSONDecoder().decode([CurrencyMetaData].self, from: cachedData)
+            
+            print("[CurrencyList] tokens updated: \(currencies.count) tokens")
+            
+            return currencies
+        } catch let e {
+            print("[CurrencyList] error reading from cache: \(e)")
+            // remove the invalid cached data
+            try? FileManager.default.removeItem(at: URL(fileURLWithPath: sharedFilePath))
+            return []
         }
     }
     
