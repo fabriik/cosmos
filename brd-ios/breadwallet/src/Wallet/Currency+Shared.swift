@@ -219,11 +219,6 @@ extension CurrencyMetaData: Hashable {
 class Currencies {
     static var shared = Currencies()
     
-    struct CurrencyMetadata {
-        let code: String?
-        let uid: CurrencyId?
-    }
-    
     enum AssetCodes: String {
         case bsv
         case btc
@@ -234,7 +229,7 @@ class Currencies {
         var value: String { return rawValue }
     }
     
-    var currencies = [CurrencyMetadata]()
+    var currencies = [CurrencyMetaData]()
     
     static let defaultCurrencyCodes = [AssetCodes.bsv.value,
                                        AssetCodes.btc.value,
@@ -250,9 +245,6 @@ class Currencies {
             self.currencies.removeAll()
             
             metaDatas?.forEach({ metaData in
-                let metaData: Currencies.CurrencyMetadata = .init(code: metaData.code,
-                                                                  uid: metaData.uid)
-                
                 self.currencies.append(metaData)
             })
         }
