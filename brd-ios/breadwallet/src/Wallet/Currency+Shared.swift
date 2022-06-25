@@ -261,9 +261,8 @@ struct CurrencyFileManager {
     }
     
     func getCurrencyMetaDataFromCache() -> [CurrencyMetaData] {
-        guard let sharedFilePath = CurrencyFileManager.cachedCurrenciesFilePath else { return [] }
-        
-        guard FileManager.default.fileExists(atPath: sharedFilePath) else { return [] }
+        guard let sharedFilePath = CurrencyFileManager.cachedCurrenciesFilePath,
+              FileManager.default.fileExists(atPath: sharedFilePath) else { return [] }
         do {
             print("[CurrencyList] using cached token list")
             let cachedData = try Data(contentsOf: URL(fileURLWithPath: sharedFilePath))
