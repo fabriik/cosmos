@@ -243,10 +243,7 @@ class Currencies {
         CurrencyFileManager.getCurrencyMetaDataFromCache { currency in
             let metaDatas = currency.values.compactMap { $0 } as? [CurrencyMetaData]
             self.currencies.removeAll()
-            
-            metaDatas?.forEach({ metaData in
-                self.currencies.append(metaData)
-            })
+            self.currencies.append(contentsOf: metaDatas ?? [])
         }
     }
     
