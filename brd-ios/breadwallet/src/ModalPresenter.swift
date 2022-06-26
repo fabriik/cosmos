@@ -873,7 +873,6 @@ class ModalPresenter: Subscriber, Trackable {
         start.addCloseNavigationItem()
         start.navigationItem.title = L10n.Import.title
         let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.importWallet, currency: wallet.currency, position: .right)
-        faqButton.tintColor = .white
         start.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: faqButton)]
         nc.viewControllers = [start]
         topViewController?.present(nc, animated: true, completion: nil)

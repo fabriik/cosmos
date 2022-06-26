@@ -213,7 +213,6 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
     
     private func addFaqButton() {
         let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.enableTouchId, position: .right)
-        faqButton.tintColor = Theme.blueBackground
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: faqButton)]
     }
 
