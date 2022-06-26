@@ -78,9 +78,7 @@ class ConfirmPhraseView: UIView {
         guard textField.markedTextRange == nil else { return }
         if textField.text == word {
             circle.show()
-            if !E.isIPhone4 {
-                textField.isEnabled = false
-            }
+            textField.isEnabled = false
             callback?()
         }
     }
@@ -100,9 +98,8 @@ extension ConfirmPhraseView: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if E.isIPhone4 {
-            doneCallback?()
-        }
+        doneCallback?()
+        
         return true
     }
 }

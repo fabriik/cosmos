@@ -185,7 +185,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     private func addPinView() {
         pinViewContainer.addSubview(pinView)
         pinView.constrain([
-            pinView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: E.isIPhone4 ? -C.padding[2] : 0.0),
+            pinView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             pinView.centerXAnchor.constraint(equalTo: pinViewContainer.centerXAnchor),
             pinView.widthAnchor.constraint(equalToConstant: pinView.width),
             pinView.heightAnchor.constraint(equalToConstant: pinView.itemSize)])
