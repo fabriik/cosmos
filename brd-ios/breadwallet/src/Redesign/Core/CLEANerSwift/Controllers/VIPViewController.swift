@@ -23,6 +23,7 @@ class VIPViewController<C: CoordinatableRoutes,
     var sceneTitle: String? { return nil }
     var sceneLeftAlignedTitle: String? { return nil }
     var tabIcon: UIImage? { return nil }
+    var infoIcon: UIImage? { return nil }
     
     lazy var leftAlignedTitleLabel: UILabel = {
         let view = UILabel()
@@ -30,6 +31,14 @@ class VIPViewController<C: CoordinatableRoutes,
         view.textAlignment = .left
         view.textColor = LightColors.Icons.one
         return view
+    }()
+    
+    lazy var infoButton: UIButton = {
+        let infoButton = UIButton()
+        infoButton.tintColor = .black
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        
+        return infoButton
     }()
     
     // MARK: Modal dimissable
@@ -124,6 +133,10 @@ class VIPViewController<C: CoordinatableRoutes,
             self?.coordinator?.goBack()
         })
     }
+    
+    @objc func infoButtonTapped() {
+        // override in subclass
+    }
 
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         coordinator?.goBack()
@@ -131,6 +144,9 @@ class VIPViewController<C: CoordinatableRoutes,
 
     func setupSubviews() {
         tabBarItem.image = tabIcon
+        
+        guard let icon = infoIcon else { return }
+        infoButton.setBackgroundImage(icon, for: .normal)
     }
 
     func localize() {

@@ -48,6 +48,15 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
     func presentStartVerification(actionResponse: AccountVerificationModels.Start.ActionResponse) {
         viewController?.displayStartVerification(responseDisplay: .init(level: actionResponse.level))
     }
+    
+    func presentPersonalInfoPopup(actionResponse: AccountVerificationModels.PersonalInfo.ActionResponse) {
+        // TODO: localize
+        let text = "We need to verify your personal information for compliance purposes. This information won’t be shared with outside sources unless required by law."
+        let model = PopupViewModel(title: .text("Personal information"),
+                                   body: text)
+        
+        viewController?.displayPersonalInfoPopup(responseDisplay: .init(model: model))
+    }
 
     // MARK: - Additional Helpers
 
