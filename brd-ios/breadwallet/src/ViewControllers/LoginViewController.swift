@@ -11,10 +11,7 @@ import LocalAuthentication
 import WalletKit
 import MachO
 
-private let topControlHeight: CGFloat = 32.0
-
 class LoginViewController: UIViewController, Subscriber, Trackable {
-
     enum Context {
         case initialLaunch(loginHandler: LoginCompletionHandler)
         case automaticLock
