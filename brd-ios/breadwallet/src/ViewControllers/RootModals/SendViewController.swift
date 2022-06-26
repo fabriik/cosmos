@@ -177,7 +177,7 @@ class SendViewController: UIViewController, Subscriber, ModalPresentable, Tracka
             sendButton.constraint(.trailing, toView: view, constant: -C.padding[2]),
             sendButton.constraint(toBottom: memoCell, constant: verticalButtonPadding),
             sendButton.constraint(.height, constant: C.Sizes.buttonHeight),
-            sendButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: E.isIPhoneX ? -C.padding[5] : -C.padding[2]) ])
+            sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: E.isIPhoneX ? -C.padding[5] : -C.padding[2]) ])
         addButtonActions()
         Store.subscribe(self,
                         selector: { [weak self] oldState, newState in
