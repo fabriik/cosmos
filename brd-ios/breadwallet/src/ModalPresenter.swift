@@ -870,7 +870,7 @@ class ModalPresenter: Subscriber, Trackable {
     private func presentKeyImport(wallet: Wallet, scanResult: QRCode? = nil) {
         let nc = RootNavigationController()
         let start = ImportKeyViewController(wallet: wallet, initialQRCode: scanResult)
-        start.addCloseNavigationItem(tintColor: Theme.blueBackground)
+        start.addCloseNavigationItem()
         start.navigationItem.title = L10n.Import.title
         let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.importWallet, currency: wallet.currency, position: .right)
         faqButton.tintColor = .white
@@ -910,7 +910,7 @@ class ModalPresenter: Subscriber, Trackable {
     
     func presentBiometricsMenuItem() {
         let biometricsSettings = BiometricsSettingsViewController(self.keyStore)
-        biometricsSettings.addCloseNavigationItem(tintColor: Theme.blueBackground)
+        biometricsSettings.addCloseNavigationItem()
         let nc = RootNavigationController(rootViewController: biometricsSettings)
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate

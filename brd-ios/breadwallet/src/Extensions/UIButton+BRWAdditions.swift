@@ -50,25 +50,26 @@ extension UIButton {
         return button
     }
     
-    static func buildModernCloseButton(position: Position) -> UIButton {
-        return UIButton.icon(image: #imageLiteral(resourceName: "CloseModern"), accessibilityLabel: L10n.AccessibilityLabels.close, position: position)
+    static func buildModernCloseButton(position: NavBarButtonPosition) -> UIButton {
+        let button = UIButton.icon(image: #imageLiteral(resourceName: "CloseModern"), accessibilityLabel: L10n.AccessibilityLabels.close, position: position)
+        button.tintColor = LightColors.Contrast.one
+        
+        return button
     }
 
-    static func buildFaqButton(articleId: String, currency: Currency? = nil, position: Position, tapped: (() -> Void)? = nil) -> UIButton {
+    static func buildFaqButton(articleId: String, currency: Currency? = nil, position: NavBarButtonPosition, tapped: (() -> Void)? = nil) -> UIButton {
         let button = UIButton.icon(image: #imageLiteral(resourceName: "Faq"), accessibilityLabel: L10n.AccessibilityLabels.faq, position: position)
-        button.tintColor = Theme.blueBackground
+        button.tintColor = LightColors.Contrast.one
+        
         button.tap = {
             Store.trigger(name: .presentFaq(articleId, currency))
             tapped?()
         }
+        
         return button
     }
     
-    enum Position {
-        case left, middle, right
-    }
-    
-    static func icon(image: UIImage, accessibilityLabel: String, position: Position) -> UIButton {
+    static func icon(image: UIImage, accessibilityLabel: String, position: NavBarButtonPosition) -> UIButton {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         button.setImage(image, for: .normal)
