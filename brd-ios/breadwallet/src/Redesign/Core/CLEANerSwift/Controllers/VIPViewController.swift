@@ -35,7 +35,7 @@ class VIPViewController<C: CoordinatableRoutes,
     
     lazy var infoButton: UIButton = {
         let infoButton = UIButton()
-        infoButton.tintColor = .black
+        infoButton.tintColor = LightColors.Text.one
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
         
         return infoButton
