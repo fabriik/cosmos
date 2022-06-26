@@ -12,7 +12,7 @@ import UIKit
 
 class GiftHeaderView: UIView {
     
-    let close = UIButton.close
+    let close = UIButton.buildModernCloseButton(position: .middle)
     private let titleLabel = UILabel(font: Theme.body1, color: .white)
     private let border = UIView(color: .white)
     

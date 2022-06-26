@@ -11,7 +11,6 @@ import UIKit
 class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private let walletAuthenticator: WalletAuthenticator
     private let assetListTableView = AssetListTableView()
-    private let subHeaderView = UIView()
     private let debugLabel = UILabel(font: .customBody(size: 12.0), color: .transparentWhiteText) // debug info
     private let prompt = UIView()
     private var promptHiddenConstraint: NSLayoutConstraint!
@@ -19,6 +18,15 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private var toolbarButtons = [UIButton]()
     private let notificationHandler = NotificationHandler()
     private let coreSystem: CoreSystem
+    
+    private lazy var subHeaderView: UIView = {
+        let subHeaderView = UIView()
+        subHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        subHeaderView.backgroundColor = .homeBackground
+        subHeaderView.clipsToBounds = false
+        
+        return subHeaderView
+    }()
     
     private lazy var totalAssetsTitleLabel: UILabel = {
         let totalAssetsTitleLabel = UILabel(font: Theme.caption, color: Theme.tertiaryText)
@@ -98,7 +106,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         let pullToRefreshControl = UIRefreshControl()
         pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         pullToRefreshControl.addTarget(self, action: #selector(reload), for: .valueChanged)
-        
         return pullToRefreshControl
     }()
     
@@ -223,16 +230,9 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
 
     private func setInitialData() {
-        view.backgroundColor = .homeBackground
-        subHeaderView.backgroundColor = .homeBackground
-        subHeaderView.clipsToBounds = false
-        
-        navigationItem.titleView = UIView()
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.shadowImage = #imageLiteral(resourceName: "TransparentPixel")
-        navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "TransparentPixel"), for: .default)
-        
         title = ""
+        view.backgroundColor = .homeBackground
+        navigationItem.titleView = UIView()
         
         if E.isTestnet && !E.isScreenshots {
             debugLabel.text = "(Testnet)"
@@ -264,18 +264,12 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         let paddingWidth = C.padding[2]
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbarButtons = []
-        toolbar.items = [
-            flexibleSpace,
-            buttons[0],
-            flexibleSpace,
-            buttons[1],
-            flexibleSpace,
-            buttons[2],
-            flexibleSpace,
-            buttons[3],
-            flexibleSpace,
-            buttons[4],
-            flexibleSpace
+        toolbar.items = [flexibleSpace, buttons[0],
+                         flexibleSpace, buttons[1],
+                         flexibleSpace, buttons[2],
+                         flexibleSpace, buttons[3],
+                         flexibleSpace, buttons[4],
+                         flexibleSpace
         ]
         
         let buttonWidth = (view.bounds.width - (paddingWidth * CGFloat(buttons.count + 1))) / CGFloat(buttons.count)

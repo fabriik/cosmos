@@ -212,11 +212,8 @@ class BiometricsSettingsViewController: UIViewController, Subscriber, Trackable 
     }
     
     private func addFaqButton() {
-        let negativePadding = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativePadding.width = -16.0
-        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.enableTouchId)
-        faqButton.tintColor = Theme.blueBackground
-        navigationItem.rightBarButtonItems = [negativePadding, UIBarButtonItem(customView: faqButton)]
+        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.enableTouchId, position: .right)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: faqButton)]
     }
 
     fileprivate func presentCantUseBiometricsAlert() {

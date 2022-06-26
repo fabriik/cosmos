@@ -8,12 +8,16 @@
 
 import UIKit
 
+enum NavBarButtonSide {
+    case left
+    case right
+}
+
+enum NavBarButtonPosition {
+    case left, middle, right
+}
+
 extension UIViewController {
-    enum NavBarButtonSide {
-        case left
-        case right
-    }
-    
     func addChildViewController(_ viewController: UIViewController, layout: () -> Void) {
         addChild(viewController)
         view.addSubview(viewController.view)
@@ -21,12 +25,6 @@ extension UIViewController {
         viewController.didMove(toParent: self)
     }
 
-    func remove() {
-        willMove(toParent: nil)
-        view.removeFromSuperview()
-        removeFromParent()
-    }
-    
     func setBarButtonItem(from navigationController: UINavigationController, to side: NavBarButtonSide, target: AnyObject? = nil, action: Selector? = nil) {
         switch side {
         case .left:
@@ -47,31 +45,22 @@ extension UIViewController {
             
         }
     }
+    
+    func addCloseNavigationItem(side: NavBarButtonSide = .left) {
+        let close = side == .left ? UIButton.buildModernCloseButton(position: .left) : UIButton.buildModernCloseButton(position: .right)
         
-    func addCloseNavigationItem(tintColor: UIColor? = nil, side: NavBarButtonSide = .left) {
-        let close = UIButton.close
         close.tap = { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }
-        if let color = tintColor {
-            close.tintColor = color
-        } else {
-            close.tintColor = .navigationTint
-        }
+        
         switch side {
         case .left:
-            navigationItem.leftBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: close)]
+            navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: close)]
+            
         case .right:
-            navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: close), UIBarButtonItem.negativePadding]
+            navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: close)]
+            
         }
-    }
-
-    var safeTopAnchor: NSLayoutYAxisAnchor {
-        return view.safeAreaLayoutGuide.topAnchor
-    }
-
-    var safeBottomAnchor: NSLayoutYAxisAnchor {
-        return view.safeAreaLayoutGuide.bottomAnchor
     }
     
     func setAsNonDismissableModal() {

@@ -11,10 +11,7 @@ import LocalAuthentication
 import WalletKit
 import MachO
 
-private let topControlHeight: CGFloat = 32.0
-
 class LoginViewController: UIViewController, Subscriber, Trackable {
-
     enum Context {
         case initialLaunch(loginHandler: LoginCompletionHandler)
         case automaticLock
@@ -399,7 +396,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             }
         }
 
-        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled)
+        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled, position: .right)
         faqButton.tintColor = Theme.primaryText
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faqButton)
 
