@@ -35,9 +35,10 @@ class KYCCoordinator: BaseCoordinator,
         let coordinator = ItemSelectionCoordinator(navigationController: nvc)
         coordinator.start()
         coordinator.parentCoordinator = self
+        nvc.modalPresentationStyle = .formSheet
         (nvc.topViewController as? ItemSelectionViewController)?.itemSelected = selected
         childCoordinators.append(coordinator)
-        navigationController.show(nvc, sender: nil)
+        navigationController.present(nvc, animated: true)
     }
     
     func showDocumentReview(checklist: [ChecklistItemViewModel], image: UIImage) {
@@ -135,5 +136,20 @@ extension KYCCoordinator: ImagePickable {
         controller.setBarButtonItem(from: navigationController, to: .right, target: self, action: #selector(popFlow(sender:)))
         
         navigationController.pushViewController(controller, animated: true)
+    }
+}
+
+extension KYCCoordinator {
+    func showDatePicker(model: DateViewModel, completion: (() -> Void)?) {
+        guard let viewController = navigationController.children.last(where: { $0 is KYCBasicViewController }) as? KYCBasicViewController else { return }
+        DatePickerViewController.show(on: viewController,
+                                      sourceView: viewController.view,
+                                      title: nil,
+                                      date: model.date ?? Date(),
+                                      minimumDate: Calendar.current.date(byAdding: .year, value: -120, to: Date()),
+                                      maximumDate: Date()) { date in
+            viewController.interactor?.birthDateSet(viewAction: .init(date: date))
+            completion?()
+        }
     }
 }

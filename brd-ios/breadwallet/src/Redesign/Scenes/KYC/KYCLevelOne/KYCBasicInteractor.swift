@@ -65,6 +65,7 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
         dataStore?.birthdate = viewAction.date
         dataStore?.birthDateString = getBirthDateFormatter().string(from: dataStore?.birthdate ?? Date())
         
+        presenter?.presentData(actionResponse: .init(item: dataStore))
         validate(viewAction: .init())
     }
     

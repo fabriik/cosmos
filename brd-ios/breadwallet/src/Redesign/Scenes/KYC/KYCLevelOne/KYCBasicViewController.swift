@@ -91,8 +91,10 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             view.configure(with: .init())
             view.setup(with: model)
             
-            view.valueChanged = { [weak self] date in
-                self?.interactor?.birthDateSet(viewAction: .init(date: date))
+            view.didPresentPicker = { [weak self] in
+                self?.coordinator?.showDatePicker(model: model, completion: {
+                    view.animateTo(state: .filled)
+                })
             }
         }
         
@@ -176,9 +178,8 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
     // MARK: - KYCBasicResponseDisplay
     func displayValidate(responseDisplay: KYCBasicModels.Validate.ResponseDisplay) {
         guard let section = sections.firstIndex(of: Models.Section.confirm),
-              let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else {
-            return
-        }
+              let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else { return }
+        
         isValid = responseDisplay.isValid
         cell.wrappedView.isEnabled = isValid
     }
