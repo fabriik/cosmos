@@ -26,7 +26,7 @@ class ModalHeaderView: UIView {
         self.style = style
         
         if let faqInfo = faqInfo {
-            self.faq = UIButton.buildFaqButton(articleId: faqInfo, currency: currency)
+            self.faq = UIButton.buildFaqButton(articleId: faqInfo, currency: currency, position: .middle)
         }
 
         super.init(frame: .zero)
@@ -40,7 +40,7 @@ class ModalHeaderView: UIView {
 
     // MARK: - Private
     private let titleLabel = UILabel(font: .customBold(size: 17.0))
-    private let close = UIButton.close
+    private let close = UIButton.buildModernCloseButton(position: .middle)
     private var faq: UIButton?
     private let border = UIView()
     private let buttonSize: CGFloat = 44.0

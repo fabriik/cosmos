@@ -21,7 +21,7 @@ class InAppAlert: UIView {
     var bottomConstraint: NSLayoutConstraint?
     var hide: (() -> Void)?
 
-    private let close = UIButton.close
+    private let close = UIButton.buildModernCloseButton(position: .middle)
     private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let image = UIImageView()
 

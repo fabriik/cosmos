@@ -35,12 +35,12 @@ class ScanViewController: UIViewController, Trackable {
     fileprivate let guide = CameraGuideView()
     fileprivate let session = AVCaptureSession()
     private let toolbar = UIStackView()
-    private let close = UIButton.close
-    private let flash = UIButton.icon(image: #imageLiteral(resourceName: "Flash"), accessibilityLabel: L10n.Scanner.flashButtonLabel)
+    private let close = UIButton.buildModernCloseButton(position: .middle)
+    private let flash = UIButton.icon(image: #imageLiteral(resourceName: "Flash"), accessibilityLabel: L10n.Scanner.flashButtonLabel, position: .middle)
     private let cameraRoll: UIButton = {
         let button: UIButton
         if #available(iOS 13.0, *) {
-            button = UIButton.icon(image: UIImage(systemName: "photo.on.rectangle") ?? UIImage(), accessibilityLabel: "import")
+            button = UIButton.icon(image: UIImage(systemName: "photo.on.rectangle") ?? UIImage(), accessibilityLabel: "import", position: .middle)
         } else {
             button = UIButton(type: .system)
             button.setTitle("import", for: .normal)

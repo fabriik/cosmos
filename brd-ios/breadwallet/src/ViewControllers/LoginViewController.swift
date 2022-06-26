@@ -396,7 +396,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             }
         }
 
-        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled)
+        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled, position: .right)
         faqButton.tintColor = Theme.primaryText
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faqButton)
 

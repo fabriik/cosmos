@@ -432,7 +432,7 @@ class ModalPresenter: Subscriber, Trackable {
         let items = prepareSecuritySettingsMenuItems(menuNav: menuNav)
         let rootMenu = MenuViewController(items: items,
                                           title: L10n.MenuButton.security,
-                                          faqButton: UIButton.buildFaqButton(articleId: ArticleIds.securityCenter))
+                                          faqButton: UIButton.buildFaqButton(articleId: ArticleIds.securityCenter, position: .right))
         
         self.topViewController?.show(rootMenu, sender: nil)
     }
@@ -600,7 +600,7 @@ class ModalPresenter: Subscriber, Trackable {
                      icon: #imageLiteral(resourceName: "security"),
                      subMenu: securityItems,
                      rootNav: menuNav,
-                     faqButton: UIButton.buildFaqButton(articleId: ArticleIds.securityCenter)),
+                     faqButton: UIButton.buildFaqButton(articleId: ArticleIds.securityCenter, position: .right)),
             
             // Support
             MenuItem(title: L10n.MenuButton.support, icon: MenuItem.Icon.support) { [weak self] in
@@ -872,9 +872,9 @@ class ModalPresenter: Subscriber, Trackable {
         let start = ImportKeyViewController(wallet: wallet, initialQRCode: scanResult)
         start.addCloseNavigationItem(tintColor: Theme.blueBackground)
         start.navigationItem.title = L10n.Import.title
-        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.importWallet, currency: wallet.currency)
+        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.importWallet, currency: wallet.currency, position: .right)
         faqButton.tintColor = .white
-        start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
+        start.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: faqButton)]
         nc.viewControllers = [start]
         topViewController?.present(nc, animated: true, completion: nil)
     }

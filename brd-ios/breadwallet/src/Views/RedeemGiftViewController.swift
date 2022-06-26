@@ -44,7 +44,7 @@ class RedeemGiftViewController: UIViewController, Subscriber, Trackable {
     
     let container = RedeemContainer()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-    private let close = UIButton.close
+    private let close = UIButton.buildModernCloseButton(position: .middle)
     private let titleLabel = UILabel(font: Theme.h3Accent, color: .white)
     private let separator = UIView(color: .white)
     private let icon = UIImageView()

@@ -22,7 +22,7 @@ class ShareGiftView: UIView {
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let closeButton = UIButton.close
+    private let closeButton = UIButton.buildModernCloseButton(position: .middle)
     private let qr = UIImageView()
     private let name = UILabel(font: Theme.h0Title, color: UIColor.white)
     private let subHeader = UILabel(font: Theme.h2Title, color: UIColor.white)
