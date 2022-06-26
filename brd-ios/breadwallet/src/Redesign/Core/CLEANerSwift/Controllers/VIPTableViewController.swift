@@ -74,7 +74,14 @@ class VIPTableViewController<C: CoordinatableRoutes,
         leftAlignedTitleLabel.snp.makeConstraints { make in
             make.bottom.equalTo(tableView.snp.top)
             make.height.equalTo(topInsetValue)
-            make.leading.trailing.equalToSuperview().inset(Margins.large.rawValue)
+            make.leading.equalToSuperview().inset(Margins.large.rawValue)
+        }
+        
+        tableView.addSubview(infoButton)
+        infoButton.snp.makeConstraints { make in
+            make.bottom.equalTo(tableView.snp.top).inset(-Margins.extraLarge.rawValue)
+            make.leading.equalTo(leftAlignedTitleLabel.snp.trailing).inset(-Margins.small.rawValue)
+            make.trailing.equalToSuperview().inset(Margins.large.rawValue)
         }
         
         tableView.contentInset.top = topInsetValue

@@ -20,5 +20,10 @@ class AccountVerificationInteractor: NSObject, Interactor, AccountVerificationVi
     func startVerification(viewAction: AccountVerificationModels.Start.ViewAction) {
         presenter?.presentStartVerification(actionResponse: .init(level: Models.KYCLevel(rawValue: viewAction.level) ?? .one))
     }
+    
+    func showPersonalInfoPopup(viewAction: AccountVerificationModels.PersonalInfo.ViewAction) {
+        presenter?.presentPersonalInfoPopup(actionResponse: .init())
+    }
+    
     // MARK: - Aditional helpers
 }

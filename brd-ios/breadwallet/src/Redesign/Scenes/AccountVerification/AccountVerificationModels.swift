@@ -37,4 +37,12 @@ enum AccountVerificationModels {
             var level: KYCLevel
         }
     }
+    
+    struct PersonalInfo {
+        struct ViewAction {}
+        struct ActionResponse {}
+        struct ResponseDisplay {
+            var model: PopupViewModel
+        }
+    }
 }
