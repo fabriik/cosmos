@@ -30,7 +30,9 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
                         self?.dataStore?.countryFullName = data.first(where: { $0.iso2 == self?.dataStore?.country })?.localizedName
                         
                         self?.dataStore?.birthdate = self?.getBirthDateFormatter().date(from: profileData.dateOfBirth ?? "")
-                        self?.dataStore?.birthDateString = self?.getBirthDateFormatter().string(from: self?.dataStore?.birthdate ?? Date())
+                        if let birthDate = self?.dataStore?.birthdate {
+                            self?.dataStore?.birthDateString = self?.getBirthDateFormatter().string(from: birthDate)
+                        }
                         
                         self?.presenter?.presentData(actionResponse: .init(item: self?.dataStore))
                         self?.validate(viewAction: .init())

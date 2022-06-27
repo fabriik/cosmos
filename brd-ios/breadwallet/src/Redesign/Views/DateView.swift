@@ -111,10 +111,13 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         dayTextField.setup(with: viewModel?.day)
         yearTextField.setup(with: viewModel?.year)
         
-        let components = UIDatePicker().calendar.dateComponents([.day, .month, .year], from: viewModel?.date ?? Date())
+        guard let date = viewModel?.date else { return }
+        let components = Calendar.current.dateComponents([.day, .year, .month], from: date)
+        
         guard let month = components.month,
               let day = components.day,
               let year = components.year else { return }
+        
         monthTextfield.value = "\(month)"
         dayTextField.value = "\(day)"
         yearTextField.value = "\(year)"
