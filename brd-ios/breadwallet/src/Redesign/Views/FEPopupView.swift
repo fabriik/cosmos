@@ -57,7 +57,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
     
     private lazy var closeButton: WrapperView<FEButton> = {
         let view = WrapperView<FEButton>()
-        view.wrappedView.setup(with: .init(image: "Close-Dark"))
+        view.wrappedView.setup(with: .init(image: "Close-X-Popup"))
         view.wrappedView.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
         return view
     }()
