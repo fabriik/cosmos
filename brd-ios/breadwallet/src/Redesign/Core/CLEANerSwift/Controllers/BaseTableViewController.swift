@@ -76,7 +76,13 @@ class BaseTableViewController<C: CoordinatableRoutes,
     func displayData(responseDisplay: FetchModels.Get.ResponseDisplay) {
         sections = responseDisplay.sections
         sectionRows = responseDisplay.sectionRows
-        tableView.reloadData()
+        
+        // TODO: DiffableDataSource
+        UIView.transition(with: tableView,
+                          duration: Presets.Animation.duration,
+                          options: .transitionCrossDissolve,
+                          animations: { [weak self] in self?.tableView.reloadData() })
+        
         tableView.backgroundView?.isHidden = !sections.isEmpty
     }
 
@@ -241,7 +247,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
             view.setup(with: model)
             view.setupCustomMargins(vertical: .large, horizontal: .large)
             view.snp.makeConstraints { make in
-                make.height.equalTo(FieldHeights.common.rawValue)
+                make.height.equalTo(ButtonHeights.common.rawValue)
             }
             view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
@@ -375,6 +381,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
     
     @objc func buttonTapped() {
         // override in subclass
+        view.endEditing(true)
     }
 
     func didSelectItem(in section: Int, row: Int) {

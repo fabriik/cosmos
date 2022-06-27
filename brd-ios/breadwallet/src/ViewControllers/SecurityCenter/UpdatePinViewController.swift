@@ -55,7 +55,7 @@ class UpdatePinViewController: UIViewController, Subscriber {
     private let keyMaster: KeyMaster
     private let backupKey: String?
     
-    private lazy var faq = UIButton.buildFaqButton(articleId: ArticleIds.setPin, currency: nil, tapped: { [unowned self] in
+    private lazy var faq = UIButton.buildFaqButton(articleId: ArticleIds.setPin, currency: nil, position: .right, tapped: { [unowned self] in
         self.trackEvent(event: .helpButton)
     })
     

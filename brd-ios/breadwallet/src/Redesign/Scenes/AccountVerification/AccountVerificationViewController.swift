@@ -16,6 +16,10 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
         return "Account Verification"
     }
     
+    override var infoIcon: UIImage? {
+        return UIImage(named: "infoIcon")
+    }
+    
     // MARK: - Overrides
     
     override func setupSubviews() {
@@ -93,6 +97,10 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
     }
 
     // MARK: - User Interaction
+    
+    override func infoButtonTapped() {
+        interactor?.showPersonalInfoPopup(viewAction: .init())
+    }
 
     // MARK: - AccountVerificationResponseDisplay
     func displayStartVerification(responseDisplay: AccountVerificationModels.Start.ResponseDisplay) {
@@ -103,6 +111,10 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
         case .two:
             coordinator?.showKYCLevelTwo()
         }
+    }
+    
+    func displayPersonalInfoPopup(responseDisplay: AccountVerificationModels.PersonalInfo.ResponseDisplay) {
+        coordinator?.showPopup(with: responseDisplay.model)
     }
 
     // MARK: - Additional Helpers

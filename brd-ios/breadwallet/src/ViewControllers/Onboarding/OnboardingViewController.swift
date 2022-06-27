@@ -265,8 +265,7 @@ class OnboardingViewController: UIViewController {
     
     private func setUpLogo() {
         logoImageView.alpha = 0
-        
-        self.view.addSubview(logoImageView)
+        view.addSubview(logoImageView)
         
         let screenHeight = UIScreen.main.bounds.height
         let offset = (screenHeight / 4.0) + 20
@@ -275,17 +274,12 @@ class OnboardingViewController: UIViewController {
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -(offset))
             ])
-        
     }
     
-    private func animateIcons(metaData: [CurrencyId: CurrencyMetaData]?) {
+    private func animateIcons(metaData: [CurrencyMetaData]?) {
         guard pageIndex == 0 else { return }
         guard let metaData = metaData else {
-            Backend.apiClient.getCurrencyMetaData { [weak self] currencyMetaData in
-                DispatchQueue.main.async {
-                    self?.animateIcons(metaData: currencyMetaData)
-                }
-            }
+            animateIcons(metaData: Currencies.shared.currencies)
             return
         }
         
@@ -295,7 +289,7 @@ class OnboardingViewController: UIViewController {
         let duration = 10.0
         let maxDelay = 15.0
         
-        let currencies: [CurrencyMetaData] = Array(Array(metaData.values).sorted { return $0.isPreferred && !$1.isPreferred }[..<iconCount])
+        let currencies: [CurrencyMetaData] = Array(Array(metaData).sorted { return $0.isPreferred && !$1.isPreferred }[..<iconCount])
         for currency in currencies {
             
             //Add icon

@@ -34,7 +34,9 @@ protocol KYCBasicDataStore: BaseDataStore, FetchDataStore {
     var firstName: String? { get set }
     var lastName: String? { get set }
     var country: String? { get set }
+    var countryFullName: String? { get set }
     var birthdate: Date? { get set }
+    var birthDateString: String? { get set }
 }
 
 protocol KYCBasicDataPassing {

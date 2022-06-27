@@ -20,15 +20,18 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
     }
     
     func validate(viewAction: RegistrationConfirmationModels.Validate.ViewAction) {
-        dataStore?.code = viewAction.item
-        presenter?.presentValidate(actionResponse: .init(item: viewAction.item))
+        let code = viewAction.item ?? ""
+        dataStore?.code = code
+        guard code.count <= 6 else { return }
+        
+        presenter?.presentValidate(actionResponse: .init(isValid: code.count == 6))
     }
     
     func confirm(viewAction: RegistrationConfirmationModels.Confirm.ViewAction) {
         let data = RegistrationConfirmationRequestData(code: dataStore?.code)
         RegistrationConfirmationWorker().execute(requestData: data) { [weak self] error in
             guard error == nil else {
-                self?.presenter?.presentError(actionResponse: .init(error: error))
+                self?.presenter?.presentError(actionResponse: .init())
                 return
             }
             

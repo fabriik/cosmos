@@ -66,10 +66,12 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         cell.setup { view in
             view.configure(with: .init())
             view.setup(with: model)
+            
             view.contentSizeChanged = {
                 tableView.beginUpdates()
                 tableView.endUpdates()
             }
+            
             view.valueChanged = { [weak self] first, last in
                 self?.interactor?.nameSet(viewAction: .init(first: first, last: last))
             }
@@ -88,8 +90,11 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         cell.setup { view in
             view.configure(with: .init())
             view.setup(with: model)
-            view.valueChanged = { [weak self] date in
-                self?.interactor?.birthDateSet(viewAction: .init(date: date))
+            
+            view.didPresentPicker = { [weak self] in
+                self?.coordinator?.showDatePicker(model: model, completion: {
+                    view.animateTo(state: .filled)
+                })
             }
         }
         
@@ -107,14 +112,15 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         cell.setup { view in
             view.configure(with: Presets.TextField.two)
             view.setup(with: model)
-            view.snp.makeConstraints { make in
-                make.height.equalTo(FieldHeights.common.rawValue)
-            }
+            
+            // TODO: Update hideFilledTitleStack logic and make it a configuration.
+            view.hideFilledTitleStack = true
             
             view.contentSizeChanged = {
                 tableView.beginUpdates()
                 tableView.endUpdates()
             }
+            
             view.isUserInteractionEnabled = false
         }
         
@@ -134,9 +140,7 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
             view.configure(with: Presets.Button.primary)
             view.setup(with: model)
             view.setupCustomMargins(vertical: .large, horizontal: .large)
-            view.snp.makeConstraints { make in
-                make.height.equalTo(FieldHeights.common.rawValue)
-            }
+            
             view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
         
@@ -152,10 +156,11 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
                 return
             }
             
-            cell.wrappedView.isPicker = true
-            
             coordinator?.showCountrySelector { [weak self] model in
-                self?.interactor?.countrySelected(viewAction: .init(code: model?.iso2, fullName: model?.localizedName))
+                guard model != nil else { return }
+                
+                cell.wrappedView.animateTo(state: .filled, withAnimation: false)
+                self?.interactor?.countrySelected(viewAction: .init(code: model?.iso2, countryFullName: model?.localizedName))
             }
             
         default:
@@ -165,16 +170,16 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
     
     // MARK: - User Interaction
     @objc override func buttonTapped() {
-        view.endEditing(true)
+        super.buttonTapped()
+        
         interactor?.submit(vieAction: .init())
     }
 
     // MARK: - KYCBasicResponseDisplay
     func displayValidate(responseDisplay: KYCBasicModels.Validate.ResponseDisplay) {
         guard let section = sections.firstIndex(of: Models.Section.confirm),
-              let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else {
-            return
-        }
+              let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else { return }
+        
         isValid = responseDisplay.isValid
         cell.wrappedView.isEnabled = isValid
     }

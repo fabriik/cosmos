@@ -55,7 +55,7 @@ class ManageWalletsViewController: UITableViewController {
         
         //If we are first in the nav controller stack, we need a close button
         if navigationController?.viewControllers.first == self {
-            let button = UIButton.close
+            let button = UIButton.buildModernCloseButton(position: .left)
             button.tintColor = .almostBlack
             button.tap = {
                 self.dismiss(animated: true, completion: nil)

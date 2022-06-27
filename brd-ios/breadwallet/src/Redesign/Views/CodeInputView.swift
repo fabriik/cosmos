@@ -49,6 +49,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         var views = [FETextField]()
         for _ in (0..<numberOfFields) {
             let view = FETextField()
+            view.hideFilledTitleStack = true
             view.isUserInteractionEnabled = false
             views.append(view)
         }
@@ -84,14 +85,11 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         }
         
         stack.addArrangedSubview(inputStack)
-        inputStack.snp.makeConstraints { make in
-            // TODO: constant
-            make.height.equalTo(FieldHeights.common.rawValue)
-        }
         
         for view in inputTextfields {
             inputStack.addArrangedSubview(view)
         }
+        
         stack.addArrangedSubview(errorLabel)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -129,13 +127,12 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         valueChanged?(textField.text)
         
         guard let text = textField.text,
-        text.count <= numberOfFields else {
-            if let text = textField.text?.prefix(numberOfFields) {
-                textField.text = String(text)
-            }
-            errorLabel.text = "Entered code is too long. Should be \(numberOfFields) characters"
-            return animateTo(state: .error)
-        }
+              text.count <= numberOfFields else {
+                  if let text = textField.text?.prefix(numberOfFields) {
+                      textField.text = String(text)
+                  }
+                  return
+              }
         
         animateTo(state: .selected)
         let textArray = Array(text)
@@ -183,5 +180,10 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
             textField.layer.borderWidth = border.borderWidth
             textField.layer.borderColor = border.tintColor.cgColor
         }
+    }
+    
+    func showErrorMessage() {
+        errorLabel.text = "Invalid code"
+        animateTo(state: .error)
     }
 }

@@ -60,14 +60,6 @@ struct E {
             return false
         #endif
     }()
-        
-    static var isIPhone4: Bool {
-        #if IS_EXTENSION_ENVIRONMENT
-        return false
-        #else
-        return UIApplication.shared.keyWindow?.bounds.height == 480.0
-        #endif
-    }
     
     static var isIPhone5: Bool {
         #if IS_EXTENSION_ENVIRONMENT
@@ -99,7 +91,7 @@ struct E {
         #if IS_EXTENSION_ENVIRONMENT
         return false
         #else
-        return isIPhone6 || isIPhone5 || isIPhone4
+        return isIPhone6 || isIPhone5
         #endif
     }
     

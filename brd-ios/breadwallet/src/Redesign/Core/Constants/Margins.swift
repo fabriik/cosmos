@@ -62,3 +62,8 @@ enum FieldHeights: CGFloat {
     /// 48
     case common = 48.0
 }
+
+enum ButtonHeights: CGFloat {
+    /// 48
+    case common = 48.0
+}

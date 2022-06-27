@@ -92,6 +92,8 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
     }
     
     override func buttonTapped() {
+        super.buttonTapped()
+        
         interactor?.confirm(viewAction: .init())
     }
     
@@ -114,12 +116,20 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
     
     func displayConfirm(responseDisplay: RegistrationConfirmationModels.Confirm.ResponseDisplay) {
         coordinator?.showOverlay(with: .success) { [weak self] in
-            self?.coordinator?.goBack()
+            self?.coordinator?.dismissFlow()
         }
     }
     
     func displayResend(responseDisplay: RegistrationConfirmationModels.Resend.ResponseDisplay) {
         
+    }
+    
+    func displayError(responseDisplay: RegistrationConfirmationModels.Error.ResponseDisplay) {
+        guard let section = sections.firstIndex(of: Models.Section.input),
+              let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<CodeInputView>
+        else { return }
+        
+        cell.wrappedView.showErrorMessage()
     }
     
     // MARK: - Additional Helpers
