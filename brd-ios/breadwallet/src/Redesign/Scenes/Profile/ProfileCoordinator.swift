@@ -45,12 +45,10 @@ class ProfileCoordinator: BaseCoordinator, ProfileRoutes {
 
 extension BaseCoordinator {
     func showPopup(with model: PopupViewModel, callbacks: [(() -> Void)] = []) {
-        guard let view = navigationController.topViewController?.view else { return }
+        guard let view = navigationController.view else { return }
         
-        let blur = UIBlurEffect(style: .regular)
-        let blurView = UIVisualEffectView(effect: blur)
+        let blurView = UIVisualEffectView()
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurView.alpha = 0
         
         view.addSubview(blurView)
         blurView.snp.makeConstraints { make in
@@ -66,30 +64,35 @@ extension BaseCoordinator {
         }
         popup.alpha = 0
         popup.layoutIfNeeded()
+        
         popup.configure(with: Presets.Popup.normal)
         popup.setup(with: model)
-        popup.buttonCallbacks = callbacks
         
+        popup.buttonCallbacks = callbacks
         popup.closeCallback = { [weak self] in
             self?.hidePopup()
         }
         
-        UIView.animate(withDuration: Presets.Animation.duration) {
+        UIView.animate(withDuration: Presets.Animation.duration,
+                       delay: 0,
+                       options: .transitionFlipFromBottom) {
+            blurView.effect = UIBlurEffect(style: .regular)
             popup.alpha = 1
-            blurView.alpha = 1
         }
     }
     
     // MARK: - Additional Helpers
     @objc func hidePopup() {
-        guard let view = navigationController.topViewController?.view,
-              let popup = view.subviews.first(where: { $0 is FEPopupView })
-        else { return }
-        let blur = view.subviews.first(where: { $0 is UIVisualEffectView })
+        guard let view = navigationController.view,
+              let popup = view.subviews.first(where: { $0 is FEPopupView }) else { return }
         
-        UIView.animate(withDuration: Presets.Animation.duration) {
+        let blur = view.subviews.first(where: { $0 is UIVisualEffectView }) as? UIVisualEffectView
+        
+        UIView.animate(withDuration: Presets.Animation.duration,
+                       delay: 0,
+                       options: .transitionCrossDissolve) {
+            blur?.effect = nil
             popup.alpha = 0
-            blur?.alpha = 0
         } completion: { _ in
             popup.removeFromSuperview()
             blur?.removeFromSuperview()
