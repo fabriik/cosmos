@@ -51,24 +51,39 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
     private lazy var monthTextfield: FETextField = {
         let view = FETextField()
         view.isUserInteractionEnabled = false
+        view.hideFilledTitleStack = true
         return view
     }()
     
     private lazy var dayTextField: FETextField = {
         let view = FETextField()
         view.isUserInteractionEnabled = false
+        view.hideFilledTitleStack = true
         return view
     }()
     
     private lazy var yearTextField: FETextField = {
         let view = FETextField()
         view.isUserInteractionEnabled = false
+        view.hideFilledTitleStack = true
         return view
     }()
     
     private lazy var hiddenTextField: UITextField = {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor.black
+        toolBar.sizeToFit()
+        
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(UIView.endEditing))
+        toolBar.setItems([space, doneButton], animated: false)
+        
         let view = UITextField()
         view.inputView = datePicker
+        view.inputAccessoryView = toolBar
+        
         return view
     }()
     
@@ -99,7 +114,6 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         content.addSubview(stack)
         stack.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(FieldHeights.small.rawValue + titleHeight + stack.spacing)
             make.bottom.equalToSuperview().priority(.low)
         }
         
@@ -112,10 +126,6 @@ class DateView: FEView<DateConfiguration, DateViewModel>, StateDisplayable {
         dateStack.addArrangedSubview(monthTextfield)
         dateStack.addArrangedSubview(dayTextField)
         dateStack.addArrangedSubview(yearTextField)
-        
-        dateStack.arrangedSubviews.forEach { arrangedSubview in
-            (arrangedSubview as? FETextField)?.isPicker = true
-        }
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         addGestureRecognizer(tap)

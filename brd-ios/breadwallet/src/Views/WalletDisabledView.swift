@@ -15,7 +15,7 @@ class WalletDisabledView: UIView {
     }
 
     init() {
-        faq = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled)
+        faq = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled, position: .middle)
         faq.tintColor = .whiteTint
         blur = UIVisualEffectView()
         super.init(frame: .zero)

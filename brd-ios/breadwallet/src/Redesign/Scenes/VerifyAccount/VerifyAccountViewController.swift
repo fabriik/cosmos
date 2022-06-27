@@ -40,6 +40,8 @@ class VerifyAccountViewController: BaseTableViewController<KYCCoordinator,
     // MARK: - User Interaction
     
     override func buttonTapped() {
+        super.buttonTapped()
+        
         coordinator?.showVerifications()
     }
 

@@ -21,7 +21,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     init(keyMaster: KeyMaster, reason: PhraseEntryReason) {
         self.keyMaster = keyMaster
         self.enterPhrase = EnterPhraseCollectionViewController(keyMaster: keyMaster)
-        self.faq = UIButton.buildFaqButton(articleId: ArticleIds.recoverWallet)
+        self.faq = UIButton.buildFaqButton(articleId: ArticleIds.recoverWallet, position: .right)
         self.reason = reason
         super.init(nibName: nil, bundle: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)

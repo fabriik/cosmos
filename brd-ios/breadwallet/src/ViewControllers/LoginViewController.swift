@@ -11,10 +11,7 @@ import LocalAuthentication
 import WalletKit
 import MachO
 
-private let topControlHeight: CGFloat = 32.0
-
 class LoginViewController: UIViewController, Subscriber, Trackable {
-
     enum Context {
         case initialLaunch(loginHandler: LoginCompletionHandler)
         case automaticLock
@@ -188,7 +185,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
     private func addPinView() {
         pinViewContainer.addSubview(pinView)
         pinView.constrain([
-            pinView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: E.isIPhone4 ? -C.padding[2] : 0.0),
+            pinView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             pinView.centerXAnchor.constraint(equalTo: pinViewContainer.centerXAnchor),
             pinView.widthAnchor.constraint(equalToConstant: pinView.width),
             pinView.heightAnchor.constraint(equalToConstant: pinView.itemSize)])
@@ -399,7 +396,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             }
         }
 
-        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled)
+        let faqButton = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled, position: .right)
         faqButton.tintColor = Theme.primaryText
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faqButton)
 

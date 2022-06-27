@@ -67,7 +67,6 @@ class NameView: FEView<NameViewConfiguration, NameViewModel> {
         content.addSubview(stack)
         stack.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(FieldHeights.small.rawValue + titleHeight + stack.spacing)
             make.bottom.equalToSuperview().priority(.low)
         }
         

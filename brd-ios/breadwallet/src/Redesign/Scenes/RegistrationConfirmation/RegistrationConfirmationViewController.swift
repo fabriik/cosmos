@@ -92,6 +92,8 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
     }
     
     override func buttonTapped() {
+        super.buttonTapped()
+        
         interactor?.confirm(viewAction: .init())
     }
     

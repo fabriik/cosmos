@@ -16,6 +16,8 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
 
     // MARK: - KYCBasicViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
+        presenter?.presentData(actionResponse: .init(item: dataStore))
+        
         ProfileWorker().execute { [weak self] result in
             switch result {
             case .success(let profileData):
@@ -27,12 +29,8 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
                         self?.dataStore?.country = profileData.country
                         self?.dataStore?.countryFullName = data.first(where: { $0.iso2 == self?.dataStore?.country })?.localizedName
                         
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.timeStyle = .none
-                        dateFormatter.dateFormat = "yyyy-MM-dd"
-                        let date = dateFormatter.date(from: profileData.dateOfBirth ?? "")
-                        self?.dataStore?.birthdate = date
-                        self?.dataStore?.birthDateString = dateFormatter.string(from: date ?? Date())
+                        self?.dataStore?.birthdate = self?.getBirthDateFormatter().date(from: profileData.dateOfBirth ?? "")
+                        self?.dataStore?.birthDateString = self?.getBirthDateFormatter().string(from: self?.dataStore?.birthdate ?? Date())
                         
                         self?.presenter?.presentData(actionResponse: .init(item: self?.dataStore))
                         self?.validate(viewAction: .init())
@@ -65,6 +63,7 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
     
     func birthDateSet(viewAction: KYCBasicModels.BirthDate.ViewAction) {
         dataStore?.birthdate = viewAction.date
+        dataStore?.birthDateString = getBirthDateFormatter().string(from: dataStore?.birthdate ?? Date())
         
         validate(viewAction: .init())
     }
@@ -103,4 +102,12 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
     }
 
     // MARK: - Aditional helpers
+    
+    func getBirthDateFormatter() -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        return dateFormatter
+    }
 }
