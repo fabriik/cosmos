@@ -59,7 +59,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         let view = WrapperView<FEButton>()
         view.wrappedView.setup(with: .init(image: "Close-X-Popup"))
         view.wrappedView.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
-        view.content.setupCustomMargins(all: .zero)
+        view.content.setupCustomMargins(all: .large)
         return view
     }()
 
@@ -89,8 +89,8 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         
         content.addSubview(closeButton)
         closeButton.snp.makeConstraints { make in
-            make.width.height.equalTo(24)
-            make.top.trailing.equalToSuperview().inset(Margins.huge.rawValue)
+            make.width.height.equalTo(60)
+            make.top.trailing.equalToSuperview()
         }
         
         mainStack.addArrangedSubview(titleStack)
