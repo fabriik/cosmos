@@ -56,11 +56,7 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
         super.viewDidLoad()
         
         view.backgroundColor = .black
-        
         view.addSubview(previewView)
-        previewView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
         
         previewView.addSubview(cameraUnavailableLabel)
         cameraUnavailableLabel.snp.makeConstraints { make in
@@ -68,11 +64,14 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
             make.height.width.equalToSuperview().multipliedBy(0.5)
         }
         
-        previewView.addSubview(photoButton)
+        view.addSubview(photoButton)
         photoButton.snp.makeConstraints { make in
             make.height.width.equalTo(86)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(40)
+            
+            guard let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else { return }
+            let hasBottomNotch = UIDevice.current.orientation.isPortrait && window.safeAreaInsets.bottom >= 44
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(hasBottomNotch ? Margins.extraSmall.rawValue : Margins.medium.rawValue)
         }
         
         previewView.addSubview(instructionsLabel)
@@ -135,6 +134,19 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
         
         sessionQueue.async {
             self.configureSession()
+            
+            guard let videoDeviceInput = self.videoDeviceInput else { return }
+            let dimensions = CMVideoFormatDescriptionGetDimensions(videoDeviceInput.device.activeFormat.formatDescription)
+            let height = CGFloat(dimensions.height)
+            let width = CGFloat(dimensions.width)
+            
+            DispatchQueue.main.async {
+                self.previewView.snp.makeConstraints { make in
+                    make.centerX.centerY.equalToSuperview()
+                    make.height.equalToSuperview().multipliedBy((height / width) * 0.8)
+                    make.width.equalToSuperview()
+                }
+            }
         }
         
         DispatchQueue.main.async {
@@ -225,9 +237,8 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
     }()
     
     private lazy var photoButton: KYShutterButton = {
-        let view = KYShutterButton(frame: .zero, buttonColor: UIColor.red)
+        let view = KYShutterButton(frame: .zero, buttonColor: LightColors.Contrast.two)
         view.addTarget(self, action: #selector(capturePhoto(_:)), for: .touchUpInside)
-        
         return view
     }()
     

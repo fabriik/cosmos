@@ -23,7 +23,9 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if viewController is AccountViewController || viewController is HomeScreenViewController {
+        if viewController is AccountViewController ||
+            viewController is HomeScreenViewController ||
+            viewController is KYCCameraViewController {
             setNormalNavigationBar(normalBackgroundColor: .clear, scrollBackgroundColor: .clear, tintColor: LightColors.Contrast.two)
         } else {
             setNormalNavigationBar()
