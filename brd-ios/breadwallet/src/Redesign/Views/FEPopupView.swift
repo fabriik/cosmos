@@ -92,7 +92,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
             make.top.trailing.equalToSuperview().inset(Margins.huge.rawValue)
         }
         
-        closeButton.content.setupCustomMargins(all: .extraSmall)
+        closeButton.content.setupCustomMargins(all: .zero)
         
         mainStack.addArrangedSubview(titleStack)
         titleStack.addArrangedSubview(titleLabel)
