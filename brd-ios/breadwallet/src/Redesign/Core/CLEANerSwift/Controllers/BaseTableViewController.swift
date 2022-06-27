@@ -324,7 +324,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         cell.setup { view in
             view.configure(with: .init(image: Presets.Image.primary,
                                        label: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.one),
-                                       button: Presets.Button.icon))
+                                       button: Presets.Button.blackIcon))
             view.setup(with: model)
         }
         
