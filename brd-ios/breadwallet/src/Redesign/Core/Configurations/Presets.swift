@@ -332,7 +332,7 @@ extension Presets {
         
         static var verified = InfoViewModel(kyc: .levelOne, headerTitle: .text("ACCOUNT LIMITS"),
                                             headerTrailing: .init(image: "infoIcon"),
-                                            status: VerificationStatus.email,
+                                            status: VerificationStatus.levelOne,
                                             description: .text("Current limit: $1,000/day"),
                                             button: .init(title: "Upgrade your limits"),
                                             dismissType: .persistent)

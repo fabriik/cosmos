@@ -17,6 +17,7 @@ struct ProfileResponseData: ModelResponse {
     var last_name: String?
     var email: String?
     var kyc_status: String?
+    var kyc_failure_reason: String?
 }
 
 struct Profile: Model {
@@ -26,6 +27,7 @@ struct Profile: Model {
     var lastName: String?
     var email: String?
     var status: VerificationStatus
+    var failureReason: String?
 }
 
 class ProfileMapper: ModelMapper<ProfileResponseData, Profile> {
@@ -35,7 +37,8 @@ class ProfileMapper: ModelMapper<ProfileResponseData, Profile> {
                      firstName: response.first_name,
                      lastName: response.last_name,
                      email: response.email,
-                     status: .init(rawValue: response.kyc_status))
+                     status: .init(rawValue: response.kyc_status),
+                     failureReason: response.kyc_failure_reason)
     }
 }
 

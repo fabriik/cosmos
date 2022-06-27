@@ -274,7 +274,16 @@ class VerificationView: FEView<VerificationConfiguration, VerificationViewModel>
             benefitsLabel.configure(background: Presets.Background.Primary.normal.withBorder(border: Presets.Border.normal))
         } else {
             benefitsLabel.configure(background: Presets.Background.Primary.disabled.withBorder(border: Presets.Border.normal))
-            statusImageView.tintColor = LightColors.Contrast.two
+            statusImageView.tintColor = LightColors.InteractionPrimary.disabled
+        }
+        
+        if viewModel.status == .levelTwo(.declined) || viewModel.status == .levelTwo(.resubmit) {
+            statusImageView.wrappedView.setup(with: .init(.imageName("errorIcon")))
+        }
+        
+        if viewModel.status == .email {
+            statusView.isHidden = true
+            statusImageView.tintColor = LightColors.InteractionPrimary.disabled
         }
     }
 }
