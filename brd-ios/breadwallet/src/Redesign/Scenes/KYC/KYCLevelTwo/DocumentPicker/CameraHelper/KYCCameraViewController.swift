@@ -75,12 +75,6 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
             make.bottom.equalToSuperview().inset(40)
         }
         
-        previewView.addSubview(dismissButton)
-        dismissButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(16)
-            make.centerY.equalTo(photoButton.snp.centerY)
-        }
-        
         previewView.addSubview(instructionsLabel)
         instructionsLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -233,16 +227,6 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
     private lazy var photoButton: KYShutterButton = {
         let view = KYShutterButton(frame: .zero, buttonColor: UIColor.red)
         view.addTarget(self, action: #selector(capturePhoto(_:)), for: .touchUpInside)
-        
-        return view
-    }()
-    
-    private lazy var dismissButton: UIButton = {
-        let view = UIButton()
-        view.addTarget(self, action: #selector(dismissAll(_:)), for: .touchUpInside)
-        view.setTitle("Cancel", for: .normal)
-        view.titleLabel?.textColor = .white
-        view.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         
         return view
     }()
@@ -424,11 +408,6 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
             self.inProgressPhotoCaptureDelegates[photoCaptureProcessor.requestedPhotoSettings.uniqueID] = photoCaptureProcessor
             self.photoOutput.capturePhoto(with: photoSettings, delegate: photoCaptureProcessor)
         }
-    }
-    
-    /// - Tag: dismissAll
-    @objc func dismissAll(_ sender: UIButton?) {
-        navigationController?.popViewController(animated: true)
     }
     
     // MARK: KVO and Notifications
