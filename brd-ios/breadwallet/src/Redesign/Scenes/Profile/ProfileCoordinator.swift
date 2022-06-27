@@ -63,6 +63,7 @@ extension BaseCoordinator {
             make.trailing.greaterThanOrEqualTo(view.snp.trailingMargin)
         }
         popup.alpha = 0
+        popup.transform = .init(translationX: 0, y: UIScreen.main.bounds.height)
         popup.layoutIfNeeded()
         
         popup.configure(with: Presets.Popup.normal)
@@ -75,9 +76,10 @@ extension BaseCoordinator {
         
         UIView.animate(withDuration: Presets.Animation.duration,
                        delay: 0,
-                       options: .transitionFlipFromBottom) {
+                       options: .transitionCrossDissolve) {
             blurView.effect = UIBlurEffect(style: .regular)
             popup.alpha = 1
+            popup.transform = .identity
         }
     }
     
@@ -93,6 +95,7 @@ extension BaseCoordinator {
                        options: .transitionCrossDissolve) {
             blur?.effect = nil
             popup.alpha = 0
+            popup.transform = .init(translationX: 0, y: UIScreen.main.bounds.height)
         } completion: { _ in
             popup.removeFromSuperview()
             blur?.removeFromSuperview()
