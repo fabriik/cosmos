@@ -58,12 +58,6 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
         view.backgroundColor = .black
         view.addSubview(previewView)
         
-        previewView.addSubview(cameraUnavailableLabel)
-        cameraUnavailableLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.height.width.equalToSuperview().multipliedBy(0.5)
-        }
-        
         view.addSubview(photoButton)
         photoButton.snp.makeConstraints { make in
             make.height.width.equalTo(86)
@@ -74,11 +68,16 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(hasBottomNotch ? Margins.extraSmall.rawValue : Margins.medium.rawValue)
         }
         
+        previewView.addSubview(cameraUnavailableLabel)
+        cameraUnavailableLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(Margins.extraHuge.rawValue)
+            make.top.equalToSuperview().inset(Margins.medium.rawValue)
+        }
+        
         previewView.addSubview(instructionsLabel)
         instructionsLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(Margins.extraHuge.rawValue)
-            make.centerY.equalToSuperview().multipliedBy(1.5)
+            make.bottom.equalToSuperview().inset(Margins.medium.rawValue)
         }
         
         instructionsLabel.setupCustomMargins(all: .small)
