@@ -24,9 +24,9 @@ set -e
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ "$2" == "ci" ]; then
-	scheme="breadwallet"
+	scheme="wallet"
 else
-	scheme="BRD Internal - TestFlight"
+	scheme="wallet-stg"
 fi
 
 echo

@@ -13,4 +13,5 @@
 
 #include ".env"
 
-API_URL=api-stg.fabriikw.com/
+API_URL=$(STAGING_URL)
+API_TOKEN=$(STAGINIG_TOKEN)

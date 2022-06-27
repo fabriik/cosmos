@@ -134,10 +134,22 @@ jobs:
             cd brd-ios
             BRD_ENV=.env
             touch $BRD_ENV
-            echo "API_TOKEN = $API_TOKEN" >> $BRD_ENV
-            echo "API_URL = $API_URL" >> $BRD_ENV
-            echo "DEBUG_TOKEN = $DEBUG_TOKEN" >> $BRD_ENV
-            echo "DEBUG_URL = $DEBUG_URL" >> $BRD_ENV
+
+            echo "// DEVELOPMENT" >> $BRD_ENV
+            echo "DEV_URL=$DEV_URL" >> $BRD_ENV
+            echo "DEV_TOKEN=$DEV_TOKEN" >> $BRD_ENV
+            echo "IS_TEST=true" >> $BRD_ENV
+            echo "" >> $BRD_ENV
+
+            echo "// STAGING" >> $BRD_ENV
+            echo "STAGING_URL=$STAGING_URL" >> $BRD_ENV
+            echo "STAGING_TOKEN=$STAGING_TOKEN" >> $BRD_ENV
+            echo "" >> $BRD_ENV
+
+            echo "// PRODUCTION" >> $BRD_ENV
+            echo "PROD_URL=$PROD_URL" >> $BRD_ENV
+            echo "PROD_TOKEN=$PROD_TOKEN" >> $BRD_ENV
+
             cd ..
             echo "sdk.dir=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin" > ./local.properties
 
@@ -186,4 +198,4 @@ jobs:
 
             echo "Build breadwallet version ${mainBundleShortVersionString} build number ${mainBundleVersion}"
             set -o pipefail
-            xcodebuild -workspace breadwallet.xcworkspace -scheme "breadwallet" archive -archivePath build/breadwallet.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+            xcodebuild -workspace breadwallet.xcworkspace -scheme "wallet" archive -archivePath build/breadwallet.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
