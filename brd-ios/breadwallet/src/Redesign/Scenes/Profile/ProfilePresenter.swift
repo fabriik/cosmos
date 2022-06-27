@@ -74,7 +74,7 @@ final class ProfilePresenter: NSObject, Presenter, ProfileActionResponses {
     func presentVerificationInfo(actionResponse: ProfileModels.VerificationInfo.ActionResponse) {
         // TODO: localize
         let text = """
-If you verify your account, you are given acces to:
+If you verify your account, you are given access to:
   - Unlimited deposits/withdraws
   - Enhanced security
   - Full asset support
