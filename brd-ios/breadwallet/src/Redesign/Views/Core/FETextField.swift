@@ -263,7 +263,7 @@ class FETextField: FEView<TextFieldConfiguration, TextFieldModel>, UITextFieldDe
         layoutSubviews()
         
         guard viewModel.value?.isEmpty == false else { return }
-        animateTo(state: .filled, withAnimation: true)
+        animateTo(state: .filled, withAnimation: false)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
