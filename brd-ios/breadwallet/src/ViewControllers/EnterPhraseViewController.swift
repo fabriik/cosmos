@@ -73,7 +73,12 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     }
     
     @objc func onBackButton() {
-        navigationController?.popViewController(animated: true)
+        guard navigationController?.viewControllers.first == self else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        navigationController?.dismiss(animated: true)
     }
     
     private func setUpHeadings() {
