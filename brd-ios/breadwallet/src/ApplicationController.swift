@@ -372,7 +372,7 @@ class ApplicationController: Subscriber, Trackable {
             UserManager.shared.refresh { result in
                 switch result {
                 case .success(let profile):
-                    guard profile.status != .emailPending else {
+                    guard profile.status == .emailPending else {
                         return
                     }
                     self?.coordinator?.start()
