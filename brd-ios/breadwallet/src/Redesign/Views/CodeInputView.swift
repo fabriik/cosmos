@@ -103,6 +103,10 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         hiddenTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
+    override func setup(with viewModel: CodeInputViewModel?) {
+        super.setup(with: viewModel)
+    }
+    
     override func configure(with config: CodeInputConfiguration?) {
         super.configure(with: config)
         
