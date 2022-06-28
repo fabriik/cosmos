@@ -113,7 +113,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         errorLabel.configure(with: config?.errorLabel)
         
         configure(background: config?.normal)
-        animateTo(state: .normal)
+        animateTo(state: .normal, withAnimation: false)
     }
     
     @objc private func tapped() {
@@ -167,7 +167,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         displayState = state
         configure(background: background)
         
-        Self.animate(withDuration: Presets.Animation.duration) { [weak self] in
+        Self.animate(withDuration: withAnimation ? Presets.Animation.duration : 0) { [weak self] in
             self?.layoutIfNeeded()
             self?.contentSizeChanged?()
         }

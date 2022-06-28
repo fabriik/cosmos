@@ -58,6 +58,7 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
         }
         
         cell.setup { view in
+            view.setup(with: .init())
             view.configure(with: .init())
             view.valueChanged = { [weak self] text in
                 self?.textFieldDidFinish(for: indexPath, with: text)
