@@ -104,12 +104,11 @@ class WalletDisabledView: UIView {
             header.heightAnchor.constraint(equalToConstant: C.padding[3])])
         
         label.constrain([
-            label.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]),
             label.centerXAnchor.constraint(equalTo: blur.centerXAnchor),
-            label.heightAnchor.constraint(equalToConstant: C.padding[3])])
+        label.centerYAnchor.constraint(equalTo: blur.centerYAnchor)])
         
         unlockWalletImage.constrain([
-            unlockWalletImage.topAnchor.constraint(equalTo: label.bottomAnchor, constant: C.padding[8]),
+//            unlockWalletImage.topAnchor.constraint(equalTo: label.bottomAnchor, constant: C.padding[8]),
             unlockWalletImage.centerXAnchor.constraint(equalTo: blur.centerXAnchor),
             unlockWalletImage.centerYAnchor.constraint(equalTo: blur.centerYAnchor),
             unlockWalletImage.widthAnchor.constraint(equalToConstant: 190),
@@ -118,12 +117,17 @@ class WalletDisabledView: UIView {
         reset.constrain([
             reset.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
             reset.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
-            reset.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight)])
+            reset.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight),
+            reset.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[4])])
         
         descriptionLabel.constrain([
             descriptionLabel.topAnchor.constraint(equalTo: reset.bottomAnchor, constant: C.padding[1]),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[4]),
             descriptionLabel.centerXAnchor.constraint(equalTo: blur.centerXAnchor)])
+        
+        header.isHidden = true
+        unlockWalletImage.isHidden = true
+        descriptionLabel.isHidden = true
     }
 
     private func setData() {
