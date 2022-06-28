@@ -66,12 +66,17 @@ class BaseCoordinator: NSObject,
             coordinator = ProfileCoordinator(navigationController: nvc)
         } else {
             coordinator = RegistrationCoordinator(navigationController: nvc)
+            (coordinator as? RegistrationCoordinator)?.fromProfile = true
         }
         
         coordinator.start()
         coordinator.parentCoordinator = self
         childCoordinators.append(coordinator)
         navigationController.show(nvc, sender: nil)
+    }
+    
+    func showProfile() {
+        openModally(coordinator: ProfileCoordinator.self, scene: Scenes.Profile)
     }
 
     /// Determines whether the viewcontroller or navigation stack are being dismissed
