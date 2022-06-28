@@ -47,8 +47,10 @@ extension BaseCoordinator {
     func showPopup(with model: PopupViewModel, callbacks: [(() -> Void)] = []) {
         guard let view = navigationController.view else { return }
         
-        let blurView = UIVisualEffectView()
+        let blur = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blur)
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurView.alpha = 0
         
         view.addSubview(blurView)
         blurView.snp.makeConstraints { make in
@@ -63,39 +65,31 @@ extension BaseCoordinator {
             make.trailing.greaterThanOrEqualTo(view.snp.trailingMargin)
         }
         popup.alpha = 0
-        popup.transform = .init(translationX: 0, y: UIScreen.main.bounds.height)
         popup.layoutIfNeeded()
-        
         popup.configure(with: Presets.Popup.normal)
         popup.setup(with: model)
-        
         popup.buttonCallbacks = callbacks
+        
         popup.closeCallback = { [weak self] in
             self?.hidePopup()
         }
         
-        UIView.animate(withDuration: Presets.Animation.duration,
-                       delay: 0,
-                       options: .transitionCrossDissolve) {
-            blurView.effect = UIBlurEffect(style: .regular)
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 1
-            popup.transform = .identity
+            blurView.alpha = 1
         }
     }
     
     // MARK: - Additional Helpers
     @objc func hidePopup() {
         guard let view = navigationController.view,
-              let popup = view.subviews.first(where: { $0 is FEPopupView }) else { return }
+              let popup = view.subviews.first(where: { $0 is FEPopupView })
+        else { return }
+        let blur = view.subviews.first(where: { $0 is UIVisualEffectView })
         
-        let blur = view.subviews.first(where: { $0 is UIVisualEffectView }) as? UIVisualEffectView
-        
-        UIView.animate(withDuration: Presets.Animation.duration,
-                       delay: 0,
-                       options: .transitionCrossDissolve) {
-            blur?.effect = nil
+        UIView.animate(withDuration: Presets.Animation.duration) {
             popup.alpha = 0
-            popup.transform = .init(translationX: 0, y: UIScreen.main.bounds.height)
+            blur?.alpha = 0
         } completion: { _ in
             popup.removeFromSuperview()
             blur?.removeFromSuperview()

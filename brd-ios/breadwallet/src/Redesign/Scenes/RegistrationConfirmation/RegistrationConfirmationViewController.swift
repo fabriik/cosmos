@@ -15,8 +15,15 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
                                               RegistrationConfirmationResponseDisplays {
     
     typealias Models = RegistrationConfirmationModels
+    
+    override var isModalDismissableEnabled: Bool { return true }
 
     // MARK: - Overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.setHidesBackButton(true, animated: false)
+    }
+    
     override func setupSubviews() {
         super.setupSubviews()
         tableView.register(WrapperTableViewCell<CodeInputView>.self)
@@ -58,10 +65,13 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
         }
         
         cell.setup { view in
+            view.setup(with: .init())
             view.configure(with: .init())
+            
             view.valueChanged = { [weak self] text in
                 self?.textFieldDidFinish(for: indexPath, with: text)
             }
+            
             view.contentSizeChanged = {
                 tableView.beginUpdates()
                 tableView.endUpdates()

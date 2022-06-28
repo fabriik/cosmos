@@ -78,12 +78,11 @@ class BaseTableViewController<C: CoordinatableRoutes,
         sectionRows = responseDisplay.sectionRows
         
         // TODO: DiffableDataSource
-        UIView.transition(with: tableView,
-                          duration: Presets.Animation.duration,
-                          options: .transitionCrossDissolve,
-                          animations: { [weak self] in self?.tableView.reloadData() })
+        tableView.reloadData()
         
         tableView.backgroundView?.isHidden = !sections.isEmpty
+        
+        LoadingView.hide()
     }
 
     // MARK: UITableViewDataSource
