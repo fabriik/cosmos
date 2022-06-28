@@ -79,6 +79,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         
         // TODO: DiffableDataSource
         tableView.reloadData()
+        
         tableView.backgroundView?.isHidden = !sections.isEmpty
         
         LoadingView.hide()
