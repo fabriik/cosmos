@@ -60,7 +60,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         addSubviews()
         addConstraints()
         setInitialData()
-        // showBackButton()
+        showBackButton()
     }
     
     func showBackButton() {
