@@ -37,7 +37,9 @@ class UserManager: NSObject {
             }
             
             self?.dataChanged.forEach({ $0(self?.profile, self?.error) })
-            completion?(result)
+            DispatchQueue.main.async {
+                completion?(result)
+            }
         }
     }
 }
