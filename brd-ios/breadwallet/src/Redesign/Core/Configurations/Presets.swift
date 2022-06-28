@@ -238,17 +238,15 @@ extension Presets {
 
 extension Presets {
     struct Popup {
-        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
+        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.secondary,
                                                                  tintColor: LightColors.Contrast.two,
                                                                  border: Presets.Border.zero),
-                                               title: .init(font: Fonts.Title.five, textColor: LightColors.Icons.one),
-                                               body: .init(font: Fonts.Body.one, textColor: LightColors.Icons.one),
+                                               title: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
+                                               body: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two),
                                                buttons: [ Presets.Button.primary.withBorder(normal: Presets.Border.zero,
                                                                                             selected: Presets.Border.selected,
                                                                                             disabled: Presets.Border.disabled),
-                                                          Presets.Button.secondary.withBorder(normal: Presets.Border.normal,
-                                                                                              selected: Presets.Border.selected,
-                                                                                              disabled: Presets.Border.disabled) ]
+                                                          Presets.Button.secondary ]
         )
     }
 }
