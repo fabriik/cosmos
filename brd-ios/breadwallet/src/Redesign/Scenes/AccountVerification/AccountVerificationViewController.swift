@@ -64,12 +64,11 @@ class AccountVerificationViewController: BaseTableViewController<KYCCoordinator,
             let config: VerificationConfiguration
             switch (model.kyc, model.status) {
             case (.levelOne, .levelOne),
-                (.levelOne, .email),
                 (.levelOne, .levelTwo),
                 (.levelTwo, .levelTwo(.levelTwo)):
                 config = configs[0]
                 
-            case (.levelOne, _):
+            case (.levelOne, .emailPending):
                 config = configs[1]
                 
             case (.levelTwo, .levelTwo(.resubmit)),

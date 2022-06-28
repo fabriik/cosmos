@@ -46,7 +46,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
     private lazy var scrollingStack: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.spacing = Margins.extraSmall.rawValue
+        view.spacing = Margins.small.rawValue
         return view
     }()
     
@@ -57,8 +57,9 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
     
     private lazy var closeButton: WrapperView<FEButton> = {
         let view = WrapperView<FEButton>()
-        view.wrappedView.setup(with: .init(image: "cancel"))
+        view.wrappedView.setup(with: .init(image: "Close-X-Popup"))
         view.wrappedView.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
+        view.content.setupCustomMargins(all: .large)
         return view
     }()
 
@@ -67,6 +68,8 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         view.isEditable = false
         view.isSelectable = false
         view.isScrollEnabled = false
+        view.textContainerInset = .zero
+        view.textContainer.lineFragmentPadding = 0
         view.backgroundColor = .clear
         return view
     }()
@@ -82,22 +85,20 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         mainStack.snp.makeConstraints { make in
             make.edges.equalTo(content.snp.margins)
         }
-        content.setupCustomMargins(all: .huge)
+        content.setupCustomMargins(top: .huge, leading: .huge, bottom: .huge, trailing: .huge)
+        
+        content.addSubview(closeButton)
+        closeButton.snp.makeConstraints { make in
+            make.width.height.equalTo(60)
+            make.top.trailing.equalToSuperview()
+        }
         
         mainStack.addArrangedSubview(titleStack)
-        titleStack.snp.makeConstraints { make in
-            make.height.equalTo(Margins.huge.rawValue)
-        }
         titleStack.addArrangedSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(Margins.extraHuge.rawValue)
             make.width.equalToSuperview().priority(.low)
         }
-        
-        titleStack.addArrangedSubview(closeButton)
-        closeButton.snp.makeConstraints { make in
-            make.width.equalTo(closeButton.snp.height)
-        }
-        closeButton.content.setupCustomMargins(all: .extraSmall)
         
         mainStack.addArrangedSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -105,7 +106,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         }
         scrollView.addSubview(scrollingStack)
         scrollingStack.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(mainStack).inset(Margins.extraSmall.rawValue)
+            make.leading.trailing.equalTo(mainStack)
             make.top.bottom.equalToSuperview()
         }
         
@@ -146,6 +147,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         buttons.forEach { $0.removeFromSuperview() }
         buttons = []
         
+        let buttonHeight = ButtonHeights.common.rawValue
         if viewModel.buttons.isEmpty == false {
             for i in (0...viewModel.buttons.count - 1) {
                 guard let buttonConfigs = config?.buttons else { return }
@@ -155,7 +157,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
                 let button = FEButton()
                 button.configure(with: config)
                 button.snp.makeConstraints { make in
-                    make.height.equalTo(Margins.extraHuge.rawValue)
+                    make.height.equalTo(buttonHeight)
                 }
                 button.setup(with: model)
                 scrollingStack.addArrangedSubview(button)
@@ -166,7 +168,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         
         let count = Double(buttons.count)
         var newHeight = textView.contentSize.height
-        newHeight += count * (Margins.extraHuge.rawValue + Margins.extraSmall.rawValue)
+        newHeight += count * (buttonHeight + scrollingStack.spacing)
         
         scrollView.snp.makeConstraints { make in
             make.height.equalTo(newHeight)

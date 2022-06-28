@@ -16,6 +16,8 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
         
         let levelOneStatus: VerificationStatus
         let levelTwoStatus: VerificationStatus
+        let description = item.failureReason ?? "ID Verification"
+        
         if item.status.value.contains("KYC2") {
             levelOneStatus = .levelOne
             levelTwoStatus = item.status
@@ -36,7 +38,7 @@ final class AccountVerificationPresenter: NSObject, Presenter, AccountVerificati
                 VerificationViewModel(kyc: .levelTwo,
                                       title: .text("Level 2"),
                                       status: levelTwoStatus,
-                                      description: .text("ID Verification"),
+                                      description: .text(description),
                                       benefits: .text("Swap limit: $10,000 per Swap, no lifetime limit"),
                                       isActive: isActive)
             ]

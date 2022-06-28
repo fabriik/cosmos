@@ -126,6 +126,8 @@ extension KYCCoordinator: ImagePickable {
                          completion: ((UIImage?) -> Void)?) {
         let controller = KYCCameraViewController()
         
+        let backButtonVisibility = navigationController.children.last is KYCDocumentPickerViewController == false
+        controller.navigationItem.setHidesBackButton(backButtonVisibility, animated: false)
         controller.defaultVideoDevice = device
         controller.configure(with: .init(instructions: .init(font: Fonts.Body.one,
                                                              textColor: LightInversedColors.Text.one,

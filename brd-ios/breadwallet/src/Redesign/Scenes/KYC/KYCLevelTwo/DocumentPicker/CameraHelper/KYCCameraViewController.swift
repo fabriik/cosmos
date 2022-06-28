@@ -56,36 +56,28 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
         super.viewDidLoad()
         
         view.backgroundColor = .black
-        
         view.addSubview(previewView)
-        previewView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        
+        view.addSubview(photoButton)
+        photoButton.snp.makeConstraints { make in
+            make.height.width.equalTo(86)
+            make.centerX.equalToSuperview()
+            
+            guard let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else { return }
+            let hasBottomNotch = UIDevice.current.orientation.isPortrait && window.safeAreaInsets.bottom >= 44
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(hasBottomNotch ? Margins.extraSmall.rawValue : Margins.medium.rawValue)
         }
         
         previewView.addSubview(cameraUnavailableLabel)
         cameraUnavailableLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.height.width.equalToSuperview().multipliedBy(0.5)
-        }
-        
-        previewView.addSubview(photoButton)
-        photoButton.snp.makeConstraints { make in
-            make.height.width.equalTo(86)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(40)
-        }
-        
-        previewView.addSubview(dismissButton)
-        dismissButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(16)
-            make.centerY.equalTo(photoButton.snp.centerY)
+            make.leading.trailing.equalToSuperview().inset(Margins.extraHuge.rawValue)
+            make.top.equalToSuperview().inset(Margins.medium.rawValue)
         }
         
         previewView.addSubview(instructionsLabel)
         instructionsLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(Margins.extraHuge.rawValue)
-            make.centerY.equalToSuperview().multipliedBy(1.5)
+            make.bottom.equalToSuperview().inset(Margins.medium.rawValue)
         }
         
         instructionsLabel.setupCustomMargins(all: .small)
@@ -141,6 +133,19 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
         
         sessionQueue.async {
             self.configureSession()
+            
+            guard let videoDeviceInput = self.videoDeviceInput else { return }
+            let dimensions = CMVideoFormatDescriptionGetDimensions(videoDeviceInput.device.activeFormat.formatDescription)
+            let height = CGFloat(dimensions.height)
+            let width = CGFloat(dimensions.width)
+            
+            DispatchQueue.main.async {
+                self.previewView.snp.makeConstraints { make in
+                    make.centerX.centerY.equalToSuperview()
+                    make.height.equalToSuperview().multipliedBy((height / width) * 0.8)
+                    make.width.equalToSuperview()
+                }
+            }
         }
         
         DispatchQueue.main.async {
@@ -231,19 +236,8 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
     }()
     
     private lazy var photoButton: KYShutterButton = {
-        let view = KYShutterButton(frame: .zero, buttonColor: UIColor.red)
+        let view = KYShutterButton(frame: .zero, buttonColor: LightColors.Contrast.two)
         view.addTarget(self, action: #selector(capturePhoto(_:)), for: .touchUpInside)
-        
-        return view
-    }()
-    
-    private lazy var dismissButton: UIButton = {
-        let view = UIButton()
-        view.addTarget(self, action: #selector(dismissAll(_:)), for: .touchUpInside)
-        view.setTitle("Cancel", for: .normal)
-        view.titleLabel?.textColor = .white
-        view.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        
         return view
     }()
     
@@ -424,11 +418,6 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
             self.inProgressPhotoCaptureDelegates[photoCaptureProcessor.requestedPhotoSettings.uniqueID] = photoCaptureProcessor
             self.photoOutput.capturePhoto(with: photoSettings, delegate: photoCaptureProcessor)
         }
-    }
-    
-    /// - Tag: dismissAll
-    @objc func dismissAll(_ sender: UIButton?) {
-        navigationController?.popViewController(animated: true)
     }
     
     // MARK: KVO and Notifications

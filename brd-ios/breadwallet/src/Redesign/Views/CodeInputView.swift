@@ -105,13 +105,15 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
     
     override func configure(with config: CodeInputConfiguration?) {
         super.configure(with: config)
-        configure(background: config?.normal)
         
         inputTextfields.forEach { field in
             field.configure(with: config?.input)
         }
         
         errorLabel.configure(with: config?.errorLabel)
+        
+        configure(background: config?.normal)
+        animateTo(state: .normal)
     }
     
     @objc private func tapped() {
@@ -147,9 +149,8 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
     }
     
     func animateTo(state: DisplayState, withAnimation: Bool = true) {
-        guard let config = config,
-              displayState != state
-        else { return }
+        guard let config = config else { return }
+        
         let background: BackgroundConfiguration?
         switch state {
         case .selected:
@@ -161,6 +162,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         default:
             background = config.normal
         }
+        
         errorLabel.isHidden = state != .error
         displayState = state
         configure(background: background)

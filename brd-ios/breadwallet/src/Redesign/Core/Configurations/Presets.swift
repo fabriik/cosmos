@@ -94,6 +94,10 @@ extension Presets {
         static var link = ButtonConfiguration(backgroundConfiguration: .init(tintColor: LightColors.Link.one),
                                               selectedConfiguration: .init(tintColor: LightColors.Link.two),
                                               disabledConfiguration: .init(tintColor: LightColors.InteractionPrimary.disabled))
+        
+        static var blackIcon = ButtonConfiguration(backgroundConfiguration: .init(tintColor: LightColors.Contrast.one),
+                                              selectedConfiguration: .init(tintColor: LightColors.Icons.one),
+                                              disabledConfiguration: .init(tintColor: LightColors.InteractionPrimary.disabled))
     }
 }
 
@@ -234,15 +238,17 @@ extension Presets {
 
 extension Presets {
     struct Popup {
-        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.secondary,
+        static var normal = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
                                                                  tintColor: LightColors.Contrast.two,
                                                                  border: Presets.Border.zero),
-                                               title: .init(font: Fonts.Title.six, textColor: LightColors.Contrast.two),
-                                               body: .init(font: Fonts.Body.two, textColor: LightColors.Contrast.two),
+                                               title: .init(font: Fonts.Title.five, textColor: LightColors.Icons.one),
+                                               body: .init(font: Fonts.Body.one, textColor: LightColors.Icons.one),
                                                buttons: [ Presets.Button.primary.withBorder(normal: Presets.Border.zero,
                                                                                             selected: Presets.Border.selected,
                                                                                             disabled: Presets.Border.disabled),
-                                                          Presets.Button.secondary ]
+                                                          Presets.Button.secondary.withBorder(normal: Presets.Border.normal,
+                                                                                              selected: Presets.Border.selected,
+                                                                                              disabled: Presets.Border.disabled) ]
         )
     }
 }
@@ -332,7 +338,7 @@ extension Presets {
         
         static var verified = InfoViewModel(kyc: .levelOne, headerTitle: .text("ACCOUNT LIMITS"),
                                             headerTrailing: .init(image: "infoIcon"),
-                                            status: VerificationStatus.email,
+                                            status: VerificationStatus.levelOne,
                                             description: .text("Current limit: $1,000/day"),
                                             button: .init(title: "Upgrade your limits"),
                                             dismissType: .persistent)
