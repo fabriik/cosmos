@@ -32,6 +32,12 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
         setRoundedShadowBackground()
     }
     
+    override func prepareData() {
+        super.prepareData()
+        
+        LoadingView.show()
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch sections[indexPath.section] as? Models.Section {
