@@ -49,6 +49,8 @@ struct ProfileRequestData: RequestModelData {
 }
 
 class ProfileWorker: BaseResponseWorker<ProfileResponseData, Profile, ProfileMapper> {
+    
+    
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.profile)
     }

@@ -144,7 +144,16 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     func decideFlow() {
-        UserManager.shared.refresh()
+        UserManager.shared.refresh() { [weak self] result in
+            switch result {
+            case .failure(let error):
+                guard error is SessioExpiredError else { return }
+                self?.coordinator?.showMessage(with: error)
+                
+            default:
+                return
+            }
+        }
         
         if keyStore.noWallet {
             enterOnboarding()
@@ -360,15 +369,20 @@ class ApplicationController: Subscriber, Trackable {
                                                  shouldDisableBiometrics: shouldDisableBiometrics,
                                                  createHomeScreen: createHomeScreen)
         startFlowController?.didFinish = { [weak self] in
-            UserManager.shared.refresh { profile in
-                guard profile != nil,
-                      profile?.status != .emailPending,
-                      profile?.status != nil,
-                      !UserDefaults.emailConfirmed else {
+            UserManager.shared.refresh { result in
+                switch result {
+                case .success(let profile):
+                    guard profile.status != .emailPending else {
+                        return
+                    }
+                    self?.coordinator?.start()
+                    
+                case .failure(let error):
+                    self?.coordinator?.showMessage(with: error)
+                    
+                default:
                     return
                 }
-                
-                self?.coordinator?.start()
             }
         }
     }

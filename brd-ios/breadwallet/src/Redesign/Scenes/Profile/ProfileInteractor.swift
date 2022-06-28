@@ -17,6 +17,9 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
 
     // MARK: - ProfileViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
+        presenter?.presentError(actionResponse: .init(error: SessioExpiredError()))
+        return ()
+        
         ProfileWorker().execute { [weak self] result in
             switch result {
             case .success(let data):
