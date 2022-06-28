@@ -34,15 +34,19 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     }
     
     func dismissFlow() {
-        navigationController.dismiss(animated: true) { [weak self] in
-            guard self?.fromProfile == true,
-            let self = self else {
-                return
-            }
-
-            (self.parentCoordinator as? BaseCoordinator)?.showProfile()
-            self.parentCoordinator?.childDidFinish(child: self)
-        }
+        navigationController.dismiss(animated: true)
+        parentCoordinator?.childDidFinish(child: self)
+        
+//        TODO: uncomment after release to make it like android.. yaay
+//        navigationController.dismiss(animated: true) { [weak self] in
+//            guard self?.fromProfile == true,
+//            let self = self else {
+//                return
+//            }
+//
+//            (self.parentCoordinator as? BaseCoordinator)?.showProfile()
+//            self.parentCoordinator?.childDidFinish(child: self)
+//        }
     }
     
     // MARK: - Aditional helpers
