@@ -221,12 +221,12 @@ class BaseCoordinator: NSObject,
             default:
                 completion?(true)
             }
-            
         }
     }
 
     func showMessage(with error: Error? = nil, model: InfoViewModel? = nil, configuration: InfoViewConfiguration? = nil) {
         guard !(error is SessionExpiredError) else {
+            UserDefaults.emailConfirmed = false
             openModally(coordinator: RegistrationCoordinator.self, scene: Scenes.RegistrationConfirmation)
             return
         }
