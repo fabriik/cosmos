@@ -144,17 +144,6 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     func decideFlow() {
-        UserManager.shared.refresh() { [weak self] result in
-            switch result {
-            case .failure(let error):
-                guard error is SessioExpiredError else { return }
-                self?.coordinator?.showMessage(with: error)
-                
-            default:
-                return
-            }
-        }
-        
         if keyStore.noWallet {
             enterOnboarding()
         } else {
@@ -359,7 +348,6 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     // MARK: - UI
-    
     private func setupRootViewController() {
         let navigationController = RootNavigationController()
         window.rootViewController = navigationController
@@ -372,12 +360,13 @@ class ApplicationController: Subscriber, Trackable {
             UserManager.shared.refresh { result in
                 switch result {
                 case .success(let profile):
-                    guard profile.status != .emailPending else {
+                    guard profile.status == .emailPending || UserDefaults.emailConfirmed != true else {
                         return
                     }
                     self?.coordinator?.start()
                     
                 case .failure(let error):
+                    guard UserDefaults.email?.isEmpty == false else { return }
                     self?.coordinator?.showMessage(with: error)
                     
                 default:
