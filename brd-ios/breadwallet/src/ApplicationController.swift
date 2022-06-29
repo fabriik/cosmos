@@ -348,7 +348,6 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     // MARK: - UI
-    
     private func setupRootViewController() {
         let navigationController = RootNavigationController()
         window.rootViewController = navigationController
@@ -361,7 +360,7 @@ class ApplicationController: Subscriber, Trackable {
             UserManager.shared.refresh { result in
                 switch result {
                 case .success(let profile):
-                    guard profile.status == .emailPending else {
+                    guard profile.status == .emailPending || UserDefaults.emailConfirmed != true else {
                         return
                     }
                     self?.coordinator?.start()
