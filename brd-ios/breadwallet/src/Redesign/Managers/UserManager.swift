@@ -22,7 +22,7 @@ class UserManager: NSObject {
         refresh()
     }
     
-    func refresh(completion: ((Profile?) -> Void)? = nil) {
+    func refresh(completion: ((Result<Profile, Error>?) -> Void)? = nil) {
         ProfileWorker().execute { [weak self] result in
             switch result {
             case .success(let profile):
@@ -37,7 +37,9 @@ class UserManager: NSObject {
             }
             
             self?.dataChanged.forEach({ $0(self?.profile, self?.error) })
-            completion?(self?.profile)
+            DispatchQueue.main.async {
+                completion?(result)
+            }
         }
     }
 }

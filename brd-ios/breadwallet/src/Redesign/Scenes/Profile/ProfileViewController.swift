@@ -23,6 +23,13 @@ class ProfileViewController: BaseTableViewController<ProfileCoordinator,
         tableView.separatorStyle = .singleLine
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard dataStore?.profile?.status != UserManager.shared.profile?.status else { return }
+        interactor?.getData(viewAction: .init())
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section] as? Models.Section
         
