@@ -193,9 +193,9 @@ class BaseCoordinator: NSObject,
     // in which case we show 3rd party popup or continue to buy/swap
     private func upgradeAccountOrShowPopup(completion: ((Bool) -> Void)?) {
         UserManager.shared.refresh { [unowned self] result in
+            var coordinator: Coordinatable?
             switch result {
             case .success:
-                var coordinator: Coordinatable?
                 if UserDefaults.kycSessionKeyValue == nil
                     || !UserDefaults.emailConfirmed {
                     coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
@@ -203,24 +203,27 @@ class BaseCoordinator: NSObject,
                     coordinator = KYCCoordinator(navigationController: RootNavigationController())
                 }
                 
-                guard let coordinator = coordinator else {
-                    completion?(true)
+            case .failure(let error):
+                guard error is SessionExpiredError else {
+                    completion?(false)
                     return
                 }
-
-                coordinator.start()
-                coordinator.parentCoordinator = self
-                childCoordinators.append(coordinator)
-                navigationController.show(coordinator.navigationController, sender: nil)
-                completion?(false)
-                
-            case .failure(let error):
-                showMessage(with: error)
-                completion?(false)
+                coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
                 
             default:
                 completion?(true)
             }
+            
+            guard let coordinator = coordinator else {
+                completion?(true)
+                return
+            }
+            
+            coordinator.start()
+            coordinator.parentCoordinator = self
+            childCoordinators.append(coordinator)
+            navigationController.show(coordinator.navigationController, sender: nil)
+            completion?(false)
         }
     }
 
