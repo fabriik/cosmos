@@ -144,17 +144,6 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     func decideFlow() {
-        UserManager.shared.refresh() { [weak self] result in
-            switch result {
-            case .failure(let error):
-                guard error is SessionExpiredError else { return }
-                self?.coordinator?.showMessage(with: error)
-                
-            default:
-                return
-            }
-        }
-        
         if keyStore.noWallet {
             enterOnboarding()
         } else {
