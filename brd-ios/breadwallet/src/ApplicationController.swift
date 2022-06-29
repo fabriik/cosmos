@@ -360,7 +360,8 @@ class ApplicationController: Subscriber, Trackable {
             UserManager.shared.refresh { result in
                 switch result {
                 case .success(let profile):
-                    guard profile.status == .emailPending || UserDefaults.emailConfirmed != true else {
+                    guard !UserDefaults.emailConfirmed,
+                          profile.email?.isEmpty == false else {
                         return
                     }
                     self?.coordinator?.start()
