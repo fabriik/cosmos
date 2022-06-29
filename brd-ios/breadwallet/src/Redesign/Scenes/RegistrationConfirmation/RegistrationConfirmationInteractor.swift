@@ -16,7 +16,26 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
 
     // MARK: - RegistrationConfirmationViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        presenter?.presentData(actionResponse: .init(item: UserDefaults.email))
+        guard dataStore?.callAssociate == true else {
+            presenter?.presentData(actionResponse: .init(item: UserDefaults.email))
+            return
+        }
+        
+        // if session has expired, we need to call associate again
+        guard let email = UserDefaults.email, let token = UserDefaults.walletTokenValue else { return }
+        let data = RegistrationRequestData(email: email, token: token)
+        RegistrationWorker().execute(requestData: data) { [weak self] result in
+            switch result {
+            case .success(let data):
+                UserManager.shared.refresh()
+                UserDefaults.kycSessionKeyValue = data.sessionKey
+                self?.presenter?.presentData(actionResponse: .init(item: email))
+                
+            case .failure(let error):
+                self?.presenter?.presentError(actionResponse: .init(error: error))
+                
+            }
+        }
     }
     
     func validate(viewAction: RegistrationConfirmationModels.Validate.ViewAction) {
@@ -36,8 +55,8 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
             }
             
             // TODO: confirmed
-            UserManager.shared.refresh()
             UserDefaults.emailConfirmed = true
+            UserManager.shared.refresh()
             
             self?.presenter?.presentConfirm(actionResponse: .init())
         }

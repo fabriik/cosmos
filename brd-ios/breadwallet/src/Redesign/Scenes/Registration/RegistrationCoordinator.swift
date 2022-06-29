@@ -16,11 +16,14 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
             return open(scene: Scenes.Registration)
         }
         
-        showRegistrationConfirmation()
+        showRegistrationConfirmation(callAsociate: fromProfile)
     }
     
-    func showRegistrationConfirmation() {
-        open(scene: Scenes.RegistrationConfirmation)
+    func showRegistrationConfirmation(callAsociate: Bool = false) {
+        open(scene: Scenes.RegistrationConfirmation) { vc in
+            vc.dataStore?.callAssociate = callAsociate
+            vc.prepareData()
+        }
     }
     
     func showChangeEmail() {

@@ -12,4 +12,5 @@ class RegistrationConfirmationStore: NSObject, BaseDataStore, RegistrationConfir
     // MARK: - RegistrationConfirmationDataStore
     var itemId: String?
     var code: String?
+    var callAssociate: Bool = false
 }
