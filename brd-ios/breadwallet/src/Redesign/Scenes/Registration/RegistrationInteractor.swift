@@ -35,7 +35,6 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
             case .success(let data):
                 guard let sessionKey = data.sessionKey else { return }
                 
-                UserManager.shared.refresh()
                 UserDefaults.email = email
                 UserDefaults.kycSessionKeyValue = sessionKey
                 
