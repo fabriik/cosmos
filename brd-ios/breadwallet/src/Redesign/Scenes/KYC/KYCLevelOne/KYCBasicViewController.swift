@@ -15,6 +15,8 @@ class KYCBasicViewController: BaseTableViewController<KYCCoordinator,
                               KYCBasicResponseDisplays {
     typealias Models = KYCBasicModels
     
+    override var isModalDismissableEnabled: Bool { return false }
+    
     override var sceneLeftAlignedTitle: String? {
         // TODO: localize
         return "Personal Information"

@@ -16,13 +16,19 @@ extension Presenter {
     func presentError(actionResponse: MessageModels.Errors.ActionResponse) {
         guard let error = actionResponse.error as? NetworkingError else { return }
 
-        // TODO: Investigate localized errors
-        let model = InfoViewModel(headerTitle: .text("Error"), description: .text(error.errorMessage))
-        
-        // TODO: create Error preset
-        let config = Presets.InfoView.primary
-
-        viewController?.displayMessage(responseDisplay: .init(error: error, model: model, config: config))
+        let responseDisplay: MessageModels.ResponseDisplays
+        if let error = error as? SessioExpiredError {
+            responseDisplay = .init(error: error)
+        } else {
+            // TODO: Investigate localized errors
+            let model = InfoViewModel(headerTitle: .text("Error"), description: .text(error.errorMessage))
+            
+            // TODO: create Error preset
+            let config = Presets.InfoView.primary
+            responseDisplay = .init(model: model, config: config)
+        }
+    
+        viewController?.displayMessage(responseDisplay: responseDisplay)
     }
     
     func presentNotification(actionResponse: MessageModels.Notification.ActionResponse) {
