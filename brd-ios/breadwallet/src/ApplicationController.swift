@@ -367,6 +367,7 @@ class ApplicationController: Subscriber, Trackable {
                     self?.coordinator?.start()
                     
                 case .failure(let error):
+                    guard UserDefaults.email?.isEmpty == false else { return }
                     self?.coordinator?.showMessage(with: error)
                     
                 default:

@@ -154,7 +154,7 @@ public class NetworkingErrorManager {
         case 404:
             return NetworkingNotFoundError(data: data)
         default:
-            return NetworkingGeneralError(data: data)
+            return nil
         }
     }
     
