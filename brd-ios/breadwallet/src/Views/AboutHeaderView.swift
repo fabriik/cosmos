@@ -4,7 +4,7 @@
 
 import UIKit
 
-class AboutHeaderView: BaseViewDeprecated {
+class AboutHeaderView: UIView {
     private lazy var mainLogoView: UIImageView = {
         let mainLogoView = UIImageView(image: UIImage(named: "LogoBlue"))
         mainLogoView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,9 +28,25 @@ class AboutHeaderView: BaseViewDeprecated {
         return separator
     }()
     
-    override func setupSubviews() {
-        super.setupSubviews()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
+        setupSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        setupSubviews()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setupSubviews()
+    }
+    
+    func setupSubviews() {
         addSubview(mainLogoView)
         addSubview(mainLogoTextView)
         addSubview(separator)
