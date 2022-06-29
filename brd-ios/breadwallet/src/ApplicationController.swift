@@ -147,7 +147,7 @@ class ApplicationController: Subscriber, Trackable {
         UserManager.shared.refresh() { [weak self] result in
             switch result {
             case .failure(let error):
-                guard error is SessioExpiredError else { return }
+                guard error is SessionExpiredError else { return }
                 self?.coordinator?.showMessage(with: error)
                 
             default:

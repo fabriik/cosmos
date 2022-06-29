@@ -117,7 +117,7 @@ public struct NetworkingCustomError: NetworkingError {
     }
 }
 
-public struct SessioExpiredError: NetworkingError {
+public struct SessionExpiredError: NetworkingError {
     public var errorMessage: String {
         return firstOccurringError() ?? ""
     }
@@ -137,7 +137,7 @@ public class NetworkingErrorManager {
         if let data = data,
            let errorObject = ServerResponse.parse(from: data, type: ServerResponse.self),
            errorObject.error?.statusCode == 105 {
-            return SessioExpiredError(data: data)
+            return SessionExpiredError(data: data)
         }
         
         guard let response = response else {
