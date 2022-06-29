@@ -16,7 +16,7 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
 
     // MARK: - RegistrationConfirmationViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        presenter?.presentData(actionResponse: .init(item: dataStore?.email))
+        presenter?.presentData(actionResponse: .init(item: UserDefaults.email))
     }
     
     func validate(viewAction: RegistrationConfirmationModels.Validate.ViewAction) {
