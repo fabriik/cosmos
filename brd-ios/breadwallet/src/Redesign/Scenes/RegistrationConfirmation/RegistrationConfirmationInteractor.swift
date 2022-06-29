@@ -22,16 +22,14 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
         }
         
         // if session has expired, we need to call new device again
-        guard let email = UserDefaults.email, let token = UserDefaults.walletTokenValue else { return }
+        guard let token = UserDefaults.walletTokenValue else { return }
         
         let newDeviceRequestData = NewDeviceRequestData(token: token)
         NewDeviceWorker().execute(requestData: newDeviceRequestData) { [weak self] result in
             switch result {
             case .success(let data):
-                UserDefaults.email = data.email
                 UserDefaults.kycSessionKeyValue = data.sessionKey
-                
-                self?.presenter?.presentData(actionResponse: .init(item: email))
+                self?.presenter?.presentData(actionResponse: .init(item: data.email))
                 
             case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
