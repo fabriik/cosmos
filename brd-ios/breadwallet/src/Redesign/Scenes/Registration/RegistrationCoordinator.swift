@@ -20,10 +20,7 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     }
     
     func showRegistrationConfirmation(callAsociate: Bool = false) {
-        open(scene: Scenes.RegistrationConfirmation) { vc in
-            vc.dataStore?.callAssociate = callAsociate
-            vc.prepareData()
-        }
+        open(scene: Scenes.RegistrationConfirmation)
     }
     
     func showChangeEmail() {

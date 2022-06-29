@@ -159,9 +159,10 @@ class BaseCoordinator: NSObject,
                     navigationController.present(alert, animated: true, completion: nil)
 
                 case .failure(let error):
-                    print("\(error.localizedDescription)")
+                    showMessage(with: error)
+                    
                 }
-                            }
+            }
         }
     }
     
@@ -191,25 +192,36 @@ class BaseCoordinator: NSObject,
     // IT prepares the next KYC coordinator OR returns true
     // in which case we show 3rd party popup or continue to buy/swap
     private func upgradeAccountOrShowPopup(completion: ((Bool) -> Void)?) {
-        UserManager.shared.refresh { [unowned self] _ in
-            var coordinator: Coordinatable?
-            if UserDefaults.kycSessionKeyValue == nil
-                || !UserDefaults.emailConfirmed {
-                coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
-            } else if UserManager.shared.profile?.status.canBuyTrade == false {
-                coordinator = KYCCoordinator(navigationController: RootNavigationController())
+        UserManager.shared.refresh { [unowned self] result in
+            switch result {
+            case .success:
+                var coordinator: Coordinatable?
+                if UserDefaults.kycSessionKeyValue == nil
+                    || !UserDefaults.emailConfirmed {
+                    coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
+                } else if UserManager.shared.profile?.status.canBuyTrade == false {
+                    coordinator = KYCCoordinator(navigationController: RootNavigationController())
+                }
+                
+                guard let coordinator = coordinator else {
+                    completion?(true)
+                    return
+                }
+
+                coordinator.start()
+                coordinator.parentCoordinator = self
+                childCoordinators.append(coordinator)
+                navigationController.show(coordinator.navigationController, sender: nil)
+                completion?(false)
+                
+            case .failure(let error):
+                showMessage(with: error)
+                completion?(false)
+                
+            default:
+                completion?(true)
             }
             
-            guard let coordinator = coordinator else {
-                completion?(true)
-                return
-            }
-
-            coordinator.start()
-            coordinator.parentCoordinator = self
-            childCoordinators.append(coordinator)
-            navigationController.show(coordinator.navigationController, sender: nil)
-            completion?(false)
         }
     }
 
