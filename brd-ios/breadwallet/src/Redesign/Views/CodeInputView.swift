@@ -85,11 +85,6 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         }
         
         stack.addArrangedSubview(inputStack)
-        
-        for view in inputTextfields {
-            inputStack.addArrangedSubview(view)
-        }
-        
         stack.addArrangedSubview(errorLabel)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -111,6 +106,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         super.configure(with: config)
         
         inputTextfields.forEach { field in
+            inputStack.addArrangedSubview(field)
             field.configure(with: config?.input)
         }
         
