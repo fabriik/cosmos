@@ -404,7 +404,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private var generalPromptView = PromptView()
     
     private func attemptShowGeneralPrompt() {
-//        guard shouldShowGeneralPrompt else { return }
+        guard shouldShowGeneralPrompt else { return }
         
         guard let nextPrompt = PromptFactory.nextPrompt(walletAuthenticator: walletAuthenticator),
               promptContainerStack.arrangedSubviews.contains(where: { $0 is PromptView }) == false else { return }
@@ -439,7 +439,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     private func attemptShowKYCPrompt() {
-//        guard shouldShowKYCPrompt else { return }
+        guard shouldShowKYCPrompt else { return }
         
         ProfileWorker().execute { [weak self] result in
             switch result {

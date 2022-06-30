@@ -439,7 +439,7 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapProfileFromPrompt = { [unowned self] status in
-            if status != nil {
+            if status == nil {
                 coordinator?.showRegistration()
             } else {
                 coordinator?.showVerificationsModally()
