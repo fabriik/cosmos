@@ -117,7 +117,7 @@ public struct NetworkingCustomError: NetworkingError {
     }
 }
 
-public struct SessioExpiredError: NetworkingError {
+public struct SessionExpiredError: NetworkingError {
     public var errorMessage: String {
         return firstOccurringError() ?? ""
     }
@@ -133,8 +133,16 @@ public class NetworkingErrorManager {
         if let error = error as? URLError, error.code == .notConnectedToInternet {
             return NetworkingNoConnectionError()
         }
-        guard let response = response else { return NetworkingGeneralError() }
-        guard isErrorStatusCode(response.statusCode) else { return nil }
+        
+        if let data = data,
+           let errorObject = ServerResponse.parse(from: data, type: ServerResponse.self),
+           errorObject.error?.statusCode == 105 {
+            return SessionExpiredError(data: data)
+        }
+        
+        guard let response = response else {
+            return NetworkingGeneralError(data: data)
+        }
         
         switch response.statusCode {
         case 400:
@@ -145,10 +153,10 @@ public class NetworkingErrorManager {
             return NetworkingForbiddenError(data: data)
         case 404:
             return NetworkingNotFoundError(data: data)
-        case 105:
-            return SessioExpiredError(data: data)
-        default:
+        case 500...599:
             return NetworkingGeneralError(data: data)
+        default:
+            return nil
         }
     }
     

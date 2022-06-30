@@ -12,7 +12,6 @@ struct MenuItem {
     
     enum Icon {
         static let scan = UIImage(named: "scan")
-        static let registrationAndKyc = UIImage(named: "registrationAndKyc")
         static let feedback = UIImage(named: "Feedback")
         static let wallet = UIImage(named: "wallet")
         static let preferences = UIImage(named: "prefs")
