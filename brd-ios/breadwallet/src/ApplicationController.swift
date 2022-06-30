@@ -357,24 +357,47 @@ class ApplicationController: Subscriber, Trackable {
                                                  shouldDisableBiometrics: shouldDisableBiometrics,
                                                  createHomeScreen: createHomeScreen)
         startFlowController?.didFinish = { [weak self] in
-            UserManager.shared.refresh { result in
+            self?.afterLoginFlow()
+        }
+    }
+    
+    private func afterLoginFlow() {
+            UserManager.shared.refresh { [weak self] result in
                 switch result {
-                case .success(let profile):
-                    guard !UserDefaults.emailConfirmed,
-                          profile.email?.isEmpty == false else {
+                case .success:
+                    guard !UserDefaults.emailConfirmed else {
                         return
                     }
-                    self?.coordinator?.start()
+                    self?.coordinator?.showRegistration()
                     
                 case .failure(let error):
-                    guard UserDefaults.email?.isEmpty == false else { return }
-                    self?.coordinator?.showMessage(with: error)
+                    guard error is SessionExpiredError else {
+                        self?.coordinator?.showMessage(with: error)
+                        return
+                    }
+                    
+                    guard let token = UserDefaults.walletTokenValue else {
+                        self?.coordinator?.showMessage(model: .init(description: .text("No token!")))
+                        return
+                    }
+                    
+                    let newDeviceRequestData = NewDeviceRequestData(token: token)
+                    NewDeviceWorker().execute(requestData: newDeviceRequestData) { [weak self] result in
+                        switch result {
+                        case .success(let data):
+                            UserDefaults.email = data.email
+                            UserDefaults.kycSessionKeyValue = data.sessionKey
+                            self?.coordinator?.showRegistration()
+                            
+                        case .failure(let error):
+                            self?.coordinator?.showMessage(with: error)
+                        }
+                    }
                     
                 default:
                     return
                 }
             }
-        }
     }
     
     private func setupAppearance() {
@@ -411,7 +434,7 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapProfile = { [unowned self] in
-            coordinator?.start()
+            coordinator?.showProfile()
         }
         
         homeScreen.didTapMenu = { [unowned self] in

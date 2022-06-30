@@ -24,12 +24,11 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
                 self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: data.email, image: "earth", status: data.status)))
                 
             case .failure(let error):
-                guard error is SessionExpiredError else {
+//                guard error is SessionExpiredError else {
                     self?.presenter?.presentError(actionResponse: .init(error: error))
-                    return
-                }
-                self?.getNewDeviceInfo()
-                
+//                    return
+//                }
+//                self?.getNewDeviceInfo()
             }
         }
     }

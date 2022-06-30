@@ -278,27 +278,27 @@ open class BRAPIClient: NSObject, URLSessionDelegate, URLSessionTaskDelegate, BR
                     }
                 }
                 
-                if UserDefaults.kycSessionKeyValue == nil {
-                    let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
-                    NewDeviceWorker().execute(requestData: newDeviceRequestData) { result in
-                        switch result {
-                        case .success(let data):
-                            UserDefaults.email = data.email
-                            UserDefaults.kycSessionKeyValue = data.sessionKey
-                            
-                            self.leaveGroup()
-                            
-                        case .failure(let error):
-                            self.log("Session key error: \((error as? NetworkingError)?.errorMessage ?? "")")
-                            
-                            self.leaveGroup()
-                            handler(err as NSError?)
-                        }
-                    }
-                } else {
+//                if UserDefaults.kycSessionKeyValue == nil {
+//                    let newDeviceRequestData = NewDeviceRequestData(token: UserDefaults.walletTokenValue)
+//                    NewDeviceWorker().execute(requestData: newDeviceRequestData) { result in
+//                        switch result {
+//                        case .success(let data):
+//                            UserDefaults.email = data.email
+//                            UserDefaults.kycSessionKeyValue = data.sessionKey
+//
+//                            self.leaveGroup()
+//
+//                        case .failure(let error):
+//                            self.log("Session key error: \((error as? NetworkingError)?.errorMessage ?? "")")
+//
+//                            self.leaveGroup()
+//                            handler(err as NSError?)
+//                        }
+//                    }
+//                } else {
                     self.leaveGroup()
                     handler(err as NSError?)
-                }
+//                }
             }
         }) .resume()
     }
