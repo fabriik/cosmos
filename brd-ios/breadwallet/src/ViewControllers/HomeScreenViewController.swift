@@ -404,7 +404,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private var generalPromptView = PromptView()
     
     private func attemptShowGeneralPrompt() {
-        guard shouldShowGeneralPrompt else { return }
+//        guard shouldShowGeneralPrompt else { return }
         
         guard let nextPrompt = PromptFactory.nextPrompt(walletAuthenticator: walletAuthenticator),
               promptContainerStack.arrangedSubviews.contains(where: { $0 is PromptView }) == false else { return }
@@ -460,9 +460,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         newPrompt.isHidden = false
         newPrompt.alpha = 0.0
         
-        let item = ProfileModels.Item(title: data?.email ?? "", image: "earth", status: data?.status ?? .none)
+        let status = data?.status
         
-        let status = item.status
         let infoView: InfoViewModel = Presets.VerificationInfoView.nonePrompt
         let infoConfig: InfoViewConfiguration = Presets.InfoView.verification
         
