@@ -364,8 +364,9 @@ class ApplicationController: Subscriber, Trackable {
     private func afterLoginFlow() {
             UserManager.shared.refresh { [weak self] result in
                 switch result {
-                case .success:
-                    guard !UserDefaults.emailConfirmed else {
+                case .success(let profile):
+                    guard !UserDefaults.emailConfirmed,
+                            profile.email != nil else {
                         return
                     }
                     self?.coordinator?.showRegistration()
