@@ -390,7 +390,6 @@ class ApplicationController: Subscriber, Trackable {
                         UserDefaults.kycSessionKeyValue = data.sessionKey
                         
                         self?.coordinator?.showRegistration()
-//                        self?.homeScreenViewController?.attemptShowKYCPrompt()
                         
                     case .failure(let error):
                         self?.coordinator?.showMessage(with: error)

@@ -439,7 +439,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     private func attemptShowKYCPrompt() {
-        guard shouldShowKYCPrompt else { return }
+//        guard shouldShowKYCPrompt else { return }
         
         ProfileWorker().execute { [weak self] result in
             switch result {
