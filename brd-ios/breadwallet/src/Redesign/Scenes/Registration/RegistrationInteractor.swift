@@ -35,11 +35,11 @@ class RegistrationInteractor: NSObject, Interactor, RegistrationViewActions {
             case .success(let data):
                 guard let sessionKey = data.sessionKey else { return }
                 
-                UserManager.shared.refresh()
                 UserDefaults.email = email
                 UserDefaults.kycSessionKeyValue = sessionKey
-                
-                self?.presenter?.presentNext(actionResponse: .init(email: email))
+                UserManager.shared.refresh { _ in
+                    self?.presenter?.presentNext(actionResponse: .init(email: email))
+                }
                 
             case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))

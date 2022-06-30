@@ -62,11 +62,13 @@ class BaseCoordinator: NSObject,
     func start() {
         let nvc = RootNavigationController()
         let coordinator: Coordinatable
-        if UserDefaults.emailConfirmed {
-            coordinator = ProfileCoordinator(navigationController: nvc)
-        } else {
+        
+        if let profile = UserManager.shared.profile,
+           profile.email?.isEmpty == false,
+           profile.status == .emailPending {
             coordinator = RegistrationCoordinator(navigationController: nvc)
-            (coordinator as? RegistrationCoordinator)?.fromProfile = true
+        } else {
+            coordinator = ProfileCoordinator(navigationController: nvc)
         }
         
         coordinator.start()
@@ -75,8 +77,18 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
     
+    func showRegistration() {
+        let coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
+        coordinator.start()
+        coordinator.parentCoordinator = self
+        childCoordinators.append(coordinator)
+        navigationController.show(coordinator.navigationController, sender: nil)
+    }
+    
     func showProfile() {
-        openModally(coordinator: ProfileCoordinator.self, scene: Scenes.Profile)
+        upgradeAccountOrShowPopup(checkForKyc: false) { [weak self] _ in
+            self?.openModally(coordinator: ProfileCoordinator.self, scene: Scenes.Profile)
+        }
     }
 
     /// Determines whether the viewcontroller or navigation stack are being dismissed
@@ -159,9 +171,10 @@ class BaseCoordinator: NSObject,
                     navigationController.present(alert, animated: true, completion: nil)
 
                 case .failure(let error):
-                    print("\(error.localizedDescription)")
+                    showMessage(with: error)
+                    
                 }
-                            }
+            }
         }
     }
     
@@ -190,21 +203,34 @@ class BaseCoordinator: NSObject,
     // TODO: really dont know how to name this :S
     // IT prepares the next KYC coordinator OR returns true
     // in which case we show 3rd party popup or continue to buy/swap
-    private func upgradeAccountOrShowPopup(completion: ((Bool) -> Void)?) {
-        UserManager.shared.refresh { [unowned self] _ in
+    private func upgradeAccountOrShowPopup(checkForKyc: Bool = true, completion: ((Bool) -> Void)?) {
+        UserManager.shared.refresh { [unowned self] result in
             var coordinator: Coordinatable?
-            if UserDefaults.kycSessionKeyValue == nil
-                || !UserDefaults.emailConfirmed {
+            switch result {
+            case .success(let profile):
+                if profile.email == nil
+                    || !UserDefaults.emailConfirmed {
+                    coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
+                } else if checkForKyc, UserManager.shared.profile?.status.canBuyTrade == false {
+                    coordinator = KYCCoordinator(navigationController: RootNavigationController())
+                }
+                
+            case .failure(let error):
+                guard error is SessionExpiredError else {
+                    completion?(false)
+                    return
+                }
                 coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
-            } else if UserManager.shared.profile?.status.canBuyTrade == false {
-                coordinator = KYCCoordinator(navigationController: RootNavigationController())
+                
+            default:
+                completion?(true)
             }
             
             guard let coordinator = coordinator else {
                 completion?(true)
                 return
             }
-
+            
             coordinator.start()
             coordinator.parentCoordinator = self
             childCoordinators.append(coordinator)
@@ -215,6 +241,7 @@ class BaseCoordinator: NSObject,
 
     func showMessage(with error: Error? = nil, model: InfoViewModel? = nil, configuration: InfoViewConfiguration? = nil) {
         guard !(error is SessionExpiredError) else {
+            UserDefaults.emailConfirmed = false
             openModally(coordinator: RegistrationCoordinator.self, scene: Scenes.RegistrationConfirmation)
             return
         }
