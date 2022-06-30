@@ -28,8 +28,8 @@ class UserManager: NSObject {
             case .success(let profile):
                 self?.profile = profile
                 
-                if profile.email != UserDefaults.email {
-                    UserDefaults.email = profile.email
+                if let email = profile.email {
+                    UserDefaults.email = email
                 }
                 
             case .failure(let error):
