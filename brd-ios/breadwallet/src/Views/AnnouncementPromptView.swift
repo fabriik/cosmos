@@ -33,7 +33,7 @@ class AnnouncementPromptView: PromptView {
         body.textColor = .darkPromptBodyColor
         
         imageView.contentMode = .scaleAspectFit
-        if let imageName = prompt.imageName {
+        if let imageName = prompt?.imageName {
             imageView.image = UIImage(named: imageName)
         } else {
             imageView.isHidden = true
@@ -61,7 +61,7 @@ class AnnouncementPromptView: PromptView {
         footnoteLabel.numberOfLines = 0
         footnoteLabel.textColor = body.textColor
         footnoteLabel.font = UIFont.customBody(size: 9)
-        footnoteLabel.text = prompt.footnote
+        footnoteLabel.text = prompt?.footnote
     }
     
     override var shouldHandleTap: Bool {

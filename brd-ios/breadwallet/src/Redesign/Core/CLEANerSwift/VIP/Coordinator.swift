@@ -91,6 +91,20 @@ class BaseCoordinator: NSObject,
         }
     }
 
+    func showVerifications() {
+        open(scene: Scenes.AccountVerification) { vc in
+            vc.dataStore?.profile = UserManager.shared.profile
+            vc.prepareData()
+        }
+    }
+    
+    func showVerificationsModally() {
+        openModally(coordinator: KYCCoordinator.self, scene: Scenes.AccountVerification) { vc in
+            vc?.dataStore?.profile = UserManager.shared.profile
+            vc?.prepareData()
+        }
+    }
+    
     /// Determines whether the viewcontroller or navigation stack are being dismissed
     func goBack() {
         // if the same coordinator is used in a flow, we dont want to remove it from the parent
@@ -108,7 +122,7 @@ class BaseCoordinator: NSObject,
     func childDidFinish(child: Coordinatable) {
         childCoordinators.removeAll(where: { $0 === child })
     }
-
+    
     // only call from coordinator subclasses
     func open<T: BaseControllable>(scene: T.Type,
                                    presentationStyle: UIModalPresentationStyle = .fullScreen,
@@ -122,10 +136,10 @@ class BaseCoordinator: NSObject,
 
     // only call from coordinator subclasses
     func openModally<C: BaseCoordinator,
-                            VC: BaseControllable>(coordinator: C.Type,
-                                                  scene: VC.Type,
-                                                  presentationStyle: UIModalPresentationStyle = .fullScreen,
-                                                  configure: ((VC?) -> Void)? = nil) {
+                     VC: BaseControllable>(coordinator: C.Type,
+                                           scene: VC.Type,
+                                           presentationStyle: UIModalPresentationStyle = .fullScreen,
+                                           configure: ((VC?) -> Void)? = nil) {
         let controller = VC()
         let nvc = RootNavigationController(rootViewController: controller)
         nvc.modalPresentationStyle = presentationStyle

@@ -438,6 +438,14 @@ class ApplicationController: Subscriber, Trackable {
             coordinator?.showProfile()
         }
         
+        homeScreen.didTapProfileFromPrompt = { [unowned self] status in
+            if status != nil {
+                coordinator?.showRegistration()
+            } else {
+                coordinator?.showVerificationsModally()
+            }
+        }
+        
         homeScreen.didTapMenu = { [unowned self] in
             self.modalPresenter?.presentMenu()
         }
