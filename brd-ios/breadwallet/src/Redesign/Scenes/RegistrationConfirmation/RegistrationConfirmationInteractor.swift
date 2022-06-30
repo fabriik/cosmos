@@ -16,8 +16,8 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
 
     // MARK: - RegistrationConfirmationViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
-        guard UserDefaults.emailConfirmed == false,
-        UserManager.shared.profile?.status != .emailPending else {
+        guard !UserDefaults.emailConfirmed,
+              UserManager.shared.profile?.status != .emailPending else {
             presenter?.presentData(actionResponse: .init(item: UserDefaults.email))
             return
         }
