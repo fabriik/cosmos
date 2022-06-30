@@ -207,8 +207,8 @@ class BaseCoordinator: NSObject,
         UserManager.shared.refresh { [unowned self] result in
             var coordinator: Coordinatable?
             switch result {
-            case .success:
-                if UserDefaults.kycSessionKeyValue == nil
+            case .success(let profile):
+                if profile.email == nil
                     || !UserDefaults.emailConfirmed {
                     coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
                 } else if checkForKyc, UserManager.shared.profile?.status.canBuyTrade == false {

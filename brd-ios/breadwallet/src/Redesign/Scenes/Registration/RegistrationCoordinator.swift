@@ -12,7 +12,7 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     // MARK: - RegistrationRoutes
     var fromProfile = false
     override func start() {
-        guard UserDefaults.email?.isEmpty == false else {
+        guard UserDefaults.email != nil else {
             return open(scene: Scenes.Registration)
         }
         

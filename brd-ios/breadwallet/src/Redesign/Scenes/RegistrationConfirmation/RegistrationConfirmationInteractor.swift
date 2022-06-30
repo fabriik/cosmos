@@ -30,6 +30,7 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
             switch result {
             case .success(let data):
                 UserDefaults.kycSessionKeyValue = data.sessionKey
+                UserDefaults.email = data.email
                 self?.presenter?.presentData(actionResponse: .init(item: data.email))
 
             case .failure(let error):
