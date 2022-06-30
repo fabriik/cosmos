@@ -162,7 +162,9 @@ class TransactionsTableViewController: UITableViewController, Subscriber, Tracka
     private func reload(txHash: String) -> Bool {
         assert(Thread.isMainThread)
         guard let index = transactions.firstIndex(where: { txHash == $0.hash }) else { return false }
-        tableView.reload(row: index, section: 0)
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        tableView.endUpdates()
         return true
     }
 

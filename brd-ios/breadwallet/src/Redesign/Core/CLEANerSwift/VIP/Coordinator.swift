@@ -213,8 +213,8 @@ class BaseCoordinator: NSObject,
         }
     }
 
-    func showMessage(with error: Error? = nil, model: InfoViewModel?, configuration: InfoViewConfiguration?) {
-        guard (error as? SessioExpiredError) == nil else {
+    func showMessage(with error: Error? = nil, model: InfoViewModel? = nil, configuration: InfoViewConfiguration? = nil) {
+        guard !(error is SessionExpiredError) else {
             openModally(coordinator: RegistrationCoordinator.self, scene: Scenes.RegistrationConfirmation)
             return
         }

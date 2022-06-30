@@ -67,7 +67,6 @@ enum RegistrationModels {
         struct ActionResponse {
             var email: String?
         }
-        struct ResponseDisplay {
-            var email: String?}
+        struct ResponseDisplay {}
     }
 }

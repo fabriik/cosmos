@@ -144,8 +144,6 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     func decideFlow() {
-        UserManager.shared.refresh()
-        
         if keyStore.noWallet {
             enterOnboarding()
         } else {
@@ -350,7 +348,6 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     // MARK: - UI
-    
     private func setupRootViewController() {
         let navigationController = RootNavigationController()
         window.rootViewController = navigationController
@@ -360,15 +357,21 @@ class ApplicationController: Subscriber, Trackable {
                                                  shouldDisableBiometrics: shouldDisableBiometrics,
                                                  createHomeScreen: createHomeScreen)
         startFlowController?.didFinish = { [weak self] in
-            UserManager.shared.refresh { profile in
-                guard profile != nil,
-                      profile?.status != .emailPending,
-                      profile?.status != nil,
-                      !UserDefaults.emailConfirmed else {
+            UserManager.shared.refresh { result in
+                switch result {
+                case .success(let profile):
+                    guard profile.status == .emailPending || UserDefaults.emailConfirmed != true else {
+                        return
+                    }
+                    self?.coordinator?.start()
+                    
+                case .failure(let error):
+                    guard UserDefaults.email?.isEmpty == false else { return }
+                    self?.coordinator?.showMessage(with: error)
+                    
+                default:
                     return
                 }
-                
-                self?.coordinator?.start()
             }
         }
     }

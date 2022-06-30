@@ -12,16 +12,16 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     // MARK: - RegistrationRoutes
     var fromProfile = false
     override func start() {
-        guard let email = UserDefaults.email else {
+        guard UserDefaults.email?.isEmpty == false else {
             return open(scene: Scenes.Registration)
         }
         
-        showRegistrationConfirmation(for: email)
+        showRegistrationConfirmation(callAsociate: fromProfile)
     }
     
-    func showRegistrationConfirmation(for email: String?) {
+    func showRegistrationConfirmation(callAsociate: Bool = false) {
         open(scene: Scenes.RegistrationConfirmation) { vc in
-            vc.dataStore?.email = email
+            vc.dataStore?.callAssociate = callAsociate
             vc.prepareData()
         }
     }
