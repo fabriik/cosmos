@@ -62,11 +62,13 @@ class BaseCoordinator: NSObject,
     func start() {
         let nvc = RootNavigationController()
         let coordinator: Coordinatable
-        if UserDefaults.emailConfirmed {
-            coordinator = ProfileCoordinator(navigationController: nvc)
-        } else {
+        
+        if let profile = UserManager.shared.profile,
+           profile.email?.isEmpty == false,
+           profile.status == .emailPending {
             coordinator = RegistrationCoordinator(navigationController: nvc)
-            (coordinator as? RegistrationCoordinator)?.fromProfile = true
+        } else {
+            coordinator = ProfileCoordinator(navigationController: nvc)
         }
         
         coordinator.start()
@@ -75,8 +77,18 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
     
+    func showRegistration() {
+        let coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
+        coordinator.start()
+        coordinator.parentCoordinator = self
+        childCoordinators.append(coordinator)
+        navigationController.show(coordinator.navigationController, sender: nil)
+    }
+    
     func showProfile() {
-        openModally(coordinator: ProfileCoordinator.self, scene: Scenes.Profile)
+        upgradeAccountOrShowPopup(checkForKyc: false) { [weak self] _ in
+            self?.openModally(coordinator: ProfileCoordinator.self, scene: Scenes.Profile)
+        }
     }
 
     /// Determines whether the viewcontroller or navigation stack are being dismissed
@@ -191,15 +203,15 @@ class BaseCoordinator: NSObject,
     // TODO: really dont know how to name this :S
     // IT prepares the next KYC coordinator OR returns true
     // in which case we show 3rd party popup or continue to buy/swap
-    private func upgradeAccountOrShowPopup(completion: ((Bool) -> Void)?) {
+    private func upgradeAccountOrShowPopup(checkForKyc: Bool = true, completion: ((Bool) -> Void)?) {
         UserManager.shared.refresh { [unowned self] result in
             var coordinator: Coordinatable?
             switch result {
-            case .success:
-                if UserDefaults.kycSessionKeyValue == nil
+            case .success(let profile):
+                if profile.email == nil
                     || !UserDefaults.emailConfirmed {
                     coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
-                } else if UserManager.shared.profile?.status.canBuyTrade == false {
+                } else if checkForKyc, UserManager.shared.profile?.status.canBuyTrade == false {
                     coordinator = KYCCoordinator(navigationController: RootNavigationController())
                 }
                 

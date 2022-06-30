@@ -24,12 +24,7 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
                 self?.presenter?.presentData(actionResponse: .init(item: Models.Item(title: data.email, image: "earth", status: data.status)))
                 
             case .failure(let error):
-                guard error is SessionExpiredError else {
-                    self?.presenter?.presentError(actionResponse: .init(error: error))
-                    return
-                }
-                self?.getNewDeviceInfo()
-                
+                self?.presenter?.presentError(actionResponse: .init(error: error))
             }
         }
     }
@@ -43,23 +38,4 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
     }
     
     // MARK: - Aditional helpers
-    
-    private func getNewDeviceInfo() {
-        // if session has expired, we need to call new device again
-        guard let token = UserDefaults.walletTokenValue else { return }
-        
-        let newDeviceRequestData = NewDeviceRequestData(token: token)
-        NewDeviceWorker().execute(requestData: newDeviceRequestData) { [weak self] result in
-            switch result {
-            case .success(let data):
-                UserDefaults.email = data.email
-                UserDefaults.kycSessionKeyValue = data.sessionKey
-                
-                self?.getData(viewAction: .init())
-                
-            case .failure(let error):
-                self?.presenter?.presentError(actionResponse: .init(error: error))
-            }
-        }
-    }
 }
