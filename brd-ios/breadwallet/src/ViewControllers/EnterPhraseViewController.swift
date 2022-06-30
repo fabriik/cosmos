@@ -213,43 +213,4 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func showToastMessage(message: String) {
-        let notification = UIView()
-        notification.setupCustomMargins(all: .large)
-        notification.backgroundColor = LightColors.error
-        notification.layer.cornerRadius = 12
-        
-        let toastLabel = UILabel()
-        toastLabel.textColor = .white
-        toastLabel.font = Fonts.Body.two
-        toastLabel.text = message
-        toastLabel.numberOfLines = 0
-        toastLabel.textAlignment = .left
-        toastLabel.clipsToBounds  =  true
-        
-        guard let superview = navigationController?.topViewController?.view else {
-            return
-        }
-        superview.addSubview(notification)
-        notification.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
-            make.leading.equalToSuperview().offset(Margins.large.rawValue)
-            make.trailing.equalToSuperview().offset(-Margins.large.rawValue)
-            make.height.equalTo(72)
-        }
-        notification.layoutIfNeeded()
-        notification.alpha = 1
-        
-        notification.addSubview(toastLabel)
-        toastLabel.snp.makeConstraints { make in
-            make.edges.equalTo(notification.snp.margins)
-        }
-        
-        UIView.animate(withDuration: 4.0) {
-            notification.alpha = 0
-        } completion: { _ in
-            notification.removeFromSuperview()
-        }
-    }
 }
