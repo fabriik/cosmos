@@ -153,6 +153,8 @@ public class NetworkingErrorManager {
             return NetworkingForbiddenError(data: data)
         case 404:
             return NetworkingNotFoundError(data: data)
+        case 500...599:
+            return NetworkingGeneralError(data: data)
         default:
             return nil
         }
