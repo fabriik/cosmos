@@ -52,10 +52,7 @@ extension UIViewController {
         textLabel.textAlignment = .left
         textLabel.clipsToBounds  =  true
         
-        guard let superview = navigationController?.topViewController?.view else {
-            return
-        }
-        superview.addSubview(messageView)
+        view.addSubview(messageView)
         messageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(100)
             make.leading.equalToSuperview().offset(Margins.large.rawValue)
@@ -69,8 +66,8 @@ extension UIViewController {
         textLabel.snp.makeConstraints { make in
             make.edges.equalTo(messageView.snp.margins)
         }
-        
-        UIView.animate(withDuration: 4.0) {
+            
+        UIView.animate(withDuration: 6.0) {
             messageView.alpha = 0
         } completion: { _ in
             messageView.removeFromSuperview()
