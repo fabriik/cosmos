@@ -152,7 +152,10 @@ extension UserDefaults {
     /// Should show  the 3rd party buy alert ?
     static var showBuyAlert: Bool {
         get {
-            return defaults.bool(forKey: shouldShowBuyAlert)
+            guard defaults.object(forKey: shouldShowBuyAlert) == nil else {
+                return false
+            }
+            return true
         }
         
         set { defaults.set(newValue, forKey: shouldShowBuyAlert) }
@@ -161,7 +164,10 @@ extension UserDefaults {
     /// Should show  the 3rd party swap alert ?
     static var showSwapAlert: Bool {
         get {
-            return defaults.bool(forKey: shouldShowSwapAlert)
+            guard defaults.object(forKey: shouldShowSwapAlert) == nil else {
+                return false
+            }
+            return true
         }
         
         set { defaults.set(newValue, forKey: shouldShowSwapAlert) }
