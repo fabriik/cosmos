@@ -33,7 +33,7 @@ protocol RegistrationConfirmationResponseDisplays: AnyObject, BaseResponseDispla
 }
 
 protocol RegistrationConfirmationDataStore: BaseDataStore, FetchDataStore {
-    var email: String? { get set }
+    var callAssociate: Bool { get set }
 }
 
 protocol RegistrationConfirmationDataPassing {

@@ -25,7 +25,6 @@ class ProfileInteractor: NSObject, Interactor, ProfileViewActions {
                 
             case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                
             }
         }
     }

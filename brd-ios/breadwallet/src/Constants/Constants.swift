@@ -44,8 +44,6 @@ struct C {
     static let animationDuration: TimeInterval = 0.3
     static let secondsInDay: TimeInterval = 86400
     static let secondsInMinute: TimeInterval = 60
-    static let maxMoney: UInt64 = 21000000*100000000
-    static let satoshis: UInt64 = 100000000
     static let walletQueue = "com.fabriik.one.walletqueue"
     static let null = "(null)"
     static let maxMemoLength = 250
@@ -60,9 +58,6 @@ struct C {
         return E.isTestnet ? 18333 : 8333
     }
     static let bip39CreationTime = TimeInterval(1388534400) - NSTimeIntervalSince1970
-    static let bCashForkBlockHeight: UInt32 = E.isTestnet ? 1155876 : 478559
-    static let bCashForkTimeStamp: TimeInterval = E.isTestnet ? (1501597117 - NSTimeIntervalSince1970) : (1501568580 - NSTimeIntervalSince1970)
-    static let txUnconfirmedHeight = Int32.max
 
     /// Path where core library stores its persistent data
     static var coreDataDirURL: URL {
@@ -104,12 +99,6 @@ struct C {
     }
 
     static let bdbClientTokenRecordId = "BlockchainDBClientID"
-    
-    static let daiContractAddress = "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
-    static let daiContractCode = "DAI"
-    
-    static let tusdContractAddress = "0x0000000000085d4780B73119b644AE5ecd22b376"
-    static let tusdContractCode = "TUSD"
     
     static let fixerAPITokenRecordId = "FixerAPIToken"
 }

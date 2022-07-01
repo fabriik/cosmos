@@ -107,7 +107,6 @@ class VIPViewController<C: CoordinatableRoutes,
     }
 
     func setupAsVIPModalDismissable(closeAction: Selector) {
-        guard isRootInNavigationController else { return }
         setupCloseButton(closeAction: closeAction)
     }
 

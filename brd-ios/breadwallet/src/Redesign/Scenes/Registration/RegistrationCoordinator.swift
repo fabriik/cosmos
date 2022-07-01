@@ -10,19 +10,17 @@ import UIKit
 
 class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     // MARK: - RegistrationRoutes
+    var fromProfile = false
     override func start() {
-        guard let email = UserDefaults.email else {
+        guard UserDefaults.email != nil else {
             return open(scene: Scenes.Registration)
         }
         
-        showRegistrationConfirmation(for: email)
+        showRegistrationConfirmation(callAsociate: fromProfile)
     }
     
-    func showRegistrationConfirmation(for email: String?) {
-        open(scene: Scenes.RegistrationConfirmation) { vc in
-            vc.dataStore?.email = email
-            vc.prepareData()
-        }
+    func showRegistrationConfirmation(callAsociate: Bool = false) {
+        open(scene: Scenes.RegistrationConfirmation)
     }
     
     func showChangeEmail() {
@@ -35,6 +33,17 @@ class RegistrationCoordinator: BaseCoordinator, RegistrationRoutes {
     func dismissFlow() {
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)
+        
+//        TODO: uncomment after release to make it like android.. yaay
+//        navigationController.dismiss(animated: true) { [weak self] in
+//            guard self?.fromProfile == true,
+//            let self = self else {
+//                return
+//            }
+//
+//            (self.parentCoordinator as? BaseCoordinator)?.showProfile()
+//            self.parentCoordinator?.childDidFinish(child: self)
+//        }
     }
     
     // MARK: - Aditional helpers

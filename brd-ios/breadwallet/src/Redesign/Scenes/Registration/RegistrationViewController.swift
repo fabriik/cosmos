@@ -16,6 +16,11 @@ class RegistrationViewController: BaseTableViewController<RegistrationCoordinato
     typealias Models = RegistrationModels
 
     // MARK: - Overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.setHidesBackButton(true, animated: false)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch sections[indexPath.section] as? Models.Section {
@@ -69,7 +74,7 @@ class RegistrationViewController: BaseTableViewController<RegistrationCoordinato
     }
     
     func displayNext(responseDisplay: RegistrationModels.Next.ResponseDisplay) {
-        coordinator?.showRegistrationConfirmation(for: responseDisplay.email)
+        coordinator?.showRegistrationConfirmation()
     }
 
     // MARK: - Additional Helpers

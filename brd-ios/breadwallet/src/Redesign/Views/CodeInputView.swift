@@ -85,11 +85,6 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         }
         
         stack.addArrangedSubview(inputStack)
-        
-        for view in inputTextfields {
-            inputStack.addArrangedSubview(view)
-        }
-        
         stack.addArrangedSubview(errorLabel)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -103,17 +98,22 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         hiddenTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
+    override func setup(with viewModel: CodeInputViewModel?) {
+        super.setup(with: viewModel)
+    }
+    
     override func configure(with config: CodeInputConfiguration?) {
         super.configure(with: config)
         
         inputTextfields.forEach { field in
+            inputStack.addArrangedSubview(field)
             field.configure(with: config?.input)
         }
         
         errorLabel.configure(with: config?.errorLabel)
         
         configure(background: config?.normal)
-        animateTo(state: .normal)
+        animateTo(state: .normal, withAnimation: false)
     }
     
     @objc private func tapped() {
@@ -167,7 +167,7 @@ class CodeInputView: FEView<CodeInputConfiguration, CodeInputViewModel>, StateDi
         displayState = state
         configure(background: background)
         
-        Self.animate(withDuration: Presets.Animation.duration) { [weak self] in
+        Self.animate(withDuration: withAnimation ? Presets.Animation.duration : 0) { [weak self] in
             self?.layoutIfNeeded()
             self?.contentSizeChanged?()
         }
