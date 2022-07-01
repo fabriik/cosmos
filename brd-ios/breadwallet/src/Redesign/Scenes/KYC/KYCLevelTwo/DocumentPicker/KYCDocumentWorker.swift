@@ -77,9 +77,7 @@ class KYCDocumentMapper: ModelMapper<KYCDocumentResponseData, [Document]> {
     }
 }
 
-class KYCDocumentWorker: BaseResponseWorker<KYCDocumentResponseData,
-                         [Document],
-                         KYCDocumentMapper> {
+class KYCDocumentWorker: BaseApiWorker<KYCDocumentMapper> {
     
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.documents)

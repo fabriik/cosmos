@@ -42,6 +42,6 @@ enum KYCAuthEndpoints: String, URLType {
     }
 }
 
-class KYCBaseResponseWorker<T: ModelResponse, U: Model, V: ModelMapper<T, U>>: BaseResponseWorker<T, U, V> {}
+class KYCBaseApiWorker<M: Mapper>: BaseApiWorker<M> {}
 
 class KYCBasePlainResponseWorker: BasePlainResponseWorker {}

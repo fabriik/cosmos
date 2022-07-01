@@ -250,6 +250,7 @@
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7E2E1A2B284E097900E56E69 /* KYCCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */; };
 		7E2E1A41284E267000E56E69 /* ProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A40284E267000E56E69 /* ProfileWorker.swift */; };
+		7E52B7A0286EF569003D2249 /* SwapPairsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E52B79F286EF569003D2249 /* SwapPairsWorker.swift */; };
 		7E5CB32D2834E63400EC787E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5CB32C2834E63400EC787E /* SnapKit */; };
 		7E5CB37C2835090E00EC787E /* DemoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3312835090D00EC787E /* DemoPresenter.swift */; };
 		7E5CB37D2835090E00EC787E /* DemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3322835090D00EC787E /* DemoCoordinator.swift */; };
@@ -1148,6 +1149,7 @@
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCCoordinator.swift; sourceTree = "<group>"; };
 		7E2E1A40284E267000E56E69 /* ProfileWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWorker.swift; sourceTree = "<group>"; };
+		7E52B79F286EF569003D2249 /* SwapPairsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPairsWorker.swift; sourceTree = "<group>"; };
 		7E5CB3312835090D00EC787E /* DemoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPresenter.swift; sourceTree = "<group>"; };
 		7E5CB3322835090D00EC787E /* DemoCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoCoordinator.swift; sourceTree = "<group>"; };
 		7E5CB3332835090D00EC787E /* DemoVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoVIP.swift; sourceTree = "<group>"; };
@@ -2321,6 +2323,22 @@
 			path = CheckList;
 			sourceTree = "<group>";
 		};
+		7E52B79D286EF4CE003D2249 /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				7E52B79E286EF4CE003D2249 /* Workers */,
+			);
+			path = Swap;
+			sourceTree = "<group>";
+		};
+		7E52B79E286EF4CE003D2249 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				7E52B79F286EF569003D2249 /* SwapPairsWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
 		7E5CB32E2835090D00EC787E /* Redesign */ = {
 			isa = PBXGroup;
 			children = (
@@ -2339,6 +2357,7 @@
 		7E5CB32F2835090D00EC787E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7E52B79D286EF4CE003D2249 /* Swap */,
 				7EF2187D2862F07A006ABCC1 /* Buy */,
 				7E2E1A2F284E169E00E56E69 /* CheckList */,
 				7EF45F7F284768C100D1F7B0 /* ItemSelection */,
@@ -4491,6 +4510,7 @@
 				3AFAD9302567EE15005853E8 /* GiftViewController.swift in Sources */,
 				7E5CB3952835090E00EC787E /* MessageVIP.swift in Sources */,
 				7E5CB39A2835090E00EC787E /* Presenter.swift in Sources */,
+				7E52B7A0286EF569003D2249 /* SwapPairsWorker.swift in Sources */,
 				7CE940E61FEB8A5F005A2B53 /* TxDetailRowCell.swift in Sources */,
 				3AB3EE0F227A23B400414616 /* ASADataFormatter.swift in Sources */,
 				3AFAD94F25699112005853E8 /* TxGiftCell.swift in Sources */,

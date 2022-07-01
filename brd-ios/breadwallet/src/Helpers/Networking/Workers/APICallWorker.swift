@@ -11,7 +11,7 @@ protocol APICallWorkerProperties {
     func processResponse(response: HTTPResponse)
     func apiCallDidFinish(response: HTTPResponse)
     func getUrl() -> String
-    func getMethod() -> EQHTTPMethod
+    func getMethod() -> HTTPMethod
     func getParameters() -> [String: Any]
     func getHeaders() -> [String: String]
     func getMultipartData() -> [MultipartMedia]
@@ -69,7 +69,7 @@ class APICallWorker: APICallWorkerProperties {
      */
     func apiCallDidFinish(response: HTTPResponse) { }
     func getUrl() -> String { return "" }
-    func getMethod() -> EQHTTPMethod { return .get }
+    func getMethod() -> HTTPMethod { return .get }
     func getParameters() -> [String: Any] { return [:] }
     
     func getHeaders() -> [String: String] {

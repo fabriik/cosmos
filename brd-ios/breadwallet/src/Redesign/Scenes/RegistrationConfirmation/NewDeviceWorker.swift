@@ -40,7 +40,7 @@ struct NewDeviceRequestData: RequestModelData {
     }
 }
 
-class NewDeviceWorker: BaseResponseWorker<NewDeviceResponseData, NewDeviceData, NewDeviceMapper> {
+class NewDeviceWorker: BaseApiWorker<NewDeviceMapper> {
     
     override func getHeaders() -> [String: String] {
         // TODO: extract?
@@ -68,7 +68,7 @@ class NewDeviceWorker: BaseResponseWorker<NewDeviceResponseData, NewDeviceData, 
         return APIURLHandler.getUrl(KYCAuthEndpoints.newDevice)
     }
     
-    override func getMethod() -> EQHTTPMethod {
+    override func getMethod() -> HTTPMethod {
         return .post
     }
 }

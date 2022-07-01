@@ -6,14 +6,14 @@
 import UIKit
 
 class HTTPRequest {
-    var method: EQHTTPMethod = .get
+    var method: HTTPMethod = .get
     var url = ""
     var headers: [String: String] = [:]
     var parameters: [String: Any] = [:]
     var encoding: Encoding = .json
     var media: [MultiPart] = []
     
-    init(method: EQHTTPMethod,
+    init(method: HTTPMethod,
          url: String,
          headers: [String: String] = [:],
          media: [MultiPart] = [],

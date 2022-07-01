@@ -51,7 +51,7 @@ struct ReservationRequestData: RequestModelData {
     }
 }
 
-class ReservationWorker: BaseResponseWorker<ReservationResponseData, ReservationData, ReservationMapper> {
+class ReservationWorker: BaseApiWorker<ReservationMapper> {
     override func getUrl() -> String {
         guard let urlParams = (requestData as? ReservationRequestData) else { return "" }
         

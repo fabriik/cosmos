@@ -29,9 +29,7 @@ struct CountriesRequestData: RequestModelData {
     }
 }
 
-class CountriesWorker: BaseResponseWorker<CountriesResponseData,
-                       [CountryResponseData],
-                       CountriesMapper> {
+class CountriesWorker: BaseApiWorker<CountriesMapper> {
     
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCEndpoints.countries)
@@ -41,7 +39,7 @@ class CountriesWorker: BaseResponseWorker<CountriesResponseData,
         return requestData?.getParameters() ?? [:]
     }
     
-    override func getMethod() -> EQHTTPMethod {
+    override func getMethod() -> HTTPMethod {
         return .get
     }
 }

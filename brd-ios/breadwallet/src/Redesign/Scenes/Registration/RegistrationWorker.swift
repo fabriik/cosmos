@@ -43,9 +43,7 @@ struct RegistrationRequestData: RequestModelData {
     }
 }
 
-class RegistrationWorker: BaseResponseWorker<RegistrationResponseData,
-                          RegistrationData,
-                          RegistrationMapper> {
+class RegistrationWorker: BaseApiWorker<RegistrationMapper> {
     
     override func getHeaders() -> [String: String] {
         // TODO: extract?
@@ -77,7 +75,7 @@ class RegistrationWorker: BaseResponseWorker<RegistrationResponseData,
         return requestData?.getParameters() ?? [:]
     }
     
-    override func getMethod() -> EQHTTPMethod {
+    override func getMethod() -> HTTPMethod {
         return .post
     }
 }

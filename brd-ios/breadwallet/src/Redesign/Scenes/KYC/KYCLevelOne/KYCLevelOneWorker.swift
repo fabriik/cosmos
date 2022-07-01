@@ -32,7 +32,7 @@ class KYCLevelOneWorker: BasePlainResponseWorker {
         return APIURLHandler.getUrl(KYCAuthEndpoints.basic)
     }
     
-    override func getMethod() -> EQHTTPMethod {
+    override func getMethod() -> HTTPMethod {
         return .post
     }
 }
