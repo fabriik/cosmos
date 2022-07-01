@@ -12,8 +12,8 @@ import UIKit
 import WalletKit
 
 class RegistrationMapper: ModelMapper<RegistrationResponseData, RegistrationData> {
-    override func getModel(from response: RegistrationResponseData) -> RegistrationData? {
-        guard let key = response.sessionKey else {
+    override func getModel(from response: RegistrationResponseData?) -> RegistrationData? {
+        guard let key = response?.sessionKey else {
             return nil
         }
         return .init(sessionKey: key)

@@ -31,14 +31,14 @@ struct Profile: Model {
 }
 
 class ProfileMapper: ModelMapper<ProfileResponseData, Profile> {
-    override func getModel(from response: ProfileResponseData) -> Profile? {
-        return .init(country: response.country,
-                     dateOfBirth: response.date_of_birth,
-                     firstName: response.first_name,
-                     lastName: response.last_name,
-                     email: response.email,
-                     status: .init(rawValue: response.kyc_status),
-                     failureReason: response.kyc_failure_reason)
+    override func getModel(from response: ProfileResponseData?) -> Profile? {
+        return .init(country: response?.country,
+                     dateOfBirth: response?.date_of_birth,
+                     firstName: response?.first_name,
+                     lastName: response?.last_name,
+                     email: response?.email,
+                     status: .init(rawValue: response?.kyc_status),
+                     failureReason: response?.kyc_failure_reason)
     }
 }
 

@@ -72,8 +72,8 @@ struct KYCDocumentResponseData: ModelResponse {
 }
     
 class KYCDocumentMapper: ModelMapper<KYCDocumentResponseData, [Document]> {
-    override func getModel(from response: KYCDocumentResponseData) -> [Document]? {
-        return response.supportedDocuments.compactMap { return Document(from: $0) }
+    override func getModel(from response: KYCDocumentResponseData?) -> [Document]? {
+        return response?.supportedDocuments.compactMap { return Document(from: $0) }
     }
 }
 

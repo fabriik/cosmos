@@ -12,7 +12,3 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 #include ".env"
-
-API_TOKEN = $(DEV_TOKEN)
-API_URL = $(DEV_URL)
-IS_TEST=true

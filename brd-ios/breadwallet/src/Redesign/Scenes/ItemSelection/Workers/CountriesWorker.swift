@@ -14,8 +14,8 @@ struct CountriesResponseData: ModelResponse {
 }
 
 class CountriesMapper: ModelMapper<CountriesResponseData, [CountryResponseData]> {
-    override func getModel(from response: CountriesResponseData) -> [CountryResponseData]? {
-        return response.countries
+    override func getModel(from response: CountriesResponseData?) -> [CountryResponseData]? {
+        return response?.countries
     }
 }
 

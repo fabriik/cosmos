@@ -23,8 +23,8 @@ struct NewDeviceData: Model {
 }
 
 class NewDeviceMapper: ModelMapper<NewDeviceResponseData, NewDeviceData> {
-    override func getModel(from response: NewDeviceResponseData) -> NewDeviceData? {
-        return .init(sessionKey: response.sessionKey, email: response.email)
+    override func getModel(from response: NewDeviceResponseData?) -> NewDeviceData? {
+        return .init(sessionKey: response?.sessionKey, email: response?.email)
     }
 }
 

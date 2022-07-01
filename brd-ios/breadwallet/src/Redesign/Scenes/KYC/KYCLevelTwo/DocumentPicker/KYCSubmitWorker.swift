@@ -10,7 +10,7 @@
 
 import Foundation
 
-class KYCSubmitWorker: BasePlainResponseWorker {
+class KYCSubmitWorker: BaseApiWorker<PlainMapper> {
 
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.submit)

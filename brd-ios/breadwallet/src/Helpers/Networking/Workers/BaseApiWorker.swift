@@ -7,7 +7,7 @@ import Foundation
 
 protocol APIWorker {
     func execute()
-    func executeMultipartRequest(data: [MultiPart])
+    func executeMultipartRequest(data: MultipartModelData)
     func processResponse(response: HTTPResponse)
     func apiCallDidFinish(response: HTTPResponse)
     func getUrl() -> String
@@ -22,6 +22,7 @@ protocol APIWorker {
 class BaseApiWorker<M: Mapper>: APIWorker {
     
     typealias Completion = (Result<M.ToModel, Error>) -> Void
+    typealias PlainCompletion = (Error?) -> Void
     
     var requestData: RequestModelData?
     var completion: Completion?
@@ -34,7 +35,7 @@ class BaseApiWorker<M: Mapper>: APIWorker {
     
     init() {}
     
-    func execute(requestData: RequestModelData? = nil, completion: Completion?) {
+    func execute(requestData: RequestModelData? = nil, completion: Completion? = nil) {
         self.requestData = requestData
         self.completion = completion
         execute()
@@ -58,14 +59,19 @@ class BaseApiWorker<M: Mapper>: APIWorker {
         }
     }
     
-    func executeMultipartRequest(data: [MultiPart]) {
+    func executeMultipartRequest(data: MultipartModelData, completion: Completion? = nil) {
+        self.completion = completion
+        executeMultipartRequest(data: data)
+    }
+    
+    func executeMultipartRequest(data: MultipartModelData) {
         let method = getMethod()
         let url = getUrl()
         let headers = getHeaders()
-        let parameters = getParameters()
+        let parameters = data.getParameters()
         
         let request = httpRequestManager.request(method, url: url, headers: headers, parameters: parameters)
-        request.media = data
+        request.media = data.getMultipartData()
         request.runMultipartRequest { response in
             DispatchQueue.global(qos: .background).async {
                 self.processResponse(response: response)
@@ -74,6 +80,7 @@ class BaseApiWorker<M: Mapper>: APIWorker {
                 }
             }
         }
+        
     }
     
     // Pagination
@@ -101,7 +108,7 @@ class BaseApiWorker<M: Mapper>: APIWorker {
      */
     func processResponse(response: HTTPResponse) {
         guard let data = response.data, response.error == nil else { return }
-        guard let payload = M.FromModel.parse(from: data, type: M.FromModel.self) else { return }
+        let payload = M.FromModel.parse(from: data, type: M.FromModel.self)
         result = M().getModel(from: payload)
         
         guard let pagination = getPagination() else {
@@ -131,7 +138,21 @@ class BaseApiWorker<M: Mapper>: APIWorker {
     func getUrl() -> String { return "" }
     func getMethod() -> HTTPMethod { return .get }
     func getParameters() -> [String: Any] { return requestData?.getParameters() ?? [:] }
-    func getHeaders() -> [String: String] { return [:] }
+
+    func getHeaders() -> [String: String] {
+        let key: String
+        
+        if let value = UserDefaults.kycSessionKeyValue {
+            key = value
+        } else if let value = UserDefaults.walletTokenValue {
+            key = "Bread \(value)"
+        } else {
+            key = "no_token"
+        }
+        
+        return ["Authorization": key]
+    }
+    
     func getPagination() -> Pagination? { return nil }
 }
 
@@ -182,8 +203,8 @@ class Pagination {
 
 protocol Mapper {
     associatedtype FromModel: ModelResponse
-    associatedtype ToModel: Model
+    associatedtype ToModel: Any
     
     init()
-    func getModel(from response: FromModel) -> ToModel?
+    func getModel(from response: FromModel?) -> ToModel?
 }

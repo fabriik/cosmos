@@ -26,7 +26,7 @@ struct KYCBasicRequestData: RequestModelData {
     }
 }
 
-class KYCLevelOneWorker: BasePlainResponseWorker {
+class KYCLevelOneWorker: BaseApiWorker<PlainMapper> {
     
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.basic)
