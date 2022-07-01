@@ -379,15 +379,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     
     // MARK: - Prompt
     
-    var shouldShowGeneralPrompt: Bool {
-        //Don't show any prompts on the first couple launches
-        guard UserDefaults.appLaunchCount > 2 else { return false }
-        
-        // On the initial display we need to load the wallets in the asset list table view first.
-        // There's already a lot going on, so don't show the home-screen prompts right away.
-        return !Store.state.wallets.isEmpty
-    }
-    
     var shouldShowKYCPrompt: Bool {
         return UserDefaults.hasShownKYCVerifyPrompt == false
     }
@@ -404,8 +395,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private var generalPromptView = PromptView()
     
     private func attemptShowGeneralPrompt() {
-        guard shouldShowGeneralPrompt else { return }
-        
         guard let nextPrompt = PromptFactory.nextPrompt(walletAuthenticator: walletAuthenticator),
               promptContainerStack.arrangedSubviews.contains(where: { $0 is PromptView }) == false else { return }
         
