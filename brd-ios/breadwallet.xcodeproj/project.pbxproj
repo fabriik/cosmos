@@ -152,7 +152,7 @@
 		7B54E5A627F4A2B0002DD1E4 /* HTTPRequestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E57E27F4A2B0002DD1E4 /* HTTPRequestHelpers.swift */; };
 		7B54E5A727F4A2B0002DD1E4 /* BasePlainResponseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E58027F4A2B0002DD1E4 /* BasePlainResponseWorker.swift */; };
 		7B54E5A827F4A2B0002DD1E4 /* APICallWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E58127F4A2B0002DD1E4 /* APICallWorker.swift */; };
-		7B54E5A927F4A2B0002DD1E4 /* BaseResponseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E58227F4A2B0002DD1E4 /* BaseResponseWorker.swift */; };
+		7B54E5A927F4A2B0002DD1E4 /* BaseApiWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E58227F4A2B0002DD1E4 /* BaseApiWorker.swift */; };
 		7B54E5AA27F4A2B0002DD1E4 /* HttpRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E58327F4A2B0002DD1E4 /* HttpRequestManager.swift */; };
 		7B54E5AB27F4A2B0002DD1E4 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E58427F4A2B0002DD1E4 /* SpinnerView.swift */; };
 		7B54E5AE27F4A2B0002DD1E4 /* PickerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E58727F4A2B0002DD1E4 /* PickerViewViewController.swift */; };
@@ -1061,7 +1061,7 @@
 		7B54E57E27F4A2B0002DD1E4 /* HTTPRequestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestHelpers.swift; sourceTree = "<group>"; };
 		7B54E58027F4A2B0002DD1E4 /* BasePlainResponseWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePlainResponseWorker.swift; sourceTree = "<group>"; };
 		7B54E58127F4A2B0002DD1E4 /* APICallWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICallWorker.swift; sourceTree = "<group>"; };
-		7B54E58227F4A2B0002DD1E4 /* BaseResponseWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponseWorker.swift; sourceTree = "<group>"; };
+		7B54E58227F4A2B0002DD1E4 /* BaseApiWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApiWorker.swift; sourceTree = "<group>"; };
 		7B54E58327F4A2B0002DD1E4 /* HttpRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestManager.swift; sourceTree = "<group>"; };
 		7B54E58427F4A2B0002DD1E4 /* SpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		7B54E58727F4A2B0002DD1E4 /* PickerViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewViewController.swift; sourceTree = "<group>"; };
@@ -2246,7 +2246,7 @@
 			children = (
 				7B54E58027F4A2B0002DD1E4 /* BasePlainResponseWorker.swift */,
 				7B54E58127F4A2B0002DD1E4 /* APICallWorker.swift */,
-				7B54E58227F4A2B0002DD1E4 /* BaseResponseWorker.swift */,
+				7B54E58227F4A2B0002DD1E4 /* BaseApiWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -4495,7 +4495,7 @@
 				CE25BF911DF9ADE700BC67B6 /* UIImage+Utils.swift in Sources */,
 				7C7F18ED1FED9A3B0030230E /* TxStatusIndicator.swift in Sources */,
 				7E5CB3992835090E00EC787E /* Interactor.swift in Sources */,
-				7B54E5A927F4A2B0002DD1E4 /* BaseResponseWorker.swift in Sources */,
+				7B54E5A927F4A2B0002DD1E4 /* BaseApiWorker.swift in Sources */,
 				7E9B13FC2857404600BD9EF5 /* DocumentReviewModels.swift in Sources */,
 				C45E0BA62845F4C40083F028 /* AccountVerificationCoordinator.swift in Sources */,
 				7C787AE221ED89510017EA7E /* KeyStore.swift in Sources */,
