@@ -1,13 +1,8 @@
 //
-//  ResetPinCoordinator.swift
-//  breadwallet
-//
-//  Created by Dijana Angelovska on 27.6.22.
-//
+// Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
-import CLEANerSwift
 
 class ResetPinCoordinator: BaseCoordinator, ResetPinRoutes {
     // MARK: - ResetPinRoutes

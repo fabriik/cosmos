@@ -1,14 +1,17 @@
 //
-//  ResetPinModels.swift
-//  breadwallet
-//
-//  Created by Dijana Angelovska on 27.6.22.
-//
+// Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
-import CLEANerSwift
 
 enum ResetPinModels {
     
+    enum Section: Sectionable {
+        case title
+        case image
+        case button
+        
+        var header: AccessoryType? { return nil }
+        var footer: AccessoryType? { return nil }
+    }
 }

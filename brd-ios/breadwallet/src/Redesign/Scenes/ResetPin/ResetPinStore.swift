@@ -1,15 +1,12 @@
 //
-//  ResetPinStore.swift
-//  breadwallet
-//
-//  Created by Dijana Angelovska on 27.6.22.
-//
+// Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
-import CLEANerSwift
 
 class ResetPinStore: NSObject, BaseDataStore, ResetPinDataStore {
+    var itemId: String?
+    
     // MARK: - ResetPinDataStore
 
     // MARK: - Aditional helpers

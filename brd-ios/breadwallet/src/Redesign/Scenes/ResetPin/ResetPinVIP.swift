@@ -1,28 +1,23 @@
 //
-//  ResetPinVIP.swift
-//  breadwallet
-//
-//  Created by Dijana Angelovska on 27.6.22.
-//
+// Created by Equaleyes Solutions Ltd
 //
 
 import UIKit
-import CLEANerSwift
 
 extension Scenes {
     static let ResetPin = ResetPinViewController.self
 }
 
-protocol ResetPinViewActions: BaseViewActions {
+protocol ResetPinViewActions: BaseViewActions, FetchViewActions {
 }
 
-protocol ResetPinActionResponses: BaseActionResponses {
+protocol ResetPinActionResponses: BaseActionResponses, FetchActionResponses {
 }
 
-protocol ResetPinResponseDisplays: AnyObject, BaseResponseDisplays {
+protocol ResetPinResponseDisplays: AnyObject, BaseResponseDisplays, FetchResponseDisplays {
 }
 
-protocol ResetPinDataStore: BaseDataStore {
+protocol ResetPinDataStore: BaseDataStore, FetchDataStore {
 }
 
 protocol ResetPinDataPassing {

@@ -13,6 +13,11 @@ class ResetPinViewController: BaseTableViewController<ResetPinCoordinator,
     typealias Models = ResetPinModels
 
     // MARK: - Overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.setHidesBackButton(true, animated: false)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         switch sections[indexPath.section] as? Models.Section {
@@ -30,6 +35,26 @@ class ResetPinViewController: BaseTableViewController<ResetPinCoordinator,
         }
         
         cell.setupCustomMargins(vertical: .huge, horizontal: .large)
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleLabelCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? LabelViewModel,
+              let cell: WrapperTableViewCell<FELabel> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init(font: Fonts.Title.four, textColor: LightColors.Text.one, textAlignment: .center))
+            view.setup(with: model)
+            view.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(ViewSizes.large.rawValue)
+            }
+        }
         
         return cell
     }
