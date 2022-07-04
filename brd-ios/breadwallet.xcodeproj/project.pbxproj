@@ -249,6 +249,7 @@
 		7E2C53A527FD631000F74BA0 /* ChangellyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */; };
 		7E2E1A2B284E097900E56E69 /* KYCCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */; };
 		7E2E1A41284E267000E56E69 /* ProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E1A40284E267000E56E69 /* ProfileWorker.swift */; };
+		7E52B7A22872CD1E003D2249 /* SupportedCurrenciesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E52B7A12872CD1E003D2249 /* SupportedCurrenciesWorker.swift */; };
 		7E5CB32D2834E63400EC787E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5CB32C2834E63400EC787E /* SnapKit */; };
 		7E5CB37C2835090E00EC787E /* DemoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3312835090D00EC787E /* DemoPresenter.swift */; };
 		7E5CB37D2835090E00EC787E /* DemoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CB3322835090D00EC787E /* DemoCoordinator.swift */; };
@@ -1147,6 +1148,7 @@
 		7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCCoordinator.swift; sourceTree = "<group>"; };
 		7E2E1A40284E267000E56E69 /* ProfileWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWorker.swift; sourceTree = "<group>"; };
 		7E59CB142869A7F900A495E1 /* staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = staging.xcconfig; sourceTree = "<group>"; };
+		7E52B7A12872CD1E003D2249 /* SupportedCurrenciesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCurrenciesWorker.swift; sourceTree = "<group>"; };
 		7E5CB3312835090D00EC787E /* DemoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPresenter.swift; sourceTree = "<group>"; };
 		7E5CB3322835090D00EC787E /* DemoCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoCoordinator.swift; sourceTree = "<group>"; };
 		7E5CB3332835090D00EC787E /* DemoVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoVIP.swift; sourceTree = "<group>"; };
@@ -2331,6 +2333,7 @@
 		7E52B79E286EF4CE003D2249 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				7E52B7A12872CD1E003D2249 /* SupportedCurrenciesWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -4350,6 +4353,7 @@
 				CEAFC8611E5D5B0500E4FD06 /* SegmentedButton.swift in Sources */,
 				3A6FD42D24E456B800068ECE /* KeyStoreUtils.swift in Sources */,
 				7EF45F4F2845352400D1F7B0 /* KYCBasicInteractor.swift in Sources */,
+				7E52B7A22872CD1E003D2249 /* SupportedCurrenciesWorker.swift in Sources */,
 				7E5CB3982835090E00EC787E /* Controller.swift in Sources */,
 				3A6FD42F24E4570900068ECE /* KeyStore+CloudBackup.swift in Sources */,
 				7E5CB3872835090E00EC787E /* BorderConfiguration.swift in Sources */,
