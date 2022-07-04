@@ -5066,7 +5066,6 @@
 			baseConfigurationReference = 7E2C2F8327D7BE7A00114923 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				APP_GROUPS_ID = com.fabriik.one;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
@@ -5075,16 +5074,6 @@
 				CURRENT_PROJECT_VERSION = 459;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/Modules",
-					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(SRCROOT)/../cosmos-bundled/build/bin/iosArm64/debugFramework",
-					"$(SRCROOT)/Modules",
-					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(SRCROOT)/../cosmos-bundled/build/bin/iosX64/debugFramework",
 					"$(SRCROOT)/Modules",
 					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
 				);
@@ -5104,6 +5093,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5116,7 +5106,6 @@
 			baseConfigurationReference = 7E09EA4027D60D2100B0268C /* prod.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				APP_GROUPS_ID = com.fabriik.one;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
@@ -5126,16 +5115,6 @@
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				EXCLUDED_SOURCE_FILE_NAMES = "brd-tokens-staging.tar";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/Modules",
-					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(SRCROOT)/../cosmos-bundled/build/bin/iosArm64/releaseFramework",
-					"$(SRCROOT)/Modules",
-					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(SRCROOT)/../cosmos-bundled/build/bin/iosX64/releaseFramework",
 					"$(SRCROOT)/Modules",
 					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
 				);
@@ -5155,6 +5134,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -5257,11 +5237,42 @@
 			};
 			name = Release;
 		};
-		7CF5933521B9B14900A49FED /* Debug-Internal */ = {
+		7E390A2127F57D11003C929D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E390A2427F57D11003C929D /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Screenshots;
+		};
+		7E390A2527F57D11003C929D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7E52B7A92872E3E8003D2249 /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Screenshots;
+			};
+			name = Screenshots;
+		};
+		7ECCA97A2872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BRCORE_CONFIGURATION = Release;
+				BRCORE_CONFIGURATION = Staging;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -5315,7 +5326,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform $(SRCROOT)/Modules/breadwallet-core/Swift/Core";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -5323,30 +5334,21 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 			};
-			name = "Debug-Internal";
+			name = Staging;
 		};
-		7CF5933621B9B14900A49FED /* Staging */ = {
+		7ECCA97B2872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E59CB142869A7F900A495E1 /* staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				APP_GROUPS_ID = com.fabriik.one.internalQA;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 459;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/Modules",
-					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(SRCROOT)/../cosmos-bundled/build/bin/iosArm64/debugFramework",
-					"$(SRCROOT)/Modules",
-					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(SRCROOT)/../cosmos-bundled/build/bin/iosX64/debugFramework",
 					"$(SRCROOT)/Modules",
 					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
 				);
@@ -5363,8 +5365,10 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5372,7 +5376,7 @@
 			};
 			name = Staging;
 		};
-		7CF5933721B9B14900A49FED /* Staging */ = {
+		7ECCA97C2872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -5390,14 +5394,14 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.Tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
 			};
 			name = Staging;
 		};
-		7CF5933821B9B14900A49FED /* Staging */ = {
+		7ECCA97D2872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -5413,20 +5417,20 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.UITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = breadwallet;
 			};
 			name = Staging;
 		};
-		7CF5933D21B9B14900A49FED /* Staging */ = {
+		7ECCA97E2872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Staging;
 		};
-		7CF5933E21B9B14900A49FED /* Staging */ = {
+		7ECCA97F2872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -5455,7 +5459,7 @@
 			};
 			name = Staging;
 		};
-		7CF5934021B9B14900A49FED /* Staging */ = {
+		7ECCA9802872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -5472,114 +5476,88 @@
 					"@loader_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.Screenshots;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = breadwallet;
 			};
 			name = Staging;
 		};
-		7E390A2127F57D11003C929D /* Debug */ = {
+		7ECCA9812872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APP_GROUPS_ID = com.fabriik.one.breadwallet;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 459;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = breadwalletWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG IS_EXTENSION_ENVIRONMENT";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
-			name = Debug;
+			name = Staging;
 		};
-		7E390A2227F57D11003C929D /* Staging */ = {
+		7ECCA9822872F27E00F99368 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 459;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = breadwalletIntentHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.breadwalletIntentHandler;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG IS_EXTENSION_ENVIRONMENT";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Staging;
+		};
+		7ECCA9832872F27E00F99368 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Staging;
-		};
-		7E390A2427F57D11003C929D /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Screenshots;
-		};
-		7E390A2527F57D11003C929D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		7E52B7A32872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = breadwallet;
-			};
-			name = "Debug-Internal";
-		};
-		7E52B7A42872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = breadwalletTests;
-			};
-			name = "Debug-Internal";
-		};
-		7E52B7A52872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = breadwalletUITests;
-			};
-			name = "Debug-Internal";
-		};
-		7E52B7A62872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = submodules;
-			};
-			name = "Debug-Internal";
-		};
-		7E52B7A72872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = libbz2;
-			};
-			name = "Debug-Internal";
-		};
-		7E52B7A82872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = Screenshots;
-			};
-			name = "Debug-Internal";
-		};
-		7E52B7A92872E3E8003D2249 /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = Screenshots;
-			};
-			name = Screenshots;
-		};
-		7E52B7AA2872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = breadwalletWidgetExtension;
-			};
-			name = "Debug-Internal";
-		};
-		7E52B7AB2872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = breadwalletIntentHandler;
-			};
-			name = "Debug-Internal";
-		};
-		7E52B7AC2872E3E8003D2249 /* Debug-Internal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = syncResources;
-			};
-			name = "Debug-Internal";
 		};
 		9F29A9A425D5C605000FEB40 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -5612,38 +5590,6 @@
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
-		};
-		9F29A9A525D5C605000FEB40 /* Staging */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 459;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = breadwalletIntentHandler/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.breadwalletIntentHandler;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL IS_EXTENSION_ENVIRONMENT";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Staging;
 		};
 		9F29A9A725D5C605000FEB40 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
@@ -5740,42 +5686,6 @@
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
-		};
-		9FB0CA2025D5AD190057DD11 /* Staging */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APP_GROUPS_ID = com.fabriik.one.internalQA;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = breadwalletWidget/breadwalletWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 459;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = breadwalletWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one.internalQA.breadwalletWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL IS_EXTENSION_ENVIRONMENT";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Staging;
 		};
 		9FB0CA2225D5AD190057DD11 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
@@ -5965,7 +5875,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				APP_GROUPS_ID = com.fabriik.one;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
@@ -5993,6 +5902,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fabriik.one;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6088,10 +5998,6 @@
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				DEVELOPMENT_TEAM = 4MTMK4ZYK4;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(BUILD_DIR)/$(BRCORE_CONFIGURATION)-$(PLATFORM_NAME)",
-					"$(SRCROOT)/Modules",
-				);
 				INFOPLIST_FILE = breadwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6113,10 +6019,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22A9A9A01DF63426000F0016 /* Debug */,
-				7CF5933E21B9B14900A49FED /* Staging */,
+				7ECCA97F2872F27E00F99368 /* Staging */,
 				CEA7E6951F09AC6A001F8C27 /* Screenshots */,
 				22A9A9A11DF63426000F0016 /* Release */,
-				7E52B7A72872E3E8003D2249 /* Debug-Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6125,10 +6030,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				759DA0D81DAC8668008CC49B /* Debug */,
-				7CF5933D21B9B14900A49FED /* Staging */,
+				7ECCA97E2872F27E00F99368 /* Staging */,
 				CEA7E6941F09AC6A001F8C27 /* Screenshots */,
 				759DA0D91DAC8668008CC49B /* Release */,
-				7E52B7A62872E3E8003D2249 /* Debug-Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6137,7 +6041,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7D91DA5934400A983D8 /* Debug */,
-				7CF5933521B9B14900A49FED /* Debug-Internal */,
+				7ECCA97A2872F27E00F99368 /* Staging */,
 				CEA7E6881F09AC6A001F8C27 /* Screenshots */,
 				75A2A7DA1DA5934400A983D8 /* Release */,
 			);
@@ -6148,10 +6052,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7E41DA5934400A983D8 /* Debug */,
-				7CF5933621B9B14900A49FED /* Staging */,
+				7ECCA97B2872F27E00F99368 /* Staging */,
 				CEA7E6891F09AC6A001F8C27 /* Screenshots */,
 				75A2A7E51DA5934400A983D8 /* Release */,
-				7E52B7A32872E3E8003D2249 /* Debug-Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6160,10 +6063,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7E71DA5934400A983D8 /* Debug */,
-				7CF5933721B9B14900A49FED /* Staging */,
+				7ECCA97C2872F27E00F99368 /* Staging */,
 				CEA7E68A1F09AC6A001F8C27 /* Screenshots */,
 				75A2A7E81DA5934400A983D8 /* Release */,
-				7E52B7A42872E3E8003D2249 /* Debug-Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6172,10 +6074,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7EA1DA5934400A983D8 /* Debug */,
-				7CF5933821B9B14900A49FED /* Staging */,
+				7ECCA97D2872F27E00F99368 /* Staging */,
 				CEA7E68B1F09AC6A001F8C27 /* Screenshots */,
 				75A2A7EB1DA5934400A983D8 /* Release */,
-				7E52B7A52872E3E8003D2249 /* Debug-Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6184,10 +6085,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7E390A2127F57D11003C929D /* Debug */,
-				7E390A2227F57D11003C929D /* Staging */,
+				7ECCA9832872F27E00F99368 /* Staging */,
 				7E390A2427F57D11003C929D /* Screenshots */,
 				7E390A2527F57D11003C929D /* Release */,
-				7E52B7AC2872E3E8003D2249 /* Debug-Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6196,10 +6096,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F29A9A425D5C605000FEB40 /* Debug */,
-				9F29A9A525D5C605000FEB40 /* Staging */,
+				7ECCA9822872F27E00F99368 /* Staging */,
 				9F29A9A725D5C605000FEB40 /* Screenshots */,
 				9F29A9A825D5C605000FEB40 /* Release */,
-				7E52B7AB2872E3E8003D2249 /* Debug-Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6208,10 +6107,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9FB0CA1F25D5AD190057DD11 /* Debug */,
-				9FB0CA2025D5AD190057DD11 /* Staging */,
+				7ECCA9812872F27E00F99368 /* Staging */,
 				9FB0CA2225D5AD190057DD11 /* Screenshots */,
 				9FB0CA2325D5AD190057DD11 /* Release */,
-				7E52B7AA2872E3E8003D2249 /* Debug-Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6220,10 +6118,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEA7E6821F09A9D2001F8C27 /* Debug */,
-				7CF5934021B9B14900A49FED /* Staging */,
+				7ECCA9802872F27E00F99368 /* Staging */,
 				CEA7E6971F09AC6A001F8C27 /* Release-Testflight */,
 				CEA7E6831F09A9D2001F8C27 /* Release */,
-				7E52B7A82872E3E8003D2249 /* Debug-Internal */,
 				7E52B7A92872E3E8003D2249 /* Screenshots */,
 			);
 			defaultConfigurationIsVisible = 0;
