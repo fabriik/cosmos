@@ -362,43 +362,44 @@ class ApplicationController: Subscriber, Trackable {
     }
     
     private func afterLoginFlow() {
-            UserManager.shared.refresh { [weak self] result in
-                switch result {
-                case .success(let profile):
-                    guard !UserDefaults.emailConfirmed,
-                            profile.email != nil else {
-                        return
-                    }
-                    self?.coordinator?.showRegistration()
-                    
-                case .failure(let error):
-                    guard error is SessionExpiredError else {
-                        self?.coordinator?.showMessage(with: error)
-                        return
-                    }
-                    
-                    guard let token = UserDefaults.walletTokenValue else {
-                        self?.coordinator?.showMessage(model: .init(description: .text("No token!")))
-                        return
-                    }
-                    
-                    let newDeviceRequestData = NewDeviceRequestData(token: token)
-                    NewDeviceWorker().execute(requestData: newDeviceRequestData) { [weak self] result in
-                        switch result {
-                        case .success(let data):
-                            UserDefaults.email = data.email
-                            UserDefaults.kycSessionKeyValue = data.sessionKey
-                            self?.coordinator?.showRegistration()
-                            
-                        case .failure(let error):
-                            self?.coordinator?.showMessage(with: error)
-                        }
-                    }
-                    
-                default:
+        UserManager.shared.refresh { [weak self] result in
+            switch result {
+            case .success(let profile):
+                guard !UserDefaults.emailConfirmed,
+                      profile.email != nil else {
                     return
                 }
+                self?.coordinator?.showRegistration()
+                
+            case .failure(let error):
+                guard error is SessionExpiredError else {
+                    self?.coordinator?.showMessage(with: error)
+                    return
+                }
+                
+                guard let token = UserDefaults.walletTokenValue else {
+                    self?.coordinator?.showMessage(model: .init(description: .text("No token!")))
+                    return
+                }
+                
+                let newDeviceRequestData = NewDeviceRequestData(token: token)
+                NewDeviceWorker().execute(requestData: newDeviceRequestData) { [weak self] result in
+                    switch result {
+                    case .success(let data):
+                        UserDefaults.email = data.email
+                        UserDefaults.kycSessionKeyValue = data.sessionKey
+                        
+                        self?.coordinator?.showRegistration()
+                        
+                    case .failure(let error):
+                        self?.coordinator?.showMessage(with: error)
+                    }
+                }
+                
+            default:
+                return
             }
+        }
     }
     
     private func setupAppearance() {
@@ -435,7 +436,28 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapProfile = { [unowned self] in
-            coordinator?.showProfile()
+            coordinator?.showProfileModally()
+        }
+        
+        homeScreen.didTapProfileFromPrompt = { [unowned self] profile in
+            switch profile {
+            case .success(let profile):
+                if profile.email == nil
+                    || !UserDefaults.emailConfirmed {
+                    coordinator?.showRegistration(shouldShowProfile: true)
+                } else if UserManager.shared.profile?.status.canBuyTrade == false {
+                    coordinator?.showVerificationsModally()
+                }
+
+            case .failure(let error):
+                guard error is SessionExpiredError else {
+                    return
+                }
+                coordinator?.showRegistration(shouldShowProfile: true)
+                
+            default:
+                break
+            }
         }
         
         homeScreen.didTapMenu = { [unowned self] in

@@ -161,7 +161,7 @@ class GetUserEmailPromptView: PromptView {
     
     private func setUpImageView() {
         imageView.contentMode = .scaleAspectFit
-        if let imageName = prompt.imageName {
+        if let imageName = prompt?.imageName {
             imageView.image = UIImage(named: imageName)
         }
     }

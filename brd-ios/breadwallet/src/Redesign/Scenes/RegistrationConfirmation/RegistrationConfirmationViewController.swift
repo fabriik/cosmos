@@ -65,8 +65,8 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
         }
         
         cell.setup { view in
-            view.setup(with: .init())
             view.configure(with: .init())
+            view.setup(with: .init())
             
             view.valueChanged = { [weak self] text in
                 self?.textFieldDidFinish(for: indexPath, with: text)
@@ -126,7 +126,11 @@ class RegistrationConfirmationViewController: BaseTableViewController<Registrati
     
     func displayConfirm(responseDisplay: RegistrationConfirmationModels.Confirm.ResponseDisplay) {
         coordinator?.showOverlay(with: .success) { [weak self] in
-            self?.coordinator?.dismissFlow()
+            if responseDisplay.shouldShowProfile {
+                self?.coordinator?.replaceWithProfile()
+            } else {
+                self?.coordinator?.dismissFlow()
+            }
         }
     }
     
