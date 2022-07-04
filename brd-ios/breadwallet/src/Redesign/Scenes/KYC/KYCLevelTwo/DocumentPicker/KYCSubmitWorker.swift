@@ -10,13 +10,13 @@
 
 import Foundation
 
-class KYCSubmitWorker: BasePlainResponseWorker {
+class KYCSubmitWorker: BaseApiWorker<PlainMapper> {
 
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.submit)
     }
     
-    override func getMethod() -> EQHTTPMethod {
+    override func getMethod() -> HTTPMethod {
         return .post
     }
 }
