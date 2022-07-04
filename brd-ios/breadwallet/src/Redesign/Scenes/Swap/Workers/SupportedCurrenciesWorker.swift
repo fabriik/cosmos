@@ -10,12 +10,6 @@
 
 import Foundation
 
-//"base_currency": "SHIB",
-//"term_currency": "USDT",
-//"minimum_quantity": 0.001,
-//"maximum_quantity": 1000000,
-//"name": "SHIB-USDT"
-
 struct SupportedCurrenciesResponseData: ModelResponse {
     struct SupportedCurrencyResponseData: ModelResponse {
         var baseCurrency: String
@@ -48,16 +42,6 @@ class SupportedCurrenciesWorkerMapper: ModelMapper<SupportedCurrenciesResponseDa
 
 class SupportedCurrenciesWorker: BaseApiWorker<SupportedCurrenciesWorkerMapper> {
     override func getUrl() -> String {
-        return ExchangeEndpoints.supportedCurrencies.url
-    }
-}
-
-enum ExchangeEndpoints: String, URLType {
-    static var baseURL: String = "https://" + E.apiUrl + "blocksatoshi/exchange/%@"
-    
-    case supportedCurrencies = "supported-currencies"
-    
-    var url: String {
-        return String(format: Self.baseURL, rawValue)
+        return SwapEndpoints.supportedCurrencies.url
     }
 }

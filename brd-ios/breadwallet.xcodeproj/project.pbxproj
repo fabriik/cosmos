@@ -342,6 +342,7 @@
 		7EBC6B0D2848B81A000A301F /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC6B0C2848B81A000A301F /* CodeInputView.swift */; };
 		7EC37909281C098900028CA1 /* ErrorStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC37908281C098900028CA1 /* ErrorStruct.swift */; };
 		7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */; };
+		7ECCA98F2873059300F99368 /* SwapEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECCA98E2873059300F99368 /* SwapEndpoints.swift */; };
 		7ED83ACE284F373200261565 /* KYCLevelTwoEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */; };
 		7ED83AE8284F384F00261565 /* KYCDocumentPickerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE1284F384F00261565 /* KYCDocumentPickerStore.swift */; };
 		7ED83AE9284F384F00261565 /* KYCDocumentPickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE2284F384F00261565 /* KYCDocumentPickerPresenter.swift */; };
@@ -1147,8 +1148,8 @@
 		7E2C53A427FD631000F74BA0 /* ChangellyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangellyApi.swift; sourceTree = "<group>"; };
 		7E2E1A2A284E097900E56E69 /* KYCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCCoordinator.swift; sourceTree = "<group>"; };
 		7E2E1A40284E267000E56E69 /* ProfileWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWorker.swift; sourceTree = "<group>"; };
-		7E59CB142869A7F900A495E1 /* staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = staging.xcconfig; sourceTree = "<group>"; };
 		7E52B7A12872CD1E003D2249 /* SupportedCurrenciesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCurrenciesWorker.swift; sourceTree = "<group>"; };
+		7E59CB142869A7F900A495E1 /* staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = staging.xcconfig; sourceTree = "<group>"; };
 		7E5CB3312835090D00EC787E /* DemoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPresenter.swift; sourceTree = "<group>"; };
 		7E5CB3322835090D00EC787E /* DemoCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoCoordinator.swift; sourceTree = "<group>"; };
 		7E5CB3332835090D00EC787E /* DemoVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoVIP.swift; sourceTree = "<group>"; };
@@ -1240,6 +1241,7 @@
 		7EBC6B0C2848B81A000A301F /* CodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
 		7EC37908281C098900028CA1 /* ErrorStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStruct.swift; sourceTree = "<group>"; };
 		7EC3790A281C09AE00028CA1 /* ErrorRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorRequest.swift; sourceTree = "<group>"; };
+		7ECCA98E2873059300F99368 /* SwapEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapEndpoints.swift; sourceTree = "<group>"; };
 		7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCLevelTwoEntryViewController.swift; sourceTree = "<group>"; };
 		7ED83AE1284F384F00261565 /* KYCDocumentPickerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerStore.swift; sourceTree = "<group>"; };
 		7ED83AE2284F384F00261565 /* KYCDocumentPickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerPresenter.swift; sourceTree = "<group>"; };
@@ -2326,6 +2328,7 @@
 			isa = PBXGroup;
 			children = (
 				7E52B79E286EF4CE003D2249 /* Workers */,
+				7ECCA98E2873059300F99368 /* SwapEndpoints.swift */,
 			);
 			path = Swap;
 			sourceTree = "<group>";
@@ -4174,6 +4177,7 @@
 				CEC6AA3B1DEE4EB000EE5AFD /* CGRect+Additions.swift in Sources */,
 				4F3AB12A25D58AB400B378DC /* SelectBakerViewController.swift in Sources */,
 				E843C1172188D19000F46672 /* OnboardingViewController.swift in Sources */,
+				7ECCA98F2873059300F99368 /* SwapEndpoints.swift in Sources */,
 				7E5CB38B2835090E00EC787E /* Shadable.swift in Sources */,
 				3A36328D225301D60043EBA4 /* PriceChangeView.swift in Sources */,
 				7C5AC8A6203B93D3001B221E /* TxListCell.swift in Sources */,
