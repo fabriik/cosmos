@@ -94,13 +94,14 @@ class KYCBasicInteractor: NSObject, Interactor, KYCBasicViewActions {
                                        lastName: lastName,
                                        country: country,
                                        birthDate: birthDateText)
-        KYCLevelOneWorker().execute(requestData: data) { [weak self] error in
-            guard error == nil else {
+        KYCLevelOneWorker().execute(requestData: data) { [weak self] result in
+            switch result {
+            case .success:
+                self?.presenter?.presentSubmit(actionResponse: .init())
+                
+            case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                return
             }
-            
-            self?.presenter?.presentSubmit(actionResponse: .init())
         }
     }
 

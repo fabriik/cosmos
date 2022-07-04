@@ -6,7 +6,7 @@
 import Foundation
 
 final class HTTPRequestManager {
-    func request(_ method: EQHTTPMethod,
+    func request(_ method: HTTPMethod,
                  url: String,
                  headers: [String: String] = [:],
                  media: [MultiPart] = [],

@@ -49,27 +49,29 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
     
     func confirm(viewAction: RegistrationConfirmationModels.Confirm.ViewAction) {
         let data = RegistrationConfirmationRequestData(code: dataStore?.code)
-        RegistrationConfirmationWorker().execute(requestData: data) { [weak self] error in
-            guard error == nil else {
-                self?.presenter?.presentError(actionResponse: .init())
-                return
+        RegistrationConfirmationWorker().execute(requestData: data) { [weak self] result in
+            switch result {
+            case .success:
+                // TODO: confirmed
+                UserDefaults.emailConfirmed = true
+                UserManager.shared.refresh()
+                self?.presenter?.presentConfirm(actionResponse: .init())
+                
+            case .failure(let error):
+                self?.presenter?.presentError(actionResponse: .init(error: error))
             }
-            
-            // TODO: confirmed
-            UserDefaults.emailConfirmed = true
-            UserManager.shared.refresh()
-            
-            self?.presenter?.presentConfirm(actionResponse: .init())
         }
     }
     
     func resend(viewAction: RegistrationConfirmationModels.Resend.ViewAction) {
-        ResendConfirmationWorker().execute { [weak self] error in
-            guard error == nil else {
+        ResendConfirmationWorker().execute { [weak self] result in
+            switch result {
+            case .success:
+                self?.presenter?.presentResend(actionResponse: .init())
+                
+            case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                return
             }
-            self?.presenter?.presentResend(actionResponse: .init())
         }
     }
 
