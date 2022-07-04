@@ -153,7 +153,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
             heading.text = L10n.RecoveryKeyFlow.enterRecoveryKey
             subheading.text = L10n.RecoveryKeyFlow.resetPINInstruction
             faq.tap = {
-                Store.trigger(name: .presentFaq(ArticleIds.resetPinWithPaperKey, nil))
+                self.faqButtonPressed()
             }
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faq)
         case .validateForWipingWallet:
@@ -163,6 +163,21 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         }
 
         scrollView.delegate = self
+    }
+    
+    func faqButtonPressed() {
+        // TODO: localize
+        let text = """
+                        A Recovery Phrase consists of 12 randomly generated words. The app creates the Recovery Phrase for you automatically when you start a new wallet.
+                        The Recovery Phrase is critically important and should be written down and stored in a safe location.
+                        In the event of phone theft, destruction, or loss, the Recovery Phrase can be used to load your wallet onto a new phone.
+                        The key is also required when upgrading your current phone to a new one.
+                        """
+        
+        let model = PopupViewModel(title: .text("What is “Recovery Phrase”?"),
+                                   body: text)
+        
+        showInfoPopup(with: model)
     }
 
     private func validatePhrase(_ phrase: String) {

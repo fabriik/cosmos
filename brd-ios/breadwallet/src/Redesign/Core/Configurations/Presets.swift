@@ -260,8 +260,15 @@ extension Presets {
                                                buttons: [ Presets.Button.primary.withBorder(normal: Presets.Border.zero,
                                                                                             selected: Presets.Border.selected,
                                                                                             disabled: Presets.Border.disabled),
-                                                          Presets.Button.secondary ]
-        )
+                                                          Presets.Button.secondary ],
+                                               closeButton: Presets.Button.icon)
+        
+        static var white = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
+                                                                tintColor: LightColors.Contrast.two,
+                                                                border: Presets.Border.zero),
+                                              title: .init(font: Fonts.Title.five, textColor: LightColors.Icons.one),
+                                              body: .init(font: Fonts.Body.one, textColor: LightColors.Icons.one),
+                                              closeButton: Presets.Button.blackIcon)
     }
 }
 
