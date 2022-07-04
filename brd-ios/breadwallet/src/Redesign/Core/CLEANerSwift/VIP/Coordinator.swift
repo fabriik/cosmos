@@ -77,20 +77,32 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
     
-    func showRegistration() {
-        let coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
+    func showRegistration(shouldShowProfile: Bool = false) {
+        let nvc = RootNavigationController()
+        let coordinator = RegistrationCoordinator(navigationController: nvc)
         coordinator.start()
         coordinator.parentCoordinator = self
+        
+        if let vc = nvc.topViewController as? RegistrationConfirmationViewController {
+            vc.dataStore?.shouldShowProfile = shouldShowProfile
+        }
+        
         childCoordinators.append(coordinator)
         navigationController.show(coordinator.navigationController, sender: nil)
     }
     
-    func showProfile() {
+    func showProfileModally() {
         upgradeAccountOrShowPopup(checkForKyc: false) { [weak self] _ in
             self?.openModally(coordinator: ProfileCoordinator.self, scene: Scenes.Profile)
         }
     }
 
+    func replaceWithProfile() {
+        upgradeAccountOrShowPopup(checkForKyc: false) { [weak self] _ in
+            self?.set(scene: Scenes.Profile)
+        }
+    }
+    
     func showVerifications() {
         open(scene: Scenes.AccountVerification) { vc in
             vc.dataStore?.profile = UserManager.shared.profile
@@ -134,6 +146,17 @@ class BaseCoordinator: NSObject,
         navigationController.show(controller, sender: nil)
     }
 
+    // only call from coordinator subclasses
+    func set<T: BaseControllable>(scene: T.Type,
+                                  presentationStyle: UIModalPresentationStyle = .fullScreen,
+                                  configure: ((T) -> Void)? = nil) {
+        let controller = T()
+        controller.coordinator = (self as? T.CoordinatorType)
+        configure?(controller)
+        navigationController.modalPresentationStyle = presentationStyle
+        navigationController.setViewControllers([controller], animated: true)
+    }
+    
     // only call from coordinator subclasses
     func openModally<C: BaseCoordinator,
                      VC: BaseControllable>(coordinator: C.Type,

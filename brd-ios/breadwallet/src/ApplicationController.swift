@@ -436,7 +436,7 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapProfile = { [unowned self] in
-            coordinator?.showProfile()
+            coordinator?.showProfileModally()
         }
         
         homeScreen.didTapProfileFromPrompt = { [unowned self] profile in
@@ -444,7 +444,7 @@ class ApplicationController: Subscriber, Trackable {
             case .success(let profile):
                 if profile.email == nil
                     || !UserDefaults.emailConfirmed {
-                    coordinator?.showRegistration()
+                    coordinator?.showRegistration(shouldShowProfile: true)
                 } else if UserManager.shared.profile?.status.canBuyTrade == false {
                     coordinator?.showVerificationsModally()
                 }
@@ -453,7 +453,7 @@ class ApplicationController: Subscriber, Trackable {
                 guard error is SessionExpiredError else {
                     return
                 }
-                coordinator?.showRegistration()
+                coordinator?.showRegistration(shouldShowProfile: true)
                 
             default:
                 break

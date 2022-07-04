@@ -55,7 +55,8 @@ class RegistrationConfirmationInteractor: NSObject, Interactor, RegistrationConf
                 // TODO: confirmed
                 UserDefaults.emailConfirmed = true
                 UserManager.shared.refresh()
-                self?.presenter?.presentConfirm(actionResponse: .init())
+                
+                self?.presenter?.presentConfirm(actionResponse: .init(shouldShowProfile: self?.dataStore?.shouldShowProfile ?? false))
                 
             case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
