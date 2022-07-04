@@ -358,6 +358,7 @@ class ApplicationController: Subscriber, Trackable {
                                                  createHomeScreen: createHomeScreen)
         startFlowController?.didFinish = { [weak self] in
             self?.afterLoginFlow()
+        }
     }
     
     private func afterLoginFlow() {
