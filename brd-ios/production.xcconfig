@@ -1,5 +1,5 @@
 //
-//  debug.xcconfig
+//  config.xcconfig
 //  breadwallet
 //
 //  Created by Rok on 07/03/2022.
@@ -12,7 +12,3 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 #include ".env"
-
-API_URL=$(DEBUG_URL)
-API_TOKEN=$(DEBUG_TOKEN)
-IS_TEST=$(IS_TEST)
