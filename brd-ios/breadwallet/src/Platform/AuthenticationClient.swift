@@ -226,10 +226,15 @@ enum APIRequestError: Error {
 }
 
 enum HTTPMethod: String {
-    case post
+    case options
     case get
+    case head
+    case post
     case put
     case patch
+    case delete
+    case trace
+    case connect
     
     var name: String { return rawValue.uppercased() }
 }
