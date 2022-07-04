@@ -15,8 +15,7 @@ class WalletDisabledView: UIView {
     }
 
     init() {
-        faq = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled, position: .middle)
-        faq.tintColor = .whiteTint
+        faq = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled, position: .right)
         blur = UIVisualEffectView()
         super.init(frame: .zero)
         setup()
@@ -39,6 +38,12 @@ class WalletDisabledView: UIView {
     var didTapReset: (() -> Void)? {
         didSet {
             reset.tap = didTapReset
+        }
+    }
+    
+    var didTapFaq: (() -> Void)? {
+        didSet {
+            faq.tap = didTapFaq
         }
     }
     
@@ -88,6 +93,7 @@ class WalletDisabledView: UIView {
 
     private func addSubviews() {
         addSubview(blur)
+        addSubview(faq)
         addSubview(header)
         addSubview(label)
         addSubview(unlockWalletImage)
@@ -97,6 +103,12 @@ class WalletDisabledView: UIView {
 
     private func addConstraints() {
         blur.constrain(toSuperviewEdges: nil)
+        
+        faq.constrain([
+            faq.topAnchor.constraint(equalTo: blur.topAnchor, constant: 70),
+            faq.trailingAnchor.constraint(equalTo: blur.trailingAnchor, constant: -C.padding[2]),
+            faq.widthAnchor.constraint(equalToConstant: C.padding[3]),
+            faq.heightAnchor.constraint(equalToConstant: C.padding[3])])
         
         header.constrain([
             header.topAnchor.constraint(equalTo: blur.topAnchor, constant: 170),
@@ -131,6 +143,7 @@ class WalletDisabledView: UIView {
         label.addGestureRecognizer(gr)
         label.isUserInteractionEnabled = true
         gr.addTarget(self, action: #selector(didTap))
+        faq.tintColor = .black
     }
     
     @objc private func didTap() {
