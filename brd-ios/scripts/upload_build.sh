@@ -1,7 +1,7 @@
 #!/bin/bash
+scheme="wallet"
 archive_path="$PWD/build/"$scheme".xcarchive"
 export_path="$PWD/build"
-scheme="breadwallet"
 
 # Upload if on a release branch
 if [[ $1 == releases* ]]; then

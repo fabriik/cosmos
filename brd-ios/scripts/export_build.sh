@@ -1,5 +1,5 @@
 #!/bin/bash
-scheme="breadwallet"
+scheme="wallet"
 export_path="$PWD/build"
 archive_path="$PWD/build/"$scheme".xcarchive"
 

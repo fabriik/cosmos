@@ -50,7 +50,7 @@ extension UIViewController {
         textLabel.text = message
         textLabel.numberOfLines = 0
         textLabel.textAlignment = .left
-        textLabel.clipsToBounds  =  true
+        textLabel.clipsToBounds = true
         
         view.addSubview(messageView)
         messageView.snp.makeConstraints { make in
