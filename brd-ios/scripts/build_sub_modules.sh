@@ -82,9 +82,14 @@ if [ ! -f $BRD_ENV ]; then
   echo Creating $BRD_ENV
   touch $BRD_ENV
 
+  echo "// PRODUCTION" >> $BRD_ENV
+  echo "API_URL=$PROD_URL" >> $BRD_ENV
+  echo "API_TOKEN=$PROD_TOKEN" >> $BRD_ENV
+  echo "" >> $BRD_ENV
+
   echo "// DEVELOPMENT" >> $BRD_ENV
-  echo "DEV_URL=$DEV_URL" >> $BRD_ENV
-  echo "DEV_TOKEN=$DEV_TOKEN" >> $BRD_ENV
+  echo "DEBUG_URL=$DEV_URL" >> $BRD_ENV
+  echo "DEBUG_TOKEN=$DEV_TOKEN" >> $BRD_ENV
   echo "IS_TEST=true" >> $BRD_ENV
   echo "" >> $BRD_ENV
 
@@ -92,10 +97,6 @@ if [ ! -f $BRD_ENV ]; then
   echo "STAGING_URL=$STAGING_URL" >> $BRD_ENV
   echo "STAGING_TOKEN=$STAGING_TOKEN" >> $BRD_ENV
   echo "" >> $BRD_ENV
-
-  echo "// PRODUCTION" >> $BRD_ENV
-  echo "PROD_URL=$PROD_URL" >> $BRD_ENV
-  echo "PROD_TOKEN=$PROD_TOKEN" >> $BRD_ENV
   echo Please configure $BRD_ENV
   echo
   exit 1
