@@ -301,12 +301,13 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         // prompts
         Store.subscribe(self, name: .didUpgradePin, callback: { _ in
             if self.generalPromptView.type == .upgradePin {
-                self.generalPromptView.isHidden = true
+                self.hidePromptElement(prompt: self.generalPromptView)
+
             }
         })
         Store.subscribe(self, name: .didWritePaperKey, callback: { _ in
             if self.generalPromptView.type == .paperKey {
-                self.generalPromptView.isHidden = true
+                self.hidePromptElement(prompt: self.generalPromptView)
             }
         })
         
@@ -401,8 +402,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         generalPromptView = PromptFactory.createPromptView(prompt: nextPrompt, presenter: self)
         generalPromptView.isHidden = false
         generalPromptView.alpha = 0.0
-        promptContainerStack.addArrangedSubview(generalPromptView)
-        promptContainerStack.layoutIfNeeded()
         
         saveEvent("prompt.\(nextPrompt.name).displayed")
         nextPrompt.didPrompt()
@@ -424,6 +423,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             }
         }
         
+        promptContainerStack.addArrangedSubview(generalPromptView)
+        
         layoutPrompts(prompt: generalPromptView)
     }
     
@@ -436,33 +437,30 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     private func setupKYCPrompt(result: Result<Profile, Error>?) {
-        let newPrompt = kycStatusPromptView
-        
         guard promptContainerStack.arrangedSubviews.contains(where: { $0 is FEInfoView }) == false else { return }
         
-        newPrompt.isHidden = false
-        newPrompt.alpha = 0.0
+        kycStatusPromptView.isHidden = false
+        kycStatusPromptView.alpha = 0.0
         
         let infoView: InfoViewModel = Presets.VerificationInfoView.nonePrompt
         let infoConfig: InfoViewConfiguration = Presets.InfoView.verification
         
-        newPrompt.configure(with: infoConfig)
-        newPrompt.setup(with: infoView)
+        kycStatusPromptView.configure(with: infoConfig)
+        kycStatusPromptView.setup(with: infoView)
         
-        newPrompt.setupCustomMargins(all: .large)
+        kycStatusPromptView.setupCustomMargins(all: .large)
         
-        newPrompt.headerButtonCallback = { [weak self] in
+        kycStatusPromptView.headerButtonCallback = { [weak self] in
             self?.hidePromptElement(prompt: self?.kycStatusPromptView)
         }
         
-        newPrompt.trailingButtonCallback = { [weak self] in
+        kycStatusPromptView.trailingButtonCallback = { [weak self] in
             self?.hidePromptElement(prompt: self?.kycStatusPromptView)
             
             self?.didTapProfileFromPrompt?(result)
         }
         
-        promptContainerStack.addArrangedSubview(newPrompt)
-        promptContainerStack.layoutIfNeeded()
+        promptContainerStack.addArrangedSubview(kycStatusPromptView)
         
         UserDefaults.hasShownKYCVerifyPrompt = true
         
@@ -476,6 +474,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
             prompt?.isHidden = true
             
             self?.promptContainerStack.layoutIfNeeded()
+            self?.view.layoutIfNeeded()
         }
     }
     
