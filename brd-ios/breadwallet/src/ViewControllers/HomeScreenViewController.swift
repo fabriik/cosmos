@@ -161,7 +161,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         
         assetListTableView.refreshControl = pullToRefreshControl
         pullToRefreshControl.layer.zPosition = assetListTableView.view.layer.zPosition - 1
-        promptContainerStack.layer.zPosition = 1
     }
 
     private func addConstraints() {
