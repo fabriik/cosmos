@@ -81,7 +81,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     var didTapBuy: (() -> Void)?
     var didTapTrade: (() -> Void)?
     var didTapProfile: (() -> Void)?
-    var didTapProfileFromPrompt: ((VerificationStatus?) -> Void)?
+    var didTapProfileFromPrompt: ((Result<Profile, Error>?) -> Void)?
     var didTapMenu: (() -> Void)?
     
     private lazy var totalAssetsNumberFormatter: NumberFormatter = {
@@ -431,17 +431,11 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         guard shouldShowKYCPrompt else { return }
         
         ProfileWorker().execute { [weak self] result in
-            switch result {
-            case .success(let data):
-                self?.setupKYCPrompt(data: data, error: nil)
-                
-            case .failure(let error):
-                self?.setupKYCPrompt(data: nil, error: error)
-            }
+            self?.setupKYCPrompt(result: result)
         }
     }
     
-    private func setupKYCPrompt(data: Profile?, error: Error?) {
+    private func setupKYCPrompt(result: Result<Profile, Error>?) {
         let newPrompt = kycStatusPromptView
         
         guard promptContainerStack.arrangedSubviews.contains(where: { $0 is FEInfoView }) == false else { return }
@@ -449,12 +443,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         newPrompt.isHidden = false
         newPrompt.alpha = 0.0
         
-        let status = data?.status
-        
         let infoView: InfoViewModel = Presets.VerificationInfoView.nonePrompt
         let infoConfig: InfoViewConfiguration = Presets.InfoView.verification
-        
-        guard status == VerificationStatus.none || status == VerificationStatus.email || error != nil else { return }
         
         newPrompt.configure(with: infoConfig)
         newPrompt.setup(with: infoView)
@@ -468,7 +458,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         newPrompt.trailingButtonCallback = { [weak self] in
             self?.hidePromptElement(prompt: self?.kycStatusPromptView)
             
-            self?.didTapProfileFromPrompt?(status)
+            self?.didTapProfileFromPrompt?(result)
         }
         
         promptContainerStack.addArrangedSubview(newPrompt)

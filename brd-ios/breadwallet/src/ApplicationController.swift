@@ -439,11 +439,24 @@ class ApplicationController: Subscriber, Trackable {
             coordinator?.showProfile()
         }
         
-        homeScreen.didTapProfileFromPrompt = { [unowned self] status in
-            if status == nil {
+        homeScreen.didTapProfileFromPrompt = { [unowned self] profile in
+            switch profile {
+            case .success(let profile):
+                if profile.email == nil
+                    || !UserDefaults.emailConfirmed {
+                    coordinator?.showRegistration()
+                } else if UserManager.shared.profile?.status.canBuyTrade == false {
+                    coordinator?.showVerificationsModally()
+                }
+
+            case .failure(let error):
+                guard error is SessionExpiredError else {
+                    return
+                }
                 coordinator?.showRegistration()
-            } else {
-                coordinator?.showVerificationsModally()
+                
+            default:
+                break
             }
         }
         
