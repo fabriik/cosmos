@@ -112,14 +112,18 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     @objc func reload() {
-        setInitialData()
-        setupSubscriptions()
-        attemptShowGeneralPrompt()
-        attemptShowKYCPrompt()
+        initialLoad()
         
         coreSystem.refreshWallet { [weak self] in
             self?.assetListTableView.reload()
         }
+    }
+    
+    private func initialLoad() {
+        setInitialData()
+        setupSubscriptions()
+        attemptShowGeneralPrompt()
+        attemptShowKYCPrompt()
     }
     
     override func viewDidLoad() {
@@ -133,26 +137,15 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         
         addSubviews()
         addConstraints()
-        setInitialData()
-        setupSubscriptions()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [unowned self] in
-            self.attemptShowGeneralPrompt()
-            self.attemptShowKYCPrompt()
-            
-            if !Store.state.isLoginRequired {
-                NotificationAuthorizer().showNotificationsOptInAlert(from: self, callback: { _ in
-                    self.notificationHandler.checkForInAppNotifications()
-                })
-            }
-        }
-
+        initialLoad()
         updateTotalAssets()
         sendErrorsToBackend()
+        
+        if !Store.state.isLoginRequired {
+            NotificationAuthorizer().showNotificationsOptInAlert(from: self, callback: { _ in
+                self.notificationHandler.checkForInAppNotifications()
+            })
+        }
     }
     
     // MARK: Setup
@@ -168,6 +161,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         
         assetListTableView.refreshControl = pullToRefreshControl
         pullToRefreshControl.layer.zPosition = assetListTableView.view.layer.zPosition - 1
+        promptContainerStack.layer.zPosition = 1
     }
 
     private func addConstraints() {
@@ -301,13 +295,13 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         // prompts
         Store.subscribe(self, name: .didUpgradePin, callback: { _ in
             if self.generalPromptView.type == .upgradePin {
-                self.hidePromptElement(prompt: self.generalPromptView)
+                self.hide(self.generalPromptView)
 
             }
         })
         Store.subscribe(self, name: .didWritePaperKey, callback: { _ in
             if self.generalPromptView.type == .paperKey {
-                self.hidePromptElement(prompt: self.generalPromptView)
+                self.hide(self.generalPromptView)
             }
         })
         
@@ -400,8 +394,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
               promptContainerStack.arrangedSubviews.contains(where: { $0 is PromptView }) == false else { return }
         
         generalPromptView = PromptFactory.createPromptView(prompt: nextPrompt, presenter: self)
-        generalPromptView.isHidden = false
-        generalPromptView.alpha = 0.0
         
         saveEvent("prompt.\(nextPrompt.name).displayed")
         nextPrompt.didPrompt()
@@ -409,7 +401,7 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         generalPromptView.dismissButton.tap = { [unowned self] in
             self.saveEvent("prompt.\(nextPrompt.name).dismissed")
             
-            self.hidePromptElement(prompt: self.generalPromptView)
+            self.hide(self.generalPromptView)
         }
         
         if !generalPromptView.shouldHandleTap {
@@ -419,13 +411,11 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
                 }
                 self.saveEvent("prompt.\(nextPrompt.name).trigger")
                 
-                self.hidePromptElement(prompt: self.generalPromptView)
+                self.hide(self.generalPromptView)
             }
         }
         
-        promptContainerStack.addArrangedSubview(generalPromptView)
-        
-        layoutPrompts(prompt: generalPromptView)
+        layout(generalPromptView)
     }
     
     private func attemptShowKYCPrompt() {
@@ -439,9 +429,6 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private func setupKYCPrompt(result: Result<Profile, Error>?) {
         guard promptContainerStack.arrangedSubviews.contains(where: { $0 is FEInfoView }) == false else { return }
         
-        kycStatusPromptView.isHidden = false
-        kycStatusPromptView.alpha = 0.0
-        
         let infoView: InfoViewModel = Presets.VerificationInfoView.nonePrompt
         let infoConfig: InfoViewConfiguration = Presets.InfoView.verification
         
@@ -451,23 +438,21 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         kycStatusPromptView.setupCustomMargins(all: .large)
         
         kycStatusPromptView.headerButtonCallback = { [weak self] in
-            self?.hidePromptElement(prompt: self?.kycStatusPromptView)
+            self?.hide(self?.kycStatusPromptView)
         }
         
         kycStatusPromptView.trailingButtonCallback = { [weak self] in
-            self?.hidePromptElement(prompt: self?.kycStatusPromptView)
+            self?.hide(self?.kycStatusPromptView)
             
             self?.didTapProfileFromPrompt?(result)
         }
         
-        promptContainerStack.addArrangedSubview(kycStatusPromptView)
-        
         UserDefaults.hasShownKYCVerifyPrompt = true
         
-        layoutPrompts(prompt: kycStatusPromptView)
+        layout(kycStatusPromptView)
     }
     
-    private func hidePromptElement(prompt: UIView?) {
+    private func hide(_ prompt: UIView?) {
         UIView.animate(withDuration: Presets.Animation.duration, delay: 0, options: .curveLinear) { [weak self] in
             prompt?.transform = .init(translationX: UIScreen.main.bounds.width, y: 0)
             prompt?.alpha = 0
@@ -478,9 +463,15 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         }
     }
     
-    private func layoutPrompts(prompt: UIView?) {
+    private func layout(_ prompt: UIView?) {
+        guard let prompt = prompt else { return }
+        
+        promptContainerStack.addArrangedSubview(prompt)
+        prompt.alpha = 1.0
+        prompt.isHidden = false
+        
         UIView.animate(withDuration: Presets.Animation.duration, delay: 0, options: .curveLinear) { [weak self] in
-            prompt?.alpha = 1.0
+            prompt.alpha = 1.0
             self?.promptContainerStack.layoutIfNeeded()
             self?.view.layoutIfNeeded()
         }

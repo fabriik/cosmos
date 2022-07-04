@@ -38,27 +38,18 @@ class RootNavigationController: UINavigationController, UINavigationControllerDe
     func setNormalNavigationBar(normalBackgroundColor: UIColor = LightColors.Contrast.two,
                                 scrollBackgroundColor: UIColor = .clear,
                                 tintColor: UIColor = LightColors.Icons.one) {
-        if #available(iOS 13.0, *) {
-            let normalAppearance = UINavigationBarAppearance()
-            normalAppearance.configureWithOpaqueBackground()
-            normalAppearance.backgroundColor = normalBackgroundColor
-            normalAppearance.shadowColor = nil
-            navigationBar.standardAppearance = normalAppearance
-            navigationBar.compactAppearance = normalAppearance
-            
-            let scrollAppearance = UINavigationBarAppearance()
-            scrollAppearance.configureWithTransparentBackground()
-            scrollAppearance.backgroundColor = scrollBackgroundColor
-            scrollAppearance.shadowColor = nil
-            navigationBar.scrollEdgeAppearance = scrollAppearance
-        } else {
-            if normalBackgroundColor == .clear {
-                navigationBar.setBackgroundImage(UIImage(), for: .default)
-            }
-            
-            navigationBar.shadowImage = UIImage()
-            navigationBar.barTintColor = normalBackgroundColor
-        }
+        let normalAppearance = UINavigationBarAppearance()
+        normalAppearance.configureWithOpaqueBackground()
+        normalAppearance.backgroundColor = normalBackgroundColor
+        normalAppearance.shadowColor = nil
+        navigationBar.standardAppearance = normalAppearance
+        navigationBar.compactAppearance = normalAppearance
+        
+        let scrollAppearance = UINavigationBarAppearance()
+        scrollAppearance.configureWithTransparentBackground()
+        scrollAppearance.backgroundColor = scrollBackgroundColor
+        scrollAppearance.shadowColor = nil
+        navigationBar.scrollEdgeAppearance = scrollAppearance
         
         navigationBar.tintColor = tintColor
         navigationBar.prefersLargeTitles = false
