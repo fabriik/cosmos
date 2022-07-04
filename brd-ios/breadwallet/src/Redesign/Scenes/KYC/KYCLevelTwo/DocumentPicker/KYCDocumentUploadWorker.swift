@@ -53,15 +53,11 @@ struct KYCDocumentUploadRequestData: MultipartModelData {
     }
 }
 
-class KYCDocumentUploadWorker: BasePlainResponseWorker {
+class KYCDocumentUploadWorker: BaseApiWorker<PlainMapper> {
     
-    override func getMethod() -> EQHTTPMethod { return .post }
+    override func getMethod() -> HTTPMethod { return .post }
     
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.upload)
-    }
-    
-    override func getMultipartData() -> [MultipartMedia] {
-        return (requestData as? MultipartModelData)?.getMultipartData() ?? []
     }
 }

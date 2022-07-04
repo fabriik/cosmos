@@ -50,24 +50,27 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
             guard let document = dataStore?.document else { return
                 
             }
+            
+            // TODO: can this not be done paralel?
             let data = KYCDocumentUploadRequestData(front: dataStore?.front,
                                                     back: dataStore?.back,
                                                     documentyType: document)
             let selfie = dataStore?.selfie
-            
-            KYCDocumentUploadWorker().executeMultipartRequest(requestData: data) { [weak self] error in
-                guard error == nil else {
-                    self?.presenter?.presentError(actionResponse: .init(error: error))
-                    return
-                }
-                
-                let data = KYCDocumentUploadRequestData(selfie: selfie, documentyType: .selfie)
-                KYCDocumentUploadWorker().executeMultipartRequest(requestData: data) { error in
-                    guard error == nil else {
-                        self?.presenter?.presentError(actionResponse: .init(error: error))
-                        return
+            KYCDocumentUploadWorker().executeMultipartRequest(data: data) { [weak self] result in
+                switch result {
+                case .success:
+                    let data = KYCDocumentUploadRequestData(selfie: selfie, documentyType: .selfie)
+                    KYCDocumentUploadWorker().executeMultipartRequest(data: data) { result in
+                        switch result {
+                        case .success:
+                            self?.finish(viewAction: .init())
+                        case .failure(let error):
+                            self?.presenter?.presentError(actionResponse: .init(error: error))
+                        }
                     }
-                    self?.finish(viewAction: .init())
+                    
+                case .failure(let error):
+                    self?.presenter?.presentError(actionResponse: .init(error: error))
                 }
             }
         }
@@ -90,13 +93,14 @@ class KYCDocumentPickerInteractor: NSObject, Interactor, KYCDocumentPickerViewAc
     }
     
     func finish(viewAction: KYCDocumentPickerModels.Finish.ViewAction) {
-        KYCSubmitWorker().execute { [weak self] error in
-            guard error == nil else {
+        KYCSubmitWorker().execute { [weak self] result in
+            switch result {
+            case .success:
+                self?.presenter?.presentFinish(actionResponse: .init())
+                
+            case .failure(let error):
                 self?.presenter?.presentError(actionResponse: .init(error: error))
-                return
             }
-            
-            self?.presenter?.presentFinish(actionResponse: .init())
         }
     }
     

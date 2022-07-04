@@ -17,7 +17,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
                                                                               FetchResponseDisplays {
     override var isModalDismissableEnabled: Bool { return true }
     override var dismissText: String { return "close" }
-    var closeImage: UIImage? { return .init(named: "close")}
+    override var closeImage: UIImage? { return .init(named: "close")}
 
     // MARK: - Cleaner Swift Setup
 

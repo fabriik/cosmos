@@ -20,7 +20,7 @@ struct RegistrationConfirmationRequestData: RequestModelData {
     }
 }
 
-class RegistrationConfirmationWorker: BasePlainResponseWorker {
+class RegistrationConfirmationWorker: BaseApiWorker<PlainMapper> {
 
     override func getUrl() -> String {
         return APIURLHandler.getUrl(KYCAuthEndpoints.confirm)
@@ -30,7 +30,7 @@ class RegistrationConfirmationWorker: BasePlainResponseWorker {
         return requestData?.getParameters() ?? [:]
     }
 
-    override func getMethod() -> EQHTTPMethod {
+    override func getMethod() -> HTTPMethod {
         return .post
     }
 }
