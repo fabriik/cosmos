@@ -215,7 +215,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         logo.constrain([
             topControlTop,
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logo.widthAnchor.constraint(equalToConstant: 104),
+            logo.widthAnchor.constraint(equalToConstant: 40),
             logo.heightAnchor.constraint(equalTo: logo.widthAnchor)])
         
         header.constrain([
@@ -241,10 +241,6 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         pinPadBackground.addSubview(pinPad.view)
         pinPad.view.constrain(toSuperviewEdges: nil)
         pinPad.didMove(toParent: self)
-        
-        header.isHidden = true
-        instruction.isHidden = true
-        resetPinButton.isHidden = true
     }
     
     @objc private func resetPinTapped() {
@@ -346,6 +342,11 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             self.pinView.fill(0)
             self.lockIfNeeded()
         }
+        
+        // TODO: localize
+        let message = "Incorrect PIN. The wallet will get disabled for 6 minutes after \(keyMaster.pinAttemptsRemaining) more failed attempts."
+        showToastMessage(message: message)
+        
         updateDebugLabel()
     }
 

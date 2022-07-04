@@ -60,7 +60,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         addSubviews()
         addConstraints()
         setInitialData()
-        // showBackButton()
+        showBackButton()
     }
     
     func showBackButton() {
@@ -73,7 +73,12 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     }
     
     @objc func onBackButton() {
-        navigationController?.popViewController(animated: true)
+        guard navigationController?.viewControllers.first == self else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        navigationController?.dismiss(animated: true)
     }
     
     private func setUpHeadings() {
@@ -163,11 +168,11 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     private func validatePhrase(_ phrase: String) {
         guard keyMaster.isSeedPhraseValid(phrase) else {
             saveEvent("enterPhrase.invalid")
-            errorLabel.isHidden = false
+            
+            showToastMessage(message: L10n.RecoverWallet.invalid)
             return
         }
         saveEvent("enterPhrase.valid")
-        errorLabel.isHidden = true
 
         switch reason {
         case .setSeed(let callback):
