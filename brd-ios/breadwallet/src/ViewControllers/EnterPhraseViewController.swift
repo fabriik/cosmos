@@ -41,6 +41,20 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
 
     private let headingLeftRightMargins: CGFloat = E.isSmallScreen ? 24 : 54
     
+    lazy var contactSupportButton: UIButton = {
+        let button = UIButton()
+        let attributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key.underlineStyle: 1,
+        NSAttributedString.Key.font: Fonts.Body.two,
+        NSAttributedString.Key.foregroundColor: LightColors.Link.one]
+
+        let attributedString = NSMutableAttributedString(string: "Contact support", attributes: attributes)
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.addTarget(self, action: #selector(contactSupportTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -92,6 +106,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         scrollView.addSubview(container)
         container.addSubview(heading)
         container.addSubview(subheading)
+        container.addSubview(contactSupportButton)
         container.addSubview(errorLabel)
 
         addChild(enterPhrase)
@@ -125,7 +140,14 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
             enterPhrase.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: enterPhraseMargin),
             enterPhrase.view.topAnchor.constraint(equalTo: subheading.bottomAnchor, constant: C.padding[4]),
             enterPhrase.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -enterPhraseMargin),
-            enterPhrase.view.heightAnchor.constraint(equalToConstant: enterPhrase.height) ])
+            enterPhrase.view.heightAnchor.constraint(equalToConstant: enterPhrase.height)])
+        
+        contactSupportButton.constrain([
+            contactSupportButton.topAnchor.constraint(equalTo: enterPhrase.view.bottomAnchor, constant: -Margins.small.rawValue),
+            contactSupportButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -Margins.extraHuge.rawValue),
+            contactSupportButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -Margins.large.rawValue)
+        ])
+        
         errorLabel.constrain([
             errorLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: C.padding[2]),
             errorLabel.topAnchor.constraint(equalTo: enterPhrase.view.bottomAnchor, constant: 12),
@@ -163,6 +185,16 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         }
 
         scrollView.delegate = self
+    }
+    
+    @objc private func contactSupportTapped() {
+        guard let url = URL(string: C.supportLink) else { return }
+        let webViewController = SimpleWebViewController(url: url)
+        webViewController.setup(with: .init(title: "Support"))
+        let navController = RootNavigationController(rootViewController: webViewController)
+        webViewController.setAsNonDismissableModal()
+        
+        present(navController, animated: true)
     }
     
     func faqButtonPressed() {
