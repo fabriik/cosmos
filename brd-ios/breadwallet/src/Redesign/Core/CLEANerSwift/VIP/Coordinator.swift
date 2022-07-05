@@ -283,6 +283,8 @@ class BaseCoordinator: NSObject,
             return
         }
         
+        guard let model = model, let configuration = configuration else { return }
+        
         let notification = FEInfoView()
         notification.setupCustomMargins(all: .large)
         notification.configure(with: configuration)
