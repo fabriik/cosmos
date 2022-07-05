@@ -92,6 +92,10 @@ extension UIViewController {
             make.trailing.greaterThanOrEqualTo(view.snp.trailingMargin)
         }
         popup.alpha = 1
+        popup.layer.shadowColor = UIColor.black.cgColor
+        popup.layer.shadowOpacity = 0.15
+        popup.layer.shadowRadius = 4.0
+        popup.layer.shadowOffset = .zero
         popup.layoutIfNeeded()
         
         popup.configure(with: Presets.Popup.white)
