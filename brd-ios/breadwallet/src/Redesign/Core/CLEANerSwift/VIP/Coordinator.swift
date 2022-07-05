@@ -91,6 +91,10 @@ class BaseCoordinator: NSObject,
         navigationController.show(coordinator.navigationController, sender: nil)
     }
     
+    func showSwapModally() {
+        openModally(coordinator: SwapMainCoordinator.self, scene: Scenes.SwapMain)
+    }
+    
     func showProfileModally() {
         upgradeAccountOrShowPopup(checkForKyc: false) { [weak self] _ in
             self?.openModally(coordinator: ProfileCoordinator.self, scene: Scenes.Profile)
