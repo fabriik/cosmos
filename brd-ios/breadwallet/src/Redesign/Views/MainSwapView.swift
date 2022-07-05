@@ -181,7 +181,7 @@ class MainSwapView: FEView<MainSwapConfiguration, MainSwapViewModel> {
         }
         
         UIView.animate(withDuration: Presets.Animation.duration, delay: Presets.Animation.duration, options: []) { [weak self] in
-            self?.updateAlpha(value: 0.2)
+            self?.updateAlpha(value: 0.3)
         } completion: { [weak self] _ in
             self?.topSwapCurrencyView.currencySelectorStackView.transform = .identity
             self?.bottomSwapCurrencyView.currencySelectorStackView.transform = .identity
