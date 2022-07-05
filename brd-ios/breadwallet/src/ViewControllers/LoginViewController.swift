@@ -143,6 +143,11 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             guard let `self` = self else { return }
             self.wipeFromDisabledGesture()
         }
+        disabledView.didTapFaq = { [weak self] in
+            guard let self = self else { return }
+            self.faqButtonPressed()
+        }
+        
         updateDebugLabel()
     }
 
@@ -241,6 +246,24 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         pinPadBackground.addSubview(pinPad.view)
         pinPad.view.constrain(toSuperviewEdges: nil)
         pinPad.didMove(toParent: self)
+    }
+    
+    func faqButtonPressed() {
+        // TODO: localize
+        let text = """
+                        If you enter an incorrect wallet PIN too many times, your wallet will become disabled for a certain amount of time.
+                        This is to prevent someone else from trying to guess your PIN by quickly making many guesses.
+                        If your wallet is disabled, wait until the time shown and you will be able to enter your PIN again.
+
+                        If you continue to enter the incorrect PIN, the amount of waiting time in between attempts will increase. Eventually, the app will reset and you can start a new wallet.
+
+                        If you have the recovery phrase for you wallet, you can use it to reset your PIN by clicking the “Reset PIN” button.
+                        """
+        
+        let model = PopupViewModel(title: .text("Why is my wallet disabled?"),
+                                   body: text)
+        
+        showInfoPopup(with: model)
     }
     
     @objc private func resetPinTapped() {

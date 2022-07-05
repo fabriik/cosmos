@@ -15,8 +15,6 @@ class WalletDisabledView: UIView {
     }
 
     init() {
-        faq = UIButton.buildFaqButton(articleId: ArticleIds.walletDisabled, position: .middle)
-        faq.tintColor = .whiteTint
         blur = UIVisualEffectView()
         super.init(frame: .zero)
         setup()
@@ -42,16 +40,29 @@ class WalletDisabledView: UIView {
         }
     }
     
+    var didTapFaq: (() -> Void)? {
+        didSet {
+            faq.tap = didTapFaq
+        }
+    }
+    
     var didCompleteWipeGesture: (() -> Void)?
 
     private let label = UILabel(font: Fonts.Title.five, color: Theme.primaryText)
-    private let faq: UIButton
     private let blur: UIVisualEffectView
     private let reset = BRDButton(title: L10n.UnlockScreen.resetPin, type: .primary)
     private let effect = UIBlurEffect(style: .regular)
     private let gr = UITapGestureRecognizer()
     private var tapCount = 0
     private let tapWipeCount = 12
+    
+    private lazy var faq: UIButton = {
+        let faq = UIButton()
+        faq.tintColor = Theme.primaryText
+        faq.setBackgroundImage(UIImage(named: "faqIcon"), for: .normal)
+        
+        return faq
+    }()
     
     private lazy var header: UILabel = {
         let header = UILabel()
@@ -88,6 +99,7 @@ class WalletDisabledView: UIView {
 
     private func addSubviews() {
         addSubview(blur)
+        addSubview(faq)
         addSubview(header)
         addSubview(label)
         addSubview(unlockWalletImage)
@@ -97,6 +109,10 @@ class WalletDisabledView: UIView {
 
     private func addConstraints() {
         blur.constrain(toSuperviewEdges: nil)
+        
+        faq.constrain([
+            faq.topAnchor.constraint(equalTo: blur.topAnchor, constant: 70),
+            faq.trailingAnchor.constraint(equalTo: blur.trailingAnchor, constant: -C.padding[2])])
         
         header.constrain([
             header.topAnchor.constraint(equalTo: blur.topAnchor, constant: 170),
@@ -131,6 +147,7 @@ class WalletDisabledView: UIView {
         label.addGestureRecognizer(gr)
         label.isUserInteractionEnabled = true
         gr.addTarget(self, action: #selector(didTap))
+        faq.tintColor = .black
     }
     
     @objc private func didTap() {
