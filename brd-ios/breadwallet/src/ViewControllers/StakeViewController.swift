@@ -34,7 +34,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
     private let changeBakerButton = UIButton()
     private let bakerInfoView = UIView()
     private let txPendingView = UIView()
-    private let loadingSpinner = UIActivityIndicatorView(style: .gray)
+    private let loadingSpinner = UIActivityIndicatorView(style: .medium)
     private let sendingActivity = BRActivityViewController(message: L10n.TransactionDetails.titleSending)
     
     init(currency: Currency, sender: Sender) {

@@ -19,34 +19,16 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     // MARK: - Overrides
     override func setupSubviews() {
         super.setupSubviews()
-        
-        tableView.register(WrapperTableViewCell<ScrollableButtonsView>.self)
     }
     
     override func prepareData() {
         sections = [
-            Models.Section.button
+            Models.Section.segmentControl
         ]
         
         sectionRows = [
-            Models.Section.button: [
-                ScrollableButtonsViewModel(buttons: [
-                    .init(title: "Tap", isUnderlined: true),
-                    .init(image: "close"),
-                    .init(title: "tap", isUnderlined: true, image: "close"),
-                    .init(title: "Tap"),
-                    .init(image: "close"),
-                    .init(title: "tap", image: "close"),
-                    .init(title: "Tap"),
-                    .init(image: "close"),
-                    .init(title: "tap", image: "close"),
-                    .init(title: "Tap"),
-                    .init(image: "close"),
-                    .init(title: "tap", image: "close"),
-                    .init(title: "Tap"),
-                    .init(image: "close"),
-                    .init(title: "tap", image: "close")
-                ])
+            Models.Section.segmentControl: [
+                SegmentControlViewModel(selectedIndex: 1)
             ]
         ]
         
@@ -63,6 +45,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         switch section {
         case .button:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
+            
+        case .segmentControl:
+            cell = self.tableView(tableView, segmentControlCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)

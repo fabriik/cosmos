@@ -33,7 +33,7 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     private lazy var stack: UIStackView = {
         let view = UIStackView()
         view.spacing = Margins.small.rawValue
-        view.distribution = .fillProportionally
+        view.distribution = .fillEqually
         return view
     }()
     
@@ -104,6 +104,10 @@ class ScrollableButtonsView: FEView<ScrollableButtonsConfiguration, ScrollableBu
     @objc private  func buttonTapped(_ sender: FEButton) {
         guard let index = buttons.firstIndex(where: { $0 == sender }) else { return }
         
-        callbacks[index]()
+        if index >= callbacks.count {
+            callbacks.last?()
+        } else {
+            callbacks[index]()
+        }
     }
 }

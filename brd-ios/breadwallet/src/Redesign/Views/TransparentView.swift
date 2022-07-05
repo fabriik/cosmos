@@ -87,11 +87,12 @@ class TransparentView: FEView<TransparentViewConfiguration, TransparentViewModel
     }
     
     override func configure(with config: TransparentViewConfiguration?) {
+        guard let config = config else { return }
         super.configure(with: config)
         
-        backgroundColor = config?.background.backgroundColor
-        imageView.configure(with: .init(tintColor: config?.background.tintColor))
-        titleLabel.configure(with: config?.title)
+        backgroundColor = config.background.backgroundColor
+        imageView.configure(with: .init(tintColor: config.background.tintColor))
+        titleLabel.configure(with: config.title)
     }
     
     override func setup(with viewModel: TransparentViewModel?) {
