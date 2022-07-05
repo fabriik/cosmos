@@ -24,6 +24,12 @@ class SwapMainViewController: BaseTableViewController<KYCCoordinator,
         return "Swap"
     }
     
+    // TODO: Get rid of those if possible.
+    private var fromFiatAmount: SwapMainModels.Amounts.CurrencyData?
+    private var fromCryptoAmount: SwapMainModels.Amounts.CurrencyData?
+    private var toFiatAmount: SwapMainModels.Amounts.CurrencyData?
+    private var toCryptoAmount: SwapMainModels.Amounts.CurrencyData?
+    
     // MARK: - Overrides
     
     override func setupSubviews() {
@@ -50,11 +56,6 @@ class SwapMainViewController: BaseTableViewController<KYCCoordinator,
         
         return cell
     }
-    
-    private var fromFiatAmount: SwapMainModels.Amounts.CurrencyData?
-    private var fromCryptoAmount: SwapMainModels.Amounts.CurrencyData?
-    private var toFiatAmount: SwapMainModels.Amounts.CurrencyData?
-    private var toCryptoAmount: SwapMainModels.Amounts.CurrencyData?
     
     func tableView(_ tableView: UITableView, swapMainCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: WrapperTableViewCell<MainSwapView> = tableView.dequeueReusableCell(for: indexPath)
@@ -111,8 +112,10 @@ class SwapMainViewController: BaseTableViewController<KYCCoordinator,
         cell.setup { view in
             view.configure(with: Presets.Button.primary)
             view.setup(with: model)
-            view.isEnabled = false
             view.setupCustomMargins(vertical: .large, horizontal: .large)
+            
+            // TODO: Handle with configs
+            view.isEnabled = false
             
             view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
             
@@ -127,6 +130,7 @@ class SwapMainViewController: BaseTableViewController<KYCCoordinator,
     @objc override func buttonTapped() {
         super.buttonTapped()
         
+        // TODO: Confirm logic
     }
     
     // MARK: - SwapMainResponseDisplay

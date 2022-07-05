@@ -23,6 +23,7 @@ class SwapMainInteractor: NSObject, Interactor, SwapMainViewActions {
     }
     
     func setAmount(viewAction: SwapMainModels.Amounts.ViewAction) {
+        // TODO: Implement the logic for populating fields
         dataStore?.toCryptoAmount = viewAction.fromFiatAmount
         dataStore?.fromCryptoAmount = viewAction.fromCryptoAmount
         dataStore?.toFiatAmount = viewAction.toFiatAmount

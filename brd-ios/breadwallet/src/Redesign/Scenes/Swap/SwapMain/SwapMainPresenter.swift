@@ -25,9 +25,11 @@ final class SwapMainPresenter: NSObject, Presenter, SwapMainActionResponses {
         
         let sectionRows: [Models.Sections: [Any]] = [
             .swapCard: [
+                // TODO: Populate
                 MainSwapViewModel(fromFiatAmount: "", fromCryptoAmount: "", toFiatAmount: "", toCryptoAmount: "")
             ],
             .confirm: [
+                // TODO: Localize
                 ButtonViewModel(title: "Confirm")
             ]
         ]

@@ -431,6 +431,7 @@ class ApplicationController: Subscriber, Trackable {
         }
         
         homeScreen.didTapTrade = { [unowned self] in
+            // TODO: Remove when ready.
 //            let currencies = coreSystem.assetCollection?.allAssets.compactMap { $0.value.code } ?? []
 //            coordinator?.showSwap(currencies: currencies)
             

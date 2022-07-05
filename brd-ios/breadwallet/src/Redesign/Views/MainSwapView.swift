@@ -59,7 +59,6 @@ class MainSwapView: FEView<MainSwapConfiguration, MainSwapViewModel> {
         return view
     }()
     
-    var switchPlacesButtonCallback: (() -> Void)?
     var didChangeFromFiatAmount: ((SwapMainModels.Amounts.CurrencyData?) -> Void)?
     var didChangeFromCryptoAmount: ((SwapMainModels.Amounts.CurrencyData?) -> Void)?
     var didChangeToFiatAmount: ((SwapMainModels.Amounts.CurrencyData?) -> Void)?
@@ -90,10 +89,12 @@ class MainSwapView: FEView<MainSwapConfiguration, MainSwapViewModel> {
             make.height.equalTo(32)
         }
         
-        topSwapCurrencyView.currencySelectorStackView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                                                  action: #selector(topCurrencyTapped(_:))))
-        bottomSwapCurrencyView.currencySelectorStackView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                                                     action: #selector(bottomCurrencyTapped(_:))))
+        (containerStackView.arrangedSubviews.first(where: { $0 is SwapCurrencyView }) as? SwapCurrencyView)?
+            .currencySelectorStackView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                                   action: #selector(firstCurrencyTapped(_:))))
+        (containerStackView.arrangedSubviews.last(where: { $0 is SwapCurrencyView }) as? SwapCurrencyView)?
+            .currencySelectorStackView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                                   action: #selector(secondCurrencyTapped(_:))))
         
         getAmounts()
     }
@@ -149,11 +150,11 @@ class MainSwapView: FEView<MainSwapConfiguration, MainSwapViewModel> {
     
     // MARK: - User interaction
     
-    @objc private func topCurrencyTapped(_ sender: Any?) {
+    @objc private func firstCurrencyTapped(_ sender: Any?) {
         
     }
     
-    @objc private func bottomCurrencyTapped(_ sender: Any?) {
+    @objc private func secondCurrencyTapped(_ sender: Any?) {
         
     }
     
@@ -198,7 +199,5 @@ class MainSwapView: FEView<MainSwapConfiguration, MainSwapViewModel> {
                 self?.getAmounts()
             }
         }
-        
-        switchPlacesButtonCallback?()
     }
 }
