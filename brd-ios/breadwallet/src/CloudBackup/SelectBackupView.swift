@@ -33,7 +33,7 @@ struct SelectBackupView: View {
                     .foregroundColor(Color(Theme.primaryText))
                     .lineLimit(nil)
                     .font(Font(Theme.h2Title))
-                ForEach(0..<backups.count) { i in
+                ForEach(0..<backups.count, id: \.self) { i in
                     BackupCell(backup: self.backups[i],
                                isOn: self.binding(for: i))
                     .padding(4.0)
