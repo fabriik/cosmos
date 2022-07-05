@@ -122,8 +122,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     private func initialLoad() {
         setInitialData()
         setupSubscriptions()
-        attemptShowGeneralPrompt()
         attemptShowKYCPrompt()
+        attemptShowGeneralPrompt()
     }
     
     override func viewDidLoad() {
@@ -390,7 +390,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     
     private func attemptShowGeneralPrompt() {
         guard let nextPrompt = PromptFactory.nextPrompt(walletAuthenticator: walletAuthenticator),
-              promptContainerStack.arrangedSubviews.contains(where: { $0 is PromptView }) == false else { return }
+              promptContainerStack.arrangedSubviews.contains(where: { $0 is PromptView }) == false,
+              shouldShowKYCPrompt == false else { return }
         
         generalPromptView = PromptFactory.createPromptView(prompt: nextPrompt, presenter: self)
         
@@ -426,6 +427,8 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
     }
     
     private func setupKYCPrompt(result: Result<Profile, Error>?) {
+        // TODO: Don't show any prompt after KYC prompt is dismissed till the app reopens
+        
         guard promptContainerStack.arrangedSubviews.contains(where: { $0 is FEInfoView }) == false else { return }
         
         let infoView: InfoViewModel = Presets.VerificationInfoView.nonePrompt
@@ -438,15 +441,18 @@ class HomeScreenViewController: UIViewController, Subscriber, Trackable {
         
         kycStatusPromptView.headerButtonCallback = { [weak self] in
             self?.hide(self?.kycStatusPromptView)
+            
+            UserDefaults.hasShownKYCVerifyPrompt = true
         }
         
         kycStatusPromptView.trailingButtonCallback = { [weak self] in
             self?.hide(self?.kycStatusPromptView)
             
             self?.didTapProfileFromPrompt?(result)
+            
+            // TODO: Fix this so it shows the prompt till the user verifies their KYC
+            UserDefaults.hasShownKYCVerifyPrompt = true
         }
-        
-        UserDefaults.hasShownKYCVerifyPrompt = true
         
         layout(kycStatusPromptView)
     }
