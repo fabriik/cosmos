@@ -7,7 +7,7 @@ import UIKit
 class LoadingView: UIView {
     private static var isShowing = false
     private static var topView: UIView? {
-        return UIApplication.shared.windows.first(where: { $0.isKeyWindow })
+        return UIApplication.shared.activeWindow
     }
     
     // MARK: UI elements

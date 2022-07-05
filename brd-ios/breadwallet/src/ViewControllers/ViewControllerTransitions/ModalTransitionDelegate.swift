@@ -25,7 +25,7 @@ class ModalTransitionDelegate: NSObject, Subscriber {
         isInteractive = false
         presentedViewController = nil
         if let panGr = panGestureRecognizer {
-            UIApplication.shared.keyWindow?.removeGestureRecognizer(panGr)
+            UIApplication.shared.activeWindow?.removeGestureRecognizer(panGr)
         }
         Store.trigger(name: .showStatusBar)
     }
@@ -90,7 +90,7 @@ extension ModalTransitionDelegate: UIViewControllerTransitioningDelegate {
         presentedViewController = presented
         return PresentModalAnimator(shouldCoverBottomGap: type == .regular, completion: {
             let panGr = UIPanGestureRecognizer(target: self, action: #selector(ModalTransitionDelegate.didUpdate(gr:)))
-            UIApplication.shared.keyWindow?.addGestureRecognizer(panGr)
+            UIApplication.shared.activeWindow?.addGestureRecognizer(panGr)
             self.panGestureRecognizer = panGr
         })
     }
