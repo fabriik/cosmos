@@ -53,7 +53,7 @@ final class RegistrationPresenter: NSObject, Presenter, RegistrationActionRespon
     }
     
     func presentNext(actionResponse: RegistrationModels.Next.ActionResponse) {
-        viewController?.displayNext(responseDisplay: .init(email: actionResponse.email))
+        viewController?.displayNext(responseDisplay: .init())
     }
     // MARK: - Additional Helpers
 }

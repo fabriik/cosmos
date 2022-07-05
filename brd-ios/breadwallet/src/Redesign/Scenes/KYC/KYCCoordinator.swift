@@ -99,13 +99,6 @@ class KYCCoordinator: BaseCoordinator,
         showUnderConstruction("\(document.title) verification")
     }
     
-    func showVerifications() {
-        open(scene: Scenes.AccountVerification) { vc in
-            vc.dataStore?.profile = UserManager.shared.profile
-            vc.prepareData()
-        }
-    }
-    
     func dismissFlow() {
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidFinish(child: self)

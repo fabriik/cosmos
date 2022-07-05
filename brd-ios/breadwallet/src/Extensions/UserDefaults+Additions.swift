@@ -50,6 +50,7 @@ private let notificationOptInDeferralCountKey = "notificationOptInDeferCountKey"
 private let appLaunchesAtLastNotificationDeferralKey = "appLaunchesAtLastNotificationDeferralKey"
 private let deviceIdKey = "BR_DEVICE_ID"
 private let savedChartHistoryPeriodKey = "savedHistoryPeriodKey"
+private let hasShownKYCVerifyPromptKey = "hasShownKYCVerifyPromptKey"
 private let balanceKey = "balanceKey"
 private let walletToken = "sessionKey"
 private let kycSessionKey = "kycSessionKey"
@@ -152,7 +153,10 @@ extension UserDefaults {
     /// Should show  the 3rd party buy alert ?
     static var showBuyAlert: Bool {
         get {
-            return defaults.bool(forKey: shouldShowBuyAlert)
+            guard defaults.object(forKey: shouldShowBuyAlert) == nil else {
+                return false
+            }
+            return true
         }
         
         set { defaults.set(newValue, forKey: shouldShowBuyAlert) }
@@ -161,7 +165,10 @@ extension UserDefaults {
     /// Should show  the 3rd party swap alert ?
     static var showSwapAlert: Bool {
         get {
-            return defaults.bool(forKey: shouldShowSwapAlert)
+            guard defaults.object(forKey: shouldShowSwapAlert) == nil else {
+                return false
+            }
+            return true
         }
         
         set { defaults.set(newValue, forKey: shouldShowSwapAlert) }
@@ -382,6 +389,11 @@ extension UserDefaults {
     static var hasSubscribedToEmailUpdates: Bool {
         get { return defaults.bool(forKey: hasSubscribedToEmailUpdatesKey ) }
         set { defaults.set(newValue, forKey: hasSubscribedToEmailUpdatesKey ) }
+    }
+    
+    static var hasShownKYCVerifyPrompt: Bool {
+        get { return defaults.bool(forKey: hasShownKYCVerifyPromptKey ) }
+        set { defaults.set(newValue, forKey: hasShownKYCVerifyPromptKey ) }
     }
 
     static var shouldShowBRDRewardsAnimation: Bool {

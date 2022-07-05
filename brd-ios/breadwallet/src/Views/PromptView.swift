@@ -14,16 +14,21 @@ import UIKit
  *  passcode or writing down the paper key.
  */
 class PromptView: UIView {
-    
-    init(prompt: Prompt) {
+    init(prompt: Prompt? = nil) {
         self.prompt = prompt
+        
         super.init(frame: .zero)
+        
         setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     let dismissButton = UIButton(type: .custom)
     let continueButton = UIButton(type: .custom)
-    let prompt: Prompt
+    let prompt: Prompt?
     
     let imageView = UIImageView()
     let title = UILabel(font: Theme.body1, color: Theme.primaryText)
@@ -32,8 +37,8 @@ class PromptView: UIView {
     
     private let imageViewSize: CGFloat = 32.0
     
-    var type: PromptType {
-        return self.prompt.type
+    var type: PromptType? {
+        return prompt?.type
     }
     
     var shouldHandleTap: Bool {
@@ -51,8 +56,8 @@ class PromptView: UIView {
         
         title.numberOfLines = 0
         
-        title.text = prompt.title
-        body.text = prompt.body
+        title.text = prompt?.title ?? ""
+        body.text = prompt?.body ?? ""
     }
     
     var containerBackgroundColor: UIColor {
@@ -72,9 +77,9 @@ class PromptView: UIView {
     
     func setupConstraints() {
         container.constrain(toSuperviewEdges: UIEdgeInsets(top: C.padding[1],
-                                                           left: C.padding[2],
+                                                           left: 0,
                                                            bottom: -C.padding[1],
-                                                           right: -C.padding[2]))
+                                                           right: 0))
         
         imageView.constrain([
             imageView.heightAnchor.constraint(equalToConstant: imageViewSize),
@@ -143,9 +148,5 @@ class PromptView: UIView {
         
         container.backgroundColor = Theme.transparentBlue
         container.layer.cornerRadius = C.Sizes.homeCellCornerRadius
-    }
-        
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

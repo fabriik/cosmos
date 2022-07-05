@@ -16,6 +16,7 @@ struct PopupConfiguration: Configurable {
     var title: LabelConfiguration?
     var body: LabelConfiguration?
     var buttons: [ButtonConfiguration] = []
+    var closeButton: ButtonConfiguration?
 }
 struct PopupViewModel: ViewModel {
     var title: LabelViewModel?
@@ -119,7 +120,7 @@ class FEPopupView: FEView<PopupConfiguration, PopupViewModel> {
         titleLabel.configure(with: config.title)
         configure(background: config.background)
         
-        closeButton.wrappedView.configure(with: Presets.Button.icon)
+        closeButton.wrappedView.configure(with: config.closeButton)
         
         guard let body = config.body else { return }
         textView.font = body.font

@@ -11,6 +11,7 @@ import UIKit
 class RegistrationConfirmationStore: NSObject, BaseDataStore, RegistrationConfirmationDataStore {
     // MARK: - RegistrationConfirmationDataStore
     var itemId: String?
-    var email: String?
     var code: String?
+    var callAssociate: Bool = false
+    var shouldShowProfile: Bool = false
 }

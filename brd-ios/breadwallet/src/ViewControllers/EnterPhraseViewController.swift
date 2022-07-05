@@ -41,6 +41,20 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
 
     private let headingLeftRightMargins: CGFloat = E.isSmallScreen ? 24 : 54
     
+    lazy var contactSupportButton: UIButton = {
+        let button = UIButton()
+        let attributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key.underlineStyle: 1,
+        NSAttributedString.Key.font: Fonts.Body.two,
+        NSAttributedString.Key.foregroundColor: LightColors.Link.one]
+
+        let attributedString = NSMutableAttributedString(string: "Contact support", attributes: attributes)
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.addTarget(self, action: #selector(contactSupportTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -60,7 +74,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         addSubviews()
         addConstraints()
         setInitialData()
-        // showBackButton()
+        showBackButton()
     }
     
     func showBackButton() {
@@ -73,7 +87,12 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     }
     
     @objc func onBackButton() {
-        navigationController?.popViewController(animated: true)
+        guard navigationController?.viewControllers.first == self else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        navigationController?.dismiss(animated: true)
     }
     
     private func setUpHeadings() {
@@ -87,6 +106,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         scrollView.addSubview(container)
         container.addSubview(heading)
         container.addSubview(subheading)
+        container.addSubview(contactSupportButton)
         container.addSubview(errorLabel)
 
         addChild(enterPhrase)
@@ -120,7 +140,14 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
             enterPhrase.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: enterPhraseMargin),
             enterPhrase.view.topAnchor.constraint(equalTo: subheading.bottomAnchor, constant: C.padding[4]),
             enterPhrase.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -enterPhraseMargin),
-            enterPhrase.view.heightAnchor.constraint(equalToConstant: enterPhrase.height) ])
+            enterPhrase.view.heightAnchor.constraint(equalToConstant: enterPhrase.height)])
+        
+        contactSupportButton.constrain([
+            contactSupportButton.topAnchor.constraint(equalTo: enterPhrase.view.bottomAnchor, constant: -Margins.small.rawValue),
+            contactSupportButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -Margins.extraHuge.rawValue),
+            contactSupportButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -Margins.large.rawValue)
+        ])
+        
         errorLabel.constrain([
             errorLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: C.padding[2]),
             errorLabel.topAnchor.constraint(equalTo: enterPhrase.view.bottomAnchor, constant: 12),
@@ -148,7 +175,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
             heading.text = L10n.RecoveryKeyFlow.enterRecoveryKey
             subheading.text = L10n.RecoveryKeyFlow.resetPINInstruction
             faq.tap = {
-                Store.trigger(name: .presentFaq(ArticleIds.resetPinWithPaperKey, nil))
+                self.faqButtonPressed()
             }
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: faq)
         case .validateForWipingWallet:
@@ -159,15 +186,40 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
 
         scrollView.delegate = self
     }
+    
+    @objc private func contactSupportTapped() {
+        guard let url = URL(string: C.supportLink) else { return }
+        let webViewController = SimpleWebViewController(url: url)
+        webViewController.setup(with: .init(title: "Support"))
+        let navController = RootNavigationController(rootViewController: webViewController)
+        webViewController.setAsNonDismissableModal()
+        
+        present(navController, animated: true)
+    }
+    
+    func faqButtonPressed() {
+        // TODO: localize
+        let text = """
+                        A Recovery Phrase consists of 12 randomly generated words. The app creates the Recovery Phrase for you automatically when you start a new wallet.
+                        The Recovery Phrase is critically important and should be written down and stored in a safe location.
+                        In the event of phone theft, destruction, or loss, the Recovery Phrase can be used to load your wallet onto a new phone.
+                        The key is also required when upgrading your current phone to a new one.
+                        """
+        
+        let model = PopupViewModel(title: .text("What is “Recovery Phrase”?"),
+                                   body: text)
+        
+        showInfoPopup(with: model)
+    }
 
     private func validatePhrase(_ phrase: String) {
         guard keyMaster.isSeedPhraseValid(phrase) else {
             saveEvent("enterPhrase.invalid")
-            errorLabel.isHidden = false
+            
+            showToastMessage(message: L10n.RecoverWallet.invalid)
             return
         }
         saveEvent("enterPhrase.valid")
-        errorLabel.isHidden = true
 
         switch reason {
         case .setSeed(let callback):

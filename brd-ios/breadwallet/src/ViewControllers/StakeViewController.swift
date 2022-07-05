@@ -34,7 +34,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
     private let changeBakerButton = UIButton()
     private let bakerInfoView = UIView()
     private let txPendingView = UIView()
-    private let loadingSpinner = UIActivityIndicatorView(style: .gray)
+    private let loadingSpinner = UIActivityIndicatorView(style: .medium)
     private let sendingActivity = BRActivityViewController(message: L10n.TransactionDetails.titleSending)
     
     init(currency: Currency, sender: Sender) {
@@ -326,7 +326,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         bakerIconLoadingView.layer.masksToBounds = true
         bakerIconLoadingView.backgroundColor = .white
         
-        let iconLoadingSpinner = UIActivityIndicatorView(style: .gray)
+        let iconLoadingSpinner = UIActivityIndicatorView(style: .medium)
         bakerIconLoadingView.addSubview(iconLoadingSpinner)
         iconLoadingSpinner.startAnimating()
         
@@ -443,7 +443,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
         bakerIconLoadingView.layer.masksToBounds = true
         bakerIconLoadingView.backgroundColor = .lightGray
         
-        let iconLoadingSpinner = UIActivityIndicatorView(style: .white)
+        let iconLoadingSpinner = UIActivityIndicatorView(style: .medium)
         bakerIconLoadingView.addSubview(iconLoadingSpinner)
         iconLoadingSpinner.constrain([
             iconLoadingSpinner.centerXAnchor.constraint(equalTo: bakerIconLoadingView.centerXAnchor),
@@ -495,7 +495,7 @@ class StakeViewController: UIViewController, Subscriber, Trackable, ModalPresent
     
     private func buildTxPendingView() {
         bakerInfoView.subviews.forEach {$0.removeFromSuperview()}
-        let pendingSpinner = UIActivityIndicatorView(style: .gray)
+        let pendingSpinner = UIActivityIndicatorView(style: .medium)
         let pendingLabel = UILabel(font: .customBold(size: 20.0), color: .darkGray)
 
         pendingLabel.text = L10n.Staking.pendingTransaction

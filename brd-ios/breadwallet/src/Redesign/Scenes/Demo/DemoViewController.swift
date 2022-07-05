@@ -20,33 +20,19 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     override func setupSubviews() {
         super.setupSubviews()
         
-        tableView.register(WrapperTableViewCell<ScrollableButtonsView>.self)
+        tableView.register(WrapperTableViewCell<ExchangeRateView>.self)
     }
     
     override func prepareData() {
         sections = [
-            Models.Section.button
+            Models.Section.timer
         ]
         
         sectionRows = [
-            Models.Section.button: [
-                ScrollableButtonsViewModel(buttons: [
-                    .init(title: "Tap", isUnderlined: true),
-                    .init(image: "close"),
-                    .init(title: "tap", isUnderlined: true, image: "close"),
-                    .init(title: "Tap"),
-                    .init(image: "close"),
-                    .init(title: "tap", image: "close"),
-                    .init(title: "Tap"),
-                    .init(image: "close"),
-                    .init(title: "tap", image: "close"),
-                    .init(title: "Tap"),
-                    .init(image: "close"),
-                    .init(title: "tap", image: "close"),
-                    .init(title: "Tap"),
-                    .init(image: "close"),
-                    .init(title: "tap", image: "close")
-                ])
+            Models.Section.timer: [
+                ExchamgeRateViewModel(firstCurrency: "BTC", secondCurrency: "ETH", exchangeRate: 0.0231, timer: .init(duration: 26, finished: {
+                    print("Done!")
+                }))
             ]
         ]
         
@@ -63,6 +49,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         switch section {
         case .button:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
+            
+        case .timer:
+            cell = self.tableView(tableView, timerCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
@@ -87,6 +76,22 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                                         Presets.Button.icon
                                        ]
                                       ))
+            view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, timerCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<ExchangeRateView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? ExchamgeRateViewModel
+        else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
             view.setup(with: model)
         }
         

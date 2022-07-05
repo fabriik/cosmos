@@ -15,8 +15,8 @@ enum WyreEndpoints: String, URLType {
 }
 
 class ReservationMapper: ModelMapper<ReservationResponseData, ReservationData> {
-    override func getModel(from response: ReservationResponseData) -> ReservationData? {
-        return .init(url: response.url, reservation: response.reservation)
+    override func getModel(from response: ReservationResponseData?) -> ReservationData? {
+        return .init(url: response?.url, reservation: response?.reservation)
     }
 }
 
@@ -51,7 +51,7 @@ struct ReservationRequestData: RequestModelData {
     }
 }
 
-class ReservationWorker: BaseResponseWorker<ReservationResponseData, ReservationData, ReservationMapper> {
+class ReservationWorker: BaseApiWorker<ReservationMapper> {
     override func getUrl() -> String {
         guard let urlParams = (requestData as? ReservationRequestData) else { return "" }
         

@@ -20,7 +20,7 @@ class SelectBakerCell: UITableViewCell {
     fileprivate let iconSize: CGFloat = 40.0
     private let bakerIcon = UIImageView(color: .transparentIconBackground)
     private let bakerIconLoadingView = UIView()
-    private let iconLoadingSpinner = UIActivityIndicatorView(style: .white)
+    private let iconLoadingSpinner = UIActivityIndicatorView(style: .medium)
     private let bakerName = UILabel(font: Theme.h3Title, color: .darkGray)
     private let roiHeader = UILabel(font: Theme.caption, color: .lightGray)
     private let roi = UILabel(font: Theme.h3Title, color: .darkGray)

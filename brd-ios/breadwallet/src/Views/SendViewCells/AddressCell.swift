@@ -60,7 +60,7 @@ class AddressCell: UIView {
     fileprivate let tapView = UIView()
     private let border = UIView(color: .secondaryShadow)
     private let resolvedAddressLabel = ResolvedAddressLabel()
-    private let activityIndicator = UIActivityIndicatorView(style: .gray)
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
     
     func showResolveableState(type: ResolvableType, address: String) {
         textField.resignFirstResponder()

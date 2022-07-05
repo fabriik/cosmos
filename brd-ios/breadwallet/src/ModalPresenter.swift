@@ -1009,7 +1009,7 @@ class ModalPresenter: Subscriber, Trackable {
             }
         } else if topViewController is HomeScreenViewController {
             pushAccountView()
-        } else if let presented = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController {
+        } else if let presented = UIApplication.shared.activeWindow?.rootViewController?.presentedViewController {
             if let nc = presented.presentingViewController as? RootNavigationController, nc.viewControllers.count > 1 {
                 // modal on top of another account screen
                 presented.dismiss(animated: false) {
@@ -1028,7 +1028,7 @@ class ModalPresenter: Subscriber, Trackable {
         if topViewController is AccountViewController || topViewController is LoginViewController {
             presentLoginScan()
         } else {
-            if let presented = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController {
+            if let presented = UIApplication.shared.activeWindow?.rootViewController?.presentedViewController {
                 presented.dismiss(animated: true, completion: {
                     self.presentLoginScan()
                 })
@@ -1100,7 +1100,7 @@ class ModalPresenter: Subscriber, Trackable {
 
     private func showLightWeightAlert(message: String) {
         let alert = LightWeightAlert(message: message)
-        let view = UIApplication.shared.keyWindow!
+        guard let view = UIApplication.shared.activeWindow else { return }
         view.addSubview(alert)
         alert.constrain([
             alert.centerXAnchor.constraint(equalTo: view.centerXAnchor),

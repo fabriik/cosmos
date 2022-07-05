@@ -44,6 +44,7 @@ class VIPViewController<C: CoordinatableRoutes,
     // MARK: Modal dimissable
     var isModalDismissableEnabled: Bool { return false }
     var dismissText: String { return "" }
+    var closeImage: UIImage? { return nil }
 
     var isRootInNavigationController: Bool {
         guard let navigationController = navigationController else { return true }
@@ -93,7 +94,13 @@ class VIPViewController<C: CoordinatableRoutes,
         super.viewWillAppear(animated)
 
         if isModalDismissableEnabled {
-            setupAsVIPModalDismissable(closeAction: #selector(dismissModal))
+            setupCloseButton(closeAction: #selector(dismissModal))
+        } else if navigationItem.leftBarButtonItem?.image == closeImage
+                    || navigationItem.leftBarButtonItem?.title == dismissText {
+            navigationItem.leftBarButtonItem = nil
+        } else if navigationItem.rightBarButtonItem?.image == closeImage
+                    || navigationItem.rightBarButtonItem?.title == dismissText {
+            navigationItem.rightBarButtonItem = nil
         }
     }
 
@@ -104,10 +111,6 @@ class VIPViewController<C: CoordinatableRoutes,
         guard parent == nil else { return }
 
         coordinator?.goBack()
-    }
-
-    func setupAsVIPModalDismissable(closeAction: Selector) {
-        setupCloseButton(closeAction: closeAction)
     }
 
     func setupCloseButton(closeAction: Selector) {
@@ -191,7 +194,6 @@ class VIPViewController<C: CoordinatableRoutes,
 protocol ModalDismissable {
     var dismissText: String { get }
 
-    func setupAsVIPModalDismissable(closeAction: Selector)
     func setupCloseButton(closeAction: Selector)
 }
 

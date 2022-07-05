@@ -26,8 +26,7 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
         ]
         var help: [ButtonViewModel] = [ButtonViewModel(title: "Re-send my code", isUnderlined: true)]
         
-        if UserManager.shared.profile?.status == .emailPending
-            || UserManager.shared.profile?.status == nil {
+        if UserManager.shared.profile?.status == .emailPending {
             help.append(ButtonViewModel(title: "Change my email", isUnderlined: true))
         }
         
@@ -61,7 +60,7 @@ final class RegistrationConfirmationPresenter: NSObject, Presenter, Registration
     }
     
     func presentConfirm(actionResponse: RegistrationConfirmationModels.Confirm.ActionResponse) {
-        viewController?.displayConfirm(responseDisplay: .init())
+        viewController?.displayConfirm(responseDisplay: .init(shouldShowProfile: actionResponse.shouldShowProfile))
     }
     
     func presentResend(actionResponse: RegistrationConfirmationModels.Resend.ActionResponse) {

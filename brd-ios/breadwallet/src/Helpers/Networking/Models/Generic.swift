@@ -11,10 +11,10 @@ protocol Model {}
 
 extension Array: Model {}
 
-class ModelMapper<T: ModelResponse, U: Model> {
+class ModelMapper<T: ModelResponse, U: Any>: Mapper {
     required public init() {}
     
-    open func getModel(from response: T) -> U? {
+    open func getModel(from response: T?) -> U? {
         return nil
     }
 }
