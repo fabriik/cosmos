@@ -176,8 +176,6 @@ class MainSwapView: FEView<MainSwapConfiguration, MainSwapViewModel> {
             ? .init(translationX: 0, y: verticalDistance) : .identity
             self?.bottomSwapCurrencyView.currencySelectorStackView.transform = self?.bottomSwapCurrencyView.currencySelectorStackView.transform == .identity
             ? .init(translationX: 0, y: -verticalDistance) : .identity
-        } completion: { _ in
-            
         }
         
         UIView.animate(withDuration: Presets.Animation.duration, delay: Presets.Animation.duration, options: []) { [weak self] in
