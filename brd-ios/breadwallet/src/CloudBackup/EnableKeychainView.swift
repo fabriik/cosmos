@@ -26,7 +26,7 @@ struct EnableKeychainView: View {
                     .padding(.bottom, 8.0)
                     .fixedSize(horizontal: false, vertical: true)
                     .lineLimit(nil)
-                ForEach(0..<steps.count) { i in
+                ForEach(0..<steps.count, id: \.self) { i in
                     HStack(alignment: .top) {
                         BodyText("\(i + 1).", style: .primary)
                             .frame(width: 14.0)
