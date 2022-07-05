@@ -33,9 +33,9 @@ class Dot: UIView {
     }
     
     func addTo(_ view: UIView) {
-        let startX = CGFloat.random(min: 0.0, max: view.bounds.width)
-        let startY = CGFloat.random(min: (view.bounds.height - 25.0), max: view.bounds.height)
-        let endY = CGFloat.random(min: startY - 40.0, max: startY - 80.0)
+        let startX = CGFloat.random(in: 0.0...view.bounds.width)
+        let startY = CGFloat.random(in: (view.bounds.height - 25.0)...view.bounds.height)
+        let endY = CGFloat.random(in: (startY - 40.0)...(startY - 80.0))
         frame = CGRect(x: startX, y: startY, width: size, height: size)
         startFrame = frame
         endFrame = CGRect(x: startX, y: endY, width: size, height: size)
@@ -69,10 +69,4 @@ class Dot: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-extension CGFloat {
-    public static func random(min: CGFloat, max: CGFloat) -> CGFloat {
-        return CGFloat(arc4random())/0xFFFFFFFF * (max - min) + min
-    }
 }

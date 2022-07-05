@@ -19,6 +19,9 @@ enum DemoModels {
         case button
         case textField
         case infoView
+        case segmentControl
+        case timer
+        case asset
         
         var header: AccessoryType? { return nil }
         var footer: AccessoryType? { return nil }

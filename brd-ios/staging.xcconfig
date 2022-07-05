@@ -1,5 +1,5 @@
 //
-//  config.xcconfig
+//  debug.xcconfig
 //  breadwallet
 //
 //  Created by Rok on 07/03/2022.
@@ -13,6 +13,5 @@
 
 #include ".env"
 
-API_TOKEN = $(DEV_TOKEN)
-API_URL = $(DEV_URL)
-IS_TEST=true
+API_URL=$(STAGING_URL)
+API_TOKEN=$(STAGING_TOKEN)

@@ -77,20 +77,46 @@ class BaseCoordinator: NSObject,
         navigationController.show(nvc, sender: nil)
     }
     
-    func showRegistration() {
-        let coordinator = RegistrationCoordinator(navigationController: RootNavigationController())
+    func showRegistration(shouldShowProfile: Bool = false) {
+        let nvc = RootNavigationController()
+        let coordinator = RegistrationCoordinator(navigationController: nvc)
         coordinator.start()
         coordinator.parentCoordinator = self
+        
+        if let vc = nvc.topViewController as? RegistrationConfirmationViewController {
+            vc.dataStore?.shouldShowProfile = shouldShowProfile
+        }
+        
         childCoordinators.append(coordinator)
         navigationController.show(coordinator.navigationController, sender: nil)
     }
     
-    func showProfile() {
+    func showProfileModally() {
         upgradeAccountOrShowPopup(checkForKyc: false) { [weak self] _ in
             self?.openModally(coordinator: ProfileCoordinator.self, scene: Scenes.Profile)
         }
     }
 
+    func replaceWithProfile() {
+        upgradeAccountOrShowPopup(checkForKyc: false) { [weak self] _ in
+            self?.set(scene: Scenes.Profile)
+        }
+    }
+    
+    func showVerifications() {
+        open(scene: Scenes.AccountVerification) { vc in
+            vc.dataStore?.profile = UserManager.shared.profile
+            vc.prepareData()
+        }
+    }
+    
+    func showVerificationsModally() {
+        openModally(coordinator: KYCCoordinator.self, scene: Scenes.AccountVerification) { vc in
+            vc?.dataStore?.profile = UserManager.shared.profile
+            vc?.prepareData()
+        }
+    }
+    
     /// Determines whether the viewcontroller or navigation stack are being dismissed
     func goBack() {
         // if the same coordinator is used in a flow, we dont want to remove it from the parent
@@ -108,7 +134,7 @@ class BaseCoordinator: NSObject,
     func childDidFinish(child: Coordinatable) {
         childCoordinators.removeAll(where: { $0 === child })
     }
-
+    
     // only call from coordinator subclasses
     func open<T: BaseControllable>(scene: T.Type,
                                    presentationStyle: UIModalPresentationStyle = .fullScreen,
@@ -121,11 +147,22 @@ class BaseCoordinator: NSObject,
     }
 
     // only call from coordinator subclasses
+    func set<T: BaseControllable>(scene: T.Type,
+                                  presentationStyle: UIModalPresentationStyle = .fullScreen,
+                                  configure: ((T) -> Void)? = nil) {
+        let controller = T()
+        controller.coordinator = (self as? T.CoordinatorType)
+        configure?(controller)
+        navigationController.modalPresentationStyle = presentationStyle
+        navigationController.setViewControllers([controller], animated: true)
+    }
+    
+    // only call from coordinator subclasses
     func openModally<C: BaseCoordinator,
-                            VC: BaseControllable>(coordinator: C.Type,
-                                                  scene: VC.Type,
-                                                  presentationStyle: UIModalPresentationStyle = .fullScreen,
-                                                  configure: ((VC?) -> Void)? = nil) {
+                     VC: BaseControllable>(coordinator: C.Type,
+                                           scene: VC.Type,
+                                           presentationStyle: UIModalPresentationStyle = .fullScreen,
+                                           configure: ((VC?) -> Void)? = nil) {
         let controller = VC()
         let nvc = RootNavigationController(rootViewController: controller)
         nvc.modalPresentationStyle = presentationStyle
@@ -242,9 +279,12 @@ class BaseCoordinator: NSObject,
     func showMessage(with error: Error? = nil, model: InfoViewModel? = nil, configuration: InfoViewConfiguration? = nil) {
         guard !(error is SessionExpiredError) else {
             UserDefaults.emailConfirmed = false
+            UserDefaults.hasShownKYCVerifyPrompt = false
             openModally(coordinator: RegistrationCoordinator.self, scene: Scenes.RegistrationConfirmation)
             return
         }
+        
+        guard let model = model, let configuration = configuration else { return }
         
         let notification = FEInfoView()
         notification.setupCustomMargins(all: .large)

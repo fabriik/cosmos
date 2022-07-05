@@ -36,7 +36,7 @@ class GiftSharingCoordinator {
     
     func closeAction() {
         DispatchQueue.main.async {
-            UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+            UIApplication.shared.activeWindow?.rootViewController?.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -144,7 +144,7 @@ class ShareActivityItemSource: NSObject, UIActivityItemSource {
 
 extension UIApplication {
 
-    class func topViewController(_ base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    class func topViewController(_ base: UIViewController? = UIApplication.shared.activeWindow?.rootViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
             let top = topViewController(nav.visibleViewController)
             return top

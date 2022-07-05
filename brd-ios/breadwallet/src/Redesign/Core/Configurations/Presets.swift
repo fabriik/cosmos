@@ -157,6 +157,20 @@ extension Presets {
                                                                           border: Presets.Border.zero),
                                                         shadow: Presets.Shadow.normal)
         
+        static var verificationPrompt = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
+                                                              headerTitle: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                              headerTrailing: Presets.Button.icon,
+                                                              status: VerificationView.resubmit.status,
+                                                              title: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
+                                                              description: .init(font: Fonts.Subtitle.two, textColor: LightColors.Contrast.two),
+                                                              button: Presets.Button.primary.withBorder(normal: Presets.Border.zero,
+                                                                                                        selected: Presets.Border.selected,
+                                                                                                        disabled: Presets.Border.disabled),
+                                                              background: .init(backgroundColor: LightColors.secondary,
+                                                                                tintColor: LightColors.Contrast.two,
+                                                                                border: Presets.Border.zero),
+                                                              shadow: Presets.Shadow.normal)
+        
         static var pending = InfoViewConfiguration(headerLeadingImage: Presets.Image.tertiary,
                                                    headerTitle: .init(font: Fonts.overline, textColor: LightColors.Contrast.two),
                                                    headerTrailing: Presets.Button.icon,
@@ -246,8 +260,15 @@ extension Presets {
                                                buttons: [ Presets.Button.primary.withBorder(normal: Presets.Border.zero,
                                                                                             selected: Presets.Border.selected,
                                                                                             disabled: Presets.Border.disabled),
-                                                          Presets.Button.secondary ]
-        )
+                                                          Presets.Button.secondary ],
+                                               closeButton: Presets.Button.icon)
+        
+        static var white = PopupConfiguration(background: .init(backgroundColor: LightColors.Background.one,
+                                                                tintColor: LightColors.Contrast.two,
+                                                                border: Presets.Border.zero),
+                                              title: .init(font: Fonts.Title.five, textColor: LightColors.Icons.one),
+                                              body: .init(font: Fonts.Body.one, textColor: LightColors.Icons.one),
+                                              closeButton: Presets.Button.blackIcon)
     }
 }
 
@@ -333,6 +354,13 @@ extension Presets {
                                         description: .text("Get full access to your Fabriik wallet"),
                                         button: .init(title: "Verify your account"),
                                         dismissType: .persistent)
+        
+        static var nonePrompt = InfoViewModel(kyc: .levelOne, headerTitle: .text("ACCOUNT LIMITS"),
+                                              headerTrailing: .init(image: "CloseModern"),
+                                              status: VerificationStatus.none,
+                                              description: .text("Get full access to your Fabriik wallet"),
+                                              button: .init(title: "Verify your account"),
+                                              dismissType: .persistent)
         
         static var verified = InfoViewModel(kyc: .levelOne, headerTitle: .text("ACCOUNT LIMITS"),
                                             headerTrailing: .init(image: "infoIcon"),

@@ -18,7 +18,7 @@ extension UIAlertController {
         self.init(title: title, message: message, preferredStyle: style)
         
         let isPad = UIDevice.current.userInterfaceIdiom == .pad
-        let root = UIApplication.shared.windows.first(where: { $0.isKeyWindow })
+        let root = UIApplication.shared.activeWindow
         
         if let source = source {
             popoverPresentationController?.sourceView = source
