@@ -60,6 +60,9 @@ class BaseCoordinator: NSObject,
     }
 
     func start() {
+        open(scene: Scenes.Demo)
+        
+        return ()
         let nvc = RootNavigationController()
         let coordinator: Coordinatable
         

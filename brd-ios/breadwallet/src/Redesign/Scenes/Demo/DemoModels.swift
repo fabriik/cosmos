@@ -20,6 +20,7 @@ enum DemoModels {
         case textField
         case infoView
         case segmentControl
+        case timer
         
         var header: AccessoryType? { return nil }
         var footer: AccessoryType? { return nil }
