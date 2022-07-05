@@ -10,6 +10,12 @@
 
 import UIKit
 
+extension Presets {
+    struct Timer {
+        static var one = TimerConfiguration(background: .init(tintColor: LightColors.primary), font: Fonts.Body.two)
+    }
+}
+
 struct TimerConfiguration: Configurable {
     var background: BackgroundConfiguration = .init(backgroundColor: .clear, tintColor: LightColors.primary)
     var font = Fonts.Body.two
@@ -17,9 +23,9 @@ struct TimerConfiguration: Configurable {
 
 struct TimerViewModel: ViewModel {
     var duration: Double = 15
-    var image: ImageViewModel?
-    var finished: (() -> Void)?
+    var image = ImageViewModel.imageName("timelapse")
     var repeats = true
+    var finished: (() -> Void)?
 }
 
 class FETimerView: FEView<TimerConfiguration, TimerViewModel> {

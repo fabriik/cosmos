@@ -20,7 +20,7 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     override func setupSubviews() {
         super.setupSubviews()
         
-        tableView.register(WrapperTableViewCell<FETimerView>.self)
+        tableView.register(WrapperTableViewCell<ExchangeRateView>.self)
     }
     
     override func prepareData() {
@@ -30,9 +30,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         
         sectionRows = [
             Models.Section.timer: [
-                TimerViewModel(duration: 10, image: .imageName("timelapse"), finished: {
+                ExchamgeRateViewModel(firstCurrency: "BTC", secondCurrency: "ETH", exchangeRate: 0.0231, timer: .init(duration: 26, finished: {
                     print("Done!")
-                }, repeats: true)
+                }))
             ]
         ]
         
@@ -84,8 +84,8 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     
     func tableView(_ tableView: UITableView, timerCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
-        guard let cell: WrapperTableViewCell<FETimerView> = tableView.dequeueReusableCell(for: indexPath),
-              let model = sectionRows[section]?[indexPath.row] as? TimerViewModel
+        guard let cell: WrapperTableViewCell<ExchangeRateView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? ExchamgeRateViewModel
         else {
             return UITableViewCell()
         }
