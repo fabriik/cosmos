@@ -14,7 +14,7 @@ class AssetListTableView: UITableViewController, Subscriber {
     var didTapAddWallet: (() -> Void)?
     var didReload: (() -> Void)?
     
-    let loadingSpinner = UIActivityIndicatorView(style: .white)
+    let loadingSpinner = UIActivityIndicatorView(style: .medium)
 
     private let assetHeight: CGFloat = 80.0 // rowHeight of 72 plus 8 padding
     
