@@ -345,6 +345,7 @@
 		7ECCA98F2873059300F99368 /* SwapEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECCA98E2873059300F99368 /* SwapEndpoints.swift */; };
 		7ECCA9912873079100F99368 /* QuotaWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECCA9902873079100F99368 /* QuotaWorker.swift */; };
 		7ECCA9952874266200F99368 /* FESegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECCA9942874266200F99368 /* FESegmentControl.swift */; };
+		7ECCA99728742E1700F99368 /* UIApplication+ActiveWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECCA99628742E1700F99368 /* UIApplication+ActiveWindow.swift */; };
 		7ED83ACE284F373200261565 /* KYCLevelTwoEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */; };
 		7ED83AE8284F384F00261565 /* KYCDocumentPickerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE1284F384F00261565 /* KYCDocumentPickerStore.swift */; };
 		7ED83AE9284F384F00261565 /* KYCDocumentPickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED83AE2284F384F00261565 /* KYCDocumentPickerPresenter.swift */; };
@@ -1253,6 +1254,7 @@
 		7ECCA98E2873059300F99368 /* SwapEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapEndpoints.swift; sourceTree = "<group>"; };
 		7ECCA9902873079100F99368 /* QuotaWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotaWorker.swift; sourceTree = "<group>"; };
 		7ECCA9942874266200F99368 /* FESegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FESegmentControl.swift; sourceTree = "<group>"; };
+		7ECCA99628742E1700F99368 /* UIApplication+ActiveWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+ActiveWindow.swift"; sourceTree = "<group>"; };
 		7ED83ACD284F373200261565 /* KYCLevelTwoEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCLevelTwoEntryViewController.swift; sourceTree = "<group>"; };
 		7ED83AE1284F384F00261565 /* KYCDocumentPickerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerStore.swift; sourceTree = "<group>"; };
 		7ED83AE2284F384F00261565 /* KYCDocumentPickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentPickerPresenter.swift; sourceTree = "<group>"; };
@@ -2603,6 +2605,7 @@
 			isa = PBXGroup;
 			children = (
 				7E87B32C285346E00097671F /* UIImage+compress.swift */,
+				7ECCA99628742E1700F99368 /* UIApplication+ActiveWindow.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4357,6 +4360,7 @@
 				CEE20C2F1EA3E5820086F724 /* BlinkingView.swift in Sources */,
 				3A6C13FF257D463300EA0689 /* GiftHeaderView.swift in Sources */,
 				CEC6AA441DEFCDE900EE5AFD /* ModalViewController.swift in Sources */,
+				7ECCA99728742E1700F99368 /* UIApplication+ActiveWindow.swift in Sources */,
 				CEF7D94622CE6AC000939D19 /* HistoryPeriodButton.swift in Sources */,
 				3AFB571724E2E10A00087527 /* RadioButton.swift in Sources */,
 				CEEC70831E90C07C00EF788E /* MenuItem.swift in Sources */,

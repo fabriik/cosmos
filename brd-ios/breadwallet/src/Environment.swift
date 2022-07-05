@@ -65,7 +65,7 @@ struct E {
         #if IS_EXTENSION_ENVIRONMENT
         return false
         #else
-        let bounds = UIApplication.shared.windows.last?.bounds
+        let bounds = UIApplication.activeWindow?.bounds
         return bounds?.width == 320 && bounds?.height == 568
         #endif
     }
@@ -74,7 +74,7 @@ struct E {
         #if IS_EXTENSION_ENVIRONMENT
         return false
         #else
-        let bounds = UIApplication.shared.windows.last?.bounds
+        let bounds = UIApplication.activeWindow?.bounds
         return bounds?.width == 375 && bounds?.height == 667
         #endif
     }
@@ -99,7 +99,7 @@ struct E {
         #if IS_EXTENSION_ENVIRONMENT
         return false
         #else
-        let bounds = UIApplication.shared.windows.last?.bounds
+        let bounds = UIApplication.activeWindow?.bounds
         return bounds?.width == 320
         #endif
     }
