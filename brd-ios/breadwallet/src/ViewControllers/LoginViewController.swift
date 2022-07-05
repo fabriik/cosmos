@@ -240,7 +240,8 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
         
         resetPinButton.constrain([
             resetPinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            resetPinButton.bottomAnchor.constraint(equalTo: pinPadBackground.topAnchor, constant: -C.padding[10])])
+            resetPinButton.heightAnchor.constraint(equalToConstant: Margins.extraLarge.rawValue),
+            resetPinButton.topAnchor.constraint(equalTo: pinPadBackground.topAnchor, constant: -ViewSizes.medium.rawValue)])
         
         addChild(pinPad)
         pinPadBackground.addSubview(pinPad.view)
