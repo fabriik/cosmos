@@ -16,15 +16,9 @@ struct SegmentControlConfiguration: Configurable {
     var selected: BackgroundConfiguration = .init(backgroundColor: LightColors.primary, tintColor: LightColors.Contrast.two)
 }
 
-//enum SwitchSelection {
-//    case left
-//    case righ
-//    case zero
-//}
-
 struct SegmentControlViewModel: ViewModel {
     /// Passing 'nil' leaves the control deselected
-    var selectedIndex:  Int?
+    var selectedIndex: Int?
 }
 
 class FESegmentControl: UISegmentedControl, ViewProtocol {
