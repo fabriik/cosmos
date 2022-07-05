@@ -380,9 +380,7 @@ class UpdatePinViewController: UIViewController, Subscriber {
                 if self.resetFromDisabledSuccess != nil {
                     self.resetFromDisabledWillSucceed?()
                     Store.perform(action: Alert.Show(.pinSet(callback: { [weak self] in
-                        self?.dismiss(animated: true, completion: {
-                            self?.resetFromDisabledSuccess?(newPin)
-                        })
+                        self?.presentResetPinSuccess(newPin: newPin)
                     })))
                 } else {
                     Store.perform(action: Alert.Show(.pinSet(callback: { [weak self] in
@@ -403,6 +401,18 @@ class UpdatePinViewController: UIViewController, Subscriber {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    func presentResetPinSuccess(newPin: String) {
+        let resetPinSuccess = ResetPinViewController()
+        resetPinSuccess.resetFromDisabledSuccess = { [weak self] in
+            self?.dismiss(animated: true, completion: {
+                self?.resetFromDisabledSuccess?(newPin)
+            })
+        }
+        let nc = RootNavigationController(rootViewController: resetPinSuccess)
+        nc.isNavigationBarHidden = true
+        present(nc, animated: true)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
