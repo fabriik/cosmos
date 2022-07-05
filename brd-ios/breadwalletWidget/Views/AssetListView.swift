@@ -75,7 +75,7 @@ struct AssetListGridView: View {
         let forceSingleColumn = singleColumnLimit == doubleColumnLimit
         if viewModel.assets.count <= singleColumnLimit || forceSingleColumn {
             
-            ForEach(0..<singleColumnLimit) { idx in
+            ForEach(0..<singleColumnLimit, id: \.self) { idx in
                 if idx < viewModel.assets.count {
                     AssetListItemView(
                         viewModel: viewModel.assets[idx],
@@ -96,7 +96,7 @@ struct AssetListGridView: View {
                 doubleColumnLimit / 2
             )
             
-            ForEach(0..<count) { idx in
+            ForEach(0..<count, id: \.self) { idx in
                 HStack {
                     if idx * 2 < viewModel.assets.count {
                         AssetListItemView(viewModel: viewModel.assets[idx * 2])

@@ -17,7 +17,7 @@ extension Presenter {
         guard let error = actionResponse.error as? NetworkingError else { return }
 
         let responseDisplay: MessageModels.ResponseDisplays
-        if let error = error as? SessioExpiredError {
+        if let error = error as? SessionExpiredError {
             responseDisplay = .init(error: error)
         } else {
             // TODO: Investigate localized errors
