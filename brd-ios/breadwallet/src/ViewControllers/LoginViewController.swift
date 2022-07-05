@@ -144,7 +144,7 @@ class LoginViewController: UIViewController, Subscriber, Trackable {
             self.wipeFromDisabledGesture()
         }
         disabledView.didTapFaq = { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.faqButtonPressed()
         }
         
