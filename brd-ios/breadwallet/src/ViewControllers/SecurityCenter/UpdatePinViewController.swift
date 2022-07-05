@@ -142,7 +142,7 @@ class UpdatePinViewController: UIViewController, Subscriber {
     private func addConstraints() {
         let leftRightMargin: CGFloat = E.isSmallScreen ? 40 : 60
         header.constrain([
-            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: ViewSizes.large.rawValue),
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Margins.extraHuge.rawValue),
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftRightMargin),
             header.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftRightMargin) ])
         instruction.constrain([
