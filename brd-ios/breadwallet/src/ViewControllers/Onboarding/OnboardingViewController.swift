@@ -304,7 +304,7 @@ class OnboardingViewController: UIViewController {
             imageView.alpha = 0.0
             imageView.tintColor = .white
             
-            let delay = Double(CGFloat.random(min: 0.0, max: CGFloat(maxDelay)))
+            let delay = Double.random(in: 0.0...maxDelay)
             
             //Fade in Icon
             UIView.animate(withDuration: 1.5, delay: delay, animations: {
@@ -313,7 +313,7 @@ class OnboardingViewController: UIViewController {
             
             //Animate icon on hypotenuse
             UIView.animate(withDuration: duration, delay: delay, animations: {
-                let angle = CGFloat.random(min: 0, max: 360.0) * .pi / 180.0
+                let angle = CGFloat.random(in: 0...360.0) * .pi / 180.0
                 let hypotenuse: CGFloat = 700.0
                 imageView.frame = imageView.frame.offsetBy(dx: cos(angle) * hypotenuse, dy: sin(angle) * hypotenuse)
                 let rotationAngle: CGFloat = Bool.random() ? .pi / -1.1 : .pi

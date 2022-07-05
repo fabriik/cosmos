@@ -89,7 +89,7 @@ class AnimatedBlockSetLogo: UIView {
             let dot = Dot()
             dot.addTo(view)
             DispatchQueue.main.async {
-                dot.animate(withDelay: TimeInterval(CGFloat.random(min: 0, max: 4.0)))
+                dot.animate(withDelay: TimeInterval(CGFloat.random(in: 0...4.0)))
             }
         }
     }
