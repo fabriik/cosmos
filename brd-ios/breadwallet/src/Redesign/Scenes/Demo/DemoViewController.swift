@@ -20,19 +20,17 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     override func setupSubviews() {
         super.setupSubviews()
         
-        tableView.register(WrapperTableViewCell<ExchangeRateView>.self)
+        tableView.register(WrapperTableViewCell<AssetView>.self)
     }
     
     override func prepareData() {
         sections = [
-            Models.Section.timer
+            Models.Section.asset
         ]
         
         sectionRows = [
-            Models.Section.timer: [
-                ExchamgeRateViewModel(firstCurrency: "BTC", secondCurrency: "ETH", exchangeRate: 0.0231, timer: .init(duration: 26, finished: {
-                    print("Done!")
-                }))
+            Models.Section.asset: [
+                AssetViewModel(name: "Bitcoin", code: "BTC", amount: 3, exchangeRate: 2.523)
             ]
         ]
         
@@ -52,6 +50,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             
         case .timer:
             cell = self.tableView(tableView, timerCellForRowAt: indexPath)
+            
+        case .asset:
+            cell = self.tableView(tableView, assetCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
@@ -86,6 +87,22 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         let section = sections[indexPath.section]
         guard let cell: WrapperTableViewCell<ExchangeRateView> = tableView.dequeueReusableCell(for: indexPath),
               let model = sectionRows[section]?[indexPath.row] as? ExchamgeRateViewModel
+        else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, assetCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<AssetView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? AssetViewModel
         else {
             return UITableViewCell()
         }
