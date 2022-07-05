@@ -12,10 +12,8 @@ import UIKit
 
 extension UIApplication {
     
-    static var activeWindow: UIWindow? {
-        return UIApplication
-            .shared
-            .connectedScenes
+    var activeWindow: UIWindow? {
+        return self.connectedScenes
             .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
             .first { $0.isKeyWindow }
     }
