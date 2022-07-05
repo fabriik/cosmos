@@ -63,7 +63,7 @@ class KYCCameraViewController: UIViewController, ViewProtocol {
             make.height.width.equalTo(86)
             make.centerX.equalToSuperview()
             
-            guard let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else { return }
+            guard let window = UIApplication.shared.activeWindow else { return }
             let hasBottomNotch = UIDevice.current.orientation.isPortrait && window.safeAreaInsets.bottom >= 44
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(hasBottomNotch ? Margins.extraSmall.rawValue : Margins.medium.rawValue)
         }

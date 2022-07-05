@@ -19,16 +19,20 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
     // MARK: - Overrides
     override func setupSubviews() {
         super.setupSubviews()
+        
+        tableView.register(WrapperTableViewCell<FETimerView>.self)
     }
     
     override func prepareData() {
         sections = [
-            Models.Section.segmentControl
+            Models.Section.timer
         ]
         
         sectionRows = [
-            Models.Section.segmentControl: [
-                SegmentControlViewModel(selectedIndex: 1)
+            Models.Section.timer: [
+                TimerViewModel(duration: 10, image: .imageName("timelapse"), finished: {
+                    print("Done!")
+                }, repeats: true)
             ]
         ]
         
@@ -46,8 +50,8 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         case .button:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
             
-        case .segmentControl:
-            cell = self.tableView(tableView, segmentControlCellForRowAt: indexPath)
+        case .timer:
+            cell = self.tableView(tableView, timerCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
@@ -72,6 +76,22 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
                                         Presets.Button.icon
                                        ]
                                       ))
+            view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, timerCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<FETimerView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? TimerViewModel
+        else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
             view.setup(with: model)
         }
         

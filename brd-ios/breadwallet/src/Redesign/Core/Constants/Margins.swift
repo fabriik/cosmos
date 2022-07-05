@@ -11,6 +11,8 @@ import UIKit
 enum Margins: CGFloat {
     /// 0
     case zero = 0
+    /// 2
+    case minimum = 2
     /// 4
     case extraSmall = 4
     /// 8
@@ -48,6 +50,8 @@ enum Opacity: Float {
 }
 
 enum ViewSizes: CGFloat {
+    /// 20
+    case extraSmall = 20.0
     /// 32
     case small = 32.0
     /// 80
