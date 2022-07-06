@@ -21,17 +21,22 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         super.setupSubviews()
         
         tableView.register(WrapperTableViewCell<AssetView>.self)
+        tableView.register(WrapperTableViewCell<OrderView>.self)
     }
     
     override func prepareData() {
         sections = [
-            Models.Section.asset
+            Models.Section.asset,
+            Models.Section.order
         ]
         let image = TokenImageSquareBackground(code: "BTC", color: .red).renderedImage ?? UIImage()
 
         sectionRows = [
             Models.Section.asset: [
                 AssetViewModel(icon: .image(image), title: "Bitcoin", subtitle: "BTC", topRightText: "3 BTC", bottomRightText: "$2.523")
+            ],
+            Models.Section.order: [
+                OrderViewModel(title: "Fabriik Order ID", value: "13rXEZoh5NFj4q9aasdfkLp2...", imageName: "copy")
             ]
         ]
         
@@ -54,6 +59,9 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
             
         case .asset:
             cell = self.tableView(tableView, assetCellForRowAt: indexPath)
+            
+        case .order:
+            cell = self.tableView(tableView, orderCellForRowAt: indexPath)
             
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
@@ -111,6 +119,26 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         cell.setup { view in
             view.configure(with: .init())
             view.setup(with: model)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, orderCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let cell: WrapperTableViewCell<OrderView> = tableView.dequeueReusableCell(for: indexPath),
+              let model = sectionRows[section]?[indexPath.row] as? OrderViewModel
+        else {
+            return UITableViewCell()
+        }
+        
+        cell.setup { view in
+            view.configure(with: .init())
+            view.setup(with: model)
+            view.copyCallback = { [weak self] code in
+                self?.coordinator?.showMessage(model: InfoViewModel(description: .text(code), dismissType: .auto),
+                                               configuration: Presets.InfoView.error)
+            }
         }
         
         return cell
