@@ -52,7 +52,7 @@ class ResetPinViewController: BaseTableViewController<ResetPinCoordinator,
             view.setup(with: model)
             view.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.top.equalTo(ViewSizes.large.rawValue)
+                make.top.equalTo(ViewSizes.extraLarge.rawValue)
             }
         }
         

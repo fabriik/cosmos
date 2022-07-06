@@ -10,24 +10,38 @@
 
 import UIKit
 
+extension Presets {
+    struct Asset {
+        static var Header = AssetConfiguration(topConfiguration: .init(font: Fonts.Title.six, textColor: LightColors.Text.one),
+                                               bottomConfiguration: .init(font: Fonts.Subtitle.two, textColor: LightColors.Text.two),
+                                               backgroundConfiguration: .init(backgroundColor: LightColors.tertiary,
+                                                                              tintColor: LightColors.Text.one,
+                                                                              border: Presets.Border.zero),
+                                               imageConfig: .init(backgroundColor: LightColors.pending, tintColor: .white, border: .init(borderWidth: 0, cornerRadius: .fullRadius)),
+                                               imageSize: .small)
+    }
+}
+
 struct AssetConfiguration: Configurable {
     var topConfiguration = LabelConfiguration(font: Fonts.Title.six, textColor: LightColors.Text.one)
     var bottomConfiguration = LabelConfiguration(font: Fonts.Subtitle.two, textColor: LightColors.Text.two)
+    var backgroundConfiguration: BackgroundConfiguration?
+    var imageConfig: BackgroundConfiguration?
+    var imageSize: ViewSizes = .medium
 }
 
 struct AssetViewModel: ViewModel {
-    var icon: ImageViewModel = .imageName("BTC")
-    var name: String
-    var code: String
-    var amount: Double?
-    var exchangeRate: Double?
-    var fiatCurrency = "$"
+    var icon: ImageViewModel = .imageName("swap")
+    var title: String?
+    var subtitle: String?
+    var topRightText: String?
+    var bottomRightText: String?
 }
 
 class AssetView: FEView<AssetConfiguration, AssetViewModel> {
     
-    private lazy var iconView: FEImageView = {
-        let view = FEImageView()
+    private lazy var iconView: WrapperView<FEImageView> = {
+        let view = WrapperView<FEImageView>()
         return view
     }()
     
@@ -53,12 +67,12 @@ class AssetView: FEView<AssetConfiguration, AssetViewModel> {
         return view
     }()
     
-    private lazy var assetValueLabel: FELabel = {
+    private lazy var topRightLabel: FELabel = {
         let view = FELabel()
         return view
     }()
     
-    private lazy var fiatValueLabel: FELabel = {
+    private lazy var bottomRightLabel: FELabel = {
         let view = FELabel()
         return view
     }()
@@ -71,9 +85,11 @@ class AssetView: FEView<AssetConfiguration, AssetViewModel> {
         
         iconView.snp.makeConstraints { make in
             make.leading.equalTo(content.snp.leadingMargin)
-            make.height.equalTo(40)
-            make.width.equalTo(iconView.snp.height)
+            make.top.equalTo(content.snp.topMargin).priority(.low)
             make.centerY.equalToSuperview()
+            
+            make.height.equalTo(ViewSizes.medium.rawValue)
+            make.width.equalTo(ViewSizes.medium.rawValue)
         }
         
         content.addSubview(titleStack)
@@ -92,8 +108,8 @@ class AssetView: FEView<AssetConfiguration, AssetViewModel> {
             make.top.equalTo(content.snp.topMargin)
         }
         
-        valueStack.addArrangedSubview(assetValueLabel)
-        valueStack.addArrangedSubview(fiatValueLabel)
+        valueStack.addArrangedSubview(topRightLabel)
+        valueStack.addArrangedSubview(bottomRightLabel)
     }
     
     override func configure(with config: AssetConfiguration?) {
@@ -101,31 +117,38 @@ class AssetView: FEView<AssetConfiguration, AssetViewModel> {
         super.configure(with: config)
         
         titleLabel.configure(with: config.topConfiguration)
-        assetValueLabel.configure(with: config.topConfiguration)
+        topRightLabel.configure(with: config.topConfiguration)
         
         subtitleLabel.configure(with: config.bottomConfiguration)
-        fiatValueLabel.configure(with: config.bottomConfiguration)
+        bottomRightLabel.configure(with: config.bottomConfiguration)
+        
+        iconView.snp.updateConstraints { make in
+            make.height.equalTo(config.imageSize.rawValue)
+            make.width.equalTo(config.imageSize.rawValue)
+        }
+        
+        iconView.content.setupCustomMargins(all: config.imageConfig == nil ? .zero : .extraSmall)
+        
+        iconView.configure(background: config.imageConfig)
+        configure(background: config.backgroundConfiguration)
     }
     
     override func setup(with viewModel: AssetViewModel?) {
         guard let viewModel = viewModel else { return }
         super.setup(with: viewModel)
         
-        if let image = TokenImageSquareBackground(code: viewModel.code, color: .red).renderedImage {
-            iconView.setup(with: .image(image))
-        }
+        iconView.wrappedView.setup(with: viewModel.icon)
         
-        titleLabel.setup(with: .text(viewModel.name))
-        subtitleLabel.setup(with: .text(viewModel.code))
+        titleLabel.setup(with: .text(viewModel.title))
+        titleLabel.isHidden = viewModel.title == nil
         
-        guard let amount = viewModel.amount,
-              let exchangeRate = viewModel.exchangeRate else {
-            valueStack.isHidden = true
-            return
-        }
-        valueStack.isHidden = false
-        assetValueLabel.setup(with: .text("\(amount) \(viewModel.code)"))
-        // TODO: currency formater (sometimes the
-        fiatValueLabel.setup(with: .text("\(viewModel.fiatCurrency) \(amount * exchangeRate)"))
+        subtitleLabel.setup(with: .text(viewModel.subtitle))
+        subtitleLabel.isHidden = viewModel.subtitle == nil
+        
+        topRightLabel.setup(with: .text(viewModel.topRightText))
+        topRightLabel.isHidden = viewModel.topRightText == nil
+        
+        bottomRightLabel.setup(with: .text(viewModel.bottomRightText))
+        bottomRightLabel.isHidden = viewModel.bottomRightText == nil
     }
 }

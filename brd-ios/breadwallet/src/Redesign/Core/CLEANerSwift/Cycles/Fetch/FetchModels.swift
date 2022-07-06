@@ -5,12 +5,13 @@
 //  Created by Rok Cresnik on 02/12/2021.
 //
 
-import Foundation
+import UIKit
 
 enum AccessoryType: Hashable {
     case plain(String)
     case attributed(NSAttributedString)
     case action(String)
+    case advanced(UIImage?, String, String?)
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(title.hashValue)
@@ -18,13 +19,12 @@ enum AccessoryType: Hashable {
     
     var title: String {
         switch self {
-        case .plain(let text):
-            return text
+        case .attributed(let title):
+            return title.string
             
-        case .attributed(let text):
-            return text.string
-            
-        case .action(let title):
+        case .plain(let title),
+                .action(let title),
+                .advanced(_, let title, _):
             return title
         }
     }

@@ -58,10 +58,6 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     
     func configure(with config: C?) {
         self.config = config
-        let config = config as? BackgroundConfiguration
-
-        content.backgroundColor = config?.backgroundColor
-        content.tintColor = config?.tintColor
     }
     
     func prepareForReuse() {
@@ -85,7 +81,6 @@ class FEView<C: Configurable, M: ViewModel>: UIView,
     
     func configure(background: BackgroundConfiguration?) {
         content.backgroundColor = background?.backgroundColor
-        content.tintColor = background?.border?.tintColor ?? background?.tintColor
 
         guard let border = background?.border else { return }
         
