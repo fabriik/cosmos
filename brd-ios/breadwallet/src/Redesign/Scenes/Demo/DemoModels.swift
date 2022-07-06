@@ -23,7 +23,7 @@ enum DemoModels {
         case timer
         case asset
         
-        var header: AccessoryType? { return nil }
+        var header: AccessoryType? { return .advanced(.init(named: "swap"), "ROK", "ZELOOOO drago") }
         var footer: AccessoryType? { return nil }
     }
     

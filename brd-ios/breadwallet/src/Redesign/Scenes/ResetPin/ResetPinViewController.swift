@@ -11,6 +11,8 @@ class ResetPinViewController: BaseTableViewController<ResetPinCoordinator,
                               ResetPinResponseDisplays {
     
     typealias Models = ResetPinModels
+    
+    var resetFromDisabledSuccess: (() -> Void)?
 
     // MARK: - Overrides
     override func viewDidLoad() {
@@ -52,8 +54,30 @@ class ResetPinViewController: BaseTableViewController<ResetPinCoordinator,
             view.setup(with: model)
             view.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.top.equalTo(ViewSizes.large.rawValue)
+                make.top.equalTo(ViewSizes.extraLarge.rawValue)
             }
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        guard let model = sectionRows[section]?[indexPath.row] as? ButtonViewModel,
+              let cell: WrapperTableViewCell<FEButton> = tableView.dequeueReusableCell(for: indexPath)
+        else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.setup { view in
+            view.configure(with: Presets.Button.primary)
+            view.setup(with: model)
+            view.setupCustomMargins(vertical: .large, horizontal: .large)
+            view.snp.makeConstraints { make in
+                make.height.equalTo(ButtonHeights.common.rawValue)
+                make.top.equalTo(ViewSizes.extraLarge.rawValue)
+            }
+            view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
         
         return cell
@@ -63,6 +87,9 @@ class ResetPinViewController: BaseTableViewController<ResetPinCoordinator,
     override func buttonTapped() {
         super.buttonTapped()
         
+        dismiss(animated: true, completion: {
+            self.resetFromDisabledSuccess?()
+        })
     }
 
     // MARK: - ResetPinResponseDisplay

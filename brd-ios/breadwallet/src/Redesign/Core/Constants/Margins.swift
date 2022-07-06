@@ -52,14 +52,14 @@ enum Opacity: Float {
 enum ViewSizes: CGFloat {
     /// 20
     case extraSmall = 20.0
+    /// 24
+    case small = 24.0
     /// 32
-    case small = 32.0
+    case medium = 32.0
     /// 80
-    case medium = 80.0
+    case large = 80.0
     /// 100
-    case large = 100.0
-    /// 335
-    case huge = 335.0
+    case extraLarge = 100.0
 }
 
 enum FieldHeights: CGFloat {

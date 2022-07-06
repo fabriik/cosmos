@@ -27,10 +27,11 @@ class DemoViewController: BaseTableViewController<DemoCoordinator,
         sections = [
             Models.Section.asset
         ]
-        
+        let image = TokenImageSquareBackground(code: "BTC", color: .red).renderedImage ?? UIImage()
+
         sectionRows = [
             Models.Section.asset: [
-                AssetViewModel(name: "Bitcoin", code: "BTC", amount: 3, exchangeRate: 2.523)
+                AssetViewModel(icon: .image(image), title: "Bitcoin", subtitle: "BTC", topRightText: "3 BTC", bottomRightText: "$2.523")
             ]
         ]
         
