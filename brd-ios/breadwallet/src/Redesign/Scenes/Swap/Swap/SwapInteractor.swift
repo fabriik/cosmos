@@ -1,5 +1,5 @@
 //
-//  SwapMainInteractor.swift
+//  SwapInteractor.swift
 //  breadwallet
 //
 //  Created by Kenan Mamedoff on 05/07/2022.
@@ -10,24 +10,23 @@
 
 import UIKit
 
-class SwapMainInteractor: NSObject, Interactor, SwapMainViewActions {
+class SwapInteractor: NSObject, Interactor, SwapViewActions {
     
-    typealias Models = SwapMainModels
+    typealias Models = SwapModels
 
-    var presenter: SwapMainPresenter?
-    var dataStore: SwapMainStore?
+    var presenter: SwapPresenter?
+    var dataStore: SwapStore?
 
-    // MARK: - SwapMainViewActions
+    // MARK: - SwapViewActions
     func getData(viewAction: FetchModels.Get.ViewAction) {
         presenter?.presentData(actionResponse: .init(item: Models.Item()))
     }
     
-    func setAmount(viewAction: SwapMainModels.Amounts.ViewAction) {
-        // TODO: Implement the logic for populating fields
-        dataStore?.toCryptoAmount = viewAction.fromFiatAmount
-        dataStore?.fromCryptoAmount = viewAction.fromCryptoAmount
-        dataStore?.toFiatAmount = viewAction.toFiatAmount
-        dataStore?.toCryptoAmount = viewAction.toCryptoAmount
+    func setAmount(viewAction: SwapModels.Amounts.ViewAction) {
+        dataStore?.fromFiatAmount = NSNumber(value: (((viewAction.fromFiatAmount as? NSString)?.doubleValue ?? 0) / 100))
+        dataStore?.fromCryptoAmount = NSNumber(value: (((viewAction.fromCryptoAmount as? NSString)?.doubleValue ?? 0) / 100))
+        dataStore?.toFiatAmount = NSNumber(value: (((viewAction.toFiatAmount as? NSString)?.doubleValue ?? 0) / 100))
+        dataStore?.toCryptoAmount = NSNumber(value: (((viewAction.toCryptoAmount as? NSString)?.doubleValue ?? 0) / 100))
         
         presenter?.presentSetAmount(actionResponse: .init(fromFiatAmount: dataStore?.fromFiatAmount,
                                                           fromCryptoAmount: dataStore?.fromCryptoAmount,

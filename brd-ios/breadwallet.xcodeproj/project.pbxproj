@@ -159,7 +159,7 @@
 		7B54E5B427F4A2B1002DD1E4 /* Roundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E58D27F4A2B0002DD1E4 /* Roundable.swift */; };
 		7B54E5B727F4A2B1002DD1E4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59127F4A2B0002DD1E4 /* RoundedView.swift */; };
 		7B54E5BB27F4A2B1002DD1E4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B54E59527F4A2B0002DD1E4 /* LoadingView.swift */; };
-		7B78631A2874266A0092F35B /* SwapMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7863192874266A0092F35B /* SwapMainCoordinator.swift */; };
+		7B78631A2874266A0092F35B /* SwapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7863192874266A0092F35B /* SwapCoordinator.swift */; };
 		7B78631C287427680092F35B /* MainSwapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B78631B287427680092F35B /* MainSwapView.swift */; };
 		7B78631E2874D36D0092F35B /* SwapCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B78631D2874D36D0092F35B /* SwapCurrencyView.swift */; };
 		7B8140BA27FD6DBB00662724 /* Currency+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */; };
@@ -174,11 +174,11 @@
 		7B8EC632280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */; };
 		7B8EC633280896F3008C6DE5 /* brd-tokens-staging.tar in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB4A0E2806FA190031F015 /* brd-tokens-staging.tar */; };
 		7BB22E49285B8D60003E37AC /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB22E48285B8D60003E37AC /* ContentSizedTableView.swift */; };
-		7BBBF4DB287421CF00E4D36B /* SwapMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D5287421CE00E4D36B /* SwapMainInteractor.swift */; };
-		7BBBF4DC287421CF00E4D36B /* SwapMainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D6287421CE00E4D36B /* SwapMainModels.swift */; };
-		7BBBF4DD287421CF00E4D36B /* SwapMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D7287421CF00E4D36B /* SwapMainViewController.swift */; };
-		7BBBF4DE287421CF00E4D36B /* SwapMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D8287421CF00E4D36B /* SwapMainPresenter.swift */; };
-		7BBBF4DF287421CF00E4D36B /* SwapMainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D9287421CF00E4D36B /* SwapMainStore.swift */; };
+		7BBBF4DB287421CF00E4D36B /* SwapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D5287421CE00E4D36B /* SwapInteractor.swift */; };
+		7BBBF4DC287421CF00E4D36B /* SwapModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D6287421CE00E4D36B /* SwapModels.swift */; };
+		7BBBF4DD287421CF00E4D36B /* SwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D7287421CF00E4D36B /* SwapViewController.swift */; };
+		7BBBF4DE287421CF00E4D36B /* SwapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D8287421CF00E4D36B /* SwapPresenter.swift */; };
+		7BBBF4DF287421CF00E4D36B /* SwapStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4D9287421CF00E4D36B /* SwapStore.swift */; };
 		7BBBF4E0287421CF00E4D36B /* SwapMainVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBF4DA287421CF00E4D36B /* SwapMainVIP.swift */; };
 		7BC49D1B282E69A3000BF284 /* ManageAssetsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */; };
 		7BDB49B62805AC780031F015 /* EmailFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */; };
@@ -1090,17 +1090,17 @@
 		7B54E58D27F4A2B0002DD1E4 /* Roundable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roundable.swift; sourceTree = "<group>"; };
 		7B54E59127F4A2B0002DD1E4 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		7B54E59527F4A2B0002DD1E4 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		7B7863192874266A0092F35B /* SwapMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMainCoordinator.swift; sourceTree = "<group>"; };
+		7B7863192874266A0092F35B /* SwapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCoordinator.swift; sourceTree = "<group>"; };
 		7B78631B287427680092F35B /* MainSwapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSwapView.swift; sourceTree = "<group>"; };
 		7B78631D2874D36D0092F35B /* SwapCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapCurrencyView.swift; sourceTree = "<group>"; };
 		7B8140B927FD6DBB00662724 /* Currency+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Extensions.swift"; sourceTree = "<group>"; };
 		7B88C4842837B8710089CFBE /* Currency+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Shared.swift"; sourceTree = "<group>"; };
 		7BB22E48285B8D60003E37AC /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
-		7BBBF4D5287421CE00E4D36B /* SwapMainInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapMainInteractor.swift; sourceTree = "<group>"; };
-		7BBBF4D6287421CE00E4D36B /* SwapMainModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapMainModels.swift; sourceTree = "<group>"; };
-		7BBBF4D7287421CF00E4D36B /* SwapMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapMainViewController.swift; sourceTree = "<group>"; };
-		7BBBF4D8287421CF00E4D36B /* SwapMainPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapMainPresenter.swift; sourceTree = "<group>"; };
-		7BBBF4D9287421CF00E4D36B /* SwapMainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapMainStore.swift; sourceTree = "<group>"; };
+		7BBBF4D5287421CE00E4D36B /* SwapInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapInteractor.swift; sourceTree = "<group>"; };
+		7BBBF4D6287421CE00E4D36B /* SwapModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapModels.swift; sourceTree = "<group>"; };
+		7BBBF4D7287421CF00E4D36B /* SwapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapViewController.swift; sourceTree = "<group>"; };
+		7BBBF4D8287421CF00E4D36B /* SwapPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapPresenter.swift; sourceTree = "<group>"; };
+		7BBBF4D9287421CF00E4D36B /* SwapStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapStore.swift; sourceTree = "<group>"; };
 		7BBBF4DA287421CF00E4D36B /* SwapMainVIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapMainVIP.swift; sourceTree = "<group>"; };
 		7BC49D1A282E69A3000BF284 /* ManageAssetsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageAssetsButton.swift; path = src/Views/ManageAssetsButton.swift; sourceTree = "<group>"; };
 		7BDB49B52805AC780031F015 /* EmailFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFeedbackManager.swift; sourceTree = "<group>"; };
@@ -2318,18 +2318,18 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
-		7BBBF4D22874210600E4D36B /* SwapMain */ = {
+		7BBBF4D22874210600E4D36B /* Swap */ = {
 			isa = PBXGroup;
 			children = (
-				7BBBF4D8287421CF00E4D36B /* SwapMainPresenter.swift */,
-				7BBBF4D9287421CF00E4D36B /* SwapMainStore.swift */,
+				7BBBF4D8287421CF00E4D36B /* SwapPresenter.swift */,
+				7BBBF4D9287421CF00E4D36B /* SwapStore.swift */,
 				7BBBF4DA287421CF00E4D36B /* SwapMainVIP.swift */,
-				7BBBF4D6287421CE00E4D36B /* SwapMainModels.swift */,
-				7BBBF4D7287421CF00E4D36B /* SwapMainViewController.swift */,
-				7BBBF4D5287421CE00E4D36B /* SwapMainInteractor.swift */,
-				7B7863192874266A0092F35B /* SwapMainCoordinator.swift */,
+				7BBBF4D6287421CE00E4D36B /* SwapModels.swift */,
+				7BBBF4D7287421CF00E4D36B /* SwapViewController.swift */,
+				7BBBF4D5287421CE00E4D36B /* SwapInteractor.swift */,
+				7B7863192874266A0092F35B /* SwapCoordinator.swift */,
 			);
-			path = SwapMain;
+			path = Swap;
 			sourceTree = "<group>";
 		};
 		7C377EBC20F64C1200E8CF1C /* Resources */ = {
@@ -2385,7 +2385,7 @@
 		7E52B79D286EF4CE003D2249 /* Swap */ = {
 			isa = PBXGroup;
 			children = (
-				7BBBF4D22874210600E4D36B /* SwapMain */,
+				7BBBF4D22874210600E4D36B /* Swap */,
 				7E52B79E286EF4CE003D2249 /* Workers */,
 				7ECCA98E2873059300F99368 /* SwapEndpoints.swift */,
 				7ECCA99A28744CD600F99368 /* ExchangeRateView.swift */,
@@ -4279,7 +4279,7 @@
 				7E0968B8284A29CE006B4FC2 /* TransparentView.swift in Sources */,
 				3A611A0F2325738C004B8E36 /* AnimatedBlockSetLogo.swift in Sources */,
 				71C44E92225F95B100EF4459 /* RecoveryKeyCompleteViewController.swift in Sources */,
-				7BBBF4DF287421CF00E4D36B /* SwapMainStore.swift in Sources */,
+				7BBBF4DF287421CF00E4D36B /* SwapStore.swift in Sources */,
 				7BDB4A0B2806F5260031F015 /* RedeemGiftViewController.swift in Sources */,
 				CE6DCC251E6001E50044257B /* UIControl+Callback.swift in Sources */,
 				7B02D6262859200400C5C384 /* KYCCameraPreviewView.swift in Sources */,
@@ -4290,7 +4290,7 @@
 				7ED83AFA284F40EB00261565 /* CheckListViewController.swift in Sources */,
 				7BB22E49285B8D60003E37AC /* ContentSizedTableView.swift in Sources */,
 				223DB2191DF691260076A151 /* BRSocketHelpers.c in Sources */,
-				7B78631A2874266A0092F35B /* SwapMainCoordinator.swift in Sources */,
+				7B78631A2874266A0092F35B /* SwapCoordinator.swift in Sources */,
 				3A1D4180250965730089FE63 /* MarketDataPublisher.swift in Sources */,
 				7EBC6AF628488B10000A301F /* RegistrationStore.swift in Sources */,
 				7E9B13FB2857404600BD9EF5 /* DocumentReviewPresenter.swift in Sources */,
@@ -4493,7 +4493,7 @@
 				CE4CA7BC1EE3649100373F11 /* BRActivityView.swift in Sources */,
 				E89C0613216D79550012CE0D /* BRAPIClient+EmailSubscription.swift in Sources */,
 				7B02D6282859201500C5C384 /* KYCCameraViewController.swift in Sources */,
-				7BBBF4DC287421CF00E4D36B /* SwapMainModels.swift in Sources */,
+				7BBBF4DC287421CF00E4D36B /* SwapModels.swift in Sources */,
 				7ECCA9912873079100F99368 /* QuotaWorker.swift in Sources */,
 				7CBABD9C20181D890077CB55 /* NSMutableAttributedString+Additions.swift in Sources */,
 				3A69885E24591F890084953D /* PayId.swift in Sources */,
@@ -4542,7 +4542,7 @@
 				7E67680328479765007EC155 /* ResendConfirmationWorker.swift in Sources */,
 				7EF2999227E3B8D200A2238A /* SimplePrice.swift in Sources */,
 				7E8E97A5283F9804008606B0 /* FEPopupView.swift in Sources */,
-				7BBBF4DE287421CF00E4D36B /* SwapMainPresenter.swift in Sources */,
+				7BBBF4DE287421CF00E4D36B /* SwapPresenter.swift in Sources */,
 				CE977109216FA16300B9F621 /* SegwitViewController.swift in Sources */,
 				7BBBF4E0287421CF00E4D36B /* SwapMainVIP.swift in Sources */,
 				71173059220CCC91001931B3 /* PromptView.swift in Sources */,
@@ -4651,7 +4651,7 @@
 				7EBC6AF928488B10000A301F /* RegistrationVIP.swift in Sources */,
 				7CBA74E62022784D00FBBFA9 /* HomeScreenAssetViewModel.swift in Sources */,
 				7CA1C47420EC25B9002E9E68 /* QRCode.swift in Sources */,
-				7BBBF4DB287421CF00E4D36B /* SwapMainInteractor.swift in Sources */,
+				7BBBF4DB287421CF00E4D36B /* SwapInteractor.swift in Sources */,
 				CE41327622CACA05002391E6 /* BalanceCell.swift in Sources */,
 				7E5CB3AA2835090E00EC787E /* WrapperAccessoryView.swift in Sources */,
 				C45E0BAC2845F4C40083F028 /* AccountVerificationInteractor.swift in Sources */,
@@ -4715,7 +4715,7 @@
 				7C9BC58D231764030011732F /* WalletConnectionSettingsViewController.swift in Sources */,
 				CEB909F51E5FE63D001804DC /* EnterPhraseViewController.swift in Sources */,
 				C4D5E803284951DD000BEE6F /* VerifyAccountViewController.swift in Sources */,
-				7BBBF4DD287421CF00E4D36B /* SwapMainViewController.swift in Sources */,
+				7BBBF4DD287421CF00E4D36B /* SwapViewController.swift in Sources */,
 				7EC3790B281C09AE00028CA1 /* ErrorRequest.swift in Sources */,
 				C45E0BAB2845F4C40083F028 /* AccountVerificationViewController.swift in Sources */,
 				713CD88A2240198A004657D4 /* RecoveryKeyIntroViewController.swift in Sources */,

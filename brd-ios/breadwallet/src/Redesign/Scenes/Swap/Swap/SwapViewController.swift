@@ -1,5 +1,5 @@
 //
-//  SwapMainViewController.swift
+//  SwapViewController.swift
 //  breadwallet
 //
 //  Created by Kenan Mamedoff on 05/07/2022.
@@ -8,27 +8,20 @@
 //  See the LICENSE file at the project root for license information.
 //
 
-import AVFoundation
 import UIKit
 
-class SwapMainViewController: BaseTableViewController<KYCCoordinator,
-                              SwapMainInteractor,
-                              SwapMainPresenter,
-                              SwapMainStore>,
-                              SwapMainResponseDisplays {
+class SwapViewController: BaseTableViewController<KYCCoordinator,
+                              SwapInteractor,
+                              SwapPresenter,
+                              SwapStore>,
+                              SwapResponseDisplays {
     
-    typealias Models = SwapMainModels
+    typealias Models = SwapModels
     
     override var sceneLeftAlignedTitle: String? {
          // TODO: localize
         return "Swap"
     }
-    
-    // TODO: Get rid of those if possible.
-    private var fromFiatAmount: SwapMainModels.Amounts.CurrencyData?
-    private var fromCryptoAmount: SwapMainModels.Amounts.CurrencyData?
-    private var toFiatAmount: SwapMainModels.Amounts.CurrencyData?
-    private var toCryptoAmount: SwapMainModels.Amounts.CurrencyData?
     
     // MARK: - Overrides
     
@@ -47,6 +40,7 @@ class SwapMainViewController: BaseTableViewController<KYCCoordinator,
         
         case .confirm:
             cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
+            (cell as? WrapperTableViewCell<FEButton>)?.wrappedView.isEnabled = false
             
         default:
             cell = UITableViewCell()
@@ -63,63 +57,30 @@ class SwapMainViewController: BaseTableViewController<KYCCoordinator,
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
         
+        let model = sectionRows[sections]?[indexPath.row] as? MainSwapViewModel
+        
         cell.setup { view in
             view.configure(with: .init(shadow: Presets.Shadow.light,
                                        background: .init(backgroundColor: LightColors.Background.three,
                                                          tintColor: LightColors.Text.one,
                                                          border: Presets.Border.zero)))
-            view.setup(with: .init(fromFiatAmount: "", fromCryptoAmount: "", toFiatAmount: "", toCryptoAmount: ""))
+            view.setup(with: model)
             
             view.didChangeFromFiatAmount = { [weak self] amount in
-                self?.fromFiatAmount = amount
-                self?.handleData()
+                self?.interactor?.setAmount(viewAction: .init(fromFiatAmount: amount))
             }
             
             view.didChangeFromCryptoAmount = { [weak self] amount in
-                self?.fromCryptoAmount = amount
-                self?.handleData()
+                self?.interactor?.setAmount(viewAction: .init(fromCryptoAmount: amount))
             }
             
             view.didChangeToFiatAmount = { [weak self] amount in
-                self?.toFiatAmount = amount
-                self?.handleData()
+                self?.interactor?.setAmount(viewAction: .init(toFiatAmount: amount))
             }
             
             view.didChangeToCryptoAmount = { [weak self] amount in
-                self?.toCryptoAmount = amount
-                self?.handleData()
+                self?.interactor?.setAmount(viewAction: .init(toCryptoAmount: amount))
             }
-        }
-        
-        return cell
-    }
-    
-    private func handleData() {
-        interactor?.setAmount(viewAction: .init(fromFiatAmount: fromFiatAmount,
-                                                fromCryptoAmount: fromCryptoAmount,
-                                                toFiatAmount: toFiatAmount,
-                                                toCryptoAmount: toCryptoAmount))
-    }
-    
-    override func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
-        guard var model = sectionRows[section]?[indexPath.row] as? ButtonViewModel,
-              let cell: WrapperTableViewCell<FEButton> = tableView.dequeueReusableCell(for: indexPath)
-        else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-        
-        cell.setup { view in
-            view.configure(with: Presets.Button.primary)
-            view.setup(with: model)
-            view.setupCustomMargins(vertical: .large, horizontal: .large)
-            
-            // TODO: Handle with configs
-            view.isEnabled = false
-            
-            view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-            
-            self.handleData()
         }
         
         return cell
@@ -133,9 +94,9 @@ class SwapMainViewController: BaseTableViewController<KYCCoordinator,
         // TODO: Confirm logic
     }
     
-    // MARK: - SwapMainResponseDisplay
+    // MARK: - SwapResponseDisplay
     
-    func displaySetAmount(responseDisplay: SwapMainModels.Amounts.ResponseDisplay) {
+    func displaySetAmount(responseDisplay: SwapModels.Amounts.ResponseDisplay) {
         guard let section = sections.firstIndex(of: Models.Sections.confirm),
               let cell = tableView.cellForRow(at: .init(row: 0, section: section)) as? WrapperTableViewCell<FEButton> else { return }
         

@@ -435,7 +435,7 @@ class ApplicationController: Subscriber, Trackable {
 //            let currencies = coreSystem.assetCollection?.allAssets.compactMap { $0.value.code } ?? []
 //            coordinator?.showSwap(currencies: currencies)
             
-            coordinator?.showSwapModally()
+            coordinator?.showSwap()
         }
         
         homeScreen.didTapProfile = { [unowned self] in

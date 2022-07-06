@@ -91,8 +91,8 @@ class BaseCoordinator: NSObject,
         navigationController.show(coordinator.navigationController, sender: nil)
     }
     
-    func showSwapModally() {
-        openModally(coordinator: SwapMainCoordinator.self, scene: Scenes.SwapMain)
+    func showSwap() {
+        openModally(coordinator: SwapCoordinator.self, scene: Scenes.Swap)
     }
     
     func showProfileModally() {

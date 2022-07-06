@@ -10,9 +10,9 @@
 
 import UIKit
 
-class SwapCurrencyView: UIView {
-    var didChangeFiatAmount: ((SwapMainModels.Amounts.CurrencyData?) -> Void)?
-    var didChangeCryptoAmount: ((SwapMainModels.Amounts.CurrencyData?) -> Void)?
+class SwapCurrencyView: FEView<MainSwapConfiguration, MainSwapViewModel> {
+    var didChangeFiatAmount: ((String?) -> Void)?
+    var didChangeCryptoAmount: ((String?) -> Void)?
     
     private lazy var currencyContainerView: UIView = {
         let view = UIView()
@@ -26,7 +26,7 @@ class SwapCurrencyView: UIView {
         return view
     }()
     
-    lazy var iHaveLabel: FELabel = {
+    private lazy var iHaveLabel: FELabel = {
         let view = FELabel()
         view.text = "I have 100 BSV"
         view.font = Fonts.caption
@@ -35,7 +35,7 @@ class SwapCurrencyView: UIView {
         return view
     }()
     
-    lazy var fiatTitleStackView: UIStackView = {
+    private lazy var fiatTitleStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
         view.distribution = .fill
@@ -43,33 +43,33 @@ class SwapCurrencyView: UIView {
         return view
     }()
     
-    lazy var fiatAmountField: UITextField = {
+    private lazy var fiatAmountField: UITextField = {
         let view = UITextField()
         view.textColor = LightColors.Icons.one
         view.font = Fonts.Subtitle.two
-        view.attributedPlaceholder = NSAttributedString(
-            string: "0.00",
-            attributes: [NSAttributedString.Key.foregroundColor: view.textColor ?? UIColor.black,
-                         NSAttributedString.Key.font: view.font ?? UIFont.systemFont(ofSize: 12)]
-        )
         view.tintColor = view.textColor
         view.textAlignment = .right
         view.keyboardType = .numberPad
         view.addTarget(self, action: #selector(fiatAmountDidChange(_:)), for: .editingChanged)
         
-        let lineView = UIView()
-        lineView.backgroundColor = LightColors.Outline.two
-        
-        view.addSubview(lineView)
-        lineView.snp.makeConstraints { make in
-            make.height.equalTo(1)
-            make.leading.trailing.bottom.equalToSuperview()
+        if let textColor = view.textColor, let font = view.font {
+            view.attributedPlaceholder = NSAttributedString(
+                string: "0.00",
+                attributes: [NSAttributedString.Key.foregroundColor: textColor,
+                             NSAttributedString.Key.font: font]
+            )
         }
         
         return view
     }()
     
-    lazy var fiatCurrencySignLabel: FELabel = {
+    private lazy var fiatAmountFieldlineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = LightColors.Outline.two
+        return view
+    }()
+    
+    private lazy var fiatCurrencySignLabel: FELabel = {
         let view = FELabel()
         view.text = Store.state.defaultCurrencyCode
         view.font = Fonts.Subtitle.two
@@ -82,7 +82,7 @@ class SwapCurrencyView: UIView {
         let view = UIStackView()
         view.axis = .horizontal
         view.distribution = .fill
-        view.spacing = Margins.medium.rawValue
+        view.spacing = Margins.small.rawValue
         return view
     }()
     
@@ -103,33 +103,35 @@ class SwapCurrencyView: UIView {
     
     private lazy var currencySelectionArrowIconView: FEImageView = {
         let view = FEImageView()
-        view.setup(with: .imageName("SwapCurrencyArrow"))
+        view.setup(with: .imageName("chevrondown"))
+        view.setupCustomMargins(all: .extraSmall)
+        view.tintColor = LightColors.primary
         return view
     }()
     
-    lazy var currencyAmountTitleLabel: UITextField = {
+    private lazy var currencyAmountTitleLabel: UITextField = {
         let view = UITextField()
         view.textColor = LightColors.Icons.one
         view.font = Fonts.Title.four
-        view.attributedPlaceholder = NSAttributedString(
-            string: "0.00",
-            attributes: [NSAttributedString.Key.foregroundColor: view.textColor ?? UIColor.black,
-                         NSAttributedString.Key.font: view.font ?? UIFont.systemFont(ofSize: 12)]
-        )
         view.tintColor = view.textColor
         view.textAlignment = .right
         view.keyboardType = .numberPad
         view.addTarget(self, action: #selector(cryptoAmountDidChange(_:)), for: .editingChanged)
         
-        let lineView = UIView()
-        lineView.backgroundColor = LightColors.Outline.two
-        
-        view.addSubview(lineView)
-        lineView.snp.makeConstraints { make in
-            make.height.equalTo(1)
-            make.leading.trailing.bottom.equalToSuperview()
+        if let textColor = view.textColor, let font = view.font {
+            view.attributedPlaceholder = NSAttributedString(
+                string: "0.00",
+                attributes: [NSAttributedString.Key.foregroundColor: textColor,
+                             NSAttributedString.Key.font: font]
+            )
         }
         
+        return view
+    }()
+    
+    private lazy var currencyAmountTitleLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = LightColors.Outline.two
         return view
     }()
     
@@ -160,8 +162,8 @@ class SwapCurrencyView: UIView {
         return view
     }()
     
-    init() {
-        super.init(frame: .zero)
+    override func setupSubviews() {
+        super.setupSubviews()
         
         addSubview(currencyContainerView)
         currencyContainerView.snp.makeConstraints { make in
@@ -175,7 +177,13 @@ class SwapCurrencyView: UIView {
         
         fiatTitleStackView.addArrangedSubview(fiatAmountField)
         fiatTitleStackView.addArrangedSubview(fiatCurrencySignLabel)
-
+        
+        fiatAmountField.addSubview(fiatAmountFieldlineView)
+        fiatAmountFieldlineView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
         currencyHeaderStackView.addArrangedSubview(iHaveLabel)
         currencyHeaderStackView.addArrangedSubview(fiatTitleStackView)
         
@@ -184,7 +192,6 @@ class SwapCurrencyView: UIView {
             make.top.equalTo(currencyHeaderStackView.snp.bottom).offset(Margins.medium.rawValue)
             make.leading.equalTo(currencyHeaderStackView)
             make.height.equalTo(32)
-            make.width.equalTo(140)
         }
         
         currencySelectorStackView.addArrangedSubview(currencyIconImageView)
@@ -203,6 +210,12 @@ class SwapCurrencyView: UIView {
             make.height.equalTo(currencySelectorStackView.snp.height)
         }
         
+        currencyAmountTitleLabel.addSubview(currencyAmountTitleLineView)
+        currencyAmountTitleLineView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
         currencyContainerView.addSubview(feeAndAmountsStackView)
         feeAndAmountsStackView.snp.makeConstraints { make in
             make.top.equalTo(currencySelectorStackView.snp.bottom).offset(Margins.huge.rawValue)
@@ -215,45 +228,73 @@ class SwapCurrencyView: UIView {
     }
     
     @objc func fiatAmountDidChange(_ textField: UITextField) {
-        let amountString = textField.text?.currencyInputFormatting()
-        textField.text = amountString?.formattedString
-        
-        didChangeFiatAmount?(amountString)
+        didChangeFiatAmount?(textField.text)
     }
     
     @objc func cryptoAmountDidChange(_ textField: UITextField) {
-        let amountString = textField.text?.currencyInputFormatting()
-        textField.text = amountString?.formattedString
-        
-        didChangeCryptoAmount?(amountString)
+        didChangeCryptoAmount?(textField.text)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func configure(with config: MainSwapConfiguration?) {
+        guard let config = config else { return }
+        super.configure(with: config)
+        
+        configure(shadow: config.shadow)
+    }
+    
+    override func setup(with viewModel: MainSwapViewModel?) {
+        guard let viewModel = viewModel else { return }
+        super.setup(with: viewModel)
     }
 }
 
-extension String {
-    // Should this stay? How should it work?
-    func currencyInputFormatting() -> SwapMainModels.Amounts.CurrencyData? {
-        var number: NSNumber!
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumIntegerDigits = 10
+extension SwapCurrencyView {
+    static func animateSwitchPlaces(sender: UIButton?, topSwapCurrencyView: SwapCurrencyView, bottomSwapCurrencyView: SwapCurrencyView) {
+        UIView.animate(withDuration: Presets.Animation.duration * 3,
+                       delay: 0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 3,
+                       options: .curveEaseInOut) {
+            sender?.isEnabled = false
+            sender?.transform = sender?.transform == .identity ? CGAffineTransform(rotationAngle: .pi) : .identity
+            
+            let topFrame = topSwapCurrencyView.currencySelectorStackView
+            let bottomFrame = bottomSwapCurrencyView.currencySelectorStackView
+            let frame = topFrame.convert(topFrame.bounds, from: bottomFrame)
+            let verticalDistance = frame.minY - topFrame.bounds.maxY + topFrame.frame.height
+            
+            topSwapCurrencyView.currencySelectorStackView.transform = topSwapCurrencyView.currencySelectorStackView.transform == .identity
+            ? .init(translationX: 0, y: verticalDistance) : .identity
+            bottomSwapCurrencyView.currencySelectorStackView.transform = bottomSwapCurrencyView.currencySelectorStackView.transform == .identity
+            ? .init(translationX: 0, y: -verticalDistance) : .identity
+        }
         
-        var amountWithPrefix = self
+        UIView.animate(withDuration: Presets.Animation.duration, delay: Presets.Animation.duration, options: []) {
+            SwapCurrencyView.updateAlpha(topSwapCurrencyView: topSwapCurrencyView, bottomSwapCurrencyView: bottomSwapCurrencyView, value: 0.2)
+        } completion: { _ in
+            UIView.animate(withDuration: Presets.Animation.duration) {
+                SwapCurrencyView.updateAlpha(topSwapCurrencyView: topSwapCurrencyView, bottomSwapCurrencyView: bottomSwapCurrencyView, value: 1.0)
+                
+                sender?.isEnabled = true
+            }
+        }
+    }
+    
+    private static  func updateAlpha(topSwapCurrencyView: SwapCurrencyView, bottomSwapCurrencyView: SwapCurrencyView, value: CGFloat) {
+        topSwapCurrencyView.iHaveLabel.alpha = value
+        topSwapCurrencyView.fiatTitleStackView.alpha = value
+        topSwapCurrencyView.fiatAmountField.alpha = value
+        topSwapCurrencyView.fiatCurrencySignLabel.alpha = value
+        topSwapCurrencyView.currencyAmountTitleLabel.alpha = value
+        topSwapCurrencyView.feeLabel.alpha = value
+        topSwapCurrencyView.fromToConversionLabel.alpha = value
         
-        let regex = try? NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
-        amountWithPrefix = regex?.stringByReplacingMatches(in: amountWithPrefix,
-                                                           options: NSRegularExpression.MatchingOptions(rawValue: 0),
-                                                           range: NSRange(location: 0,
-                                                                          length: count),
-                                                           withTemplate: "") ?? ""
-        
-        let double = (amountWithPrefix as NSString).doubleValue
-        number = NSNumber(value: (double / 100))
-        
-        return number == 0 ? nil : SwapMainModels.Amounts.CurrencyData(formattedString: formatter.string(from: number),
-                                                                       number: number)
+        bottomSwapCurrencyView.iHaveLabel.alpha = value
+        bottomSwapCurrencyView.fiatTitleStackView.alpha = value
+        bottomSwapCurrencyView.fiatAmountField.alpha = value
+        bottomSwapCurrencyView.fiatCurrencySignLabel.alpha = value
+        bottomSwapCurrencyView.currencyAmountTitleLabel.alpha = value
+        bottomSwapCurrencyView.feeLabel.alpha = value
+        bottomSwapCurrencyView.fromToConversionLabel.alpha = value
     }
 }
