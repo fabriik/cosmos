@@ -411,6 +411,7 @@ class UpdatePinViewController: UIViewController, Subscriber {
             })
         }
         let nc = RootNavigationController(rootViewController: resetPinSuccess)
+        nc.modalPresentationStyle = .overFullScreen
         nc.isNavigationBarHidden = true
         present(nc, animated: true)
     }
