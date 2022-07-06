@@ -38,6 +38,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
     private let faq: UIButton
     private let scrollView = UIScrollView()
     private let container = UIView()
+    var phrase: String = ""
 
     private let headingLeftRightMargins: CGFloat = E.isSmallScreen ? 24 : 54
     
@@ -51,6 +52,13 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         let attributedString = NSMutableAttributedString(string: "Contact support", attributes: attributes)
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(self, action: #selector(contactSupportTapped), for: .touchUpInside)
+        button.isHidden = true
+        
+        return button
+    }()
+    
+    lazy var nextButton: FEButton = {
+        let button = FEButton()
         
         return button
     }()
@@ -108,6 +116,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         container.addSubview(subheading)
         container.addSubview(contactSupportButton)
         container.addSubview(errorLabel)
+        scrollView.addSubview(nextButton)
 
         addChild(enterPhrase)
         container.addSubview(enterPhrase.view)
@@ -148,12 +157,22 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
             contactSupportButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -Margins.large.rawValue)
         ])
         
+        nextButton.constrain([
+            nextButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -ButtonHeights.common.rawValue),
+            nextButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: Margins.large.rawValue),
+            nextButton.heightAnchor.constraint(equalToConstant: ButtonHeights.common.rawValue)
+        ])
+        
         errorLabel.constrain([
             errorLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: C.padding[2]),
             errorLabel.topAnchor.constraint(equalTo: enterPhrase.view.bottomAnchor, constant: 12),
             errorLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -C.padding[4]),
             errorLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -C.padding[2] )
             ])
+        
+        nextButton.configure(with: Presets.Button.primary)
+        nextButton.addTarget(self, action: #selector(nextTapped(_:)), for: .touchUpInside)
     }
 
     private func setInitialData() {
@@ -161,8 +180,10 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         errorLabel.text = L10n.RecoverWallet.invalid
         errorLabel.isHidden = true
         errorLabel.textAlignment = .center
+        nextButton.setup(with: .init(title: "Next"))
+        
         enterPhrase.didFinishPhraseEntry = { [weak self] phrase in
-            self?.validatePhrase(phrase)
+            self?.phrase = phrase
         }
 
         switch reason {
@@ -185,6 +206,11 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
         }
 
         scrollView.delegate = self
+    }
+    
+    // MARK: - User Interaction
+    @objc func nextTapped(_ sender: UIButton?) {
+        validatePhrase(phrase)
     }
     
     @objc private func contactSupportTapped() {
@@ -217,6 +243,7 @@ class EnterPhraseViewController: UIViewController, UIScrollViewDelegate, Trackab
             saveEvent("enterPhrase.invalid")
             
             showToastMessage(message: L10n.RecoverWallet.invalid)
+            contactSupportButton.isHidden = false
             return
         }
         saveEvent("enterPhrase.valid")
