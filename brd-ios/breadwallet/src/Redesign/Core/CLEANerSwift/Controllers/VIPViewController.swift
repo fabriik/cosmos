@@ -21,7 +21,7 @@ class VIPViewController<C: CoordinatableRoutes,
     
     // MARK: Title and tab bar appearance
     var sceneTitle: String? { return nil }
-    var sceneLeftAlignedTitle: String? { return nil }
+    var sceneLeftAlignedTitle: String? { return nil } // TODO: Use large titles.
     var tabIcon: UIImage? { return nil }
     var infoIcon: UIImage? { return nil }
     
