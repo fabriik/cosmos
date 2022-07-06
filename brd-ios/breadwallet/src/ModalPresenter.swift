@@ -572,7 +572,7 @@ class ModalPresenter: Subscriber, Trackable {
             },
             
             // Feedback
-            MenuItem(title: L10n.MenuButton.feedback, icon: MenuItem.Icon.feedback) { [weak self] in
+            MenuItem(title: "Feedback", icon: MenuItem.Icon.feedback) { [weak self] in
                 guard let topVc = self?.topViewController else { return }
                 
                 let feedback = EmailFeedbackManager.Feedback(recipients: "feedback@fabriik.com", subject: "Fabriik - Feedback", body: "")
