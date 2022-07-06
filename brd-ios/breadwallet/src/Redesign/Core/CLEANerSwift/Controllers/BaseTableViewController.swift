@@ -51,6 +51,7 @@ class BaseTableViewController<C: CoordinatableRoutes,
         // TODO: register proper accessoryViews
         tableView.registerAccessoryView(WrapperAccessoryView<FELabel>.self)
         tableView.registerAccessoryView(WrapperAccessoryView<FEButton>.self)
+        tableView.registerAccessoryView(WrapperAccessoryView<AssetView>.self)
         // TODO: register base cells
         tableView.register(WrapperTableViewCell<FELabel>.self)
         tableView.register(WrapperTableViewCell<FEButton>.self)
@@ -116,6 +117,9 @@ class BaseTableViewController<C: CoordinatableRoutes,
         case .action(let title):
             view = self.tableView(tableView, supplementaryViewWith: title, for: section, callback: callback)
             view?.setupCustomMargins(vertical: .small, horizontal: .small)
+            
+        case .advanced(let icon, let title, let description):
+            view = self.tableView(tableView, advancedSupplementaryViewWith: icon, title: title, description: description, for: section)
 
         default:
             view = UIView(frame: .zero)
@@ -162,6 +166,23 @@ class BaseTableViewController<C: CoordinatableRoutes,
             view.configure(with: Presets.Button.primary)
             // TODO: add callback to suplementaryViewTapped
         }
+
+        return view
+    }
+    
+    private func tableView(_ tableView: UITableView,
+                           advancedSupplementaryViewWith icon: UIImage? = nil,
+                           title: String? = nil,
+                           description: String? = nil,
+                           for section: Int) -> UIView? {
+        guard let view: WrapperAccessoryView<AssetView> = tableView.dequeueAccessoryView()
+        else { return UIView(frame: .zero) }
+        
+        view.setup { view in
+            view.configure(with: Presets.Asset.Header)
+            view.setup(with: .init(icon: .imageName("timelapse"), title: title, topRightText: description))
+        }
+        view.setupCustomMargins(vertical: .small, horizontal: .large)
 
         return view
     }
