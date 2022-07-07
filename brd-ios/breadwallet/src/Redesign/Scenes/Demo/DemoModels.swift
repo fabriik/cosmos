@@ -22,6 +22,7 @@ enum DemoModels {
         case segmentControl
         case timer
         case asset
+        case order
         
         var header: AccessoryType? { return .advanced(.init(named: "swap"), "ROK", "ZELOOOO drago") }
         var footer: AccessoryType? { return nil }
