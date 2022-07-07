@@ -24,7 +24,7 @@ class ConfirmRecoveryKeyViewController: BaseRecoveryKeyViewController {
     typealias ConfirmationWordIndices = (first: Int, second: Int)
 
     private let confirmationIndices: (ConfirmationWordIndices) = {
-        func random() -> Int { return Int(arc4random_uniform(10) + 1) }
+        func random() -> Int { return Int.random(in: 1...11) }
         let first = random()
         var second = random()
         while !(abs(Int32(second - first)) > 1) {

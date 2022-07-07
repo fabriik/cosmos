@@ -49,7 +49,7 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
     override func configure(with config: BackgroundConfiguration?) {
         super.configure(with: config)
         guard let border = config?.border else { return }
-        
+        content.backgroundColor = config?.backgroundColor
         let radius = border.cornerRadius == .fullRadius ? content.bounds.width / 2 : border.cornerRadius.rawValue
         content.layer.cornerRadius = radius
         content.layer.borderWidth = border.borderWidth
@@ -88,6 +88,7 @@ class FEImageView: FEView<BackgroundConfiguration, ImageViewModel> {
         layoutIfNeeded()
     }
     
+    // TODO: what is this magic? :o
     private func layoutViews(image: UIImage?) {
         guard let image = image else {
             return
