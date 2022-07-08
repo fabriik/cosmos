@@ -70,6 +70,7 @@ class MainSwapView: FEView<MainSwapConfiguration, MainSwapViewModel> {
     var didChangeFromCryptoAmount: ((String?) -> Void)?
     var didChangeToFiatAmount: ((String?) -> Void)?
     var didChangeToCryptoAmount: ((String?) -> Void)?
+    var assetsSelectionCallback: (() -> Void)?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -150,11 +151,11 @@ class MainSwapView: FEView<MainSwapConfiguration, MainSwapViewModel> {
     // MARK: - User interaction
     
     @objc private func topCurrencyTapped(_ sender: Any?) {
-        // TODO: Wire the logic
+        assetsSelectionCallback?()
     }
     
     @objc private func bottomCurrencyTapped(_ sender: Any?) {
-        // TODO: Wire the logic
+        assetsSelectionCallback?()
     }
     
     @objc private func switchPlacesButtonTapped(_ sender: UIButton?) {

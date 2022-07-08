@@ -17,6 +17,10 @@ class SwapCoordinator: BaseCoordinator, SwapRoutes {
         open(scene: Scenes.Swap)
     }
     
+    func openAssetSelection() {
+        open(scene: Scenes.AssetSelection)
+    }
+    
     // MARK: - Aditional helpers
     
 }

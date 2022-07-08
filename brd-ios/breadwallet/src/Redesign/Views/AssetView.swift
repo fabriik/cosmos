@@ -17,7 +17,7 @@ extension Presets {
                                                backgroundConfiguration: .init(backgroundColor: LightColors.tertiary,
                                                                               tintColor: LightColors.Text.one,
                                                                               border: Presets.Border.zero),
-                                               imageConfig: .init(backgroundColor: LightColors.pending, tintColor: .white, border: .init(borderWidth: 0, cornerRadius: .fullRadius)),
+                                               imageConfig: .init(backgroundColor: LightColors.pending, tintColor: .white, border: .init(borderWidth: 0, cornerRadius: .medium)),
                                                imageSize: .small)
     }
 }
@@ -25,6 +25,8 @@ extension Presets {
 struct AssetConfiguration: Configurable {
     var topConfiguration = LabelConfiguration(font: Fonts.Title.six, textColor: LightColors.Text.one)
     var bottomConfiguration = LabelConfiguration(font: Fonts.Subtitle.two, textColor: LightColors.Text.two)
+    var topRightConfiguration = LabelConfiguration(font: Fonts.Title.six, textColor: LightColors.Text.one, textAlignment: .right)
+    var bottomRightConfiguration = LabelConfiguration(font: Fonts.Subtitle.two, textColor: LightColors.Text.two, textAlignment: .right)
     var backgroundConfiguration: BackgroundConfiguration?
     var imageConfig: BackgroundConfiguration?
     var imageSize: ViewSizes = .medium
@@ -117,10 +119,10 @@ class AssetView: FEView<AssetConfiguration, AssetViewModel> {
         super.configure(with: config)
         
         titleLabel.configure(with: config.topConfiguration)
-        topRightLabel.configure(with: config.topConfiguration)
+        topRightLabel.configure(with: config.topRightConfiguration)
         
         subtitleLabel.configure(with: config.bottomConfiguration)
-        bottomRightLabel.configure(with: config.bottomConfiguration)
+        bottomRightLabel.configure(with: config.bottomRightConfiguration)
         
         iconView.snp.updateConstraints { make in
             make.height.equalTo(config.imageSize.rawValue)

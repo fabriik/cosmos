@@ -10,7 +10,7 @@
 
 import UIKit
 
-class SwapViewController: BaseTableViewController<KYCCoordinator,
+class SwapViewController: BaseTableViewController<SwapCoordinator,
                               SwapInteractor,
                               SwapPresenter,
                               SwapStore>,
@@ -80,6 +80,11 @@ class SwapViewController: BaseTableViewController<KYCCoordinator,
             
             view.didChangeToCryptoAmount = { [weak self] amount in
                 self?.interactor?.setAmount(viewAction: .init(toCryptoAmount: amount))
+            }
+            
+            view.assetsSelectionCallback = { [weak self]
+                in
+                self?.coordinator?.openAssetSelection()
             }
         }
         
