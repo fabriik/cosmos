@@ -31,6 +31,8 @@ class AssetSelectionViewController: BaseTableViewController<KYCCoordinator,
         setupSearchBar()
     }
     
+    override var closeImage: UIImage? { return nil }
+    
     func setupSearchBar() {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
