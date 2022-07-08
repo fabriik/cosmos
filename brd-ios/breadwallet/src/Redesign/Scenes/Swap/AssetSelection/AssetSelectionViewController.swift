@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AssetSelectionViewController: BaseTableViewController<KYCCoordinator,
+class AssetSelectionViewController: BaseTableViewController<SwapCoordinator,
                                     AssetSelectionInteractor,
                                     AssetSelectionPresenter,
                                     AssetSelectionStore>,
