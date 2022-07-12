@@ -11,7 +11,6 @@ enum VerifyAccountModels {
         case image
         case title
         case description
-        case verifyButton
         
         var header: AccessoryType? { return nil }
         var footer: AccessoryType? { return nil }

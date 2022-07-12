@@ -11,6 +11,28 @@ class VerifyAccountViewController: BaseTableViewController<KYCCoordinator,
                                    VerifyAccountResponseDisplays {
     
     typealias Models = VerifyAccountModels
+    
+    lazy var verifyButton: FEButton = {
+        let button = FEButton()
+        return button
+    }()
+    
+    override func setupSubviews() {
+        super.setupSubviews()
+        
+        view.addSubview(verifyButton)
+        verifyButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().inset(Margins.large.rawValue)
+            make.bottom.equalTo(view.snp.bottomMargin)
+            make.height.equalTo(ButtonHeights.common.rawValue)
+        }
+        
+        verifyButton.configure(with: Presets.Button.primary)
+        verifyButton.setup(with: .init(title: "Verify your account"))
+        
+        verifyButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
 
     // MARK: - Overrides
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -25,36 +47,11 @@ class VerifyAccountViewController: BaseTableViewController<KYCCoordinator,
         case .description:
             cell = self.tableView(tableView, descriptionLabelCellForRowAt: indexPath)
             
-        case .verifyButton:
-            cell = self.tableView(tableView, buttonCellForRowAt: indexPath)
-            
         default:
             cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
         
         cell.setupCustomMargins(vertical: .huge, horizontal: .large)
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, buttonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
-        guard let model = sectionRows[section]?[indexPath.row] as? ButtonViewModel,
-              let cell: WrapperTableViewCell<FEButton> = tableView.dequeueReusableCell(for: indexPath)
-        else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-        
-        cell.setup { view in
-            view.configure(with: Presets.Button.primary)
-            view.setup(with: model)
-            view.setupCustomMargins(vertical: .large, horizontal: .large)
-            view.snp.makeConstraints { make in
-                make.height.equalTo(ButtonHeights.common.rawValue)
-                make.top.equalTo(ViewSizes.large.rawValue)
-            }
-            view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        }
         
         return cell
     }
