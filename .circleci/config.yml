@@ -35,11 +35,6 @@ jobs:
             for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
 
       - run:
-          name: Pull Submodules
-          command: |
-            git submodule update --init --recursive
-
-      - run:
           name: Check Init
           command: |
             swift --version
@@ -86,21 +81,7 @@ jobs:
           name: Install Prerequisites
           command: |
             brew --cache
-
-            brew tap adoptopenjdk/openjdk
-            brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
-            export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-            ls -la /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-
-            brew install ghostscript SwiftLint
-            brew install --cask android-commandlinetools
-
-      - run:
-          name: Copy SDK License
-          command: |
-            mkdir /usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin/licenses
-            touch /usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin/licenses/android-sdk-license
-            printf "8933bad161af4178b1185d1a37fbf41ea5269c55\nd56f5187479451eabf01fb78af6dfcb131a6481e\n24333f8a63b6825ea9c5514f83c2829b004d1fee\n" > /usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin/licenses/android-sdk-license
+            brew install SwiftLint
 
       - run:
           name: Check Key
@@ -151,9 +132,6 @@ jobs:
             echo "STAGING_TOKEN=$STAGING_TOKEN" >> $BRD_ENV
             echo "" >> $BRD_ENV
 
-            cd ..
-            echo "sdk.dir=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin" > ./local.properties
-
       - run:
           name: Create exportOptions.plist
           command: |
@@ -164,12 +142,10 @@ jobs:
             fi
 
       - run:
-          name: Build Walletkit Subproject
+          name: Build Cosmos Project
           command: |
-            export ANDROID_SDK_ROOT=/usr/local/share/android-commandlinetools/cmdline-tools/homebrew/bin
-            cp ./local.properties external/walletKit/walletKitJava/local.properties
+            export ANDROID_SDK_ROOT=/usr/local/share/android-commandlinetools/cmdline-tools/latest/bin
             ./gradlew cosmos-bundled:createXCFramework
-            sed -i '' '18i\'$'\n        ndkVersion \'21.1.6352462\'\n\n' external/walletkit/WalletKitJava/corenative-android/build.gradle
 
       - run:
           name: Set Versions
@@ -180,13 +156,6 @@ jobs:
             cd brd-ios
             agvtool new-marketing-version ${mainBundleShortVersionString}
             agvtool new-version ${mainBundleVersion}
-
-      - run:
-          name: Download Currencies and Bundles
-          command: |
-            cd brd-ios
-            scripts/download_bundles.sh $API_URL/blocksatoshi
-            scripts/download_currencylist.sh $API_URL/blocksatoshi "$BREAD_TOKEN:SIG"
 
       - run:
           name: Run Build

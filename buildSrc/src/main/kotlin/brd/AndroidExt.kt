@@ -19,7 +19,6 @@ fun Project.ensureAndroidLocalPropertiesWithSdkDir(outputFolder: File = project.
     val path = project.tryToDetectAndroidSdkPath()
     return if (path != null) {
         makeLocalProperties(outputFolder, path)
-        makeLocalProperties(File(outputFolder, "/external/walletkit/WalletKitJava"), path)
         true
     } else false
 }

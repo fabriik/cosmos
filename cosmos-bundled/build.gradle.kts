@@ -7,9 +7,6 @@ plugins {
     kotlin("multiplatform")
 }
 
-// Generates "local.properties" file with path to SDK (needed for buidling outside Android Studio)
-hasAndroidSdK()
-
 android {
     compileSdkVersion(brd.BrdRelease.ANDROID_COMPILE_SDK)
     buildToolsVersion(brd.BrdRelease.ANDROID_BUILD_TOOLS)
