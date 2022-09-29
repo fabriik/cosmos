@@ -105,9 +105,6 @@ fabric.properties
 ## Gcc Patch
 /*.gcno
 
-## xcode-frameworks folders and plists so that xcode does not complain prior first build of Cosmos.xcframework
-cosmos-bundled/build-frameworks/
-
 *.env
 
 # Xcode
