@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Cosmos",
+    name: "Fabriik-Cosmos",
     platforms: [
         .iOS(.v11),
         .macOS(.v11)
