@@ -3,10 +3,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "Fabriik-Cosmos",
+    name: "Cosmos",
     platforms: [
         .iOS(.v11),
         .macOS(.v11)
+    ],
+    products: [
+        .library(
+            name: "Cosmos",
+            targets: ["Cosmos"])
     ],
     targets: [
         .binaryTarget(
