@@ -72,7 +72,6 @@ private const val MOCKITO_VERSION = "2.25.0"
 private const val KASPRESSO_VERSION = "1.1.0"
 private const val KAKAO_VERSION = "2.3.2"
 private const val MATERIAL_VERSION = "1.3.0"
-const val REDACTED_VERSION = "0.8.0"
 private const val DETEKT_VERSION = "1.0.1"
 private const val COMMONS_COMPRESS_VERSION = "1.20"
 private const val BIOMETRIC_VERSION = "1.2.0-alpha02"
@@ -256,11 +255,6 @@ object Libs {
 
     object Kakao {
         const val Core = "com.agoda.kakao:kakao:$KAKAO_VERSION"
-    }
-
-    object Redacted {
-        const val Annotation = "dev.zacsweers.redacted:redacted-compiler-plugin-annotations"
-        const val Plugin = "dev.zacsweers.redacted:redacted-compiler-gradle-plugin"
     }
 
     object Detekt {
