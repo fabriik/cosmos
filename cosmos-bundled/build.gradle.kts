@@ -93,7 +93,7 @@ tasks.register<Exec>("createXCFramework") {
     dependsOn(frameworks.map { it.linkTask.name })
 
     val outputName = frameworks.first().outputFile.nameWithoutExtension
-    val xcFrameworkDestination = file("build-frameworks/${outputName}.xcframework")
+    val xcFrameworkDestination = file("../frameworks/${outputName}.xcframework")
     executable = "xcodebuild"
     args(
         "-create-xcframework",

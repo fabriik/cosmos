@@ -16,7 +16,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "Cosmos",
-            path: "cosmos-bundled/build-frameworks/Cosmos.xcframework"
+            path: "frameworks/Cosmos.xcframework"
         )
     ]
 )
